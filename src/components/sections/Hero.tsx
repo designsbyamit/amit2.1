@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import GrainOverlay from '../ui/GrainOverlay'
 import SweepLines from '../ui/SweepLines'
@@ -19,7 +20,6 @@ export default function Hero() {
     <section
       ref={containerRef}
       className="relative h-[100dvh] overflow-hidden bg-black"
-      id="hero"
     >
       <SweepLines />
       <GrainOverlay opacity={0.05} />
@@ -83,18 +83,18 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
-            <a
-              href="#work"
+            <Link
+              to="/craft"
               className="text-label text-white border border-white border-opacity-30 px-6 py-3 hover:border-opacity-80 hover:bg-white hover:bg-opacity-5 transition-all duration-300"
             >
               See the work
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              to="/contact"
               className="text-label text-white opacity-50 hover:opacity-100 transition-opacity"
             >
               Get in touch →
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>
