@@ -1,22 +1,25 @@
-import { HashRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/ui/ScrollToTop'
+import ScrollProgressLine from './components/ui/ScrollProgressLine'
 import Home from './pages/Home'
 import Craft from './pages/Craft'
 import LeadershipPage from './pages/LeadershipPage'
 import ReflectionsPage from './pages/ReflectionsPage'
-import Philosophy from './pages/Philosophy'
-import ContactPage from './pages/ContactPage'
+import CommunityPage from './pages/CommunityPage'
+import AboutPage from './pages/AboutPage'
+import CaseStudyPage from './pages/CaseStudyPage'
+import ResourcesPage from './pages/ResourcesPage'
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -30,10 +33,14 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
+        <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
+        <Route path="/community" element={<PageTransition><CommunityPage /></PageTransition>} />
         <Route path="/reflections" element={<PageTransition><ReflectionsPage /></PageTransition>} />
-        <Route path="/philosophy" element={<PageTransition><Philosophy /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+        <Route path="/resources" element={<PageTransition><ResourcesPage /></PageTransition>} />
+        <Route path="/philosophy" element={<Navigate to="/about" replace />} />
+        <Route path="/contact" element={<Navigate to="/about" replace />} />
       </Routes>
     </AnimatePresence>
   )
@@ -43,6 +50,7 @@ export default function App() {
   return (
     <HashRouter>
       <div className="bg-black text-white min-h-screen">
+        <ScrollProgressLine />
         <ScrollToTop />
         <Nav />
         <main>

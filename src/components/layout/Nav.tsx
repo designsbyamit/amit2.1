@@ -1,24 +1,40 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import logoSvg from '../../assets/images/logo.svg'
+import { caseStudies } from '../../data/work'
 
 const navItems = [
+  { label: 'Home', to: '/' },
   { label: 'Craft', to: '/craft' },
   { label: 'Leadership', to: '/leadership' },
+  { label: 'Community', to: '/community' },
   { label: 'Reflections', to: '/reflections' },
-  { label: 'Philosophy', to: '/philosophy' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Resources', to: '/resources' },
+  { label: 'About', to: '/about' },
 ]
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [craftOpen, setCraftOpen] = useState(false)
+  const craftRef = useRef<HTMLLIElement>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const openCraft = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setCraftOpen(true)
+  }
+
+  const closeCraft = () => {
+    closeTimer.current = setTimeout(() => setCraftOpen(false), 120)
+  }
 
   return (
     <>
@@ -33,36 +49,87 @@ export default function Nav() {
         <nav className="mx-auto max-w-7xl px-6 md:px-12 h-16 flex items-center justify-between">
           <Link
             to="/"
-            className="text-label text-white opacity-80 hover:opacity-100 transition-opacity tracking-widest"
+            className="opacity-80 hover:opacity-100 transition-opacity"
           >
-            AKT
+            <img src={logoSvg} alt="AKT" className="w-10 h-10" />
           </Link>
 
           <ul className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <li key={item.to}>
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `text-label text-white transition-all duration-200 relative ${
-                      isActive ? 'opacity-100' : 'opacity-45 hover:opacity-80'
-                    }`
-                  }
+              item.label === 'Craft' ? (
+                <li
+                  key={item.to}
+                  ref={craftRef}
+                  className="relative"
+                  onMouseEnter={openCraft}
+                  onMouseLeave={closeCraft}
                 >
-                  {({ isActive }) => (
-                    <>
-                      {item.label}
-                      {isActive && (
-                        <motion.span
-                          layoutId="nav-underline"
-                          className="absolute -bottom-1 left-0 right-0 h-px bg-white"
-                          transition={{ type: 'spring', stiffness: 400, damping: 35 }}
-                        />
-                      )}
-                    </>
-                  )}
-                </NavLink>
-              </li>
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `text-label text-white transition-all duration-200 ${
+                        isActive ? 'opacity-100' : 'opacity-45 hover:opacity-80'
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+
+                  <AnimatePresence>
+                    {craftOpen && (
+                      <motion.div
+                        className="absolute top-full left-0 pt-3"
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                        onMouseEnter={openCraft}
+                        onMouseLeave={closeCraft}
+                      >
+                        <div
+                          className="min-w-[260px] border border-white py-1"
+                          style={{
+                            background: 'rgba(12,12,11,0.96)',
+                            backdropFilter: 'blur(24px)',
+                            borderColor: 'rgba(255,255,255,0.1)',
+                          }}
+                        >
+                          {caseStudies.map((cs) => (
+                            <Link
+                              key={cs.id}
+                              to={`/craft/${cs.id}`}
+                              className="block px-5 py-3 hover:bg-white hover:bg-opacity-[0.04] transition-colors duration-150"
+                              onClick={() => setCraftOpen(false)}
+                            >
+                              <span className="text-label text-white opacity-20 mr-2">{cs.number}</span>
+                              <span
+                                className="text-white"
+                                style={{ fontSize: '0.72rem', letterSpacing: '0.02em', opacity: 0.65 }}
+                              >
+                                {cs.title}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </li>
+              ) : (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    end={item.to === '/'}
+                    className={({ isActive }) =>
+                      `text-label text-white transition-all duration-200 ${
+                        isActive ? 'opacity-100' : 'opacity-45 hover:opacity-80'
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              )
             ))}
           </ul>
 
@@ -89,24 +156,16 @@ export default function Nav() {
             transition={{ duration: 0.25 }}
           >
             <ul className="flex flex-col items-center gap-10">
-              <li>
-                <Link
-                  to="/"
-                  className="text-overline text-white opacity-30 hover:opacity-60 transition-opacity"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Home
-                </Link>
-              </li>
               {navItems.map((item, i) => (
                 <li key={item.to}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.06 + 0.1 }}
+                    transition={{ delay: i * 0.06 + 0.05 }}
                   >
                     <NavLink
                       to={item.to}
+                      end={item.to === '/'}
                       className={({ isActive }) =>
                         `text-display-l text-white transition-opacity ${isActive ? 'opacity-100' : 'opacity-50 hover:opacity-80'}`
                       }

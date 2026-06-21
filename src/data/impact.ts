@@ -4,11 +4,11 @@ export interface Metric {
 }
 
 export const metrics: Metric[] = [
-  { value: '16+', label: 'Years of Experience' },
-  { value: '40+', label: 'Major Projects' },
-  { value: '17',  label: 'Industries Covered' },
-  { value: '25+', label: 'Designers Mentored' },
-  { value: '30+', label: 'Designers Led' },
-  { value: '250+', label: 'SAP Design Hub Members' },
-  { value: '10+', label: 'Talks & Workshops' },
+  { value: '56',   label: 'Success Stories' },
+  { value: '25',   label: 'Happy Customers' },
+  { value: '254',  label: 'Months of Rigour' },
+  { value: '17',   label: 'Industries' },
+  { value: '8+',   label: 'Talks & Workshops' },
+  { value: '25+',  label: 'Coach Stories' },
+  { value: '350+', label: 'Community Impact' },
 ]

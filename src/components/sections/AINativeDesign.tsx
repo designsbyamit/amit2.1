@@ -64,6 +64,7 @@ export default function AINativeDesign() {
               className="bg-black p-8 md:p-10"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ backgroundColor: 'rgba(245,242,237,0.03)', transition: { duration: 0.2 } }}
               viewport={{ once: true, margin: '-5%' }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >

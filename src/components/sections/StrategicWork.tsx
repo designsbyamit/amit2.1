@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { caseStudies } from '../../data/work'
 import SectionLabel from '../ui/SectionLabel'
@@ -66,19 +67,28 @@ export default function StrategicWork() {
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="pb-10 grid md:grid-cols-3 gap-8 md:gap-12 ml-0 md:ml-[calc(80px+1.5rem)]">
-                      <div>
-                        <p className="text-overline text-white opacity-40 mb-3">Challenge</p>
-                        <p className="text-body text-white opacity-60">{cs.challenge}</p>
+                    <div className="ml-0 md:ml-[calc(80px+1.5rem)] pb-10">
+                      <div className="grid md:grid-cols-3 gap-8 md:gap-12 mb-8">
+                        <div>
+                          <p className="text-overline text-white opacity-40 mb-3">Challenge</p>
+                          <p className="text-body text-white opacity-60">{cs.challenge}</p>
+                        </div>
+                        <div>
+                          <p className="text-overline text-white opacity-40 mb-3">Approach</p>
+                          <p className="text-body text-white opacity-60">{cs.approach}</p>
+                        </div>
+                        <div>
+                          <p className="text-overline text-white opacity-40 mb-3">Outcome</p>
+                          <p className="text-body text-white opacity-60">{cs.outcome}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-overline text-white opacity-40 mb-3">Approach</p>
-                        <p className="text-body text-white opacity-60">{cs.approach}</p>
-                      </div>
-                      <div>
-                        <p className="text-overline text-white opacity-40 mb-3">Outcome</p>
-                        <p className="text-body text-white opacity-60">{cs.outcome}</p>
-                      </div>
+                      <Link
+                        to={`/craft/${cs.id}`}
+                        onClick={e => e.stopPropagation()}
+                        className="text-label text-white opacity-40 hover:opacity-100 transition-opacity inline-flex items-center gap-2"
+                      >
+                        View full case study →
+                      </Link>
                     </div>
                   </motion.div>
                 )}

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { reflections, categories } from '../../data/reflections'
-import SectionLabel from '../ui/SectionLabel'
 import GrainOverlay from '../ui/GrainOverlay'
 
 export default function Reflections() {
@@ -15,22 +14,8 @@ export default function Reflections() {
     <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 overflow-hidden" id="reflections">
       <GrainOverlay opacity={0.04} />
       <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mb-12">
-          <SectionLabel>Reflections</SectionLabel>
-          <motion.h2
-            className="text-display-l text-white mt-4 max-w-xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Writing at the edge of design thinking.
-          </motion.h2>
-        </div>
-
         {/* Category filter */}
-        <div className="flex flex-wrap gap-3 mb-16">
-          <button
+        <div className="flex flex-wrap gap-3 mb-16">          <button
             className={`text-label px-4 py-2 border transition-all duration-200 ${
               activeCategory === null
                 ? 'border-white text-white'

@@ -8,36 +8,58 @@ export interface Reflection {
 
 export const reflections: Reflection[] = [
   {
-    id: 'ai-humanity',
+    id: 'design-trends-2025',
+    category: 'Future of Design',
+    title: '2025 Design Trends Every UX Designer Needs to Know',
+    excerpt:
+      'Game-changing, fresh, and inevitable shifts that will define the design landscape in 2025 and beyond — from agentic interfaces to the collapse of the screen as primary canvas.',
+    url: 'https://medium.com/@amitkrt/2025-design-trends-every-ux-designer-needs-to-know-2cdb3d2cf292',
+  },
+  {
+    id: 'ai-genai-framework',
     category: 'AI & Humanity',
-    title: 'What AI Cannot Design',
+    title: 'Is There Any Framework for Designing AI and Gen-AI Experiences?',
     excerpt:
-      'The qualities that make design meaningful — empathy, cultural sensitivity, moral judgment — are not reducible to patterns in data. As AI takes on more of the craft, the human in design becomes more valuable, not less.',
-    url: 'https://medium.com/@amitkrt',
+      'AI is dominating design conversations everywhere — but the tools, principles, and mental models for designing it responsibly are still catching up. A working framework for practitioners.',
+    url: 'https://medium.com/@amitkrt/is-there-any-framework-for-designing-ai-and-gen-ai-experiences-4f9924319b0d',
   },
   {
-    id: 'dual-fluency',
+    id: 'conversational-ux',
+    category: 'AI & Humanity',
+    title: 'The Future of UX is Conversational',
+    excerpt:
+      'Conversational experiences are becoming the go-to for information access and complex tasks. But measuring their success requires entirely different thinking than traditional UX metrics.',
+    url: 'https://medium.com/@amitkrt/the-future-of-ux-is-conversational-heres-how-to-measure-its-success-e67d0651638f',
+  },
+  {
+    id: 'vedic-design-series',
+    category: 'Ancient Wisdom',
+    title: 'How Vedic Secrets Can Disrupt Your Design Game',
+    excerpt:
+      'A five-part series exploring what ancient Indian philosophy — Nyaya Darshan, the Vedas, and Vedic epistemology — has to teach modern designers about process, knowledge, and intention.',
+    url: 'https://medium.com/@amitkrt/how-vedic-secrets-can-disrupt-your-design-game-1-286b6cee79d6',
+  },
+  {
+    id: 'ever-evolving-design',
+    category: 'Future of Design',
+    title: 'Ever-Evolving Design',
+    excerpt:
+      '"What is design?" — a question that surfaces constantly, and whose answer keeps shifting. A reflection on how the definition of design expands with every decade of practice.',
+    url: 'https://medium.com/@amitkrt/ever-evolving-design-9ea1faffe5c3',
+  },
+  {
+    id: 'design-leader-skills',
     category: 'Leadership',
-    title: 'The Designer Who Speaks Two Languages',
+    title: 'Do You Have It as a Design Leader?',
     excerpt:
-      "Dual Fluency is not about code or Figma shortcuts. It is about understanding what a CFO worries about, what a product manager is accountable for, and why an engineer pushes back. Design influence requires translation.",
-    url: 'https://medium.com/@amitkrt',
-  },
-  {
-    id: 'systems-thinking',
-    category: 'Systems Thinking',
-    title: 'Design Is Always About the System',
-    excerpt:
-      'Every pixel is a vote for a certain kind of world. Every flow is a model of how things should connect. Designers who ignore systems design symptoms rather than problems.',
-    url: 'https://medium.com/@amitkrt',
+      'Technical skills get you to the table. The rare skills — the ones that rarely get named — are what let you stay there and shape what gets built. A candid look at what separates good designers from influential ones.',
+    url: 'https://medium.com/@amitkrt/do-you-have-it-as-a-design-leader-6aa154c7191',
   },
 ]
 
 export const categories = [
   'AI & Humanity',
-  'Designer Struggles',
   'Ancient Wisdom',
-  'Systems Thinking',
-  'Leadership',
   'Future of Design',
+  'Leadership',
 ]

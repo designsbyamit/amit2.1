@@ -38,7 +38,7 @@ export default function RevealText({ text, className, delay = 0 }: RevealTextPro
       viewport={{ once: true, margin: '-10%' }}
     >
       {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden">
+        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mb-[-0.2em]">
           <motion.span className="inline-block" variants={word}>
             {w}
             {i < words.length - 1 ? ' ' : ''}

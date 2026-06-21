@@ -48,17 +48,17 @@
 
 @layer utilities {
   .text-display-xl {
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 300;
-    letter-spacing: -0.05em;
-    line-height: 0.95;
+    font-size: clamp(2.75rem, 5.5vw, 5rem);
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
   }
 
   .text-display-l {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 300;
     letter-spacing: -0.04em;
-    line-height: 1;
+    line-height: 1.05;
   }
 
   .text-heading {
@@ -93,6 +93,21 @@
 @keyframes sweep {
   0% { transform: translateX(0%); }
   100% { transform: translateX(50%); }
+}
+
+/* Hero photo — tight face crop on mobile, centred on desktop */
+.hero-img {
+  object-position: 58% 12%;
+  transform: scale(1.35);
+  transform-origin: 58% 12%;
+}
+
+@media (min-width: 768px) {
+  .hero-img {
+    object-position: center 38%;
+    transform: scale(1.2);
+    transform-origin: center 38%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
