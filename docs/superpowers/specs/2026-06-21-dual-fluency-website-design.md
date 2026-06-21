@@ -41,7 +41,7 @@ Inherits amit2.0 foundation exactly:
 | `--color-purple` | `#7C3AED` | Framework labels, highlights, interactive focus states |
 | `--color-purple-20` | `rgba(124,58,237,0.2)` | Subtle backgrounds on cards/callouts |
 
-Purple appears sparingly — labels, highlights, hover states. Never as a background fill on large areas.
+Purple is the Dual Fluency brand accent — appears sparingly on labels, highlights, hover states. Never as a background fill on large areas.
 
 ---
 
