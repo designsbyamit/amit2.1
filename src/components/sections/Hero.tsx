@@ -98,14 +98,14 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: pull quote */}
+          {/* Right: pull quote — a proof, not a repetition */}
           <motion.p
             className="hidden md:block text-body text-white opacity-50 max-w-[260px] mb-1 shrink-0"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 0.5, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            "If your design isn't making business decisions, then it's just decorating your future."
+            300M+ users. $5M saved. 90% CSAT in a category where the baseline is below 60%.
           </motion.p>
 
         </div>

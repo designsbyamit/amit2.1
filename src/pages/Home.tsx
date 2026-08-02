@@ -58,7 +58,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Recent Milestones */}
+      {/* Selected signals */}
       <section className="relative bg-black pb-24 md:pb-32 px-6 md:px-12">
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl">
@@ -70,12 +70,12 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              Recent Milestones
+              Selected signals
             </motion.p>
           </div>
 
           <div>
-            {/* Event */}
+            {/* Product story */}
             <motion.div
               className="border-t border-white mt-12"
               style={{ borderColor: 'rgba(255,255,255,0.08)' }}
@@ -85,11 +85,39 @@ export default function Home() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link
+                to="/craft/sap-search"
+                className="group flex items-center justify-between py-10 md:py-12 hover:bg-white hover:bg-opacity-[0.02] transition-colors duration-300 -mx-6 md:-mx-0 px-6 md:px-0"
+              >
+                <div className="flex-1 pr-8 md:pr-20">
+                  <p className="text-label text-white opacity-25 mb-4">Product Story · SAP · 300M+ users</p>
+                  <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
+                    The Future of Enterprise Search
+                  </h3>
+                  <p className="text-body text-white opacity-45 max-w-2xl">
+                    Reimagining search as an intelligent orchestration layer across the SAP ecosystem — intent over keywords, trust by design, cross-product continuity.
+                  </p>
+                </div>
+                <p className="hidden md:block text-label text-white opacity-30 group-hover:opacity-70 transition-opacity duration-300 shrink-0">
+                  Experience the story →
+                </p>
+              </Link>
+            </motion.div>
+
+            {/* Event */}
+            <motion.div
+              className="border-t border-white"
+              style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-5%' }}
+              transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <Link
                 to="/community"
                 className="group flex items-center justify-between py-10 md:py-12 hover:bg-white hover:bg-opacity-[0.02] transition-colors duration-300 -mx-6 md:-mx-0 px-6 md:px-0"
               >
                 <div className="flex-1 pr-8 md:pr-20">
-                  <p className="text-label text-white opacity-25 mb-4">Event · 2023</p>
+                  <p className="text-label text-white opacity-25 mb-4">Workshop · 2023</p>
                   <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
                     DesignUp — Dual Fluency Workshop
                   </h3>
@@ -110,51 +138,23 @@ export default function Home() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-5%' }}
-              transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link
                 to="/reflections"
                 className="group flex items-center justify-between py-10 md:py-12 hover:bg-white hover:bg-opacity-[0.02] transition-colors duration-300 -mx-6 md:-mx-0 px-6 md:px-0"
               >
                 <div className="flex-1 pr-8 md:pr-20">
-                  <p className="text-label text-white opacity-25 mb-4">Article · Leadership</p>
+                  <p className="text-label text-white opacity-25 mb-4">Essay Series · Ancient Wisdom</p>
                   <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
-                    The Designer Who Speaks Two Languages
+                    How Vedic Secrets Can Disrupt Your Design Game
                   </h3>
                   <p className="text-body text-white opacity-45 max-w-2xl">
-                    Dual Fluency is not about code or Figma shortcuts. It&rsquo;s about understanding what a CFO worries about, what a product manager is accountable for, and why an engineer pushes back.
+                    What ancient Indian philosophy — Nyaya Darshan, the Vedas, Vedic epistemology — has to teach modern designers about process, knowledge, and intention.
                   </p>
                 </div>
                 <p className="hidden md:block text-label text-white opacity-30 group-hover:opacity-70 transition-opacity duration-300 shrink-0">
                   Read reflections →
-                </p>
-              </Link>
-            </motion.div>
-
-            {/* Case study */}
-            <motion.div
-              className="border-t border-white"
-              style={{ borderColor: 'rgba(255,255,255,0.08)' }}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-5%' }}
-              transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Link
-                to="/craft/airline-app"
-                className="group flex items-center justify-between py-10 md:py-12 hover:bg-white hover:bg-opacity-[0.02] transition-colors duration-300 -mx-6 md:-mx-0 px-6 md:px-0"
-              >
-                <div className="flex-1 pr-8 md:pr-20">
-                  <p className="text-label text-white opacity-25 mb-4">Case Study · 01</p>
-                  <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
-                    OmniChannel Travel — Saudia Airlines
-                  </h3>
-                  <p className="text-body text-white opacity-45 max-w-2xl">
-                    Redesigned a national airline's digital ecosystem — $2M channel to $100M revenue engine. 92% engagement boost, 50× ancillary sales.
-                  </p>
-                </div>
-                <p className="hidden md:block text-label text-white opacity-30 group-hover:opacity-70 transition-opacity duration-300 shrink-0">
-                  View case studies →
                 </p>
               </Link>
             </motion.div>

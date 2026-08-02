@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import GrainOverlay from '../components/ui/GrainOverlay'
+import SearchPrototype from '../components/ui/SearchPrototype'
 
 // ── Chapter data ──────────────────────────────────────────────────────────────
 
@@ -605,7 +606,7 @@ export default function SAPSearchStoryPage() {
 
           <Quote text="Search looked unified. But it never behaved as one." />
 
-          <PrototypeSlot label="Interactive: Click through search experiences across SAP products — experience the inconsistency firsthand." height={480} />
+          <SearchPrototype autoPlay={false} />
 
           <BehindDesign>
             <p className="text-body text-white opacity-55 max-w-2xl">
@@ -903,7 +904,7 @@ export default function SAPSearchStoryPage() {
                   </motion.div>
                 ))}
               </div>
-              <PrototypeSlot label={`Interactive: Click through the ${activeFlowData.label} flow — experience context preservation and handoff.`} height={480} />
+              <SearchPrototype scenario={activeFlow} />
             </motion.div>
           </AnimatePresence>
 

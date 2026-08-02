@@ -9,12 +9,12 @@ export interface Reflection {
 
 export const reflections: Reflection[] = [
   {
-    id: 'design-trends-2025',
-    category: 'Future of Design',
-    title: '2025 Design Trends Every UX Designer Needs to Know',
+    id: 'vedic-design-series',
+    category: 'Ancient Wisdom',
+    title: 'How Vedic Secrets Can Disrupt Your Design Game',
     excerpt:
-      'Game-changing, fresh, and inevitable shifts that will define the design landscape in 2025 and beyond — from agentic interfaces to the collapse of the screen as primary canvas.',
-    url: 'https://medium.com/@amitkrt/2025-design-trends-every-ux-designer-needs-to-know-2cdb3d2cf292',
+      'A five-part series exploring what ancient Indian philosophy — Nyaya Darshan, the Vedas, and Vedic epistemology — has to teach modern designers about process, knowledge, and intention.',
+    url: 'https://medium.com/@amitkrt/how-vedic-secrets-can-disrupt-your-design-game-1-286b6cee79d6',
     image: '',
   },
   {
@@ -36,12 +36,12 @@ export const reflections: Reflection[] = [
     image: '',
   },
   {
-    id: 'vedic-design-series',
-    category: 'Ancient Wisdom',
-    title: 'How Vedic Secrets Can Disrupt Your Design Game',
+    id: 'design-leader-skills',
+    category: 'Leadership',
+    title: 'Do You Have It as a Design Leader?',
     excerpt:
-      'A five-part series exploring what ancient Indian philosophy — Nyaya Darshan, the Vedas, and Vedic epistemology — has to teach modern designers about process, knowledge, and intention.',
-    url: 'https://medium.com/@amitkrt/how-vedic-secrets-can-disrupt-your-design-game-1-286b6cee79d6',
+      'Technical skills get you to the table. The rare skills — the ones that rarely get named — are what let you stay there and shape what gets built.',
+    url: 'https://medium.com/@amitkrt/do-you-have-it-as-a-design-leader-6aa154c7191',
     image: '',
   },
   {
@@ -54,12 +54,12 @@ export const reflections: Reflection[] = [
     image: '',
   },
   {
-    id: 'design-leader-skills',
-    category: 'Leadership',
-    title: 'Do You Have It as a Design Leader?',
+    id: 'design-trends-2025',
+    category: 'Future of Design',
+    title: '2025 Design Trends Every UX Designer Needs to Know',
     excerpt:
-      'Technical skills get you to the table. The rare skills — the ones that rarely get named — are what let you stay there and shape what gets built.',
-    url: 'https://medium.com/@amitkrt/do-you-have-it-as-a-design-leader-6aa154c7191',
+      'Game-changing, fresh, and inevitable shifts that will define the design landscape in 2025 and beyond — from agentic interfaces to the collapse of the screen as primary canvas.',
+    url: 'https://medium.com/@amitkrt/2025-design-trends-every-ux-designer-needs-to-know-2cdb3d2cf292',
     image: '',
   },
 ]

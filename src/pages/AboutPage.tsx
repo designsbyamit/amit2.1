@@ -18,7 +18,7 @@ export default function AboutPage() {
       <PageHeader
         label="About"
         title="16+ years. One throughline."
-        subtitle="I see design as a force of change — one that can spark growth, empower people, and reimagine futures. I've simplified business and enterprise complexity into human-centred experiences, and built teams that amplify impact, elevate craft, and adapt to evolving challenges."
+        subtitle="Dual Fluency. AI-Native Design. Agentic Process. Three interlocking ideas — one position on where enterprise design is going and what it takes to lead it."
       />
 
       {/* Impact areas */}
