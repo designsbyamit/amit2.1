@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import GrainOverlay from '../components/ui/GrainOverlay'
+import DotsNav from '../components/ui/DotsNav'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -682,18 +683,7 @@ export default function AINativeFrameworksPage() {
       <motion.div className="fixed top-0 left-0 right-0 h-px z-50 origin-left"
         style={{ scaleX, background: 'rgba(245,242,237,0.3)' }} />
 
-      {/* Sticky section nav */}
-      <div className="fixed left-0 right-0 z-40" style={{ top: '64px', background: 'rgba(12,12,11,0.92)', backdropFilter: 'blur(20px)', borderBottom: '1px solid rgba(245,242,237,0.06)' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 h-10 flex items-center gap-6 overflow-x-auto hide-scrollbar">
-          {NAV_SECTIONS.map(s => (
-            <a key={s.id} href={`#${s.id}`}
-              className="text-label text-white flex-shrink-0 transition-opacity duration-200 hover:opacity-70"
-              style={{ opacity: activeSection === s.id ? 0.85 : 0.3 }}>
-              {s.label}
-            </a>
-          ))}
-        </div>
-      </div>
+      <DotsNav sections={NAV_SECTIONS} active={activeSection} />
 
       {/* ── Hero ── */}
       <section id="hero" className="relative min-h-screen flex flex-col justify-end pb-20 pt-40 px-6 md:px-12 overflow-hidden">

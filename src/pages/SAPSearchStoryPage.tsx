@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'fra
 import { Link } from 'react-router-dom'
 import GrainOverlay from '../components/ui/GrainOverlay'
 import SearchPrototype from '../components/ui/SearchPrototype'
+import DotsNav from '../components/ui/DotsNav'
 
 // ── Chapter data ──────────────────────────────────────────────────────────────
 
@@ -239,29 +240,6 @@ function Quote({ text, attribution }: { text: string; attribution?: string }) {
 
 // ── Chapter nav ───────────────────────────────────────────────────────────────
 
-function ChapterNav({ active }: { active: string }) {
-  return (
-    <div
-      className="fixed left-0 right-0 z-40"
-      style={{ top: '64px', background: 'rgba(12,12,11,0.94)', backdropFilter: 'blur(24px)', borderBottom: '1px solid rgba(245,242,237,0.06)' }}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-10 flex items-center gap-1 overflow-x-auto hide-scrollbar">
-        {CHAPTERS.filter(c => c.id !== 'hero').map(ch => (
-          <a
-            key={ch.id}
-            href={`#${ch.id}`}
-            className="flex items-center gap-2 flex-shrink-0 px-3 py-1 rounded transition-all duration-200"
-            style={{ opacity: active === ch.id ? 1 : 0.3 }}
-          >
-            <span className="text-white" style={{ fontSize: '0.6rem', opacity: 0.5 }}>{ch.number}</span>
-            <span className="text-label text-white">{ch.title}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 // ── Animated search pipeline ──────────────────────────────────────────────────
 
 function SearchPipeline({ query }: { query: string }) {
@@ -448,7 +426,7 @@ export default function SAPSearchStoryPage() {
       <motion.div className="fixed top-0 left-0 right-0 h-px z-50 origin-left"
         style={{ scaleX: progressScaleX, background: 'rgba(245,242,237,0.3)' }} />
 
-      <ChapterNav active={activeChapter} />
+      <DotsNav sections={CHAPTERS.filter(c => c.id !== 'hero').map(c => ({ id: c.id, label: c.title, number: c.number }))} active={activeChapter} />
 
       {/* ── HERO ── */}
       <section id="hero" className="relative h-screen flex flex-col justify-center overflow-hidden px-6 md:px-12">

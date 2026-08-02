@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import GrainOverlay from '../components/ui/GrainOverlay'
+import DotsNav from '../components/ui/DotsNav'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -120,31 +121,6 @@ const GLOSSARY = [
 ]
 
 // ── Components ─────────────────────────────────────────────────────────────────
-
-function SectionNav({ sections, activeSection }: { sections: {id: string, label: string}[], activeSection: string }) {
-  return (
-    <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col gap-3">
-      {sections.map(s => (
-        <a
-          key={s.id}
-          href={`#${s.id}`}
-          className="flex items-center gap-3 group"
-        >
-          <div
-            className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-            style={{ background: activeSection === s.id ? 'rgba(245,242,237,0.8)' : 'rgba(245,242,237,0.2)' }}
-          />
-          <span
-            className="text-label text-white transition-all duration-300 opacity-0 group-hover:opacity-60 -translate-x-2 group-hover:translate-x-0"
-            style={{ fontSize: '0.6rem' }}
-          >
-            {s.label}
-          </span>
-        </a>
-      ))}
-    </div>
-  )
-}
 
 function JourneyMilestone({ milestone, index }: { milestone: typeof JOURNEY[0], index: number }) {
   const [open, setOpen] = useState(false)
@@ -372,7 +348,7 @@ export default function DualFluencyPage() {
 
   return (
     <div ref={containerRef} className="bg-black min-h-screen">
-      <SectionNav sections={SECTIONS} activeSection={activeSection} />
+      <DotsNav sections={SECTIONS} active={activeSection} />
 
       {/* ── Hero ── */}
       <section id="hero" className="relative min-h-screen flex flex-col justify-end overflow-hidden pb-20 px-6 md:px-12">
