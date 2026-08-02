@@ -4,6 +4,7 @@ import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
 import ScrollToTop from './components/ui/ScrollToTop'
 import ScrollProgressLine from './components/ui/ScrollProgressLine'
+import { useLenis } from './hooks/useLenis'
 import Home from './pages/Home'
 import Craft from './pages/Craft'
 import LeadershipPage from './pages/LeadershipPage'
@@ -57,6 +58,7 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
+  useLenis()
   return (
     <HashRouter>
       <div className="bg-black text-white min-h-screen">

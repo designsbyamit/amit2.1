@@ -17,6 +17,14 @@
   --color-white-50: rgba(245, 242, 237, 0.5);
   --color-white-30: rgba(245, 242, 237, 0.3);
   --color-white-10: rgba(245, 242, 237, 0.1);
+
+  /* Editorial spacing rhythm */
+  --space-xs: 0.5rem;
+  --space-s: 1rem;
+  --space-m: 2rem;
+  --space-l: 4rem;
+  --space-xl: 8rem;
+  --space-2xl: 14rem;
 }
 
 @layer base {
@@ -27,7 +35,6 @@
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -47,16 +54,24 @@
 }
 
 @layer utilities {
-  .text-display-xl {
-    font-size: clamp(2.75rem, 5.5vw, 5rem);
+  /* ── Display scale — editorial magazine range ── */
+  .text-display-2xl {
+    font-size: clamp(4rem, 9vw, 8.5rem);
     font-weight: 200;
-    letter-spacing: -0.04em;
-    line-height: 1.15;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+  }
+
+  .text-display-xl {
+    font-size: clamp(2.75rem, 6.5vw, 6rem);
+    font-weight: 200;
+    letter-spacing: -0.045em;
+    line-height: 1.0;
   }
 
   .text-display-l {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 300;
+    font-size: clamp(2.25rem, 5vw, 4.5rem);
+    font-weight: 200;
     letter-spacing: -0.04em;
     line-height: 1.05;
   }
@@ -66,6 +81,15 @@
     font-weight: 300;
     letter-spacing: -0.03em;
     line-height: 1.1;
+  }
+
+  /* Editorial body — max ~68 chars per line */
+  .text-body-editorial {
+    font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.75;
+    letter-spacing: -0.005em;
+    max-width: 65ch;
   }
 
   .text-overline {
@@ -78,8 +102,8 @@
   .text-body {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
     font-weight: 300;
-    line-height: 1.65;
-    letter-spacing: 0.01em;
+    line-height: 1.7;
+    letter-spacing: 0.005em;
   }
 
   .text-label {
@@ -88,14 +112,46 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
+
+  /* ── Oversized editorial number/keyword ── */
+  .text-giant {
+    font-size: clamp(5rem, 14vw, 14rem);
+    font-weight: 200;
+    letter-spacing: -0.06em;
+    line-height: 0.88;
+  }
+
+  /* ── Mask reveal for line-by-line animation ── */
+  .line-mask {
+    overflow: hidden;
+    display: block;
+  }
+
+  /* ── Magnetic button ── */
+  .btn-magnetic {
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
 }
 
+/* ── Keyframes ── */
 @keyframes sweep {
   0% { transform: translateX(0%); }
   100% { transform: translateX(50%); }
 }
 
-/* Hero photo — tight face crop on mobile, centred on desktop */
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+
+@keyframes fadeFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(-8px); opacity: 0.5; }
+}
+
+/* ── Hero image — tight face crop ── */
 .hero-img {
   object-position: 58% 12%;
   transform: scale(1.35);
@@ -109,6 +165,24 @@
     transform-origin: center 38%;
   }
 }
+
+/* ── Clip-path image reveal ── */
+.reveal-clip {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-clip.in-view {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ── Hide scrollbar utility ── */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Smooth scroll via Lenis ── */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
