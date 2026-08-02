@@ -43,7 +43,7 @@ export default function ImpactSnapshot() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          At Scale
+          Scale & Reach
         </motion.p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white bg-opacity-10">
