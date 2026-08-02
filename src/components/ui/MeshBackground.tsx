@@ -2,87 +2,84 @@ import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-// Morphing organic mesh — a displaced icosphere that breathes
+// Morphing icosphere using LineSegments + EdgesGeometry — true thin elegant lines
 function MorphMesh() {
-  const meshRef = useRef<THREE.Mesh>(null)
+  const groupRef = useRef<THREE.Group>(null)
 
-  // Store original positions for morphing
-  const { geometry, originalPositions } = useMemo(() => {
-    const geo = new THREE.IcosahedronGeometry(2.2, 5)
-    const pos = geo.attributes.position
+  // We'll use a higher subdivision for density but EdgesGeometry for thin lines
+  const baseGeo = useMemo(() => new THREE.IcosahedronGeometry(1.9, 4), [])
+  const originalPositions = useMemo(() => {
+    const pos = baseGeo.attributes.position
     const orig = new Float32Array(pos.array.length)
     orig.set(pos.array)
-    return { geometry: geo, originalPositions: orig }
-  }, [])
+    return orig
+  }, [baseGeo])
+
+  const lineGeo = useMemo(() => new THREE.EdgesGeometry(baseGeo), [baseGeo])
+
+  // Outer sparse shell
+  const outerBase = useMemo(() => new THREE.IcosahedronGeometry(3.0, 2), [])
+  const outerEdges = useMemo(() => new THREE.EdgesGeometry(outerBase), [outerBase])
+
+  // Line materials
+  const innerMat = useMemo(() => new THREE.LineBasicMaterial({
+    color: '#F5F2ED',
+    transparent: true,
+    opacity: 0.45,
+    linewidth: 1, // capped at 1 in WebGL but sets intent
+  }), [])
+
+  const outerMat = useMemo(() => new THREE.LineBasicMaterial({
+    color: '#F5F2ED',
+    transparent: true,
+    opacity: 0.08,
+    linewidth: 1,
+  }), [])
 
   useFrame(({ clock }) => {
-    if (!meshRef.current || !geometry) return
+    if (!groupRef.current) return
     const t = clock.getElapsedTime()
-    const pos = geometry.attributes.position
-    const count = pos.count
 
+    // Morph inner sphere vertices
+    const pos = baseGeo.attributes.position
+    const count = pos.count
     for (let i = 0; i < count; i++) {
       const ox = originalPositions[i * 3]
       const oy = originalPositions[i * 3 + 1]
       const oz = originalPositions[i * 3 + 2]
 
-      // Noise-like displacement using multiple sine waves
       const noise =
-        Math.sin(ox * 1.2 + t * 0.52) * 0.12 +
-        Math.sin(oy * 1.5 + t * 0.38) * 0.10 +
-        Math.sin(oz * 1.8 + t * 0.44) * 0.09 +
-        Math.sin((ox + oz) * 0.9 + t * 0.28) * 0.08
+        Math.sin(ox * 1.3 + t * 0.48) * 0.10 +
+        Math.sin(oy * 1.6 + t * 0.35) * 0.09 +
+        Math.sin(oz * 1.9 + t * 0.41) * 0.08 +
+        Math.sin((ox + oz) * 0.85 + t * 0.26) * 0.07
 
       const len = Math.sqrt(ox * ox + oy * oy + oz * oz)
       const scale = (len + noise) / len
-
       pos.setXYZ(i, ox * scale, oy * scale, oz * scale)
     }
-
     pos.needsUpdate = true
-    geometry.computeVertexNormals()
+    baseGeo.computeVertexNormals()
 
-    // Slow continuous rotation
-    meshRef.current.rotation.x = t * 0.055
-    meshRef.current.rotation.y = t * 0.082
-    meshRef.current.rotation.z = t * 0.028
+    // Rebuild edges from morphed base
+    const newEdges = new THREE.EdgesGeometry(baseGeo)
+    lineGeo.setIndex(newEdges.getIndex())
+    lineGeo.setAttribute('position', newEdges.attributes.position)
+    newEdges.dispose()
+
+    // Rotation
+    groupRef.current.rotation.x = t * 0.048
+    groupRef.current.rotation.y = t * 0.075
+    groupRef.current.rotation.z = t * 0.024
   })
 
   return (
-    <mesh ref={meshRef} geometry={geometry}>
-      <meshStandardMaterial
-        color="#F5F2ED"
-        wireframe
-        transparent
-        opacity={0.55}
-        depthWrite={false}
-      />
-    </mesh>
-  )
-}
-
-// Outer sparse wireframe shell — larger, slower
-function OuterShell() {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const geo = useMemo(() => new THREE.IcosahedronGeometry(3.4, 2), [])
-
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return
-    const t = clock.getElapsedTime()
-    meshRef.current.rotation.x = -t * 0.022
-    meshRef.current.rotation.y = t * 0.035
-  })
-
-  return (
-    <mesh ref={meshRef} geometry={geo}>
-      <meshStandardMaterial
-        color="#F5F2ED"
-        wireframe
-        transparent
-        opacity={0.12}
-        depthWrite={false}
-      />
-    </mesh>
+    <group ref={groupRef}>
+      {/* Inner morphing mesh */}
+      <lineSegments geometry={lineGeo} material={innerMat} />
+      {/* Outer static shell */}
+      <lineSegments geometry={outerEdges} material={outerMat} />
+    </group>
   )
 }
 
@@ -90,15 +87,12 @@ export default function MeshBackground() {
   return (
     <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
       <Canvas
-        camera={{ position: [0, 0, 6.5], fov: 48 }}
+        camera={{ position: [0, 0, 6], fov: 46 }}
         gl={{ antialias: true, alpha: true }}
-        dpr={[1, 1.5]}
+        dpr={[1, 2]}
         style={{ background: 'transparent' }}
       >
-        <ambientLight intensity={0.6} />
-        <pointLight position={[4, 4, 4]} intensity={1.2} color="#F5F2ED" />
-        <pointLight position={[-4, -2, 2]} intensity={0.5} color="#8888ff" />
-        <OuterShell />
+        <ambientLight intensity={1} />
         <MorphMesh />
       </Canvas>
     </div>
