@@ -8,7 +8,7 @@ export default function Contact() {
   const [copied, setCopied] = useState(false)
 
   const copyEmail = async () => {
-    await navigator.clipboard.writeText('amitkrt@gmail.com')
+    await navigator.clipboard.writeText('uxbyamit@gmail.com')
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
@@ -49,7 +49,7 @@ export default function Contact() {
                 onClick={copyEmail}
                 className="w-full md:w-auto text-label text-white border border-white border-opacity-30 px-8 py-4 hover:border-opacity-80 hover:bg-white hover:bg-opacity-5 transition-all duration-300 flex items-center gap-3"
               >
-                <span>amitkrt@gmail.com</span>
+                <span>uxbyamit@gmail.com</span>
                 <span className="opacity-50 text-xs">{copied ? '✓ Copied' : 'Copy'}</span>
               </button>
 

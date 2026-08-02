@@ -278,43 +278,6 @@ export default function CaseStudyPage() {
         </motion.section>
       ))}
 
-      {/* Images gallery */}
-      {cs.images && cs.images.length > 0 && (
-        <section className="relative bg-black py-20 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
-          <GrainOverlay opacity={0.02} />
-          <div className="relative z-10 mx-auto max-w-7xl">
-            <motion.p
-              className="text-overline text-white opacity-30 mb-10"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.3 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              Visual Evidence
-            </motion.p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white bg-opacity-10">
-              {cs.images.map((img, i) => (
-                <motion.div
-                  key={i}
-                  className={`overflow-hidden bg-black ${i === 0 ? 'md:col-span-2' : ''}`}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: i * 0.05 }}
-                >
-                  <img
-                    src={img}
-                    alt=""
-                    className="w-full object-cover"
-                    style={{ filter: 'grayscale(0.25) contrast(1.02)' }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Prototype embed */}
       {cs.prototypeUrl && (
         <section className="relative bg-black py-20 md:py-24 px-6 md:px-12 border-t border-white border-opacity-[0.06]">

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import GrainOverlay from '../ui/GrainOverlay'
 
 // ── Data ────────────────────────────────────────────────────────────────────
@@ -15,6 +16,7 @@ interface Resource {
   outcomes: string[]
   tags: string[]
   filterTags: string[]
+  internalUrl?: string
   previewUrl?: string
   previewLabel?: string
   requestAccess?: boolean
@@ -32,22 +34,24 @@ const resources: Resource[] = [
     outcomes: ['Business fluency', 'Strategic influence', 'Better stakeholder communication', 'Enterprise design maturity'],
     tags: ['Business', 'Strategy', 'Leadership', 'Design'],
     filterTags: ['Leadership', 'Strategy', 'Workshops'],
-    previewLabel: 'Preview workshop deck',
+    internalUrl: '/resources/dual-fluency',
+    previewLabel: 'Explore the framework',
     requestAccess: true,
     requestLabel: 'Request workshop toolkit',
   },
   {
     id: 'ai-native-patterns',
-    title: 'AI-Native UX Patterns',
-    type: ['Pattern Library'],
+    title: 'AI-Native Frameworks',
+    type: ['Interactive Playbook', 'Framework Library'],
     description:
-      'A growing collection of emerging interaction patterns, workflows, and experience principles for AI-powered products. Covers 18 architecture areas from foundations through governance, agentic UX, and multimodal experiences.',
-    outcomes: ['AI-native thinking', 'Interaction design inspiration', 'Future-ready UX patterns'],
-    tags: ['AI', 'UX', 'Patterns', 'Design Systems'],
+      'The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks — Context Engineering through Prototype & Validation — each producing a tangible artifact.',
+    outcomes: ['End-to-end AI-native methodology', 'Five reusable frameworks', 'Tool orchestration guide', 'Downloadable canvases & templates'],
+    tags: ['AI', 'UX', 'Frameworks', 'Agentic Design'],
     filterTags: ['AI', 'UX'],
-    previewLabel: 'Preview in Figma',
+    internalUrl: '/resources/ai-native-patterns',
+    previewLabel: 'Explore the handbook',
     requestAccess: true,
-    requestLabel: 'Request full library',
+    requestLabel: 'Request PDF playbook',
   },
   {
     id: 'conversation-experience',
@@ -58,7 +62,8 @@ const resources: Resource[] = [
     outcomes: ['Conversation design', 'Prompt design', 'Interaction flows', 'Trust and transparency'],
     tags: ['Conversational UX', 'AI', 'Interaction Design'],
     filterTags: ['AI', 'UX'],
-    previewLabel: 'Preview PDF',
+    internalUrl: '/resources/conversation-experience',
+    previewLabel: 'Read the playbook',
     requestAccess: true,
     requestLabel: 'Request full playbook',
   },
@@ -209,7 +214,14 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
             </button>
           ) : (
             <>
-              {resource.previewUrl ? (
+              {resource.internalUrl ? (
+                <Link
+                  to={resource.internalUrl}
+                  className="text-label text-white border border-white border-opacity-30 px-5 py-2.5 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 inline-flex items-center gap-2"
+                >
+                  {resource.previewLabel || 'Explore'} →
+                </Link>
+              ) : resource.previewUrl ? (
                 <a
                   href={resource.previewUrl}
                   target="_blank"

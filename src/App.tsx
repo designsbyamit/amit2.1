@@ -12,6 +12,11 @@ import CommunityPage from './pages/CommunityPage'
 import AboutPage from './pages/AboutPage'
 import CaseStudyPage from './pages/CaseStudyPage'
 import ResourcesPage from './pages/ResourcesPage'
+import ContactPage from './pages/ContactPage'
+import DualFluencyPage from './pages/DualFluencyPage'
+import AINativeFrameworksPage from './pages/AINativeFrameworksPage'
+import SAPSearchStoryPage from './pages/SAPSearchStoryPage'
+import ConversationExperiencePage from './pages/ConversationExperiencePage'
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   return (
@@ -39,8 +44,12 @@ function AnimatedRoutes() {
         <Route path="/reflections" element={<PageTransition><ReflectionsPage /></PageTransition>} />
         <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
         <Route path="/resources" element={<PageTransition><ResourcesPage /></PageTransition>} />
+        <Route path="/resources/dual-fluency" element={<PageTransition><DualFluencyPage /></PageTransition>} />
+        <Route path="/resources/ai-native-patterns" element={<PageTransition><AINativeFrameworksPage /></PageTransition>} />
+        <Route path="/craft/sap-search" element={<PageTransition><SAPSearchStoryPage /></PageTransition>} />
+        <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/philosophy" element={<Navigate to="/about" replace />} />
-        <Route path="/contact" element={<Navigate to="/about" replace />} />
       </Routes>
     </AnimatePresence>
   )

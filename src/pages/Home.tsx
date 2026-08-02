@@ -27,23 +27,23 @@ export default function Home() {
           </div>
           <div>
             <motion.p
-              className="text-white opacity-70 mb-5"
+              className="text-white opacity-70 mb-6"
               style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', fontWeight: 300, lineHeight: 1.7, letterSpacing: '-0.01em' }}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 0.7, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              With over 16 years in experience design, Amit has shaped design for 50+ global brands across startups and large enterprises. His work spans enterprise platforms, multi-modal and omni-channel systems, AI-native experiences, and emerging design capabilities.
+              For 16 years I've operated at the intersection of design, business strategy, and emerging technology. My practice is built on three interlocking ideas: <strong style={{ fontWeight: 400, opacity: 1 }}>Dual Fluency</strong> — the capacity to operate equally in the language of design and the language of business; <strong style={{ fontWeight: 400 }}>AI-Native Design</strong> — rethinking what interaction means when software can reason and act; and <strong style={{ fontWeight: 400 }}>Agentic Process</strong> — designing the human-AI relationship in autonomous systems where oversight is the product.
             </motion.p>
             <motion.p
-              className="text-body text-white opacity-45 mb-4"
+              className="text-body text-white opacity-45 mb-6"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 0.45, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              As a design leader at SAP, he contributes to the &ldquo;Suite-first&rdquo; mission by harmonising experiences across products.
+              These aren't three separate interests. They are one position — that the next generation of enterprise design leaders must be fluent in what AI can do, clear on what it shouldn't do without human oversight, and able to translate all of it into business value. That workshop at DesignUp sold out. That thinking is in production at SAP. And it is what I bring to every room.
             </motion.p>
             <motion.p
               className="text-body text-white opacity-45"
@@ -52,7 +52,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             >
-              Beyond product design, he has led high-performing design teams and actively contributed to the design community through workshops, conferences, and industry summits. His current explorations focus on AI-human collaboration, and the evolving maturity of enterprise experience in the age of intelligent systems.
+              In 2022 I founded SAP Design Hub India — now 250+ designers strong, one of the largest internal design communities in the SAP ecosystem — because the best design culture is one you build, not one you inherit.
             </motion.p>
           </div>
         </div>
@@ -141,16 +141,16 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link
-                to="/craft"
+                to="/craft/airline-app"
                 className="group flex items-center justify-between py-10 md:py-12 hover:bg-white hover:bg-opacity-[0.02] transition-colors duration-300 -mx-6 md:-mx-0 px-6 md:px-0"
               >
                 <div className="flex-1 pr-8 md:pr-20">
                   <p className="text-label text-white opacity-25 mb-4">Case Study · 01</p>
                   <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
-                    Engaze: Gen AI-Powered Workplace Bestie
+                    OmniChannel Travel — Saudia Airlines
                   </h3>
                   <p className="text-body text-white opacity-45 max-w-2xl">
-                    Simplifying employee interactions — check leave balances, get approvals, understand benefits — just ask. 90% CSAT.
+                    Redesigned a national airline's digital ecosystem — $2M channel to $100M revenue engine. 92% engagement boost, 50× ancillary sales.
                   </p>
                 </div>
                 <p className="hidden md:block text-label text-white opacity-30 group-hover:opacity-70 transition-opacity duration-300 shrink-0">

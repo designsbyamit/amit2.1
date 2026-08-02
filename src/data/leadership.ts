@@ -3,6 +3,7 @@ export interface LeadershipStory {
   year: string
   context: string
   title: string
+  cues: string[]
   narrative: string[]
   lesson: string
   image?: string
@@ -19,52 +20,58 @@ export interface LeadershipArticle {
 
 export const stories: LeadershipStory[] = [
   {
-    id: 'design-seat',
-    year: '2019',
-    context: 'Accenture Song',
-    title: 'The Room Where Design Almost Lost Its Seat',
-    narrative: [
-      'Three months into a major banking transformation engagement, the program director called a meeting. The project was behind schedule, costs were climbing, and design was about to be de-scoped — reduced to a "delivery support" function.',
-      'I had one slide to make the case. Not a design process slide. A business impact slide. I mapped every design decision we had made to a specific risk reduction or conversion outcome. The room shifted. The CPO stayed after everyone else left.',
-      'What I learned that day has shaped everything since: influence isn\'t earned through craft. It\'s earned through translation. Designers who can hold both languages — the language of experience and the language of business — are rare, and that rarity is power.',
+    id: 'story-business-seat',
+    year: '',
+    context: '',
+    title: 'The moment design almost lost its seat at the table',
+    cues: [
+      'What was the moment you realised design was about to be removed or sidelined — and what was at stake?',
+      'How did you make the case? What did you say, and to whom?',
+      'What changed in the room — and what changed in you after that moment?',
     ],
-    lesson: 'Design influence is earned through translation, not craft.',
-    image: 'https://framerusercontent.com/images/MpbusuIVxAmr1wH5qWEK7mWUvY.png',
+    narrative: [],
+    lesson: '',
   },
   {
-    id: 'first-team',
-    year: '2016',
-    context: 'Hewlett Packard Enterprise',
-    title: 'What Building My First Team Actually Taught Me',
-    narrative: [
-      'At HPE, I was handed a blank slate: build the design team for GreenLake — a new cloud platform the company was betting its future on. I hired fast, onboarded faster, and pushed for output immediately. Within six months, we had shipped a design system.',
-      'But I also had a resignation letter on my desk. One of my best designers told me, "I don\'t know what you value in me beyond velocity." That sentence lived in my head for years.',
-      'The team I built was talented but not psychologically safe. I was so focused on building the thing that I forgot to build the people. Rebuilding trust takes three times longer than breaking it. GreenUX — the design system — outlived that phase, but the lesson about what culture actually needs has outlasted everything we ever shipped.',
+    id: 'story-first-team',
+    year: '',
+    context: '',
+    title: 'What building my first design team actually taught me',
+    cues: [
+      'What did you get wrong early — about hiring, onboarding, or what a team actually needs to do good work?',
+      'Was there a specific moment or conversation that made you realise the gap between leading output and leading people?',
+      'What would you tell a first-time design manager today that no one told you?',
     ],
-    lesson: 'You can ship a great product and still fail at leadership if the people don\'t feel seen.',
+    narrative: [],
+    lesson: '',
   },
   {
-    id: 'mentorship',
-    year: '2022',
-    context: 'SAP Labs',
-    title: 'The Mentee Who Became the Mirror',
-    narrative: [
-      'I had been mentoring a young designer at SAP for about eight months. She was sharp, fast, and deeply uncomfortable with ambiguity — which is exactly what she came to me to fix.',
-      'One afternoon, she pushed back on my feedback. Not defensively — she had data, a clear framework, and a better answer than mine. I sat with that for a moment and then said: "You\'re right. Go with your instinct."',
-      'The goal of mentorship isn\'t to make someone think like you. It\'s to help them think rigorously enough that they can disagree with you confidently. The designers who\'ve grown the most under my mentorship are the ones who stopped asking for permission and started making claims. When a mentee surpasses you in a domain, that isn\'t a threat — it\'s the whole point.',
+    id: 'story-influence',
+    year: '',
+    context: '',
+    title: 'How I learned to influence without authority',
+    cues: [
+      'Describe a situation where you had to change how an organisation thought about design — without having the title or the mandate.',
+      'What did you try that didn\'t work? What finally did?',
+      'What does "earning trust" actually look like in practice inside a large enterprise?',
     ],
-    lesson: 'Mentorship succeeds when the mentee no longer needs you in that role.',
-    image: 'https://framerusercontent.com/images/HckfStwSHyARIzjTF82rWioFiQ.png',
+    narrative: [],
+    lesson: '',
   },
   {
-    id: 'community',
+    id: 'story-sap-community',
     year: '2022 — present',
     context: 'SAP Design Hub India',
-    title: '250+ Designers and the Thing I Didn\'t Expect',
+    title: '250+ designers and the thing I didn\'t expect',
+    cues: [
+      'What gap were you trying to close when you founded SAP Design Hub India?',
+      'What surprised you most about what the community revealed — about designers, or about organisations?',
+      'What does it mean to build design culture from inside a large enterprise rather than starting fresh?',
+    ],
     narrative: [
       'I started SAP Design Hub India with a simple goal: create a space where SAP designers across India could share work, critique each other, and build something beyond their immediate pod.',
-      'Within a year we had 250+ members and monthly events that were oversubscribed. But the unexpected thing wasn\'t the scale — it was what the community taught me about organizational health. Designers who felt unseen inside their teams were articulate, generous, and visionary in the community. The same people.',
-      'The gap between what people are capable of and what organizations allow them to do is enormous. Building the community didn\'t just give designers a place — it gave me a diagnostic lens. What makes people perform at their ceiling? Psychological safety, peer recognition, and the sense that their work is seen beyond their immediate manager.',
+      'Within a year we had 250+ members and monthly events that were oversubscribed. But the unexpected thing wasn\'t the scale — it was what the community taught me about organizational health.',
+      'The gap between what people are capable of and what organisations allow them to do is enormous. Building this community didn\'t just give designers a place — it gave me a diagnostic lens.',
     ],
     lesson: 'Communities reveal what organizations suppress. Build both.',
   },

@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion
 import GrainOverlay from '../ui/GrainOverlay'
 import SweepLines from '../ui/SweepLines'
 import RevealText from '../ui/RevealText'
-import RotatingTitle from '../ui/RotatingTitle'
 import heroImg from '../../assets/images/amit-stage.jpg'
 
 export default function Hero() {
@@ -33,38 +32,51 @@ export default function Hero() {
           className="hero-img w-full h-full object-cover"
           style={{ filter: 'grayscale(1) contrast(1.05)' }}
         />
-        {/* Bottom fade — text legibility */}
         <div
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.92) 28%, rgba(12,12,11,0.5) 58%, transparent 100%)',
           }}
         />
-        {/* Right-side fade — keeps body copy readable */}
         <div
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(to left, rgba(12,12,11,0.72) 0%, transparent 55%)',
           }}
         />
-        {/* Subtle global veil */}
         <div className="absolute inset-0" style={{ background: 'rgba(12,12,11,0.32)' }} />
       </motion.div>
 
-      {/* Content — bottom row, ClearPath style */}
+      {/* Content */}
       <div className="relative z-20 h-full flex flex-col justify-end pb-16 px-6 md:px-12 max-w-7xl mx-auto w-full">
         <div className="flex items-end justify-between gap-8">
 
-          {/* Left: overline + headline + CTAs */}
+          {/* Left: identity + headline + CTAs */}
           <div className="flex-1">
-            <p className="text-overline text-white opacity-40 mb-8">
-              <RotatingTitle />
-            </p>
+            {/* Static identity — role + positioning fingerprint */}
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              <p className="text-overline text-white opacity-40">
+                Design Director · Enterprise AI
+              </p>
+              <Link
+                to="/leadership"
+                className="text-overline text-white opacity-20 hover:opacity-50 transition-opacity duration-300 mt-1 block"
+              >
+                Dual Fluency · AI-Native · Agentic Systems
+              </Link>
+            </motion.div>
+
             <h1 className="text-display-xl text-white mb-10">
-              <RevealText text="Designing for Humans," delay={0.1} />
+              <RevealText text="Design that can't speak business" delay={0.1} />
               <br />
-              <RevealText text="Systems and Everything Between." delay={0.3} />
+              <RevealText text="is just decoration." delay={0.3} />
             </h1>
+
             <motion.div
               className="flex items-center gap-6"
               initial={{ opacity: 0 }}
@@ -86,7 +98,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: body copy — floats beside the headline */}
+          {/* Right: pull quote */}
           <motion.p
             className="hidden md:block text-body text-white opacity-50 max-w-[260px] mb-1 shrink-0"
             initial={{ opacity: 0, y: 16 }}

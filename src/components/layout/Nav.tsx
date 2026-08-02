@@ -87,7 +87,7 @@ export default function Nav() {
                         onMouseLeave={closeCraft}
                       >
                         <div
-                          className="min-w-[260px] border border-white py-1"
+                          className="min-w-[200px] border border-white py-1"
                           style={{
                             background: 'rgba(12,12,11,0.96)',
                             backdropFilter: 'blur(24px)',
@@ -98,15 +98,15 @@ export default function Nav() {
                             <Link
                               key={cs.id}
                               to={`/craft/${cs.id}`}
-                              className="block px-5 py-3 hover:bg-white hover:bg-opacity-[0.04] transition-colors duration-150"
+                              className="flex items-center gap-3 px-5 py-2.5 hover:bg-white hover:bg-opacity-[0.04] transition-colors duration-150"
                               onClick={() => setCraftOpen(false)}
                             >
-                              <span className="text-label text-white opacity-20 mr-2">{cs.number}</span>
+                              <span className="text-label text-white opacity-20 flex-shrink-0 w-4">{cs.number}</span>
                               <span
-                                className="text-white"
+                                className="text-white truncate"
                                 style={{ fontSize: '0.72rem', letterSpacing: '0.02em', opacity: 0.65 }}
                               >
-                                {cs.title}
+                                {cs.shortTitle}
                               </span>
                             </Link>
                           ))}

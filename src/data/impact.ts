@@ -4,11 +4,11 @@ export interface Metric {
 }
 
 export const metrics: Metric[] = [
-  { value: '56',   label: 'Success Stories' },
-  { value: '25',   label: 'Happy Customers' },
-  { value: '254',  label: 'Months of Rigour' },
-  { value: '17',   label: 'Industries' },
-  { value: '8+',   label: 'Talks & Workshops' },
-  { value: '25+',  label: 'Coach Stories' },
-  { value: '350+', label: 'Community Impact' },
+  { value: '300M+', label: 'Users reached through shipped products' },
+  { value: '$5M',   label: 'Documented operational savings' },
+  { value: '90%',   label: 'CSAT vs <60% industry baseline' },
+  { value: '16',    label: 'Years of enterprise design' },
+  { value: '250+',  label: 'Designers in SAP Design Hub India' },
+  { value: '50×',   label: 'Revenue multiplier — national airline' },
+  { value: '6',     label: 'Systems-level case studies' },
 ]
