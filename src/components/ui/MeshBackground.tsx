@@ -54,7 +54,7 @@ function MorphMesh() {
         color="#F5F2ED"
         wireframe
         transparent
-        opacity={0.12}
+        opacity={0.55}
         depthWrite={false}
       />
     </mesh>
@@ -79,7 +79,7 @@ function OuterShell() {
         color="#F5F2ED"
         wireframe
         transparent
-        opacity={0.035}
+        opacity={0.12}
         depthWrite={false}
       />
     </mesh>

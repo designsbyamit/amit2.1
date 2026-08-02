@@ -23,7 +23,7 @@ function Line({
 }) {
   const reduced = useReducedMotion()
   return (
-    <span style={{ display: 'block', overflow: 'hidden', ...style }}>
+    <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.15em', marginBottom: '-0.15em', ...style }}>
       <motion.span
         style={{ display: 'block' }}
         initial={{ y: reduced ? 0 : '105%', skewY: reduced ? 0 : 1.5 }}
@@ -72,22 +72,22 @@ export default function Hero() {
     <section ref={containerRef} className="relative h-[100dvh] overflow-hidden bg-black">
       <GrainOverlay opacity={0.07} />
 
-      {/* ── 3D MESH BACKGROUND — right side, fades on scroll ── */}
+      {/* ── 3D MESH BACKGROUND — right half, prominent ── */}
       <motion.div
         className="absolute inset-0"
         style={{ opacity: meshOpacity }}
       >
-        {/* Push mesh to right half */}
-        <div className="absolute inset-0" style={{ left: '30%' }}>
+        {/* Mesh fills right 70% of the hero */}
+        <div className="absolute inset-0" style={{ left: '20%' }}>
           <MeshBackground />
         </div>
-        {/* Mask mesh on the left so it doesn't compete with type */}
+        {/* Fade mesh at left edge only — don't kill it on the right */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to right, #0C0C0B 28%, rgba(12,12,11,0.7) 48%, transparent 70%)'
+          background: 'linear-gradient(to right, #0C0C0B 18%, rgba(12,12,11,0.4) 38%, transparent 60%)'
         }} />
       </motion.div>
 
-      {/* ── PORTRAIT — right third, desaturated, editorial ── */}
+      {/* ── PORTRAIT — dimmed, atmospheric, behind mesh ── */}
       <motion.div
         className="absolute inset-0"
         style={{ y: photoY, scale: photoScale }}
@@ -101,21 +101,18 @@ export default function Hero() {
             alt=""
             className="hero-img w-full h-full object-cover"
             style={{
-              // Reduced saturation — not full B&W, artistically desaturated
-              filter: 'saturate(0.15) contrast(1.12) brightness(0.72)',
+              filter: 'saturate(0.08) contrast(1.1) brightness(0.45)',
               willChange: 'transform',
             }}
           />
         </motion.div>
-
-        {/* Gradient layers — portrait recedes, type commands */}
+        {/* Aggressive bottom/left vignette */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.98) 14%, rgba(12,12,11,0.82) 32%, rgba(12,12,11,0.3) 55%, rgba(12,12,11,0.05) 80%)',
+          background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.96) 12%, rgba(12,12,11,0.7) 28%, rgba(12,12,11,0.15) 55%, transparent 80%)',
         }} />
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to right, #0C0C0B 0%, rgba(12,12,11,0.85) 28%, rgba(12,12,11,0.2) 55%, transparent 75%)',
+          background: 'linear-gradient(to right, #0C0C0B 0%, rgba(12,12,11,0.8) 25%, rgba(12,12,11,0.1) 50%, transparent 70%)',
         }} />
-        <div className="absolute inset-0" style={{ background: 'rgba(12,12,11,0.15)' }} />
       </motion.div>
 
       {/* ── CONTENT ── */}
@@ -155,22 +152,22 @@ export default function Hero() {
           <div className="w-full">
             <h1 style={{ lineHeight: 0.90, letterSpacing: '-0.045em', marginBottom: '3.2rem' }}>
               <Line delay={0.2} style={{ marginBottom: '0.03em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(3rem, 9.2vw, 8.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
+                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
                   Design that
                 </span>
               </Line>
               <Line delay={0.34} style={{ marginBottom: '0.03em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(3rem, 9.2vw, 8.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.88)' }}>
+                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.88)' }}>
                   can't speak
                 </span>
               </Line>
               <Line delay={0.48} style={{ marginBottom: '0.04em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(3rem, 9.2vw, 8.8rem)', fontWeight: 200, fontStyle: 'italic', color: 'rgba(245,242,237,0.92)' }}>
+                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, fontStyle: 'italic', color: 'rgba(245,242,237,0.92)' }}>
                   business
                 </span>
               </Line>
               <Line delay={0.62}>
-                <span style={{ display: 'block', fontSize: 'clamp(3rem, 9.2vw, 8.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.2)' }}>
+                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.2)' }}>
                   is decoration.
                 </span>
               </Line>
