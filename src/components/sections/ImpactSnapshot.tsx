@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { metrics } from '../../data/impact'
+import GrainOverlay from '../ui/GrainOverlay'
 
 function CountUp({ target, suffix = '' }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0)
@@ -29,86 +30,62 @@ function parseMetric(value: string): { num: number; suffix: string } {
 }
 
 export default function ImpactSnapshot() {
-  const ref = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const bgShift = useTransform(scrollYProgress, [0, 1], [0, -40])
-
   return (
-    <section ref={ref} className="relative bg-black overflow-hidden" id="impact">
-      {/* Enormous background number */}
-      <motion.div
-        className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none"
-        style={{ y: bgShift }}
-        aria-hidden
-      >
-        <p style={{
-          fontSize: 'clamp(24rem, 50vw, 60rem)',
-          fontWeight: 200,
-          letterSpacing: '-0.08em',
-          lineHeight: 0.8,
-          color: 'rgba(245,242,237,0.022)',
-          userSelect: 'none',
-        }}>16</p>
-      </motion.div>
-
-      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 py-32 md:py-52">
+    <section className="relative bg-black overflow-hidden" id="impact">
+      <GrainOverlay opacity={0.04} />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 py-20 md:py-28">
         <motion.p
-          className="text-overline text-white opacity-25 mb-24 md:mb-32"
-          initial={{ opacity: 0 }} whileInView={{ opacity: 0.25 }} viewport={{ once: true }}
+          className="text-overline text-white opacity-30 mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.3 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           Scale & Reach
         </motion.p>
 
-        {/* Metrics — full bleed, no grid lines, just typography */}
-        <div className="space-y-0">
+        {/* Grid — equal square blocks */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white" style={{ backgroundColor: 'rgba(245,242,237,0.07)' }}>
           {metrics.map((metric, i) => {
             const { num, suffix } = parseMetric(metric.value)
-            const isHero = i < 2
-
             return (
               <motion.div
                 key={metric.label}
-                className="flex items-baseline justify-between border-t border-white py-8 md:py-12 group"
-                style={{ borderColor: 'rgba(255,255,255,0.06)' }}
-                initial={{ opacity: 0, y: 20 }}
+                className="bg-black flex flex-col justify-between p-7 md:p-9 aspect-square"
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ backgroundColor: 'rgba(245,242,237,0.028)', transition: { duration: 0.2 } }}
                 viewport={{ once: true, margin: '-5%' }}
-                transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               >
-                {/* Label */}
                 <p
-                  className="text-white group-hover:opacity-70 transition-opacity duration-300"
+                  className="text-white"
                   style={{
-                    fontSize: 'clamp(0.8rem, 1.2vw, 1rem)',
-                    fontWeight: 300,
-                    opacity: 0.35,
-                    letterSpacing: '0.02em',
-                    maxWidth: '40ch',
-                  }}
-                >
-                  {metric.label}
-                </p>
-
-                {/* Number */}
-                <p
-                  className="text-white text-right flex-shrink-0 ml-8 group-hover:opacity-90 transition-opacity duration-300"
-                  style={{
-                    fontSize: isHero
-                      ? 'clamp(3.5rem, 7vw, 7rem)'
-                      : 'clamp(2.5rem, 5vw, 5rem)',
+                    fontSize: 'clamp(1.8rem, 3.5vw, 3.2rem)',
                     fontWeight: 200,
-                    letterSpacing: '-0.045em',
+                    letterSpacing: '-0.04em',
                     lineHeight: 1,
-                    opacity: isHero ? 0.92 : 0.65,
+                    opacity: 0.88,
                   }}
                 >
                   <CountUp target={num} suffix={suffix} />
                 </p>
+                <p
+                  className="text-white"
+                  style={{
+                    fontSize: '0.68rem',
+                    fontWeight: 400,
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    lineHeight: 1.4,
+                    opacity: 0.32,
+                  }}
+                >
+                  {metric.label}
+                </p>
               </motion.div>
             )
           })}
-          <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.06)' }} />
         </div>
       </div>
     </section>
