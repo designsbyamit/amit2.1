@@ -55,19 +55,9 @@ function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number })
           <p className="text-white mb-6 max-w-xl" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68, opacity: 0.3 }}>
             {cs.tagline}
           </p>
-          {cs.stats && (
-            <div className="flex flex-wrap gap-8">
-              {cs.stats.map(s => (
-                <div key={s.label}>
-                  <p className="text-white" style={{ fontSize: 'clamp(1.2rem, 1.8vw, 1.8rem)', fontWeight: 200, letterSpacing: '-0.03em', opacity: 0.82, lineHeight: 1 }}>{s.value}</p>
-                  <p className="text-label text-white opacity-20 mt-1">{s.label}</p>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
         {cs.image && (
-          <div className="hidden md:block relative overflow-hidden flex-shrink-0" style={{ width: '36%' }}>
+          <div className="hidden md:block relative overflow-hidden flex-shrink-0" style={{ width: '72%' }}>
             <motion.img
               src={cs.image}
               alt={cs.title}
@@ -139,7 +129,7 @@ export default function Home() {
               </Link>
             </FadeUp>
           </div>
-          {caseStudies.slice(0, 4).map((cs, i) => (
+          {caseStudies.slice(0, 1).map((cs, i) => (
             <ProjectRow key={cs.id} cs={cs} index={i} />
           ))}
           <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.07)' }} />
