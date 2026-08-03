@@ -188,9 +188,9 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
         <div className="absolute inset-0" style={{
           background: 'linear-gradient(to top, rgba(12,12,11,0.98) 0%, rgba(12,12,11,0.82) 40%, rgba(12,12,11,0.45) 70%, rgba(12,12,11,0.2) 100%)'
         }} />
-        {/* Left gradient — type anchor */}
+        {/* Left gradient — strong text anchor across full left */}
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to right, rgba(12,12,11,0.6) 0%, transparent 60%)'
+          background: 'linear-gradient(to right, rgba(12,12,11,0.97) 0%, rgba(12,12,11,0.92) 30%, rgba(12,12,11,0.7) 55%, rgba(12,12,11,0.25) 80%, transparent 100%)'
         }} />
       </div>
 
