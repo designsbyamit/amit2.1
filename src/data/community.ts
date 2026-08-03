@@ -53,7 +53,7 @@ export const initiatives: Initiative[] = [
     description: 'Mentored early-career designers on portfolio strategy and leadership.',
     body: 'Mentored early-career designers on portfolio strategy, leadership positioning, and navigating enterprise design careers. The most common question wasn\'t about craft — it was about influence. How do you make design matter inside an organisation that doesn\'t yet understand what design can do?',
     image: '/images/Community/DTSUmmit.jpg',
-    imageFocus: 'center top',
+    imageFocus: '12% center',
   },
   {
     id: 'ux-india',
