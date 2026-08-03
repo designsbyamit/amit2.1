@@ -116,13 +116,11 @@ export default function Home() {
                 color: 'rgba(245,242,237,0.7)',
                 maxWidth: '60ch',
               }}>
-                For 16 years I've operated at the intersection of design, business strategy, and emerging technology. My practice is built on three interlocking ideas:{' '}
-                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>Dual Fluency</strong>{' '}
-                — the capacity to operate equally in the language of design and the language of business;{' '}
-                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>AI-Native Design</strong>{' '}
-                — rethinking what interaction means when software can reason and act; and{' '}
-                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>Agentic Process</strong>{' '}
-                — designing the human-AI relationship in autonomous systems where oversight is the product.
+                16+ years across enterprise design have taught me that great experiences emerge where design, business, and technology intersect. Today, my work is guided by three interconnected areas of exploration:{' '}
+                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>Dual Fluency</strong>,{' '}
+                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>AI-Native Design</strong>, and{' '}
+                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>Agentic Experiences</strong>{' '}
+                — together shaping how I think about products, people, and the future of experiences.
               </p>
             </FadeUp>
           </div>
