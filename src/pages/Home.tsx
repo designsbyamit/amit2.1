@@ -139,7 +139,7 @@ export default function Home() {
               </Link>
             </FadeUp>
           </div>
-          {caseStudies.slice(0, 1).map((cs, i) => (
+          {caseStudies.filter(cs => cs.id === 'airline-app').map((cs, i) => (
             <ProjectRow key={cs.id} cs={cs} index={i} />
           ))}
           <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.07)' }} />
