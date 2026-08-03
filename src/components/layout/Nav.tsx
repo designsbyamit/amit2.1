@@ -7,7 +7,6 @@ import { caseStudies } from '../../data/work'
 const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Craft', to: '/craft' },
-  { label: 'Leadership', to: '/leadership' },
   { label: 'Community', to: '/community' },
   { label: 'Reflections', to: '/reflections' },
   { label: 'Resources', to: '/resources' },
