@@ -44,27 +44,29 @@ function MorphMesh() {
     transparent: true,
     depthWrite: false,
     vertexShader: `
-      varying vec3 vWorldPos;
+      varying vec4 vClipPos;
       void main() {
-        vec4 worldPos = modelMatrix * vec4(position, 1.0);
-        vWorldPos = worldPos.xyz;
-        gl_Position = projectionMatrix * viewMatrix * worldPos;
+        vec4 clipPos = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+        vClipPos = clipPos;
+        gl_Position = clipPos;
       }
     `,
     fragmentShader: `
-      varying vec3 vWorldPos;
+      varying vec4 vClipPos;
       void main() {
-        // Normalise x: left edge ~ -3, right edge ~ +3
-        float nx = clamp((vWorldPos.x + 3.0) / 6.0, 0.0, 1.0); // 0=left, 1=right
+        // Convert clip position to NDC x: -1 (left) to +1 (right)
+        float ndcX = vClipPos.x / vClipPos.w;
 
-        // Fade out on left (text area: nx < 0.25) — full black by nx=0.1
-        float leftMask = smoothstep(0.08, 0.30, nx);
+        // Map NDC to 0-1 screen position
+        float sx = ndcX * 0.5 + 0.5; // 0=left, 1=right
 
-        // Fade out on right (portrait face area: nx > 0.55) — full black by nx=0.75
-        float rightMask = 1.0 - smoothstep(0.52, 0.72, nx);
+        // Fade out on left (text area: sx < 0.28)
+        float leftMask = smoothstep(0.05, 0.28, sx);
 
-        // Peak visibility in the middle band
-        float alpha = leftMask * rightMask * 0.22;
+        // Fade out on right (portrait face area: sx > 0.58)
+        float rightMask = 1.0 - smoothstep(0.55, 0.78, sx);
+
+        float alpha = leftMask * rightMask * 0.20;
 
         gl_FragColor = vec4(0.957, 0.949, 0.929, alpha);
       }
