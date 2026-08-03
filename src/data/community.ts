@@ -28,7 +28,7 @@ export const initiatives: Initiative[] = [
     type: 'Event Series',
     description: 'Practitioner-first design event series.',
     body: 'Built a practitioner-first design event series focused on real problems, honest conversations, and cross-company learning. The premise: most design events are either too academic or too promotional. UX2DAY was built to be neither — just practitioners sharing what actually worked, what failed, and what they were still figuring out.',
-    image: '/images/Community/Impulse.jpg',
+    image: '/images/Community/UX2Day.jpg',
   },
   {
     id: 'designup-workshop',
@@ -48,7 +48,7 @@ export const initiatives: Initiative[] = [
     type: 'Festival',
     description: 'Design festival at the intersection of technology, creativity, and human experience.',
     body: 'Organised and spoke at a design festival exploring the intersection of technology, creativity, and human experience. The festival brought together designers, engineers, artists, and thinkers from across disciplines — creating the kind of cross-pollination that rarely happens inside a single organisation.',
-    image: '',
+    image: '/images/Community/Impulse.jpg',
   },
   {
     id: 'ux-india',
