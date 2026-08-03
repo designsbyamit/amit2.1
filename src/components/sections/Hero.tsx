@@ -9,7 +9,6 @@ import {
   useSpring,
 } from 'framer-motion'
 import GrainOverlay from '../ui/GrainOverlay'
-import MeshBackground from '../ui/MeshBackground'
 import heroImg from '../../assets/images/amit-stage.jpg'
 
 function Line({
@@ -49,7 +48,6 @@ export default function Hero() {
   const photoScale = useTransform(scrollYProgress, [0, 0.9], [1.0, 1.08])
   const contentY = useTransform(scrollYProgress, [0, 0.55], reduced ? [0, 0] : [0, 48])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const meshOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0])
 
   // Mouse parallax
   const mx = useMotionValue(0)

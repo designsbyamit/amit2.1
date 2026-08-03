@@ -15,31 +15,6 @@ function MorphMesh() {
   const lineGeo = useMemo(() => new THREE.EdgesGeometry(baseGeo), [baseGeo])
   const outerEdges = useMemo(() => new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(3.0, 2)), [])
 
-  // Shader material — fades from 60% opacity at left (x=-1) to 0% at right (x=+1)
-  const innerMat = useMemo(() => new THREE.ShaderMaterial({
-    transparent: true,
-    depthWrite: false,
-    vertexShader: `
-      varying vec3 vWorldPos;
-      void main() {
-        vec4 worldPos = modelMatrix * vec4(position, 1.0);
-        vWorldPos = worldPos.xyz;
-        gl_Position = projectionMatrix * viewMatrix * worldPos;
-      }
-    `,
-    fragmentShader: `
-      varying vec3 vWorldPos;
-      void main() {
-        // x ranges roughly -2 to +2 in world space
-        // map to 0-1 where left(-2)=1, right(+2)=0
-        float t = clamp((-vWorldPos.x + 2.0) / 4.0, 0.0, 1.0);
-        // opacity: 0.28 on left edge, 0.0 on right edge
-        float alpha = t * 0.28;
-        gl_FragColor = vec4(0.957, 0.949, 0.929, alpha);
-      }
-    `,
-  }), [])
-
   const outerMat = useMemo(() => new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
