@@ -82,10 +82,7 @@ export default function Hero() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0C0C0B 0%, rgba(12,12,11,0.8) 25%, rgba(12,12,11,0.1) 50%, transparent 70%)' }} />
       </motion.div>
 
-      {/* ── MESH — z:2, above portrait, below text. Shader owns the gradient fade ── */}
-      <motion.div className="absolute inset-0" style={{ opacity: meshOpacity, zIndex: 2, pointerEvents: 'none' }}>
-        <MeshBackground />
-      </motion.div>
+      {/* Mesh hidden */}
 
       {/* ── CONTENT ── */}
       <motion.div
@@ -105,7 +102,7 @@ export default function Hero() {
             </span>
             <span style={{ width: 1, height: 12, background: 'rgba(245,242,237,0.12)', display: 'inline-block' }} />
             <span style={{ fontSize: '0.6rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.16)' }}>
-              Design Director · Enterprise AI
+              Design Leader · Enterprise AI
             </span>
           </div>
           <Link
@@ -122,7 +119,7 @@ export default function Hero() {
         {/* Headline */}
         <div className="flex-1 flex items-end px-7 md:px-14 pb-16 md:pb-20">
           <div className="w-full">
-            <h1 style={{ lineHeight: 0.90, letterSpacing: '-0.045em', marginBottom: '3.2rem' }}>
+            <h1 style={{ lineHeight: 1.08, letterSpacing: '-0.045em', marginBottom: '3.2rem' }}>
               <Line delay={0.2} style={{ marginBottom: '0.03em' }}>
                 <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
                   Design that
