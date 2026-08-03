@@ -33,7 +33,6 @@ export interface CaseStudy {
 const B = import.meta.env.BASE_URL
 
 export const caseStudies: CaseStudy[] = [
-,
   {
     id: 'airline-app',
     number: '01',
