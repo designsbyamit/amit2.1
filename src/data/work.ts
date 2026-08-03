@@ -36,7 +36,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'airline-app',
     number: '01',
-    category: 'Service Design · OmniChannel · B2C',
+    category: 'Saudia Airlines · Service Design · OmniChannel · B2C',
     title: 'OmniChannel Travel Experience — Leading Airlines',
     shortTitle: 'Saudia Airlines',
     tagline: 'Designing a service ecosystem, not an app. Turning a $2M digital channel into a $100M revenue engine.',
@@ -132,7 +132,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'data-ai',
     number: '02',
-    category: 'Data Visualisation · AI · Enterprise',
+    category: 'Data Products · Data Visualisation · AI · Enterprise',
     title: 'Executive Data-Products for Insights-Driven Decisions',
     shortTitle: 'Data Products',
     tagline: 'Anchoring the data-governance pillar — designing executive-grade data products that translate complexity into actionable intelligence.',
@@ -187,7 +187,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'engaze',
     number: '03',
-    category: 'Generative AI · Conversational Design · HR',
+    category: 'Engaze HCM AI · Generative AI · Conversational Design',
     title: 'Engaze: AI-Native Workplace Companion',
     shortTitle: 'Engaze HCM AI',
     tagline: '"Engaze" simplifies your work life — leave balances, approvals, benefits — just ask.',
@@ -274,7 +274,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'dnetworx',
     number: '04',
-    category: 'Enterprise UX · Telecommunications · Self-Serve',
+    category: 'dNetWorX · Enterprise UX · Telecommunications',
     title: 'Enterprise Experience for Self-Serve Network Installations',
     shortTitle: 'dNetWorX $5M',
     tagline: 'Turning a technically complex, change-resistant enterprise platform into a self-serve operational capability saving $5M.',
@@ -346,7 +346,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'sap-search',
     number: '05',
-    category: 'AI · Enterprise UX · SAP',
+    category: 'SAP AI Search · AI · Enterprise UX · SAP',
     title: 'AI-Powered Search — Contextual Discovery at Enterprise Scale',
     shortTitle: 'SAP AI Search',
     tagline: 'Rethinking how enterprise users find what they need in intelligent systems that understand intent, not just keywords.',
@@ -378,7 +378,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: 'sap-agentic',
     number: '06',
-    category: 'Agentic AI · Enterprise · SAP',
+    category: 'Agentic Invoice · Agentic AI · Enterprise · SAP',
     title: 'Agentic Invoice Clearance — Autonomous Enterprise Workflows',
     shortTitle: 'Agentic Invoice',
     tagline: 'Designing the human-AI relationship in autonomous systems where agents act, escalate, and require oversight.',
