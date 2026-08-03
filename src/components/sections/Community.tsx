@@ -18,17 +18,20 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
     >
       <div className={`grid md:grid-cols-2 gap-0 ${isEven ? '' : 'md:[direction:rtl]'}`}>
 
-        {/* Image panel */}
+        {/* Image panel — full height, no aspect ratio constraint */}
         <div
-          className="relative overflow-hidden bg-white bg-opacity-[0.04] min-h-[280px] md:min-h-[420px]"
-          style={{ direction: 'ltr' }}
+          className="relative overflow-hidden bg-white bg-opacity-[0.04]"
+          style={{ direction: 'ltr', minHeight: '480px' }}
         >
           {initiative.image ? (
             <img
               src={initiative.image}
               alt={initiative.name}
-              className="w-full h-full object-cover absolute inset-0"
-              style={{ filter: 'grayscale(0.2) contrast(1.05) brightness(0.8)' }}
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{
+                filter: 'grayscale(0.15) contrast(1.05) brightness(0.82)',
+                objectPosition: initiative.imageFocus ?? 'center center',
+              }}
             />
           ) : (
             <div className="absolute inset-0 flex flex-col justify-end p-10">
