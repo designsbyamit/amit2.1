@@ -55,7 +55,7 @@ function MorphMesh() {
       varying vec3 vWorldPos;
       void main() {
         float t = clamp((-vWorldPos.x + 3.0) / 6.0, 0.0, 1.0);
-        float alpha = t * 0.06;
+        float alpha = t * 0.18;
         gl_FragColor = vec4(0.957, 0.949, 0.929, alpha);
       }
     `,
@@ -96,7 +96,9 @@ function MorphMesh() {
 
   return (
     <group ref={groupRef}>
-      <lineSegments geometry={lineGeo} material={innerMat} />
+      {/* Inner morph mesh — hidden */}
+      {/* <lineSegments geometry={lineGeo} material={innerMat} /> */}
+      {/* Outer shell only */}
       <lineSegments geometry={outerEdges} material={outerMat} />
     </group>
   )
