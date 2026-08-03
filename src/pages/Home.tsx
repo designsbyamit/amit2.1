@@ -23,56 +23,66 @@ function FadeUp({ children, delay = 0, className = '' }: { children: React.React
 function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const imgY = useTransform(scrollYProgress, [0, 1], [40, -40])
+  const imgY = useTransform(scrollYProgress, [0, 1], [30, -30])
 
   return (
     <motion.div
       ref={ref}
-      className="group border-t border-white"
+      className="border-t border-white overflow-hidden"
       style={{ borderColor: 'rgba(255,255,255,0.07)' }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-4%' }}
       transition={{ duration: 0.65, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
     >
-      <Link
-        to={cs.id === 'sap-search' ? '/craft/sap-search' : `/craft/${cs.id}`}
-        className="flex items-stretch py-10 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-white hover:bg-opacity-[0.02] transition-colors duration-500"
-        data-cursor="project"
-        data-cursor-label="View case"
+      <motion.div
+        initial={{ paddingLeft: 0, paddingRight: 0 }}
+        whileHover={{ paddingLeft: '2rem', paddingRight: '2rem', backgroundColor: 'rgba(245,242,237,0.018)' }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="flex-1 pr-6 md:pr-16 flex flex-col justify-center">
-          <div className="flex items-baseline gap-4 mb-4">
-            <span style={{ fontSize: '0.58rem', opacity: 0.18, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
-            <span className="text-overline text-white opacity-25">{cs.category}</span>
+        <Link
+          to={cs.id === 'sap-search' ? '/craft/sap-search' : `/craft/${cs.id}`}
+          className="group flex items-stretch"
+          style={{ minHeight: '420px' }}
+          data-cursor="project"
+          data-cursor-label="View case"
+        >
+          {/* Text */}
+          <div className="flex-shrink-0 w-2/5 flex flex-col justify-center py-14 pr-10">
+            <div className="flex items-baseline gap-4 mb-4">
+              <span style={{ fontSize: '0.58rem', opacity: 0.18, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
+              <span className="text-overline text-white opacity-25">{cs.category}</span>
+            </div>
+            <h3
+              className="text-white mb-4 group-hover:opacity-75 transition-opacity duration-500"
+              style={{ fontSize: 'clamp(1.3rem, 2.8vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}
+            >
+              {cs.title}
+            </h3>
+            <p className="text-white max-w-sm" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68, opacity: 0.3 }}>
+              {cs.tagline}
+            </p>
           </div>
-          <h3
-            className="text-white mb-4 group-hover:opacity-72 transition-opacity duration-500"
-            style={{ fontSize: 'clamp(1.3rem, 2.8vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}
-          >
-            {cs.title}
-          </h3>
-          <p className="text-white mb-6 max-w-xl" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68, opacity: 0.3 }}>
-            {cs.tagline}
-          </p>
-        </div>
-        {cs.image && (
-          <div className="hidden md:block relative overflow-hidden flex-shrink-0" style={{ width: '72%' }}>
-            <motion.img
-              src={cs.image}
-              alt={cs.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ y: imgY, filter: 'saturate(0.2) contrast(1.08)', scale: 1.1 }}
-              whileHover={{ filter: 'saturate(0.5) contrast(1.1)' }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            />
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ background: 'linear-gradient(to left, transparent 55%, rgba(12,12,11,0.35) 100%)' }}
-            />
-          </div>
-        )}
-      </Link>
+
+          {/* Image — 60% width, full height of the row */}
+          {cs.image && (
+            <div className="hidden md:block relative overflow-hidden flex-shrink-0 w-3/5">
+              <motion.img
+                src={cs.image}
+                alt={cs.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ y: imgY, filter: 'saturate(0.25) contrast(1.08)', scale: 1.08 }}
+                whileHover={{ filter: 'saturate(0.5) contrast(1.1)', scale: 1.04 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              />
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: 'linear-gradient(to left, transparent 50%, rgba(12,12,11,0.3) 100%)' }}
+              />
+            </div>
+          )}
+        </Link>
+      </motion.div>
     </motion.div>
   )
 }
