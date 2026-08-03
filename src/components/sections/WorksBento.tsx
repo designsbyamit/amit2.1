@@ -57,12 +57,12 @@ export default function WorksBento() {
 
                 {/* Image */}
                 {cs.image && (
-                  <div className="hidden md:block w-[42%] shrink-0 overflow-hidden">
+                  <div className="hidden md:block w-1/2 shrink-0 overflow-hidden">
                     <img
                       src={cs.image}
                       alt={cs.title}
                       className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      style={{ filter: 'grayscale(0.25) contrast(1.05)' }}
+                      style={{ filter: 'grayscale(0.25) contrast(1.05)', minHeight: '320px' }}
                     />
                   </div>
                 )}

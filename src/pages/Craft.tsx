@@ -35,7 +35,9 @@ export default function Craft() {
         subtitle="Case studies across AI experiences, conversational design, enterprise UX, and large-scale design systems."
       />
 
-      {/* Philosophy Intro */}
+      <WorksBento />
+
+      {/* Philosophy */}
       <section className="relative bg-black py-20 md:py-24 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">
