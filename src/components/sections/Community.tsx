@@ -21,7 +21,7 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
         {/* Image panel — full height, no aspect ratio constraint */}
         <div
           className="relative overflow-hidden bg-white bg-opacity-[0.04]"
-          style={{ direction: 'ltr', minHeight: '480px' }}
+          style={{ direction: 'ltr', minHeight: '600px' }}
         >
           {initiative.image ? (
             <img

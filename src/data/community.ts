@@ -42,7 +42,7 @@ export const initiatives: Initiative[] = [
     description: 'Design festival at the intersection of technology, creativity, and human experience.',
     body: 'Organised and spoke at a design festival exploring the intersection of technology, creativity, and human experience. The festival brought together designers, engineers, artists, and thinkers from across disciplines — creating the kind of cross-pollination that rarely happens inside a single organisation.',
     image: '/images/Community/Impulse.jpg',
-    imageFocus: 'center center',
+    imageFocus: '50% 15%',
   },
   {
     id: 'design-thinking-summit',
