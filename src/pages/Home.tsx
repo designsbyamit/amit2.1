@@ -42,21 +42,26 @@ function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number })
       >
         <Link
           to={cs.id === 'sap-search' ? '/craft/sap-search' : `/craft/${cs.id}`}
-          className="group flex items-stretch"
-          style={{ minHeight: '420px' }}
+          className="group flex flex-col md:flex-row md:items-stretch"
           data-cursor="project"
           data-cursor-label="View case"
         >
+          {/* Mobile: image on top */}
+          {cs.image && (
+            <div className="md:hidden w-full overflow-hidden" style={{ height: '58vw', maxHeight: '300px', background: 'rgba(245,242,237,0.02)' }}>
+              <img src={cs.image} alt={cs.title} className="w-full h-full object-contain"
+                style={{ padding: '0.75rem', filter: 'saturate(0.25) contrast(1.08)' }} />
+            </div>
+          )}
+
           {/* Text */}
-          <div className="flex-shrink-0 w-2/5 flex flex-col justify-center py-14 pr-10">
+          <div className="flex-shrink-0 w-full md:w-2/5 flex flex-col justify-center py-8 md:py-14 md:pr-10">
             <div className="flex items-baseline gap-4 mb-4">
               <span style={{ fontSize: '0.58rem', opacity: 0.18, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
               <span className="text-overline text-white opacity-25">{cs.category}</span>
             </div>
-            <h3
-              className="text-white mb-4 group-hover:opacity-75 transition-opacity duration-500"
-              style={{ fontSize: 'clamp(1.3rem, 2.8vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}
-            >
+            <h3 className="text-white mb-4 group-hover:opacity-75 transition-opacity duration-500"
+              style={{ fontSize: 'clamp(1.3rem, 2.8vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
               {cs.title}
             </h3>
             <p className="text-white max-w-sm" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68, opacity: 0.3 }}>
@@ -64,12 +69,10 @@ function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number })
             </p>
           </div>
 
-          {/* Image — 60% width, full height of the row */}
+          {/* Desktop: image right */}
           {cs.image && (
-            <div className="hidden md:block relative overflow-hidden flex-shrink-0 w-3/5 flex items-center justify-center" style={{ background: 'rgba(245,242,237,0.02)' }}>
-              <motion.img
-                src={cs.image}
-                alt={cs.title}
+            <div className="hidden md:block relative overflow-hidden flex-shrink-0 w-3/5" style={{ minHeight: '420px', background: 'rgba(245,242,237,0.02)' }}>
+              <motion.img src={cs.image} alt={cs.title}
                 className="w-full h-full object-contain"
                 style={{ padding: '2rem', filter: 'saturate(0.25) contrast(1.08)', y: imgY }}
                 whileHover={{ filter: 'saturate(0.5) contrast(1.1)', scale: 1.02 }}

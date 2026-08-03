@@ -26,56 +26,69 @@ export default function WorksBento() {
               >
                 <Link
                   to={`/craft/${cs.id}`}
-                  className="group flex items-stretch py-10 md:py-12"
+                  className="group block"
                 >
-                  {/* Text */}
-                  <div className="flex-1 pr-8 md:pr-20 flex flex-col justify-center">
-                    <div className="flex items-center gap-4 mb-5">
-                      <span className="text-label text-white opacity-20">{cs.number}</span>
-                      <span className="text-overline text-white opacity-35">{cs.category}</span>
+                  {/* Mobile: image on top, text below — Desktop: side by side */}
+                  <div className="flex flex-col md:flex-row md:items-stretch">
+
+                    {/* Image — top on mobile (60vw tall), right side on desktop */}
+                    {cs.image && (
+                      <div
+                        className="w-full md:hidden overflow-hidden"
+                        style={{ height: '55vw', maxHeight: '320px' }}
+                      >
+                        <img
+                          src={cs.image}
+                          alt={cs.title}
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                          style={{ filter: 'saturate(0.25) contrast(1.05)', padding: '1rem', background: 'rgba(245,242,237,0.02)' }}
+                        />
+                      </div>
+                    )}
+
+                    {/* Text */}
+                    <div className="flex-1 py-8 md:py-10 pr-0 md:pr-20 flex flex-col justify-center">
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="text-label text-white opacity-20">{cs.number}</span>
+                        <span className="text-overline text-white opacity-35">{cs.category}</span>
+                      </div>
+                      <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
+                        {cs.title}
+                      </h3>
+                      <p className="text-body text-white opacity-45 mb-6 max-w-2xl">{cs.tagline}</p>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                        {cs.role && (
+                          <span className="text-label text-white border px-2.5 py-0.5"
+                            style={{ borderColor: 'rgba(255,255,255,0.15)', opacity: 0.7 }}>
+                            {cs.role}
+                          </span>
+                        )}
+                        {cs.timeline && (
+                          <span className="text-label text-white opacity-30">{cs.timeline}</span>
+                        )}
+                        {cs.domain && (
+                          <span className="text-label text-white opacity-25">· {cs.domain}</span>
+                        )}
+                      </div>
                     </div>
 
-                    <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
-                      {cs.title}
-                    </h3>
-
-                    <p className="text-body text-white opacity-45 mb-7 max-w-2xl">{cs.tagline}</p>
-
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-7">
-                      {cs.role && (
-                        <span
-                          className="text-label text-white border px-2.5 py-0.5"
-                          style={{ borderColor: 'rgba(255,255,255,0.15)', opacity: 0.7 }}
-                        >
-                          {cs.role}
-                        </span>
-                      )}
-                      {cs.timeline && (
-                        <span className="text-label text-white opacity-30">{cs.timeline}</span>
-                      )}
-                      {cs.domain && (
-                        <span className="text-label text-white opacity-25">· {cs.domain}</span>
-                      )}
-                    </div>
+                    {/* Image — desktop only, right side */}
+                    {cs.image && (
+                      <div className="hidden md:block w-1/2 shrink-0 overflow-hidden" style={{ minHeight: '280px' }}>
+                        <img
+                          src={cs.image}
+                          alt={cs.title}
+                          className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                          style={{ filter: 'grayscale(0.25) contrast(1.05)', minHeight: '280px', padding: '1rem' }}
+                        />
+                      </div>
+                    )}
                   </div>
-
-                  {/* Image */}
-                  {cs.image && (
-                    <div className="hidden md:block w-1/2 shrink-0 overflow-hidden">
-                      <img
-                        src={cs.image}
-                        alt={cs.title}
-                        className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                        style={{ filter: 'grayscale(0.25) contrast(1.05)', minHeight: '320px' }}
-                      />
-                    </div>
-                  )}
                 </Link>
               </motion.div>
             </motion.div>
           ))}
 
-          {/* Bottom border */}
           <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
         </div>
       </div>

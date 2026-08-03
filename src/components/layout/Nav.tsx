@@ -66,29 +66,38 @@ export default function Nav() {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `text-label text-white transition-all duration-200 ${
+                      `text-label text-white transition-all duration-200 flex items-center gap-1.5 ${
                         isActive ? 'opacity-100' : 'opacity-45 hover:opacity-80'
                       }`
                     }
                   >
                     {item.label}
+                    <motion.span
+                      animate={{ rotate: craftOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      style={{ fontSize: '0.55rem', opacity: 0.6, display: 'inline-block', lineHeight: 1 }}
+                    >
+                      ▾
+                    </motion.span>
                   </NavLink>
 
                   <AnimatePresence>
                     {craftOpen && (
                       <motion.div
-                        className="absolute top-full left-0 pt-3"
-                        initial={{ opacity: 0, y: -6 }}
+                        className="absolute top-full left-0 pt-2 z-50"
+                        initial={{ opacity: 0, y: -4 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -6 }}
+                        exit={{ opacity: 0, y: -4 }}
                         transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
                         onMouseEnter={openCraft}
                         onMouseLeave={closeCraft}
                       >
+                        {/* Invisible bridge to prevent gap flicker */}
+                        <div className="absolute -top-2 left-0 right-0 h-2" />
                         <div
-                          className="min-w-[200px] border border-white py-1"
+                          className="min-w-[180px] border border-white py-1.5"
                           style={{
-                            background: 'rgba(12,12,11,0.96)',
+                            background: 'rgba(12,12,11,0.97)',
                             backdropFilter: 'blur(24px)',
                             borderColor: 'rgba(255,255,255,0.1)',
                           }}
@@ -97,12 +106,11 @@ export default function Nav() {
                             <Link
                               key={cs.id}
                               to={`/craft/${cs.id}`}
-                              className="flex items-center gap-3 px-5 py-2.5 hover:bg-white hover:bg-opacity-[0.04] transition-colors duration-150"
+                              className="block px-5 py-2.5 hover:bg-white hover:bg-opacity-[0.05] transition-colors duration-150"
                               onClick={() => setCraftOpen(false)}
                             >
-                              <span className="text-label text-white opacity-20 flex-shrink-0 w-4">{cs.number}</span>
                               <span
-                                className="text-white truncate"
+                                className="text-white"
                                 style={{ fontSize: '0.72rem', letterSpacing: '0.02em', opacity: 0.65 }}
                               >
                                 {cs.shortTitle}

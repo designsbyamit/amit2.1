@@ -83,8 +83,6 @@ export default function Craft() {
         </div>
       </section>
 
-      <WorksBento />
-
       {/* Design Decisions — Micro-Stories */}
       <section className="relative bg-black py-24 md:py-32 px-6 md:px-12">
         <GrainOverlay opacity={0.02} />
