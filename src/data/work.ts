@@ -128,7 +128,6 @@ export const caseStudies: CaseStudy[] = [
       title: 'Design Direction for Saudia, Accenture ME',
     },
   },
-  ,
   {
     id: 'data-ai',
     number: '02',
@@ -270,7 +269,6 @@ export const caseStudies: CaseStudy[] = [
       title: 'Managing Director, Accenture Operations',
     },
   },
-  ,
   {
     id: 'dnetworx',
     number: '04',
@@ -342,7 +340,6 @@ export const caseStudies: CaseStudy[] = [
       title: 'Associate Director, Accenture CMT, US',
     },
   },
-  ,
   {
     id: 'sap-search',
     number: '05',
@@ -374,7 +371,6 @@ export const caseStudies: CaseStudy[] = [
       'Enterprise users detect evasion faster than uncertainty — and they punish evasion with distrust.',
     ],
   },
-  ,
   {
     id: 'sap-agentic',
     number: '06',
