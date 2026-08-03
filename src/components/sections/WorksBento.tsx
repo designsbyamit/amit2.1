@@ -20,7 +20,7 @@ export default function WorksBento() {
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <motion.div
-                initial={{ paddingLeft: 0, paddingRight: 0 }}
+                initial={{ paddingLeft: '1rem', paddingRight: '1rem' }}
                 whileHover={{ paddingLeft: '2rem', paddingRight: '2rem', backgroundColor: 'rgba(245,242,237,0.018)' }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
