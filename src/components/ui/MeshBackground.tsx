@@ -54,8 +54,18 @@ function MorphMesh() {
     fragmentShader: `
       varying vec3 vWorldPos;
       void main() {
-        float t = clamp((-vWorldPos.x + 3.0) / 6.0, 0.0, 1.0);
-        float alpha = t * 0.18;
+        // Normalise x: left edge ~ -3, right edge ~ +3
+        float nx = clamp((vWorldPos.x + 3.0) / 6.0, 0.0, 1.0); // 0=left, 1=right
+
+        // Fade out on left (text area: nx < 0.25) — full black by nx=0.1
+        float leftMask = smoothstep(0.08, 0.30, nx);
+
+        // Fade out on right (portrait face area: nx > 0.55) — full black by nx=0.75
+        float rightMask = 1.0 - smoothstep(0.52, 0.72, nx);
+
+        // Peak visibility in the middle band
+        float alpha = leftMask * rightMask * 0.22;
+
         gl_FragColor = vec4(0.957, 0.949, 0.929, alpha);
       }
     `,
