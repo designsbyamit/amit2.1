@@ -66,18 +66,14 @@ function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number })
 
           {/* Image — 60% width, full height of the row */}
           {cs.image && (
-            <div className="hidden md:block relative overflow-hidden flex-shrink-0 w-3/5">
+            <div className="hidden md:block relative overflow-hidden flex-shrink-0 w-3/5 flex items-center justify-center" style={{ background: 'rgba(245,242,237,0.02)' }}>
               <motion.img
                 src={cs.image}
                 alt={cs.title}
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ y: imgY, filter: 'saturate(0.25) contrast(1.08)', scale: 1.08 }}
-                whileHover={{ filter: 'saturate(0.5) contrast(1.1)', scale: 1.04 }}
+                className="w-full h-full object-contain"
+                style={{ padding: '2rem', filter: 'saturate(0.25) contrast(1.08)', y: imgY }}
+                whileHover={{ filter: 'saturate(0.5) contrast(1.1)', scale: 1.02 }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              />
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: 'linear-gradient(to left, transparent 50%, rgba(12,12,11,0.3) 100%)' }}
               />
             </div>
           )}
