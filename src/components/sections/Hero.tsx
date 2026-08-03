@@ -72,41 +72,19 @@ export default function Hero() {
     <section ref={containerRef} className="relative h-[100dvh] overflow-hidden bg-black">
       <GrainOverlay opacity={0.07} />
 
-      {/* ── PORTRAIT — bottom layer, atmospheric ── */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ y: photoY, scale: photoScale, zIndex: 1 }}
-      >
+      {/* ── PORTRAIT — z:1, atmospheric base ── */}
+      <motion.div className="absolute inset-0" style={{ y: photoY, scale: photoScale, zIndex: 1 }}>
         <motion.div className="absolute inset-0" style={{ x: imgDriftX, y: imgDriftY }}>
-          <img
-            src={heroImg}
-            alt=""
-            className="hero-img w-full h-full object-cover"
-            style={{ filter: 'saturate(0.08) contrast(1.1) brightness(0.45)', willChange: 'transform' }}
-          />
+          <img src={heroImg} alt="" className="hero-img w-full h-full object-cover"
+            style={{ filter: 'saturate(0.08) contrast(1.1) brightness(0.45)', willChange: 'transform' }} />
         </motion.div>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.96) 12%, rgba(12,12,11,0.7) 28%, rgba(12,12,11,0.15) 55%, transparent 80%)' }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0C0C0B 0%, rgba(12,12,11,0.8) 25%, rgba(12,12,11,0.1) 50%, transparent 70%)' }} />
       </motion.div>
 
-      {/* ── MESH — above portrait, below text, left-centre position ── */}
-      <motion.div
-        className="absolute inset-0"
-        style={{ opacity: meshOpacity, zIndex: 2 }}
-      >
-        {/* Mesh centred left — roughly 0%→65% width */}
-        <div className="absolute inset-0" style={{ right: '35%' }}>
-          <MeshBackground />
-        </div>
-        {/* Soft fade on all edges so it bleeds naturally */}
-        <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to right, rgba(12,12,11,0.5) 0%, transparent 20%, transparent 55%, rgba(12,12,11,0.9) 80%)',
-          pointerEvents: 'none',
-        }} />
-        <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to bottom, rgba(12,12,11,0.4) 0%, transparent 20%, transparent 70%, rgba(12,12,11,0.6) 100%)',
-          pointerEvents: 'none',
-        }} />
+      {/* ── MESH — z:2, above portrait, below text. Shader owns the gradient fade ── */}
+      <motion.div className="absolute inset-0" style={{ opacity: meshOpacity, zIndex: 2, pointerEvents: 'none' }}>
+        <MeshBackground />
       </motion.div>
 
       {/* ── CONTENT ── */}
