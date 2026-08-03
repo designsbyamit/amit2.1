@@ -66,19 +66,12 @@ export default function Nav() {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `text-label text-white transition-all duration-200 flex items-center gap-1.5 ${
+                      `text-label text-white transition-all duration-200 ${
                         isActive ? 'opacity-100' : 'opacity-45 hover:opacity-80'
                       }`
                     }
                   >
                     {item.label}
-                    <motion.span
-                      animate={{ rotate: craftOpen ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                      style={{ fontSize: '0.55rem', opacity: 0.6, display: 'inline-block', lineHeight: 1 }}
-                    >
-                      ▾
-                    </motion.span>
                   </NavLink>
 
                   <AnimatePresence>
