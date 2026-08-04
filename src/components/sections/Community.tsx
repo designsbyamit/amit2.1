@@ -114,26 +114,6 @@ export default function Community() {
   return (
     <section className="relative bg-black py-24 md:py-32 overflow-hidden" id="community">
       <GrainOverlay opacity={0.03} />
-      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12 mb-16">
-        <motion.p
-          className="text-overline text-white opacity-40 mb-4"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.4 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Community & Talks
-        </motion.p>
-        <motion.h2
-          className="text-display-l text-white max-w-xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Building the design culture we want to work in.
-        </motion.h2>
-      </div>
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {initiatives.map((initiative, i) => (
