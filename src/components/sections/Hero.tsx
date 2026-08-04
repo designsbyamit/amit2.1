@@ -117,25 +117,25 @@ export default function Hero() {
         {/* Headline */}
         <div className="flex-1 flex items-end px-7 md:px-14 pb-16 md:pb-20">
           <div className="w-full">
-            <h1 style={{ lineHeight: 1.08, letterSpacing: '-0.045em', marginBottom: '3.2rem' }}>
-              <Line delay={0.2} style={{ marginBottom: '0.03em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
-                  Design that
+            <h1 style={{ lineHeight: 1.15, letterSpacing: '-0.038em', marginBottom: '3.2rem' }}>
+              <Line delay={0.2} style={{ marginBottom: '0.05em' }}>
+                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
+                  Most designers
                 </span>
               </Line>
-              <Line delay={0.34} style={{ marginBottom: '0.03em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.88)' }}>
-                  can't speak
+              <Line delay={0.34} style={{ marginBottom: '0.1em' }}>
+                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
+                  build features.
                 </span>
               </Line>
-              <Line delay={0.48} style={{ marginBottom: '0.04em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, fontStyle: 'italic', color: 'rgba(245,242,237,0.92)' }}>
-                  business
+              <Line delay={0.52} style={{ marginBottom: '0.05em' }}>
+                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
+                  A few build
                 </span>
               </Line>
-              <Line delay={0.62}>
-                <span style={{ display: 'block', fontSize: 'clamp(2.4rem, 7vw, 6.8rem)', fontWeight: 200, color: 'rgba(245,242,237,0.2)' }}>
-                  is decoration.
+              <Line delay={0.68}>
+                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, fontStyle: 'italic', color: 'rgba(245,242,237,0.92)' }}>
+                  futures.
                 </span>
               </Line>
             </h1>
