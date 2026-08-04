@@ -274,7 +274,7 @@ export const caseStudies: CaseStudy[] = [
     number: '04',
     category: 'dNetWorX · Enterprise UX · Telecommunications',
     title: 'Enterprise Experience for Self-Serve Network Installations',
-    shortTitle: 'dNetWorX $5M',
+    shortTitle: 'dNetWorX',
     tagline: 'Turning a technically complex, change-resistant enterprise platform into a self-serve operational capability saving $5M.',
     role: 'Design Lead',
     timeline: 'Jun 2023',
