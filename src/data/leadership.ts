@@ -5,6 +5,8 @@ export interface LeadershipStory {
   title: string
   cues: string[]
   narrative: string[]
+  learnings?: string[]
+  nuggets?: string[]
   lesson: string
   image?: string
 }
@@ -22,15 +24,39 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-business-seat',
     year: '',
-    context: '',
+    context: 'DevOps plugin marketplace · design, engineering and product',
     title: 'The moment design almost lost its seat at the table',
     cues: [
       'What was the moment you realised design was about to be removed or sidelined — and what was at stake?',
       'How did you make the case? What did you say, and to whom?',
       'What changed in the room — and what changed in you after that moment?',
     ],
-    narrative: [],
-    lesson: '',
+    narrative: [
+      'A few years ago, I was asked to design a marketplace for DevOps professionals: a place where they could discover plugins and extensions and use them to deploy applications to the cloud.',
+      'On the surface, it looked like a fairly straightforward design problem. Underneath, it carried a lot of history.',
+      'A couple of months earlier, engineering had explored a solution of their own. Our senior design director had explored one too. The two sides saw it very differently. Engineering felt the design wasn\'t scalable. Design leadership felt the engineering-led solution made for a poor experience.',
+      'We were at a turning point. If we couldn\'t find common ground, the engineering solution would move forward, and design would effectively lose its seat at the table.',
+      'For me, this was never only a design challenge. It was a collaboration and change-management challenge.',
+      'So before designing anything, I did my homework. I sat down with each stakeholder and tried to understand not just what they wanted, but why. What were engineering\'s scalability concerns? What constraints was product working within? What did design believe was missing from the experience?',
+      'Those conversations changed how I saw the problem. If we wanted to build something together, everyone first needed to understand everyone else\'s constraints.',
+      'So I brought design, engineering and product into one workshop. Everyone started with the same context and the same problem. We explored different approaches, looked at what worked across them, and prioritised the ideas by value, effort, time and complexity.',
+      'And something interesting happened. Nobody had to be convinced that the final solution was "the design solution". We arrived at it together.',
+      'Once we had agreed on the principles and the trade-offs, I designed the interface around them. The result was a marketplace for DevOps plugins and extensions that the teams found genuinely useful.',
+      'But the bigger outcome wasn\'t the interface. It was what happened to the conversation around design. People became far more willing to involve design early, because they saw we weren\'t just advocating for a better UI. We were trying to solve the larger product problem, while understanding the realities of engineering, product and business.',
+    ],
+    learnings: [
+      'Understand constraints before proposing solutions. Ask every function not just what they want, but why they want it.',
+      'Co-create the answer. A solution people arrive at together doesn\'t need to be sold.',
+      'Speak the language of the ecosystem around you: engineering\'s constraints, product\'s priorities and the business problem.',
+      'Be the initiator. Take accountability not just for the experience, but for the product outcomes and business KPIs connected to it.',
+    ],
+    nuggets: [
+      'A design conflict is often a collaboration problem in disguise.',
+      'Shared context comes before shared solutions.',
+      'Prioritise in the open: value, effort, time and complexity.',
+      'If I don\'t understand their constraints, I can\'t expect them to understand my perspective.',
+    ],
+    lesson: 'You don\'t earn a seat at the table by asking for one. You earn it by becoming someone the table cannot make the decision without.',
   },
   {
     id: 'story-first-team',

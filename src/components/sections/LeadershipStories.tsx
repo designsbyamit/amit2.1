@@ -44,7 +44,7 @@ export default function LeadershipStories() {
                     <div className="flex items-center gap-4 mb-6">
                       <span className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</span>
                       {story.year && <span className="text-overline text-ink-3">{story.year}</span>}
-                      {story.context && <span className="text-label text-ink-3">· {story.context}</span>}
+                      {story.context && <span className="text-label text-ink-3">{story.year ? "· " : ""}{story.context}</span>}
                     </div>
 
                     {/* Title */}
@@ -64,10 +64,37 @@ export default function LeadershipStories() {
                           ))}
                         </div>
 
+                        {/* What I learned */}
+                        {story.learnings && story.learnings.length > 0 && (
+                          <div className="max-w-2xl mb-10">
+                            <p className="text-overline text-ink-3 mb-5">What I learned</p>
+                            <ol className="space-y-4">
+                              {story.learnings.map((l, j) => (
+                                <li key={j} className="flex gap-5">
+                                  <span className="text-label text-ink-3 flex-shrink-0 pt-0.5">{String(j + 1).padStart(2, '0')}</span>
+                                  <p className="text-body text-ink-2 leading-relaxed">{l}</p>
+                                </li>
+                              ))}
+                            </ol>
+                          </div>
+                        )}
+
+                        {/* Nuggets to remember */}
+                        {story.nuggets && story.nuggets.length > 0 && (
+                          <div className="max-w-3xl mb-10">
+                            <p className="text-overline text-ink-3 mb-5">Nuggets to remember</p>
+                            <ul className="grid sm:grid-cols-2 gap-3">
+                              {story.nuggets.map((n, j) => (
+                                <li key={j} className="card text-body text-white" style={{ fontWeight: 400 }}>{n}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
                         {/* Lesson */}
                         {story.lesson && (
-                          <div className="border-l-2 border-white pl-5 py-1" style={{ borderColor: 'rgba(255,255,255,0.25)' }}>
-                            <p className="text-ink-2" style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)', fontStyle: 'italic', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 1.6 }}>
+                          <div className="border-l-2 border-white pl-5 py-1 max-w-2xl" style={{ borderColor: 'rgba(255,255,255,0.25)' }}>
+                            <p className="text-white" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', fontStyle: 'italic', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 1.6 }}>
                               "{story.lesson}"
                             </p>
                           </div>
