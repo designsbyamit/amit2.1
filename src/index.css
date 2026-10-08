@@ -1,29 +1,8 @@
+@import "./styles/tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --color-black: #0C0C0B;
-  --color-white: #F5F2ED;
-  --color-black-90: rgba(12, 12, 11, 0.9);
-  --color-black-70: rgba(12, 12, 11, 0.7);
-  --color-black-50: rgba(12, 12, 11, 0.5);
-  --color-black-30: rgba(12, 12, 11, 0.3);
-  --color-black-10: rgba(12, 12, 11, 0.1);
-  --color-white-90: rgba(245, 242, 237, 0.9);
-  --color-white-70: rgba(245, 242, 237, 0.7);
-  --color-white-50: rgba(245, 242, 237, 0.5);
-  --color-white-30: rgba(245, 242, 237, 0.3);
-  --color-white-10: rgba(245, 242, 237, 0.1);
-
-  /* Editorial spacing rhythm */
-  --space-xs: 0.5rem;
-  --space-s: 1rem;
-  --space-m: 2rem;
-  --space-l: 4rem;
-  --space-xl: 8rem;
-  --space-2xl: 14rem;
-}
 
 @layer base {
   *, *::before, *::after {
@@ -39,16 +18,115 @@
   }
 
   body {
-    background-color: #0C0C0B;
-    color: #F5F2ED;
+    background-color: var(--surface-0);
+    color: var(--color-ink);
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
+  }
+
+  ::selection { background: var(--color-ink); color: var(--surface-0); }
+
+  /* One visible focus style for every interactive element */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
   }
 
   #root {
     width: 100%;
     min-height: 100vh;
   }
+}
+
+
+@layer components {
+  /* ── Layout primitives ── */
+  .container-site {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  .section-y { padding-block: var(--section-y); }
+  .hairline-top { border-top: 1px solid var(--line-1); }
+  .hairline-bottom { border-bottom: 1px solid var(--line-1); }
+
+  /* Expands the tap area to 44px without changing layout */
+  .tap-target { position: relative; }
+  .tap-target::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, var(--touch-min));
+    height: max(100%, var(--touch-min));
+    transform: translate(-50%, -50%);
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: var(--touch-min);
+    padding: 0 1.75rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-0);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+  .btn-primary { background: var(--color-ink); color: var(--surface-0); }
+  .btn-primary:hover { background: var(--color-ink-2); }
+  .btn-secondary { border-color: var(--line-control); color: var(--color-ink); }
+  .btn-secondary:hover { border-color: var(--color-ink); background: rgba(245, 242, 237, 0.06); }
+  .btn-ghost { color: var(--color-ink-2); padding-inline: 0; min-height: var(--touch-min); }
+  .btn-ghost:hover { color: var(--color-ink); }
+  .btn-sm { min-height: 2.25rem; padding: 0 1.1rem; }
+  @media (pointer: coarse) { .btn-sm { min-height: var(--touch-min); } }
+
+  /* ── Chips / tags ── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0 0.85rem;
+    border: 1px solid var(--line-2);
+    color: var(--color-ink-3);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color var(--dur-fast), border-color var(--dur-fast);
+  }
+  .chip:hover, .chip[aria-pressed='true'] { color: var(--color-ink); border-color: var(--line-control); }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--line-1);
+    padding: var(--space-6);
+    transition: border-color var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out);
+  }
+  .card:hover { border-color: var(--line-2); background: var(--surface-2); }
+  @media (min-width: 768px) { .card { padding: var(--space-8); } }
+
+  /* ── Form control ── */
+  .field {
+    width: 100%;
+    min-height: var(--touch-min);
+    padding: 0 1rem;
+    background: var(--surface-2);
+    border: 1px solid var(--line-control);
+    color: var(--color-ink);
+    font-size: 1rem; /* 16px stops iOS zoom-on-focus */
+  }
+  .field::placeholder { color: var(--color-ink-3); }
 }
 
 @layer utilities {
@@ -81,17 +159,45 @@
     line-height: 1.1;
   }
 
+
+  .text-title {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  .text-body-lg {
+    font-size: clamp(1.125rem, 1.6vw, 1.3rem);
+    font-weight: 350;
+    line-height: 1.65;
+    letter-spacing: -0.005em;
+  }
+
+  .text-body-sm {
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-caption {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
   /* Editorial body — max ~68 chars per line */
   .text-body-editorial {
     font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-    font-weight: 300;
+    font-weight: 350;
     line-height: 1.75;
     letter-spacing: -0.005em;
     max-width: 65ch;
   }
 
   .text-overline {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -99,14 +205,14 @@
 
   .text-body {
     font-size: clamp(1rem, 1.5vw, 1.125rem);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.7;
     letter-spacing: 0.005em;
   }
 
   .text-label {
     font-size: 0.75rem;
-    font-weight: 400;
+    font-weight: 450;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }

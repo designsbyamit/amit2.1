@@ -60,14 +60,14 @@ function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number })
           {/* Text */}
           <div className="flex-shrink-0 w-full md:w-2/5 flex flex-col justify-center py-8 md:py-14 md:pr-10">
             <div className="flex items-baseline gap-4 mb-4">
-              <span style={{ fontSize: '0.58rem', opacity: 0.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
-              <span className="text-overline text-white opacity-50">{cs.category}</span>
+              <span style={{ fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
+              <span className="text-overline text-ink-3">{cs.category}</span>
             </div>
             <h3 className="text-white mb-4 group-hover:opacity-75 transition-opacity duration-500"
               style={{ fontSize: 'clamp(1.3rem, 2.8vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
               {cs.title}
             </h3>
-            <p className="text-white max-w-sm" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68, opacity: 0.52 }}>
+            <p className="text-ink-3 max-w-sm" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68 }}>
               {cs.tagline}
             </p>
           </div>
@@ -106,7 +106,7 @@ export default function Home() {
           <div className="grid md:grid-cols-[1fr_2.2fr] gap-14 md:gap-24 items-start">
             <FadeUp>
               <div className="flex items-center gap-5 md:pt-1">
-                <p className="text-overline text-white opacity-50">About</p>
+                <p className="text-overline text-ink-3">About</p>
                 <div className="flex-1 border-t border-white opacity-[0.06]" />
               </div>
             </FadeUp>
@@ -116,7 +116,7 @@ export default function Home() {
                 fontWeight: 300,
                 lineHeight: 1.78,
                 letterSpacing: '-0.005em',
-                color: 'rgba(245,242,237,0.7)',
+                color: 'var(--color-ink-2)',
                 maxWidth: '60ch',
               }}>
                 16+ years across enterprise design have taught me that great experiences emerge where design, business, and technology intersect. Today, my work is guided by three interconnected areas of exploration:{' '}
@@ -135,9 +135,9 @@ export default function Home() {
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 pb-32 md:pb-48">
           <div className="flex items-end justify-between border-t border-white border-opacity-[0.07] pt-14 mb-0">
-            <FadeUp><p className="text-overline text-white opacity-50">Craft</p></FadeUp>
+            <FadeUp><p className="text-overline text-ink-3">Craft</p></FadeUp>
             <FadeUp delay={0.1}>
-              <Link to="/craft" className="text-label text-white opacity-50 hover:opacity-55 transition-opacity duration-300">
+              <Link to="/craft" className="text-label text-ink-3 hover:text-ink-2 transition-colors duration-300">
                 View all →
               </Link>
             </FadeUp>
@@ -154,7 +154,7 @@ export default function Home() {
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 pb-32 md:pb-48">
           <div className="flex items-end justify-between border-t border-white border-opacity-[0.07] pt-14 mb-0">
-            <FadeUp><p className="text-overline text-white opacity-50">Talks & Writing</p></FadeUp>
+            <FadeUp><p className="text-overline text-ink-3">Talks & Writing</p></FadeUp>
           </div>
 
           {/* DesignUp Workshop */}
@@ -170,13 +170,13 @@ export default function Home() {
               className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-white hover:bg-opacity-[0.015] transition-colors duration-500"
               data-cursor="article" data-cursor-label="Community">
               <div>
-                <p className="text-label text-white opacity-18 mb-4">Workshop · 2023 · Sold out</p>
+                <p className="text-label text-ink-3 mb-4">Workshop · 2023 · Sold out</p>
                 <h3 className="text-white group-hover:opacity-72 transition-opacity"
                   style={{ fontSize: 'clamp(1.3rem, 2.6vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
                   DesignUp — Dual Fluency Workshop
                 </h3>
               </div>
-              <p className="hidden md:block text-label text-white opacity-50 group-hover:opacity-60 transition-opacity shrink-0 mt-2">
+              <p className="hidden md:block text-label text-ink-3 group-hover:text-ink-2 transition-colors shrink-0 mt-2">
                 Community →
               </p>
             </Link>
@@ -195,13 +195,13 @@ export default function Home() {
               className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-white hover:bg-opacity-[0.015] transition-colors duration-500"
               data-cursor="article" data-cursor-label="Read">
               <div>
-                <p className="text-label text-white opacity-18 mb-4">Essay Series · Ancient Wisdom · 5 parts</p>
+                <p className="text-label text-ink-3 mb-4">Essay Series · Ancient Wisdom · 5 parts</p>
                 <h3 className="text-white group-hover:opacity-72 transition-opacity"
                   style={{ fontSize: 'clamp(1.3rem, 2.6vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
                   How Vedic Secrets Can Disrupt<br />Your Design Game
                 </h3>
               </div>
-              <p className="hidden md:block text-label text-white opacity-50 group-hover:opacity-60 transition-opacity shrink-0 mt-2">
+              <p className="hidden md:block text-label text-ink-3 group-hover:text-ink-2 transition-colors shrink-0 mt-2">
                 Reflections →
               </p>
             </Link>

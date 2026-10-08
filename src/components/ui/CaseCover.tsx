@@ -23,7 +23,7 @@ export default function CaseCover({ cs, className = '', minHeight = 280 }: { cs:
           <p className="text-white" style={{ fontSize: 'clamp(2.2rem, 4.5vw, 4rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1 }}>
             {stat.value}
           </p>
-          <p className="text-overline text-white opacity-60 mt-3">{stat.label}</p>
+          <p className="text-overline text-ink-3 mt-3">{stat.label}</p>
         </div>
       )}
     </div>

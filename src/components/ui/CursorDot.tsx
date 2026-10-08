@@ -115,7 +115,7 @@ export default function CursorDot() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span style={{ fontSize: '0.65rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.75)' }}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.75)' }}>
               {cursor.label}
             </span>
           </motion.div>

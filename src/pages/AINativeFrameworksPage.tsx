@@ -21,7 +21,7 @@ const PROCESS_PHASES = [
     outputs: ['Industry Brief', 'Ecosystem Map', 'Personas', 'As-is Journey Map', 'Agent Ecosystem Map'],
     artifacts: ['FigJam Canvas', 'PDF Worksheet', 'Prompt Pack'],
     exercise: 'Create five discovery assets from a supplied enterprise brief.',
-    color: 'rgba(245,242,237,0.56)',
+    color: 'var(--color-ink-3)',
   },
   {
     id: 'opportunity',
@@ -37,7 +37,7 @@ const PROCESS_PHASES = [
     outputs: ['Intelligence Opportunity Canvas', 'Prioritised Opportunity Map', 'Capability Heatmap'],
     artifacts: ['Opportunity Matrix', 'Decision Map', 'FigJam Board'],
     exercise: 'Map intelligence opportunities across an enterprise workflow using the Observe → Understand → Reason → Decide → Execute → Coordinate model.',
-    color: 'rgba(245,242,237,0.5)',
+    color: 'var(--color-ink-3)',
   },
   {
     id: 'blueprint',
@@ -53,7 +53,7 @@ const PROCESS_PHASES = [
     outputs: ['Agent Mission Blueprint', 'Capability Wheel', 'Collaboration Graph', 'Escalation Model'],
     artifacts: ['Blueprint Template', 'Figma Component', 'PDF Worksheet'],
     exercise: 'Complete an Agent Mission Blueprint for a procurement or HCM use case.',
-    color: 'rgba(245,242,237,0.65)',
+    color: 'var(--color-ink-3)',
   },
   {
     id: 'experience',
@@ -69,7 +69,7 @@ const PROCESS_PHASES = [
     outputs: ['Experience Blueprint', 'Trust Ladder Diagram', 'Collaboration Swimlanes', 'Interaction Sequence'],
     artifacts: ['Figma Blueprint Template', 'FigJam Swimlane', 'Interaction Spec'],
     exercise: 'Map the human-agent collaboration model for one enterprise workflow end-to-end.',
-    color: 'rgba(245,242,237,0.8)',
+    color: 'var(--color-ink-2)',
   },
   {
     id: 'prototype',
@@ -294,9 +294,9 @@ function ProcessRoadmap() {
                   background: active === phase.id ? 'rgba(245,242,237,0.08)' : '#0C0C0B',
                 }}
               >
-                <span className="text-label text-white" style={{ opacity: active === phase.id ? 0.9 : 0.4 }}>{phase.number}</span>
+                <span className="text-label text-white" style={{ opacity: active === phase.id ? 1 : 0.7 }}>{phase.number}</span>
               </div>
-              <p className="text-center text-white" style={{ fontSize: '0.7rem', fontWeight: 400, opacity: active === phase.id ? 0.85 : 0.4, letterSpacing: '-0.01em', lineHeight: 1.3 }}>
+              <p className="text-center text-white" style={{ fontSize: '0.7rem', fontWeight: 400, opacity: active === phase.id ? 1 : 0.7, letterSpacing: '-0.01em', lineHeight: 1.3 }}>
                 {phase.title}
               </p>
             </motion.button>
@@ -330,41 +330,41 @@ function ProcessRoadmap() {
             >
               <div className="grid md:grid-cols-4 gap-px bg-white bg-opacity-[0.06]">
                 <div className="bg-black p-8 md:col-span-1">
-                  <p className="text-overline text-white opacity-50 mb-3">Purpose</p>
-                  <p className="text-body text-white opacity-65 mb-8">{phase.purpose}</p>
-                  <p className="text-overline text-white opacity-50 mb-3">Practice exercise</p>
-                  <p className="text-body text-white opacity-60 italic">{phase.exercise}</p>
+                  <p className="text-overline text-ink-3 mb-3">Purpose</p>
+                  <p className="text-body text-ink-3 mb-8">{phase.purpose}</p>
+                  <p className="text-overline text-ink-3 mb-3">Practice exercise</p>
+                  <p className="text-body text-ink-3 italic">{phase.exercise}</p>
                 </div>
                 <div className="bg-black p-8">
-                  <p className="text-overline text-white opacity-50 mb-4">Core questions</p>
+                  <p className="text-overline text-ink-3 mb-4">Core questions</p>
                   <ul className="space-y-3">
                     {phase.questions.map((q, j) => (
                       <li key={j} className="flex gap-3">
-                        <span className="text-white opacity-20 flex-shrink-0 mt-1.5" style={{ fontSize: '0.4rem' }}>◆</span>
-                        <p className="text-body text-white opacity-50">{q}</p>
+                        <span className="text-faint flex-shrink-0 mt-1.5" style={{ fontSize: '0.4rem' }}>◆</span>
+                        <p className="text-body text-ink-3">{q}</p>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="bg-black p-8">
-                  <p className="text-overline text-white opacity-50 mb-4">Outputs</p>
+                  <p className="text-overline text-ink-3 mb-4">Outputs</p>
                   <ul className="space-y-2 mb-8">
                     {phase.outputs.map(o => (
                       <li key={o} className="flex gap-3">
-                        <span className="text-white opacity-20 flex-shrink-0 mt-1.5" style={{ fontSize: '0.4rem' }}>◆</span>
-                        <p className="text-label text-white opacity-55">{o}</p>
+                        <span className="text-faint flex-shrink-0 mt-1.5" style={{ fontSize: '0.4rem' }}>◆</span>
+                        <p className="text-label text-ink-3">{o}</p>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="bg-black p-8">
-                  <p className="text-overline text-white opacity-50 mb-4">Downloads</p>
+                  <p className="text-overline text-ink-3 mb-4">Downloads</p>
                   <ul className="space-y-2">
                     {phase.artifacts.map(a => (
                       <li key={a} className="flex items-center gap-3">
-                        <span className="text-white opacity-50 text-xs">↓</span>
+                        <span className="text-ink-3 text-xs">↓</span>
                         <a href={`mailto:uxbyamit@gmail.com?subject=Request - ${a}`}
-                          className="text-label text-white opacity-55 hover:opacity-80 transition-opacity">{a}</a>
+                          className="text-label text-ink-3 hover:text-white transition-colors">{a}</a>
                       </li>
                     ))}
                   </ul>
@@ -383,13 +383,13 @@ function ProcessRoadmap() {
             <button className="w-full text-left py-6 flex items-center justify-between gap-4"
               onClick={() => setActive(active === phase.id ? null : phase.id)}>
               <div className="flex items-center gap-4">
-                <span className="text-label text-white opacity-50 w-6">{phase.number}</span>
+                <span className="text-label text-ink-3 w-6">{phase.number}</span>
                 <div>
-                  <p className="text-body text-white opacity-70">{phase.title}</p>
-                  <p className="text-label text-white opacity-50 mt-0.5">{phase.purpose}</p>
+                  <p className="text-body text-ink-2">{phase.title}</p>
+                  <p className="text-label text-ink-3 mt-0.5">{phase.purpose}</p>
                 </div>
               </div>
-              <span className="text-white opacity-25 transition-transform duration-300"
+              <span className="text-ink-3 transition-transform duration-300"
                 style={{ transform: active === phase.id ? 'rotate(45deg)' : 'none' }}>+</span>
             </button>
             <AnimatePresence>
@@ -397,8 +397,8 @@ function ProcessRoadmap() {
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }} style={{ overflow: 'hidden' }}>
                   <div className="pb-6 space-y-4">
-                    <p className="text-body text-white opacity-50">{phase.purpose}</p>
-                    <p className="text-body text-white opacity-55 italic text-sm">{phase.exercise}</p>
+                    <p className="text-body text-ink-3">{phase.purpose}</p>
+                    <p className="text-body text-ink-3 italic text-sm">{phase.exercise}</p>
                   </div>
                 </motion.div>
               )}
@@ -434,23 +434,23 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
       <button className="w-full text-left py-12 group flex items-start justify-between gap-8"
         onClick={() => setOpen(o => !o)}>
         <div className="flex items-start gap-8 flex-1">
-          <span className="text-label text-white opacity-50 flex-shrink-0 mt-1">{fw.number}</span>
+          <span className="text-label text-ink-3 flex-shrink-0 mt-1">{fw.number}</span>
           <div className="flex-1">
             <h3 className="text-white mb-2 group-hover:opacity-80 transition-opacity"
               style={{ fontSize: 'clamp(1.3rem, 2.2vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 1.15 }}>
               {fw.title}
             </h3>
-            <p className="text-body text-white opacity-55">{fw.tagline}</p>
+            <p className="text-body text-ink-3">{fw.tagline}</p>
 
             {/* Challenge preview */}
             {!open && (
-              <p className="text-body text-white opacity-50 mt-4 max-w-2xl line-clamp-2" style={{ fontSize: '0.9rem' }}>
+              <p className="text-body text-ink-3 mt-4 max-w-2xl line-clamp-2" style={{ fontSize: '0.9rem' }}>
                 {fw.challenge}
               </p>
             )}
           </div>
         </div>
-        <span className="text-white opacity-30 flex-shrink-0 mt-1 transition-transform duration-300"
+        <span className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
           style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: '1.4rem' }}>+</span>
       </button>
 
@@ -467,12 +467,12 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
               {/* Challenge + Why existing UX breaks */}
               <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.05] mb-px">
                 <div className="bg-black p-8 md:p-10">
-                  <p className="text-overline text-white opacity-50 mb-4">The challenge</p>
-                  <p className="text-body text-white opacity-60">{fw.challenge}</p>
+                  <p className="text-overline text-ink-3 mb-4">The challenge</p>
+                  <p className="text-body text-ink-3">{fw.challenge}</p>
                 </div>
                 <div className="bg-black p-8 md:p-10">
-                  <p className="text-overline text-white opacity-50 mb-4">Why traditional UX breaks here</p>
-                  <p className="text-body text-white opacity-55">{fw.whyBreaks}</p>
+                  <p className="text-overline text-ink-3 mb-4">Why traditional UX breaks here</p>
+                  <p className="text-body text-ink-3">{fw.whyBreaks}</p>
                 </div>
               </div>
 
@@ -482,7 +482,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                   <button key={s.id} onClick={() => setActiveSection(s.id)}
                     className="text-label text-white px-6 py-4 transition-all duration-200 border-b-2"
                     style={{
-                      opacity: activeSection === s.id ? 0.85 : 0.3,
+                      opacity: activeSection === s.id ? 1 : 0.7,
                       borderColor: activeSection === s.id ? 'rgba(245,242,237,0.6)' : 'transparent',
                     }}>
                     {s.label}
@@ -497,7 +497,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                     <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.05]">
                       {/* Left: visual flow */}
                       <div className="bg-black p-8 md:p-10">
-                        <p className="text-overline text-white opacity-50 mb-6">Mental model</p>
+                        <p className="text-overline text-ink-3 mb-6">Mental model</p>
                         <div className="space-y-0">
                           {fw.mentalModel.map((step, j) => (
                             <div key={j} className="flex gap-4">
@@ -509,15 +509,15 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                                   animate={{ scale: 1 }}
                                   transition={{ delay: j * 0.05 }}
                                 >
-                                  <span className="text-white opacity-50" style={{ fontSize: '0.55rem' }}>{j + 1}</span>
+                                  <span className="text-ink-3" style={{ fontSize: '0.75rem' }}>{j + 1}</span>
                                 </motion.div>
                                 {j < fw.mentalModel.length - 1 && (
                                   <div className="w-px flex-1 my-1" style={{ background: 'rgba(245,242,237,0.1)', minHeight: '24px' }} />
                                 )}
                               </div>
                               <div className="pb-4">
-                                <p className="text-white mb-1" style={{ fontSize: '0.85rem', fontWeight: 400, opacity: 0.75 }}>{step.step}</p>
-                                <p className="text-body text-white opacity-55" style={{ fontSize: '0.8rem' }}>{step.description}</p>
+                                <p className="text-ink-2 mb-1" style={{ fontSize: '0.85rem', fontWeight: 400 }}>{step.step}</p>
+                                <p className="text-body text-ink-3" style={{ fontSize: '0.8rem' }}>{step.description}</p>
                               </div>
                             </div>
                           ))}
@@ -526,17 +526,17 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                       {/* Right: exercise */}
                       <div className="bg-black p-8 md:p-10 flex flex-col justify-between">
                         <div>
-                          <p className="text-overline text-white opacity-50 mb-4">Related frameworks</p>
+                          <p className="text-overline text-ink-3 mb-4">Related frameworks</p>
                           <div className="flex flex-wrap gap-2 mb-10">
                             {fw.related.map(r => (
-                              <span key={r} className="text-label text-white border border-white border-opacity-50 px-3 py-1.5 opacity-50">{r}</span>
+                              <span key={r} className="text-label text-ink-3 border border-white border-opacity-50 px-3 py-1.5">{r}</span>
                             ))}
                           </div>
                         </div>
                         <div className="border-l-2 border-white border-opacity-15 pl-6">
-                          <p className="text-overline text-white opacity-50 mb-2">Visual artifacts</p>
+                          <p className="text-overline text-ink-3 mb-2">Visual artifacts</p>
                           {fw.downloads.slice(0, 2).map(d => (
-                            <p key={d} className="text-label text-white opacity-55 mb-1">{d}</p>
+                            <p key={d} className="text-label text-ink-3 mb-1">{d}</p>
                           ))}
                         </div>
                       </div>
@@ -546,13 +546,13 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
 
                 {activeSection === 'decisions' && (
                   <motion.div key="decisions" className="bg-black p-8 md:p-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <p className="text-overline text-white opacity-50 mb-6">Key design decisions</p>
+                    <p className="text-overline text-ink-3 mb-6">Key design decisions</p>
                     <div className="space-y-5 max-w-2xl">
                       {fw.decisions.map((d, j) => (
                         <motion.div key={j} className="flex gap-5"
                           initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: j * 0.08 }}>
-                          <span className="text-label text-white opacity-50 flex-shrink-0 mt-0.5">{String(j + 1).padStart(2, '0')}</span>
-                          <p className="text-body text-white opacity-60">{d}</p>
+                          <span className="text-label text-ink-3 flex-shrink-0 mt-0.5">{String(j + 1).padStart(2, '0')}</span>
+                          <p className="text-body text-ink-3">{d}</p>
                         </motion.div>
                       ))}
                     </div>
@@ -561,13 +561,13 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
 
                 {activeSection === 'pitfalls' && (
                   <motion.div key="pitfalls" className="bg-black p-8 md:p-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <p className="text-overline text-white opacity-50 mb-6">Common pitfalls</p>
+                    <p className="text-overline text-ink-3 mb-6">Common pitfalls</p>
                     <div className="space-y-5 max-w-2xl">
                       {fw.pitfalls.map((p, j) => (
                         <motion.div key={j} className="flex gap-5"
                           initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: j * 0.08 }}>
-                          <span className="text-white opacity-30 flex-shrink-0 mt-1" style={{ fontSize: '0.7rem' }}>⚠</span>
-                          <p className="text-body text-white opacity-55">{p}</p>
+                          <span className="text-faint flex-shrink-0 mt-1" style={{ fontSize: '0.7rem' }}>⚠</span>
+                          <p className="text-body text-ink-3">{p}</p>
                         </motion.div>
                       ))}
                     </div>
@@ -576,7 +576,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
 
                 {activeSection === 'downloads' && (
                   <motion.div key="downloads" className="bg-black p-8 md:p-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <p className="text-overline text-white opacity-50 mb-6">Downloads for this framework</p>
+                    <p className="text-overline text-ink-3 mb-6">Downloads for this framework</p>
                     <div className="grid md:grid-cols-2 gap-4">
                       {fw.downloads.map((d, j) => (
                         <motion.a key={j}
@@ -584,10 +584,10 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                           className="border border-white border-opacity-10 p-5 hover:border-opacity-25 hover:bg-white hover:bg-opacity-[0.02] transition-all duration-200 group"
                           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: j * 0.06 }}>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-white opacity-50 text-xs">↓</span>
-                            <span className="text-label text-white opacity-50 group-hover:opacity-55 transition-opacity">Request</span>
+                            <span className="text-ink-3 text-xs">↓</span>
+                            <span className="text-label text-ink-3 group-hover:text-ink-2 transition-colors">Request</span>
                           </div>
-                          <p className="text-body text-white opacity-55">{d}</p>
+                          <p className="text-body text-ink-3">{d}</p>
                         </motion.a>
                       ))}
                     </div>
@@ -611,9 +611,9 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
         <div>
           <span className="text-white group-hover:opacity-75 transition-opacity"
             style={{ fontSize: 'clamp(1rem, 1.4vw, 1.2rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>{entry.term}</span>
-          {!open && <p className="text-label text-white opacity-50 mt-1.5 line-clamp-1">{entry.definition}</p>}
+          {!open && <p className="text-label text-ink-3 mt-1.5 line-clamp-1">{entry.definition}</p>}
         </div>
-        <span className="text-white opacity-20 flex-shrink-0 transition-transform duration-300"
+        <span className="text-ink-3 flex-shrink-0 transition-transform duration-300"
           style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: '1.1rem' }}>+</span>
       </button>
       <AnimatePresence>
@@ -623,19 +623,19 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
             <div className="pb-8 grid md:grid-cols-3 gap-8">
               <div className="md:col-span-2 space-y-5">
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-2">Definition</p>
-                  <p className="text-body text-white opacity-60">{entry.definition}</p>
+                  <p className="text-overline text-ink-3 mb-2">Definition</p>
+                  <p className="text-body text-ink-3">{entry.definition}</p>
                 </div>
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-2">Mental model</p>
-                  <p className="text-white opacity-40 font-mono" style={{ fontSize: '0.82rem', lineHeight: 1.6 }}>{entry.model}</p>
+                  <p className="text-overline text-ink-3 mb-2">Mental model</p>
+                  <p className="text-ink-3 font-mono" style={{ fontSize: '0.82rem', lineHeight: 1.6 }}>{entry.model}</p>
                 </div>
               </div>
               <div>
-                <p className="text-overline text-white opacity-50 mb-3">Related concepts</p>
+                <p className="text-overline text-ink-3 mb-3">Related concepts</p>
                 <div className="flex flex-wrap gap-2">
                   {entry.related.map(r => (
-                    <span key={r} className="text-label text-white border border-white border-opacity-50 px-2.5 py-1 opacity-60">{r}</span>
+                    <span key={r} className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{r}</span>
                   ))}
                 </div>
               </div>
@@ -703,12 +703,12 @@ export default function AINativeFrameworksPage() {
 
         {/* Back link */}
         <div className="relative z-10 mb-12">
-          <Link to="/resources" className="text-label text-white opacity-50 hover:opacity-60 transition-opacity inline-flex items-center gap-2">← Resources</Link>
+          <Link to="/resources" className="text-label text-ink-3 hover:text-ink-2 transition-colors inline-flex items-center gap-2">← Resources</Link>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <motion.p className="text-overline text-white opacity-50 mb-6"
-            initial={{ opacity: 0 }} animate={{ opacity: 0.52 }} transition={{ duration: 0.6 }}>
+          <motion.p className="text-overline text-ink-3 mb-6"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
             Interactive Playbook · AI-native Experience Design
           </motion.p>
 
@@ -720,7 +720,7 @@ export default function AINativeFrameworksPage() {
 
           <div className="grid md:grid-cols-[2fr_1fr] gap-12 md:gap-20 items-end">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-              <p className="text-white opacity-55 mb-6"
+              <p className="text-ink-3 mb-6"
                 style={{ fontSize: 'clamp(1.1rem, 1.7vw, 1.35rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}>
                 The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks. One connected methodology. Every framework produces a tangible artifact.
               </p>
@@ -730,7 +730,7 @@ export default function AINativeFrameworksPage() {
                   Explore Frameworks
                 </a>
                 <a href={`mailto:uxbyamit@gmail.com?subject=Request - AI-native Design PDF Playbook`}
-                  className="text-label text-white opacity-55 hover:opacity-80 transition-opacity px-6 py-3">
+                  className="text-label text-ink-3 hover:text-white transition-colors px-6 py-3">
                   Request PDF Playbook →
                 </a>
               </div>
@@ -741,7 +741,7 @@ export default function AINativeFrameworksPage() {
               {[['5', 'Frameworks in the methodology'], ['3', 'Design principles per framework'], ['10+', 'Downloads available']].map(([v, l]) => (
                 <div key={l} className="flex items-baseline gap-3">
                   <span className="text-white" style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2rem)', fontWeight: 200, letterSpacing: '-0.03em' }}>{v}</span>
-                  <span className="text-label text-white opacity-28">{l}</span>
+                  <span className="text-label text-ink-3">{l}</span>
                 </div>
               ))}
             </motion.div>
@@ -750,13 +750,13 @@ export default function AINativeFrameworksPage() {
           {/* Methodology strip */}
           <motion.div className="mt-16 pt-10 border-t border-white border-opacity-[0.08]"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.7, delay: 0.55 }}>
-            <p className="text-overline text-white opacity-50 mb-5">The methodology</p>
+            <p className="text-overline text-ink-3 mb-5">The methodology</p>
             <div className="flex flex-wrap gap-3 items-center">
               {PROCESS_PHASES.map((p, i, arr) => (
                 <div key={p.id} className="flex items-center gap-3">
-                  <span className="text-label text-white opacity-50">{p.number}</span>
-                  <span className="text-body text-white opacity-55" style={{ fontSize: '0.85rem' }}>{p.title}</span>
-                  {i < arr.length - 1 && <span className="text-white opacity-15">→</span>}
+                  <span className="text-label text-ink-3">{p.number}</span>
+                  <span className="text-body text-ink-3" style={{ fontSize: '0.85rem' }}>{p.title}</span>
+                  {i < arr.length - 1 && <span className="text-faint">→</span>}
                 </div>
               ))}
             </div>
@@ -770,10 +770,10 @@ export default function AINativeFrameworksPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">AI-native Mindset</p>
+              <p className="text-overline text-ink-3 mb-4">AI-native Mindset</p>
               <h2 className="text-heading text-white">The shift that changes everything.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               AI-native design is not about adding AI features to existing products. It requires rethinking what the product fundamentally is — what the user's role is, what the system's role is, and how trust is designed rather than assumed.
             </p>
           </div>
@@ -782,7 +782,7 @@ export default function AINativeFrameworksPage() {
             {[
               {
                 era: 'Traditional UX',
-                opacity: '0.6',
+                tone: 'text-ink-3',
                 primary: 'Interface',
                 role: 'User operates',
                 challenge: 'Usability',
@@ -791,7 +791,7 @@ export default function AINativeFrameworksPage() {
               },
               {
                 era: 'AI-native UX',
-                opacity: '0.75',
+                tone: 'text-ink-2',
                 primary: 'Intent + Response',
                 role: 'User collaborates',
                 challenge: 'Trust + Interpretability',
@@ -800,7 +800,7 @@ export default function AINativeFrameworksPage() {
               },
               {
                 era: 'Agentic UX',
-                opacity: '0.90',
+                tone: 'text-white',
                 primary: 'Oversight mechanism',
                 role: 'User oversees',
                 challenge: 'Control + Escalation',
@@ -811,7 +811,7 @@ export default function AINativeFrameworksPage() {
               <motion.div key={col.era} className="bg-black p-8 md:p-10"
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <p className="text-overline text-white mb-6" style={{ opacity: parseFloat(col.opacity) * 0.55 }}>{col.era}</p>
+                <p className="text-overline text-ink-3 mb-6">{col.era}</p>
                 {[
                   ['Primary design object', col.primary],
                   ['User\'s role', col.role],
@@ -820,8 +820,8 @@ export default function AINativeFrameworksPage() {
                   ['Core skill', col.design],
                 ].map(([label, value]) => (
                   <div key={label} className="mb-4">
-                    <p className="text-overline text-white opacity-50 mb-1">{label}</p>
-                    <p className="text-body text-white" style={{ opacity: parseFloat(col.opacity) * 0.65 }}>{value}</p>
+                    <p className="text-overline text-ink-3 mb-1">{label}</p>
+                    <p className={`text-body ${col.tone}`}>{value}</p>
                   </div>
                 ))}
               </motion.div>
@@ -836,10 +836,10 @@ export default function AINativeFrameworksPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">The Process</p>
+              <p className="text-overline text-ink-3 mb-4">The Process</p>
               <h2 className="text-heading text-white">Five phases. One connected journey.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Each phase builds on the previous. Click any phase to expand outputs, core questions, and downloads. The phases are always practiced together — never in isolation.
             </p>
           </div>
@@ -853,10 +853,10 @@ export default function AINativeFrameworksPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-8">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">Framework Library</p>
+              <p className="text-overline text-ink-3 mb-4">Framework Library</p>
               <h2 className="text-heading text-white">Five frameworks. Five artifacts.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Every framework follows the same structure: Challenge → Why existing UX breaks → Mental model → Design decisions → Common pitfalls → Downloads. Click to expand any framework.
             </p>
           </div>
@@ -872,10 +872,10 @@ export default function AINativeFrameworksPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">Tool Orchestration</p>
+              <p className="text-overline text-ink-3 mb-4">Tool Orchestration</p>
               <h2 className="text-heading text-white">The right tool for each thinking task.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Not a directory of AI tools. A map of cognitive tasks — and which tools are best suited to each one. The choice of tool is a design decision, not a personal preference.
             </p>
           </div>
@@ -885,7 +885,7 @@ export default function AINativeFrameworksPage() {
               <thead>
                 <tr className="border-b border-white border-opacity-[0.08]">
                   {['Thinking Task', 'Primary Tool', 'Alternative', 'Why', 'Output'].map(h => (
-                    <th key={h} className="text-left text-overline text-white opacity-50 pb-5 pr-8 font-normal">{h}</th>
+                    <th key={h} className="text-left text-overline text-ink-3 pb-5 pr-8 font-normal">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -895,12 +895,12 @@ export default function AINativeFrameworksPage() {
                     style={{ borderColor: 'rgba(255,255,255,0.06)' }}
                     initial={{ opacity: 0, x: -8 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}>
-                    <td className="py-5 pr-8"><p className="text-body text-white opacity-60">{row.task}</p></td>
-                    <td className="py-5 pr-8"><p className="text-body text-white opacity-80" style={{ fontWeight: 400 }}>{row.primary}</p></td>
-                    <td className="py-5 pr-8"><p className="text-body text-white opacity-55">{row.alt}</p></td>
-                    <td className="py-5 pr-8"><p className="text-body text-white opacity-55" style={{ fontSize: '0.85rem' }}>{row.why}</p></td>
+                    <td className="py-5 pr-8"><p className="text-body text-ink-3">{row.task}</p></td>
+                    <td className="py-5 pr-8"><p className="text-body text-ink-2" style={{ fontWeight: 400 }}>{row.primary}</p></td>
+                    <td className="py-5 pr-8"><p className="text-body text-ink-3">{row.alt}</p></td>
+                    <td className="py-5 pr-8"><p className="text-body text-ink-3" style={{ fontSize: '0.85rem' }}>{row.why}</p></td>
                     <td className="py-5">
-                      <span className="text-label text-white border border-white border-opacity-50 px-2.5 py-1 opacity-50">{row.output}</span>
+                      <span className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{row.output}</span>
                     </td>
                   </motion.tr>
                 ))}
@@ -916,10 +916,10 @@ export default function AINativeFrameworksPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">Downloads</p>
+              <p className="text-overline text-ink-3 mb-4">Downloads</p>
               <h2 className="text-heading text-white">Everything downloadable.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Frameworks, canvases, templates, and prompt packs — all designed to be used immediately on real enterprise projects. Request any asset and it will be sent within 48 hours.
             </p>
           </div>
@@ -932,13 +932,13 @@ export default function AINativeFrameworksPage() {
                 initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}>
                 <div className="flex items-start justify-between mb-4">
-                  <span className="text-label text-white border border-white border-opacity-50 px-2.5 py-1 opacity-60">{dl.type}</span>
-                  <span className="text-white opacity-20 group-hover:opacity-50 transition-opacity">↓</span>
+                  <span className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{dl.type}</span>
+                  <span className="text-ink-3 group-hover:text-white transition-colors">↓</span>
                 </div>
                 <h3 className="text-white mb-3" style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)', fontWeight: 300, letterSpacing: '-0.01em' }}>
                   {dl.name}
                 </h3>
-                <p className="text-body text-white opacity-55">{dl.description}</p>
+                <p className="text-body text-ink-3">{dl.description}</p>
               </motion.a>
             ))}
           </div>
@@ -951,11 +951,11 @@ export default function AINativeFrameworksPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-12">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">Glossary</p>
+              <p className="text-overline text-ink-3 mb-4">Glossary</p>
               <h2 className="text-heading text-white">Terms for practitioners, not academics.</h2>
             </div>
             <div className="self-end">
-              <p className="text-body text-white opacity-60 mb-6">
+              <p className="text-body text-ink-3 mb-6">
                 Every entry includes a definition, a visual mental model, and related concepts. Click to expand.
               </p>
               <input
@@ -964,7 +964,7 @@ export default function AINativeFrameworksPage() {
                 value={glossarySearch}
                 onChange={e => setGlossarySearch(e.target.value)}
                 className="w-full bg-transparent border border-white border-opacity-50 px-5 py-3 text-body text-white placeholder-white focus:border-opacity-50 focus:outline-none transition-all duration-200"
-                style={{ opacity: glossarySearch ? 1 : 0.6 }}
+                style={{ opacity: glossarySearch ? 1 : 0.7 }}
               />
             </div>
           </div>
@@ -972,7 +972,7 @@ export default function AINativeFrameworksPage() {
           <div>
             {filteredGlossary.map((entry, i) => <GlossaryEntry key={entry.term} entry={entry} index={i} />)}
             {filteredGlossary.length === 0 && (
-              <p className="text-body text-white opacity-50 py-12 text-center">No terms matching "{glossarySearch}"</p>
+              <p className="text-body text-ink-3 py-12 text-center">No terms matching "{glossarySearch}"</p>
             )}
           </div>
         </div>
@@ -982,9 +982,9 @@ export default function AINativeFrameworksPage() {
       <section className="relative bg-black py-20 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           <div>
-            <p className="text-overline text-white opacity-50 mb-3">Bring this to your team</p>
+            <p className="text-overline text-ink-3 mb-3">Bring this to your team</p>
             <h2 className="text-heading text-white mb-4">Workshop. Certification. Enterprise course.</h2>
-            <p className="text-body text-white opacity-55 max-w-xl">
+            <p className="text-body text-ink-3 max-w-xl">
               This methodology is available as a full-day workshop, a leadership programme, or an enterprise design capability build. Reach out to discuss.
             </p>
           </div>
@@ -993,7 +993,7 @@ export default function AINativeFrameworksPage() {
               className="text-label text-white border border-white border-opacity-50 px-8 py-4 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200">
               Get in touch →
             </a>
-            <Link to="/resources" className="text-label text-white opacity-50 hover:opacity-55 transition-opacity text-center py-2">
+            <Link to="/resources" className="text-label text-ink-3 hover:text-ink-2 transition-colors text-center py-2">
               ← Back to Resources
             </Link>
           </div>

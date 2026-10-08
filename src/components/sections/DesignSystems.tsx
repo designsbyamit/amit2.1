@@ -50,12 +50,12 @@ export default function DesignSystems() {
               transition={{ duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex-1">
-                <p className="text-label text-white opacity-50 mb-3">{s.org}</p>
+                <p className="text-label text-ink-3 mb-3">{s.org}</p>
                 <h3 className="text-heading text-white mb-4">{s.name}</h3>
-                <p className="text-body text-white opacity-55">{s.description}</p>
+                <p className="text-body text-ink-3">{s.description}</p>
               </div>
               <div className="mt-8 pt-6 border-t border-white border-opacity-10">
-                <p className="text-label text-white opacity-50">{s.scale}</p>
+                <p className="text-label text-ink-3">{s.scale}</p>
               </div>
             </motion.div>
           ))}

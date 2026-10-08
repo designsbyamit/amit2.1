@@ -90,7 +90,7 @@ const KPI_CHAIN = [
   {
     id: 'user',
     label: 'User Metrics',
-    color: 'rgba(245,242,237,0.65)',
+    color: 'var(--color-ink-3)',
     items: [
       { name: 'Task Success Rate', definition: 'Percentage of users completing a defined task successfully.', formula: 'Successful completions / Attempts × 100', influences: ['Conversion Rate', 'Support Cost'] },
       { name: 'Time on Task', definition: 'How long it takes a user to complete a specific task.', formula: 'Measured in seconds/minutes per user', influences: ['Efficiency gains', 'Support Contact Rate'] },
@@ -101,7 +101,7 @@ const KPI_CHAIN = [
   {
     id: 'design',
     label: 'Design Metrics',
-    color: 'rgba(245,242,237,0.6)',
+    color: 'var(--color-ink-3)',
     items: [
       { name: 'System Usability Scale', definition: 'Standardised 10-item questionnaire measuring perceived usability.', formula: 'Score 0–100 (>68 = above average)', influences: ['Task Success Rate', 'NPS'] },
       { name: 'Findability', definition: 'How easily users locate information or features.', formula: 'Time to find / Success rate on wayfinding tasks', influences: ['Task Success Rate', 'DAU/MAU'] },
@@ -139,20 +139,20 @@ function JourneyMilestone({ milestone, index }: { milestone: typeof JOURNEY[0], 
       >
         <div className="flex items-start justify-between gap-8">
           <div className="flex items-start gap-8">
-            <span className="text-label text-white opacity-50 flex-shrink-0 mt-1">{milestone.time}</span>
+            <span className="text-label text-ink-3 flex-shrink-0 mt-1">{milestone.time}</span>
             <div>
-              <span className="text-overline text-white opacity-55 block mb-3">{milestone.label}</span>
+              <span className="text-overline text-ink-3 block mb-3">{milestone.label}</span>
               <h3
                 className="text-white group-hover:opacity-80 transition-opacity"
                 style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.3 }}
               >
                 {milestone.title}
               </h3>
-              <p className="text-body text-white opacity-55 mt-3 max-w-2xl">{milestone.summary}</p>
+              <p className="text-body text-ink-3 mt-3 max-w-2xl">{milestone.summary}</p>
             </div>
           </div>
           <span
-            className="text-white opacity-30 flex-shrink-0 mt-1 transition-transform duration-300"
+            className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
             style={{ transform: open ? 'rotate(45deg)' : 'rotate(0deg)', fontSize: '1.25rem' }}
           >
             +
@@ -171,27 +171,27 @@ function JourneyMilestone({ milestone, index }: { milestone: typeof JOURNEY[0], 
           >
             <div className="pb-12 pl-0 md:pl-24 grid md:grid-cols-3 gap-px bg-white bg-opacity-[0.06]">
               <div className="bg-black p-8">
-                <p className="text-overline text-white opacity-50 mb-5">What you learn</p>
+                <p className="text-overline text-ink-3 mb-5">What you learn</p>
                 <ul className="space-y-3">
                   {milestone.learned.map((l, i) => (
                     <li key={i} className="flex gap-3">
-                      <span className="text-white opacity-20 flex-shrink-0 mt-1" style={{ fontSize: '0.5rem' }}>●</span>
-                      <p className="text-body text-white opacity-55">{l}</p>
+                      <span className="text-faint flex-shrink-0 mt-1" style={{ fontSize: '0.5rem' }}>●</span>
+                      <p className="text-body text-ink-3">{l}</p>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="bg-black p-8">
-                <p className="text-overline text-white opacity-50 mb-5">Framework introduced</p>
-                <p className="text-body text-white opacity-80 font-medium mb-6">{milestone.framework}</p>
-                <p className="text-overline text-white opacity-50 mb-3">Common mistake</p>
-                <p className="text-body text-white opacity-60 italic">{milestone.mistake}</p>
+                <p className="text-overline text-ink-3 mb-5">Framework introduced</p>
+                <p className="text-body text-ink-2 font-medium mb-6">{milestone.framework}</p>
+                <p className="text-overline text-ink-3 mb-3">Common mistake</p>
+                <p className="text-body text-ink-3 italic">{milestone.mistake}</p>
               </div>
               <div className="bg-black p-8 flex flex-col justify-between">
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-5">Key takeaway</p>
+                  <p className="text-overline text-ink-3 mb-5">Key takeaway</p>
                   <div className="border-l-2 border-white border-opacity-20 pl-5">
-                    <p className="text-white opacity-70" style={{ fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', fontStyle: 'italic', fontWeight: 300, lineHeight: 1.6 }}>
+                    <p className="text-ink-2" style={{ fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', fontStyle: 'italic', fontWeight: 300, lineHeight: 1.6 }}>
                       "{milestone.takeaway}"
                     </p>
                   </div>
@@ -218,9 +218,9 @@ function KPICard({ item, layerColor }: { item: typeof KPI_CHAIN[0]['items'][0], 
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
           <span className="text-body text-white" style={{ fontWeight: 400, color: layerColor }}>{item.name}</span>
-          <span className="text-white opacity-50 text-sm">{open ? '−' : '+'}</span>
+          <span className="text-ink-3 text-sm">{open ? '−' : '+'}</span>
         </div>
-        <p className="text-label text-white opacity-55">{item.definition}</p>
+        <p className="text-label text-ink-3">{item.definition}</p>
       </div>
 
       <AnimatePresence>
@@ -234,14 +234,14 @@ function KPICard({ item, layerColor }: { item: typeof KPI_CHAIN[0]['items'][0], 
           >
             <div className="px-6 pb-6 border-t border-white border-opacity-10 pt-4 space-y-4">
               <div>
-                <p className="text-overline text-white opacity-50 mb-1">Formula</p>
-                <p className="text-body text-white opacity-50 font-mono" style={{ fontSize: '0.8rem' }}>{item.formula}</p>
+                <p className="text-overline text-ink-3 mb-1">Formula</p>
+                <p className="text-body text-ink-3 font-mono" style={{ fontSize: '0.8rem' }}>{item.formula}</p>
               </div>
               <div>
-                <p className="text-overline text-white opacity-50 mb-2">Influences</p>
+                <p className="text-overline text-ink-3 mb-2">Influences</p>
                 <div className="flex flex-wrap gap-2">
                   {item.influences.map(inf => (
-                    <span key={inf} className="text-label text-white border border-white border-opacity-50 px-2.5 py-1 opacity-60">{inf}</span>
+                    <span key={inf} className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{inf}</span>
                   ))}
                 </div>
               </div>
@@ -270,9 +270,9 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
             style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.4rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
             {entry.term}
           </span>
-          {!open && <p className="text-body text-white opacity-55 mt-2">{entry.simple}</p>}
+          {!open && <p className="text-body text-ink-3 mt-2">{entry.simple}</p>}
         </div>
-        <span className="text-white opacity-25 flex-shrink-0 mt-1 transition-transform duration-300"
+        <span className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
           style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: '1.2rem' }}>+</span>
       </button>
 
@@ -288,28 +288,28 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
             <div className="pb-8 grid md:grid-cols-2 gap-8">
               <div className="space-y-5">
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-2">Plain English</p>
-                  <p className="text-body text-white opacity-60">{entry.simple}</p>
+                  <p className="text-overline text-ink-3 mb-2">Plain English</p>
+                  <p className="text-body text-ink-3">{entry.simple}</p>
                 </div>
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-2">For designers</p>
-                  <p className="text-body text-white opacity-60">{entry.design}</p>
+                  <p className="text-overline text-ink-3 mb-2">For designers</p>
+                  <p className="text-body text-ink-3">{entry.design}</p>
                 </div>
               </div>
               <div className="space-y-5">
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-2">Example</p>
-                  <p className="text-body text-white opacity-55 italic">{entry.example}</p>
+                  <p className="text-overline text-ink-3 mb-2">Example</p>
+                  <p className="text-body text-ink-3 italic">{entry.example}</p>
                 </div>
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-2">Common confusion</p>
-                  <p className="text-body text-white opacity-50">{entry.confusion}</p>
+                  <p className="text-overline text-ink-3 mb-2">Common confusion</p>
+                  <p className="text-body text-ink-3">{entry.confusion}</p>
                 </div>
                 <div>
-                  <p className="text-overline text-white opacity-50 mb-2">Related</p>
+                  <p className="text-overline text-ink-3 mb-2">Related</p>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {entry.related.map(r => (
-                      <span key={r} className="text-label text-white border border-white border-opacity-50 px-2.5 py-1 opacity-50">{r}</span>
+                      <span key={r} className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{r}</span>
                     ))}
                   </div>
                 </div>
@@ -394,15 +394,15 @@ export default function DualFluencyPage() {
 
         {/* Back link */}
         <div className="relative z-10 mb-12">
-          <Link to="/resources" className="text-label text-white opacity-50 hover:opacity-70 transition-opacity inline-flex items-center gap-2">
+          <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors inline-flex items-center gap-2">
             ← Resources
           </Link>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.p
-            className="text-overline text-white opacity-55 mb-6"
-            initial={{ opacity: 0 }} animate={{ opacity: 0.54 }} transition={{ duration: 0.6 }}
+            className="text-overline text-ink-3 mb-6"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
           >
             Framework · Workshop Toolkit · Design Leadership
           </motion.p>
@@ -419,12 +419,12 @@ export default function DualFluencyPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <p className="text-white opacity-65 mb-6"
+              <p className="text-ink-3 mb-6"
                 style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}>
                 Imagine a designer working on an amazing feature. It launches. Users love it.
                 Then leadership asks: <em>"What business impact did it create?"</em>
               </p>
-              <p className="text-body text-white opacity-60">
+              <p className="text-body text-ink-3">
                 Dual Fluency is the capacity to operate equally in the language of design and the language of business —
                 and to translate fluently between them in any room.
                 This page is your everyday reference after the workshop.
@@ -442,7 +442,7 @@ export default function DualFluencyPage() {
               ].map(([val, label]) => (
                 <div key={label} className="flex items-baseline gap-3">
                   <span className="text-white" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 200, letterSpacing: '-0.03em' }}>{val}</span>
-                  <span className="text-label text-white opacity-50">{label}</span>
+                  <span className="text-label text-ink-3">{label}</span>
                 </div>
               ))}
             </motion.div>
@@ -454,7 +454,7 @@ export default function DualFluencyPage() {
           className="relative z-10 max-w-7xl mx-auto w-full mt-16 pt-10 border-t border-white border-opacity-10"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <p className="text-overline text-white opacity-50 mb-6">The learning journey</p>
+          <p className="text-overline text-ink-3 mb-6">The learning journey</p>
           <div className="flex flex-wrap gap-3 items-center">
             {[
               "I don't know why business matters",
@@ -464,8 +464,8 @@ export default function DualFluencyPage() {
               "I can speak business",
             ].map((stage, i, arr) => (
               <div key={stage} className="flex items-center gap-3">
-                <span className="text-body text-white opacity-55" style={{ fontSize: '0.85rem' }}>{stage}</span>
-                {i < arr.length - 1 && <span className="text-white opacity-20">↓</span>}
+                <span className="text-body text-ink-3" style={{ fontSize: '0.85rem' }}>{stage}</span>
+                {i < arr.length - 1 && <span className="text-faint">↓</span>}
               </div>
             ))}
           </div>
@@ -478,10 +478,10 @@ export default function DualFluencyPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">Workshop Journey</p>
+              <p className="text-overline text-ink-3 mb-4">Workshop Journey</p>
               <h2 className="text-heading text-white">Six sessions. One coherent story.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Every session builds on the previous. Click any session to expand what was covered,
               which framework was introduced, and what the key takeaway was.
             </p>
@@ -500,10 +500,10 @@ export default function DualFluencyPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">The Dual Fluency Loop</p>
+              <p className="text-overline text-ink-3 mb-4">The Dual Fluency Loop</p>
               <h2 className="text-heading text-white">Every design decision is a hypothesis about a business outcome.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               The three metric layers and how they connect. A design metric that doesn't trace back to a business KPI
               is a measure of activity, not impact. Click any KPI to see its formula and downstream influences.
             </p>
@@ -520,9 +520,9 @@ export default function DualFluencyPage() {
               >
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-1.5 h-1.5 rounded-full" style={{ background: layer.color }} />
-                  <p className="text-overline text-white" style={{ opacity: 0.5 }}>{layer.label}</p>
+                  <p className="text-overline text-ink-3" >{layer.label}</p>
                   {li < KPI_CHAIN.length - 1 && (
-                    <div className="ml-auto flex items-center gap-2 text-label text-white opacity-50">
+                    <div className="ml-auto flex items-center gap-2 text-label text-ink-3">
                       <span>influences</span>
                       <span>↓</span>
                     </div>
@@ -545,15 +545,15 @@ export default function DualFluencyPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-overline text-white opacity-50 mb-6">The Dual Fluency Loop</p>
+            <p className="text-overline text-ink-3 mb-6">The Dual Fluency Loop</p>
             <div className="flex flex-wrap gap-4 items-center">
               {['Identify the business KPI', 'Find the user metric that moves it', 'Find the design metric that moves that', 'Design the intervention', 'Measure both'].map((step, i, arr) => (
                 <div key={step} className="flex items-center gap-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-label text-white opacity-50">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="text-body text-white opacity-60">{step}</span>
+                    <span className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="text-body text-ink-3">{step}</span>
                   </div>
-                  {i < arr.length - 1 && <span className="text-white opacity-20">→</span>}
+                  {i < arr.length - 1 && <span className="text-faint">→</span>}
                 </div>
               ))}
             </div>
@@ -567,10 +567,10 @@ export default function DualFluencyPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">KPI Library</p>
+              <p className="text-overline text-ink-3 mb-4">KPI Library</p>
               <h2 className="text-heading text-white">The metrics that matter — and what influences them.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Every KPI is a knowledge card. Click to expand the formula, benchmarks, and the design decisions
               that most directly move it.
             </p>
@@ -578,7 +578,7 @@ export default function DualFluencyPage() {
 
           {KPI_CHAIN.map((layer) => (
             <div key={layer.id} className="mb-16">
-              <p className="text-overline text-white mb-6" style={{ opacity: 0.54 }}>{layer.label}</p>
+              <p className="text-overline text-ink-3 mb-6" >{layer.label}</p>
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px bg-white bg-opacity-[0.06]">
                 {layer.items.map(item => (
                   <KPICard key={item.name} item={item} layerColor={layer.color} />
@@ -595,11 +595,11 @@ export default function DualFluencyPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">Glossary</p>
+              <p className="text-overline text-ink-3 mb-4">Glossary</p>
               <h2 className="text-heading text-white">The dictionary every designer wishes existed.</h2>
             </div>
             <div className="self-end">
-              <p className="text-body text-white opacity-60 mb-6">
+              <p className="text-body text-ink-3 mb-6">
                 Business terms defined for designers — not just what they mean, but why they matter and how your work connects to them.
               </p>
               <input
@@ -608,7 +608,7 @@ export default function DualFluencyPage() {
                 value={glossarySearch}
                 onChange={e => setGlossarySearch(e.target.value)}
                 className="w-full bg-transparent border border-white border-opacity-50 px-5 py-3 text-body text-white placeholder-white focus:border-opacity-50 focus:outline-none transition-all duration-200"
-                style={{ opacity: glossarySearch ? 1 : 0.6 }}
+                style={{ opacity: glossarySearch ? 1 : 0.7 }}
               />
             </div>
           </div>
@@ -618,7 +618,7 @@ export default function DualFluencyPage() {
               <GlossaryEntry key={entry.term} entry={entry} index={i} />
             ))}
             {filteredGlossary.length === 0 && (
-              <p className="text-body text-white opacity-50 py-12 text-center">No terms matching "{glossarySearch}"</p>
+              <p className="text-body text-ink-3 py-12 text-center">No terms matching "{glossarySearch}"</p>
             )}
           </div>
         </div>
@@ -630,10 +630,10 @@ export default function DualFluencyPage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-12">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">The Canvas</p>
+              <p className="text-overline text-ink-3 mb-4">The Canvas</p>
               <h2 className="text-heading text-white">The Dual Fluency Canvas — your translation tool.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               The workshop canvas for mapping any design decision to a business outcome in under 20 minutes.
               Request the editable Figma or PDF version.
             </p>
@@ -651,8 +651,8 @@ export default function DualFluencyPage() {
             <div className="absolute inset-0 grid grid-cols-4 gap-px p-8 md:p-14">
               {['Business KPI', 'User Metric', 'Design Metric', 'Intervention'].map((col, i) => (
                 <div key={col} className="border border-white border-opacity-10 p-6 flex flex-col gap-4">
-                  <p className="text-overline text-white opacity-50">{`0${i + 1}`}</p>
-                  <p className="text-body text-white opacity-55">{col}</p>
+                  <p className="text-overline text-ink-3">{`0${i + 1}`}</p>
+                  <p className="text-body text-ink-3">{col}</p>
                   <div className="flex-1 border-b border-white border-opacity-10" />
                   <div className="h-6 border-b border-white border-opacity-10" />
                   <div className="h-6 border-b border-white border-opacity-10" />
@@ -660,7 +660,7 @@ export default function DualFluencyPage() {
               ))}
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-label text-white opacity-50">Canvas preview</p>
+              <p className="text-label text-ink-3">Canvas preview</p>
             </div>
           </motion.div>
 
@@ -673,7 +673,7 @@ export default function DualFluencyPage() {
             </a>
             <a
               href="mailto:uxbyamit@gmail.com?subject=Request - Dual Fluency Workshop&body=Hi Amit,%0A%0AI'm interested in bringing the Dual Fluency workshop to my team.%0A%0AName:%0ARole:%0AOrganisation:%0ATeam size:"
-              className="text-label text-white opacity-55 hover:opacity-80 transition-opacity px-6 py-3"
+              className="text-label text-ink-3 hover:text-white transition-colors px-6 py-3"
             >
               Bring the workshop to your team
             </a>
@@ -684,12 +684,12 @@ export default function DualFluencyPage() {
       {/* ── Footer nav ── */}
       <section className="relative bg-black py-16 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/resources" className="text-label text-white opacity-55 hover:opacity-70 transition-opacity">
+          <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors">
             ← Back to Resources
           </Link>
           <a
             href="mailto:uxbyamit@gmail.com?subject=Dual Fluency Workshop"
-            className="text-label text-white opacity-55 hover:opacity-70 transition-opacity"
+            className="text-label text-ink-3 hover:text-white transition-colors"
           >
             Get in touch about the workshop →
           </a>

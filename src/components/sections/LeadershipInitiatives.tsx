@@ -22,9 +22,9 @@ export default function LeadershipInitiatives() {
             </motion.h2>
           </div>
           <motion.p
-            className="text-body text-white opacity-55 self-end"
+            className="text-body text-ink-3 self-end"
             initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 0.55, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -45,15 +45,15 @@ export default function LeadershipInitiatives() {
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <h3 className="text-heading text-white">{item.name}</h3>
-                <span className="text-label text-white opacity-50 shrink-0 mt-1">{item.year}</span>
+                <span className="text-label text-ink-3 shrink-0 mt-1">{item.year}</span>
               </div>
               <p
-                className="text-label text-white mb-4 border border-white px-2.5 py-0.5 inline-block"
-                style={{ borderColor: 'rgba(255,255,255,0.15)', opacity: 0.6 }}
+                className="text-label text-ink-3 mb-4 border border-white px-2.5 py-0.5 inline-block"
+                style={{ borderColor: 'rgba(255,255,255,0.15)' }}
               >
                 {item.role}
               </p>
-              <p className="text-body text-white opacity-50">{item.description}</p>
+              <p className="text-body text-ink-3">{item.description}</p>
             </motion.div>
           ))}
         </div>

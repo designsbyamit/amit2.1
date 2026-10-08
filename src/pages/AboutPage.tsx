@@ -53,8 +53,8 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: '-5%' }}
                 transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               >
-                <p className="text-label text-white opacity-50 pt-1">{item.label}</p>
-                <p className="text-body text-white opacity-65">{item.text}</p>
+                <p className="text-label text-ink-3 pt-1">{item.label}</p>
+                <p className="text-body text-ink-3">{item.text}</p>
               </motion.div>
             ))}
           </div>
@@ -67,9 +67,9 @@ export default function AboutPage() {
         <div className="relative z-10 mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
           <div>
             <motion.p
-              className="text-overline text-white opacity-55"
+              className="text-overline text-ink-3"
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.56 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
@@ -86,10 +86,10 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: '-5%' }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
-                <p className="text-label text-white opacity-50 pt-1">{item.year}</p>
+                <p className="text-label text-ink-3 pt-1">{item.year}</p>
                 <div>
                   <p className="text-body text-white mb-1" style={{ fontWeight: 400 }}>{item.role} · {item.org}</p>
-                  <p className="text-body text-white opacity-50">{item.detail}</p>
+                  <p className="text-body text-ink-3">{item.detail}</p>
                 </div>
               </motion.div>
             ))}

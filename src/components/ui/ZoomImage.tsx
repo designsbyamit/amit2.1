@@ -60,7 +60,7 @@ export default function ZoomImage({ src, alt, className = '', style }: { src: st
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="Close enlarged image"
-                className="fixed top-5 right-5 md:top-8 md:right-10 text-label text-white opacity-80 hover:opacity-100 transition-opacity px-3 py-2 border border-white border-opacity-30"
+                className="fixed top-5 right-5 md:top-8 md:right-10 text-label text-ink-2 hover:text-white transition-colors px-3 py-2 border border-white border-opacity-30"
               >
                 Close ✕
               </button>

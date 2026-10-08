@@ -42,9 +42,9 @@ export default function Craft() {
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">
           <motion.p
-            className="text-overline text-white opacity-55"
+            className="text-overline text-ink-3"
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.56 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
@@ -52,28 +52,28 @@ export default function Craft() {
           </motion.p>
           <div>
             <motion.p
-              className="text-white opacity-70 mb-5"
+              className="text-ink-2 mb-5"
               style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', fontWeight: 300, lineHeight: 1.7, letterSpacing: '-0.01em' }}
               initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 0.7, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               The work here is not a portfolio of deliverables. It is a record of how complex problems were approached, what tradeoffs were made, and why.
             </motion.p>
             <motion.p
-              className="text-body text-white opacity-60 mb-4"
+              className="text-body text-ink-3 mb-4"
               initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 0.58, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               Each project is less about the screens that shipped and more about the systems they are part of — the business constraints that shaped decisions, the principles that held when the pressure mounted, and the moments where design changed how an organisation thought about a problem.
             </motion.p>
             <motion.p
-              className="text-body text-white opacity-60"
+              className="text-body text-ink-3"
               initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 0.58, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -89,9 +89,9 @@ export default function Craft() {
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="border-t border-white pt-16 mb-0" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
             <motion.p
-              className="text-overline text-white opacity-55"
+              className="text-overline text-ink-3"
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 0.56 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
@@ -112,11 +112,11 @@ export default function Craft() {
               >
                 <div className="py-10 md:py-12 grid md:grid-cols-[1fr_2fr] gap-8 md:gap-20">
                   <div className="pt-1">
-                    <p className="text-label text-white opacity-50">{story.label}</p>
+                    <p className="text-label text-ink-3">{story.label}</p>
                   </div>
                   <div>
                     <h3 className="text-heading text-white mb-4">{story.heading}</h3>
-                    <p className="text-body text-white opacity-60 max-w-2xl">{story.body}</p>
+                    <p className="text-body text-ink-3 max-w-2xl">{story.body}</p>
                   </div>
                 </div>
               </motion.div>

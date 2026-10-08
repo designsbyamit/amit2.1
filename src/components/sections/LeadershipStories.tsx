@@ -42,9 +42,9 @@ export default function LeadershipStories() {
 
                     {/* Meta */}
                     <div className="flex items-center gap-4 mb-6">
-                      <span className="text-label text-white opacity-50">{String(i + 1).padStart(2, '0')}</span>
-                      {story.year && <span className="text-overline text-white opacity-55">{story.year}</span>}
-                      {story.context && <span className="text-label text-white opacity-50">· {story.context}</span>}
+                      <span className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</span>
+                      {story.year && <span className="text-overline text-ink-3">{story.year}</span>}
+                      {story.context && <span className="text-label text-ink-3">· {story.context}</span>}
                     </div>
 
                     {/* Title */}
@@ -60,14 +60,14 @@ export default function LeadershipStories() {
                         {/* Narrative */}
                         <div className="space-y-5 max-w-2xl mb-10">
                           {story.narrative.map((para, j) => (
-                            <p key={j} className="text-body text-white opacity-55 leading-relaxed">{para}</p>
+                            <p key={j} className="text-body text-ink-3 leading-relaxed">{para}</p>
                           ))}
                         </div>
 
                         {/* Lesson */}
                         {story.lesson && (
                           <div className="border-l-2 border-white pl-5 py-1" style={{ borderColor: 'rgba(255,255,255,0.25)' }}>
-                            <p className="text-white opacity-70" style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)', fontStyle: 'italic', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 1.6 }}>
+                            <p className="text-ink-2" style={{ fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)', fontStyle: 'italic', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 1.6 }}>
                               "{story.lesson}"
                             </p>
                           </div>
@@ -76,7 +76,7 @@ export default function LeadershipStories() {
                     ) : (
                       /* Cue questions — shown until the story is written */
                       <div className="max-w-2xl space-y-6">
-                        <p className="text-overline text-white opacity-50 mb-2">Reflective cues</p>
+                        <p className="text-overline text-ink-3 mb-2">Reflective cues</p>
                         {story.cues.map((cue, j) => (
                           <motion.div
                             key={j}
@@ -87,20 +87,20 @@ export default function LeadershipStories() {
                             transition={{ duration: 0.5, delay: j * 0.1 }}
                           >
                             <span
-                              className="text-white flex-shrink-0 mt-1"
-                              style={{ fontSize: '0.65rem', opacity: 0.5, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', paddingTop: '2px' }}
+                              className="text-ink-3 flex-shrink-0 mt-1"
+                              style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', paddingTop: '2px' }}
                             >
                               {String(j + 1).padStart(2, '0')}
                             </span>
                             <p
-                              className="text-white"
-                              style={{ fontSize: 'clamp(1rem, 1.4vw, 1.15rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em', opacity: 0.5, fontStyle: 'italic' }}
+                              className="text-ink-3"
+                              style={{ fontSize: 'clamp(1rem, 1.4vw, 1.15rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em', fontStyle: 'italic' }}
                             >
                               {cue}
                             </p>
                           </motion.div>
                         ))}
-                        <p className="text-label text-white opacity-50 mt-8">Story being written —</p>
+                        <p className="text-label text-ink-3 mt-8">Story being written —</p>
                       </div>
                     )}
                   </div>

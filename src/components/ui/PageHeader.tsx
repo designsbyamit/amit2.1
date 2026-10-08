@@ -45,9 +45,9 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt }: 
 
         <div className="relative z-10 mx-auto max-w-7xl w-full pb-20 pt-40">
           <motion.p
-            className="text-overline text-white opacity-55 mb-6"
+            className="text-overline text-ink-3 mb-6"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.56 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
             {label}
@@ -58,9 +58,9 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt }: 
             </h1>
             {subtitle && (
               <motion.p
-                className="text-body text-white opacity-55 mt-6 max-w-xl"
+                className="text-body text-ink-3 mt-6 max-w-xl"
                 initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 0.55, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
               >
                 {subtitle}
@@ -78,9 +78,9 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt }: 
       <SweepLines />
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.p
-          className="text-overline text-white opacity-55 mb-6"
+          className="text-overline text-ink-3 mb-6"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.56 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
           {label}
@@ -90,9 +90,9 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt }: 
         </h1>
         {subtitle && (
           <motion.p
-            className="text-body text-white opacity-55 mt-6 max-w-xl"
+            className="text-body text-ink-3 mt-6 max-w-xl"
             initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 0.55, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
             {subtitle}

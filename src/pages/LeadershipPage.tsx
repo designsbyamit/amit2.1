@@ -11,9 +11,9 @@ function CommunityCallout() {
     <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
       <div className="mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">
         <motion.p
-          className="text-overline text-white opacity-55"
+          className="text-overline text-ink-3"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.56 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
@@ -27,14 +27,14 @@ function CommunityCallout() {
         >
           <div className="mb-6">
             <p className="text-white mb-1" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1 }}>250+</p>
-            <p className="text-overline text-white opacity-55">Designers in SAP Design Hub India</p>
+            <p className="text-overline text-ink-3">Designers in SAP Design Hub India</p>
           </div>
-          <p className="text-body text-white opacity-50 max-w-xl mb-8">
+          <p className="text-body text-ink-3 max-w-xl mb-8">
             Led by Amit since February 2025. Monthly events, peer critique, and a growing culture of design excellence inside the enterprise. A community that revealed what organisations suppress — and what happens when you give designers a room of their own.
           </p>
           <Link
             to="/community"
-            className="text-label text-white opacity-55 hover:opacity-90 transition-opacity duration-300"
+            className="text-label text-ink-3 hover:text-white transition-colors duration-300"
           >
             Explore the community →
           </Link>

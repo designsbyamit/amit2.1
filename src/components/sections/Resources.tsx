@@ -130,27 +130,27 @@ function makeMailto(resourceTitle: string) {
 function ReadingListContent() {
   return (
     <div className="mt-8 border-t border-white border-opacity-10 pt-8">
-      <p className="text-overline text-white opacity-50 mb-6">Articles</p>
+      <p className="text-overline text-ink-3 mb-6">Articles</p>
       <div className="space-y-0 mb-10">
         {readingItems.articles.map((a, i) => (
           <a key={i} href={a.url} target="_blank" rel="noopener noreferrer"
             className="flex gap-6 py-5 border-b border-white border-opacity-[0.07] group hover:bg-white hover:bg-opacity-[0.02] transition-colors -mx-10 px-10">
             <div className="flex-1 min-w-0">
               <p className="text-body text-white group-hover:opacity-80 transition-opacity" style={{ fontWeight: 400 }}>{a.title}</p>
-              <p className="text-label text-white opacity-55 mt-1">{a.author} · {a.publication}</p>
+              <p className="text-label text-ink-3 mt-1">{a.author} · {a.publication}</p>
             </div>
-            <p className="text-body text-white opacity-55 flex-1 hidden md:block">{a.why}</p>
-            <span className="text-white opacity-25 group-hover:opacity-70 transition-opacity self-start pt-1 flex-shrink-0">→</span>
+            <p className="text-body text-ink-3 flex-1 hidden md:block">{a.why}</p>
+            <span className="text-ink-3 group-hover:text-white transition-colors self-start pt-1 flex-shrink-0">→</span>
           </a>
         ))}
       </div>
-      <p className="text-overline text-white opacity-50 mb-6">Books</p>
+      <p className="text-overline text-ink-3 mb-6">Books</p>
       <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-10">
         {readingItems.books.map((b, i) => (
           <div key={i} className="bg-black p-8">
             <p className="text-body text-white mb-1" style={{ fontWeight: 400 }}>{b.title}</p>
-            <p className="text-label text-white opacity-55 mb-4">{b.author}</p>
-            <p className="text-body text-white opacity-50">{b.why}</p>
+            <p className="text-label text-ink-3 mb-4">{b.author}</p>
+            <p className="text-body text-ink-3">{b.why}</p>
           </div>
         ))}
       </div>
@@ -178,10 +178,10 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
         <div className="flex items-start justify-between gap-6 mb-8">
           <div className="flex flex-wrap gap-2">
             {resource.type.map(t => (
-              <span key={t} className="text-label text-white border border-white border-opacity-50 px-3 py-1.5" style={{ opacity: 0.55 }}>{t}</span>
+              <span key={t} className="text-label text-ink-3 border border-white border-opacity-50 px-3 py-1.5" >{t}</span>
             ))}
           </div>
-          <span className="text-label text-white opacity-50 flex-shrink-0" style={{ fontSize: '0.65rem' }}>
+          <span className="text-label text-ink-3 flex-shrink-0" style={{ fontSize: '0.75rem' }}>
             {String(index + 1).padStart(2, '0')}
           </span>
         </div>
@@ -198,11 +198,10 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
         </h3>
 
         {/* Description */}
-        <p className="text-white mb-8" style={{
+        <p className="text-ink-3 mb-8" style={{
           fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)',
           fontWeight: 300,
           lineHeight: 1.72,
-          opacity: 0.52,
           maxWidth: '62ch',
         }}>
           {resource.description}
@@ -211,7 +210,7 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
         {/* Outcomes */}
         <div className="flex flex-wrap gap-2 mb-8">
           {resource.outcomes.map(o => (
-            <span key={o} className="text-label text-white bg-white bg-opacity-[0.06] border border-white border-opacity-[0.08] px-3 py-1.5" style={{ opacity: 0.65 }}>
+            <span key={o} className="text-label text-ink-3 bg-white bg-opacity-[0.06] border border-white border-opacity-[0.08] px-3 py-1.5" >
               {o}
             </span>
           ))}
@@ -220,7 +219,7 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
         {/* Tags */}
         <div className="flex flex-wrap gap-3 mb-10 pb-10 border-b border-white border-opacity-[0.07]">
           {resource.tags.map(tag => (
-            <span key={tag} className="text-label text-white opacity-22">#{tag}</span>
+            <span key={tag} className="text-label text-ink-3">#{tag}</span>
           ))}
         </div>
 
@@ -294,7 +293,7 @@ export default function Resources() {
               className={`text-label px-4 py-2 border transition-all duration-200 ${
                 activeFilter === f
                   ? 'border-white text-white'
-                  : 'border-white border-opacity-20 text-white opacity-60 hover:opacity-90'
+                  : 'border-white border-opacity-20 text-ink-3 hover:text-white'
               }`}>
               {f}
             </button>
@@ -326,11 +325,11 @@ export default function Resources() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <div>
-            <p className="text-overline text-white opacity-50 mb-4">Looking for something specific?</p>
+            <p className="text-overline text-ink-3 mb-4">Looking for something specific?</p>
             <p className="text-white mb-3" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.3 }}>
               Many of these resources originated from real projects, workshops, mentoring conversations, and community initiatives.
             </p>
-            <p className="text-body text-white opacity-50">
+            <p className="text-body text-ink-3">
               If you're looking for something particular, feel free to reach out.
             </p>
           </div>

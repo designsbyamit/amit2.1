@@ -41,7 +41,7 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-body text-white opacity-60">
+            <p className="text-body text-ink-3">
               Open to conversations about AI-native design, enterprise UX strategy, design leadership, and community building. If your work involves any of these — reach out.
             </p>
 
@@ -51,7 +51,7 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
                 className="w-full md:w-auto text-label text-white border border-white border-opacity-50 px-8 py-4 hover:border-opacity-80 hover:bg-white hover:bg-opacity-5 transition-all duration-300 flex items-center gap-3"
               >
                 <span>uxbyamit@gmail.com</span>
-                <span className="opacity-50 text-xs">{copied ? '✓ Copied' : 'Copy'}</span>
+                <span className="text-xs text-ink-3">{copied ? '✓ Copied' : 'Copy'}</span>
               </button>
 
               <div className="flex items-center gap-6 pt-2">
@@ -59,7 +59,7 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
                   href="https://linkedin.com/in/amitkrt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-label text-white opacity-55 hover:opacity-100 transition-opacity"
+                  className="text-label text-ink-3 hover:text-white transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -67,7 +67,7 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
                   href="https://medium.com/@amitkrt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-label text-white opacity-55 hover:opacity-100 transition-opacity"
+                  className="text-label text-ink-3 hover:text-white transition-colors"
                 >
                   Medium
                 </a>
@@ -75,8 +75,8 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
             </div>
 
             <div className="pt-4 border-t border-white border-opacity-10">
-              <p className="text-label text-white opacity-50">Based in Bangalore, India</p>
-              <p className="text-label text-white opacity-50 mt-1">Available for global conversations</p>
+              <p className="text-label text-ink-3">Based in Bangalore, India</p>
+              <p className="text-label text-ink-3 mt-1">Available for global conversations</p>
             </div>
           </motion.div>
         </div>

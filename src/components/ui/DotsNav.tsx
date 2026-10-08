@@ -27,7 +27,7 @@ export default function DotsNav({ sections, active }: DotsNavProps) {
             animate={{
               width: active === s.id ? 20 : 6,
               height: active === s.id ? 2 : 6,
-              opacity: active === s.id ? 0.85 : 0.2,
+              opacity: active === s.id ? 1 : 0.7,
               borderRadius: active === s.id ? 1 : 9999,
             }}
             style={{ background: 'rgba(245,242,237,1)' }}
@@ -37,7 +37,7 @@ export default function DotsNav({ sections, active }: DotsNavProps) {
           {/* Label — appears on hover */}
           <span
             className="text-white pointer-events-none select-none whitespace-nowrap transition-all duration-200 opacity-0 group-hover:opacity-50 -translate-x-1 group-hover:translate-x-0"
-            style={{ fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 500 }}
+            style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 500 }}
           >
             {s.number ? `${s.number} ${s.label}` : s.label}
           </span>

@@ -35,9 +35,9 @@ export default function ImpactSnapshot() {
       <GrainOverlay opacity={0.04} />
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 py-20 md:py-28">
         <motion.p
-          className="text-overline text-white opacity-50 mb-12"
+          className="text-overline text-ink-3 mb-12"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.52 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
@@ -59,27 +59,25 @@ export default function ImpactSnapshot() {
                 transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               >
                 <p
-                  className="text-white"
+                  className="text-ink-2"
                   style={{
                     fontSize: 'clamp(1.8rem, 3.5vw, 3.2rem)',
                     fontWeight: 200,
                     letterSpacing: '-0.04em',
                     lineHeight: 1,
-                    opacity: 0.88,
-                  }}
+                    }}
                 >
                   <CountUp target={num} suffix={suffix} />
                 </p>
                 <p
-                  className="text-white"
+                  className="text-ink-3"
                   style={{
-                    fontSize: '0.68rem',
+                    fontSize: '0.75rem',
                     fontWeight: 400,
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                     lineHeight: 1.4,
-                    opacity: 0.52,
-                  }}
+                    }}
                 >
                   {metric.label}
                 </p>

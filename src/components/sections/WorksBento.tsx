@@ -51,25 +51,25 @@ export default function WorksBento() {
                     {/* Text */}
                     <div className="flex-1 py-8 md:py-10 pr-0 md:pr-20 flex flex-col justify-center">
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="text-label text-white opacity-50">{cs.number}</span>
-                        <span className="text-overline text-white opacity-55">{cs.category}</span>
+                        <span className="text-label text-ink-3">{cs.number}</span>
+                        <span className="text-overline text-ink-3">{cs.category}</span>
                       </div>
                       <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
                         {cs.title}
                       </h3>
-                      <p className="text-body text-white opacity-60 mb-6 max-w-2xl">{cs.tagline}</p>
+                      <p className="text-body text-ink-3 mb-6 max-w-2xl">{cs.tagline}</p>
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                         {cs.role && (
-                          <span className="text-label text-white border px-2.5 py-0.5"
-                            style={{ borderColor: 'rgba(255,255,255,0.15)', opacity: 0.7 }}>
+                          <span className="text-label text-ink-2 border px-2.5 py-0.5"
+                            style={{ borderColor: 'rgba(255,255,255,0.15)' }}>
                             {cs.role}
                           </span>
                         )}
                         {cs.timeline && (
-                          <span className="text-label text-white opacity-50">{cs.timeline}</span>
+                          <span className="text-label text-ink-3">{cs.timeline}</span>
                         )}
                         {cs.domain && (
-                          <span className="text-label text-white opacity-50">· {cs.domain}</span>
+                          <span className="text-label text-ink-3">· {cs.domain}</span>
                         )}
                       </div>
                     </div>

@@ -89,13 +89,13 @@ export default function ConversationExperiencePage() {
       <section className="relative min-h-[70vh] flex flex-col justify-end pb-20 px-6 md:px-12 overflow-hidden pt-28 md:pt-32">
         <GrainOverlay opacity={0.05} />
         <div className="relative z-10 mb-12">
-          <Link to="/resources" className="text-label text-white opacity-50 hover:opacity-70 transition-opacity inline-flex items-center gap-2">
+          <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors inline-flex items-center gap-2">
             ← Resources
           </Link>
         </div>
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <motion.p className="text-overline text-white opacity-55 mb-6"
-            initial={{ opacity: 0 }} animate={{ opacity: 0.54 }} transition={{ duration: 0.6 }}>
+          <motion.p className="text-overline text-ink-3 mb-6"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
             Playbook · Conversational AI · Interaction Design
           </motion.p>
           <motion.h1 className="text-white mb-8"
@@ -104,9 +104,9 @@ export default function ConversationExperiencePage() {
             Conversation Experience:<br />The New Frontier of UX
           </motion.h1>
           <div className="grid md:grid-cols-[2fr_1fr] gap-12 items-end">
-            <motion.p className="text-white opacity-55"
+            <motion.p className="text-ink-3"
               style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 0.55, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
               A practical guide for designing conversational, assistant-driven, and agentic experiences.
               Built from three years of production conversational AI work — not from conference slides.
             </motion.p>
@@ -115,7 +115,7 @@ export default function ConversationExperiencePage() {
               {[['5', 'Chapters'], ['6', 'Key metrics'], ['90%', 'CSAT achieved']].map(([val, label]) => (
                 <div key={label} className="flex items-baseline gap-3">
                   <span className="text-white" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 200, letterSpacing: '-0.03em' }}>{val}</span>
-                  <span className="text-label text-white opacity-50">{label}</span>
+                  <span className="text-label text-ink-3">{label}</span>
                 </div>
               ))}
             </motion.div>
@@ -129,10 +129,10 @@ export default function ConversationExperiencePage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">The Playbook</p>
+              <p className="text-overline text-ink-3 mb-4">The Playbook</p>
               <h2 className="text-heading text-white">Five chapters. One discipline.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Each chapter covers a distinct domain of conversational design — from intent through to the future of agentic systems.
               Click to expand principles, tools, and guidance.
             </p>
@@ -154,16 +154,16 @@ export default function ConversationExperiencePage() {
                   onClick={() => setActiveChapter(activeChapter === chapter.id ? null : chapter.id)}
                 >
                   <div className="flex items-start gap-8">
-                    <span className="text-label text-white opacity-50 flex-shrink-0 mt-1">{chapter.number}</span>
+                    <span className="text-label text-ink-3 flex-shrink-0 mt-1">{chapter.number}</span>
                     <div>
                       <h3 className="text-white mb-3 group-hover:opacity-80 transition-opacity"
                         style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                         {chapter.title}
                       </h3>
-                      <p className="text-body text-white opacity-55 max-w-2xl">{chapter.summary}</p>
+                      <p className="text-body text-ink-3 max-w-2xl">{chapter.summary}</p>
                     </div>
                   </div>
-                  <span className="text-white opacity-25 flex-shrink-0 mt-1 transition-transform duration-300"
+                  <span className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
                     style={{ transform: activeChapter === chapter.id ? 'rotate(45deg)' : 'none', fontSize: '1.25rem' }}>
                     +
                   </span>
@@ -180,16 +180,16 @@ export default function ConversationExperiencePage() {
                     >
                       <div className="pb-12 pl-0 md:pl-20 grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.05]">
                         <div className="bg-black p-8 md:p-10">
-                          <p className="text-overline text-white opacity-50 mb-5">Overview</p>
-                          <p className="text-body text-white opacity-55 leading-relaxed">{chapter.body}</p>
+                          <p className="text-overline text-ink-3 mb-5">Overview</p>
+                          <p className="text-body text-ink-3 leading-relaxed">{chapter.body}</p>
                         </div>
                         <div className="bg-black p-8 md:p-10">
-                          <p className="text-overline text-white opacity-50 mb-5">Key principles</p>
+                          <p className="text-overline text-ink-3 mb-5">Key principles</p>
                           <ul className="space-y-4">
                             {chapter.principles.map((p, j) => (
                               <li key={j} className="flex gap-4">
-                                <span className="text-white opacity-20 flex-shrink-0 mt-0.5" style={{ fontSize: '0.5rem' }}>●</span>
-                                <p className="text-body text-white opacity-55">{p}</p>
+                                <span className="text-faint flex-shrink-0 mt-0.5" style={{ fontSize: '0.5rem' }}>●</span>
+                                <p className="text-body text-ink-3">{p}</p>
                               </li>
                             ))}
                           </ul>
@@ -211,10 +211,10 @@ export default function ConversationExperiencePage() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
-              <p className="text-overline text-white opacity-55 mb-4">Measuring CX</p>
+              <p className="text-overline text-ink-3 mb-4">Measuring CX</p>
               <h2 className="text-heading text-white">Metrics that actually measure conversational quality.</h2>
             </div>
-            <p className="text-body text-white opacity-60 self-end">
+            <p className="text-body text-ink-3 self-end">
               Traditional UX metrics don't map to conversational experiences. These six metrics are what actually matter — drawn from the Engaze engagement that achieved 90% CSAT.
             </p>
           </div>
@@ -229,19 +229,19 @@ export default function ConversationExperiencePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
               >
-                <p className="text-label text-white opacity-50 mb-3">{String(i + 1).padStart(2, '0')}</p>
+                <p className="text-label text-ink-3 mb-3">{String(i + 1).padStart(2, '0')}</p>
                 <h3 className="text-white mb-3" style={{ fontSize: 'clamp(1rem, 1.3vw, 1.2rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
                   {metric.name}
                 </h3>
-                <p className="text-body text-white opacity-60 mb-5">{metric.definition}</p>
+                <p className="text-body text-ink-3 mb-5">{metric.definition}</p>
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white border-opacity-[0.08]">
                   <div>
-                    <p className="text-overline text-white opacity-50 mb-1">Target</p>
-                    <p className="text-label text-white opacity-50">{metric.target}</p>
+                    <p className="text-overline text-ink-3 mb-1">Target</p>
+                    <p className="text-label text-ink-3">{metric.target}</p>
                   </div>
                   <div>
-                    <p className="text-overline text-white opacity-50 mb-1">Formula</p>
-                    <p className="text-label text-white opacity-55" style={{ fontFamily: 'monospace', fontSize: '0.65rem' }}>{metric.formula}</p>
+                    <p className="text-overline text-ink-3 mb-1">Formula</p>
+                    <p className="text-label text-ink-3" style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>{metric.formula}</p>
                   </div>
                 </div>
               </motion.div>
@@ -254,16 +254,16 @@ export default function ConversationExperiencePage() {
       <section className="relative bg-black py-20 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-[2fr_1fr] gap-12 items-end">
           <div>
-            <p className="text-overline text-white opacity-50 mb-4">Full Playbook</p>
+            <p className="text-overline text-ink-3 mb-4">Full Playbook</p>
             <h2 className="text-heading text-white mb-4">The complete guide — including templates, measurement frameworks, and case study breakdowns.</h2>
-            <p className="text-body text-white opacity-60">Covers intent design, prompt and response systems, multi-turn flows, trust and safety, and agentic UX. Includes the full Engaze design methodology.</p>
+            <p className="text-body text-ink-3">Covers intent design, prompt and response systems, multi-turn flows, trust and safety, and agentic UX. Includes the full Engaze design methodology.</p>
           </div>
           <div className="flex flex-col gap-4">
             <a href="mailto:uxbyamit@gmail.com?subject=Request - Conversation Experience Playbook"
               className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 text-center">
               Request full playbook →
             </a>
-            <Link to="/resources" className="text-label text-white opacity-50 hover:opacity-70 transition-opacity text-center py-2">
+            <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors text-center py-2">
               ← Back to Resources
             </Link>
           </div>

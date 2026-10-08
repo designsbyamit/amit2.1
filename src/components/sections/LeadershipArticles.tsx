@@ -25,9 +25,9 @@ export default function LeadershipArticles() {
             href="https://medium.com/@amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-label text-white opacity-50 hover:opacity-70 transition-opacity hidden md:block mb-1"
+            className="text-label text-ink-3 hover:text-white transition-colors hidden md:block mb-1"
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.52 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
@@ -52,8 +52,8 @@ export default function LeadershipArticles() {
                 className="group block p-8 md:p-10 h-full hover:bg-white hover:bg-opacity-[0.025] transition-colors duration-300"
               >
                 <div className="flex items-center justify-between mb-5">
-                  <span className="text-overline text-white opacity-55">{article.category}</span>
-                  <span className="text-label text-white opacity-50">{article.date}</span>
+                  <span className="text-overline text-ink-3">{article.category}</span>
+                  <span className="text-label text-ink-3">{article.date}</span>
                 </div>
 
                 <h3
@@ -68,11 +68,11 @@ export default function LeadershipArticles() {
                   {article.title}
                 </h3>
 
-                <p className="text-body text-white opacity-60 mb-8 leading-relaxed">
+                <p className="text-body text-ink-3 mb-8 leading-relaxed">
                   {article.excerpt}
                 </p>
 
-                <p className="text-label text-white opacity-50 group-hover:opacity-70 transition-opacity duration-300">
+                <p className="text-label text-ink-3 group-hover:text-white transition-colors duration-300">
                   Read on Medium →
                 </p>
               </a>
@@ -91,7 +91,7 @@ export default function LeadershipArticles() {
             href="https://medium.com/@amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-label text-white opacity-55 hover:opacity-80 transition-opacity"
+            className="text-label text-ink-3 hover:text-white transition-colors"
           >
             All articles on Medium →
           </a>

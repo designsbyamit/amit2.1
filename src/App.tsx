@@ -20,6 +20,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'))
 const DualFluencyPage = lazy(() => import('./pages/DualFluencyPage'))
 const AINativeFrameworksPage = lazy(() => import('./pages/AINativeFrameworksPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
+const DesignSystemPage = lazy(() => import('./pages/DesignSystemPage'))
 const ConversationExperiencePage = lazy(() => import('./pages/ConversationExperiencePage'))
 
 function PageTransition({ children }: { children: React.ReactNode }) {
@@ -53,6 +54,7 @@ function AnimatedRoutes() {
         <Route path="/resources/dual-fluency" element={<PageTransition><DualFluencyPage /></PageTransition>} />
         <Route path="/resources/ai-native-patterns" element={<PageTransition><AINativeFrameworksPage /></PageTransition>} />
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
+        <Route path="/design-system" element={<PageTransition><DesignSystemPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/philosophy" element={<Navigate to="/about" replace />} />
       </Routes>

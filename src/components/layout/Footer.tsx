@@ -1,15 +1,17 @@
+import { Link } from 'react-router-dom'
+
 export default function Footer() {
   return (
-    <footer className="border-t border-white border-opacity-10 px-6 md:px-12 py-8">
-      <div className="mx-auto max-w-7xl flex items-center justify-between">
-        <p className="text-label text-white opacity-50">© {new Date().getFullYear()} Amit Kumar Tiwari</p>
+    <footer className="hairline-top py-8">
+      <div className="container-site flex flex-col-reverse gap-6 md:flex-row md:items-center md:justify-between">
+        <p className="text-label text-ink-3">© {new Date().getFullYear()} Amit Kumar Tiwari · Bengaluru, India · <Link to="/design-system" className="hover:text-white transition-colors underline-offset-4 hover:underline">Design system</Link></p>
 
         <div className="flex items-center gap-5">
           <a
             href="https://linkedin.com/in/amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white opacity-60 hover:opacity-100 transition-opacity"
+            className="tap-target text-ink-3 hover:text-white transition-colors"
             aria-label="LinkedIn"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -20,7 +22,7 @@ export default function Footer() {
             href="https://medium.com/@amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white opacity-60 hover:opacity-100 transition-opacity"
+            className="tap-target text-ink-3 hover:text-white transition-colors"
             aria-label="Medium"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -31,7 +33,7 @@ export default function Footer() {
             href="https://topmate.io/amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white opacity-60 hover:opacity-100 transition-opacity"
+            className="tap-target text-ink-3 hover:text-white transition-colors"
             aria-label="Topmate"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -40,7 +42,7 @@ export default function Footer() {
           </a>
           <a
             href="mailto:uxbyamit@gmail.com"
-            className="text-white opacity-60 hover:opacity-100 transition-opacity"
+            className="tap-target text-ink-3 hover:text-white transition-colors"
             aria-label="Email"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

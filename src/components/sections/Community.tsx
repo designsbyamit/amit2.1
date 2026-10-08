@@ -53,7 +53,7 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
           <div className="absolute inset-0" style={{ background: 'rgba(12,12,11,0.25)' }} />
           {/* Type badge */}
           <div className="absolute top-8 left-8" style={{ direction: 'ltr' }}>
-            <span className="text-label text-white border border-white border-opacity-50 px-3 py-1.5" style={{ opacity: 0.7 }}>
+            <span className="text-label text-ink-2 border border-white border-opacity-50 px-3 py-1.5" >
               {initiative.type}
             </span>
           </div>
@@ -63,8 +63,8 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
         <div className="flex flex-col justify-between p-10 md:p-14" style={{ direction: 'ltr' }}>
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-label text-white opacity-50">{String(index + 1).padStart(2, '0')}</span>
-              {initiative.year && <span className="text-overline text-white opacity-55">{initiative.year}</span>}
+              <span className="text-label text-ink-3">{String(index + 1).padStart(2, '0')}</span>
+              {initiative.year && <span className="text-overline text-ink-3">{initiative.year}</span>}
             </div>
 
             <h3
@@ -73,16 +73,16 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
             >
               {initiative.name}
             </h3>
-            <p className="text-overline text-white opacity-55 mb-8">{initiative.role}</p>
+            <p className="text-overline text-ink-3 mb-8">{initiative.role}</p>
 
-            <p className="text-body text-white opacity-55 mb-8 max-w-md">{initiative.description}</p>
+            <p className="text-body text-ink-3 mb-8 max-w-md">{initiative.description}</p>
           </div>
 
           {/* Expandable body */}
           <div>
             <button
               onClick={() => setOpen(o => !o)}
-              className="flex items-center gap-3 text-label text-white opacity-55 hover:opacity-80 transition-opacity duration-200 group"
+              className="flex items-center gap-3 text-label text-ink-3 hover:text-white transition-colors duration-200 group"
             >
               <span>{open ? 'Close story ↑' : 'Read the story →'}</span>
             </button>
@@ -96,7 +96,7 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   style={{ overflow: 'hidden' }}
                 >
-                  <p className="text-body text-white opacity-60 mt-6 max-w-md leading-relaxed">
+                  <p className="text-body text-ink-3 mt-6 max-w-md leading-relaxed">
                     {initiative.body}
                   </p>
                 </motion.div>

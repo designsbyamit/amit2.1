@@ -96,20 +96,20 @@ export default function Hero() {
           transition={{ delay: 0.1, duration: 1.0, ease: 'easeOut' }}
         >
           <div className="flex items-center gap-5">
-            <span style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.78)' }}>
+            <span style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--color-ink-2)' }}>
               Amit Kumar Tiwari
             </span>
             <span style={{ width: 1, height: 12, background: 'rgba(245,242,237,0.12)', display: 'inline-block' }} />
-            <span style={{ fontSize: '0.7rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.6)' }}>
+            <span style={{ fontSize: '0.7rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--color-ink-3)' }}>
               Design Leader · Enterprise AI
             </span>
           </div>
           <Link
             to="/leadership"
-            style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.6)', transition: 'color 0.4s' }}
+            style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-3)', transition: 'color 0.4s' }}
             className="hidden md:block"
             onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.95)')}
-            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.6)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-3)')}
           >
             Dual Fluency · AI-Native · Agentic
           </Link>
@@ -151,7 +151,7 @@ export default function Hero() {
               <div className="flex items-center gap-7">
                 <Link
                   to="/craft"
-                  style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.88)', border: '1px solid rgba(245,242,237,0.2)', padding: '13px 28px', transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)' }}
+                  style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.88)', border: '1px solid rgba(245,242,237,0.2)', padding: '13px 28px', transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)' }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(245,242,237,0.6)'; e.currentTarget.style.background = 'rgba(245,242,237,0.05)' }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(245,242,237,0.2)'; e.currentTarget.style.background = 'transparent' }}
                 >
@@ -159,16 +159,16 @@ export default function Hero() {
                 </Link>
                 <Link
                   to="/contact"
-                  style={{ fontSize: '0.68rem', fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.72)', transition: 'color 0.3s' }}
+                  style={{ fontSize: '0.75rem', fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-ink-2)', transition: 'color 0.3s' }}
                   onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,1)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.72)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-2)')}
                 >
                   Get in touch →
                 </Link>
               </div>
               <p
                 className="hidden lg:block text-right"
-                style={{ fontSize: '0.78rem', fontWeight: 300, lineHeight: 1.65, color: 'rgba(245,242,237,0.68)', maxWidth: '250px', letterSpacing: '0.01em' }}
+                style={{ fontSize: '0.78rem', fontWeight: 300, lineHeight: 1.65, color: 'var(--color-ink-3)', maxWidth: '250px', letterSpacing: '0.01em' }}
               >
                 300M+ users reached.<br />
                 $5M in documented savings.<br />

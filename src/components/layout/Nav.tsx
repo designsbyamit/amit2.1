@@ -67,7 +67,7 @@ export default function Nav() {
                     to={item.to}
                     className={({ isActive }) =>
                       `text-label text-white transition-all duration-200 ${
-                        isActive ? 'opacity-100' : 'opacity-65 hover:opacity-100'
+                        isActive ? 'text-white' : 'text-ink-2 hover:text-white'
                       }`
                     }
                   >
@@ -103,8 +103,8 @@ export default function Nav() {
                               onClick={() => setCraftOpen(false)}
                             >
                               <span
-                                className="text-white"
-                                style={{ fontSize: '0.72rem', letterSpacing: '0.02em', opacity: 0.65 }}
+                                className="text-ink-3"
+                                style={{ fontSize: '0.72rem', letterSpacing: '0.02em' }}
                               >
                                 {cs.shortTitle}
                               </span>
@@ -122,7 +122,7 @@ export default function Nav() {
                     end={item.to === '/'}
                     className={({ isActive }) =>
                       `text-label text-white transition-all duration-200 ${
-                        isActive ? 'opacity-100' : 'opacity-65 hover:opacity-100'
+                        isActive ? 'text-white' : 'text-ink-2 hover:text-white'
                       }`
                     }
                   >
@@ -134,7 +134,7 @@ export default function Nav() {
           </ul>
 
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2 opacity-70 hover:opacity-100 transition-opacity"
+            className="md:hidden flex flex-col gap-1.5 p-2 opacity-90 hover:opacity-100 transition-opacity"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
@@ -167,7 +167,7 @@ export default function Nav() {
                       to={item.to}
                       end={item.to === '/'}
                       className={({ isActive }) =>
-                        `text-display-l text-white transition-opacity ${isActive ? 'opacity-100' : 'opacity-50 hover:opacity-80'}`
+                        `text-display-l transition-colors ${isActive ? 'text-white' : 'text-ink-3 hover:text-white'}`
                       }
                       onClick={() => setMenuOpen(false)}
                     >

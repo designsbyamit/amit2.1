@@ -37,11 +37,11 @@ export default function Journey() {
                 <div className="hidden md:block absolute left-0 w-2 h-2 rounded-full bg-white opacity-30 -translate-x-[3px] mt-1 group-hover:opacity-80 transition-opacity" />
 
                 <div>
-                  <p className="text-label text-white opacity-50 mb-1">{phase.years}</p>
-                  <p className="text-overline text-white opacity-60">{phase.title}</p>
-                  <p className="text-label text-white opacity-55 mt-1">{phase.company}</p>
+                  <p className="text-label text-ink-3 mb-1">{phase.years}</p>
+                  <p className="text-overline text-ink-3">{phase.title}</p>
+                  <p className="text-label text-ink-3 mt-1">{phase.company}</p>
                 </div>
-                <p className="text-body text-white opacity-60 leading-relaxed">
+                <p className="text-body text-ink-3 leading-relaxed">
                   {phase.narrative}
                 </p>
               </motion.div>

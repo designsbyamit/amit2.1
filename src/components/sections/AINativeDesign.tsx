@@ -47,9 +47,9 @@ export default function AINativeDesign() {
             </motion.h2>
           </div>
           <motion.p
-            className="text-body text-white opacity-60"
+            className="text-body text-ink-3"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 0.6, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -68,9 +68,9 @@ export default function AINativeDesign() {
               viewport={{ once: true, margin: '-5%' }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <p className="text-label text-white opacity-50 mb-4">{p.number}</p>
+              <p className="text-label text-ink-3 mb-4">{p.number}</p>
               <h3 className="text-heading text-white mb-4">{p.title}</h3>
-              <p className="text-body text-white opacity-55">{p.body}</p>
+              <p className="text-body text-ink-3">{p.body}</p>
             </motion.div>
           ))}
         </div>

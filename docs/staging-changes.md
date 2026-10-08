@@ -45,3 +45,10 @@ Nothing here is deployed until `staging` is merged into `main`.
 - About and Journey now use the same employers, titles and dates as www.designsbyamit.com (Infosys 2011-14, Photon 2014-15, HPE 2015-18, Accenture Song 2018-24, SAP Labs 2024-now).
 - Journey previously listed SAP from 2022 and an "Infosys UX Academy 2009-11"; replaced with a "College" foundations phase (leadership from college). Amit to confirm wording.
 - SAP Design Hub India: Amit is Lead since Feb 2025 (not founder); Impulse India: Lead Curator. Founder claims, the 2022 start and the first-person founding story were removed. The story stays hidden until he writes it, and the Leadership Stories section is hidden until at least one story is written.
+
+## Contrast and design system
+- Text colour moved from opacity to tokens (ink, ink-2, ink-3). 420+ class and inline usages migrated; animated text no longer dims to 0.5.
+- Measured on 1,734 visible text elements across all routes at 1440px: 96.5% at 7:1 or better, median 7.9:1 (before: 726 of 1,611 sat in the 4.5-6:1 band, barely AA).
+- Remaining below AA: SAP Search demo internals and decorative glyphs.
+- Text floor 12px, body weight 400, 44px tap targets, global focus ring.
+- New: src/styles/tokens.css, src/components/ds/*, /design-system page, docs/design-system.md.
