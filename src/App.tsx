@@ -1,5 +1,5 @@
-import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom'
+import { Suspense, lazy, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
@@ -20,6 +20,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'))
 const DualFluencyPage = lazy(() => import('./pages/DualFluencyPage'))
 const AINativeFrameworksPage = lazy(() => import('./pages/AINativeFrameworksPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
+const MentoringPage = lazy(() => import('./pages/MentoringPage'))
 const DesignSystemPage = lazy(() => import('./pages/DesignSystemPage'))
 const ConversationExperiencePage = lazy(() => import('./pages/ConversationExperiencePage'))
 
@@ -36,6 +37,16 @@ function PageTransition({ children }: { children: React.ReactNode }) {
   )
 }
 
+/** Old links looked like /#/craft. Send them to the clean URL. */
+function LegacyHashRedirect() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const h = window.location.hash
+    if (h.startsWith('#/')) navigate(h.slice(1), { replace: true })
+  }, [navigate])
+  return null
+}
+
 function AnimatedRoutes() {
   const location = useLocation()
   return (
@@ -47,6 +58,7 @@ function AnimatedRoutes() {
         <Route path="/craft/sap-search" element={<PageTransition><SAPSearchStoryPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
+        <Route path="/mentoring" element={<PageTransition><MentoringPage /></PageTransition>} />
         <Route path="/community" element={<PageTransition><CommunityPage /></PageTransition>} />
         <Route path="/reflections" element={<PageTransition><ReflectionsPage /></PageTransition>} />
         <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
@@ -66,16 +78,17 @@ function AnimatedRoutes() {
 export default function App() {
   useLenis()
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="bg-black text-white min-h-screen">
         <ScrollProgressLine />
         <ScrollToTop />
+        <LegacyHashRedirect />
         <Nav />
         <main>
           <AnimatedRoutes />
         </main>
         <Footer />
       </div>
-    </HashRouter>
+    </BrowserRouter>
   )
 }

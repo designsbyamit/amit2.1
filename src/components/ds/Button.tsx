@@ -16,7 +16,8 @@ interface Props {
 
 /** One button for the whole site. Min 44px tap height on touch devices. */
 export default function Button({ variant = 'primary', small, to, href, onClick, children, className = '', type = 'button' }: Props) {
-  const cls = `btn btn-${variant} ${small ? 'btn-sm' : ''} ${className}`.trim()
+  const variants: Record<Variant, string> = { primary: 'btn-primary', secondary: 'btn-secondary', ghost: 'btn-ghost' }
+  const cls = `btn ${variants[variant]} ${small ? 'btn-sm' : ''} ${className}`.trim()
   if (to) return <Link to={to} className={cls}>{children}</Link>
   if (href) {
     const external = /^https?:/.test(href)

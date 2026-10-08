@@ -7,7 +7,7 @@ export default function LeadershipStories() {
   // Hidden until at least one story has been written.
   if (!stories.some(st => st.narrative.length > 0)) return null
   return (
-    <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 overflow-hidden">
+    <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden">
       <GrainOverlay opacity={0.03} />
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-16">

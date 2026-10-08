@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss'
 
 export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
+  safelist: ['btn', 'btn-primary', 'btn-secondary', 'btn-ghost', 'btn-sm', 'chip', 'card', 'field', 'tap-target', 'container-site', 'section-y'],
   theme: {
     extend: {
       colors: {

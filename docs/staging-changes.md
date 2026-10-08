@@ -52,3 +52,12 @@ Nothing here is deployed until `staging` is merged into `main`.
 - Remaining below AA: SAP Search demo internals and decorative glyphs.
 - Text floor 12px, body weight 400, 44px tap targets, global focus ring.
 - New: src/styles/tokens.css, src/components/ds/*, /design-system page, docs/design-system.md.
+
+## Information architecture round
+- New Mentoring & Coaching page (/mentoring): two ADPList session types, how I mentor, topics, three verbatim ADPList mentee reviews, booking links.
+- Testimonials: colleague quotes (from designsbyamit.com) on Leadership; mixed colleague + mentee quotes on About.
+- About: background (computer science, development) and "Beyond the work" section from the old site.
+- Contact by intent: Work together / Get mentored / Invite me to speak, plus ADPList and Topmate links.
+- Clean URLs: BrowserRouter, old /#/ links redirect, vercel.json rewrite, 404.html fallback for GitHub Pages, sitemap.xml and robots.txt.
+- Consistency: one content width shared by nav, footer, headers and sections; section padding standardised (section-y) on 35 sections.
+- Open: ADPList profile says 14+ years, the site says 16+. Resources restructure pending Amit approval of the proposed IA.

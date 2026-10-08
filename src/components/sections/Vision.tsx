@@ -5,7 +5,7 @@ import GrainOverlay from '../ui/GrainOverlay'
 
 export default function Vision() {
   return (
-    <section className="relative bg-black py-32 md:py-48 px-6 md:px-12 overflow-hidden">
+    <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden">
       <SweepLines />
       <GrainOverlay opacity={0.05} />
 

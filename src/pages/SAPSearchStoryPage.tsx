@@ -1069,7 +1069,7 @@ export default function SAPSearchStoryPage() {
       </section>
 
       {/* ── CHAPTER 12: FORWARD ── */}
-      <section id="ch12" className="relative bg-black py-32 md:py-40 px-6 md:px-12 border-t border-white border-opacity-[0.07] overflow-hidden">
+      <section id="ch12" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07] overflow-hidden">
         <GrainOverlay opacity={0.05} />
 
         {/* Large background text */}

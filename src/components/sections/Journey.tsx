@@ -4,7 +4,7 @@ import SectionLabel from '../ui/SectionLabel'
 
 export default function Journey() {
   return (
-    <section className="bg-black py-24 md:py-32 px-6 md:px-12" id="journey">
+    <section className="bg-black section-y px-6 md:px-12" id="journey">
       <div className="mx-auto max-w-7xl">
         <div className="flex items-start justify-between mb-20">
           <SectionLabel>Journey</SectionLabel>

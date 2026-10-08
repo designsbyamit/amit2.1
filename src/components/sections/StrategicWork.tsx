@@ -9,7 +9,7 @@ export default function StrategicWork() {
   const [active, setActive] = useState<string | null>(null)
 
   return (
-    <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 overflow-hidden" id="work">
+    <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden" id="work">
       <GrainOverlay opacity={0.04} />
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="flex items-end justify-between mb-20">

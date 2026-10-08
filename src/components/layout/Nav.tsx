@@ -7,6 +7,7 @@ import { caseStudies } from '../../data/work'
 const navItems = [
   { label: 'Craft', to: '/craft' },
   { label: 'Leadership', to: '/leadership' },
+  { label: 'Mentoring', to: '/mentoring' },
   { label: 'Community', to: '/community' },
   { label: 'Reflections', to: '/reflections' },
   { label: 'Resources', to: '/resources' },
@@ -45,7 +46,7 @@ export default function Nav() {
           borderBottom: scrolled ? '1px solid rgba(245,242,237,0.08)' : '1px solid transparent',
         }}
       >
-        <nav className="mx-auto max-w-7xl px-6 md:px-12 h-16 flex items-center justify-between">
+        <nav className="container-site h-16 flex items-center justify-between">
           <Link
             to="/"
             className="opacity-80 hover:opacity-100 transition-opacity"

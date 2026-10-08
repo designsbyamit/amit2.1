@@ -281,7 +281,7 @@ export default function CaseStudyPage() {
 
       {/* Prototype embed */}
       {cs.prototypeUrl && (
-        <section className="relative bg-black py-20 md:py-24 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+        <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
           <GrainOverlay opacity={0.02} />
           <div className="relative z-10 mx-auto max-w-7xl">
             <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-10">
@@ -336,7 +336,7 @@ export default function CaseStudyPage() {
 
       {/* Key highlights */}
       {cs.highlights && (
-        <section className="relative bg-black py-20 md:py-24 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+        <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
           <div className="relative z-10 mx-auto max-w-7xl">
             <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
               <div>
@@ -367,7 +367,7 @@ export default function CaseStudyPage() {
 
       {/* Testimonial */}
       {cs.testimonial && (
-        <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 overflow-hidden border-t border-white border-opacity-[0.06]">
+        <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden border-t border-white border-opacity-[0.06]">
           <GrainOverlay opacity={0.04} />
           <div
             className="absolute top-8 left-6 md:left-12 select-none pointer-events-none text-white"

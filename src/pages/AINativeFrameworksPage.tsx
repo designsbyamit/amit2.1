@@ -765,7 +765,7 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Why AI-native ── */}
-      <section className="relative bg-black py-24 md:py-28 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -831,7 +831,7 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Methodology ── */}
-      <section id="methodology" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section id="methodology" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -848,7 +848,7 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Frameworks ── */}
-      <section id="frameworks" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section id="frameworks" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-8">
@@ -867,7 +867,7 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Tool Orchestration ── */}
-      <section id="tools" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section id="tools" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -911,7 +911,7 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Downloads ── */}
-      <section id="downloads" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section id="downloads" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -946,7 +946,7 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Glossary ── */}
-      <section id="glossary" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section id="glossary" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-12">

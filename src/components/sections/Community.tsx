@@ -111,7 +111,7 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
 
 export default function Community() {
   return (
-    <section className="relative bg-black py-24 md:py-32 overflow-hidden" id="community">
+    <section className="relative bg-black section-y overflow-hidden" id="community">
       <GrainOverlay opacity={0.03} />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">

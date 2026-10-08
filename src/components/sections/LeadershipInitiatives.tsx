@@ -5,7 +5,7 @@ import GrainOverlay from '../ui/GrainOverlay'
 
 export default function LeadershipInitiatives() {
   return (
-    <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+    <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
       <GrainOverlay opacity={0.03} />
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">

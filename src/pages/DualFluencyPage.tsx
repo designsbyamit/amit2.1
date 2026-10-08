@@ -473,7 +473,7 @@ export default function DualFluencyPage() {
       </section>
 
       {/* ── Workshop Journey ── */}
-      <section id="journey" className="relative bg-black py-24 md:py-32 px-6 md:px-12">
+      <section id="journey" className="relative bg-black section-y px-6 md:px-12">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -495,7 +495,7 @@ export default function DualFluencyPage() {
       </section>
 
       {/* ── Framework: KPI Chain ── */}
-      <section id="framework" className="relative bg-black py-24 md:py-32 px-6 md:px-12">
+      <section id="framework" className="relative bg-black section-y px-6 md:px-12">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -562,7 +562,7 @@ export default function DualFluencyPage() {
       </section>
 
       {/* ── KPI Library ── */}
-      <section id="kpis" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+      <section id="kpis" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -590,7 +590,7 @@ export default function DualFluencyPage() {
       </section>
 
       {/* ── Glossary ── */}
-      <section id="glossary" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+      <section id="glossary" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -625,7 +625,7 @@ export default function DualFluencyPage() {
       </section>
 
       {/* ── Canvas ── */}
-      <section id="canvas" className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+      <section id="canvas" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-12">

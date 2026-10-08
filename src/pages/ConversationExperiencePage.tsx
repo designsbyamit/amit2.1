@@ -124,7 +124,7 @@ export default function ConversationExperiencePage() {
       </section>
 
       {/* Chapters */}
-      <section className="relative bg-black py-20 md:py-28 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
@@ -206,7 +206,7 @@ export default function ConversationExperiencePage() {
       </section>
 
       {/* Metrics */}
-      <section className="relative bg-black py-20 md:py-28 px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">

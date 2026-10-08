@@ -38,7 +38,7 @@ export default function Craft() {
       <WorksBento />
 
       {/* Philosophy */}
-      <section className="relative bg-black py-20 md:py-24 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">
           <motion.p
@@ -84,7 +84,7 @@ export default function Craft() {
       </section>
 
       {/* Design Decisions — Micro-Stories */}
-      <section className="relative bg-black py-24 md:py-32 px-6 md:px-12">
+      <section className="relative bg-black section-y px-6 md:px-12">
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="border-t border-white pt-16 mb-0" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>

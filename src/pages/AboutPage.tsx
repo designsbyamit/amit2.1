@@ -2,6 +2,8 @@ import PageHeader from '../components/ui/PageHeader'
 import Contact from '../components/sections/Contact'
 import GrainOverlay from '../components/ui/GrainOverlay'
 import SectionLabel from '../components/ui/SectionLabel'
+import Testimonials from '../components/sections/Testimonials'
+import { colleagueTestimonials, menteeTestimonials } from '../data/testimonials'
 import { motion } from 'framer-motion'
 
 const timeline = [
@@ -22,7 +24,7 @@ export default function AboutPage() {
       />
 
       {/* Impact areas */}
-      <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="mb-16">
@@ -62,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       {/* Journey */}
-      <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.06]">
+      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
           <div>
@@ -96,6 +98,24 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* The person */}
+      <section className="section-y hairline-top">
+        <div className="container-site grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
+          <p className="text-overline text-ink-3">Beyond the work</p>
+          <div className="space-y-8 max-w-2xl">
+            <p className="text-body-lg text-ink-2">
+              I started in computer science and development, which is why I'm comfortable with the technical side of design. I then spent my career turning complicated business ideas into simple, usable products, and learning how to lead the people who build them.
+            </p>
+            <p className="text-body text-ink-2">
+              Outside work I'm a morning runner. I listen to old melodies and Indian classical music, I meditate, and I read about the science behind spirituality. Those habits are quiet and unhurried, and I think they show up in how I design and lead.
+            </p>
+            <p className="text-body text-ink-3">Based in Bengaluru, India.</p>
+          </div>
+        </div>
+      </section>
+
+      <Testimonials label="In their words" title="Colleagues and mentees." items={[colleagueTestimonials[0], menteeTestimonials[0], menteeTestimonials[2], colleagueTestimonials[1]]} />
 
       <Contact />
     </>

@@ -24,7 +24,7 @@ const systems = [
 
 export default function DesignSystems() {
   return (
-    <section className="bg-black py-24 md:py-32 px-6 md:px-12" id="systems">
+    <section className="bg-black section-y px-6 md:px-12" id="systems">
       <div className="mx-auto max-w-7xl">
         <div className="mb-20">
           <SectionLabel>Design Systems</SectionLabel>

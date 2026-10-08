@@ -282,7 +282,7 @@ export default function Resources() {
     : resources.filter(r => r.filterTags.includes(activeFilter))
 
   return (
-    <section className="relative bg-black py-24 md:py-32 px-6 md:px-12" id="resources">
+    <section className="relative bg-black section-y px-6 md:px-12" id="resources">
       <GrainOverlay opacity={0.03} />
       <div className="relative z-10 mx-auto max-w-7xl">
 

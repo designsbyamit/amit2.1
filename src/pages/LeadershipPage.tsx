@@ -5,10 +5,12 @@ import PageHeader from '../components/ui/PageHeader'
 import Journey from '../components/sections/Journey'
 import LeadershipStories from '../components/sections/LeadershipStories'
 import LeadershipArticles from '../components/sections/LeadershipArticles'
+import Testimonials from '../components/sections/Testimonials'
+import { colleagueTestimonials } from '../data/testimonials'
 
 function CommunityCallout() {
   return (
-    <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
+    <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.08]">
       <div className="mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">
         <motion.p
           className="text-overline text-ink-3"
@@ -57,6 +59,7 @@ export default function LeadershipPage() {
       <Journey />
       <LeadershipStories />
       <CommunityCallout />
+      <Testimonials label="Colleagues" title="How the people I work with describe it." items={colleagueTestimonials} />
       <LeadershipArticles />
     </>
   )

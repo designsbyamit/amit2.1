@@ -23,7 +23,7 @@ const pillars = [
 
 export default function Leadership() {
   return (
-    <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 overflow-hidden">
+    <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden">
       <GrainOverlay opacity={0.04} />
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid md:grid-cols-2 gap-12 mb-20 items-end">

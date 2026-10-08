@@ -28,7 +28,7 @@ const principles = [
 
 export default function AINativeDesign() {
   return (
-    <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 overflow-hidden" id="ai">
+    <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden" id="ai">
       <SweepLines />
       <GrainOverlay opacity={0.05} />
 
