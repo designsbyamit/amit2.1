@@ -9,7 +9,8 @@ import {
   useSpring,
 } from 'framer-motion'
 import GrainOverlay from '../ui/GrainOverlay'
-import heroImg from '../../assets/images/amit-stage.jpg'
+import heroImg from '../../assets/images/amit-stage.webp'
+import heroImgSm from '../../assets/images/amit-stage-1200.webp'
 
 function Line({
   children,
@@ -73,7 +74,7 @@ export default function Hero() {
       {/* ── PORTRAIT — z:1, atmospheric base ── */}
       <motion.div className="absolute inset-0" style={{ y: photoY, scale: photoScale, zIndex: 1 }}>
         <motion.div className="absolute inset-0" style={{ x: imgDriftX, y: imgDriftY }}>
-          <img src={heroImg} alt="" className="hero-img w-full h-full object-cover"
+          <img src={heroImg} srcSet={`${heroImgSm} 1200w, ${heroImg} 2400w`} sizes="100vw" fetchPriority="high" decoding="async" alt="Amit Kumar Tiwari speaking on stage" className="hero-img w-full h-full object-cover"
             style={{ filter: 'saturate(0.08) contrast(1.1) brightness(0.45)', willChange: 'transform' }} />
         </motion.div>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.96) 12%, rgba(12,12,11,0.7) 28%, rgba(12,12,11,0.15) 55%, transparent 80%)' }} />
@@ -95,20 +96,20 @@ export default function Hero() {
           transition={{ delay: 0.1, duration: 1.0, ease: 'easeOut' }}
         >
           <div className="flex items-center gap-5">
-            <span style={{ fontSize: '0.6rem', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.28)' }}>
+            <span style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.78)' }}>
               Amit Kumar Tiwari
             </span>
             <span style={{ width: 1, height: 12, background: 'rgba(245,242,237,0.12)', display: 'inline-block' }} />
-            <span style={{ fontSize: '0.6rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.16)' }}>
+            <span style={{ fontSize: '0.7rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.6)' }}>
               Design Leader · Enterprise AI
             </span>
           </div>
           <Link
             to="/leadership"
-            style={{ fontSize: '0.58rem', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.1)', transition: 'color 0.4s' }}
+            style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.6)', transition: 'color 0.4s' }}
             className="hidden md:block"
-            onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.38)')}
-            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.1)')}
+            onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.95)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.6)')}
           >
             Dual Fluency · AI-Native · Agentic
           </Link>
@@ -158,16 +159,16 @@ export default function Hero() {
                 </Link>
                 <Link
                   to="/contact"
-                  style={{ fontSize: '0.68rem', fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.28)', transition: 'color 0.3s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.7)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.28)')}
+                  style={{ fontSize: '0.68rem', fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.72)', transition: 'color 0.3s' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,1)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.72)')}
                 >
                   Get in touch →
                 </Link>
               </div>
               <p
                 className="hidden lg:block text-right"
-                style={{ fontSize: '0.68rem', fontWeight: 300, lineHeight: 1.65, color: 'rgba(245,242,237,0.2)', maxWidth: '210px', letterSpacing: '0.01em' }}
+                style={{ fontSize: '0.78rem', fontWeight: 300, lineHeight: 1.65, color: 'rgba(245,242,237,0.68)', maxWidth: '250px', letterSpacing: '0.01em' }}
               >
                 300M+ users reached.<br />
                 $5M in documented savings.<br />

@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { caseStudies } from '../data/work'
+import CaseCover from '../components/ui/CaseCover'
 import GrainOverlay from '../components/ui/GrainOverlay'
 import Hero from '../components/sections/Hero'
 import ImpactSnapshot from '../components/sections/ImpactSnapshot'
@@ -54,17 +55,19 @@ function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number })
             </div>
           )}
 
+          {!cs.image && <CaseCover cs={cs} className="md:hidden w-full" minHeight={160} />}
+
           {/* Text */}
           <div className="flex-shrink-0 w-full md:w-2/5 flex flex-col justify-center py-8 md:py-14 md:pr-10">
             <div className="flex items-baseline gap-4 mb-4">
-              <span style={{ fontSize: '0.58rem', opacity: 0.18, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
-              <span className="text-overline text-white opacity-25">{cs.category}</span>
+              <span style={{ fontSize: '0.58rem', opacity: 0.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
+              <span className="text-overline text-white opacity-50">{cs.category}</span>
             </div>
             <h3 className="text-white mb-4 group-hover:opacity-75 transition-opacity duration-500"
               style={{ fontSize: 'clamp(1.3rem, 2.8vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
               {cs.title}
             </h3>
-            <p className="text-white max-w-sm" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68, opacity: 0.3 }}>
+            <p className="text-white max-w-sm" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68, opacity: 0.52 }}>
               {cs.tagline}
             </p>
           </div>
@@ -80,6 +83,7 @@ function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number })
               />
             </div>
           )}
+          {!cs.image && <CaseCover cs={cs} className="hidden md:flex flex-shrink-0 w-3/5" minHeight={420} />}
         </Link>
       </motion.div>
     </motion.div>
@@ -102,7 +106,7 @@ export default function Home() {
           <div className="grid md:grid-cols-[1fr_2.2fr] gap-14 md:gap-24 items-start">
             <FadeUp>
               <div className="flex items-center gap-5 md:pt-1">
-                <p className="text-overline text-white opacity-25">About</p>
+                <p className="text-overline text-white opacity-50">About</p>
                 <div className="flex-1 border-t border-white opacity-[0.06]" />
               </div>
             </FadeUp>
@@ -131,14 +135,14 @@ export default function Home() {
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 pb-32 md:pb-48">
           <div className="flex items-end justify-between border-t border-white border-opacity-[0.07] pt-14 mb-0">
-            <FadeUp><p className="text-overline text-white opacity-25">Craft</p></FadeUp>
+            <FadeUp><p className="text-overline text-white opacity-50">Craft</p></FadeUp>
             <FadeUp delay={0.1}>
-              <Link to="/craft" className="text-label text-white opacity-20 hover:opacity-55 transition-opacity duration-300">
+              <Link to="/craft" className="text-label text-white opacity-50 hover:opacity-55 transition-opacity duration-300">
                 View all →
               </Link>
             </FadeUp>
           </div>
-          {caseStudies.filter(cs => cs.id === 'airline-app').map((cs, i) => (
+          {['airline-app', 'engaze', 'sap-search'].map(id => caseStudies.find(c => c.id === id)!).map((cs, i) => (
             <ProjectRow key={cs.id} cs={cs} index={i} />
           ))}
           <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.07)' }} />
@@ -150,7 +154,7 @@ export default function Home() {
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 pb-32 md:pb-48">
           <div className="flex items-end justify-between border-t border-white border-opacity-[0.07] pt-14 mb-0">
-            <FadeUp><p className="text-overline text-white opacity-25">Talks & Writing</p></FadeUp>
+            <FadeUp><p className="text-overline text-white opacity-50">Talks & Writing</p></FadeUp>
           </div>
 
           {/* DesignUp Workshop */}
@@ -172,7 +176,7 @@ export default function Home() {
                   DesignUp — Dual Fluency Workshop
                 </h3>
               </div>
-              <p className="hidden md:block text-label text-white opacity-15 group-hover:opacity-45 transition-opacity shrink-0 mt-2">
+              <p className="hidden md:block text-label text-white opacity-50 group-hover:opacity-60 transition-opacity shrink-0 mt-2">
                 Community →
               </p>
             </Link>
@@ -197,7 +201,7 @@ export default function Home() {
                   How Vedic Secrets Can Disrupt<br />Your Design Game
                 </h3>
               </div>
-              <p className="hidden md:block text-label text-white opacity-15 group-hover:opacity-45 transition-opacity shrink-0 mt-2">
+              <p className="hidden md:block text-label text-white opacity-50 group-hover:opacity-60 transition-opacity shrink-0 mt-2">
                 Reflections →
               </p>
             </Link>

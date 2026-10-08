@@ -1,4 +1,5 @@
 import { HashRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
@@ -6,18 +7,20 @@ import ScrollToTop from './components/ui/ScrollToTop'
 import ScrollProgressLine from './components/ui/ScrollProgressLine'
 import { useLenis } from './hooks/useLenis'
 import Home from './pages/Home'
-import Craft from './pages/Craft'
-import LeadershipPage from './pages/LeadershipPage'
-import ReflectionsPage from './pages/ReflectionsPage'
-import CommunityPage from './pages/CommunityPage'
-import AboutPage from './pages/AboutPage'
-import CaseStudyPage from './pages/CaseStudyPage'
-import ResourcesPage from './pages/ResourcesPage'
-import ContactPage from './pages/ContactPage'
-import DualFluencyPage from './pages/DualFluencyPage'
-import AINativeFrameworksPage from './pages/AINativeFrameworksPage'
-import SAPSearchStoryPage from './pages/SAPSearchStoryPage'
-import ConversationExperiencePage from './pages/ConversationExperiencePage'
+
+// Route-level code splitting: only the page being visited is downloaded.
+const Craft = lazy(() => import('./pages/Craft'))
+const LeadershipPage = lazy(() => import('./pages/LeadershipPage'))
+const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
+const CommunityPage = lazy(() => import('./pages/CommunityPage'))
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'))
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const DualFluencyPage = lazy(() => import('./pages/DualFluencyPage'))
+const AINativeFrameworksPage = lazy(() => import('./pages/AINativeFrameworksPage'))
+const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
+const ConversationExperiencePage = lazy(() => import('./pages/ConversationExperiencePage'))
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   return (
@@ -35,6 +38,7 @@ function PageTransition({ children }: { children: React.ReactNode }) {
 function AnimatedRoutes() {
   const location = useLocation()
   return (
+    <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
@@ -48,12 +52,12 @@ function AnimatedRoutes() {
         <Route path="/resources" element={<PageTransition><ResourcesPage /></PageTransition>} />
         <Route path="/resources/dual-fluency" element={<PageTransition><DualFluencyPage /></PageTransition>} />
         <Route path="/resources/ai-native-patterns" element={<PageTransition><AINativeFrameworksPage /></PageTransition>} />
-        <Route path="/craft/sap-search" element={<PageTransition><SAPSearchStoryPage /></PageTransition>} />
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/philosophy" element={<Navigate to="/about" replace />} />
       </Routes>
     </AnimatePresence>
+    </Suspense>
   )
 }
 

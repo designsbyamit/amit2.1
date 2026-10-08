@@ -35,9 +35,9 @@ export default function ImpactSnapshot() {
       <GrainOverlay opacity={0.04} />
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 py-20 md:py-28">
         <motion.p
-          className="text-overline text-white opacity-30 mb-12"
+          className="text-overline text-white opacity-50 mb-12"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.3 }}
+          whileInView={{ opacity: 0.52 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
@@ -51,7 +51,7 @@ export default function ImpactSnapshot() {
             return (
               <motion.div
                 key={metric.label}
-                className="bg-black flex flex-col justify-between p-7 md:p-9 aspect-square"
+                className={`bg-black flex flex-col justify-between p-7 md:p-9 ${i === metrics.length - 1 && metrics.length % 2 === 1 ? 'col-span-2 aspect-[2/1]' : 'aspect-square'} ${i === metrics.length - 1 && metrics.length % 4 === 3 ? 'md:col-span-2 md:aspect-auto' : i === metrics.length - 1 && metrics.length % 4 === 1 ? 'md:col-span-4 md:aspect-auto' : ''}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ backgroundColor: 'rgba(245,242,237,0.028)', transition: { duration: 0.2 } }}
@@ -78,7 +78,7 @@ export default function ImpactSnapshot() {
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                     lineHeight: 1.4,
-                    opacity: 0.32,
+                    opacity: 0.52,
                   }}
                 >
                   {metric.label}

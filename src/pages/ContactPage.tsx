@@ -1,5 +1,5 @@
 import Contact from '../components/sections/Contact'
 
 export default function ContactPage() {
-  return <Contact />
+  return <Contact headingLevel="h1" />
 }

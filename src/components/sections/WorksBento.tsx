@@ -1,3 +1,4 @@
+import CaseCover from '../ui/CaseCover'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { caseStudies } from '../../data/work'
@@ -45,17 +46,18 @@ export default function WorksBento() {
                         />
                       </div>
                     )}
+                    {!cs.image && <CaseCover cs={cs} className="w-full md:hidden" minHeight={180} />}
 
                     {/* Text */}
                     <div className="flex-1 py-8 md:py-10 pr-0 md:pr-20 flex flex-col justify-center">
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="text-label text-white opacity-20">{cs.number}</span>
-                        <span className="text-overline text-white opacity-35">{cs.category}</span>
+                        <span className="text-label text-white opacity-50">{cs.number}</span>
+                        <span className="text-overline text-white opacity-55">{cs.category}</span>
                       </div>
                       <h3 className="text-heading text-white mb-3 group-hover:opacity-75 transition-opacity duration-300">
                         {cs.title}
                       </h3>
-                      <p className="text-body text-white opacity-45 mb-6 max-w-2xl">{cs.tagline}</p>
+                      <p className="text-body text-white opacity-60 mb-6 max-w-2xl">{cs.tagline}</p>
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                         {cs.role && (
                           <span className="text-label text-white border px-2.5 py-0.5"
@@ -64,10 +66,10 @@ export default function WorksBento() {
                           </span>
                         )}
                         {cs.timeline && (
-                          <span className="text-label text-white opacity-30">{cs.timeline}</span>
+                          <span className="text-label text-white opacity-50">{cs.timeline}</span>
                         )}
                         {cs.domain && (
-                          <span className="text-label text-white opacity-25">· {cs.domain}</span>
+                          <span className="text-label text-white opacity-50">· {cs.domain}</span>
                         )}
                       </div>
                     </div>
@@ -83,6 +85,7 @@ export default function WorksBento() {
                         />
                       </div>
                     )}
+                    {!cs.image && <CaseCover cs={cs} className="hidden md:flex w-1/2 shrink-0" />}
                   </div>
                 </Link>
               </motion.div>

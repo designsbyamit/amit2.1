@@ -199,19 +199,19 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
     <div className="border border-white border-opacity-[0.1] overflow-hidden" style={{ background: 'rgba(12,12,11,0.98)' }}>
       {/* Scenario selector */}
       <div className="flex items-center gap-0 border-b border-white border-opacity-[0.07] px-4 py-3">
-        <span className="text-label text-white opacity-20 mr-4 flex-shrink-0">Try:</span>
+        <span className="text-label text-white opacity-50 mr-4 flex-shrink-0">Try:</span>
         {SCENARIOS.map(sc => (
           <button
             key={sc.id}
             onClick={() => runScenario(sc)}
-            className={`text-label text-white px-4 py-2 transition-all duration-200 flex-shrink-0 ${activeScenario.id === sc.id && state !== 'idle' ? 'opacity-90 border-b border-white' : 'opacity-30 hover:opacity-60'}`}
+            className={`text-label text-white px-4 py-2 transition-all duration-200 flex-shrink-0 ${activeScenario.id === sc.id && state !== 'idle' ? 'opacity-90 border-b border-white' : 'opacity-50 hover:opacity-60'}`}
           >
             {sc.label}
           </button>
         ))}
         <div className="flex-1" />
         {state !== 'idle' && (
-          <button onClick={reset} className="text-label text-white opacity-25 hover:opacity-60 transition-opacity px-3 py-1">
+          <button onClick={reset} className="text-label text-white opacity-50 hover:opacity-60 transition-opacity px-3 py-1">
             Reset
           </button>
         )}
@@ -245,7 +245,7 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
           {/* Right side of search bar */}
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
             {/* AI badge */}
-            <span className="text-label text-white border border-white border-opacity-20 px-2 py-0.5 opacity-40" style={{ fontSize: '0.58rem' }}>AI</span>
+            <span className="text-label text-white border border-white border-opacity-50 px-2 py-0.5 opacity-55" style={{ fontSize: '0.58rem' }}>AI</span>
             {/* Thinking spinner */}
             {state === 'thinking' && (
               <motion.div
@@ -258,7 +258,7 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
             {/* Search button */}
             {typedQuery && state === 'typing' && (
               <button onClick={handleSearch}
-                className="text-label text-white border border-white border-opacity-25 px-3 py-1 hover:border-opacity-60 transition-all">
+                className="text-label text-white border border-white border-opacity-50 px-3 py-1 hover:border-opacity-60 transition-all">
                 ↵
               </button>
             )}
@@ -301,7 +301,7 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                     {s.type === 'history' && <span className="text-white opacity-20" style={{ fontSize: '0.65rem' }}>↺</span>}
                   </span>
                   <span className="text-white opacity-65 flex-1 text-left" style={{ fontSize: '0.85rem' }}>{s.text}</span>
-                  {s.meta && <span className="text-label text-white opacity-25 flex-shrink-0">{s.meta}</span>}
+                  {s.meta && <span className="text-label text-white opacity-50 flex-shrink-0">{s.meta}</span>}
                 </motion.button>
               ))}
             </motion.div>
@@ -325,13 +325,13 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-white opacity-50" />
-                    <span className="text-label text-white opacity-35">AI Overview</span>
+                    <span className="text-label text-white opacity-55">AI Overview</span>
                   </div>
                   {/* Confidence badge */}
                   <AnimatePresence>
                     {overviewDone && (
                       <motion.span
-                        className="text-label text-white border border-white border-opacity-15 px-2 py-0.5 opacity-50"
+                        className="text-label text-white border border-white border-opacity-50 px-2 py-0.5 opacity-50"
                         style={{ fontSize: '0.58rem' }}
                         initial={{ opacity: 0 }} animate={{ opacity: 0.5 }}
                         transition={{ delay: 0.3 }}
@@ -344,7 +344,7 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                 {/* Explainability toggle */}
                 <button
                   onClick={() => setExpandReasoning(r => !r)}
-                  className="text-label text-white opacity-20 hover:opacity-50 transition-opacity flex-shrink-0"
+                  className="text-label text-white opacity-50 hover:opacity-50 transition-opacity flex-shrink-0"
                   style={{ fontSize: '0.6rem' }}
                 >
                   {expandReasoning ? 'Hide reasoning ↑' : 'Why this? →'}
@@ -366,7 +366,7 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                     className="flex flex-wrap gap-2"
                     initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
                     {activeScenario.sources.map(src => (
-                      <span key={src} className="text-label text-white border border-white border-opacity-[0.1] px-2.5 py-1 opacity-35"
+                      <span key={src} className="text-label text-white border border-white border-opacity-[0.1] px-2.5 py-1 opacity-55"
                         style={{ fontSize: '0.62rem' }}>
                         {src}
                       </span>
@@ -384,8 +384,8 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                     exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }}
                     style={{ overflow: 'hidden' }}
                   >
-                    <p className="text-label text-white opacity-25 mb-2">Why this result</p>
-                    <p className="text-white opacity-40" style={{ fontSize: '0.78rem', lineHeight: 1.55 }}>
+                    <p className="text-label text-white opacity-50 mb-2">Why this result</p>
+                    <p className="text-white opacity-60" style={{ fontSize: '0.78rem', lineHeight: 1.55 }}>
                       Query matched procurement intent category · Role context: Procurement Manager ·
                       Filtered to items matching "{activeScenario.query}" · Permission-resolved to your accessible purchase orders ·
                       Ranked by pending duration + value threshold
@@ -444,15 +444,15 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                             {result.title}
                           </p>
                           {result.badge && (
-                            <span className="text-label text-white border border-white border-opacity-20 px-2 py-0.5 flex-shrink-0 opacity-60"
+                            <span className="text-label text-white border border-white border-opacity-50 px-2 py-0.5 flex-shrink-0 opacity-60"
                               style={{ fontSize: '0.58rem' }}>
                               {result.badge}
                             </span>
                           )}
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="text-label text-white opacity-20" style={{ fontSize: '0.62rem' }}>{result.product}</span>
-                          <span className="text-label text-white opacity-30" style={{ fontSize: '0.62rem' }}>{result.meta}</span>
+                          <span className="text-label text-white opacity-50" style={{ fontSize: '0.62rem' }}>{result.product}</span>
+                          <span className="text-label text-white opacity-50" style={{ fontSize: '0.62rem' }}>{result.meta}</span>
                         </div>
                       </div>
                       {result.value && (
@@ -461,7 +461,7 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                         </span>
                       )}
                       {result.action && (
-                        <button className="text-label text-white border border-white border-opacity-20 px-3 py-1.5 hover:border-opacity-50 hover:bg-white hover:bg-opacity-[0.04] transition-all flex-shrink-0 opacity-60 group-hover:opacity-90"
+                        <button className="text-label text-white border border-white border-opacity-50 px-3 py-1.5 hover:border-opacity-50 hover:bg-white hover:bg-opacity-[0.04] transition-all flex-shrink-0 opacity-60 group-hover:opacity-90"
                           style={{ fontSize: '0.65rem' }}>
                           {result.action}
                         </button>
@@ -486,7 +486,7 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                     >
                       <div className="flex items-center gap-4">
                         <div className="w-1.5 h-1.5 rounded-full bg-white opacity-30" />
-                        <span className="text-label text-white opacity-40 group-hover:opacity-65 transition-opacity">
+                        <span className="text-label text-white opacity-55 group-hover:opacity-65 transition-opacity">
                           Open in {activeScenario.handoff.product}
                         </span>
                       </div>
@@ -502,13 +502,13 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
                         <div className="w-1.5 h-1.5 rounded-full bg-white opacity-50" />
                         <span className="text-label text-white opacity-50">Handing off to {activeScenario.handoff.product}</span>
                       </div>
-                      <p className="text-white opacity-40 ml-5" style={{ fontSize: '0.78rem', lineHeight: 1.5 }}>
+                      <p className="text-white opacity-60 ml-5" style={{ fontSize: '0.78rem', lineHeight: 1.5 }}>
                         {activeScenario.handoff.description}
                       </p>
                       <div className="ml-5 mt-3 flex items-center gap-2">
                         {/* Context chips */}
                         {['Your role', 'Filters applied', 'Date context'].map(chip => (
-                          <span key={chip} className="text-label text-white border border-white border-opacity-[0.12] px-2.5 py-1 opacity-40"
+                          <span key={chip} className="text-label text-white border border-white border-opacity-[0.12] px-2.5 py-1 opacity-55"
                             style={{ fontSize: '0.6rem' }}>
                             ✓ {chip}
                           </span>
@@ -530,11 +530,11 @@ export default function SearchPrototype({ scenario: scenarioId, autoPlay = false
             className="px-6 pb-10 pt-2 text-center"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           >
-            <p className="text-label text-white opacity-20 mb-4">Choose a scenario above or type a query to explore</p>
+            <p className="text-label text-white opacity-50 mb-4">Choose a scenario above or type a query to explore</p>
             <div className="flex justify-center gap-3 flex-wrap">
               {SCENARIOS.map(sc => (
                 <button key={sc.id} onClick={() => runScenario(sc)}
-                  className="text-label text-white border border-white border-opacity-15 px-4 py-2 hover:border-opacity-40 hover:bg-white hover:bg-opacity-[0.03] transition-all opacity-45 hover:opacity-80">
+                  className="text-label text-white border border-white border-opacity-50 px-4 py-2 hover:border-opacity-55 hover:bg-white hover:bg-opacity-[0.03] transition-all opacity-60 hover:opacity-80">
                   {sc.label} →
                 </button>
               ))}

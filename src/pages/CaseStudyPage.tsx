@@ -1,3 +1,4 @@
+import ZoomImage from '../components/ui/ZoomImage'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { caseStudies } from '../data/work'
@@ -16,7 +17,7 @@ export default function CaseStudyPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <p className="text-body text-white opacity-40 mb-6">Case study not found.</p>
+          <p className="text-body text-white opacity-55 mb-6">Case study not found.</p>
           <Link to="/craft" className="text-label text-white opacity-60 hover:opacity-100 transition-opacity">
             ← Back to Craft
           </Link>
@@ -33,7 +34,7 @@ export default function CaseStudyPage() {
         <GrainOverlay opacity={0.05} />
 
         {cs.image ? (
-          <div className="absolute right-0 top-0 w-[45%] h-full">
+          <div className="absolute right-0 top-0 w-full md:w-[45%] h-full opacity-30 md:opacity-100">
             <img
               src={cs.image}
               alt={cs.title}
@@ -75,22 +76,22 @@ export default function CaseStudyPage() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
             <Link
               to="/craft"
-              className="text-label text-white opacity-35 hover:opacity-100 transition-opacity inline-flex items-center gap-2 mb-12"
+              className="text-label text-white opacity-55 hover:opacity-100 transition-opacity inline-flex items-center gap-2 mb-12"
             >
               ← Craft
             </Link>
           </motion.div>
 
           <motion.p
-            className="text-overline text-white opacity-40 mb-4"
+            className="text-overline text-white opacity-55 mb-4"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
+            animate={{ opacity: 0.56 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             {cs.category}
           </motion.p>
 
-          <div className={cs.image ? 'max-w-[55%]' : ''}>
+          <div className={cs.image ? 'md:max-w-[55%]' : ''}>
             <h1 className="text-display-l text-white">
               <RevealText text={cs.title} delay={0.15} />
             </h1>
@@ -124,7 +125,7 @@ export default function CaseStudyPage() {
                     >
                       {stat.value}
                     </p>
-                    <p className="text-label text-white opacity-35 mt-2">{stat.label}</p>
+                    <p className="text-label text-white opacity-55 mt-2">{stat.label}</p>
                   </div>
                 ))}
               </motion.div>
@@ -177,7 +178,7 @@ export default function CaseStudyPage() {
                 viewport={{ once: true, margin: '-5%' }}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               >
-                <p className="text-overline text-white opacity-40 mb-5">{block.label}</p>
+                <p className="text-overline text-white opacity-55 mb-5">{block.label}</p>
                 <p className="text-body text-white opacity-65">{block.body}</p>
               </motion.div>
             ))}
@@ -200,7 +201,7 @@ export default function CaseStudyPage() {
             <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
               <div>
                 {section.label && (
-                  <p className="text-overline text-white opacity-30 mb-3">{section.label}</p>
+                  <p className="text-overline text-white opacity-50 mb-3">{section.label}</p>
                 )}
                 {section.heading && (
                   <h2 className="text-heading text-white">{section.heading}</h2>
@@ -220,7 +221,7 @@ export default function CaseStudyPage() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: j * 0.07 }}
                       >
-                        <p className="text-label text-white opacity-20 mb-3">
+                        <p className="text-label text-white opacity-50 mb-3">
                           {String(j + 1).padStart(2, '0')}
                         </p>
                         <p className="text-body text-white mb-2" style={{ fontWeight: 400 }}>
@@ -241,9 +242,9 @@ export default function CaseStudyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                   >
-                    <img
+                    <ZoomImage
                       src={section.image}
-                      alt=""
+                      alt={`${cs.shortTitle}: ${section.heading ?? section.label ?? 'project visual'}`}
                       className="w-full object-cover"
                       style={{ filter: 'grayscale(0.2) contrast(1.02)' }}
                     />
@@ -256,15 +257,15 @@ export default function CaseStudyPage() {
                     {section.images.map((img, j) => (
                       <motion.div
                         key={j}
-                        className="overflow-hidden bg-black"
+                        className={`overflow-hidden bg-black ${section.images!.length > 1 && section.images!.length % 2 === 1 && j === section.images!.length - 1 ? 'md:col-span-2' : ''}`}
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: j * 0.05 }}
                       >
-                        <img
+                        <ZoomImage
                           src={img}
-                          alt=""
+                          alt={`${cs.shortTitle}: ${section.heading ?? section.label ?? 'project visual'} (${j + 1} of ${section.images!.length})`}
                           className="w-full object-cover"
                           style={{ filter: 'grayscale(0.2) contrast(1.02)' }}
                         />
@@ -286,9 +287,9 @@ export default function CaseStudyPage() {
             <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-10">
               <div>
                 <motion.p
-                  className="text-overline text-white opacity-30 mb-3"
+                  className="text-overline text-white opacity-50 mb-3"
                   initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 0.3 }}
+                  whileInView={{ opacity: 0.52 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                 >
@@ -305,9 +306,9 @@ export default function CaseStudyPage() {
                 </motion.h2>
               </div>
               <motion.p
-                className="text-body text-white opacity-45 self-end"
+                className="text-body text-white opacity-60 self-end"
                 initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 0.45, y: 0 }}
+                whileInView={{ opacity: 0.58, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
@@ -339,7 +340,7 @@ export default function CaseStudyPage() {
           <div className="relative z-10 mx-auto max-w-7xl">
             <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
               <div>
-                <p className="text-overline text-white opacity-30 mb-3">Reflections</p>
+                <p className="text-overline text-white opacity-50 mb-3">Reflections</p>
                 <h2 className="text-heading text-white">Key Learnings</h2>
               </div>
               <ul className="space-y-6">
@@ -352,7 +353,7 @@ export default function CaseStudyPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                   >
-                    <span className="text-label text-white opacity-20 flex-shrink-0 pt-1">
+                    <span className="text-label text-white opacity-50 flex-shrink-0 pt-1">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <p className="text-body text-white opacity-60">{h}</p>
@@ -413,7 +414,7 @@ export default function CaseStudyPage() {
                 )}
                 <div>
                   <p className="text-body text-white">{cs.testimonial.name}</p>
-                  <p className="text-label text-white opacity-35 mt-1">{cs.testimonial.title}</p>
+                  <p className="text-label text-white opacity-55 mt-1">{cs.testimonial.title}</p>
                 </div>
               </motion.footer>
             </blockquote>
@@ -427,9 +428,9 @@ export default function CaseStudyPage() {
           <div className="relative z-10 mx-auto max-w-7xl">
             <div className="border-t border-white border-opacity-10 pt-16">
               <motion.p
-                className="text-overline text-white opacity-30 mb-10"
+                className="text-overline text-white opacity-50 mb-10"
                 initial={{ opacity: 0 }}
-                whileInView={{ opacity: 0.3 }}
+                whileInView={{ opacity: 0.52 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
@@ -447,8 +448,8 @@ export default function CaseStudyPage() {
                       to={`/craft/${prevCS.id}`}
                       className="group bg-black p-8 md:p-10 block hover:bg-white hover:bg-opacity-[0.025] transition-colors"
                     >
-                      <p className="text-label text-white opacity-30 mb-3">← Previous</p>
-                      <p className="text-overline text-white opacity-40 mb-2">{prevCS.category}</p>
+                      <p className="text-label text-white opacity-50 mb-3">← Previous</p>
+                      <p className="text-overline text-white opacity-55 mb-2">{prevCS.category}</p>
                       <h3 className="text-heading text-white group-hover:opacity-75 transition-opacity">{prevCS.title}</h3>
                     </Link>
                   </motion.div>
@@ -464,8 +465,8 @@ export default function CaseStudyPage() {
                       to={`/craft/${nextCS.id}`}
                       className={`group bg-black p-8 md:p-10 block hover:bg-white hover:bg-opacity-[0.025] transition-colors ${!prevCS ? 'md:col-start-2' : ''}`}
                     >
-                      <p className="text-label text-white opacity-30 mb-3">Next →</p>
-                      <p className="text-overline text-white opacity-40 mb-2">{nextCS.category}</p>
+                      <p className="text-label text-white opacity-50 mb-3">Next →</p>
+                      <p className="text-overline text-white opacity-55 mb-2">{nextCS.category}</p>
                       <h3 className="text-heading text-white group-hover:opacity-75 transition-opacity">{nextCS.title}</h3>
                     </Link>
                   </motion.div>

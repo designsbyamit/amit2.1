@@ -18,7 +18,7 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt }: 
         <SweepLines />
         <GrainOverlay opacity={0.05} />
 
-        <div className="absolute right-0 top-0 w-1/2 h-full">
+        <div className="absolute right-0 top-0 w-full md:w-1/2 h-full opacity-35 md:opacity-100">
           <img
             src={image}
             alt={imageAlt || ''}
@@ -45,14 +45,14 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt }: 
 
         <div className="relative z-10 mx-auto max-w-7xl w-full pb-20 pt-40">
           <motion.p
-            className="text-overline text-white opacity-40 mb-6"
+            className="text-overline text-white opacity-55 mb-6"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
+            animate={{ opacity: 0.56 }}
             transition={{ duration: 0.5 }}
           >
             {label}
           </motion.p>
-          <div className="max-w-[56%]">
+          <div className="md:max-w-[56%]">
             <h1 className="text-display-l text-white">
               <RevealText text={title} delay={0.1} />
             </h1>
@@ -78,9 +78,9 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt }: 
       <SweepLines />
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.p
-          className="text-overline text-white opacity-40 mb-6"
+          className="text-overline text-white opacity-55 mb-6"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
+          animate={{ opacity: 0.56 }}
           transition={{ duration: 0.5 }}
         >
           {label}

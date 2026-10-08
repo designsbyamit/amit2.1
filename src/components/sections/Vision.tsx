@@ -30,19 +30,19 @@ export default function Vision() {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <div>
-            <p className="text-overline text-white opacity-40 mb-4">On AI in Design</p>
+            <p className="text-overline text-white opacity-55 mb-4">On AI in Design</p>
             <p className="text-body text-white opacity-55">
               AI will not replace designers. It will raise the minimum bar of what ships — and demand that designers move upstream, closer to strategy, intent, and ethics.
             </p>
           </div>
           <div>
-            <p className="text-overline text-white opacity-40 mb-4">On Enterprise UX</p>
+            <p className="text-overline text-white opacity-55 mb-4">On Enterprise UX</p>
             <p className="text-body text-white opacity-55">
               Enterprise users deserve the same quality of experience as consumers. The complexity of the domain is not an excuse. It's the invitation.
             </p>
           </div>
           <div>
-            <p className="text-overline text-white opacity-40 mb-4">On Design Culture</p>
+            <p className="text-overline text-white opacity-55 mb-4">On Design Culture</p>
             <p className="text-body text-white opacity-55">
               The best design work happens in organizations that understand design — not just use it. Building that culture is the most important design project.
             </p>

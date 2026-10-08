@@ -358,13 +358,6 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Scope', value: 'Suite-wide' },
       { label: 'Scale', value: '300M+ users' },
     ],
-    sections: [
-      {
-        label: 'Coming Soon',
-        heading: 'Full case study being documented',
-        body: 'This project is currently active. Full documentation — including design decisions, interaction principles, and outcome data — will be published here. Reach out if you\'d like to discuss the work directly.',
-      },
-    ],
     highlights: [
       'Trust in AI search is a design problem before it is a model problem.',
       'Designing standards for 300M+ users required principles, not prescriptions.',
@@ -388,13 +381,6 @@ export const caseStudies: CaseStudy[] = [
     stats: [
       { label: 'Model', value: 'Agentic AI' },
       { label: 'Scope', value: 'Enterprise Ops' },
-    ],
-    sections: [
-      {
-        label: 'Coming Soon',
-        heading: 'Full case study being documented',
-        body: 'This project is currently active. Full documentation — including the agentic UX framework, communication hierarchy design, and production outcomes — will be published here. Reach out if you\'d like to discuss the work directly.',
-      },
     ],
     highlights: [
       'The most important decision in agentic systems is what the agent does NOT show.',

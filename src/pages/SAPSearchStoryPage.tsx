@@ -27,7 +27,7 @@ const PERSONAS = [
   { role: 'Procurement Manager', query: '"Show pending purchase orders over $50K"', product: 'SAP S/4HANA', color: 'rgba(245,242,237,0.9)' },
   { role: 'Sales Executive', query: '"Q3 pipeline by region"', product: 'SAP CRM', color: 'rgba(245,242,237,0.7)' },
   { role: 'HR Manager', query: '"Open headcount approvals"', product: 'SuccessFactors', color: 'rgba(245,242,237,0.5)' },
-  { role: 'Business Traveler', query: '"Book flight to Munich next week"', product: 'Concur', color: 'rgba(245,242,237,0.35)' },
+  { role: 'Business Traveler', query: '"Book flight to Munich next week"', product: 'Concur', color: 'rgba(245,242,237,0.56)' },
 ]
 
 const SEARCH_PIPELINE = [
@@ -149,22 +149,21 @@ const ENGINEERING_CONSTRAINTS = [
 
 // ── Utility components ────────────────────────────────────────────────────────
 
-function PrototypeSlot({ label, height = 600 }: { label: string; height?: number }) {
+/**
+ * Embeds a live prototype when a URL is supplied. With no URL it renders nothing,
+ * so visitors never see an empty placeholder. Pass `src` (Figma / Lovable embed) to activate a slot.
+ */
+function PrototypeSlot({ label, height = 600, src }: { label: string; height?: number; src?: string }) {
+  if (!src) return null
   return (
-    <div
-      className="relative border border-white border-dashed flex items-center justify-center"
-      style={{ height, borderColor: 'rgba(245,242,237,0.12)', background: 'rgba(245,242,237,0.02)' }}
-    >
-      <div className="text-center">
-        <p className="text-overline text-white opacity-30 mb-2">Interactive Prototype</p>
-        <p className="text-body text-white opacity-20">{label}</p>
-        <p className="text-label text-white opacity-15 mt-3">Add Figma / Lovable embed URL to activate</p>
-      </div>
-      {/* Animated corner accents */}
-      {[['top-0 left-0', 'border-t border-l'], ['top-0 right-0', 'border-t border-r'], ['bottom-0 left-0', 'border-b border-l'], ['bottom-0 right-0', 'border-b border-r']].map(([pos, borders], i) => (
-        <div key={i} className={`absolute w-6 h-6 ${pos} ${borders} border-white`} style={{ borderColor: 'rgba(245,242,237,0.35)' }} />
-      ))}
-    </div>
+    <iframe
+      src={src}
+      title={label}
+      loading="lazy"
+      allowFullScreen
+      className="w-full border border-white border-opacity-10"
+      style={{ height }}
+    />
   )
 }
 
@@ -177,7 +176,7 @@ function BehindDesign({ children }: { children: React.ReactNode }) {
         className="w-full text-left px-8 py-5 flex items-center justify-between gap-4 hover:bg-white hover:bg-opacity-[0.02] transition-colors"
       >
         <div className="flex items-center gap-4">
-          <span className="text-overline text-white opacity-25">Behind the Design</span>
+          <span className="text-overline text-white opacity-50">Behind the Design</span>
         </div>
         <span className="text-white opacity-25 transition-transform duration-300" style={{ transform: open ? 'rotate(45deg)' : 'none' }}>+</span>
       </button>
@@ -208,7 +207,7 @@ function ChapterTransition({ question }: { question: string }) {
       transition={{ duration: 0.8 }}
     >
       <div className="w-px h-16 bg-white opacity-10 mx-auto mb-10" />
-      <p className="text-white opacity-25 italic max-w-xl mx-auto"
+      <p className="text-white opacity-55 italic max-w-xl mx-auto"
         style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.3rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.6 }}>
         {question}
       </p>
@@ -233,7 +232,7 @@ function Quote({ text, attribution }: { text: string; attribution?: string }) {
         style={{ fontSize: 'clamp(1.1rem, 1.7vw, 1.35rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.65 }}>
         "{text}"
       </p>
-      {attribution && <p className="text-label text-white opacity-35 mt-4">{attribution}</p>}
+      {attribution && <p className="text-label text-white opacity-55 mt-4">{attribution}</p>}
     </motion.div>
   )
 }
@@ -278,7 +277,7 @@ function SearchPipeline({ query }: { query: string }) {
       {/* Search input simulation */}
       <div className="p-6 border-b border-white border-opacity-[0.06] flex items-center gap-4">
         <div className="flex-1 bg-white bg-opacity-[0.04] border border-white border-opacity-10 px-5 py-3 flex items-center gap-3">
-          <span className="text-white opacity-25 text-sm">🔍</span>
+          <span className="text-white opacity-50 text-sm">🔍</span>
           <span className="text-body text-white opacity-70 font-mono" style={{ fontSize: '0.9rem' }}>
             {typed}
             {isPlaying && typed.length < query.length && (
@@ -288,7 +287,7 @@ function SearchPipeline({ query }: { query: string }) {
         </div>
         <button
           onClick={play}
-          className="text-label text-white border border-white border-opacity-25 px-5 py-2.5 hover:border-opacity-60 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 flex-shrink-0"
+          className="text-label text-white border border-white border-opacity-50 px-5 py-2.5 hover:border-opacity-60 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 flex-shrink-0"
         >
           {isPlaying ? 'Running...' : 'Watch AI think →'}
         </button>
@@ -312,7 +311,7 @@ function SearchPipeline({ query }: { query: string }) {
                 animate={{ background: activeStep >= i ? 'rgba(245,242,237,0.7)' : 'rgba(245,242,237,0.15)' }}
                 transition={{ duration: 0.3 }}
               />
-              <span className="text-overline text-white opacity-30">{step.step}</span>
+              <span className="text-overline text-white opacity-50">{step.step}</span>
             </div>
             <p className="text-white mb-2" style={{ fontSize: '0.72rem', fontWeight: 400, opacity: activeStep >= i ? 0.8 : 0.35 }}>
               {step.label}
@@ -322,7 +321,7 @@ function SearchPipeline({ query }: { query: string }) {
                 <motion.p
                   className="text-white opacity-45"
                   style={{ fontSize: '0.68rem', lineHeight: 1.5 }}
-                  initial={{ opacity: 0, y: 4 }} animate={{ opacity: 0.45, y: 0 }} exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, y: 4 }} animate={{ opacity: 0.58, y: 0 }} exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   {step.description}
@@ -351,11 +350,11 @@ function AIPatternCard({ pattern, index }: { pattern: typeof AI_PATTERNS[0], ind
     >
       <button className="w-full text-left p-8 flex items-start justify-between gap-6" onClick={() => setOpen(o => !o)}>
         <div>
-          <p className="text-overline text-white opacity-25 mb-3">Pattern {String(index + 1).padStart(2, '0')}</p>
+          <p className="text-overline text-white opacity-50 mb-3">Pattern {String(index + 1).padStart(2, '0')}</p>
           <h3 className="text-white mb-2" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
             {pattern.name}
           </h3>
-          <p className="text-body text-white opacity-35">{pattern.purpose}</p>
+          <p className="text-body text-white opacity-55">{pattern.purpose}</p>
         </div>
         <span className="text-white opacity-20 flex-shrink-0 transition-transform duration-300"
           style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: '1.2rem' }}>+</span>
@@ -369,7 +368,7 @@ function AIPatternCard({ pattern, index }: { pattern: typeof AI_PATTERNS[0], ind
             <div className="border-t border-white border-opacity-[0.07]">
               <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.04]">
                 <div className="bg-black p-8">
-                  <p className="text-overline text-white opacity-25 mb-3">The problem</p>
+                  <p className="text-overline text-white opacity-50 mb-3">The problem</p>
                   <p className="text-body text-white opacity-55 mb-6">{pattern.problem}</p>
                   <div className="border-l-2 border-white border-opacity-20 pl-5">
                     <p className="text-white opacity-65 italic" style={{ fontSize: '0.95rem', fontWeight: 300 }}>
@@ -379,16 +378,16 @@ function AIPatternCard({ pattern, index }: { pattern: typeof AI_PATTERNS[0], ind
                 </div>
                 <div className="bg-black p-8 space-y-6">
                   <div>
-                    <p className="text-overline text-white opacity-25 mb-2">Do this</p>
+                    <p className="text-overline text-white opacity-50 mb-2">Do this</p>
                     <p className="text-body text-white opacity-55">{pattern.doThis}</p>
                   </div>
                   <div>
-                    <p className="text-overline text-white opacity-25 mb-2">Not this</p>
-                    <p className="text-body text-white opacity-40">{pattern.notThis}</p>
+                    <p className="text-overline text-white opacity-50 mb-2">Not this</p>
+                    <p className="text-body text-white opacity-55">{pattern.notThis}</p>
                   </div>
                   <div>
-                    <p className="text-overline text-white opacity-25 mb-2">Trust design</p>
-                    <p className="text-body text-white opacity-45">{pattern.trust}</p>
+                    <p className="text-overline text-white opacity-50 mb-2">Trust design</p>
+                    <p className="text-body text-white opacity-60">{pattern.trust}</p>
                   </div>
                 </div>
               </div>
@@ -471,7 +470,7 @@ export default function SAPSearchStoryPage() {
             {/* Orbiting labels */}
             {['Intent', 'Context', 'Rank', 'Trust'].map((label, i) => (
               <motion.div key={label}
-                className="absolute text-label text-white opacity-30"
+                className="absolute text-label text-white opacity-50"
                 style={{
                   top: `${50 + 48 * Math.sin(i * Math.PI / 2)}%`,
                   left: `${50 + 48 * Math.cos(i * Math.PI / 2)}%`,
@@ -489,13 +488,13 @@ export default function SAPSearchStoryPage() {
         {/* Hero text */}
         <div className="relative z-10 max-w-7xl mx-auto w-full pt-20">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
-            <Link to="/craft" className="text-label text-white opacity-25 hover:opacity-60 transition-opacity inline-flex items-center gap-2 mb-12">
+            <Link to="/craft" className="text-label text-white opacity-50 hover:opacity-60 transition-opacity inline-flex items-center gap-2 mb-12">
               ← Craft
             </Link>
           </motion.div>
 
-          <motion.p className="text-overline text-white opacity-30 mb-6"
-            initial={{ opacity: 0 }} animate={{ opacity: 0.3 }} transition={{ duration: 0.6, delay: 0.1 }}>
+          <motion.p className="text-overline text-white opacity-50 mb-6"
+            initial={{ opacity: 0 }} animate={{ opacity: 0.52 }} transition={{ duration: 0.6, delay: 0.1 }}>
             Product Story · SAP · AI-Powered Search · 300M+ Users
           </motion.p>
 
@@ -508,7 +507,7 @@ export default function SAPSearchStoryPage() {
 
           <motion.p className="text-white opacity-45 max-w-2xl"
             style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 0.45, y: 0 }}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 0.58, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}>
             Reimagining search as an intelligent orchestration layer across the SAP ecosystem.
           </motion.p>
@@ -519,17 +518,17 @@ export default function SAPSearchStoryPage() {
             {[['300M+', 'Users across the SAP suite'], ['SAP', 'Suite-wide deployment'], ['AI-First', 'Intent over keywords'], ['Design Lead', 'Role']].map(([v, l]) => (
               <div key={l}>
                 <p className="text-white mb-1" style={{ fontSize: 'clamp(1.4rem, 2vw, 1.9rem)', fontWeight: 200, letterSpacing: '-0.03em' }}>{v}</p>
-                <p className="text-label text-white opacity-30">{l}</p>
+                <p className="text-label text-white opacity-50">{l}</p>
               </div>
             ))}
           </motion.div>
         </div>
 
         {/* Prototype teaser slot */}
-        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
           animate={{ y: [0, 8, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}>
           <div className="flex flex-col items-center gap-2">
-            <p className="text-label text-white opacity-20">Scroll to begin</p>
+            <p className="text-label text-white opacity-50">Scroll to begin</p>
             <div className="w-px h-12 bg-white opacity-10" />
           </div>
         </motion.div>
@@ -542,7 +541,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 01</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 01</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Why Search Needed Reinvention
@@ -558,7 +557,7 @@ export default function SAPSearchStoryPage() {
               <motion.div key={p.role} className="bg-black p-10"
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}>
-                <p className="text-overline text-white opacity-30 mb-4">{p.product}</p>
+                <p className="text-overline text-white opacity-50 mb-4">{p.product}</p>
                 <p className="text-white mb-4" style={{ fontSize: 'clamp(0.8rem, 1vw, 0.9rem)', opacity: 0.5, fontFamily: 'monospace' }}>
                   {p.query}
                 </p>
@@ -603,7 +602,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 02</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 02</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Looking Beneath the UI
@@ -619,15 +618,15 @@ export default function SAPSearchStoryPage() {
               { layer: 'Products', count: '80+', description: 'SAP products across ERP, HCM, SCM, Finance — each with its own UI, logic, and search implementation', opacity: 0.9 },
               { layer: 'Search Engines', count: '6+', description: 'Elasticsearch, SAP HANA Search, custom implementations — different capabilities, different APIs, different ranking models', opacity: 0.75 },
               { layer: 'Permission Systems', count: '3', description: 'Role-based access, attribute-based access, and product-specific entitlement models — all must be resolved before a result is shown', opacity: 0.6 },
-              { layer: 'Metadata Schemas', count: 'Fragmented', description: 'Different products describe the same objects differently. A "vendor" in Ariba is a "business partner" in S/4HANA. Search must understand both.', opacity: 0.45 },
-              { layer: 'API Contracts', count: 'None unified', description: 'No standard contract for how products expose searchable content. Every integration was bespoke.', opacity: 0.3 },
+              { layer: 'Metadata Schemas', count: 'Fragmented', description: 'Different products describe the same objects differently. A "vendor" in Ariba is a "business partner" in S/4HANA. Search must understand both.', opacity: 0.58 },
+              { layer: 'API Contracts', count: 'None unified', description: 'No standard contract for how products expose searchable content. Every integration was bespoke.', opacity: 0.52 },
             ].map((row, i) => (
               <motion.div key={row.layer} className="grid md:grid-cols-[120px_100px_1fr] gap-0 bg-black border border-white border-opacity-[0.06] p-6"
                 initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}>
-                <p className="text-label text-white opacity-30 self-center">{row.layer}</p>
+                <p className="text-label text-white opacity-50 self-center">{row.layer}</p>
                 <p className="text-white self-center" style={{ fontSize: 'clamp(1rem, 1.4vw, 1.2rem)', fontWeight: 300, opacity: row.opacity }}>{row.count}</p>
-                <p className="text-body text-white opacity-40">{row.description}</p>
+                <p className="text-body text-white opacity-55">{row.description}</p>
               </motion.div>
             ))}
           </div>
@@ -651,7 +650,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 03</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 03</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Research
@@ -671,11 +670,11 @@ export default function SAPSearchStoryPage() {
               <motion.div key={r.type} className="bg-black p-8 md:p-10"
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <p className="text-overline text-white opacity-25 mb-4">{r.type}</p>
+                <p className="text-overline text-white opacity-50 mb-4">{r.type}</p>
                 <p className="text-body text-white opacity-55 mb-6">{r.description}</p>
                 <div className="border-t border-white border-opacity-[0.07] pt-4">
-                  <p className="text-label text-white opacity-30 mb-1">Output</p>
-                  <p className="text-body text-white opacity-45">{r.output}</p>
+                  <p className="text-label text-white opacity-50 mb-1">Output</p>
+                  <p className="text-body text-white opacity-60">{r.output}</p>
                 </div>
               </motion.div>
             ))}
@@ -683,7 +682,7 @@ export default function SAPSearchStoryPage() {
 
           {/* Key findings */}
           <div className="mb-12">
-            <p className="text-overline text-white opacity-25 mb-8">What we learned</p>
+            <p className="text-overline text-white opacity-50 mb-8">What we learned</p>
             <div className="space-y-px">
               {[
                 { finding: '67% of users reformulate their search at least once per session', implication: 'The first result is often not the last attempt. Reformulation UX matters as much as initial results.' },
@@ -698,8 +697,8 @@ export default function SAPSearchStoryPage() {
                     <p className="text-white opacity-65 italic" style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)', fontWeight: 300 }}>"{f.finding}"</p>
                   </div>
                   <div className="bg-black p-8">
-                    <p className="text-overline text-white opacity-20 mb-2">Implication</p>
-                    <p className="text-body text-white opacity-45">{f.implication}</p>
+                    <p className="text-overline text-white opacity-50 mb-2">Implication</p>
+                    <p className="text-body text-white opacity-60">{f.implication}</p>
                   </div>
                 </motion.div>
               ))}
@@ -719,7 +718,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 04</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 04</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               How AI Search Actually Works
@@ -741,7 +740,7 @@ export default function SAPSearchStoryPage() {
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}>
                 <p className="text-white mb-3" style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)', fontWeight: 400, opacity: 0.8 }}>{p.principle}</p>
-                <p className="text-body text-white opacity-45">{p.description}</p>
+                <p className="text-body text-white opacity-60">{p.description}</p>
               </motion.div>
             ))}
           </div>
@@ -757,7 +756,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 05</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 05</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Designing the Search Journey
@@ -776,15 +775,15 @@ export default function SAPSearchStoryPage() {
                 transition={{ duration: 0.7, delay: 0.1 }}>
                 <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-8">
                   <div>
-                    <p className="text-overline text-white opacity-25 mb-3">{s.stage}</p>
+                    <p className="text-overline text-white opacity-50 mb-3">{s.stage}</p>
                     <h3 className="text-white mb-4"
                       style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.03em' }}>
                       {s.title}
                     </h3>
-                    <p className="text-body text-white opacity-45">{s.description}</p>
+                    <p className="text-body text-white opacity-60">{s.description}</p>
                   </div>
                   <div>
-                    <p className="text-overline text-white opacity-20 mb-4">Key design decisions</p>
+                    <p className="text-overline text-white opacity-50 mb-4">Key design decisions</p>
                     <ul className="space-y-3">
                       {s.decisions.map((d, j) => (
                         <li key={j} className="flex gap-4">
@@ -811,7 +810,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 06</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 06</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               The AI Pattern Library
@@ -837,7 +836,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 07</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 07</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Cross-Product Intelligence
@@ -851,7 +850,7 @@ export default function SAPSearchStoryPage() {
           <div className="flex flex-wrap gap-3 mb-10">
             {CROSS_PRODUCT_FLOWS.map(f => (
               <button key={f.id} onClick={() => setActiveFlow(f.id)}
-                className={`text-label text-white border px-4 py-2 transition-all duration-200 ${activeFlow === f.id ? 'border-white opacity-90' : 'border-white border-opacity-20 opacity-35 hover:opacity-60'}`}>
+                className={`text-label text-white border px-4 py-2 transition-all duration-200 ${activeFlow === f.id ? 'border-white opacity-90' : 'border-white border-opacity-50 opacity-55 hover:opacity-60'}`}>
                 {f.label}
               </button>
             ))}
@@ -863,7 +862,7 @@ export default function SAPSearchStoryPage() {
               initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}>
               <div className="mb-8 flex items-center gap-4">
-                <p className="text-overline text-white opacity-30">Query</p>
+                <p className="text-overline text-white opacity-50">Query</p>
                 <p className="text-white opacity-60 font-mono" style={{ fontSize: '0.9rem' }}>{activeFlowData.query}</p>
               </div>
               <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-[0.05] mb-10">
@@ -871,11 +870,11 @@ export default function SAPSearchStoryPage() {
                   <motion.div key={step.product} className="bg-black p-8"
                     initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: i * 0.1 }}>
-                    <p className="text-overline text-white opacity-25 mb-3">{step.product}</p>
+                    <p className="text-overline text-white opacity-50 mb-3">{step.product}</p>
                     <p className="text-white mb-3" style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)', fontWeight: 300, opacity: 0.75 }}>
                       {step.action}
                     </p>
-                    <p className="text-body text-white opacity-40">{step.detail}</p>
+                    <p className="text-body text-white opacity-55">{step.detail}</p>
                     {i < activeFlowData.steps.length - 1 && (
                       <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 text-white opacity-15">→</div>
                     )}
@@ -901,7 +900,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 08</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 08</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Prototype Walkthrough
@@ -924,12 +923,12 @@ export default function SAPSearchStoryPage() {
                 transition={{ duration: 0.7 }}>
                 <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-8">
                   <div>
-                    <p className="text-overline text-white opacity-25 mb-3">{f.flow}</p>
+                    <p className="text-overline text-white opacity-50 mb-3">{f.flow}</p>
                     <h3 className="text-white mb-4"
                       style={{ fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.03em' }}>
                       {f.title}
                     </h3>
-                    <p className="text-body text-white opacity-45">{f.description}</p>
+                    <p className="text-body text-white opacity-60">{f.description}</p>
                   </div>
                 </div>
                 <PrototypeSlot label={f.slot} height={560} />
@@ -948,7 +947,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 09</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 09</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Validation
@@ -967,11 +966,11 @@ export default function SAPSearchStoryPage() {
               <motion.div key={r.round} className="bg-black p-8 md:p-10"
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <p className="text-overline text-white opacity-25 mb-2">{r.round}</p>
+                <p className="text-overline text-white opacity-50 mb-2">{r.round}</p>
                 <p className="text-body text-white opacity-55 mb-2" style={{ fontWeight: 400 }}>{r.focus}</p>
-                <p className="text-body text-white opacity-40 mb-5 italic">"{r.finding}"</p>
+                <p className="text-body text-white opacity-55 mb-5 italic">"{r.finding}"</p>
                 <div className="border-t border-white border-opacity-[0.07] pt-4">
-                  <p className="text-overline text-white opacity-20 mb-2">What changed</p>
+                  <p className="text-overline text-white opacity-50 mb-2">What changed</p>
                   <p className="text-body text-white opacity-50">{r.change}</p>
                 </div>
               </motion.div>
@@ -991,7 +990,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 10</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 10</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Engineering Reality
@@ -1007,15 +1006,15 @@ export default function SAPSearchStoryPage() {
                 initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}>
                 <div className="bg-black p-8 flex items-center">
-                  <p className="text-overline text-white opacity-40">{c.constraint}</p>
+                  <p className="text-overline text-white opacity-55">{c.constraint}</p>
                 </div>
                 <div className="bg-black p-8">
-                  <p className="text-overline text-white opacity-20 mb-3">Reality</p>
+                  <p className="text-overline text-white opacity-50 mb-3">Reality</p>
                   <p className="text-body text-white opacity-55">{c.reality}</p>
                 </div>
                 <div className="bg-black p-8">
-                  <p className="text-overline text-white opacity-20 mb-3">Design response</p>
-                  <p className="text-body text-white opacity-45">{c.tradeoff}</p>
+                  <p className="text-overline text-white opacity-50 mb-3">Design response</p>
+                  <p className="text-body text-white opacity-60">{c.tradeoff}</p>
                 </div>
               </motion.div>
             ))}
@@ -1034,7 +1033,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-16"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 11</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 11</p>
             <h2 className="text-white mb-6"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               The Design System
@@ -1050,12 +1049,12 @@ export default function SAPSearchStoryPage() {
               <motion.div key={s.spec} className="bg-black p-8"
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}>
-                <p className="text-overline text-white opacity-30 mb-5">{s.spec}</p>
+                <p className="text-overline text-white opacity-50 mb-5">{s.spec}</p>
                 <ul className="space-y-2">
                   {s.items.map(item => (
                     <li key={item} className="flex gap-2">
                       <span className="text-white opacity-15 flex-shrink-0 mt-1" style={{ fontSize: '0.4rem' }}>◆</span>
-                      <p className="text-label text-white opacity-45">{item}</p>
+                      <p className="text-label text-white opacity-60">{item}</p>
                     </li>
                   ))}
                 </ul>
@@ -1084,7 +1083,7 @@ export default function SAPSearchStoryPage() {
           <motion.div className="mb-20"
             initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.8 }}>
-            <p className="text-overline text-white opacity-25 mb-4">Chapter 12</p>
+            <p className="text-overline text-white opacity-50 mb-4">Chapter 12</p>
             <h2 className="text-white mb-8"
               style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.1 }}>
               Looking Forward
@@ -1101,12 +1100,12 @@ export default function SAPSearchStoryPage() {
               <motion.div key={h.title} className="bg-black p-8 md:p-12"
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}>
-                <p className="text-overline text-white opacity-20 mb-4">{h.horizon}</p>
+                <p className="text-overline text-white opacity-50 mb-4">{h.horizon}</p>
                 <h3 className="text-white mb-4"
                   style={{ fontSize: 'clamp(1.2rem, 1.8vw, 1.6rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
                   {h.title}
                 </h3>
-                <p className="text-body text-white opacity-45">{h.description}</p>
+                <p className="text-body text-white opacity-60">{h.description}</p>
               </motion.div>
             ))}
           </div>
@@ -1133,15 +1132,15 @@ export default function SAPSearchStoryPage() {
       <section className="relative bg-black py-16 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <p className="text-overline text-white opacity-25 mb-2">Next case study</p>
+            <p className="text-overline text-white opacity-50 mb-2">Next case study</p>
             <Link to="/craft/sap-agentic" className="text-body text-white opacity-50 hover:opacity-80 transition-opacity">
               Agentic AI for Order Confirmation →
             </Link>
           </div>
           <div className="flex gap-8">
-            <Link to="/craft" className="text-label text-white opacity-25 hover:opacity-60 transition-opacity">← All work</Link>
+            <Link to="/craft" className="text-label text-white opacity-50 hover:opacity-60 transition-opacity">← All work</Link>
             <a href="mailto:uxbyamit@gmail.com?subject=SAP Search — Let's talk"
-              className="text-label text-white opacity-25 hover:opacity-60 transition-opacity">Get in touch</a>
+              className="text-label text-white opacity-50 hover:opacity-60 transition-opacity">Get in touch</a>
           </div>
         </div>
       </section>

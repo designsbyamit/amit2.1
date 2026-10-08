@@ -39,10 +39,10 @@ export default function StrategicWork() {
               onClick={() => setActive(active === cs.id ? null : cs.id)}
             >
               <div className="py-8 md:py-10 grid md:grid-cols-[80px_1fr_auto] items-center gap-6">
-                <span className="text-label text-white opacity-20">{cs.number}</span>
+                <span className="text-label text-white opacity-50">{cs.number}</span>
 
                 <div>
-                  <p className="text-overline text-white opacity-40 mb-2">{cs.category}</p>
+                  <p className="text-overline text-white opacity-55 mb-2">{cs.category}</p>
                   <h3 className="text-heading text-white group-hover:opacity-80 transition-opacity">{cs.title}</h3>
                   <p className="text-body text-white opacity-50 mt-1">{cs.tagline}</p>
                 </div>
@@ -70,22 +70,22 @@ export default function StrategicWork() {
                     <div className="ml-0 md:ml-[calc(80px+1.5rem)] pb-10">
                       <div className="grid md:grid-cols-3 gap-8 md:gap-12 mb-8">
                         <div>
-                          <p className="text-overline text-white opacity-40 mb-3">Challenge</p>
+                          <p className="text-overline text-white opacity-55 mb-3">Challenge</p>
                           <p className="text-body text-white opacity-60">{cs.challenge}</p>
                         </div>
                         <div>
-                          <p className="text-overline text-white opacity-40 mb-3">Approach</p>
+                          <p className="text-overline text-white opacity-55 mb-3">Approach</p>
                           <p className="text-body text-white opacity-60">{cs.approach}</p>
                         </div>
                         <div>
-                          <p className="text-overline text-white opacity-40 mb-3">Outcome</p>
+                          <p className="text-overline text-white opacity-55 mb-3">Outcome</p>
                           <p className="text-body text-white opacity-60">{cs.outcome}</p>
                         </div>
                       </div>
                       <Link
                         to={`/craft/${cs.id}`}
                         onClick={e => e.stopPropagation()}
-                        className="text-label text-white opacity-40 hover:opacity-100 transition-opacity inline-flex items-center gap-2"
+                        className="text-label text-white opacity-55 hover:opacity-100 transition-opacity inline-flex items-center gap-2"
                       >
                         View full case study →
                       </Link>

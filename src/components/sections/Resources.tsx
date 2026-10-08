@@ -130,26 +130,26 @@ function makeMailto(resourceTitle: string) {
 function ReadingListContent() {
   return (
     <div className="mt-8 border-t border-white border-opacity-10 pt-8">
-      <p className="text-overline text-white opacity-30 mb-6">Articles</p>
+      <p className="text-overline text-white opacity-50 mb-6">Articles</p>
       <div className="space-y-0 mb-10">
         {readingItems.articles.map((a, i) => (
           <a key={i} href={a.url} target="_blank" rel="noopener noreferrer"
             className="flex gap-6 py-5 border-b border-white border-opacity-[0.07] group hover:bg-white hover:bg-opacity-[0.02] transition-colors -mx-10 px-10">
             <div className="flex-1 min-w-0">
               <p className="text-body text-white group-hover:opacity-80 transition-opacity" style={{ fontWeight: 400 }}>{a.title}</p>
-              <p className="text-label text-white opacity-35 mt-1">{a.author} · {a.publication}</p>
+              <p className="text-label text-white opacity-55 mt-1">{a.author} · {a.publication}</p>
             </div>
-            <p className="text-body text-white opacity-40 flex-1 hidden md:block">{a.why}</p>
+            <p className="text-body text-white opacity-55 flex-1 hidden md:block">{a.why}</p>
             <span className="text-white opacity-25 group-hover:opacity-70 transition-opacity self-start pt-1 flex-shrink-0">→</span>
           </a>
         ))}
       </div>
-      <p className="text-overline text-white opacity-30 mb-6">Books</p>
+      <p className="text-overline text-white opacity-50 mb-6">Books</p>
       <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-10">
         {readingItems.books.map((b, i) => (
           <div key={i} className="bg-black p-8">
             <p className="text-body text-white mb-1" style={{ fontWeight: 400 }}>{b.title}</p>
-            <p className="text-label text-white opacity-35 mb-4">{b.author}</p>
+            <p className="text-label text-white opacity-55 mb-4">{b.author}</p>
             <p className="text-body text-white opacity-50">{b.why}</p>
           </div>
         ))}
@@ -163,8 +163,6 @@ function ReadingListContent() {
 function ResourceCard({ resource, index }: { resource: Resource; index: number }) {
   const [expanded, setExpanded] = useState(false)
 
-  const imgUrl = `https://images.unsplash.com/${resource.imageId}?auto=format&fit=crop&w=1600&q=80`
-
   return (
     <motion.div
       className="relative overflow-hidden border-t border-white group"
@@ -174,36 +172,16 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
       viewport={{ once: true, margin: '-5%' }}
       transition={{ duration: 0.7, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Background image — desaturated, darkened, mysterious */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={imgUrl}
-          alt={resource.imageAlt}
-          className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
-          style={{
-            filter: 'saturate(0.12) contrast(1.1) brightness(0.28)',
-          }}
-        />
-        {/* Bottom gradient — text legibility */}
-        <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to top, rgba(12,12,11,0.98) 0%, rgba(12,12,11,0.82) 40%, rgba(12,12,11,0.45) 70%, rgba(12,12,11,0.2) 100%)'
-        }} />
-        {/* Left gradient — strong text anchor across full left */}
-        <div className="absolute inset-0" style={{
-          background: 'linear-gradient(to right, rgba(12,12,11,0.97) 0%, rgba(12,12,11,0.92) 30%, rgba(12,12,11,0.7) 55%, rgba(12,12,11,0.25) 80%, transparent 100%)'
-        }} />
-      </div>
-
       {/* Content */}
       <div className="relative z-10 p-10 md:p-14">
         {/* Header */}
         <div className="flex items-start justify-between gap-6 mb-8">
           <div className="flex flex-wrap gap-2">
             {resource.type.map(t => (
-              <span key={t} className="text-label text-white border border-white border-opacity-20 px-3 py-1.5" style={{ opacity: 0.55 }}>{t}</span>
+              <span key={t} className="text-label text-white border border-white border-opacity-50 px-3 py-1.5" style={{ opacity: 0.55 }}>{t}</span>
             ))}
           </div>
-          <span className="text-label text-white opacity-15 flex-shrink-0" style={{ fontSize: '0.65rem' }}>
+          <span className="text-label text-white opacity-50 flex-shrink-0" style={{ fontSize: '0.65rem' }}>
             {String(index + 1).padStart(2, '0')}
           </span>
         </div>
@@ -250,19 +228,19 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
         <div className="flex flex-wrap gap-4">
           {resource.readingList ? (
             <button onClick={() => setExpanded(e => !e)}
-              className="text-label text-white border border-white border-opacity-25 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300">
+              className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300">
               {expanded ? 'Collapse list ↑' : 'View reading list →'}
             </button>
           ) : (
             <>
               {resource.internalUrl ? (
                 <Link to={resource.internalUrl}
-                  className="text-label text-white border border-white border-opacity-25 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300 inline-flex items-center gap-2">
+                  className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300 inline-flex items-center gap-2">
                   {resource.previewLabel || 'Explore'} →
                 </Link>
               ) : resource.previewUrl ? (
                 <a href={resource.previewUrl} target="_blank" rel="noopener noreferrer"
-                  className="text-label text-white border border-white border-opacity-25 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300 inline-flex items-center gap-2">
+                  className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300 inline-flex items-center gap-2">
                   {resource.previewLabel || 'Preview'} ↗
                 </a>
               ) : null}
@@ -316,7 +294,7 @@ export default function Resources() {
               className={`text-label px-4 py-2 border transition-all duration-200 ${
                 activeFilter === f
                   ? 'border-white text-white'
-                  : 'border-white border-opacity-20 text-white opacity-40 hover:opacity-70'
+                  : 'border-white border-opacity-20 text-white opacity-60 hover:opacity-90'
               }`}>
               {f}
             </button>
@@ -348,7 +326,7 @@ export default function Resources() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <div>
-            <p className="text-overline text-white opacity-30 mb-4">Looking for something specific?</p>
+            <p className="text-overline text-white opacity-50 mb-4">Looking for something specific?</p>
             <p className="text-white mb-3" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.3 }}>
               Many of these resources originated from real projects, workshops, mentoring conversations, and community initiatives.
             </p>
@@ -358,7 +336,7 @@ export default function Resources() {
           </div>
           <div className="flex justify-start md:justify-end">
             <a href="mailto:uxbyamit@gmail.com"
-              className="text-label text-white border border-white border-opacity-30 px-8 py-4 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 inline-flex items-center gap-3">
+              className="text-label text-white border border-white border-opacity-50 px-8 py-4 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 inline-flex items-center gap-3">
               Get in touch →
             </a>
           </div>

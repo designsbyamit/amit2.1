@@ -2,14 +2,14 @@ export default function Footer() {
   return (
     <footer className="border-t border-white border-opacity-10 px-6 md:px-12 py-8">
       <div className="mx-auto max-w-7xl flex items-center justify-between">
-        <p className="text-label text-white opacity-20">© {new Date().getFullYear()} Amit Kumar Tiwari</p>
+        <p className="text-label text-white opacity-50">© {new Date().getFullYear()} Amit Kumar Tiwari</p>
 
         <div className="flex items-center gap-5">
           <a
             href="https://linkedin.com/in/amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white opacity-30 hover:opacity-70 transition-opacity"
+            className="text-white opacity-60 hover:opacity-100 transition-opacity"
             aria-label="LinkedIn"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -20,7 +20,7 @@ export default function Footer() {
             href="https://medium.com/@amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white opacity-30 hover:opacity-70 transition-opacity"
+            className="text-white opacity-60 hover:opacity-100 transition-opacity"
             aria-label="Medium"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -31,7 +31,7 @@ export default function Footer() {
             href="https://topmate.io/amitkrt"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white opacity-30 hover:opacity-70 transition-opacity"
+            className="text-white opacity-60 hover:opacity-100 transition-opacity"
             aria-label="Topmate"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -40,7 +40,7 @@ export default function Footer() {
           </a>
           <a
             href="mailto:uxbyamit@gmail.com"
-            className="text-white opacity-30 hover:opacity-70 transition-opacity"
+            className="text-white opacity-60 hover:opacity-100 transition-opacity"
             aria-label="Email"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

@@ -5,8 +5,8 @@ import logoSvg from '../../assets/images/logo.svg'
 import { caseStudies } from '../../data/work'
 
 const navItems = [
-  { label: 'Home', to: '/' },
   { label: 'Craft', to: '/craft' },
+  { label: 'Leadership', to: '/leadership' },
   { label: 'Community', to: '/community' },
   { label: 'Reflections', to: '/reflections' },
   { label: 'Resources', to: '/resources' },
@@ -67,7 +67,7 @@ export default function Nav() {
                     to={item.to}
                     className={({ isActive }) =>
                       `text-label text-white transition-all duration-200 ${
-                        isActive ? 'opacity-100' : 'opacity-45 hover:opacity-80'
+                        isActive ? 'opacity-100' : 'opacity-65 hover:opacity-100'
                       }`
                     }
                   >
@@ -122,7 +122,7 @@ export default function Nav() {
                     end={item.to === '/'}
                     className={({ isActive }) =>
                       `text-label text-white transition-all duration-200 ${
-                        isActive ? 'opacity-100' : 'opacity-45 hover:opacity-80'
+                        isActive ? 'opacity-100' : 'opacity-65 hover:opacity-100'
                       }`
                     }
                   >

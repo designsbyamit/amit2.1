@@ -22,7 +22,7 @@ export default function LeadershipStories() {
         </div>
 
         <div>
-          {stories.map((story, i) => {
+          {stories.filter(st => st.narrative.length > 0).map((story, i) => {
             const hasContent = story.narrative.length > 0
 
             return (
@@ -40,9 +40,9 @@ export default function LeadershipStories() {
 
                     {/* Meta */}
                     <div className="flex items-center gap-4 mb-6">
-                      <span className="text-label text-white opacity-20">{String(i + 1).padStart(2, '0')}</span>
-                      {story.year && <span className="text-overline text-white opacity-35">{story.year}</span>}
-                      {story.context && <span className="text-label text-white opacity-25">· {story.context}</span>}
+                      <span className="text-label text-white opacity-50">{String(i + 1).padStart(2, '0')}</span>
+                      {story.year && <span className="text-overline text-white opacity-55">{story.year}</span>}
+                      {story.context && <span className="text-label text-white opacity-50">· {story.context}</span>}
                     </div>
 
                     {/* Title */}
@@ -74,7 +74,7 @@ export default function LeadershipStories() {
                     ) : (
                       /* Cue questions — shown until the story is written */
                       <div className="max-w-2xl space-y-6">
-                        <p className="text-overline text-white opacity-25 mb-2">Reflective cues</p>
+                        <p className="text-overline text-white opacity-50 mb-2">Reflective cues</p>
                         {story.cues.map((cue, j) => (
                           <motion.div
                             key={j}
@@ -86,7 +86,7 @@ export default function LeadershipStories() {
                           >
                             <span
                               className="text-white flex-shrink-0 mt-1"
-                              style={{ fontSize: '0.65rem', opacity: 0.2, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', paddingTop: '2px' }}
+                              style={{ fontSize: '0.65rem', opacity: 0.5, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', paddingTop: '2px' }}
                             >
                               {String(j + 1).padStart(2, '0')}
                             </span>
@@ -98,7 +98,7 @@ export default function LeadershipStories() {
                             </p>
                           </motion.div>
                         ))}
-                        <p className="text-label text-white opacity-20 mt-8">Story being written —</p>
+                        <p className="text-label text-white opacity-50 mt-8">Story being written —</p>
                       </div>
                     )}
                   </div>

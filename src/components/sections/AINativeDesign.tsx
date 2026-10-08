@@ -68,7 +68,7 @@ export default function AINativeDesign() {
               viewport={{ once: true, margin: '-5%' }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <p className="text-label text-white opacity-20 mb-4">{p.number}</p>
+              <p className="text-label text-white opacity-50 mb-4">{p.number}</p>
               <h3 className="text-heading text-white mb-4">{p.title}</h3>
               <p className="text-body text-white opacity-55">{p.body}</p>
             </motion.div>

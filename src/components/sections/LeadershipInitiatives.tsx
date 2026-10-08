@@ -45,7 +45,7 @@ export default function LeadershipInitiatives() {
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <h3 className="text-heading text-white">{item.name}</h3>
-                <span className="text-label text-white opacity-25 shrink-0 mt-1">{item.year}</span>
+                <span className="text-label text-white opacity-50 shrink-0 mt-1">{item.year}</span>
               </div>
               <p
                 className="text-label text-white mb-4 border border-white px-2.5 py-0.5 inline-block"

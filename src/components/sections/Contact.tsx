@@ -4,7 +4,8 @@ import SectionLabel from '../ui/SectionLabel'
 import GrainOverlay from '../ui/GrainOverlay'
 import SweepLines from '../ui/SweepLines'
 
-export default function Contact() {
+export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' | 'h2' }) {
+  const Heading = headingLevel === 'h1' ? motion.h1 : motion.h2
   const [copied, setCopied] = useState(false)
 
   const copyEmail = async () => {
@@ -22,7 +23,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
             <SectionLabel>Contact</SectionLabel>
-            <motion.h2
+            <Heading
               className="text-display-l text-white mt-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +31,7 @@ export default function Contact() {
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               Let's think together.
-            </motion.h2>
+            </Heading>
           </div>
 
           <motion.div
@@ -47,7 +48,7 @@ export default function Contact() {
             <div className="space-y-4">
               <button
                 onClick={copyEmail}
-                className="w-full md:w-auto text-label text-white border border-white border-opacity-30 px-8 py-4 hover:border-opacity-80 hover:bg-white hover:bg-opacity-5 transition-all duration-300 flex items-center gap-3"
+                className="w-full md:w-auto text-label text-white border border-white border-opacity-50 px-8 py-4 hover:border-opacity-80 hover:bg-white hover:bg-opacity-5 transition-all duration-300 flex items-center gap-3"
               >
                 <span>uxbyamit@gmail.com</span>
                 <span className="opacity-50 text-xs">{copied ? '✓ Copied' : 'Copy'}</span>
@@ -58,7 +59,7 @@ export default function Contact() {
                   href="https://linkedin.com/in/amitkrt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-label text-white opacity-40 hover:opacity-100 transition-opacity"
+                  className="text-label text-white opacity-55 hover:opacity-100 transition-opacity"
                 >
                   LinkedIn
                 </a>
@@ -66,7 +67,7 @@ export default function Contact() {
                   href="https://medium.com/@amitkrt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-label text-white opacity-40 hover:opacity-100 transition-opacity"
+                  className="text-label text-white opacity-55 hover:opacity-100 transition-opacity"
                 >
                   Medium
                 </a>
@@ -74,8 +75,8 @@ export default function Contact() {
             </div>
 
             <div className="pt-4 border-t border-white border-opacity-10">
-              <p className="text-label text-white opacity-30">Based in Bangalore, India</p>
-              <p className="text-label text-white opacity-20 mt-1">Available for global conversations</p>
+              <p className="text-label text-white opacity-50">Based in Bangalore, India</p>
+              <p className="text-label text-white opacity-50 mt-1">Available for global conversations</p>
             </div>
           </motion.div>
         </div>

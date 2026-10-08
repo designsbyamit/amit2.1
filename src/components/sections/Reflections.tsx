@@ -21,7 +21,7 @@ export default function Reflections() {
             className={`text-label px-4 py-2 border transition-all duration-200 ${
               activeCategory === null
                 ? 'border-white text-white'
-                : 'border-white border-opacity-20 text-white opacity-40 hover:opacity-70'
+                : 'border-white border-opacity-20 text-white opacity-60 hover:opacity-90'
             }`}
             onClick={() => setActiveCategory(null)}
           >
@@ -33,7 +33,7 @@ export default function Reflections() {
               className={`text-label px-4 py-2 border transition-all duration-200 ${
                 activeCategory === cat
                   ? 'border-white text-white'
-                  : 'border-white border-opacity-20 text-white opacity-40 hover:opacity-70'
+                  : 'border-white border-opacity-20 text-white opacity-60 hover:opacity-90'
               }`}
               onClick={() => setActiveCategory(cat === activeCategory ? null : cat)}
             >
@@ -75,7 +75,7 @@ export default function Reflections() {
                         fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                         fontWeight: 200,
                         letterSpacing: '-0.05em',
-                        color: 'rgba(245,242,237,0.12)',
+                        color: 'rgba(245,242,237,0.5)',
                         lineHeight: 1,
                       }}
                     >
@@ -87,14 +87,14 @@ export default function Reflections() {
 
               {/* Text */}
               <div className="p-8 md:p-10 flex flex-col flex-1">
-                <p className="text-overline text-white opacity-30 mb-4">{r.category}</p>
+                <p className="text-overline text-white opacity-50 mb-4">{r.category}</p>
                 <h3 className="text-white mb-4 group-hover:opacity-80 transition-opacity"
                   style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.35 }}>
                   {r.title}
                 </h3>
-                <p className="text-body text-white opacity-45 flex-1">{r.excerpt}</p>
+                <p className="text-body text-white opacity-60 flex-1">{r.excerpt}</p>
                 <div className="mt-8 pt-6 border-t border-white border-opacity-10 flex items-center justify-between">
-                  <span className="text-label text-white opacity-30">Read on Medium</span>
+                  <span className="text-label text-white opacity-50">Read on Medium</span>
                   <span className="text-white opacity-30 group-hover:opacity-80 transition-opacity">→</span>
                 </div>
               </div>
