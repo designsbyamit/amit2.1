@@ -60,20 +60,17 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-sap-community',
-    year: '2022 — present',
+    year: 'Feb 2025 — present',
     context: 'SAP Design Hub India',
-    title: '250+ designers and the thing I didn\'t expect',
+    title: 'Leading a 250+ designer community',
     cues: [
-      'What gap were you trying to close when you founded SAP Design Hub India?',
+      'What did you inherit when you became Lead of SAP Design Hub India in February 2025, and what did you decide to change first?',
       'What surprised you most about what the community revealed — about designers, or about organisations?',
       'What does it mean to build design culture from inside a large enterprise rather than starting fresh?',
+      'As Lead Curator of Impulse India, what do you want a designer to walk away with?',
     ],
-    narrative: [
-      'I started SAP Design Hub India with a simple goal: create a space where SAP designers across India could share work, critique each other, and build something beyond their immediate pod.',
-      'Within a year we had 250+ members and monthly events that were oversubscribed. But the unexpected thing wasn\'t the scale — it was what the community taught me about organizational health.',
-      'The gap between what people are capable of and what organisations allow them to do is enormous. Building this community didn\'t just give designers a place — it gave me a diagnostic lens.',
-    ],
-    lesson: 'Communities reveal what organizations suppress. Build both.',
+    narrative: [],
+    lesson: '',
   },
 ]
 

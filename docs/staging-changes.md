@@ -44,4 +44,4 @@ Nothing here is deployed until `staging` is merged into `main`.
 ## Timeline reconciled with designsbyamit.com
 - About and Journey now use the same employers, titles and dates as www.designsbyamit.com (Infosys 2011-14, Photon 2014-15, HPE 2015-18, Accenture Song 2018-24, SAP Labs 2024-now).
 - Journey previously listed SAP from 2022 and an "Infosys UX Academy 2009-11"; replaced with a "College" foundations phase (leadership from college). Amit to confirm wording.
-- Open: SAP Design Hub India story says 2022-present, which predates joining SAP (Aug 2024). Confirm the founding year.
+- SAP Design Hub India: Amit is Lead since Feb 2025 (not founder); Impulse India: Lead Curator. Founder claims, the 2022 start and the first-person founding story were removed. The story stays hidden until he writes it, and the Leadership Stories section is hidden until at least one story is written.

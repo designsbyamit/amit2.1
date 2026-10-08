@@ -64,7 +64,7 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
           <div>
             <div className="flex items-center gap-3 mb-6">
               <span className="text-label text-white opacity-50">{String(index + 1).padStart(2, '0')}</span>
-              <span className="text-overline text-white opacity-55">{initiative.year}</span>
+              {initiative.year && <span className="text-overline text-white opacity-55">{initiative.year}</span>}
             </div>
 
             <h3

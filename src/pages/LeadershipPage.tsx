@@ -30,7 +30,7 @@ function CommunityCallout() {
             <p className="text-overline text-white opacity-55">Designers in SAP Design Hub India</p>
           </div>
           <p className="text-body text-white opacity-50 max-w-xl mb-8">
-            Founded in 2022. Monthly events, peer critique, and a growing culture of design excellence inside the enterprise. A community that revealed what organisations suppress — and what happens when you give designers a room of their own.
+            Led by Amit since February 2025. Monthly events, peer critique, and a growing culture of design excellence inside the enterprise. A community that revealed what organisations suppress — and what happens when you give designers a room of their own.
           </p>
           <Link
             to="/community"

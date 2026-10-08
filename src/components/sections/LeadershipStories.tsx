@@ -4,6 +4,8 @@ import SectionLabel from '../ui/SectionLabel'
 import GrainOverlay from '../ui/GrainOverlay'
 
 export default function LeadershipStories() {
+  // Hidden until at least one story has been written.
+  if (!stories.some(st => st.narrative.length > 0)) return null
   return (
     <section className="relative bg-black py-24 md:py-32 px-6 md:px-12 overflow-hidden">
       <GrainOverlay opacity={0.03} />
