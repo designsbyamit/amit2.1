@@ -7,38 +7,45 @@ export interface Phase {
 
 export const phases: Phase[] = [
   {
-    years: '2009–2011',
+    years: 'College',
     title: 'Foundations',
-    company: 'Infosys UX Academy',
+    company: 'Computer science & early development',
     narrative:
-      'First exposure to structured design thinking. UX methods, research fundamentals, and the belief that design can change how people work.',
+      'A computer science background and hands-on development work. Took on leadership opportunities early, well before the title existed.',
   },
   {
-    years: '2011–2015',
+    years: '2011–2014',
     title: 'Early Practice',
-    company: 'Independent & Agency',
+    company: 'Infosys · Senior UX Designer',
     narrative:
-      "End-to-end UX delivery across e-commerce and enterprise software. Evangelizing design in organizations that didn't yet have a word for it.",
+      '20+ client engagements: simple UIs, research artefacts, and everything it takes to run the UX cycle end to end.',
   },
   {
-    years: '2015–2019',
+    years: '2014–2015',
+    title: 'Founding Lead',
+    company: 'Photon Interactive · Creative UX Lead',
+    narrative:
+      'Founding UX lead for e-commerce clients: research, analytics, and the start of a design culture.',
+  },
+  {
+    years: '2015–2018',
     title: 'Enterprise Scale',
-    company: 'HPE',
+    company: 'Hewlett Packard Enterprise · Staff Product Designer',
     narrative:
-      'Led UX for Greenlake cloud suite. Built the GreenUX design system from ground up. Established global Communities of Practice — design operations at scale.',
+      'Led UX for the Greenlake cloud suite. Built the GreenUX design system from the ground up. Established global Communities of Practice: design operations at scale.',
   },
   {
-    years: '2019–2022',
+    years: '2018–2024',
     title: 'Strategic Leadership',
-    company: 'Accenture Design Studio',
+    company: 'Accenture Song · User Experience Manager',
     narrative:
-      'UX practice leadership across cross-industry B2B and B2C. Bridging design and business strategy. Managing multi-disciplinary studio environments.',
+      'UX practice leadership across cross-industry B2B and B2C. Founding member of the studio\'s Generative AI and Conversational AI design capabilities. Bridging design and business strategy.',
   },
   {
-    years: '2022–present',
+    years: '2024–present',
     title: 'AI-Native Era',
-    company: 'SAP',
+    company: 'SAP Labs · Design Leader (User Experience Manager)',
     narrative:
-      'Design leadership at enterprise scale. Shaping AI-native experiences, agentic workflows, and conversational HCM. Founded SAP Design Hub India — 250+ strong community of designers.',
+      'Design leadership at enterprise scale. Shaping AI-native experiences, agentic workflows, and conversational HCM, and unifying product experiences across SAP.',
   },
 ]

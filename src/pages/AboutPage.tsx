@@ -5,11 +5,11 @@ import SectionLabel from '../components/ui/SectionLabel'
 import { motion } from 'framer-motion'
 
 const timeline = [
-  { year: 'Aug 2024–Now', role: 'User Experience Manager', org: 'SAP', detail: 'Driving suite-first design and AI-native experiences across SAP products. Leading design community initiatives and capability building across the India hub.' },
-  { year: 'Dec 2018–Aug 2024', role: 'User Experience Manager', org: 'Accenture', detail: 'Helped enterprises translate complex ideas into simple interactions through rigorous iterations of research, design, and test — across airlines, HR, telecom, and enterprise platforms.' },
-  { year: 'Dec 2015–Dec 2018', role: 'User Experience Designer', org: 'Hewlett Packard Enterprise', detail: 'Designed enterprise software experiences at scale, sharpening craft in complex systems and information architecture.' },
-  { year: 'Jul 2014–Nov 2015', role: 'Creative Lead (User Experience)', org: 'Photon', detail: 'Led UX for digital transformation engagements, establishing design direction across client projects.' },
-  { year: '2011–2014', role: 'UX Designer', org: 'Infosys', detail: 'Built foundational fluency in enterprise design — user research, interaction design, and cross-functional collaboration.' },
+  { year: 'Aug 2024–Now', role: 'Design Leader (User Experience Manager)', org: 'SAP Labs', detail: 'Harmonising enterprise product experience across SAP products. Evangelising the value and power of design while unifying experiences coherently across products.' },
+  { year: 'Dec 2018–Jul 2024', role: 'User Experience Manager', org: 'Accenture Song', detail: 'Design leader and UX consultant across strategy, research and interaction design. Founding member of the Generative AI and Conversational AI design capabilities at the studio.' },
+  { year: 'Dec 2015–Dec 2018', role: 'Staff Product Designer', org: 'Hewlett Packard Enterprise', detail: 'Drove design for a suite of cloud offerings: user-friendly interfaces for cloud platforms, coordination across internal and external teams, and guidance for new designers.' },
+  { year: 'Jul 2014–Dec 2015', role: 'Creative UX Lead (Founding UX Lead)', org: 'Photon Interactive', detail: 'Designed for e-commerce clients, including research and analytics, while fostering design culture.' },
+  { year: 'Jan 2011–Jul 2014', role: 'Senior UX Designer', org: 'Infosys Limited', detail: '20+ client engagements delivering simple UIs and research artefacts, across the full UX cycle.' },
 ]
 
 export default function AboutPage() {
