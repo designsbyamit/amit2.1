@@ -1,4 +1,4 @@
-// SAP AI-Powered Search prototype — built only with SAP UI5 Web Components (Fiori, Horizon theme).
+// AI-Powered Search prototype — built only with UI5 Web Components (Fiori, Horizon theme).
 // Screens and content mirror the Figma frames 1.1–5.4 ("S-Projects › AI-Powered Search").
 import { registerLocaleDataLoader } from '@ui5/webcomponents-base/dist/asset-registries/LocaleData.js';
 import cldrEn from '@ui5/webcomponents-localization/dist/generated/assets/cldr/en.json';
@@ -91,7 +91,7 @@ const band = (cls, title, meta) => `<div class="band ${cls}"><ui5-title level="H
 
 // ── Search field (UI5 Input in the ShellBar, AI-search icon) ─────────────
 // Same behaviour as the case-study animation: on focus, "Recent searches" + "Suggested for you";
-// once typing starts, one "Suggestions" group across every SAP product, matches in bold,
+// once typing starts, one "Suggestions" group across every product, matches in bold,
 // source application on the right. Enter or click opens the unified results page.
 function listFor(v) {
   v = v.trim().toLowerCase();
@@ -149,7 +149,7 @@ V.goals = () => appHome(D.goals.home, 'Draft goals for product design team');
 
 function handoff(name, text, next) {
   const d = document.getElementById('handoff');
-  d.querySelector('.mk').textContent = name[0]; d.querySelector('.hn').textContent = `SAP ${name}`; d.querySelector('.ht').textContent = text;
+  d.querySelector('.mk').textContent = name[0]; d.querySelector('.hn').textContent = name; d.querySelector('.ht').textContent = text;
   const p = d.querySelector('ui5-progress-indicator'); p.value = 0; d.open = true;
   let v = 0; const t = setInterval(() => { v += 8; p.value = Math.min(v, 100); if (v >= 100) { clearInterval(t); d.open = false; go(next); } }, 90);
   d.querySelector('#hcancel').onclick = () => { clearInterval(t); d.open = false; };
@@ -223,15 +223,15 @@ V.res = (key, tab = 0, filter = 0) => {
   app.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => V.res(key, tab, +b.dataset.f)));
   const more = document.getElementById('more'), sum = document.getElementById('aisum');
   more.onclick = () => { const open = sum.maxLines === 2; sum.maxLines = open ? 0 : 2; more.textContent = open ? 'Show less' : 'Show more'; more.icon = open ? 'slim-arrow-up' : 'slim-arrow-down'; };
-  document.getElementById('sources').onclick = () => toast(`Sources: SAP ${D.apps[S.app]} · ${S.total} records`);
+  document.getElementById('sources').onclick = () => toast(`Sources: ${D.apps[S.app]} · ${S.total} records`);
   app.querySelectorAll('.bm').forEach(b => b.onclick = () => { b.icon = b.icon === 'bookmark-2' ? 'bookmark' : 'bookmark-2'; });
-  app.querySelectorAll('[data-open]').forEach(l => l.addEventListener('click', () => toast(`Opens in SAP ${D.apps[S.app]}.`)));
+  app.querySelectorAll('[data-open]').forEach(l => l.addEventListener('click', () => toast(`Opens in ${D.apps[S.app]}.`)));
   app.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => {
     const [ri, ai] = b.dataset.act.split(':').map(Number); const [t, , , next] = S.rows[ri].actions[ai];
     if (next === 'concur') handoff('Concur', 'Opening your booking...', 'booking');
     else if (next === 'ariba') handoff('Ariba', 'Opening procurement catalog...', 'ariba');
     else if (next) go(next);
-    else toast(`${t}: opens in SAP ${D.apps[S.app]}.`);
+    else toast(`${t}: opens in ${D.apps[S.app]}.`);
   }));
 };
 V.po = () => V.res('po');

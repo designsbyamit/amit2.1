@@ -46,7 +46,7 @@ export const sapAgentic = {
 
   journeys: [
     { id: 'access', label: '01', title: 'Sign in, set-up and navigation',
-      summary: 'Three personas sign in to the same Supplier Order Confirmation Assistant. An administrator connects Microsoft Office 365 (the mailbox the confirmations arrive in) and the SAP ECC system, and manages users through SAP Cloud Identity Service.',
+      summary: 'Three personas sign in to the same Supplier Order Confirmation Assistant. An administrator connects Microsoft Office 365 (the mailbox the confirmations arrive in) and the ERP system, and manages users through the identity service.',
       screens: [
         { id: 'signin-ops', name: 'Sign in: Procurement Operations' },
         { id: 'signin-buyer', name: 'Sign in: Buyer' },

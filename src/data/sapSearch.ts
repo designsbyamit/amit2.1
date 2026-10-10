@@ -74,13 +74,13 @@ export const sapSearch = {
   ] as [string, string][],
 
   flows: [
-    { id: 'component', label: '01', title: 'The search component', hash: 'home', summary: 'One AI search field in the SAP shell bar of every product: its anatomy and spacing, its five states, and how suggestions and type-ahead behave from the first focus to Enter.',
+    { id: 'component', label: '01', title: 'The search component', hash: 'home', summary: 'One AI search field in the shell bar of every product: its anatomy and spacing, its five states, and how suggestions and type-ahead behave from the first focus to Enter.',
       screens: [] },
     { id: 'results', label: '02', title: 'Search results', hash: 'po', summary: '"Pending POs": 14 results and $1.8M impacted. The live prototype uses the one results layout shared by every product: AI overview, filters, tabs, and actions on each row.',
       screens: [{ id: '2-1', name: 'Search results default' }, { id: '2-2', name: 'Documents tab' }, { id: '2-3', name: 'Product cards' }, { id: '2-4', name: 'Detail side panel' }] },
-    { id: 'travel', label: '03', title: 'Use case: Business travel → SAP Concur', hash: 'travel', summary: 'From "flight to Bangalore" to a policy-compliant booking. AI recommends the preferred route and hotel, then hands off to Concur with the trip already filled in.',
+    { id: 'travel', label: '03', title: 'Use case: Business travel → Concur', hash: 'travel', summary: 'From "flight to Bangalore" to a policy-compliant booking. AI recommends the preferred route and hotel, then hands off to Concur with the trip already filled in.',
       screens: [{ id: '3-1', name: 'Search home' }, { id: '3-2', name: 'Travel type-ahead' }, { id: '3-3', name: 'Travel results' }, { id: '3-4', name: 'Opening Concur' }, { id: '3-5', name: 'Concur booking screen' }] },
-    { id: 'procurement', label: '04', title: 'Use case: Procurement → SAP Ariba', hash: 'buy', summary: 'An AI comparison of two catalog items, then straight into Ariba with the preferred contract, supplier and quantity ready for a requisition.',
+    { id: 'procurement', label: '04', title: 'Use case: Procurement → Ariba', hash: 'buy', summary: 'An AI comparison of two catalog items, then straight into Ariba with the preferred contract, supplier and quantity ready for a requisition.',
       screens: [{ id: '4-1', name: 'Search home' }, { id: '4-2', name: 'Procurement type-ahead' }, { id: '4-3', name: 'Comparison + products' }, { id: '4-4', name: 'Opening Ariba' }, { id: '4-5', name: 'Ariba procurement screen' }] },
     { id: 'goals', label: '05', title: 'Use case: SuccessFactors goals', hash: 'goals', summary: "A manager searches for a team member's goals, sees progress and risk at a glance, and edits a goal without leaving the flow.",
       screens: [{ id: '5-1', name: 'Search home' }, { id: '5-2', name: 'SF type-ahead' }, { id: '5-3', name: 'Team member goals' }, { id: '5-4', name: 'Goal draft' }] },

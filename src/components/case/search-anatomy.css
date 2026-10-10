@@ -15,7 +15,7 @@
 }
 .sa-abs { position: absolute; }
 
-/* Shell bar (SAP Horizon) */
+/* Shell bar */
 .sa-shell { position: absolute; left: 0; height: 52px; background: #fff;
   box-shadow: 0 0 0.125rem 0 rgba(34,53,72,.15), 0 0.125rem 0.5rem 0 rgba(34,53,72,.15); }
 .sa-pname { position: absolute; top: 0; height: 52px; display: flex; align-items: center; font-weight: 700; font-size: 16px; color: #003e87; white-space: nowrap; }

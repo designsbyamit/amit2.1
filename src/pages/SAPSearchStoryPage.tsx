@@ -22,7 +22,7 @@ function Prototype({ hash }: { hash: string }) {
   return (
     <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--line-2)' }}>
       <div className="flex items-center justify-between gap-4 px-4 py-2 bg-surface-2">
-        <span className="text-caption text-ink-3">Interactive prototype · SAP UI5 Web Components, Horizon theme</span>
+        <span className="text-caption text-ink-3">Interactive prototype · UI5 Web Components</span>
         <a href={`${S.prototype}#${hash}`} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white tap-target inline-flex items-center">Open full screen ↗</a>
       </div>
       <iframe key={hash} title="AI-Powered Search prototype" src={`${S.prototype}#${hash}`} className="w-full block bg-white" style={{ height: 'min(820px, 80vh)' }} loading="lazy" />
@@ -95,7 +95,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Recommendations */}
       <Section id="recommendations">
-        <SectionHeader label="03 · Solution recommendations" title="Ten capabilities for one search across every SAP application." intro={cs.approach} />
+        <SectionHeader label="03 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
         <ol className="grid sm:grid-cols-2 gap-x-10">
           {S.recommendations.map((r, i) => (
             <li key={r} className="flex gap-5 py-4 hairline-top"><span className="text-label text-ink-3 w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span><span className="text-body text-white">{r}</span></li>
@@ -125,7 +125,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Experience */}
       <Section id="experience">
-        <SectionHeader label="05 · The experience" title="One search, six journeys." intro="Built entirely with native SAP Fiori components. Pick a journey to see its screens and try it live." />
+        <SectionHeader label="05 · The experience" title="One search, six journeys." intro="Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.flows.map(f => (
             <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" aria-pressed={f.id === active} onClick={() => setActive(f.id)}>
@@ -147,7 +147,7 @@ export default function SAPSearchStoryPage() {
               </figure>
             ))}
           </div>}
-          <p className="text-body text-ink-2 mt-12">{flow.screens.length > 0 ? 'Try this journey live. The prototype uses the same SAP UI5 components as the screens above.' : (flow.id === 'component' ? 'Try the same behaviour live: hover, focus, type, use the arrow keys and press Enter.' : 'Try this journey live, built with the same SAP UI5 components.')}</p>
+          <p className="text-body text-ink-2 mt-12">{flow.screens.length > 0 ? 'Try this journey live. The prototype uses the same UI5 components as the screens above.' : (flow.id === 'component' ? 'Try the same behaviour live: hover, focus, type, use the arrow keys and press Enter.' : 'Try this journey live, built with the same UI5 components.')}</p>
           <div className="mt-10"><Prototype hash={flow.hash} /></div>
         </div>
       </Section>

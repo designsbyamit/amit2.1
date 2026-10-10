@@ -20,7 +20,7 @@ const microStories = [
     body: 'Enterprise engineers had spent years learning to navigate complexity — removing it felt like a regression. Progressive disclosure was the solution: show less by default without removing anything. Expert users still had full control on demand. First-time users saw only what they needed. Nobody lost anything. Adoption followed.',
   },
   {
-    label: 'Agentic AI · SAP',
+    label: 'Agentic AI',
     heading: 'In autonomous systems, what the agent doesn\'t show matters as much as what it does',
     body: 'The instinct in agentic AI design is to surface everything — every step, every inference, every confidence score. But information overload defeats the purpose of automation. The principle we settled on: show the outcome, surface the reasoning only when it matters, and always preserve the human\'s ability to intervene. Trust is designed, not assumed.',
   },

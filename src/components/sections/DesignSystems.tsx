@@ -9,9 +9,9 @@ const systems = [
     scale: 'Enterprise · Global team',
   },
   {
-    name: 'SAP AI Design Standards',
-    org: 'SAP',
-    description: 'Conversational design standards, agentic UX patterns, and interaction guidelines now used across SAP\'s AI product portfolio.',
+    name: 'AI Design Standards',
+    org: 'Enterprise software',
+    description: 'Conversational design standards, agentic UX patterns, and interaction guidelines now used across an AI product portfolio.',
     scale: 'Enterprise · Portfolio-wide',
   },
   {

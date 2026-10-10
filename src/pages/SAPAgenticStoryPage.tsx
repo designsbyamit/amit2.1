@@ -108,7 +108,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="experience">
-        <SectionHeader label="05 · The experience" title="Four journeys, one assistant." intro="Built with native SAP Fiori components. Pick a journey and select any screen to enlarge it." />
+        <SectionHeader label="05 · The experience" title="Four journeys, one assistant." intro="Built with native enterprise UI components. Pick a journey and select any screen to enlarge it." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.journeys.map(j => (
             <button key={j.id} type="button" role="tab" aria-selected={j.id === active} className="chip" aria-pressed={j.id === active} onClick={() => setActive(j.id)}>

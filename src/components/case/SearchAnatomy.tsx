@@ -1,14 +1,14 @@
 // Search component anatomy for the AI-Powered Search case study.
-// Three panels drawn as live HTML inside a real SAP Horizon shell bar (geometry measured from Figma node 6-62101):
+// Three panels drawn as live HTML inside a real Horizon shell bar (geometry measured from Figma node 6-62101):
 //   01 Anatomy & spacing (static, annotated)   02 Field states (looping)   03 Suggestions & type-ahead (looping)
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import './search-anatomy.css'
 
 const A = `${import.meta.env.BASE_URL}images/case-studies/sap-search/`
 const QUERY = 'Current status & end date of SOW IDs for CyberSecure Ltd'
-const PLACEHOLDER = 'Search across all SAP applications...'
+const PLACEHOLDER = 'Search across all applications...'
 
-// SAP Horizon icon paths (@ui5/webcomponents-icons v5, 16×16)
+// Horizon icon paths (@ui5/webcomponents-icons v5, 16×16)
 const P = {
   bell: 'M8 1c2.21 0 3.628.956 4.451 2.315.789 1.302.99 2.902.99 4.19v.636c0 1.072.341 1.976.691 2.62.189.347.41.678.669.974.442.469.098 1.265-.546 1.265h-3.837c-.281 1.15-1.256 2-2.418 2-1.162 0-2.137-.85-2.418-2H1.745c-.646 0-.989-.798-.544-1.267a5.19 5.19 0 0 0 .666-.971c.35-.645.691-1.55.691-2.621v-.636c0-1.288.202-2.888.99-4.19C4.372 1.955 5.791 1 8 1Zm0 1.5c-1.695 0-2.621.69-3.167 1.592-.582.96-.774 2.237-.774 3.413v.636c0 1.404-.45 2.563-.885 3.359h9.652c-.436-.795-.886-1.955-.886-3.36v-.635c0-1.176-.191-2.453-.773-3.413C10.621 3.19 9.695 2.5 8 2.5Z',
   help: 'M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM8 11a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm0-8a2.99 2.99 0 0 1 .75 5.884v.366a.75.75 0 0 1-1.5 0V8.231c0-.547.407-.716.904-.757.498-.042 1.346-.54 1.346-1.483A1.49 1.49 0 0 0 8 4.5c-.883 0-1.414.582-1.504 1.567A.75.75 0 0 1 5 5.991 2.99 2.99 0 0 1 8 3Z',
@@ -64,7 +64,7 @@ function Shell({ w, y, field, left = 0 }: { w: number; y: number; field: ReactNo
   const x = shellX(w)
   return (
     <div className="sa-shell" style={{ top: y, width: w, left }}>
-      <img src={`${A}sap-logo.png`} alt="SAP" className="sa-abs" style={{ left: 56, top: 11, width: 59, height: 29 }} />
+      <img src={`${A}logo-placeholder.png`} alt="Logo placeholder" className="sa-abs" style={{ left: 56, top: 11, width: 59, height: 29 }} />
       <span className="sa-pname" style={{ left: 125 }}>Product Name</span>
       <div className="sa-abs" style={{ left: x.field, top: 0 }}>{field}</div>
       <span className="sa-btn" style={{ left: x.bell }}><Ico d={P.bell} /></span>
@@ -189,7 +189,7 @@ function Anatomy() {
   const Z = { x: 360 + O, y: 292, s: 2 } // 2× detail of the field
   const zx = (v: number) => Z.x + v * Z.s, zy = (v: number) => Z.y + v * Z.s
   return (
-    <Stage w={W + 2 * O} h={430} minWidth={720} maxScale={1} label="Annotated SAP shell bar with the AI search field: spacing and sizes">
+    <Stage w={W + 2 * O} h={430} minWidth={720} maxScale={1} label="Annotated shell bar with the AI search field: spacing and sizes">
       <Shell w={W} y={Y} left={O} field={<Field state="default" />} />
       {/* outer spacing */}
       <HDim x1={O} x2={O + 56} y={Y - 18} label="56" />
@@ -343,10 +343,10 @@ export default function SearchAnatomy() {
   return (
     <div className="space-y-16 mt-10">
       <figure className="m-0">
-        <figcaption className="mb-5"><p className="text-overline text-ink-3">Anatomy & spacing</p><p className="text-body text-ink-2 mt-2 max-w-[65ch]">The AI search lives in the SAP shell bar of every product, so it looks and sits the same everywhere. Measurements at 1×.</p></figcaption>
+        <figcaption className="mb-5"><p className="text-overline text-ink-3">Anatomy & spacing</p><p className="text-body text-ink-2 mt-2 max-w-[65ch]">The AI search lives in the shell bar of every product, so it looks and sits the same everywhere. Measurements at 1×.</p></figcaption>
         <Anatomy />
         <Legend items={[
-          ['SAP logo', '59×29, 56 from the left edge'],
+          ['Logo placeholder', '59×29, 56 from the left edge'],
           ['Product name', '72 Bold 16, 10 after the logo'],
           ['AI search field', '400×36 pill, 8 before the first action'],
           ['AI search icon', '19×18, the only trailing icon: it marks the search as AI-powered'],
@@ -359,13 +359,13 @@ export default function SearchAnatomy() {
         <States />
       </figure>
       <figure className="m-0">
-        <figcaption className="mb-5"><p className="text-overline text-ink-3">Suggestions & type-ahead</p><p className="text-body text-ink-2 mt-2 max-w-[65ch]">One list across every SAP application, from the first focus to Enter.</p></figcaption>
+        <figcaption className="mb-5"><p className="text-overline text-ink-3">Suggestions & type-ahead</p><p className="text-body text-ink-2 mt-2 max-w-[65ch]">One list across every application, from the first focus to Enter.</p></figcaption>
         <Suggestions />
         <Legend items={[
           ['Popover', 'opens 4px below the field on focus · 480 wide · radius 12 · Horizon shadow'],
           ['Group header', '"Recent searches" and "Suggested for you" on focus; one "Suggestions" group once typing starts'],
           ['Type-ahead', 'matched characters in bold; the list updates on every keystroke, 44px rows'],
-          ['Source application', 'each suggestion names the SAP product it comes from: one search across all of them'],
+          ['Source application', 'each suggestion names the product it comes from: one search across all of them'],
           ['Keyboard', '↑ / ↓ moves through the rows while the caret stays in the field'],
           ['Enter or click', 'fills the field, closes the list and opens the unified results page'],
         ]} />
