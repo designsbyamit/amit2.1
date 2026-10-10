@@ -74,9 +74,9 @@ export const sapSearch = {
   ] as [string, string][],
 
   flows: [
-    { id: 'component', label: '01', title: 'The search component', hash: 'home', summary: 'One search field in the SAP shell bar, from idle to AI: hover, expanded suggestions, type-ahead, and AI capsules that turn a broad query into precise intents.',
-      screens: [{ id: '1-1', name: 'Default (idle)' }, { id: '1-2', name: 'Hover state' }, { id: '1-3', name: 'Expanded' }, { id: '1-4', name: 'Suggestions dropdown' }, { id: '1-5', name: 'Type-ahead' }, { id: '1-6', name: 'AI capsules' }] },
-    { id: 'results', label: '02', title: 'Search results', hash: 'po', summary: '"Pending POs": 14 results and $1.8M impacted, grouped by type, switchable between list and product cards, with a detail side panel that keeps the result list in view.',
+    { id: 'component', label: '01', title: 'The search component', hash: 'home', summary: 'One AI search field in the SAP shell bar of every product: its anatomy and spacing, its five states, and how suggestions and type-ahead behave from the first focus to Enter.',
+      screens: [] },
+    { id: 'results', label: '02', title: 'Search results', hash: 'po', summary: '"Pending POs": 14 results and $1.8M impacted. The live prototype uses the one results layout shared by every product: AI overview, filters, tabs, and actions on each row.',
       screens: [{ id: '2-1', name: 'Search results default' }, { id: '2-2', name: 'Documents tab' }, { id: '2-3', name: 'Product cards' }, { id: '2-4', name: 'Detail side panel' }] },
     { id: 'travel', label: '03', title: 'Use case: Business travel → SAP Concur', hash: 'travel', summary: 'From "flight to Bangalore" to a policy-compliant booking. AI recommends the preferred route and hotel, then hands off to Concur with the trip already filled in.',
       screens: [{ id: '3-1', name: 'Search home' }, { id: '3-2', name: 'Travel type-ahead' }, { id: '3-3', name: 'Travel results' }, { id: '3-4', name: 'Opening Concur' }, { id: '3-5', name: 'Concur booking screen' }] },

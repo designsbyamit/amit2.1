@@ -1,0 +1,72 @@
+/* SAP 72 font (Apache-2.0, @sap-theming/theming-base-content) for the search anatomy visuals */
+@font-face { font-family: '72'; src: url('/fonts/72/72-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: '72'; src: url('/fonts/72/72-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: '72'; src: url('/fonts/72/72-Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+
+.sa-stage { position: relative; overflow: hidden; border-radius: 12px; background: #f5f6f7; }
+.sa-scroll { overflow-x: auto; border-radius: 12px; }
+.sa-canvas {
+  position: absolute; top: 0; left: 0; transform-origin: 0 0;
+  font-family: '72', '72full', Arial, Helvetica, sans-serif; color: #131e29;
+  background-color: #f5f6f7;
+  background-image: radial-gradient(#d9dee2 1px, transparent 1px);
+  background-size: 16px 16px;
+  -webkit-font-smoothing: antialiased;
+}
+.sa-abs { position: absolute; }
+
+/* Shell bar (SAP Horizon) */
+.sa-shell { position: absolute; left: 0; height: 52px; background: #fff;
+  box-shadow: 0 0 0.125rem 0 rgba(34,53,72,.15), 0 0.125rem 0.5rem 0 rgba(34,53,72,.15); }
+.sa-pname { position: absolute; top: 0; height: 52px; display: flex; align-items: center; font-weight: 700; font-size: 16px; color: #003e87; white-space: nowrap; }
+.sa-btn { position: absolute; top: 8px; width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center; color: #1d2d3e; }
+.sa-avatar { position: absolute; top: 10px; width: 32px; height: 32px; border-radius: 50%; overflow: hidden; }
+.sa-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Search field */
+.sa-field { position: absolute; top: 8px; width: 400px; height: 36px; box-sizing: border-box; border-radius: 18px;
+  background: #fff; border: 1px solid #556b81; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 13px;
+  font-size: 14px; color: #131e29; transition: border-color .15s, box-shadow .15s; }
+.sa-field.is-hover { border-color: #0064d9; box-shadow: inset 0 0 0 1px rgba(79,160,255,.45); }
+.sa-field.is-active { border-color: #0064d9; box-shadow: inset 0 0 0 1px #0064d9; }
+.sa-field .sa-text { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; }
+.sa-field .sa-text span.val { overflow: hidden; text-overflow: ellipsis; }
+.sa-field .sa-ph { color: #556b81; }
+.sa-field .sa-clear { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; color: #1d2d3e; flex: none; }
+.sa-field .sa-clear.is-hover { background: #eaecee; }
+.sa-caret { display: inline-block; width: 1px; height: 18px; background: #131e29; margin-left: 1px; flex: none; animation: sa-blink 1.06s steps(1) infinite; }
+@keyframes sa-blink { 50% { opacity: 0; } }
+
+/* Suggestions popover */
+.sa-pop { position: absolute; width: 480px; background: #fff; border-radius: 12px; padding: 8px 0;
+  box-shadow: 0 0 0.125rem 0 rgba(34,53,72,.15), 0 0.5rem 1rem 0 rgba(34,53,72,.15);
+  transition: opacity .15s ease-out, transform .15s ease-out; transform-origin: top left; }
+.sa-pop.is-closed { opacity: 0; transform: translateY(-4px); pointer-events: none; }
+.sa-gh { height: 32px; display: flex; align-items: flex-end; padding: 0 16px 6px; font-size: 14px; font-weight: 700; color: #131e29; box-sizing: border-box; }
+.sa-row { height: 44px; display: flex; align-items: center; gap: 12px; padding: 0 16px; font-size: 14px; color: #131e29; box-sizing: border-box; }
+.sa-row .t { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sa-row .t b { font-weight: 700; }
+.sa-row .app { color: #556b81; font-size: 14px; white-space: nowrap; }
+.sa-row .ic { color: #556b81; flex: none; display: grid; }
+.sa-row.is-focus { background: #e3f0ff; box-shadow: inset 0 0 0 1px #0064d9; border-radius: 8px; margin: 0 4px; padding: 0 12px; }
+
+/* Annotations */
+.sa-red { --c: #d1006e; }
+.sa-dim { position: absolute; --c: #d1006e; }
+.sa-dim .ln { position: absolute; background: var(--c); }
+.sa-dim .lb { position: absolute; background: var(--c); color: #fff; font: 700 12px/1 '72', Arial, sans-serif; padding: 3px 6px; border-radius: 4px; white-space: nowrap; }
+.sa-mk { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #1d2d3e; color: #fff;
+  font: 700 12px/22px '72', Arial, sans-serif; text-align: center; box-shadow: 0 0 0 2px #fff; transition: opacity .2s; }
+.sa-lead { position: absolute; border-left: 1px dashed #1d2d3e; }
+.sa-note { position: absolute; background: #1d2d3e; color: #fff; font: 400 13px/1.35 '72', Arial, sans-serif; padding: 8px 12px; border-radius: 8px; white-space: nowrap; transition: opacity .2s; }
+.sa-note b { font-weight: 700; }
+.sa-key { display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 6px; border-radius: 6px; background: #fff; color: #1d2d3e;
+  border: 1px solid #a9b4be; border-bottom-width: 3px; font: 700 13px/1 '72', Arial, sans-serif; }
+.sa-cursor { position: absolute; transition: left .6s cubic-bezier(.4,0,.2,1), top .6s cubic-bezier(.4,0,.2,1), opacity .2s; pointer-events: none; }
+.sa-ring { position: absolute; width: 28px; height: 28px; margin: -14px 0 0 -14px; border-radius: 50%; border: 2px solid #0064d9; animation: sa-ring .7s ease-out forwards; }
+@keyframes sa-ring { from { transform: scale(.3); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-caret, .sa-ring { animation: none; }
+  .sa-cursor, .sa-pop, .sa-field { transition: none; }
+}

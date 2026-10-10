@@ -5,6 +5,7 @@ import { sapSearch as S } from '../data/sapSearch'
 import type { Screen } from '../data/sapSearch'
 
 import SectionHeader from '../components/ds/SectionHeader'
+import SearchAnatomy from '../components/case/SearchAnatomy'
 
 const cs = caseStudies.find(c => c.id === 'sap-search')!
 
@@ -134,6 +135,7 @@ export default function SAPSearchStoryPage() {
         <div role="tabpanel">
           <h3 className="text-heading text-white">{flow.title}</h3>
           <p className="text-body-lg text-ink-2 mt-4 max-w-[65ch]">{flow.summary}</p>
+          {flow.id === 'component' && <SearchAnatomy />}
           {flow.screens.length > 0 && <div className="grid md:grid-cols-2 gap-6 mt-10">
             {flow.screens.map(s => (
               <figure key={s.id} className="m-0">
@@ -144,7 +146,7 @@ export default function SAPSearchStoryPage() {
               </figure>
             ))}
           </div>}
-          <p className="text-body text-ink-2 mt-12">{flow.screens.length > 0 ? 'Try this journey live. The prototype uses the same SAP UI5 components as the screens above.' : 'Try this journey live, built with the same SAP UI5 components.'}</p>
+          <p className="text-body text-ink-2 mt-12">{flow.screens.length > 0 ? 'Try this journey live. The prototype uses the same SAP UI5 components as the screens above.' : (flow.id === 'component' ? 'Try the same behaviour live: hover, focus, type, use the arrow keys and press Enter.' : 'Try this journey live, built with the same SAP UI5 components.')}</p>
           <div className="mt-10"><Prototype hash={flow.hash} /></div>
         </div>
       </Section>
