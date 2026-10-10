@@ -8,9 +8,11 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<ui5-shellbar id="shell" show-notifications show-product-switch show-search-field>
+<ui5-shellbar id="shell" show-notifications show-search-field hide-search-button disable-search-collapse>
   <ui5-shellbar-branding slot="branding" id="brand"><img slot="logo" src="./sap-logo.png" alt="SAP"><span id="brandTitle">S/4HANA Cloud</span></ui5-shellbar-branding>
-  <ui5-shellbar-search slot="searchField" id="search" placeholder="Search across all SAP applications..." show-clear-icon></ui5-shellbar-search>
+  <ui5-input slot="searchField" id="search" class="shellsearch" show-suggestions show-clear-icon placeholder="Search across all SAP applications..." accessible-name="AI search across SAP applications"><ui5-icon slot="icon" name="custom/ai-search" class="aisicon"></ui5-icon></ui5-input>
+  <ui5-shellbar-item id="help" icon="sys-help" text="Help"></ui5-shellbar-item>
+  <ui5-shellbar-item id="shellMore" icon="overflow" text="Switch application"></ui5-shellbar-item>
   <ui5-avatar slot="profile" size="XS"><img src="./avatar.png" alt="Profile"></ui5-avatar>
 </ui5-shellbar>
 <main id="app" aria-live="polite"></main>
@@ -20,6 +22,7 @@
     <ui5-li type="Active" data-go="capsules" description="AI capsules">Ariba</ui5-li>
     <ui5-li type="Active" data-go="travel" description="Travel &amp; Expense">Concur</ui5-li>
     <ui5-li type="Active" data-go="goals" description="People &amp; Performance">SuccessFactors</ui5-li>
+    <ui5-li type="Active" data-go="sow" description="External workforce · SOWs">Fieldglass</ui5-li>
   </ui5-list>
 </ui5-popover>
 <ui5-dialog id="handoff" accessible-name="Opening application">

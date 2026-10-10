@@ -1,5 +1,5 @@
 // Content transcribed from the Figma file "S-Projects › AI-Powered Search", frames 1.1–5.4.
-export const apps = { s4: 'S/4HANA Cloud', ariba: 'Ariba', concur: 'Concur', sf: 'SuccessFactors' };
+export const apps = { s4: 'S/4HANA Cloud', ariba: 'Ariba', concur: 'Concur', sf: 'SuccessFactors', fieldglass: 'Fieldglass' };
 
 export const home = {
   app: 's4', greeting: 'Good morning, Alex', sub: 'What would you like to do today?',
@@ -9,6 +9,7 @@ export const home = {
 
 // Type-ahead lists exactly as in frames 1.4, 1.5, 3.2, 4.2, 5.2
 export const typeahead = {
+  sow: { route: 'sow', items: ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs — CyberSecure Ltd', 'SOWs expiring in the next 30 days — CyberSecure Ltd', 'Pending items on SOW 1150 — Endpoint Protection Rollout', 'Workers assigned to SOW 1133 — Compliance Readiness'] },
   purchase: { route: 'po', items: ['PO 4500012345 — ACME Office Supplies', 'PR 7800098765 — IT Equipment Request', 'Contract CNT-2026-001 — Facilities Mgmt', 'Invoice INV-884521 — Accenture Services', 'GR 5500045321 — Electronics Delivery'] },
   pur: { route: 'po', items: ['Purchase Orders — Pending Approval (14)', 'Purchase Requisitions — New This Week (8)', 'Purchase Contract — IT Equipment 2026', 'Purchase Invoice — Due This Week (3)'] },
   flight: { route: 'travel', items: ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5–12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20–27'] },
@@ -95,4 +96,25 @@ export const goals = {
     ['Reduce Tech Debt by 30%', 'Refactoring backlog clearance with Platform team', 20, 'At Risk'],
   ],
   draft: { name: 'Deliver Q2 Product Roadmap', description: 'Complete all 3 milestones by end of June 2026 with full stakeholder sign-off', category: 'Operational Excellence', progress: 75, weight: '20%' },
+};
+
+// Fieldglass SOW results, from Figma frames 6-61420 (At-Risk tab) and 6-61503 (All tab).
+// The All frame lists SOW 1023 twice; the prototype shows the seven unique SOWs the AI summary refers to.
+export const sow = {
+  query: 'Current status & end date of SOW IDs for CyberSecure Ltd',
+  question: 'Current status and end date of SOW IDs for CyberSecure Ltd?',
+  filters: ['All', 'Supplier Name', 'Upcoming', 'Active', 'Location', 'Business Unit', 'Project Name'],
+  summary: 'CyberSecure Ltd currently has seven active and historical Statements of Work (SOWs) in SAP Fieldglass. These SOWs span across various statuses including Active, Completed, In Review, and Expired. The total spend across these SOWs is approximately $415,000, with worker counts ranging from 0 to 8. Most active SOWs are progressing on schedule, while',
+  summaryMore: 'three (1045, 1133 and 1150) are delayed and rated high risk: two are awaiting budget approval and one is short of staff. SOW 1101 was delivered ahead of schedule, and the end date of SOW 1120 is still to be confirmed while legal review is in progress.',
+  tabs: ['All ({n})', 'At-Risk SOWs ({n})', 'Upcoming Expirations ({n})'],
+  upcoming: ['1172', '1023'],
+  rows: [
+    { id: '1023', title: 'Cloud Security Audit', ref: 'SOW-201', unit: 'Supply Chain', desc: 'Ongoing audit of cloud infrastructure security.', owner: 'Priya Mehta', end: '30-Sep-2025', status: 'In Progress', risk: 'Low', note: 'On Track', progress: 95, employees: 3 },
+    { id: '1045', title: 'Endpoint Protection Rollout', ref: 'SOW-202', unit: 'Supply Chain', desc: 'Deployment of endpoint protection across all devices.', owner: 'Arjun Rao', end: '15-Aug-2025', status: 'Delayed', risk: 'High', note: 'Awaiting budget approval', progress: 82, employees: 14 },
+    { id: '1101', title: 'IAM Integration', ref: 'SOW-204', unit: 'Supply Chain', desc: 'Integration of Identity & Access Management systems.', owner: 'Rakesh Iyer', end: '10-Oct-2025', status: 'Completed', risk: 'Low', note: 'Delivered ahead of schedule', progress: 68, employees: 16 },
+    { id: '1120', title: 'Penetration Testing', ref: 'SOW-205', unit: 'Supply Chain', desc: 'External and internal penetration testing engagement.', owner: 'Anil Deshmukh', end: 'TBD', status: 'In Review', risk: 'Medium', note: 'Legal review in progress', progress: 80, employees: 7 },
+    { id: '1133', title: 'Compliance Readiness', ref: 'SOW-206', unit: 'Supply Chain', desc: 'Preparing for ISO 27001 certification.', owner: 'Sneha Patil', end: '11-Oct-2025', status: 'Delayed', risk: 'High', note: 'Awaiting budget approval', progress: 97, employees: 9 },
+    { id: '1150', title: 'Endpoint Protection Rollout', ref: 'SOW-207', unit: 'Supply Chain', desc: 'Implementation of threat intel feeds and dashboards.', owner: 'Kavita Joshi', end: '05-Sep-2025', status: 'Delayed', risk: 'High', note: 'Slight delay due to staffing', progress: 85, employees: 12, pending: true },
+    { id: '1172', title: 'Data Loss Prevention (DLP)', ref: 'SOW-208', unit: 'Supply Chain', desc: 'Rollout of DLP policies and monitoring tools.', owner: 'Rohit Sharma', end: '25-Sep-2025', status: 'In Progress', risk: 'Medium', note: 'Awaiting budget approval', progress: 90, employees: 5 },
+  ],
 };

@@ -5,9 +5,12 @@ import cldrEn from '@ui5/webcomponents-localization/dist/generated/assets/cldr/e
 registerLocaleDataLoader('en', async () => cldrEn);
 import '@ui5/webcomponents-fiori/dist/ShellBar.js';
 import '@ui5/webcomponents-fiori/dist/ShellBarBranding.js';
-import '@ui5/webcomponents-fiori/dist/ShellBarSearch.js';
-import '@ui5/webcomponents-fiori/dist/SearchItem.js';
-import '@ui5/webcomponents-fiori/dist/SearchItemGroup.js';
+import '@ui5/webcomponents-fiori/dist/ShellBarItem.js';
+import '@ui5/webcomponents/dist/features/InputSuggestions.js';
+import '@ui5/webcomponents/dist/SuggestionItem.js';
+import '@ui5/webcomponents/dist/SuggestionItemGroup.js';
+import { registerIcon } from '@ui5/webcomponents-base/dist/asset-registries/Icons.js';
+registerIcon('ai-search', { collection: 'custom', packageName: 'proto', ltr: false, pathData: 'M200 130a150 150 0 1 1 0 300a150 150 0 1 1 0-300zM200 162a118 118 0 1 0 0 236a118 118 0 1 0 0-236zM300 392l24-24l150 132l-24 24zM400 16q8 62 70 70q-62 8-70 70q-8-62-70-70q62-8 70-70z' });
 import '@ui5/webcomponents-fiori/dist/FlexibleColumnLayout.js';
 import '@ui5/webcomponents/dist/Avatar.js';
 import '@ui5/webcomponents/dist/Card.js';
@@ -39,6 +42,21 @@ import '@ui5/webcomponents/dist/Toast.js';
 import '@ui5/webcomponents/dist/Icon.js';
 import '@ui5/webcomponents/dist/Link.js';
 import '@ui5/webcomponents-icons/dist/ai.js';
+import '@ui5/webcomponents-icons/dist/write-new.js';
+import '@ui5/webcomponents-icons/dist/message-warning.js';
+import '@ui5/webcomponents-icons/dist/sys-enter-2.js';
+import '@ui5/webcomponents-icons/dist/error.js';
+import '@ui5/webcomponents-icons/dist/employee-lookup.js';
+import '@ui5/webcomponents-icons/dist/person-placeholder.js';
+import '@ui5/webcomponents-icons/dist/sort.js';
+import '@ui5/webcomponents-icons/dist/slim-arrow-down.js';
+import '@ui5/webcomponents-icons/dist/add.js';
+import '@ui5/webcomponents-icons/dist/employee.js';
+import '@ui5/webcomponents-icons/dist/bookmark.js';
+import '@ui5/webcomponents-icons/dist/bookmark-2.js';
+import '@ui5/webcomponents-icons/dist/slim-arrow-up.js';
+import '@ui5/webcomponents-icons/dist/overflow.js';
+import '@ui5/webcomponents-icons/dist/sys-help.js';
 import '@ui5/webcomponents-icons/dist/accept.js';
 import '@ui5/webcomponents-icons/dist/alert.js';
 import '@ui5/webcomponents-icons/dist/decline.js';
@@ -66,10 +84,11 @@ const card = ([title, sub, counter], go) => `<ui5-card class="tile" ${go ? `data
 const headBar = (title, meta, back) => `<div class="headbar">${back ? `<ui5-button design="Transparent" icon="nav-back" data-go="${back}" accessible-name="Back"></ui5-button>` : ''}<span class="dot" aria-hidden="true"></span><ui5-title level="H4" size="H5">${esc(title)}</ui5-title><span class="sp"></span>${meta ? `<ui5-label>${esc(meta)}</ui5-label>` : ''}</div>`;
 const band = (cls, title, meta) => `<div class="band ${cls}"><ui5-title level="H3" size="H4" class="onband">${esc(title)}</ui5-title>${meta ? `<span class="bandmeta">${esc(meta)}</span>` : ''}</div>`;
 
-// ── Search field ─────────────────────────────────────────────────────────
+// ── Search field (UI5 Input in the ShellBar, AI-search icon) ─────────────
 function listFor(v) {
   v = v.trim().toLowerCase();
   if (!v) return { group: 'Suggestions', route: 'po', items: D.home.suggestions };
+  if (/sow|status|cyber|end date|fieldglass|supplier|current/.test(v)) return { group: 'Suggestions', ...D.typeahead.sow };
   if (/^pur/.test(v) && v.length < 5) return { group: 'Suggestions', ...D.typeahead.pur };
   if (/^purch/.test(v)) return { group: 'Suggestions', ...D.typeahead.purchase };
   if (/flight|trip|bangalore|palo|travel/.test(v)) return { group: 'Suggestions', ...D.typeahead.flight };
@@ -81,28 +100,29 @@ let lastKey = '';
 function renderSuggestions() {
   const L = listFor(search.value || '');
   const key = L.items.join('|');
-  if (key === lastKey) { search.querySelectorAll('ui5-search-item').forEach(it => { it.highlightText = search.value || ''; }); return; }
+  if (key === lastKey) return;
   lastKey = key;
-  search.innerHTML = '';
-  const g = document.createElement('ui5-search-item-group'); g.headerText = L.group;
-  L.items.forEach(t => { const it = document.createElement('ui5-search-item'); it.text = t; it.highlightText = search.value || ''; it.dataset.route = L.route; it.addEventListener('click', () => pick(it)); g.appendChild(it); });
+  search.querySelectorAll('ui5-suggestion-item, ui5-suggestion-item-group').forEach(n => n.remove());
+  const g = document.createElement('ui5-suggestion-item-group'); g.headerText = L.group;
+  L.items.forEach(t => { const it = document.createElement('ui5-suggestion-item'); it.text = t; it.dataset.route = L.route; g.appendChild(it); });
   search.appendChild(g);
 }
+function pick(text, route) { search.value = text; search.open = false; go(routeAfterPick(route)); }
 search.addEventListener('input', renderSuggestions);
-search.addEventListener('open', renderSuggestions);
-search.addEventListener('keydown', e => { if (e.key !== 'Enter') return; setTimeout(() => { const q = (search.value || '').trim(); if (!q) return; const hit = [...search.querySelectorAll('ui5-search-item')].find(i => i.text === q); if (hit) return pick(hit); search.open = false; if (/^purchase orders?$/i.test(q)) return go('capsules'); go(routeAfterPick(listFor(q).route)); }, 0); });
-let lastPick = 0;
-function pick(item) { const now = Date.now(); if (now - lastPick < 400) return; lastPick = now; search.value = item.text; search.open = false; go(routeAfterPick(item.dataset.route)); }
-search.addEventListener('search', e => {
-  const item = (e.detail && e.detail.item) || search.querySelector('ui5-search-item[selected]');
-  if (item) return pick(item);
-  const q = (search.value || '').trim();
-  if (!q) return;
-  search.open = false;
-  if (/^purchase orders?$/i.test(q)) return go('capsules');
-  go(routeAfterPick(listFor(q).route));
+search.addEventListener('focusin', renderSuggestions);
+search.addEventListener('selection-change', e => { const it = e.detail && e.detail.item; if (it) pick(it.text, it.dataset.route); });
+search.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  setTimeout(() => {
+    const q = (search.value || '').trim(); if (!q) return;
+    const hit = [...search.querySelectorAll('ui5-suggestion-item')].find(i => i.text === q);
+    if (hit) return pick(q, hit.dataset.route);
+    search.open = false;
+    if (/^purchase orders?$/i.test(q)) return go('capsules');
+    go(routeAfterPick(listFor(q).route));
+  }, 0);
 });
-const routeAfterPick = r => ({ po: 'results', travel: 'flights', buy: 'compare', goals: 'teamgoals' }[r] || r);
+const routeAfterPick = r => ({ po: 'results', travel: 'flights', buy: 'compare', goals: 'teamgoals', sow: 'sow' }[r] || r);
 renderSuggestions();
 
 // ── Views ────────────────────────────────────────────────────────────────
@@ -201,16 +221,64 @@ V.goaldraft = () => {
   document.getElementById('submitG').onclick = () => { toast('Goal submitted for approval.'); setTimeout(() => go('teamgoals'), 700); };
 };
 
+// Fieldglass: AI search results for a natural-language question (Figma 6-61420 / 6-61503)
+V.sow = (tab = 0, filter = 0) => {
+  setApp('fieldglass'); const S = D.sow; search.value = S.query;
+  const lists = [S.rows, S.rows.filter(r => r.risk === 'High'), S.rows.filter(r => S.upcoming.includes(r.id))];
+  const tagRisk = { Low: ['Positive', 'sys-enter-2'], Medium: ['Critical', 'alert'], High: ['Negative', 'error'] };
+  const tagStatus = { 'In Progress': 'Positive', Delayed: 'Critical', Completed: 'Positive', 'In Review': 'Information' };
+  const row = (r) => `<li class="sowrow">
+    <ui5-icon name="employee-lookup" class="sowic" aria-hidden="true"></ui5-icon>
+    <div class="sowmain">
+      <div class="sowhead"><ui5-link class="sowt" href="#sow" data-sow="${r.id}">CyberSecure – ${esc(r.title)}</ui5-link><ui5-tag design="Information" hide-state-icon>SOW ID ${r.id}</ui5-tag><ui5-tag design="Information" hide-state-icon>${tab === 1 ? `${r.risk} (${r.progress}%)` : `${r.progress}%`}</ui5-tag></div>
+      <ui5-label class="sowref">${r.ref} • ${esc(r.unit)}</ui5-label>
+      <ui5-text>${esc(r.desc)}</ui5-text>
+      <div class="sowkv"><div><ui5-label>Owner</ui5-label><ui5-text>${esc(r.owner)}</ui5-text></div><div><ui5-label>End Date</ui5-label><ui5-text>${esc(r.end)}</ui5-text></div></div>
+      <div class="sowtags"><ui5-tag design="${tagStatus[r.status] || 'Information'}" hide-state-icon>Status - ${r.status}</ui5-tag><ui5-tag design="${tagRisk[r.risk][0]}"><ui5-icon slot="icon" name="${tagRisk[r.risk][1]}"></ui5-icon>Risk Level - ${r.risk}</ui5-tag><ui5-tag design="Information" class="ainote"><ui5-icon slot="icon" name="ai"></ui5-icon>${esc(r.note)}</ui5-tag></div>
+    </div>
+    <div class="sowact">
+      <ui5-button design="Emphasized" icon="employee">${r.employees} Employees</ui5-button>
+      ${r.status !== 'Completed' && r.status !== 'In Review' ? '<ui5-button icon="add" class="addw">Add Worker</ui5-button>' : ''}
+      ${tab === 1 || r.pending ? '<ui5-button class="pend">Pending Items</ui5-button>' : ''}
+      <ui5-button design="Transparent" icon="bookmark-2" accessible-name="Bookmark" class="bm"></ui5-button>
+      <ui5-button design="Transparent" icon="overflow" accessible-name="More actions"></ui5-button>
+    </div></li>`;
+  page(`<div class="sowtop"><div class="sowtopin"><ui5-title level="H2" size="H3" class="sowq">Search results for “${esc(S.question)}”</ui5-title>
+    <div class="capsules sowfilters">${S.filters.map((f, i) => `<ui5-toggle-button class="pill" data-f="${i}" ${i === filter ? 'pressed' : ''}>${f}</ui5-toggle-button>`).join('')}</div></div></div>
+    <div class="sowbody">
+      <ui5-card class="aiov"><div class="cpad">
+        <div class="row"><div class="aih"><ui5-icon name="ai" class="aiicon"></ui5-icon><ui5-title level="H3" size="H4">AI Overview</ui5-title></div><div class="aih"><ui5-link id="sources">Sources</ui5-link><ui5-button design="Transparent" icon="overflow" accessible-name="More"></ui5-button></div></div>
+        <ui5-title level="H5" size="H5">SOW Summary</ui5-title>
+        <ui5-text id="aisum" max-lines="2">${esc(S.summary)} ${esc(S.summaryMore)}</ui5-text>
+        <div class="morewrap"><ui5-button design="Transparent" icon="slim-arrow-down" id="more">Show more</ui5-button></div>
+      </div></ui5-card>
+      <ui5-card class="sowres"><div class="sowreshead"><ui5-title level="H4" size="H5">Showing ${lists[tab].length} results</ui5-title><ui5-button end-icon="slim-arrow-down" id="sort">Sort by</ui5-button></div>
+        <ui5-tabcontainer id="sowtabs" class="sowtabs" collapsed>${S.tabs.map((t, i) => `<ui5-tab text="${t.replace('{n}', lists[i].length)}" ${i === tab ? 'selected' : ''}></ui5-tab>`).join('')}</ui5-tabcontainer>
+        <ul class="sowlist">${lists[tab].map(row).join('')}</ul></ui5-card>
+    </div>`, 'flush');
+  document.getElementById('sowtabs').addEventListener('tab-select', e => V.sow(e.detail.tabIndex, filter));
+  app.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => V.sow(tab, +b.dataset.f)));
+  const more = document.getElementById('more'), sum = document.getElementById('aisum');
+  more.onclick = () => { const open = sum.maxLines === 2; sum.maxLines = open ? 0 : 2; more.textContent = open ? 'Show less' : 'Show more'; more.icon = open ? 'slim-arrow-up' : 'slim-arrow-down'; };
+  document.getElementById('sources').onclick = () => toast('Sources: SAP Fieldglass · SOW records 1023–1172 · Supplier: CyberSecure Ltd');
+  app.querySelectorAll('.addw').forEach(b => b.onclick = () => toast('Add Worker opens in SAP Fieldglass.'));
+  app.querySelectorAll('.pend').forEach(b => b.onclick = () => toast('2 pending items: budget approval, timesheet sign-off.'));
+  app.querySelectorAll('.bm').forEach(b => b.onclick = () => { b.icon = b.icon === 'bookmark-2' ? 'bookmark' : 'bookmark-2'; });
+  app.querySelectorAll('[data-sow]').forEach(l => l.addEventListener('click', e => { e.preventDefault(); toast(`SOW ${l.dataset.sow} opens in SAP Fieldglass.`); }));
+};
+
 function go(r) { search.open = false; (V[r] || V.home)(); }
 function toast(t) { const el = document.getElementById('toast'); el.textContent = t; el.open = true; }
 
 // navigation
 app.addEventListener('click', e => { const el = e.target.closest('[data-go]'); if (el) go(el.dataset.go); });
-document.getElementById('brand').addEventListener('click', () => go({ s4: 'home', ariba: 'home', concur: 'travel', sf: 'goals' }[ctx]));
+document.getElementById('brand').addEventListener('click', () => go({ s4: 'home', ariba: 'home', concur: 'travel', sf: 'goals', fieldglass: 'sow' }[ctx]));
 const pop = document.getElementById('apps');
-shell.addEventListener('product-switch-click', e => { pop.opener = e.detail.targetRef; pop.open = true; });
+// The overflow (…) item in the shell bar opens the application switcher
+document.getElementById('shellMore').addEventListener('click', e => { pop.opener = e.detail.targetRef; pop.open = true; });
+document.getElementById('help').addEventListener('click', () => toast('Try: “Current status & end date of SOW IDs for CyberSecure Ltd”'));
 pop.addEventListener('item-click', e => { pop.open = false; go(e.detail.item.dataset.go); });
-const routes = ['home', 'capsules', 'po', 'travel', 'buy', 'goals'];
+const routes = ['home', 'capsules', 'po', 'travel', 'buy', 'goals', 'sow'];
 const fromHash = () => { const h = location.hash.slice(1); go(h === 'po' ? 'results' : (routes.includes(h) ? h : 'home')); };
 window.addEventListener('hashchange', fromHash);
 fromHash();

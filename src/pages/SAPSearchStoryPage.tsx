@@ -123,7 +123,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Experience */}
       <Section id="experience">
-        <SectionHeader label="05 · The experience" title="One search, five journeys." intro="Built entirely with native SAP Fiori components. Pick a journey to see its screens and try it live." />
+        <SectionHeader label="05 · The experience" title="One search, six journeys." intro="Built entirely with native SAP Fiori components. Pick a journey to see its screens and try it live." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.flows.map(f => (
             <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" aria-pressed={f.id === active} onClick={() => setActive(f.id)}>
@@ -134,7 +134,7 @@ export default function SAPSearchStoryPage() {
         <div role="tabpanel">
           <h3 className="text-heading text-white">{flow.title}</h3>
           <p className="text-body-lg text-ink-2 mt-4 max-w-[65ch]">{flow.summary}</p>
-          <div className="grid md:grid-cols-2 gap-6 mt-10">
+          {flow.screens.length > 0 && <div className="grid md:grid-cols-2 gap-6 mt-10">
             {flow.screens.map(s => (
               <figure key={s.id} className="m-0">
                 <button type="button" onClick={() => setZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen ${s.id.replace('-', '.')} ${s.name}`}>
@@ -143,8 +143,8 @@ export default function SAPSearchStoryPage() {
                 <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} — {s.name}</figcaption>
               </figure>
             ))}
-          </div>
-          <p className="text-body text-ink-2 mt-12">Try this journey live. The prototype uses the same SAP UI5 components as the screens above.</p>
+          </div>}
+          <p className="text-body text-ink-2 mt-12">{flow.screens.length > 0 ? 'Try this journey live. The prototype uses the same SAP UI5 components as the screens above.' : 'Try this journey live, built with the same SAP UI5 components.'}</p>
           <div className="mt-10"><Prototype hash={flow.hash} /></div>
         </div>
       </Section>

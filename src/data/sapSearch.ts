@@ -84,5 +84,7 @@ export const sapSearch = {
       screens: [{ id: '4-1', name: 'Search home' }, { id: '4-2', name: 'Procurement type-ahead' }, { id: '4-3', name: 'Comparison + products' }, { id: '4-4', name: 'Opening Ariba' }, { id: '4-5', name: 'Ariba procurement screen' }] },
     { id: 'goals', label: '05', title: 'Use case: SuccessFactors goals', hash: 'goals', summary: "A manager searches for a team member's goals, sees progress and risk at a glance, and edits a goal without leaving the flow.",
       screens: [{ id: '5-1', name: 'Search home' }, { id: '5-2', name: 'SF type-ahead' }, { id: '5-3', name: 'Team member goals' }, { id: '5-4', name: 'Goal draft' }] },
+    { id: 'sow', label: '06', title: 'Use case: Fieldglass SOW status', hash: 'sow', summary: 'A plain-language question ("current status and end date of SOW IDs for CyberSecure Ltd?") returns an AI overview of every SOW, then the records themselves, already sorted into at-risk and expiring, with staffing actions on each row.',
+      screens: [] },
   ].map(f => ({ ...f, screens: f.screens.map(sc => ({ ...sc, img: `${B}images/case-studies/sap-search/${sc.id}.svg` })) })) as Flow[],
 }
