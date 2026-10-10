@@ -27,7 +27,7 @@ interface Resource {
   requestAccess?: boolean
   requestLabel?: string
   readingList?: boolean
-  motif: 'loop' | 'phases' | 'conversation' | 'books' | 'checklist'
+  motif: 'loop' | 'phases' | 'conversation' | 'books' | 'checklist' | 'spark'
   tone: 'cobalt' | 'teal' | 'plum' | 'graphite'
   kind: string
   topics: string[]
@@ -56,7 +56,7 @@ const resources: Resource[] = [
   },
   {
     id: 'ai-native-patterns',
-    motif: 'phases',
+    motif: 'spark',
     tone: 'teal',
     kind: 'Playbook',
     topics: ['AI-native', 'agentic', 'frameworks'],

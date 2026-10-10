@@ -52,7 +52,7 @@ export default function LeadershipPage() {
       <Journey />
       <LeadershipStories />
       <CommunityCallout />
-      <Testimonials label="Colleagues" title="How the people I work with describe it." items={colleagueTestimonials} />
+      <Testimonials label="Colleagues" title="How the people I work with describe it." items={colleagueTestimonials.slice(0, 4)} />
       <ReflectionsPointer />
     </>
   )

@@ -33,12 +33,12 @@ export const menteeTestimonials: Testimonial[] = [
   },
 ]
 
-/** Colleague testimonials, copied verbatim from www.designsbyamit.com. */
+/** Colleague testimonials, verbatim as supplied by Amit. */
 export const colleagueTestimonials: Testimonial[] = [
   {
     quote: 'Amit’s fundamentals in user experience design are very strong, complemented by a very methodical and structured approach to problem solving, project planning and execution. He is a great mentor who invests time in coaching and nurturing young talent. In summary, Amit is a very valuable asset to have on any design team and is someone with immense potential to shine in a design leadership role in the years ahead.',
     name: 'Tej Kumar',
-    role: 'Associate Director, Experience Design & Innovation, Accenture Song in India',
+    role: 'Senior Director, Experience Design & Innovation, Frog, India',
     source: 'Colleague',
   },
   {
@@ -47,4 +47,29 @@ export const colleagueTestimonials: Testimonial[] = [
     role: 'Studio Lead',
     source: 'Colleague',
   },
+  {
+    quote: 'It’s rare that you come across someone with a standout talent like Amit. He is calm, composed and with an air of natural confidence. Amit is creative, energetic, solutions oriented and highly motivated. I was trained and worked alongside Amit during our stint at Infosys. I was very impressed by Amit\'s ability to handle situations and problems effortlessly. It comes naturally to him. He approaches problems in holistic way and always has the bigger picture in mind. He is both a leader and a serious team player.',
+    name: 'Naveen Rawat',
+    role: 'Product Designer, Salesforce',
+    source: 'Colleague',
+  },
+  {
+    quote: 'Amit’s knowledge base has immensely helped teams understand, gauge and come to speed with the never ending demands of the client. There were times where we had to push hard for the right design solution, timelines, approach, technical nuances, realistic deadlines and ethical ways of working. His problem-solving capabilities are very systematic, he is very process oriented. He’s never afraid to try new waters and is a very solid team player. He’s very articulate and his rationalising is backed with evidences, market research and his valuable experience.',
+    name: 'Mayura Tungare',
+    role: 'Design Studio Lead, British Petroleum',
+    source: 'Colleague',
+  },
+  {
+    quote: 'Behind the smile and positive attitude of Amit, there was always a rational approach. As a leader, he focused on developing skills and expanding the competencies of his team, as well as optimising the processes. Amit brings a wealth of knowledge, an infectious ‘get things done’ attitude and positive vibes, meaning even tackling problems with complex requirements happen in a true customer first way.',
+    name: 'Stepan Glukhovetsky',
+    role: 'Design Director, Experience Strategy, Accenture Song, UAE',
+    source: 'Colleague',
+  },
 ]
+
+/** One-sentence excerpts (verbatim) for compact placements. */
+export const quoteExcerpts = {
+  mayura: { quote: 'His problem-solving capabilities are very systematic, he is very process oriented.', name: 'Mayura Tungare', role: 'Design Studio Lead, British Petroleum', source: 'Colleague' } as Testimonial,
+  stepan: { quote: 'Behind the smile and positive attitude of Amit, there was always a rational approach.', name: 'Stepan Glukhovetsky', role: 'Design Director, Experience Strategy, Accenture Song, UAE', source: 'Colleague' } as Testimonial,
+  mahesh: { quote: 'He gave really clear and actionable feedback about the UX of my UX portfolio and guided me with the next steps.', name: 'Mahesh Tripathi', role: 'Student, Indian Institute of Technology Guwahati', source: 'ADPList', url: ADPLIST } as Testimonial,
+}

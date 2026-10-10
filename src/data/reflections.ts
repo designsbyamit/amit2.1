@@ -38,7 +38,7 @@ export const reflections: Reflection[] = [
     title: 'Do You Have It as a Design Leader?',
     excerpt: 'Technical skills get you to the table. The rare skills — the ones that rarely get named — are what let you stay there and shape what gets built.',
     url: 'https://medium.com/@amitkrt/do-you-have-it-as-a-design-leader-6aa154c7191',
-    image: '/images/reflections/Design2025.webp',
+    image: 'https://miro.medium.com/v2/resize:fit:1200/1*OpIeP5bBrLMF9dfKgUxg_A.png',
   },
   {
     id: 'ever-evolving-design',

@@ -1,10 +1,11 @@
 import PageHeader from '../components/ui/PageHeader'
 import Contact from '../components/sections/Contact'
-import heroImg from '../assets/images/amit-stage.webp'
+// Temporary: swap for the new About portrait when supplied
+const aboutImg = '/images/Community/DesignUp.webp'
 import SectionHeader from '../components/ds/SectionHeader'
 import Button from '../components/ds/Button'
 import Testimonials from '../components/sections/Testimonials'
-import { colleagueTestimonials, menteeTestimonials } from '../data/testimonials'
+import { colleagueTestimonials, menteeTestimonials, quoteExcerpts } from '../data/testimonials'
 import { motion } from 'framer-motion'
 
 const timeline = [
@@ -16,10 +17,10 @@ const timeline = [
 ]
 
 const steady = [
-  { t: 'Morning runs', d: 'I’m a morning runner.', icon: 'M4 18c3-1 5-4 6-8l3 2 3-5M14 5a1.5 1.5 0 1 0 0-.01' },
-  { t: 'Old melodies and Indian classical music', d: 'Old melodies and Indian classical music are what I listen to.', icon: 'M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm10-2a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z' },
-  { t: 'Meditation', d: 'I meditate.', icon: 'M12 4a2 2 0 1 0 0 .01M5 19c2-3 4-4 7-4s5 1 7 4M8 12l4 2 4-2' },
-  { t: 'The science behind spirituality', d: 'I read about the science behind spirituality.', icon: 'M4 6h7v13H4zM13 6h7v13h-7M11 8h2' },
+  { t: 'Morning runs', d: 'I’m a morning runner.', icon: 'M4 18c3-1 5-4 6-8l3 2 3-5M14 5a1.5 1.5 0 1 0 0-.01' , tone: 'cobalt', image: undefined as string | undefined, photo: 'A photo of me on a morning run' },
+  { t: 'Old melodies and Indian classical music', d: 'Old melodies and Indian classical music are what I listen to.', icon: 'M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm10-2a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z' , tone: 'teal', image: undefined as string | undefined, photo: 'A photo of me with an instrument' },
+  { t: 'Meditation', d: 'I meditate.', icon: 'M12 4a2 2 0 1 0 0 .01M5 19c2-3 4-4 7-4s5 1 7 4M8 12l4 2 4-2' , tone: 'plum', image: undefined as string | undefined, photo: 'A photo of me meditating' },
+  { t: 'The science behind spirituality', d: 'I read about the science behind spirituality.', icon: 'M4 6h7v13H4zM13 6h7v13h-7M11 8h2' , tone: 'graphite', image: undefined as string | undefined, photo: 'A photo of me with a book' },
 ]
 
 const drives = [
@@ -37,8 +38,8 @@ export default function AboutPage() {
         label="About"
         title="Hi, I’m Amit."
         subtitle="A design leader in Bengaluru who started out writing code, took on leadership roles as early as college, and has spent 16+ years turning complicated ideas into products people can use."
-        image={heroImg}
-        imageAlt="Amit Kumar Tiwari speaking on stage"
+        image={aboutImg} imagePosition="50% 22%"
+        imageAlt="Amit Kumar Tiwari at a design conference"
       />
 
       {/* The person first */}
@@ -56,12 +57,20 @@ export default function AboutPage() {
       <section className="section-y hairline-top">
         <div className="container-site">
           <SectionHeader label="What keeps me steady" title="Four habits outside work." intro="Quiet, unhurried habits. I think they show up in how I design and lead." />
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {steady.map(s => (
-              <li key={s.t} className="card flex flex-col gap-4">
-                <span className="w-11 h-11 rounded-2 grid place-items-center" style={{ background: 'var(--field-cobalt)' }} aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F55A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d={s.icon} /></svg>
-                </span>
+              <li key={s.t} className="flex flex-col gap-4">
+                <figure className="relative rounded-2 overflow-hidden" style={{ aspectRatio: '4 / 5', background: `var(--field-${s.tone})` }}>
+                  {s.image ? (
+                    <img src={s.image} alt={s.photo} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} aria-hidden="true" />
+                      <svg className="absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#C8F55A" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={s.icon} /></svg>
+                      <span className="absolute left-4 bottom-4 right-4 font-mono text-[0.6875rem] tracking-[0.08em] uppercase" style={{ color: 'rgb(236 237 239 / 0.7)' }}>Photo placeholder</span>
+                    </>
+                  )}
+                </figure>
                 <h3 className="text-title text-ink">{s.t}</h3>
               </li>
             ))}
@@ -101,7 +110,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Testimonials label="In their words" title="Colleagues and mentees." items={[colleagueTestimonials[0], menteeTestimonials[0], menteeTestimonials[2], colleagueTestimonials[1]]} />
+      <Testimonials label="In their words" title="Colleagues and mentees." items={[quoteExcerpts.mayura, colleagueTestimonials[0], quoteExcerpts.stepan, menteeTestimonials[1]]} />
 
       <Contact />
     </>

@@ -61,6 +61,7 @@ export default function Reflections() {
                   <img
                     src={r.image}
                     alt={r.title}
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     style={{ filter: 'grayscale(0.15) contrast(1.05) brightness(0.85)' }}
                   />
