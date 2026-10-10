@@ -60,7 +60,7 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-first-team',
-    year: '2014 · 2023',
+    year: '',
     context: 'From first hire to leading designers',
     title: 'What building my first design team actually taught me',
     cues: [
@@ -141,9 +141,9 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-sap-community',
-    year: 'Feb 2025 — present',
+    year: '',
     context: 'SAP Design Hub India',
-    title: 'Leading a 250+ designer community',
+    title: 'Leading SAP Design Hub India',
     cues: [
       'What did you inherit when you became Lead of SAP Design Hub India in February 2025, and what did you decide to change first?',
       'What surprised you most about what the community revealed — about designers, or about organisations?',
@@ -158,9 +158,7 @@ export const stories: LeadershipStory[] = [
       'The second was scale and ambition. We wanted to take Impulse India to another level, not just in the size of the event, but in the quality of the conversations, the diversity of speakers and the overall experience. I think we made meaningful progress on that front, both qualitatively and quantitatively.',
       'But one thing I\'ve realised is that a community cannot be sustained by one big event. Events create excitement, but what happens between them is equally important. That\'s one of the reasons we introduced Unwind this year. The idea is deliberately simple: bring people together from design, development, product and other teams to have informal conversations, connect, and enjoy each other\'s company. We launched it at a time when the industry is going through considerable change and people are dealing with uncertainty and pressure. Sometimes people don\'t need another learning session or a structured agenda. They just need a space to connect.',
       'I also want to be honest that making the community more inclusive is still a work in progress. We haven\'t reached where we want to be yet, and there are several things we continue to explore.',
-      'Leading a community reveals a lot, about the people in it and the organisations they work in. You see what designers care about, what they\'re curious about, where they feel connected, and sometimes where they feel disconnected. You also get a sense of an organisation\'s design maturity: whether people are comfortable sharing unfinished work, whether they talk about failures, whether they seek perspectives beyond their own teams, and whether design is seen as belonging to a few specialists or as something that can contribute across the organisation.',
-      'But I\'m careful not to make that the primary purpose. A community shouldn\'t exist just to measure design maturity or find gaps. Its first purpose is much more human: celebrating that we\'re part of something together, meeting people who share our interests, discovering perspectives we might not meet in everyday work, building friendships, and having a good time.',
-      'The learning comes naturally from that. You might attend a session and take away a new method. Or a casual conversation with someone from another team might show you a completely different way to approach a problem. Sometimes the most valuable learning happens when you aren\'t looking for it, and you don\'t need to measure every interaction by its immediate outcome.',
+      'A community also reveals a lot: what designers care about, where they feel connected or disconnected, and how mature an organisation is about design, from whether people share unfinished work to whether they talk about failures. But that shouldn\'t be why a community exists. Its first purpose is human: belonging to something together, meeting people with shared interests, building friendships and having a good time. The learning follows naturally, often when you aren\'t looking for it.',
       'As Lead Curator of Impulse India, I think a lot about what designers should take away. We\'re at a really interesting point in the evolution of design. The industry is moving towards what I\'d call a builder economy, where the ability to make things, experiment with ideas and bring solutions to life is becoming increasingly accessible.',
       'That changes what\'s expected of designers. Earlier, you could specialise in research, interaction design, visual design or prototyping, and rely on other disciplines to take things forward. Today those boundaries are much more fluid. Designers can build working prototypes, experiment with AI, explore technical possibilities and test ideas much earlier. With that opportunity comes a responsibility to understand more than the design itself.',
       'Designers need to be comfortable speaking multiple languages: the language of business, of technology, of product and, of course, of people. You don\'t have to become an expert in every discipline, but you need enough fluency to understand the constraints, ask better questions and make informed decisions. This is where a designer\'s mindset becomes so valuable: connecting perspectives, seeing relationships between problems, thinking in systems, and balancing human needs with business realities.',
