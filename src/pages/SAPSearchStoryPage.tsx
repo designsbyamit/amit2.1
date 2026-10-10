@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../data/work'
 import { sapSearch as S } from '../data/sapSearch'
+import type { Screen } from '../data/sapSearch'
+
 import SectionHeader from '../components/ds/SectionHeader'
 
 const cs = caseStudies.find(c => c.id === 'sap-search')!
@@ -28,6 +30,7 @@ function Prototype({ hash }: { hash: string }) {
 
 export default function SAPSearchStoryPage() {
   const [active, setActive] = useState(S.flows[0].id)
+  const [zoom, setZoom] = useState<Screen | null>(null)
   const flow = S.flows.find(f => f.id === active)!
 
   return (
@@ -131,19 +134,17 @@ export default function SAPSearchStoryPage() {
         <div role="tabpanel">
           <h3 className="text-heading text-white">{flow.title}</h3>
           <p className="text-body-lg text-ink-2 mt-4 max-w-[65ch]">{flow.summary}</p>
-          {flow.screens.some(s => s.img) && (
-            <div className="grid md:grid-cols-2 gap-6 mt-10">
-              {flow.screens.filter(s => s.img).map(s => (
-                <figure key={s.id} className="m-0">
-                  <img src={s.img} alt={`${flow.title}: ${s.name}`} className="w-full rounded-lg border" style={{ borderColor: 'var(--line-2)' }} loading="lazy" />
-                  <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} — {s.name}</figcaption>
-                </figure>
-              ))}
-            </div>
-          )}
-          <ol className="flex flex-wrap gap-x-6 gap-y-2 mt-8">
-            {flow.screens.map(s => <li key={s.id} className="text-caption text-ink-3">{s.id.replace('-', '.')} {s.name}</li>)}
-          </ol>
+          <div className="grid md:grid-cols-2 gap-6 mt-10">
+            {flow.screens.map(s => (
+              <figure key={s.id} className="m-0">
+                <button type="button" onClick={() => setZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen ${s.id.replace('-', '.')} ${s.name}`}>
+                  <img src={s.img} alt={`${flow.title}: ${s.name}`} width={1440} height={900} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
+                </button>
+                <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} — {s.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <p className="text-body text-ink-2 mt-12">Try this journey live. The prototype uses the same SAP UI5 components as the screens above.</p>
           <div className="mt-10"><Prototype hash={flow.hash} /></div>
         </div>
       </Section>
@@ -159,6 +160,28 @@ export default function SAPSearchStoryPage() {
           <Link to="/contact" className="btn btn-primary">Talk about AI search</Link>
         </div>
       </Section>
+
+      {zoom && <Lightbox screen={zoom} onClose={() => setZoom(null)} />}
+    </div>
+  )
+}
+
+function Lightbox({ screen, onClose }: { screen: Screen; onClose: () => void }) {
+  useEffect(() => {
+    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', k); document.body.style.overflow = 'hidden'
+    return () => { document.removeEventListener('keydown', k); document.body.style.overflow = '' }
+  }, [onClose])
+  return (
+    <div role="dialog" aria-modal="true" aria-label={screen.name} className="fixed inset-0 z-[100] bg-black/90 overflow-auto" onClick={onClose}>
+      <div className="min-h-full flex flex-col items-center justify-center p-4 md:p-10 gap-4">
+        <img src={screen.img} alt={screen.name} className="max-w-full max-h-[calc(100vh-7rem)] w-auto h-auto bg-white rounded-md" onClick={e => e.stopPropagation()} />
+        <div className="flex items-center gap-4">
+          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} — {screen.name}</span>
+          <a href={screen.img} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white underline" onClick={e => e.stopPropagation()}>Open at full resolution ↗</a>
+          <button type="button" className="btn btn-secondary btn-sm" onClick={onClose} autoFocus>Close</button>
+        </div>
+      </div>
     </div>
   )
 }

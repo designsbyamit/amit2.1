@@ -8,12 +8,23 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<ui5-shellbar id="shell" show-notifications notifications-count="3">
-  <ui5-shellbar-branding slot="branding" id="brand">Home</ui5-shellbar-branding>
+<ui5-shellbar id="shell" show-notifications show-product-switch show-search-field>
+  <ui5-shellbar-branding slot="branding" id="brand"><img slot="logo" src="./sap-logo.png" alt="SAP"><span id="brandTitle">S/4HANA Cloud</span></ui5-shellbar-branding>
   <ui5-shellbar-search slot="searchField" id="search" placeholder="Search across all SAP applications..." show-clear-icon></ui5-shellbar-search>
-  <ui5-avatar slot="profile" initials="AJ" color-scheme="Accent6"></ui5-avatar>
+  <ui5-avatar slot="profile" size="XS"><img src="./avatar.png" alt="Profile"></ui5-avatar>
 </ui5-shellbar>
 <main id="app" aria-live="polite"></main>
+<ui5-popover id="apps" header-text="SAP applications" placement="Bottom">
+  <ui5-list separators="Inner">
+    <ui5-li type="Active" data-go="home" description="Global search home">S/4HANA Cloud</ui5-li>
+    <ui5-li type="Active" data-go="capsules" description="AI capsules">Ariba</ui5-li>
+    <ui5-li type="Active" data-go="travel" description="Travel &amp; Expense">Concur</ui5-li>
+    <ui5-li type="Active" data-go="goals" description="People &amp; Performance">SuccessFactors</ui5-li>
+  </ui5-list>
+</ui5-popover>
+<ui5-dialog id="handoff" accessible-name="Opening application">
+  <div class="hand"><div class="mk">C</div><ui5-title level="H4" size="H4" class="hn">SAP Concur</ui5-title><ui5-label class="ht">Opening…</ui5-label><ui5-progress-indicator value="0" hide-value></ui5-progress-indicator><ui5-button id="hcancel">Cancel</ui5-button></div>
+</ui5-dialog>
 <ui5-toast id="toast" placement="BottomCenter"></ui5-toast>
 <script type="module" src="./main.js"></script>
 </body>
