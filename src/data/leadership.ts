@@ -14,15 +14,6 @@ export interface LeadershipStory {
   tone?: 'cobalt' | 'teal' | 'plum'
 }
 
-export interface LeadershipArticle {
-  id: string
-  category: string
-  title: string
-  excerpt: string
-  date: string
-  url: string
-}
-
 export const stories: LeadershipStory[] = [
   {
     id: 'story-business-seat',
@@ -230,45 +221,6 @@ export const stories: LeadershipStory[] = [
       'Archive the why, not just the what.',
     ],
     lesson: 'Over time, what we celebrate, what people can challenge, what they can experiment with, what knowledge we keep, and whether they understand the purpose shape a culture far more than any statement about the culture we want.',
-  },
-]
-
-export const articles: LeadershipArticle[] = [
-  {
-    id: 'design-leader-traits',
-    category: 'Leadership',
-    title: 'Essential Traits of a Design Leader — Do You Have It?',
-    excerpt:
-      'Some of the rare skills are like secret weapons for a design leader to thrive in an organisation. Technical skills are vital, but these critical traits take things to a whole new level.',
-    date: 'Jun 2023',
-    url: 'https://medium.com/@amitkrt/do-you-have-it-as-a-design-leader-6aa154c7191',
-  },
-  {
-    id: 'dual-fluency',
-    category: 'Leadership',
-    title: 'The Designer Who Speaks Two Languages',
-    excerpt:
-      'Dual Fluency is not about code or Figma shortcuts. It is about understanding what a CFO worries about, what a PM is accountable for, and why an engineer pushes back.',
-    date: 'Ongoing',
-    url: 'https://medium.com/@amitkrt',
-  },
-  {
-    id: 'vedic-design',
-    category: 'Ancient Wisdom × Leadership',
-    title: 'How Vedic Secrets Can Disrupt Your Design Game',
-    excerpt:
-      'A deliberate dive into the past, distilling ancient wisdom for disruptive breakthroughs in our ever-evolving world of experience design.',
-    date: 'Nov 2023',
-    url: 'https://medium.com/@amitkrt/how-vedic-secrets-can-disrupt-your-design-game-1-286b6cee79d6',
-  },
-  {
-    id: 'conversational-ux',
-    category: 'AI & Design',
-    title: 'The Future of UX is Conversational: Measure Its Success',
-    excerpt:
-      'Conversational experiences are becoming the new go-to for information access. Here is how to evaluate them rigorously and build for the long term.',
-    date: 'May 2024',
-    url: 'https://medium.com/@amitkrt/the-future-of-ux-is-conversational-heres-how-to-measure-its-success-e67d0651638f',
   },
 ]
 

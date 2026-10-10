@@ -5,7 +5,6 @@ const heroImg = '/images/Community/Impulse.webp'
 import PageHeader from '../components/ui/PageHeader'
 import Journey from '../components/sections/Journey'
 import LeadershipStories from '../components/sections/LeadershipStories'
-import LeadershipArticles from '../components/sections/LeadershipArticles'
 import Testimonials from '../components/sections/Testimonials'
 import { colleagueTestimonials } from '../data/testimonials'
 
@@ -26,6 +25,20 @@ function CommunityCallout() {
   )
 }
 
+function ReflectionsPointer() {
+  return (
+    <section className="section-y hairline-top">
+      <div className="container-site grid-site gap-y-6 items-start">
+        <p className="col-span-4 md:col-span-4 text-overline text-ink-3">Writing</p>
+        <div className="col-span-4 md:col-span-8">
+          <p className="text-body-lg text-ink-2 max-w-xl mb-6">My essays on leadership, AI and the future of design live in Reflections.</p>
+          <Button to="/reflections" variant="tertiary" arrow>Read Reflections</Button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function LeadershipPage() {
   return (
     <>
@@ -40,7 +53,7 @@ export default function LeadershipPage() {
       <LeadershipStories />
       <CommunityCallout />
       <Testimonials label="Colleagues" title="How the people I work with describe it." items={colleagueTestimonials} />
-      <LeadershipArticles />
+      <ReflectionsPointer />
     </>
   )
 }
