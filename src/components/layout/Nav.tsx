@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { useState, useEffect, useRef, useId } from 'react'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import logoSvg from '../../assets/images/logo.svg'
 import { caseStudies } from '../../data/work'
+import Logo from './Logo'
+import ThemeToggle from '../ds/ThemeToggle'
 
 const navItems = [
   { label: 'Craft', to: '/craft' },
@@ -14,170 +15,149 @@ const navItems = [
   { label: 'About', to: '/about' },
 ]
 
+const featured = caseStudies.slice(0, 3)
+const more = caseStudies.slice(3)
+const toneBg: Record<string, string> = { cobalt: 'var(--field-cobalt)', teal: 'var(--field-teal)', plum: 'var(--field-plum)' }
+
+function navCls({ isActive }: { isActive: boolean }) {
+  return `relative py-2 text-[0.9375rem] transition-colors duration-150 ${isActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`
+}
+
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [craftOpen, setCraftOpen] = useState(false)
-  const craftRef = useRef<HTMLLIElement>(null)
+  const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const panelId = useId()
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const location = useLocation()
 
+  // Close menus on navigation
+  useEffect(() => { setCraftOpen(false); setMenuOpen(false) }, [location.pathname])
+
+  // Esc closes the Craft panel and returns focus to its trigger
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    if (!craftOpen && !menuOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      if (craftOpen) { setCraftOpen(false); triggerRef.current?.focus() }
+      setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [craftOpen, menuOpen])
 
-  const openCraft = () => {
+  useEffect(() => { document.body.style.overflow = menuOpen ? 'hidden' : '' }, [menuOpen])
+
+  // Hover intent: short delay to open, longer grace period to close, so moving
+  // the pointer from the trigger into the panel never drops it.
+  const hoverOpen = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
-    setCraftOpen(true)
+    openTimer.current = setTimeout(() => setCraftOpen(true), 90)
+  }
+  const hoverClose = () => {
+    if (openTimer.current) clearTimeout(openTimer.current)
+    closeTimer.current = setTimeout(() => setCraftOpen(false), 280)
   }
 
-  const closeCraft = () => {
-    closeTimer.current = setTimeout(() => setCraftOpen(false), 120)
-  }
+  const craftActive = location.pathname.startsWith('/craft')
 
   return (
     <>
-      <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-        style={{
-          background: scrolled ? 'rgba(12,12,11,0.88)' : 'transparent',
-          backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(245,242,237,0.08)' : '1px solid transparent',
-        }}
-      >
-        <nav className="container-site h-16 flex items-center justify-between">
-          <Link
-            to="/"
-            className="opacity-80 hover:opacity-100 transition-opacity"
-          >
-            <img src={logoSvg} alt="AKT" className="w-10 h-10" />
+      <a href="#main" className="skip-link">Skip to content</a>
+      <header className="fixed top-0 left-0 right-0" style={{ zIndex: 'var(--z-nav)' as unknown as number, background: 'var(--header-bg)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderBottom: '1px solid var(--line-1)' }}
+        onMouseLeave={hoverClose}>
+        <nav aria-label="Main" className="container-site flex items-center justify-between" style={{ height: 'var(--header-h)' }}>
+          <Link to="/" className="flex items-center gap-3 text-ink" aria-label="Amit Kumar Tiwari, home">
+            <Logo size={32} />
+            <span className="hidden sm:inline text-[0.9375rem] font-normal tracking-[-0.01em]">Amit Kumar Tiwari</span>
           </Link>
 
-          <ul className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              item.label === 'Craft' ? (
-                <li
-                  key={item.to}
-                  ref={craftRef}
-                  className="relative"
-                  onMouseEnter={openCraft}
-                  onMouseLeave={closeCraft}
-                >
-                  <NavLink
-                    to={item.to}
-                    className={({ isActive }) =>
-                      `text-label text-white transition-all duration-200 ${
-                        isActive ? 'text-white' : 'text-ink-2 hover:text-white'
-                      }`
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-
-                  <AnimatePresence>
-                    {craftOpen && (
-                      <motion.div
-                        className="absolute top-full left-0 pt-2 z-50"
-                        initial={{ opacity: 0, y: -4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -4 }}
-                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                        onMouseEnter={openCraft}
-                        onMouseLeave={closeCraft}
-                      >
-                        {/* Invisible bridge to prevent gap flicker */}
-                        <div className="absolute -top-2 left-0 right-0 h-2" />
-                        <div
-                          className="min-w-[180px] border border-white py-1.5"
-                          style={{
-                            background: 'rgba(12,12,11,0.97)',
-                            backdropFilter: 'blur(24px)',
-                            borderColor: 'rgba(255,255,255,0.1)',
-                          }}
-                        >
-                          {caseStudies.map((cs) => (
-                            <Link
-                              key={cs.id}
-                              to={`/craft/${cs.id}`}
-                              className="block px-5 py-2.5 hover:bg-white hover:bg-opacity-[0.05] transition-colors duration-150"
-                              onClick={() => setCraftOpen(false)}
-                            >
-                              <span
-                                className="text-ink-3"
-                                style={{ fontSize: '0.72rem', letterSpacing: '0.02em' }}
-                              >
-                                {cs.shortTitle}
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+          <div className="flex items-center gap-6">
+            <ul className="hidden lg:flex items-center gap-7">
+              {navItems.map(item => item.label === 'Craft' ? (
+                <li key={item.to} onMouseEnter={hoverOpen}>
+                  <button ref={triggerRef} type="button" aria-expanded={craftOpen} aria-controls={panelId}
+                    onClick={() => setCraftOpen(o => !o)}
+                    className={`flex items-center gap-1.5 py-2 text-[0.9375rem] transition-colors ${craftOpen || craftActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`}>
+                    Craft
+                    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${craftOpen ? 'rotate-180' : ''}`}><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+                  </button>
                 </li>
               ) : (
-                <li key={item.to}>
-                  <NavLink
-                    to={item.to}
-                    end={item.to === '/'}
-                    className={({ isActive }) =>
-                      `text-label text-white transition-all duration-200 ${
-                        isActive ? 'text-white' : 'text-ink-2 hover:text-white'
-                      }`
-                    }
-                  >
-                    {item.label}
+                <li key={item.to} onMouseEnter={hoverClose}>
+                  <NavLink to={item.to} className={navCls}>
+                    {({ isActive }) => <>{item.label}{isActive && <span aria-hidden="true" className="absolute left-0 right-0 -bottom-[3px] h-[2px] bg-signal" />}</>}
                   </NavLink>
-                </li>
-              )
-            ))}
-          </ul>
-
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2 opacity-90 hover:opacity-100 transition-opacity"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          >
-            <span className={`block w-5 h-px bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-5 h-px bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-px bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
-          </button>
-        </nav>
-      </header>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center"
-            style={{ background: '#0C0C0B' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <ul className="flex flex-col items-center gap-10">
-              {navItems.map((item, i) => (
-                <li key={item.to}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.06 + 0.05 }}
-                  >
-                    <NavLink
-                      to={item.to}
-                      end={item.to === '/'}
-                      className={({ isActive }) =>
-                        `text-display-l transition-colors ${isActive ? 'text-white' : 'text-ink-3 hover:text-white'}`
-                      }
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label}
-                    </NavLink>
-                  </motion.div>
                 </li>
               ))}
             </ul>
+            <ThemeToggle />
+            <button type="button" className="lg:hidden btn btn-secondary btn-sm btn-icon" onClick={() => setMenuOpen(o => !o)} aria-expanded={menuOpen} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+                {menuOpen ? <path d="M4 4l10 10M14 4L4 14" strokeLinecap="round" /> : <path d="M2.5 5h13M2.5 9h13M2.5 13h13" strokeLinecap="round" />}
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        {/* Craft mega menu: full-width panel with full case-study titles */}
+        <AnimatePresence>
+          {craftOpen && (
+            <motion.div id={panelId} key="craft" className="hidden lg:block absolute left-0 right-0 top-full"
+              initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+              onMouseEnter={hoverOpen} onMouseLeave={hoverClose}>
+              <div style={{ background: 'var(--surface-1)', borderBottom: '1px solid var(--line-1)', boxShadow: 'var(--shadow-2)' }}>
+                <div className="container-site grid-site py-8">
+                  <p className="col-span-12 text-overline text-ink-3 mb-5">Selected work</p>
+                  {featured.map(cs => (
+                    <Link key={cs.id} to={`/craft/${cs.id}`} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
+                      <div className="rounded-2 overflow-hidden p-3 aspect-[16/10]" style={{ background: toneBg[cs.tone ?? 'cobalt'] }}>
+                        {cs.image && <img src={cs.image} alt="" className="w-full h-full object-cover object-left-top rounded-[3px]" loading="lazy" />}
+                      </div>
+                      <span className="text-label text-signal-ink">{cs.number} / {cs.category.split(' · ')[0]}</span>
+                      <span className="text-[1.0625rem] leading-snug font-light tracking-[-0.01em] text-ink group-hover:underline underline-offset-4 decoration-1">{cs.title}</span>
+                    </Link>
+                  ))}
+                  <div className="col-span-3 flex flex-col gap-1 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
+                    <span className="text-label text-ink-3 mb-2">More work</span>
+                    {more.map(cs => (
+                      <Link key={cs.id} to={`/craft/${cs.id}`} className="py-2 text-[0.9375rem] leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4">{cs.title}</Link>
+                    ))}
+                    <Link to="/craft" className="btn btn-ghost mt-auto self-start">All work
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div className="fixed inset-x-0 bottom-0 lg:hidden overflow-y-auto" style={{ top: 'var(--header-h)', zIndex: 'var(--z-overlay)' as unknown as number, background: 'var(--bg)' }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+            <nav aria-label="Mobile" className="container-site py-8">
+              <ul className="flex flex-col">
+                {navItems.map(item => (
+                  <li key={item.to} className="hairline-bottom">
+                    <NavLink to={item.to} className={({ isActive }) => `flex items-center justify-between py-4 text-heading ${isActive ? 'text-ink' : 'text-ink-2'}`}>
+                      {item.label}
+                    </NavLink>
+                    {item.label === 'Craft' && (
+                      <ul className="pb-4 flex flex-col">
+                        {caseStudies.map(cs => (
+                          <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex gap-3 py-2.5 text-body-sm text-ink-2"><span className="text-label text-ink-3 pt-0.5">{cs.number}</span>{cs.title}</Link></li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>

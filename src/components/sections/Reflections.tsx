@@ -42,7 +42,7 @@ export default function Reflections() {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-10">
+        <div className="grid md:grid-cols-3 gap-px grid-hairline">
           {filtered.map((r, i) => (
             <motion.a
               key={r.id}
@@ -67,7 +67,7 @@ export default function Reflections() {
                 ) : (
                   <div
                     className="w-full h-full flex items-end p-6"
-                    style={{ background: 'rgba(245,242,237,0.04)' }}
+                    style={{ background: 'rgb(var(--ink-rgb) / 0.04)' }}
                   >
                     <p
                       className="text-white select-none"

@@ -9,7 +9,7 @@ export default function CaseCover({ cs, className = '', minHeight = 280 }: { cs:
   return (
     <div
       className={`relative overflow-hidden flex flex-col justify-end ${className}`}
-      style={{ minHeight, background: 'rgba(245,242,237,0.02)' }}
+      style={{ minHeight, background: 'rgb(var(--ink-rgb) / 0.02)' }}
       aria-hidden="true"
     >
       <span

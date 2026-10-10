@@ -1,58 +1,141 @@
 /*
- * Design tokens — Amit Kumar Tiwari portfolio (website system, web + mobile)
+ * Signal — design tokens for Amit Kumar Tiwari's portfolio
+ * ---------------------------------------------------------
+ * Two modes, one set of names. Components only ever use the semantic
+ * tokens below, never raw hex values, so every screen works in both modes.
+ *
+ *   html[data-theme="dark"]   graphite ground, lime signal (default)
+ *   html[data-theme="light"]  paper ground, same roles
+ *
+ * Colour channels are stored as "R G B" so Tailwind can add alpha:
+ *   rgb(var(--ink-rgb) / 0.1)
  *
  * Rules
- *  1. Text colour comes from the ink ramp below, never from opacity.
- *     (Opacity changes with whatever sits behind it and cannot be audited.)
- *  2. Every text token passes WCAG AA (4.5:1) on every surface token. Body
- *     text uses ink-2 or ink (7:1+). ink-3 is for labels and metadata only.
- *  3. Decorative marks (arrows, numerals, rules) may use the "faint" and
- *     "line" tokens and must be aria-hidden.
- *  Measured against --surface-0 (#0C0C0B):
- *     ink #F5F2ED 17.5:1 · ink-2 #C2BFBB 10.7:1 · ink-3 #A6A4A0 7.9:1
+ *  1. Text colour comes from the ink ramp, never from opacity.
+ *  2. Every text token passes WCAG 2.2 AA (4.5:1) on every surface token,
+ *     in both modes. Contrast figures are listed next to each value.
+ *  3. Signal (lime) is a FILL for the primary action and live status only.
+ *     It is never text on the light ground; use --signal-ink for that.
+ *  4. Cobalt is for links and focus. Nothing else is blue.
+ *  5. Image fields (deep cobalt, teal, plum) are the same in both modes so
+ *     case-study and resource visuals look identical whichever mode is on.
  */
+
+:root,
+html[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg-rgb: 15 16 19;          /* #0F1013 page */
+  --surface-1-rgb: 24 26 31;   /* #181A1F cards, header */
+  --surface-2-rgb: 34 37 43;   /* #22252B raised, inputs, menus */
+  --surface-3-rgb: 44 48 56;   /* #2C3038 hover on raised */
+
+  /* Ink (text) — contrast on --bg */
+  --ink-rgb: 236 237 239;      /* #ECEDEF 16.4:1 headings, body */
+  --ink-2-rgb: 196 199 205;    /* #C4C7CD 11.4:1 long body, secondary */
+  --ink-3-rgb: 163 167 176;    /* #A3A7B0  7.9:1 labels, metadata */
+  --faint-rgb: 93 98 108;      /* #5D626C decorative only, not text */
+
+  /* Action */
+  --signal-rgb: 200 245 90;    /* #C8F55A primary fill, live status */
+  --on-signal-rgb: 15 16 19;   /* text on signal 15.1:1 */
+  --signal-ink-rgb: 200 245 90;/* signal as text, dark mode 15.1:1 */
+  --link-rgb: 125 152 255;     /* #7D98FF 7.1:1 */
+  --link-hover-rgb: 165 184 255;
+  --focus-rgb: 125 152 255;
+
+  /* Feedback */
+  --danger-rgb: 255 138 122;   /* #FF8A7A 8.0:1 */
+  --success-rgb: 200 245 90;
+
+  /* Lines (alpha on ink so they work on any surface) */
+  --line-1: rgb(var(--ink-rgb) / 0.10);
+  --line-2: rgb(var(--ink-rgb) / 0.18);
+  --line-control: rgb(var(--ink-rgb) / 0.42);  /* 3:1+ for control borders */
+
+  /* Header glass */
+  --header-bg: rgb(var(--bg-rgb) / 0.94);
+  --scrim: rgb(0 0 0 / 0.6);
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-2: 0 24px 48px rgb(0 0 0 / 0.45);
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-rgb: 245 246 247;       /* #F5F6F7 page */
+  --surface-1-rgb: 255 255 255;/* #FFFFFF cards, header */
+  --surface-2-rgb: 238 240 242;/* #EEF0F2 raised, inputs, menus */
+  --surface-3-rgb: 228 231 235;/* #E4E7EB hover on raised */
+
+  --ink-rgb: 15 16 19;         /* #0F1013 17.6:1 */
+  --ink-2-rgb: 58 62 70;       /* #3A3E46 10.0:1 */
+  --ink-3-rgb: 77 82 92;       /* #4D525C  7.3:1 */
+  --faint-rgb: 154 160 169;    /* #9AA0A9 decorative only */
+
+  --signal-rgb: 200 245 90;    /* fill only on light */
+  --on-signal-rgb: 15 16 19;
+  --signal-ink-rgb: 63 107 0;  /* #3F6B00 5.9:1 */
+  --link-rgb: 54 84 224;       /* #3654E0 5.5:1 */
+  --link-hover-rgb: 36 64 184;
+  --focus-rgb: 54 84 224;
+
+  --danger-rgb: 180 40 24;     /* #B42818 6.1:1 */
+  --success-rgb: 63 107 0;
+
+  --line-1: rgb(var(--ink-rgb) / 0.10);
+  --line-2: rgb(var(--ink-rgb) / 0.16);
+  --line-control: rgb(var(--ink-rgb) / 0.45);
+
+  --header-bg: rgb(var(--surface-1-rgb) / 0.95);
+  --scrim: rgb(15 16 19 / 0.55);
+  --shadow-1: 0 1px 2px rgb(15 16 19 / 0.08);
+  --shadow-2: 0 24px 48px rgb(15 16 19 / 0.12);
+}
+
 :root {
-  /* ── Surfaces (dark, warm black) ── */
-  --surface-0: #0C0C0B;   /* page */
-  --surface-1: #141413;   /* sections that need separation */
-  --surface-2: #1C1C1A;   /* raised cards, inputs */
-  --surface-3: #262624;   /* hover on raised */
-  --color-black: #0C0C0B;
+  /* Image fields — identical in both modes; text on them uses --on-field */
+  --field-cobalt: #1B2350;
+  --field-teal: #0F3B3A;
+  --field-plum: #33203F;
+  --field-graphite: #22252B;
+  --on-field: #ECEDEF;
+  --on-field-accent: #C8F55A;
 
-  /* ── Ink (text) ── */
-  --color-white: #F5F2ED;
-  --color-ink: #F5F2ED;     /* headings, primary copy      */
-  --color-ink-2: #C2BFBB;   /* body, secondary copy        */
-  --color-ink-3: #A6A4A0;   /* labels, captions, metadata  */
-  --color-faint: #6E6D6A;   /* decorative only (not text)  */
+  /* Convenience solid values */
+  --bg: rgb(var(--bg-rgb));
+  --surface-0: rgb(var(--bg-rgb));
+  --surface-1: rgb(var(--surface-1-rgb));
+  --surface-2: rgb(var(--surface-2-rgb));
+  --surface-3: rgb(var(--surface-3-rgb));
+  --color-ink: rgb(var(--ink-rgb));
+  --color-ink-2: rgb(var(--ink-2-rgb));
+  --color-ink-3: rgb(var(--ink-3-rgb));
+  --color-faint: rgb(var(--faint-rgb));
+  --color-white: rgb(var(--ink-rgb));   /* legacy name: "white" = primary ink */
+  --color-black: rgb(var(--bg-rgb));    /* legacy name: "black" = page */
+  --signal: rgb(var(--signal-rgb));
+  --on-signal: rgb(var(--on-signal-rgb));
+  --signal-ink: rgb(var(--signal-ink-rgb));
+  --link: rgb(var(--link-rgb));
+  --link-hover: rgb(var(--link-hover-rgb));
+  --focus-ring: rgb(var(--focus-rgb));
+  --danger: rgb(var(--danger-rgb));
 
-  /* ── Lines ── */
-  --line-1: rgba(245, 242, 237, 0.10);  /* hairline dividers            */
-  --line-2: rgba(245, 242, 237, 0.20);  /* card borders                 */
-  --line-control: rgba(245, 242, 237, 0.45); /* inputs, outline buttons (3:1+) */
+  /* Type */
+  --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SFMono-Regular', monospace;
 
-  /* ── Focus ── */
-  --focus-ring: #F5F2ED;
-
-  /* Legacy alpha steps (kept for older components) */
-  --color-black-90: rgba(12, 12, 11, 0.9);
-  --color-black-70: rgba(12, 12, 11, 0.7);
-  --color-black-50: rgba(12, 12, 11, 0.5);
-  --color-black-30: rgba(12, 12, 11, 0.3);
-  --color-black-10: rgba(12, 12, 11, 0.1);
-  --color-white-90: rgba(245, 242, 237, 0.9);
-  --color-white-70: rgba(245, 242, 237, 0.7);
-  --color-white-50: rgba(245, 242, 237, 0.5);
-  --color-white-30: rgba(245, 242, 237, 0.3);
-  --color-white-10: rgba(245, 242, 237, 0.1);
-
-  /* ── Space (4px base; 8px rhythm) ── */
+  /* Space (4px base, 8px rhythm) */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
+  --space-5: 1.25rem;
   --space-6: 1.5rem;
   --space-8: 2rem;
+  --space-10: 2.5rem;
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
@@ -65,25 +148,29 @@
   --space-xl: 8rem;
   --space-2xl: 14rem;
 
-  /* ── Layout ── */
-  --gutter: 1.5rem;              /* mobile side padding */
-  --container: 80rem;            /* 1280px content width */
-  --section-y: 4.5rem;           /* mobile section padding */
-  --touch-min: 2.75rem;          /* 44px minimum tap target */
+  /* Layout: 12-column grid. At 1440px the outer margin is 80px. */
+  --gutter: 1.5rem;            /* phone side margin 24px */
+  --col-gap: 1rem;
+  --container: 80rem;          /* 1280px content width */
+  --header-h: 4.5rem;          /* 72px */
+  --section-y: 4.5rem;
+  --touch-min: 2.75rem;        /* 44px minimum target */
+  --measure: 68ch;             /* max line length for reading */
 
-  /* ── Radius ── */
-  --radius-0: 0;                 /* default: editorial, square */
-  --radius-1: 2px;
-  --radius-2: 6px;
-  --radius-pill: 999px;
+  /* Radius */
+  --radius-0: 0;
+  --radius-1: 4px;             /* tags, small controls */
+  --radius-2: 6px;             /* buttons, inputs */
+  --radius-3: 10px;            /* cards, menus */
+  --radius-pill: 999px;        /* filter chips, toggles */
 
-  /* ── Motion ── */
+  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-fast: 200ms;
-  --dur-base: 400ms;
-  --dur-slow: 700ms;
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 600ms;
 
-  /* ── Elevation / z ── */
+  /* Layers */
   --z-nav: 50;
   --z-overlay: 60;
   --z-modal: 70;
@@ -91,7 +178,8 @@
 
 @media (min-width: 768px) {
   :root {
-    --gutter: 3rem;
+    --gutter: 3rem;            /* 48px; at 1440 the margin becomes 80px */
+    --col-gap: 1.5rem;
     --section-y: 6rem;
   }
 }

@@ -85,7 +85,7 @@ const PROCESS_PHASES = [
     outputs: ['Interactive Prototype', 'Review Checklist', 'Usability Report', 'Improvements Backlog'],
     artifacts: ['Prototype (Figma/Lovable/v0)', 'Review Board', 'Before/After Comparison'],
     exercise: 'Prototype one human-agent interaction end-to-end and run a 5-person usability test.',
-    color: 'rgba(245,242,237,0.95)',
+    color: 'rgb(var(--ink-rgb) / 0.95)',
   },
 ]
 
@@ -290,8 +290,8 @@ function ProcessRoadmap() {
               <div
                 className="w-16 h-16 rounded-full border-2 flex items-center justify-center mb-3 transition-all duration-300 relative z-10"
                 style={{
-                  borderColor: active === phase.id ? phase.color : 'rgba(245,242,237,0.18)',
-                  background: active === phase.id ? 'rgba(245,242,237,0.08)' : '#0C0C0B',
+                  borderColor: active === phase.id ? phase.color : 'rgb(var(--ink-rgb) / 0.18)',
+                  background: active === phase.id ? 'rgb(var(--ink-rgb) / 0.08)' : 'var(--bg)',
                 }}
               >
                 <span className="text-label text-white" style={{ opacity: active === phase.id ? 1 : 0.7 }}>{phase.number}</span>
@@ -307,7 +307,7 @@ function ProcessRoadmap() {
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 + 0.2 }}>
                 <svg width="24" height="12" viewBox="0 0 24 12" fill="none">
-                  <path d="M0 6 L18 6 M14 2 L20 6 L14 10" stroke="rgba(245,242,237,0.2)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M0 6 L18 6 M14 2 L20 6 L14 10" stroke="rgb(var(--ink-rgb) / 0.2)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </motion.div>
             )}
@@ -328,7 +328,7 @@ function ProcessRoadmap() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="grid md:grid-cols-4 gap-px bg-white bg-opacity-[0.06]">
+              <div className="grid md:grid-cols-4 gap-px grid-hairline">
                 <div className="bg-black p-8 md:col-span-1">
                   <p className="text-overline text-ink-3 mb-3">Purpose</p>
                   <p className="text-body text-ink-3 mb-8">{phase.purpose}</p>
@@ -378,7 +378,7 @@ function ProcessRoadmap() {
       {/* Mobile list */}
       <div className="md:hidden">
         {PROCESS_PHASES.map((phase, i) => (
-          <motion.div key={phase.id} className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+          <motion.div key={phase.id} className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.06 }}>
             <button className="w-full text-left py-6 flex items-center justify-between gap-4"
               onClick={() => setActive(active === phase.id ? null : phase.id)}>
@@ -424,7 +424,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
   return (
     <motion.article
       className="border-t border-white"
-      style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+      style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-5%' }}
@@ -465,7 +465,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
           >
             <div className="pb-16">
               {/* Challenge + Why existing UX breaks */}
-              <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.05] mb-px">
+              <div className="grid md:grid-cols-2 gap-px grid-hairline mb-px">
                 <div className="bg-black p-8 md:p-10">
                   <p className="text-overline text-ink-3 mb-4">The challenge</p>
                   <p className="text-body text-ink-3">{fw.challenge}</p>
@@ -483,7 +483,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                     className="text-label text-white px-6 py-4 transition-all duration-200 border-b-2"
                     style={{
                       opacity: activeSection === s.id ? 1 : 0.7,
-                      borderColor: activeSection === s.id ? 'rgba(245,242,237,0.6)' : 'transparent',
+                      borderColor: activeSection === s.id ? 'rgb(var(--ink-rgb) / 0.6)' : 'transparent',
                     }}>
                     {s.label}
                   </button>
@@ -494,7 +494,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
               <AnimatePresence mode="wait">
                 {activeSection === 'mentalModel' && (
                   <motion.div key="mm" className="bg-black" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.05]">
+                    <div className="grid md:grid-cols-2 gap-px grid-hairline">
                       {/* Left: visual flow */}
                       <div className="bg-black p-8 md:p-10">
                         <p className="text-overline text-ink-3 mb-6">Mental model</p>
@@ -504,7 +504,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                               <div className="flex flex-col items-center">
                                 <motion.div
                                   className="w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0"
-                                  style={{ borderColor: 'rgba(245,242,237,0.25)', background: 'rgba(245,242,237,0.04)' }}
+                                  style={{ borderColor: 'rgb(var(--ink-rgb) / 0.25)', background: 'rgb(var(--ink-rgb) / 0.04)' }}
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
                                   transition={{ delay: j * 0.05 }}
@@ -512,7 +512,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                                   <span className="text-ink-3" style={{ fontSize: '0.75rem' }}>{j + 1}</span>
                                 </motion.div>
                                 {j < fw.mentalModel.length - 1 && (
-                                  <div className="w-px flex-1 my-1" style={{ background: 'rgba(245,242,237,0.1)', minHeight: '24px' }} />
+                                  <div className="w-px flex-1 my-1" style={{ background: 'rgb(var(--ink-rgb) / 0.1)', minHeight: '24px' }} />
                                 )}
                               </div>
                               <div className="pb-4">
@@ -529,7 +529,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                           <p className="text-overline text-ink-3 mb-4">Related frameworks</p>
                           <div className="flex flex-wrap gap-2 mb-10">
                             {fw.related.map(r => (
-                              <span key={r} className="text-label text-ink-3 border border-white border-opacity-50 px-3 py-1.5">{r}</span>
+                              <span key={r} className="tag">{r}</span>
                             ))}
                           </div>
                         </div>
@@ -605,7 +605,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
 function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: number }) {
   const [open, setOpen] = useState(false)
   return (
-    <motion.div className="border-b border-white" style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+    <motion.div className="border-b border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }}
       initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: index * 0.04 }}>
       <button className="w-full text-left py-7 flex items-start justify-between gap-6 group" onClick={() => setOpen(o => !o)}>
         <div>
@@ -635,7 +635,7 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
                 <p className="text-overline text-ink-3 mb-3">Related concepts</p>
                 <div className="flex flex-wrap gap-2">
                   {entry.related.map(r => (
-                    <span key={r} className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{r}</span>
+                    <span key={r} className="tag">{r}</span>
                   ))}
                 </div>
               </div>
@@ -681,7 +681,7 @@ export default function AINativeFrameworksPage() {
     <div className="bg-black min-h-screen">
       {/* Progress bar */}
       <motion.div className="fixed top-0 left-0 right-0 h-px z-50 origin-left"
-        style={{ scaleX, background: 'rgba(245,242,237,0.3)' }} />
+        style={{ scaleX, background: 'rgb(var(--ink-rgb) / 0.3)' }} />
 
       <DotsNav sections={NAV_SECTIONS} active={activeSection} />
 
@@ -726,7 +726,7 @@ export default function AINativeFrameworksPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#frameworks"
-                  className="text-label text-white border border-white border-opacity-55 px-6 py-3 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200">
+                  className="btn btn-secondary">
                   Explore Frameworks
                 </a>
                 <a href={`mailto:uxbyamit@gmail.com?subject=Request - AI-native Design PDF Playbook`}
@@ -778,7 +778,7 @@ export default function AINativeFrameworksPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-[0.06]">
+          <div className="grid md:grid-cols-3 gap-px grid-hairline">
             {[
               {
                 era: 'Traditional UX',
@@ -862,7 +862,7 @@ export default function AINativeFrameworksPage() {
           </div>
 
           {FRAMEWORKS.map((fw, i) => <FrameworkCard key={fw.id} fw={fw} index={i} />)}
-          <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
+          <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
         </div>
       </section>
 
@@ -892,7 +892,7 @@ export default function AINativeFrameworksPage() {
               <tbody>
                 {TOOL_ORCHESTRATION.map((row, i) => (
                   <motion.tr key={row.task} className="border-b border-white"
-                    style={{ borderColor: 'rgba(255,255,255,0.06)' }}
+                    style={{ borderColor: 'rgb(var(--ink-rgb) / 0.06)' }}
                     initial={{ opacity: 0, x: -8 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}>
                     <td className="py-5 pr-8"><p className="text-body text-ink-3">{row.task}</p></td>
@@ -900,7 +900,7 @@ export default function AINativeFrameworksPage() {
                     <td className="py-5 pr-8"><p className="text-body text-ink-3">{row.alt}</p></td>
                     <td className="py-5 pr-8"><p className="text-body text-ink-3" style={{ fontSize: '0.85rem' }}>{row.why}</p></td>
                     <td className="py-5">
-                      <span className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{row.output}</span>
+                      <span className="tag">{row.output}</span>
                     </td>
                   </motion.tr>
                 ))}
@@ -924,7 +924,7 @@ export default function AINativeFrameworksPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.05]">
+          <div className="grid md:grid-cols-2 gap-px grid-hairline">
             {DOWNLOADS.map((dl, i) => (
               <motion.a key={dl.name}
                 href={`mailto:uxbyamit@gmail.com?subject=Request - ${dl.name}&body=Hi Amit,%0A%0AI'd like to request: ${dl.name}.%0A%0AName:%0ARole:%0AOrganisation:`}
@@ -932,7 +932,7 @@ export default function AINativeFrameworksPage() {
                 initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}>
                 <div className="flex items-start justify-between mb-4">
-                  <span className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{dl.type}</span>
+                  <span className="tag">{dl.type}</span>
                   <span className="text-ink-3 group-hover:text-white transition-colors">↓</span>
                 </div>
                 <h3 className="text-white mb-3" style={{ fontSize: 'clamp(0.95rem, 1.3vw, 1.1rem)', fontWeight: 300, letterSpacing: '-0.01em' }}>
@@ -963,7 +963,7 @@ export default function AINativeFrameworksPage() {
                 placeholder="Search glossary..."
                 value={glossarySearch}
                 onChange={e => setGlossarySearch(e.target.value)}
-                className="w-full bg-transparent border border-white border-opacity-50 px-5 py-3 text-body text-white placeholder-white focus:border-opacity-50 focus:outline-none transition-all duration-200"
+                className="field"
                 style={{ opacity: glossarySearch ? 1 : 0.7 }}
               />
             </div>
@@ -990,7 +990,7 @@ export default function AINativeFrameworksPage() {
           </div>
           <div className="flex flex-col gap-3 flex-shrink-0">
             <a href="mailto:uxbyamit@gmail.com?subject=AI-native Design Workshop Enquiry"
-              className="text-label text-white border border-white border-opacity-50 px-8 py-4 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200">
+              className="btn btn-secondary">
               Get in touch →
             </a>
             <Link to="/resources" className="text-label text-ink-3 hover:text-ink-2 transition-colors text-center py-2">

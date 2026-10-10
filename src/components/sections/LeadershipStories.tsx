@@ -31,7 +31,7 @@ export default function LeadershipStories() {
               <motion.article
                 key={story.id}
                 className="border-t border-white"
-                style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+                style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-5%' }}
@@ -93,7 +93,7 @@ export default function LeadershipStories() {
 
                         {/* Lesson */}
                         {story.lesson && (
-                          <div className="border-l-2 border-white pl-5 py-1 max-w-2xl" style={{ borderColor: 'rgba(255,255,255,0.25)' }}>
+                          <div className="border-l-2 border-white pl-5 py-1 max-w-2xl" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.25)' }}>
                             <p className="text-white" style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', fontStyle: 'italic', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 1.6 }}>
                               "{story.lesson}"
                             </p>
@@ -151,7 +151,7 @@ export default function LeadershipStories() {
               </motion.article>
             )
           })}
-          <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
+          <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
         </div>
       </div>
     </section>

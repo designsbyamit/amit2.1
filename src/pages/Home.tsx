@@ -1,11 +1,11 @@
-import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { caseStudies } from '../data/work'
-import CaseCover from '../components/ui/CaseCover'
-import GrainOverlay from '../components/ui/GrainOverlay'
 import Hero from '../components/sections/Hero'
 import ImpactSnapshot from '../components/sections/ImpactSnapshot'
+import CaseRow from '../components/ds/CaseRow'
+import SectionHeader from '../components/ds/SectionHeader'
+import Button from '../components/ds/Button'
 
 function FadeUp({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -21,75 +21,6 @@ function FadeUp({ children, delay = 0, className = '' }: { children: React.React
   )
 }
 
-function ProjectRow({ cs, index }: { cs: typeof caseStudies[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
-  const imgY = useTransform(scrollYProgress, [0, 1], [30, -30])
-
-  return (
-    <motion.div
-      ref={ref}
-      className="border-t border-white overflow-hidden"
-      style={{ borderColor: 'rgba(255,255,255,0.07)' }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-4%' }}
-      transition={{ duration: 0.65, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <motion.div
-        initial={{ paddingLeft: '1rem', paddingRight: '1rem' }}
-        whileHover={{ paddingLeft: '2rem', paddingRight: '2rem', backgroundColor: 'rgba(245,242,237,0.018)' }}
-        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <Link
-          to={cs.id === 'sap-search' ? '/craft/sap-search' : `/craft/${cs.id}`}
-          className="group flex flex-col md:flex-row md:items-stretch"
-          data-cursor="project"
-          data-cursor-label="View case"
-        >
-          {/* Mobile: image on top */}
-          {cs.image && (
-            <div className="md:hidden w-full overflow-hidden" style={{ height: '58vw', maxHeight: '300px', background: 'rgba(245,242,237,0.02)' }}>
-              <img src={cs.image} alt={cs.title} className="w-full h-full object-contain"
-                style={{ padding: '0.75rem', filter: 'saturate(0.25) contrast(1.08)' }} />
-            </div>
-          )}
-
-          {!cs.image && <CaseCover cs={cs} className="md:hidden w-full" minHeight={160} />}
-
-          {/* Text */}
-          <div className="flex-shrink-0 w-full md:w-2/5 flex flex-col justify-center py-8 md:py-14 md:pr-10">
-            <div className="flex items-baseline gap-4 mb-4">
-              <span style={{ fontSize: '0.75rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#F5F2ED' }}>{cs.number}</span>
-              <span className="text-overline text-ink-3">{cs.category}</span>
-            </div>
-            <h3 className="text-white mb-4 group-hover:opacity-75 transition-opacity duration-500"
-              style={{ fontSize: 'clamp(1.3rem, 2.8vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
-              {cs.title}
-            </h3>
-            <p className="text-ink-3 max-w-sm" style={{ fontSize: 'clamp(0.88rem, 1.15vw, 1rem)', fontWeight: 300, lineHeight: 1.68 }}>
-              {cs.tagline}
-            </p>
-          </div>
-
-          {/* Desktop: image right */}
-          {cs.image && (
-            <div className="hidden md:block relative overflow-hidden flex-shrink-0 w-3/5" style={{ minHeight: '420px', background: 'rgba(245,242,237,0.02)' }}>
-              <motion.img src={cs.image} alt={cs.title}
-                className="w-full h-full object-contain"
-                style={{ padding: '2rem', filter: 'saturate(0.25) contrast(1.08)', y: imgY }}
-                whileHover={{ filter: 'saturate(0.5) contrast(1.1)', scale: 1.02 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </div>
-          )}
-          {!cs.image && <CaseCover cs={cs} className="hidden md:flex flex-shrink-0 w-3/5" minHeight={420} />}
-        </Link>
-      </motion.div>
-    </motion.div>
-  )
-}
-
 export default function Home() {
   return (
     <>
@@ -100,9 +31,9 @@ export default function Home() {
       <ImpactSnapshot />
 
       {/* 3. About — single paragraph */}
-      <section className="relative bg-black">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 py-24 md:py-36">
+      <section className="relative">
+        
+        <div className="relative z-10 container-site py-24 md:py-36">
           <div className="grid md:grid-cols-[1fr_2.2fr] gap-14 md:gap-24 items-start">
             <FadeUp>
               <div className="flex items-center gap-5 md:pt-1">
@@ -120,9 +51,9 @@ export default function Home() {
                 maxWidth: '60ch',
               }}>
                 16+ years across enterprise design have taught me that great experiences emerge where design, business, and technology intersect. Today, my work is guided by three interconnected areas of exploration:{' '}
-                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>Dual Fluency</strong>,{' '}
-                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>AI-Native Design</strong>, and{' '}
-                <strong style={{ fontWeight: 400, color: 'rgba(245,242,237,0.9)' }}>Agentic Experiences</strong>{' '}
+                <strong style={{ fontWeight: 400, color: 'rgb(var(--ink-rgb) / 0.9)' }}>Dual Fluency</strong>,{' '}
+                <strong style={{ fontWeight: 400, color: 'rgb(var(--ink-rgb) / 0.9)' }}>AI-Native Design</strong>, and{' '}
+                <strong style={{ fontWeight: 400, color: 'rgb(var(--ink-rgb) / 0.9)' }}>Agentic Experiences</strong>{' '}
                 — together shaping how I think about products, people, and the future of experiences.
               </p>
             </FadeUp>
@@ -131,28 +62,20 @@ export default function Home() {
       </section>
 
       {/* 4. Case Studies */}
-      <section className="relative bg-black">
-        <GrainOverlay opacity={0.02} />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 pb-32 md:pb-48">
-          <div className="flex items-end justify-between border-t border-white border-opacity-[0.07] pt-14 mb-0">
-            <FadeUp><p className="text-overline text-ink-3">Craft</p></FadeUp>
-            <FadeUp delay={0.1}>
-              <Link to="/craft" className="text-label text-ink-3 hover:text-ink-2 transition-colors duration-300">
-                View all →
-              </Link>
-            </FadeUp>
-          </div>
-          {['airline-app', 'engaze', 'sap-search'].map(id => caseStudies.find(c => c.id === id)!).map((cs, i) => (
-            <ProjectRow key={cs.id} cs={cs} index={i} />
-          ))}
-          <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.07)' }} />
+      <section className="relative">
+        <div className="container-site pb-24 md:pb-36">
+          <SectionHeader label="Craft" title="Selected work" action={<Button to="/craft" variant="secondary" arrow>All work</Button>} />
+          <ul>
+            {caseStudies.slice(0, 3).map((cs, i) => <CaseRow key={cs.id} cs={cs} index={i} />)}
+          </ul>
+          <div className="hairline-top" />
         </div>
       </section>
 
       {/* 5. Events / Talks / Articles */}
-      <section className="relative bg-black">
-        <GrainOverlay opacity={0.02} />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 pb-32 md:pb-48">
+      <section className="relative">
+        
+        <div className="relative z-10 container-site pb-32 md:pb-48">
           <div className="flex items-end justify-between border-t border-white border-opacity-[0.07] pt-14 mb-0">
             <FadeUp><p className="text-overline text-ink-3">Talks & Writing</p></FadeUp>
           </div>
@@ -160,17 +83,17 @@ export default function Home() {
           {/* DesignUp Workshop */}
           <motion.div
             className="border-t border-white"
-            style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+            style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }}
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65 }}
           >
             <Link to="/community"
-              className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-white hover:bg-opacity-[0.015] transition-colors duration-500"
+              className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-surface-1 transition-colors duration-500"
               data-cursor="article" data-cursor-label="Community">
               <div>
-                <p className="text-label text-ink-3 mb-4">Workshop · 2023 · Sold out</p>
+                <p className="text-label text-ink-3 mb-4">Workshop · DesignUp</p>
                 <h3 className="text-white group-hover:opacity-72 transition-opacity"
                   style={{ fontSize: 'clamp(1.3rem, 2.6vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
                   DesignUp — Dual Fluency Workshop
@@ -185,14 +108,14 @@ export default function Home() {
           {/* Vedic Essay */}
           <motion.div
             className="border-t border-white"
-            style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+            style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }}
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.08 }}
           >
             <Link to="/reflections"
-              className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-white hover:bg-opacity-[0.015] transition-colors duration-500"
+              className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-surface-1 transition-colors duration-500"
               data-cursor="article" data-cursor-label="Read">
               <div>
                 <p className="text-label text-ink-3 mb-4">Essay Series · Ancient Wisdom · 5 parts</p>
@@ -207,7 +130,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.07)' }} />
+          <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }} />
         </div>
       </section>
     </>

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
-import GrainOverlay from './GrainOverlay'
-import SweepLines from './SweepLines'
 import RevealText from './RevealText'
+import Breadcrumb from '../ds/Breadcrumb'
 
 interface PageHeaderProps {
   label: string
@@ -9,95 +8,36 @@ interface PageHeaderProps {
   subtitle?: string
   image?: string
   imageAlt?: string
+  /** Pages deeper than one level pass their trail, e.g. [{label:'Resources', to:'/resources'}, {label:'Dual Fluency'}] */
+  breadcrumb?: { label: string; to?: string }[]
 }
 
-export default function PageHeader({ label, title, subtitle, image, imageAlt }: PageHeaderProps) {
-  if (image) {
-    return (
-      <section className="relative min-h-[72vh] flex flex-col justify-end overflow-hidden bg-black px-6 md:px-12">
-        <SweepLines />
-        <GrainOverlay opacity={0.05} />
+const ease = [0.16, 1, 0.3, 1] as const
 
-        <div className="absolute right-0 top-0 w-full md:w-1/2 h-full opacity-35 md:opacity-100">
-          <img
-            src={image}
-            alt={imageAlt || ''}
-            className="w-full h-full object-cover"
-            style={{
-              objectPosition: 'center top',
-              filter: 'grayscale(1) contrast(1.08) brightness(0.6)',
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(to right, #0C0C0B 0%, #0C0C0B 5%, rgba(12,12,11,0.82) 30%, rgba(12,12,11,0.2) 65%, transparent 100%)',
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.5) 25%, transparent 55%)',
-            }}
-          />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl w-full pb-20 pt-40">
-          <motion.p
-            className="text-overline text-ink-3 mb-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {label}
-          </motion.p>
-          <div className="md:max-w-[56%]">
-            <h1 className="text-display-l text-white">
-              <RevealText text={title} delay={0.1} />
-            </h1>
-            {subtitle && (
-              <motion.p
-                className="text-body text-ink-3 mt-6 max-w-xl"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {subtitle}
-              </motion.p>
-            )}
-          </div>
-        </div>
-      </section>
-    )
-  }
-
+/** Top of every page: optional breadcrumb, mono overline, thin display title, intro. */
+export default function PageHeader({ label, title, subtitle, image, imageAlt, breadcrumb }: PageHeaderProps) {
   return (
-    <section className="relative pt-40 pb-24 px-6 md:px-12 overflow-hidden">
-      <GrainOverlay opacity={0.04} />
-      <SweepLines />
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <motion.p
-          className="text-overline text-ink-3 mb-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
+    <section className={`relative overflow-hidden ${image ? 'md:min-h-[72vh] flex flex-col justify-end' : ''}`} style={{ paddingTop: 'var(--header-h)' }}>
+      {image && (
+        <div className="absolute right-0 top-0 w-full h-[42vh] md:h-full md:w-1/2">
+          <div className="hero-portrait"><img src={image} alt={imageAlt || ''} /></div>
+          <div className="absolute inset-0 hidden md:block" style={{ background: 'linear-gradient(90deg, var(--bg) 0%, rgb(var(--bg-rgb) / 0) 45%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, var(--bg) 0%, rgb(var(--bg-rgb) / 0) 40%)' }} />
+        </div>
+      )}
+      <div className={`relative container-site ${image ? 'pt-[34vh] md:pt-24' : 'pt-12 md:pt-20'} pb-14 md:pb-20`}>
+        {breadcrumb && <div className="mb-10"><Breadcrumb items={breadcrumb} /></div>}
+        <motion.p className="text-overline text-ink-3 mb-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           {label}
         </motion.p>
-        <h1 className="text-display-l text-white">
-          <RevealText text={title} delay={0.1} />
-        </h1>
-        {subtitle && (
-          <motion.p
-            className="text-body text-ink-3 mt-6 max-w-xl"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {subtitle}
-          </motion.p>
-        )}
+        <div className={image ? 'md:max-w-[56%]' : 'max-w-5xl'}>
+          <h1 className="text-display-l text-ink"><RevealText text={title} delay={0.1} /></h1>
+          {subtitle && (
+            <motion.p className="text-body-lg text-ink-2 mt-6 max-w-2xl" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35, ease }}>
+              {subtitle}
+            </motion.p>
+          )}
+        </div>
       </div>
     </section>
   )

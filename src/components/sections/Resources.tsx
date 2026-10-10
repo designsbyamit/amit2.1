@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import GrainOverlay from '../ui/GrainOverlay'
+import Button from '../ds/Button'
+import Chip from '../ds/Chip'
+import { TagList } from '../ds/Tag'
+import ResourceCover from '../ds/ResourceCover'
 
 // ── Data ────────────────────────────────────────────────────────────────────
 
@@ -24,11 +27,19 @@ interface Resource {
   requestAccess?: boolean
   requestLabel?: string
   readingList?: boolean
+  motif: 'loop' | 'phases' | 'conversation' | 'books' | 'checklist'
+  tone: 'cobalt' | 'teal' | 'plum' | 'graphite'
+  kind: string
+  topics: string[]
 }
 
 const resources: Resource[] = [
   {
     id: 'dual-fluency',
+    motif: 'loop',
+    tone: 'cobalt',
+    kind: 'Playbook',
+    topics: ['framework', 'business fluency', 'workshop'],
     title: 'Dual Fluency',
     type: ['Framework', 'Workshop Toolkit'],
     description: 'A practical framework for helping designers become fluent in both the language of design and the language of business. Covers the translation gap, metric mapping, maturity model, and the Dual Fluency Loop.',
@@ -45,6 +56,10 @@ const resources: Resource[] = [
   },
   {
     id: 'ai-native-patterns',
+    motif: 'phases',
+    tone: 'teal',
+    kind: 'Playbook',
+    topics: ['AI-native', 'agentic', 'frameworks'],
     title: 'AI-Native Frameworks',
     type: ['Interactive Playbook', 'Framework Library'],
     description: 'The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks — Context Engineering through Prototype & Validation — each producing a tangible artifact.',
@@ -55,12 +70,16 @@ const resources: Resource[] = [
     imageId: 'photo-1639322537504-6427a16b0a28',
     imageAlt: 'Abstract particle network',
     internalUrl: '/resources/ai-native-patterns',
-    previewLabel: 'Explore the handbook',
+    previewLabel: 'Explore the playbook',
     requestAccess: true,
     requestLabel: 'Request PDF playbook',
   },
   {
     id: 'conversation-experience',
+    motif: 'conversation',
+    tone: 'plum',
+    kind: 'Playbook',
+    topics: ['conversational UX', 'AI'],
     title: 'Conversation Experience: The New Frontier of UX',
     type: ['Playbook'],
     description: 'A practical guide for designing conversational, assistant-driven, and agentic experiences. Covers intent design, prompt and response systems, multi-turn flows, trust and safety, and the future of conversational UX.',
@@ -77,6 +96,10 @@ const resources: Resource[] = [
   },
   {
     id: 'reading-list',
+    motif: 'books',
+    tone: 'graphite',
+    kind: 'Reading list',
+    topics: ['leadership', 'books'],
     title: 'Design Leadership Reading List',
     type: ['Curated Reading Collection'],
     description: 'A carefully curated collection of books, articles, essays, talks, and resources that have influenced thinking on leadership, systems, creativity, and design.',
@@ -90,6 +113,10 @@ const resources: Resource[] = [
   },
   {
     id: 'kickoff-questionnaire',
+    motif: 'checklist',
+    tone: 'cobalt',
+    kind: 'Worksheet',
+    topics: ['discovery', 'research'],
     title: 'Kick-Off Questionnaire for UX Rockstars',
     type: ['Worksheet'],
     description: 'A practical project kick-off worksheet designed to uncover context, assumptions, constraints, stakeholders, risks, and opportunities before design work begins.',
@@ -134,7 +161,7 @@ function ReadingListContent() {
       <div className="space-y-0 mb-10">
         {readingItems.articles.map((a, i) => (
           <a key={i} href={a.url} target="_blank" rel="noopener noreferrer"
-            className="flex gap-6 py-5 border-b border-white border-opacity-[0.07] group hover:bg-white hover:bg-opacity-[0.02] transition-colors -mx-10 px-10">
+            className="flex gap-6 py-5 border-b border-white border-opacity-[0.07] group hover:bg-surface-1 transition-colors">
             <div className="flex-1 min-w-0">
               <p className="text-body text-white group-hover:opacity-80 transition-opacity" style={{ fontWeight: 400 }}>{a.title}</p>
               <p className="text-label text-ink-3 mt-1">{a.author} · {a.publication}</p>
@@ -145,9 +172,9 @@ function ReadingListContent() {
         ))}
       </div>
       <p className="text-overline text-ink-3 mb-6">Books</p>
-      <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-10">
+      <div className="grid md:grid-cols-3 gap-4">
         {readingItems.books.map((b, i) => (
-          <div key={i} className="bg-black p-8">
+          <div key={i} className="card">
             <p className="text-body text-white mb-1" style={{ fontWeight: 400 }}>{b.title}</p>
             <p className="text-label text-ink-3 mb-4">{b.author}</p>
             <p className="text-body text-ink-3">{b.why}</p>
@@ -158,117 +185,45 @@ function ReadingListContent() {
   )
 }
 
-// ── Full-width resource card ──────────────────────────────────────────────────
+// ── Resource item: sheet cover + summary + actions ─────────────────────────
 
 function ResourceCard({ resource, index }: { resource: Resource; index: number }) {
   const [expanded, setExpanded] = useState(false)
-
+  const titleId = `res-${resource.id}`
   return (
-    <motion.div
-      className="relative overflow-hidden border-t border-white group"
-      style={{ borderColor: 'rgba(255,255,255,0.08)' }}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-5%' }}
-      transition={{ duration: 0.7, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {/* Content */}
-      <div className="relative z-10 p-10 md:p-14">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-6 mb-8">
-          <div className="flex flex-wrap gap-2">
-            {resource.type.map(t => (
-              <span key={t} className="text-label text-ink-3 border border-white border-opacity-50 px-3 py-1.5" >{t}</span>
-            ))}
-          </div>
-          <span className="text-label text-ink-3 flex-shrink-0" style={{ fontSize: '0.75rem' }}>
-            {String(index + 1).padStart(2, '0')}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h3 className="text-white mb-5" style={{
-          fontSize: 'clamp(1.4rem, 2.2vw, 2rem)',
-          fontWeight: 200,
-          letterSpacing: '-0.03em',
-          lineHeight: 1.2,
-          maxWidth: '28ch',
-        }}>
-          {resource.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-ink-3 mb-8" style={{
-          fontSize: 'clamp(0.9rem, 1.2vw, 1.05rem)',
-          fontWeight: 300,
-          lineHeight: 1.72,
-          maxWidth: '62ch',
-        }}>
-          {resource.description}
-        </p>
-
-        {/* Outcomes */}
-        <div className="flex flex-wrap gap-2 mb-8">
-          {resource.outcomes.map(o => (
-            <span key={o} className="text-label text-ink-3 bg-white bg-opacity-[0.06] border border-white border-opacity-[0.08] px-3 py-1.5" >
-              {o}
-            </span>
-          ))}
-        </div>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-3 mb-10 pb-10 border-b border-white border-opacity-[0.07]">
-          {resource.tags.map(tag => (
-            <span key={tag} className="text-label text-ink-3">#{tag}</span>
-          ))}
-        </div>
-
-        {/* Actions */}
-        <div className="flex flex-wrap gap-4">
+    <motion.article aria-labelledby={titleId} className="hairline-top py-12 md:py-16 grid-site gap-y-8"
+      initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }}
+      transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}>
+      <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-[260px]">
+        {resource.internalUrl
+          ? <Link to={resource.internalUrl} tabIndex={-1} className="block transition-transform duration-300 hover:-translate-y-1"><ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} /></Link>
+          : <ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} />}
+      </div>
+      <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
+        <TagList items={resource.topics} label="Topics" />
+        <h2 id={titleId} className="text-heading text-ink max-w-[28ch]">{resource.title}</h2>
+        <p className="text-body text-ink-2 max-w-[62ch]">{resource.description}</p>
+        <div className="flex flex-wrap gap-3 pt-2">
           {resource.readingList ? (
-            <button onClick={() => setExpanded(e => !e)}
-              className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300">
-              {expanded ? 'Collapse list ↑' : 'View reading list →'}
-            </button>
+            <Button variant="secondary" onClick={() => setExpanded(e => !e)} aria-expanded={expanded}>{expanded ? 'Hide the reading list' : 'Show the reading list'}</Button>
           ) : (
             <>
-              {resource.internalUrl ? (
-                <Link to={resource.internalUrl}
-                  className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300 inline-flex items-center gap-2">
-                  {resource.previewLabel || 'Explore'} →
-                </Link>
-              ) : resource.previewUrl ? (
-                <a href={resource.previewUrl} target="_blank" rel="noopener noreferrer"
-                  className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-65 hover:bg-white hover:bg-opacity-[0.05] transition-all duration-300 inline-flex items-center gap-2">
-                  {resource.previewLabel || 'Preview'} ↗
-                </a>
-              ) : null}
-              {resource.requestAccess && (
-                <a href={makeMailto(resource.title)}
-                  className="text-label text-white bg-white bg-opacity-[0.07] px-6 py-3 hover:bg-opacity-[0.13] transition-all duration-300 inline-flex items-center gap-2">
-                  {resource.requestLabel || 'Request access'} →
-                </a>
-              )}
+              {resource.internalUrl && <Button to={resource.internalUrl} arrow>{resource.previewLabel || 'Explore'}</Button>}
+              {!resource.internalUrl && resource.previewUrl && <Button href={resource.previewUrl} arrow>{resource.previewLabel || 'Preview'}</Button>}
+              {resource.requestAccess && <Button variant="secondary" href={makeMailto(resource.title)}>{resource.requestLabel || 'Request access'}</Button>}
             </>
           )}
         </div>
-
-        {/* Reading list expansion */}
         <AnimatePresence>
           {expanded && resource.readingList && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{ overflow: 'hidden' }}
-            >
+            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} style={{ overflow: 'hidden' }}>
               <ReadingListContent />
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </motion.div>
+    </motion.article>
   )
 }
 
@@ -276,70 +231,23 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
 
 export default function Resources() {
   const [activeFilter, setActiveFilter] = useState('All')
-
-  const filtered = activeFilter === 'All'
-    ? resources
-    : resources.filter(r => r.filterTags.includes(activeFilter))
-
+  const filtered = activeFilter === 'All' ? resources : resources.filter(r => r.filterTags.includes(activeFilter))
   return (
-    <section className="relative bg-black section-y px-6 md:px-12" id="resources">
-      <GrainOverlay opacity={0.03} />
-      <div className="relative z-10 mx-auto max-w-7xl">
-
-        {/* Filter bar */}
-        <div className="flex flex-wrap gap-2 mb-16">
-          {allFilters.map(f => (
-            <button key={f} onClick={() => setActiveFilter(f)}
-              className={`text-label px-4 py-2 border transition-all duration-200 ${
-                activeFilter === f
-                  ? 'border-white text-white'
-                  : 'border-white border-opacity-20 text-ink-3 hover:text-white'
-              }`}>
-              {f}
-            </button>
-          ))}
+    <section className="relative pb-24 md:pb-32" id="resources">
+      <div className="container-site">
+        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter resources">
+          {allFilters.map(f => <Chip key={f} pressed={activeFilter === f} onClick={() => setActiveFilter(f)}>{f}</Chip>)}
         </div>
-
-        {/* Resource list — full width, stacked */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFilter}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="space-y-0"
-          >
-            {filtered.map((r, i) => (
-              <ResourceCard key={r.id} resource={r} index={i} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Closing CTA */}
-        <motion.div
-          className="mt-24 border-t border-white border-opacity-[0.08] pt-16 grid md:grid-cols-[2fr_1fr] gap-12 items-end"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <p className="sr-only" aria-live="polite">{filtered.length} resources shown</p>
+        <div>{filtered.map((r, i) => <ResourceCard key={r.id} resource={r} index={i} />)}</div>
+        <div className="hairline-top pt-16 mt-4 grid md:grid-cols-[2fr_1fr] gap-10 items-end">
           <div>
             <p className="text-overline text-ink-3 mb-4">Looking for something specific?</p>
-            <p className="text-white mb-3" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.3 }}>
-              Many of these resources originated from real projects, workshops, mentoring conversations, and community initiatives.
-            </p>
-            <p className="text-body text-ink-3">
-              If you're looking for something particular, feel free to reach out.
-            </p>
+            <p className="text-heading text-ink mb-3">Many of these came from real projects, workshops, mentoring conversations and community work.</p>
+            <p className="text-body text-ink-2">If you need something particular, reach out.</p>
           </div>
-          <div className="flex justify-start md:justify-end">
-            <a href="mailto:uxbyamit@gmail.com"
-              className="text-label text-white border border-white border-opacity-50 px-8 py-4 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 inline-flex items-center gap-3">
-              Get in touch →
-            </a>
-          </div>
-        </motion.div>
+          <div className="flex md:justify-end"><Button variant="secondary" href="mailto:uxbyamit@gmail.com">Get in touch</Button></div>
+        </div>
       </div>
     </section>
   )

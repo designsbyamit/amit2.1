@@ -30,7 +30,7 @@ export default function DotsNav({ sections, active }: DotsNavProps) {
               opacity: active === s.id ? 1 : 0.7,
               borderRadius: active === s.id ? 1 : 9999,
             }}
-            style={{ background: 'rgba(245,242,237,1)' }}
+            style={{ background: 'rgb(var(--ink-rgb) / 1)' }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           />
 

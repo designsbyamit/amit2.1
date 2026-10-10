@@ -143,7 +143,7 @@ export default function ConversationExperiencePage() {
               <motion.div
                 key={chapter.id}
                 className="border-t border-white"
-                style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+                style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -178,7 +178,7 @@ export default function ConversationExperiencePage() {
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       style={{ overflow: 'hidden' }}
                     >
-                      <div className="pb-12 pl-0 md:pl-20 grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.05]">
+                      <div className="pb-12 pl-0 md:pl-20 grid md:grid-cols-2 gap-px grid-hairline">
                         <div className="bg-black p-8 md:p-10">
                           <p className="text-overline text-ink-3 mb-5">Overview</p>
                           <p className="text-body text-ink-3 leading-relaxed">{chapter.body}</p>
@@ -200,7 +200,7 @@ export default function ConversationExperiencePage() {
                 </AnimatePresence>
               </motion.div>
             ))}
-            <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
+            <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
           </div>
         </div>
       </section>
@@ -219,7 +219,7 @@ export default function ConversationExperiencePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.06]">
+          <div className="grid md:grid-cols-2 gap-px grid-hairline">
             {METRICS.map((metric, i) => (
               <motion.div
                 key={metric.name}
@@ -260,7 +260,7 @@ export default function ConversationExperiencePage() {
           </div>
           <div className="flex flex-col gap-4">
             <a href="mailto:uxbyamit@gmail.com?subject=Request - Conversation Experience Playbook"
-              className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 text-center">
+              className="btn btn-secondary">
               Request full playbook →
             </a>
             <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors text-center py-2">

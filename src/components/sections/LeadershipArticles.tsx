@@ -35,7 +35,7 @@ export default function LeadershipArticles() {
           </motion.a>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.07]">
+        <div className="grid md:grid-cols-2 gap-px grid-hairline">
           {articles.map((article, i) => (
             <motion.div
               key={article.id}

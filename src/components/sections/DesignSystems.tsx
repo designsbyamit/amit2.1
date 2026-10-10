@@ -39,7 +39,7 @@ export default function DesignSystems() {
           </motion.h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-10">
+        <div className="grid md:grid-cols-3 gap-px grid-hairline">
           {systems.map((s, i) => (
             <motion.div
               key={s.name}

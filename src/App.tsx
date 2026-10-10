@@ -81,12 +81,12 @@ export default function App() {
   useLenis()
   return (
     <BrowserRouter>
-      <div className="bg-black text-white min-h-screen">
+      <div className="bg-bg text-ink min-h-screen">
         <ScrollProgressLine />
         <ScrollToTop />
         <LegacyHashRedirect />
         <Nav />
-        <main>
+        <main id="main" tabIndex={-1} className="outline-none">
           <AnimatedRoutes />
         </main>
         <Footer />

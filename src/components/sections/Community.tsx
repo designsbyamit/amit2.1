@@ -10,7 +10,7 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
   return (
     <motion.article
       className="border-t border-white"
-      style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+      style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-5%' }}
@@ -42,7 +42,7 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
                   fontWeight: 200,
                   letterSpacing: '-0.06em',
                   lineHeight: 0.85,
-                  color: 'rgba(245,242,237,0.06)',
+                  color: 'rgb(var(--ink-rgb) / 0.06)',
                 }}
               >
                 {String(index + 1).padStart(2, '0')}
@@ -50,10 +50,10 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
             </div>
           )}
           {/* Overlay tint */}
-          <div className="absolute inset-0" style={{ background: 'rgba(12,12,11,0.25)' }} />
+          <div className="absolute inset-0" style={{ background: 'rgb(var(--bg-rgb) / 0.25)' }} />
           {/* Type badge */}
           <div className="absolute top-8 left-8" style={{ direction: 'ltr' }}>
-            <span className="text-label text-ink-2 border border-white border-opacity-50 px-3 py-1.5" >
+            <span className="tag" >
               {initiative.type}
             </span>
           </div>
@@ -114,11 +114,11 @@ export default function Community() {
     <section className="relative bg-black section-y overflow-hidden" id="community">
       <GrainOverlay opacity={0.03} />
 
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
+      <div className="container-site">
         {initiatives.map((initiative, i) => (
           <InitiativeStory key={initiative.id} initiative={initiative} index={i} />
         ))}
-        <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
+        <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
       </div>
     </section>
   )

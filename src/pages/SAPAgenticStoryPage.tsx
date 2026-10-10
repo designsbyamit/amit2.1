@@ -31,8 +31,8 @@ export default function SAPAgenticStoryPage() {
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
           <div className="flex flex-wrap gap-2 mt-8">
-            <span className="chip">{S.kicker}</span>
-            {S.pillars.map(p => <span key={p} className="chip">{p}</span>)}
+            <span className="tag">{S.kicker}</span>
+            {S.pillars.map(p => <span key={p} className="tag">{p}</span>)}
           </div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-4xl">
             {[['Role', cs.role], ['Domain', cs.domain], ['Personas', '3'], ['Screens', String(total)]].map(([k, v]) => (

@@ -48,7 +48,7 @@ export default function ZoomImage({ src, alt, className = '', style }: { src: st
               aria-label={alt}
               data-lenis-prevent
               className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 overflow-auto cursor-zoom-out"
-              style={{ background: 'rgba(12,12,11,0.94)' }}
+              style={{ background: 'rgb(var(--bg-rgb) / 0.94)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -60,7 +60,7 @@ export default function ZoomImage({ src, alt, className = '', style }: { src: st
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="Close enlarged image"
-                className="fixed top-5 right-5 md:top-8 md:right-10 text-label text-ink-2 hover:text-white transition-colors px-3 py-2 border border-white border-opacity-30"
+                className="fixed top-5 right-5 md:top-8 md:right-10 btn btn-secondary btn-sm"
               >
                 Close ✕
               </button>

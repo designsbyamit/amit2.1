@@ -82,7 +82,7 @@ export default function CursorDot() {
           translateY: '-50%',
           width: 6,
           height: 6,
-          background: 'rgba(245,242,237,0.9)',
+          background: 'rgb(var(--ink-rgb) / 0.9)',
         }}
         animate={{
           opacity: visible && !isExpanded ? 0.85 : 0,
@@ -110,22 +110,22 @@ export default function CursorDot() {
         {hasLabel ? (
           <motion.div
             className="border border-white rounded-full px-4 py-2 whitespace-nowrap"
-            style={{ background: 'rgba(12,12,11,0.85)', backdropFilter: 'blur(12px)' }}
+            style={{ background: 'rgb(var(--bg-rgb) / 0.85)', backdropFilter: 'blur(12px)' }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.75)' }}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgb(var(--ink-rgb) / 0.75)' }}>
               {cursor.label}
             </span>
           </motion.div>
         ) : (
           <motion.div
             className="rounded-full border border-white w-full h-full"
-            style={{ borderColor: 'rgba(245,242,237,0.3)' }}
+            style={{ borderColor: 'rgb(var(--ink-rgb) / 0.3)' }}
             animate={{
               scale: isExpanded ? 1 : 1,
-              borderColor: isExpanded ? 'rgba(245,242,237,0.5)' : 'rgba(245,242,237,0.25)',
+              borderColor: isExpanded ? 'rgb(var(--ink-rgb) / 0.5)' : 'rgb(var(--ink-rgb) / 0.25)',
             }}
             transition={{ duration: 0.25 }}
           />

@@ -1,9 +1,11 @@
+import Breadcrumb from '../components/ds/Breadcrumb'
+import MediaFrame from '../components/ds/MediaFrame'
+import { TagList } from '../components/ds/Tag'
 import ZoomImage from '../components/ui/ZoomImage'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { caseStudies } from '../data/work'
 import GrainOverlay from '../components/ui/GrainOverlay'
-import SweepLines from '../components/ui/SweepLines'
 import RevealText from '../components/ui/RevealText'
 
 export default function CaseStudyPage() {
@@ -29,141 +31,44 @@ export default function CaseStudyPage() {
   return (
     <article>
       {/* Hero */}
-      <section className="relative min-h-[80vh] flex flex-col justify-end overflow-hidden bg-black">
-        <SweepLines />
-        <GrainOverlay opacity={0.05} />
-
-        {cs.image ? (
-          <div className="absolute right-0 top-0 w-full md:w-[45%] h-full opacity-30 md:opacity-100">
-            <img
-              src={cs.image}
-              alt={cs.title}
-              className="w-full h-full object-cover"
-              style={{
-                objectPosition: 'center top',
-                filter: 'grayscale(1) contrast(1.05) brightness(0.62)',
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'linear-gradient(to right, #0C0C0B 0%, #0C0C0B 5%, rgba(12,12,11,0.88) 32%, rgba(12,12,11,0.2) 68%, transparent 100%)',
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.5) 25%, transparent 55%)',
-              }}
-            />
-          </div>
-        ) : (
-          <div
-            className="absolute right-6 md:right-12 bottom-0 select-none pointer-events-none leading-none"
-            style={{
-              fontSize: 'clamp(14rem, 28vw, 26rem)',
-              fontWeight: 200,
-              color: 'rgba(245,242,237,0.028)',
-              letterSpacing: '-0.06em',
-            }}
-          >
-            {cs.number}
-          </div>
-        )}
-
-        <div className="relative z-10 mx-auto max-w-7xl w-full px-6 md:px-12 pb-20 pt-40">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Link
-              to="/craft"
-              className="text-label text-ink-3 hover:text-white transition-colors inline-flex items-center gap-2 mb-12"
-            >
-              ← Craft
-            </Link>
-          </motion.div>
-
-          <motion.p
-            className="text-overline text-ink-3 mb-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {cs.category}
-          </motion.p>
-
-          <div className={cs.image ? 'md:max-w-[55%]' : ''}>
-            <h1 className="text-display-l text-white">
-              <RevealText text={cs.title} delay={0.15} />
-            </h1>
-
-            <motion.p
-              className="text-body text-ink-3 mt-6 max-w-2xl"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {cs.tagline}
-            </motion.p>
-
-            {cs.stats && (
-              <motion.div
-                className="flex flex-wrap gap-10 mt-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.65 }}
-              >
-                {cs.stats.map(stat => (
-                  <div key={stat.label}>
-                    <p
-                      className="text-white"
-                      style={{
-                        fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
-                        fontWeight: 300,
-                        letterSpacing: '-0.03em',
-                        lineHeight: 1,
-                      }}
-                    >
-                      {stat.value}
-                    </p>
-                    <p className="text-label text-ink-3 mt-2">{stat.label}</p>
-                  </div>
-                ))}
+      <section className="relative overflow-hidden" style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="container-site pt-10 md:pt-14 pb-16 md:pb-20">
+          <div className="mb-10"><Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: cs.shortTitle }]} /></div>
+          <div className="grid-site gap-y-10 items-end">
+            <div className={cs.image ? 'col-span-4 md:col-span-6' : 'col-span-4 md:col-span-9'}>
+              <motion.p className="text-label text-ink-3 mb-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.1 }}>
+                <span className="text-signal-ink">{cs.number}</span> / {cs.category}
+              </motion.p>
+              <h1 className="text-display-l text-ink"><RevealText text={cs.title} delay={0.15} /></h1>
+              <motion.p className="text-body-lg text-ink-2 mt-6 max-w-2xl" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}>
+                {cs.tagline}
+              </motion.p>
+              {cs.tags && <div className="mt-6"><TagList items={cs.tags.slice(0, 3)} label="Topics" /></div>}
+              {cs.stats && (
+                <motion.dl className="flex flex-wrap gap-x-10 gap-y-6 mt-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.65 }}>
+                  {cs.stats.map(stat => (
+                    <div key={stat.label} className="flex flex-col-reverse">
+                      <dt className="text-label text-ink-3 mt-2">{stat.label}</dt>
+                      <dd className="text-ink text-[clamp(1.75rem,3vw,2.75rem)] font-extralight tracking-[-0.03em] leading-none">{stat.value}</dd>
+                    </div>
+                  ))}
+                </motion.dl>
+              )}
+            </div>
+            {cs.image && (
+              <motion.div className="col-span-4 md:col-span-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
+                <MediaFrame src={cs.image} alt={`${cs.shortTitle}: cover`} tone={cs.tone} loading="eager" />
               </motion.div>
             )}
           </div>
         </div>
       </section>
 
-      {/* Tags */}
-      {cs.tags && (
-        <section className="relative bg-black px-6 md:px-12">
-          <div className="mx-auto max-w-7xl">
-            <motion.div
-              className="flex flex-wrap gap-2 py-8 border-b border-white border-opacity-10"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              {cs.tags.map(tag => (
-                <span
-                  key={tag}
-                  className="text-label text-ink-3 border px-3 py-1"
-                  style={{ borderColor: 'var(--line-2)' }}
-                >
-                  #{tag}
-                </span>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-      )}
-
       {/* Challenge / Approach / Outcome */}
       <section className="relative bg-black py-24 px-6 md:px-12">
         <GrainOverlay opacity={0.03} />
         <div className="relative z-10 mx-auto max-w-7xl">
-          <div className="grid md:grid-cols-3 gap-px bg-white bg-opacity-10">
+          <div className="grid md:grid-cols-3 gap-px grid-hairline">
             {[
               { label: 'Challenge', body: cs.challenge },
               { label: 'Approach', body: cs.approach },
@@ -174,7 +79,7 @@ export default function CaseStudyPage() {
                 className="bg-black p-10 md:p-12"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ backgroundColor: 'rgba(245,242,237,0.025)', transition: { duration: 0.2 } }}
+                whileHover={{ backgroundColor: 'rgb(var(--ink-rgb) / 0.025)', transition: { duration: 0.2 } }}
                 viewport={{ once: true, margin: '-5%' }}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
               >
@@ -210,14 +115,14 @@ export default function CaseStudyPage() {
               <div>
                 <p className="text-body text-ink-3 mb-10">{section.body}</p>
                 {section.items && (
-                  <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-10">
+                  <div className="grid md:grid-cols-2 gap-px grid-hairline">
                     {section.items.map((item, j) => (
                       <motion.div
                         key={j}
                         className="bg-black p-8"
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        whileHover={{ backgroundColor: 'rgba(245,242,237,0.025)', transition: { duration: 0.2 } }}
+                        whileHover={{ backgroundColor: 'rgb(var(--ink-rgb) / 0.025)', transition: { duration: 0.2 } }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: j * 0.07 }}
                       >
@@ -246,14 +151,14 @@ export default function CaseStudyPage() {
                       src={section.image}
                       alt={`${cs.shortTitle}: ${section.heading ?? section.label ?? 'project visual'}`}
                       className="w-full object-cover"
-                      style={{ filter: 'grayscale(0.2) contrast(1.02)' }}
+                      
                     />
                   </motion.div>
                 )}
 
                 {/* Section image grid */}
                 {section.images && section.images.length > 0 && (
-                  <div className={`mt-10 grid gap-px bg-white bg-opacity-10 ${section.images.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
+                  <div className={`mt-10 grid gap-px grid-hairline ${section.images.length > 1 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1'}`}>
                     {section.images.map((img, j) => (
                       <motion.div
                         key={j}
@@ -267,7 +172,7 @@ export default function CaseStudyPage() {
                           src={img}
                           alt={`${cs.shortTitle}: ${section.heading ?? section.label ?? 'project visual'} (${j + 1} of ${section.images!.length})`}
                           className="w-full object-cover"
-                          style={{ filter: 'grayscale(0.2) contrast(1.02)' }}
+                          
                         />
                       </motion.div>
                     ))}
@@ -317,7 +222,7 @@ export default function CaseStudyPage() {
             </div>
             <motion.div
               className="relative w-full overflow-hidden"
-              style={{ paddingBottom: '62.5%', background: 'rgba(255,255,255,0.03)' }}
+              style={{ paddingBottom: '62.5%', background: 'rgb(var(--ink-rgb) / 0.03)' }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -374,7 +279,7 @@ export default function CaseStudyPage() {
             style={{
               fontSize: 'clamp(8rem, 15vw, 14rem)',
               fontWeight: 200,
-              color: 'rgba(245,242,237,0.04)',
+              color: 'rgb(var(--ink-rgb) / 0.04)',
               lineHeight: 0.8,
             }}
           >
@@ -409,7 +314,7 @@ export default function CaseStudyPage() {
                     src={cs.testimonial.avatar}
                     alt={cs.testimonial.name}
                     className="w-10 h-10 rounded-full object-cover"
-                    style={{ filter: 'grayscale(1)' }}
+                    
                   />
                 )}
                 <div>
@@ -436,7 +341,7 @@ export default function CaseStudyPage() {
               >
                 More work
               </motion.p>
-              <div className={`grid gap-px bg-white bg-opacity-10 ${prevCS && nextCS ? 'md:grid-cols-2' : ''}`}>
+              <div className={`grid gap-px grid-hairline ${prevCS && nextCS ? 'md:grid-cols-2' : ''}`}>
                 {prevCS && (
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
@@ -448,7 +353,7 @@ export default function CaseStudyPage() {
                       to={`/craft/${prevCS.id}`}
                       className="group bg-black p-8 md:p-10 block hover:bg-white hover:bg-opacity-[0.025] transition-colors"
                     >
-                      <p className="text-label text-ink-3 mb-3">← Previous</p>
+                      <p className="text-label text-ink-3 mb-3">Previous</p>
                       <p className="text-overline text-ink-3 mb-2">{prevCS.category}</p>
                       <h3 className="text-heading text-white group-hover:opacity-75 transition-opacity">{prevCS.title}</h3>
                     </Link>
@@ -465,7 +370,7 @@ export default function CaseStudyPage() {
                       to={`/craft/${nextCS.id}`}
                       className={`group bg-black p-8 md:p-10 block hover:bg-white hover:bg-opacity-[0.025] transition-colors ${!prevCS ? 'md:col-start-2' : ''}`}
                     >
-                      <p className="text-label text-ink-3 mb-3">Next →</p>
+                      <p className="text-label text-ink-3 mb-3">Next</p>
                       <p className="text-overline text-ink-3 mb-2">{nextCS.category}</p>
                       <h3 className="text-heading text-white group-hover:opacity-75 transition-opacity">{nextCS.title}</h3>
                     </Link>

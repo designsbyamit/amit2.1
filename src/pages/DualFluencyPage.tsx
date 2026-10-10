@@ -79,7 +79,7 @@ const KPI_CHAIN = [
   {
     id: 'business',
     label: 'Business KPIs',
-    color: 'rgba(245,242,237,0.9)',
+    color: 'rgb(var(--ink-rgb) / 0.9)',
     items: [
       { name: 'Revenue', definition: 'Total income generated from products or services.', formula: 'Price × Volume', influences: ['Conversion Rate', 'Average Order Value', 'Customer Lifetime Value'] },
       { name: 'Retention', definition: 'Percentage of customers who continue using the product over time.', formula: '(End users − New users) / Start users × 100', influences: ['DAU/MAU Ratio', 'Churn Rate', 'Engagement Depth'] },
@@ -127,7 +127,7 @@ function JourneyMilestone({ milestone, index }: { milestone: typeof JOURNEY[0], 
   return (
     <motion.div
       className="border-t border-white"
-      style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+      style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-5%' }}
@@ -169,7 +169,7 @@ function JourneyMilestone({ milestone, index }: { milestone: typeof JOURNEY[0], 
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             style={{ overflow: 'hidden' }}
           >
-            <div className="pb-12 pl-0 md:pl-24 grid md:grid-cols-3 gap-px bg-white bg-opacity-[0.06]">
+            <div className="pb-12 pl-0 md:pl-24 grid md:grid-cols-3 gap-px grid-hairline">
               <div className="bg-black p-8">
                 <p className="text-overline text-ink-3 mb-5">What you learn</p>
                 <ul className="space-y-3">
@@ -210,9 +210,9 @@ function KPICard({ item, layerColor }: { item: typeof KPI_CHAIN[0]['items'][0], 
   return (
     <motion.div
       className="border border-white cursor-pointer"
-      style={{ borderColor: open ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.08)', background: open ? 'rgba(245,242,237,0.03)' : 'transparent' }}
+      style={{ borderColor: open ? 'rgb(var(--ink-rgb) / 0.25)' : 'rgb(var(--ink-rgb) / 0.08)', background: open ? 'rgb(var(--ink-rgb) / 0.03)' : 'transparent' }}
       onClick={() => setOpen(o => !o)}
-      whileHover={{ borderColor: 'rgba(255,255,255,0.18)' }}
+      whileHover={{ borderColor: 'rgb(var(--ink-rgb) / 0.18)' }}
       layout
     >
       <div className="p-6">
@@ -241,7 +241,7 @@ function KPICard({ item, layerColor }: { item: typeof KPI_CHAIN[0]['items'][0], 
                 <p className="text-overline text-ink-3 mb-2">Influences</p>
                 <div className="flex flex-wrap gap-2">
                   {item.influences.map(inf => (
-                    <span key={inf} className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{inf}</span>
+                    <span key={inf} className="tag">{inf}</span>
                   ))}
                 </div>
               </div>
@@ -258,7 +258,7 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
   return (
     <motion.div
       className="border-b border-white"
-      style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+      style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -309,7 +309,7 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
                   <p className="text-overline text-ink-3 mb-2">Related</p>
                   <div className="flex flex-wrap gap-2 mt-1">
                     {entry.related.map(r => (
-                      <span key={r} className="text-label text-ink-3 border border-white border-opacity-50 px-2.5 py-1">{r}</span>
+                      <span key={r} className="tag">{r}</span>
                     ))}
                   </div>
                 </div>
@@ -381,7 +381,7 @@ export default function DualFluencyPage() {
             <svg className="absolute inset-0 w-full h-full">
               <motion.path
                 d="M 300 60 Q 480 240 300 420 Q 120 240 300 60"
-                stroke="rgba(245,242,237,0.3)"
+                stroke="rgb(var(--ink-rgb) / 0.3)"
                 strokeWidth="1"
                 fill="none"
                 strokeDasharray="600"
@@ -490,7 +490,7 @@ export default function DualFluencyPage() {
           {JOURNEY.map((milestone, i) => (
             <JourneyMilestone key={milestone.id} milestone={milestone} index={i} />
           ))}
-          <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
+          <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
         </div>
       </section>
 
@@ -528,7 +528,7 @@ export default function DualFluencyPage() {
                     </div>
                   )}
                 </div>
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px bg-white bg-opacity-[0.06]">
+                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px grid-hairline">
                   {layer.items.map(item => (
                     <KPICard key={item.name} item={item} layerColor={layer.color} />
                   ))}
@@ -579,7 +579,7 @@ export default function DualFluencyPage() {
           {KPI_CHAIN.map((layer) => (
             <div key={layer.id} className="mb-16">
               <p className="text-overline text-ink-3 mb-6" >{layer.label}</p>
-              <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px bg-white bg-opacity-[0.06]">
+              <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px grid-hairline">
                 {layer.items.map(item => (
                   <KPICard key={item.name} item={item} layerColor={layer.color} />
                 ))}
@@ -607,7 +607,7 @@ export default function DualFluencyPage() {
                 placeholder="Search terms..."
                 value={glossarySearch}
                 onChange={e => setGlossarySearch(e.target.value)}
-                className="w-full bg-transparent border border-white border-opacity-50 px-5 py-3 text-body text-white placeholder-white focus:border-opacity-50 focus:outline-none transition-all duration-200"
+                className="field"
                 style={{ opacity: glossarySearch ? 1 : 0.7 }}
               />
             </div>
@@ -642,7 +642,7 @@ export default function DualFluencyPage() {
           {/* Canvas placeholder */}
           <motion.div
             className="relative overflow-hidden"
-            style={{ aspectRatio: '16/9', background: 'rgba(245,242,237,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
+            style={{ aspectRatio: '16/9', background: 'rgb(var(--ink-rgb) / 0.03)', border: '1px solid rgb(var(--ink-rgb) / 0.08)' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -667,7 +667,7 @@ export default function DualFluencyPage() {
           <div className="flex flex-wrap gap-4 mt-8">
             <a
               href="mailto:uxbyamit@gmail.com?subject=Request - Dual Fluency Canvas&body=Hi Amit,%0A%0AI'd like to request the Dual Fluency Canvas.%0A%0AName:%0ARole:%0AOrganisation:"
-              className="text-label text-white border border-white border-opacity-50 px-6 py-3 hover:border-opacity-70 hover:bg-white hover:bg-opacity-[0.04] transition-all duration-200 inline-flex items-center gap-3"
+              className="btn btn-secondary"
             >
               Request Figma canvas →
             </a>

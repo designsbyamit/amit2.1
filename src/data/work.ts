@@ -28,11 +28,13 @@ export interface CaseStudy {
   highlights?: string[]
   testimonial?: { quote: string; name: string; title: string; avatar?: string }
   prototypeUrl?: string
+  /** Colour of the media field behind this case study's images (same in both modes). */
+  tone?: 'cobalt' | 'teal' | 'plum'
 }
 
 const B = import.meta.env.BASE_URL
 
-export const caseStudies: CaseStudy[] = [
+const allCaseStudies: CaseStudy[] = [
   {
     id: 'airline-app',
     number: '01',
@@ -342,10 +344,11 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: 'sap-search',
+    image: `${B}images/case-studies/sap-search/cover.jpg`,
     number: '05',
-    category: 'SAP AI Search · AI · Enterprise UX · SAP',
+    category: 'AI Search · AI · Enterprise UX · SAP',
     title: 'AI-Powered Search — Contextual Discovery at Enterprise Scale',
-    shortTitle: 'SAP AI Search',
+    shortTitle: 'AI-Powered Search',
     tagline: 'Rethinking how enterprise users find what they need in intelligent systems that understand intent, not just keywords.',
     role: 'Design Lead',
     timeline: '2024–Ongoing',
@@ -366,6 +369,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     id: 'sap-agentic',
+    image: `${B}images/case-studies/sap-agentic/cover.jpg`,
     number: '06',
     category: 'Agentic AI · Procurement · Enterprise · SAP',
     title: 'Agentic AI: Supplier Order Confirmation Experience',
@@ -388,3 +392,17 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
 ]
+/** Display order across the site (Craft menu, Craft page, prev/next). */
+const ORDER: [string, NonNullable<CaseStudy['tone']>][] = [
+  ['sap-agentic', 'cobalt'],
+  ['sap-search', 'teal'],
+  ['engaze', 'plum'],
+  ['airline-app', 'cobalt'],
+  ['data-ai', 'teal'],
+  ['dnetworx', 'plum'],
+]
+
+export const caseStudies: CaseStudy[] = ORDER.map(([id, tone], i) => {
+  const cs = allCaseStudies.find(c => c.id === id)!
+  return { ...cs, tone, number: String(i + 1).padStart(2, '0') }
+})

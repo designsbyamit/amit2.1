@@ -1,194 +1,75 @@
-import { useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useReducedMotion,
-  useMotionValue,
-  useSpring,
-} from 'framer-motion'
-import GrainOverlay from '../ui/GrainOverlay'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import heroImg from '../../assets/images/amit-stage.webp'
 import heroImgSm from '../../assets/images/amit-stage-1200.webp'
+import Button from '../ds/Button'
+import { Status } from '../ds/Tag'
 
-function Line({
-  children,
-  delay = 0,
-  style,
-}: {
-  children: React.ReactNode
-  delay?: number
-  style?: React.CSSProperties
-}) {
+const ease = [0.16, 1, 0.3, 1] as const
+
+function Line({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const reduced = useReducedMotion()
   return (
-    <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.15em', marginBottom: '-0.15em', ...style }}>
-      <motion.span
-        style={{ display: 'block' }}
-        initial={{ y: reduced ? 0 : '105%', skewY: reduced ? 0 : 1.5 }}
-        animate={{ y: 0, skewY: 0 }}
-        transition={{ duration: 1.05, delay, ease: [0.16, 1, 0.3, 1] }}
-      >
+    <span className="block overflow-hidden pb-[0.12em] -mb-[0.12em]">
+      <motion.span className="block" initial={{ y: reduced ? 0 : '105%' }} animate={{ y: 0 }} transition={{ duration: 1, delay, ease }}>
         {children}
       </motion.span>
     </span>
   )
 }
 
+const proof = [
+  { value: '300M+', label: 'Users reached' },
+  { value: '$5M', label: 'Documented savings' },
+  { value: '90%', label: 'CSAT where average is 60%' },
+]
+
 export default function Hero() {
-  const containerRef = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const reduced = useReducedMotion()
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end start'],
-  })
-
-  const photoY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -100])
-  const photoScale = useTransform(scrollYProgress, [0, 0.9], [1.0, 1.08])
-  const contentY = useTransform(scrollYProgress, [0, 0.55], reduced ? [0, 0] : [0, 48])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-
-  // Mouse parallax
-  const mx = useMotionValue(0)
-  const my = useMotionValue(0)
-  const sx = useSpring(mx, { stiffness: 45, damping: 20 })
-  const sy = useSpring(my, { stiffness: 45, damping: 20 })
-  const imgDriftX = useTransform(sx, [-1, 1], reduced ? [0, 0] : [-16, 16])
-  const imgDriftY = useTransform(sy, [-1, 1], reduced ? [0, 0] : [-10, 10])
-
-  useEffect(() => {
-    const h = (e: MouseEvent) => {
-      mx.set((e.clientX / window.innerWidth) * 2 - 1)
-      my.set((e.clientY / window.innerHeight) * 2 - 1)
-    }
-    window.addEventListener('mousemove', h, { passive: true })
-    return () => window.removeEventListener('mousemove', h)
-  }, [mx, my])
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const photoY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -60])
 
   return (
-    <section ref={containerRef} className="relative h-[100dvh] overflow-hidden bg-black">
-      <GrainOverlay opacity={0.07} />
-
-      {/* ── PORTRAIT — z:1, atmospheric base ── */}
-      <motion.div className="absolute inset-0" style={{ y: photoY, scale: photoScale, zIndex: 1 }}>
-        <motion.div className="absolute inset-0" style={{ x: imgDriftX, y: imgDriftY }}>
-          <img src={heroImg} srcSet={`${heroImgSm} 1200w, ${heroImg} 2400w`} sizes="100vw" fetchPriority="high" decoding="async" alt="Amit Kumar Tiwari speaking on stage" className="hero-img w-full h-full object-cover"
-            style={{ filter: 'saturate(0.08) contrast(1.1) brightness(0.45)', willChange: 'transform' }} />
-        </motion.div>
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #0C0C0B 0%, rgba(12,12,11,0.96) 12%, rgba(12,12,11,0.7) 28%, rgba(12,12,11,0.15) 55%, transparent 80%)' }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #0C0C0B 0%, rgba(12,12,11,0.8) 25%, rgba(12,12,11,0.1) 50%, transparent 70%)' }} />
-      </motion.div>
-
-      {/* Mesh hidden */}
-
-      {/* ── CONTENT ── */}
-      <motion.div
-        className="relative z-20 h-full flex flex-col"
-        style={{ y: contentY, opacity: contentOpacity }}
-      >
-        {/* Top identity strip */}
-        <motion.div
-          className="flex items-center justify-between px-7 md:px-14 pt-28 md:pt-[7.5rem]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1, duration: 1.0, ease: 'easeOut' }}
-        >
-          <div className="flex items-center gap-5">
-            <span style={{ fontSize: '0.7rem', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--color-ink-2)' }}>
-              Amit Kumar Tiwari
-            </span>
-            <span style={{ width: 1, height: 12, background: 'rgba(245,242,237,0.12)', display: 'inline-block' }} />
-            <span style={{ fontSize: '0.7rem', fontWeight: 400, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--color-ink-3)' }}>
-              Design Leader · Enterprise AI
-            </span>
-          </div>
-          <Link
-            to="/leadership"
-            style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-ink-3)', transition: 'color 0.4s' }}
-            className="hidden md:block"
-            onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,0.95)')}
-            onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-3)')}
-          >
-            Dual Fluency · AI-Native · Agentic
-          </Link>
-        </motion.div>
-
-        {/* Headline */}
-        <div className="flex-1 flex items-end px-7 md:px-14 pb-16 md:pb-20">
-          <div className="w-full">
-            <h1 style={{ lineHeight: 1.15, letterSpacing: '-0.038em', marginBottom: '3.2rem' }}>
-              <Line delay={0.2} style={{ marginBottom: '0.05em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
-                  Most designers
-                </span>
-              </Line>
-              <Line delay={0.34} style={{ marginBottom: '0.1em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
-                  build features.
-                </span>
-              </Line>
-              <Line delay={0.52} style={{ marginBottom: '0.05em' }}>
-                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, color: 'rgba(245,242,237,0.92)' }}>
-                  A few build
-                </span>
-              </Line>
-              <Line delay={0.68}>
-                <span style={{ display: 'block', fontSize: 'clamp(2rem, 5.5vw, 5.2rem)', fontWeight: 200, fontStyle: 'italic', color: 'rgba(245,242,237,0.92)' }}>
-                  futures.
-                </span>
-              </Line>
-            </h1>
-
-            {/* Bottom row */}
-            <motion.div
-              className="flex items-center justify-between"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.05, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="flex items-center gap-7">
-                <Link
-                  to="/craft"
-                  style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.88)', border: '1px solid rgba(245,242,237,0.2)', padding: '13px 28px', transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(245,242,237,0.6)'; e.currentTarget.style.background = 'rgba(245,242,237,0.05)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(245,242,237,0.2)'; e.currentTarget.style.background = 'transparent' }}
-                >
-                  See the work
-                </Link>
-                <Link
-                  to="/contact"
-                  style={{ fontSize: '0.75rem', fontWeight: 400, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-ink-2)', transition: 'color 0.3s' }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'rgba(245,242,237,1)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-ink-2)')}
-                >
-                  Get in touch →
-                </Link>
-              </div>
-              <p
-                className="hidden lg:block text-right"
-                style={{ fontSize: '0.78rem', fontWeight: 300, lineHeight: 1.65, color: 'var(--color-ink-3)', maxWidth: '250px', letterSpacing: '0.01em' }}
-              >
-                300M+ users reached.<br />
-                $5M in documented savings.<br />
-                90% CSAT where avg is 60%.
-              </p>
-            </motion.div>
-          </div>
+    <section ref={ref} className="relative overflow-hidden" style={{ minHeight: 'min(100dvh, 980px)', paddingTop: 'var(--header-h)' }}>
+      {/* Portrait: right side on desktop, top band on mobile */}
+      <motion.div className="absolute right-0 top-0 h-[46vh] w-full md:h-full md:w-[46%]" style={{ y: photoY }} aria-hidden="true">
+        <div className="hero-portrait is-amit">
+          <img src={heroImg} srcSet={`${heroImgSm} 1200w, ${heroImg} 2400w`} sizes="(min-width: 768px) 46vw, 100vw" fetchPriority="high" decoding="async" alt="" />
         </div>
+        <div className="absolute inset-0 hidden md:block" style={{ background: 'linear-gradient(90deg, var(--bg) 0%, rgb(var(--bg-rgb) / 0) 42%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, var(--bg) 0%, rgb(var(--bg-rgb) / 0) 35%)' }} />
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20"
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.9, duration: 0.7 }}
-      >
-        <motion.div
-          style={{ width: 1, background: 'rgba(245,242,237,0.15)' }}
-          animate={{ height: ['10px', '34px', '10px'] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: [0.45, 0, 0.55, 1] }}
-        />
+      <div className="relative container-site grid-site pt-[38vh] md:pt-24 lg:pt-28 pb-10">
+        <div className="col-span-4 md:col-span-8 lg:col-span-7 flex flex-col gap-7 md:gap-8">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1, duration: 0.8 }}>
+            <Status>Now · Designing agentic enterprise experiences at SAP</Status>
+          </motion.div>
+          <h1 className="text-display-xl text-ink">
+            <Line delay={0.15}>Most designers build features.</Line>
+            <Line delay={0.3}>A few build <span className="accent-signal">futures.</span></Line>
+          </h1>
+          <motion.p className="text-body-lg text-ink-2 max-w-[34rem]" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7, ease }}>
+            Sixteen years designing enterprise products, leading design teams and coaching the designers who come next.
+          </motion.p>
+          <motion.div className="flex flex-wrap items-center gap-3" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.7, ease }}>
+            <Button to="/craft" arrow>See the work</Button>
+            <Button to="/contact" variant="secondary">Get in touch</Button>
+          </motion.div>
+        </div>
+      </div>
+
+      <motion.div className="relative container-site" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }}>
+        <dl className="grid-site hairline-top py-6 md:py-8 gap-y-6">
+          {proof.map(p => (
+            <div key={p.value} className="col-span-4 md:col-span-3 flex flex-col gap-1.5">
+              <dt className="sr-only">{p.label}</dt>
+              <dd className="text-[2rem] md:text-[2.25rem] font-extralight tracking-[-0.03em] leading-none text-ink">{p.value}</dd>
+              <dd className="text-label text-ink-3">{p.label}</dd>
+            </div>
+          ))}
+        </dl>
       </motion.div>
     </section>
   )

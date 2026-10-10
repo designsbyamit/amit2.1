@@ -32,14 +32,14 @@ export default function LeadershipInitiatives() {
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-px bg-white bg-opacity-[0.07]">
+        <div className="grid md:grid-cols-2 gap-px grid-hairline">
           {initiatives.map((item, i) => (
             <motion.div
               key={item.name}
               className="bg-black p-8 md:p-10"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ backgroundColor: 'rgba(245,242,237,0.03)', transition: { duration: 0.2 } }}
+              whileHover={{ backgroundColor: 'rgb(var(--ink-rgb) / 0.03)', transition: { duration: 0.2 } }}
               viewport={{ once: true, margin: '-5%' }}
               transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
@@ -49,7 +49,7 @@ export default function LeadershipInitiatives() {
               </div>
               <p
                 className="text-label text-ink-3 mb-4 border border-white px-2.5 py-0.5 inline-block"
-                style={{ borderColor: 'rgba(255,255,255,0.15)' }}
+                style={{ borderColor: 'rgb(var(--ink-rgb) / 0.15)' }}
               >
                 {item.role}
               </p>

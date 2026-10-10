@@ -87,7 +87,7 @@ export default function Craft() {
       <section className="relative bg-black section-y px-6 md:px-12">
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl">
-          <div className="border-t border-white pt-16 mb-0" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+          <div className="border-t border-white pt-16 mb-0" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}>
             <motion.p
               className="text-overline text-ink-3"
               initial={{ opacity: 0 }}
@@ -104,7 +104,7 @@ export default function Craft() {
               <motion.div
                 key={i}
                 className="border-t border-white mt-12"
-                style={{ borderColor: 'rgba(255,255,255,0.08)' }}
+                style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-5%' }}
@@ -121,7 +121,7 @@ export default function Craft() {
                 </div>
               </motion.div>
             ))}
-            <div className="border-t border-white" style={{ borderColor: 'rgba(255,255,255,0.08)' }} />
+            <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
           </div>
         </div>
       </section>

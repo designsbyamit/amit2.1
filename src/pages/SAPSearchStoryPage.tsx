@@ -44,8 +44,8 @@ export default function SAPSearchStoryPage() {
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
           <div className="flex flex-wrap gap-2 mt-8">
-            <span className="chip">{S.kicker}</span>
-            {S.pillars.map(p => <span key={p} className="chip">{p}</span>)}
+            <span className="tag">{S.kicker}</span>
+            {S.pillars.map(p => <span key={p} className="tag">{p}</span>)}
           </div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-4xl">
             {[['Role', cs.role], ['Timeline', cs.timeline], ['Domain', cs.domain], ...(cs.stats ?? []).map(s => [s.label, s.value])].slice(0, 4).map(([k, v]) => (
@@ -75,7 +75,7 @@ export default function SAPSearchStoryPage() {
           {S.ideas.inputs.map(i => <div key={i} className="card text-center"><p className="text-title text-white">{i}</p></div>)}
         </div>
         <p className="text-overline text-ink-3 mb-4">AI offerings</p>
-        <div className="flex flex-wrap gap-2 mb-14">{S.ideas.aiOfferings.map(a => <span key={a} className="chip">{a}</span>)}</div>
+        <div className="flex flex-wrap gap-2 mb-14">{S.ideas.aiOfferings.map(a => <span key={a} className="tag">{a}</span>)}</div>
         <div className="grid lg:grid-cols-[2fr_1fr] gap-10">
           <div>
             <p className="text-overline text-ink-3 mb-4">Search functionalities</p>
@@ -86,8 +86,8 @@ export default function SAPSearchStoryPage() {
             </dl>
           </div>
           <div className="space-y-10">
-            <div><p className="text-overline text-ink-3 mb-4">Search mechanics</p><div className="flex flex-wrap gap-2">{S.mechanics.map(m => <span key={m} className="chip">{m}</span>)}</div></div>
-            <div><p className="text-overline text-ink-3 mb-4">AI functionalities</p><div className="flex flex-wrap gap-2">{S.aiFunctionalities.map(m => <span key={m} className="chip">{m}</span>)}</div></div>
+            <div><p className="text-overline text-ink-3 mb-4">Search mechanics</p><div className="flex flex-wrap gap-2">{S.mechanics.map(m => <span key={m} className="tag">{m}</span>)}</div></div>
+            <div><p className="text-overline text-ink-3 mb-4">AI functionalities</p><div className="flex flex-wrap gap-2">{S.aiFunctionalities.map(m => <span key={m} className="tag">{m}</span>)}</div></div>
           </div>
         </div>
       </Section>

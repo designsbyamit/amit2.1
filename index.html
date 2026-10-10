@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0C0C0B" />
+    <meta name="theme-color" content="#0F1013" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F5F6F7" media="(prefers-color-scheme: light)" />
     <title>Amit Kumar Tiwari — Design Leader</title>
     <meta name="description" content="Amit Kumar Tiwari — Design Leader shaping AI-native enterprise experiences at SAP." />
     <link rel="canonical" href="https://neo.designsbyamit.com/" />
@@ -22,10 +23,16 @@
     <meta name="twitter:title" content="Amit Kumar Tiwari — Design Leader" />
     <meta name="twitter:description" content="Most designers build features. A few build futures." />
     <meta name="twitter:image" content="https://neo.designsbyamit.com/og-image.jpg" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" />
+    <script>
+      /* Set the theme before first paint: saved choice, else the system setting. */
+      (function () {
+        try {
+          var s = localStorage.getItem('theme');
+          var t = s === 'light' || s === 'dark' ? s : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

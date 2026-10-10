@@ -33,7 +33,7 @@ export default function ImpactSnapshot() {
   return (
     <section className="relative bg-black overflow-hidden" id="impact">
       <GrainOverlay opacity={0.04} />
-      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-14 py-20 md:py-28">
+      <div className="relative z-10 container-site py-20 md:py-28">
         <motion.p
           className="text-overline text-ink-3 mb-12"
           initial={{ opacity: 0 }}
@@ -45,7 +45,7 @@ export default function ImpactSnapshot() {
         </motion.p>
 
         {/* Grid — equal square blocks */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white" style={{ backgroundColor: 'rgba(245,242,237,0.07)' }}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px grid-hairline">
           {metrics.map((metric, i) => {
             const { num, suffix } = parseMetric(metric.value)
             return (
@@ -54,7 +54,7 @@ export default function ImpactSnapshot() {
                 className={`bg-black flex flex-col justify-between p-7 md:p-9 ${i === metrics.length - 1 && metrics.length % 2 === 1 ? 'col-span-2 aspect-[2/1]' : 'aspect-square'} ${i === metrics.length - 1 && metrics.length % 4 === 3 ? 'md:col-span-2 md:aspect-auto' : i === metrics.length - 1 && metrics.length % 4 === 1 ? 'md:col-span-4 md:aspect-auto' : ''}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ backgroundColor: 'rgba(245,242,237,0.028)', transition: { duration: 0.2 } }}
+                whileHover={{ backgroundColor: 'rgb(var(--ink-rgb) / 0.028)', transition: { duration: 0.2 } }}
                 viewport={{ once: true, margin: '-5%' }}
                 transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               >
