@@ -38,3 +38,4 @@ dist-ssr
 # Root-level scratch files
 projects_page.html
 IA.md
+tools/prototypes/*/node_modules

@@ -1,0 +1,4 @@
+{ "name": "sap-search-prototype", "private": true, "type": "module",
+  "scripts": { "dev": "vite", "build": "vite build" },
+  "dependencies": { "@ui5/webcomponents": "2.27.2", "@ui5/webcomponents-fiori": "2.27.2", "@ui5/webcomponents-icons": "2.27.2" },
+  "devDependencies": { "vite": "^5.4.0" } }
