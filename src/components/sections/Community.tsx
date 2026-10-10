@@ -1,109 +1,23 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { initiatives } from '../../data/community'
-import GrainOverlay from '../ui/GrainOverlay'
+import { Tag } from '../ds/Tag'
 
-function InitiativeStory({ initiative, index }: { initiative: typeof initiatives[0]; index: number }) {
-  const [open, setOpen] = useState(false)
-  const isEven = index % 2 === 0
-
+/** Community initiatives. The full story is shown on the page: no hidden text, no extra click. */
+function Initiative({ item, index }: { item: typeof initiatives[0]; index: number }) {
+  const flip = index % 2 === 1
   return (
-    <motion.article
-      className="border-t border-white"
-      style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-5%' }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-    >
-      <div className={`grid md:grid-cols-2 gap-0 ${isEven ? '' : 'md:[direction:rtl]'}`}>
-
-        {/* Image panel — full height, no aspect ratio constraint */}
-        <div
-          className="relative overflow-hidden bg-white bg-opacity-[0.04]"
-          style={{ direction: 'ltr', minHeight: '600px' }}
-        >
-          {initiative.image ? (
-            <img
-              src={initiative.image}
-              alt={initiative.name}
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{
-                filter: 'grayscale(0.15) contrast(1.05) brightness(0.82)',
-                objectPosition: initiative.imageFocus ?? 'center center',
-              }}
-            />
-          ) : (
-            <div className="absolute inset-0 flex flex-col justify-end p-10">
-              <p
-                className="text-white select-none"
-                style={{
-                  fontSize: 'clamp(4rem, 10vw, 9rem)',
-                  fontWeight: 200,
-                  letterSpacing: '-0.06em',
-                  lineHeight: 0.85,
-                  color: 'rgb(var(--ink-rgb) / 0.06)',
-                }}
-              >
-                {String(index + 1).padStart(2, '0')}
-              </p>
-            </div>
-          )}
-          {/* Overlay tint */}
-          <div className="absolute inset-0" style={{ background: 'rgb(var(--bg-rgb) / 0.25)' }} />
-          {/* Type badge */}
-          <div className="absolute top-8 left-8" style={{ direction: 'ltr' }}>
-            <span className="tag" >
-              {initiative.type}
-            </span>
-          </div>
+    <motion.article className="hairline-top py-12 md:py-16 grid-site gap-y-8 items-center" aria-labelledby={`ci-${item.id}`}
+      initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
+      <div className={`col-span-4 md:col-span-6 ${flip ? 'md:order-2' : ''}`}>
+        <div className="relative overflow-hidden rounded-2 bg-surface-2" style={{ aspectRatio: '4 / 3' }}>
+          {item.image && <img src={item.image} alt={`${item.name}`} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: item.imageFocus ?? 'center' }} />}
         </div>
-
-        {/* Text panel */}
-        <div className="flex flex-col justify-between p-10 md:p-14" style={{ direction: 'ltr' }}>
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-label text-ink-3">{String(index + 1).padStart(2, '0')}</span>
-              {initiative.year && <span className="text-overline text-ink-3">{initiative.year}</span>}
-            </div>
-
-            <h3
-              className="text-white mb-3"
-              style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.15 }}
-            >
-              {initiative.name}
-            </h3>
-            <p className="text-overline text-ink-3 mb-8">{initiative.role}</p>
-
-            <p className="text-body text-ink-3 mb-8 max-w-md">{initiative.description}</p>
-          </div>
-
-          {/* Expandable body */}
-          <div>
-            <button
-              onClick={() => setOpen(o => !o)}
-              className="flex items-center gap-3 text-label text-ink-3 hover:text-white transition-colors duration-200 group"
-            >
-              <span>{open ? 'Close story ↑' : 'Read the story →'}</span>
-            </button>
-
-            <AnimatePresence>
-              {open && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ overflow: 'hidden' }}
-                >
-                  <p className="text-body text-ink-3 mt-6 max-w-md leading-relaxed">
-                    {initiative.body}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
+      </div>
+      <div className={`col-span-4 md:col-span-5 ${flip ? 'md:order-1 md:col-start-1' : 'md:col-start-8'} flex flex-col gap-4`}>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2"><span className="text-label text-signal-ink">{String(index + 1).padStart(2, '0')}</span><Tag>{item.type.toLowerCase()}</Tag></div>
+        <h2 id={`ci-${item.id}`} className="text-heading text-ink">{item.name}</h2>
+        <p className="text-label text-ink-3">{item.role}{item.year && <> · {item.year}</>}</p>
+        <p className="text-body text-ink-2">{item.body}</p>
       </div>
     </motion.article>
   )
@@ -111,14 +25,10 @@ function InitiativeStory({ initiative, index }: { initiative: typeof initiatives
 
 export default function Community() {
   return (
-    <section className="relative bg-black section-y overflow-hidden" id="community">
-      <GrainOverlay opacity={0.03} />
-
+    <section className="relative pb-24 md:pb-32" id="community">
       <div className="container-site">
-        {initiatives.map((initiative, i) => (
-          <InitiativeStory key={initiative.id} initiative={initiative} index={i} />
-        ))}
-        <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
+        {initiatives.map((item, i) => <Initiative key={item.id} item={item} index={i} />)}
+        <div className="hairline-top" />
       </div>
     </section>
   )

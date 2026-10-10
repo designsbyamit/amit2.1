@@ -1,3 +1,4 @@
+import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../data/work'
@@ -26,7 +27,7 @@ export default function SAPAgenticStoryPage() {
     <div className="bg-surface-0 min-h-screen">
       <header className="pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="container-site">
-          <Link to="/craft" className="text-label text-ink-3 hover:text-white tap-target inline-flex items-center">← Craft</Link>
+          <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'Agentic Order Confirmation' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
@@ -137,7 +138,7 @@ export default function SAPAgenticStoryPage() {
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>
         <div className="mt-16 flex flex-wrap gap-3">
-          <Link to="/craft" className="btn btn-secondary">← All case studies</Link>
+          <Link to="/craft" className="btn btn-secondary">All case studies</Link>
           <Link to="/contact" className="btn btn-primary">Talk about agentic AI</Link>
         </div>
       </Section>

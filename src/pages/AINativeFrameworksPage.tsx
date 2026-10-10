@@ -1,3 +1,4 @@
+import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -703,7 +704,7 @@ export default function AINativeFrameworksPage() {
 
         {/* Back link */}
         <div className="relative z-10 mb-12">
-          <Link to="/resources" className="text-label text-ink-3 hover:text-ink-2 transition-colors inline-flex items-center gap-2">← Resources</Link>
+          <Breadcrumb items={[{ label: 'Resources', to: '/resources' }, { label: 'AI-Native Frameworks' }]} />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">

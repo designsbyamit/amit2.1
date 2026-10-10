@@ -11,6 +11,8 @@ import Home from './pages/Home'
 // Route-level code splitting: only the page being visited is downloaded.
 const Craft = lazy(() => import('./pages/Craft'))
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage'))
+const LeadershipStoriesPage = lazy(() => import('./pages/LeadershipStoriesPage'))
+const LeadershipStoryPage = lazy(() => import('./pages/LeadershipStoryPage'))
 const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
 const CommunityPage = lazy(() => import('./pages/CommunityPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
@@ -24,6 +26,17 @@ const SAPAgenticStoryPage = lazy(() => import('./pages/SAPAgenticStoryPage'))
 const MentoringPage = lazy(() => import('./pages/MentoringPage'))
 const DesignSystemPage = lazy(() => import('./pages/DesignSystemPage'))
 const ConversationExperiencePage = lazy(() => import('./pages/ConversationExperiencePage'))
+
+
+/** Warm every page chunk once the browser is idle, so the first click on any nav item is instant. */
+function usePrefetchRoutes() {
+  useEffect(() => {
+    const load = () => { import('./pages/Craft'); import('./pages/LeadershipPage'); import('./pages/LeadershipStoriesPage'); import('./pages/LeadershipStoryPage'); import('./pages/ReflectionsPage'); import('./pages/CommunityPage'); import('./pages/AboutPage'); import('./pages/CaseStudyPage'); import('./pages/ResourcesPage'); import('./pages/ContactPage'); import('./pages/DualFluencyPage'); import('./pages/AINativeFrameworksPage'); import('./pages/SAPSearchStoryPage'); import('./pages/SAPAgenticStoryPage'); import('./pages/MentoringPage'); import('./pages/DesignSystemPage'); import('./pages/ConversationExperiencePage') }
+    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number }
+    const id = w.requestIdleCallback ? w.requestIdleCallback(load) : window.setTimeout(load, 1200)
+    return () => { if (!w.requestIdleCallback) clearTimeout(id) }
+  }, [])
+}
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   return (
@@ -60,6 +73,8 @@ function AnimatedRoutes() {
         <Route path="/craft/sap-agentic" element={<PageTransition><SAPAgenticStoryPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
+        <Route path="/leadership/stories" element={<PageTransition><LeadershipStoriesPage /></PageTransition>} />
+        <Route path="/leadership/stories/:slug" element={<PageTransition><LeadershipStoryPage /></PageTransition>} />
         <Route path="/mentoring" element={<PageTransition><MentoringPage /></PageTransition>} />
         <Route path="/community" element={<PageTransition><CommunityPage /></PageTransition>} />
         <Route path="/reflections" element={<PageTransition><ReflectionsPage /></PageTransition>} />
@@ -79,6 +94,7 @@ function AnimatedRoutes() {
 
 export default function App() {
   useLenis()
+  usePrefetchRoutes()
   return (
     <BrowserRouter>
       <div className="bg-bg text-ink min-h-screen">

@@ -9,6 +9,9 @@ export interface LeadershipStory {
   nuggets?: string[]
   lesson: string
   image?: string
+  /** Visual on the story card and page */
+  motif?: 'seat' | 'team' | 'influence' | 'hub' | 'culture'
+  tone?: 'cobalt' | 'teal' | 'plum'
 }
 
 export interface LeadershipArticle {
@@ -23,6 +26,8 @@ export interface LeadershipArticle {
 export const stories: LeadershipStory[] = [
   {
     id: 'story-business-seat',
+    motif: 'seat',
+    tone: 'cobalt',
     year: '',
     context: 'DevOps plugin marketplace · design, engineering and product',
     title: 'The moment design almost lost its seat at the table',
@@ -60,6 +65,8 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-first-team',
+    motif: 'team',
+    tone: 'plum',
     year: '',
     context: 'From first hire to leading designers',
     title: 'What building my first design team actually taught me',
@@ -100,6 +107,8 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-influence',
+    motif: 'influence',
+    tone: 'teal',
     year: '',
     context: 'Design maturity and trust in large organisations',
     title: 'How I learned to influence without authority',
@@ -141,6 +150,8 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-sap-community',
+    motif: 'hub',
+    tone: 'cobalt',
     year: '',
     context: 'SAP Design Hub India',
     title: 'Leading SAP Design Hub India',
@@ -185,6 +196,8 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-design-culture',
+    motif: 'culture',
+    tone: 'plum',
     year: '',
     context: 'Inside a large enterprise',
     title: 'Building design culture from the inside',
@@ -258,3 +271,7 @@ export const articles: LeadershipArticle[] = [
     url: 'https://medium.com/@amitkrt/the-future-of-ux-is-conversational-heres-how-to-measure-its-success-e67d0651638f',
   },
 ]
+
+/** Stories that have been written, in display order. URL slug drops the "story-" prefix. */
+export const publishedStories = stories.filter(s => s.narrative.length > 0)
+export const storySlug = (s: LeadershipStory) => s.id.replace(/^story-/, '')

@@ -1,3 +1,4 @@
+import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -89,9 +90,7 @@ export default function ConversationExperiencePage() {
       <section className="relative min-h-[70vh] flex flex-col justify-end pb-20 px-6 md:px-12 overflow-hidden pt-28 md:pt-32">
         <GrainOverlay opacity={0.05} />
         <div className="relative z-10 mb-12">
-          <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors inline-flex items-center gap-2">
-            ← Resources
-          </Link>
+          <Breadcrumb items={[{ label: 'Resources', to: '/resources' }, { label: 'Conversation Experience' }]} />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.p className="text-overline text-ink-3 mb-6"

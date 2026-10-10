@@ -1,8 +1,10 @@
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { Link } from 'react-router-dom'
-import GrainOverlay from '../components/ui/GrainOverlay'
-import DotsNav from '../components/ui/DotsNav'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Breadcrumb from '../components/ds/Breadcrumb'
+import Button from '../components/ds/Button'
+import Tabs from '../components/ds/Tabs'
+import { Tag } from '../components/ds/Tag'
+import ResourceCover from '../components/ds/ResourceCover'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -122,579 +124,209 @@ const GLOSSARY = [
 
 // ── Components ─────────────────────────────────────────────────────────────────
 
-function JourneyMilestone({ milestone, index }: { milestone: typeof JOURNEY[0], index: number }) {
-  const [open, setOpen] = useState(false)
+const LOOP = ['Identify the business KPI', 'Find the user metric that moves it', 'Find the design metric that moves that', 'Design the intervention', 'Measure both']
+const ease = [0.16, 1, 0.3, 1] as const
+const mail = (subject: string, body: string) => `mailto:uxbyamit@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+const REQUEST_PLAYBOOK = mail('Request - Dual Fluency playbook', 'Hi Amit,\n\nI would like to request the Dual Fluency playbook.\n\nName:\nRole:\nOrganisation:')
+const REQUEST_CANVAS = mail('Request - Dual Fluency Canvas', 'Hi Amit,\n\nI would like to request the Dual Fluency Canvas.\n\nName:\nRole:\nOrganisation:')
+const REQUEST_WORKSHOP = mail('Request - Dual Fluency workshop', 'Hi Amit,\n\nI am interested in bringing the Dual Fluency workshop to my team.\n\nName:\nRole:\nOrganisation:\nTeam size:')
+
+function Section({ id, label, title, intro, children }: { id: string; label: string; title: string; intro?: string; children: React.ReactNode }) {
   return (
-    <motion.div
-      className="border-t border-white"
-      style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-5%' }}
-      transition={{ duration: 0.6, delay: index * 0.06 }}
-    >
-      <button
-        className="w-full text-left py-10 group"
-        onClick={() => setOpen(o => !o)}
-      >
-        <div className="flex items-start justify-between gap-8">
-          <div className="flex items-start gap-8">
-            <span className="text-label text-ink-3 flex-shrink-0 mt-1">{milestone.time}</span>
-            <div>
-              <span className="text-overline text-ink-3 block mb-3">{milestone.label}</span>
-              <h3
-                className="text-white group-hover:opacity-80 transition-opacity"
-                style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.3 }}
-              >
-                {milestone.title}
-              </h3>
-              <p className="text-body text-ink-3 mt-3 max-w-2xl">{milestone.summary}</p>
-            </div>
+    <section id={id} className="section-y hairline-top scroll-mt-24" aria-labelledby={`${id}-h`}>
+      <div className="container-site">
+        <div className="grid-site gap-y-6 mb-12 md:mb-16">
+          <div className="col-span-4 md:col-span-6">
+            <p className="text-overline text-ink-3 mb-4">{label}</p>
+            <h2 id={`${id}-h`} className="text-heading text-ink">{title}</h2>
           </div>
-          <span
-            className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
-            style={{ transform: open ? 'rotate(45deg)' : 'rotate(0deg)', fontSize: '1.25rem' }}
-          >
-            +
-          </span>
+          {intro && <p className="col-span-4 md:col-span-5 md:col-start-8 self-end text-body text-ink-2">{intro}</p>}
         </div>
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div className="pb-12 pl-0 md:pl-24 grid md:grid-cols-3 gap-px grid-hairline">
-              <div className="bg-black p-8">
-                <p className="text-overline text-ink-3 mb-5">What you learn</p>
-                <ul className="space-y-3">
-                  {milestone.learned.map((l, i) => (
-                    <li key={i} className="flex gap-3">
-                      <span className="text-faint flex-shrink-0 mt-1" style={{ fontSize: '0.5rem' }}>●</span>
-                      <p className="text-body text-ink-3">{l}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="bg-black p-8">
-                <p className="text-overline text-ink-3 mb-5">Framework introduced</p>
-                <p className="text-body text-ink-2 font-medium mb-6">{milestone.framework}</p>
-                <p className="text-overline text-ink-3 mb-3">Common mistake</p>
-                <p className="text-body text-ink-3 italic">{milestone.mistake}</p>
-              </div>
-              <div className="bg-black p-8 flex flex-col justify-between">
-                <div>
-                  <p className="text-overline text-ink-3 mb-5">Key takeaway</p>
-                  <div className="border-l-2 border-white border-opacity-20 pl-5">
-                    <p className="text-ink-2" style={{ fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', fontStyle: 'italic', fontWeight: 300, lineHeight: 1.6 }}>
-                      "{milestone.takeaway}"
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  )
-}
-
-function KPICard({ item, layerColor }: { item: typeof KPI_CHAIN[0]['items'][0], layerColor: string }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <motion.div
-      className="border border-white cursor-pointer"
-      style={{ borderColor: open ? 'rgb(var(--ink-rgb) / 0.25)' : 'rgb(var(--ink-rgb) / 0.08)', background: open ? 'rgb(var(--ink-rgb) / 0.03)' : 'transparent' }}
-      onClick={() => setOpen(o => !o)}
-      whileHover={{ borderColor: 'rgb(var(--ink-rgb) / 0.18)' }}
-      layout
-    >
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-body text-white" style={{ fontWeight: 400, color: layerColor }}>{item.name}</span>
-          <span className="text-ink-3 text-sm">{open ? '−' : '+'}</span>
-        </div>
-        <p className="text-label text-ink-3">{item.definition}</p>
+        {children}
       </div>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div className="px-6 pb-6 border-t border-white border-opacity-10 pt-4 space-y-4">
-              <div>
-                <p className="text-overline text-ink-3 mb-1">Formula</p>
-                <p className="text-body text-ink-3 font-mono" style={{ fontSize: '0.8rem' }}>{item.formula}</p>
-              </div>
-              <div>
-                <p className="text-overline text-ink-3 mb-2">Influences</p>
-                <div className="flex flex-wrap gap-2">
-                  {item.influences.map(inf => (
-                    <span key={inf} className="tag">{inf}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+    </section>
   )
 }
 
-function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: number }) {
-  const [open, setOpen] = useState(false)
+/** The Dual Fluency Loop as a circular diagram. */
+function LoopDiagram() {
+  const R = 150, C = 190
+  const pts = LOOP.map((_, i) => { const a = -Math.PI / 2 + (i / LOOP.length) * Math.PI * 2; return [C + Math.cos(a) * R, C + Math.sin(a) * R] })
   return (
-    <motion.div
-      className="border-b border-white"
-      style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }}
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-    >
-      <button className="w-full text-left py-8 flex items-start justify-between gap-6 group" onClick={() => setOpen(o => !o)}>
-        <div>
-          <span className="text-white group-hover:opacity-80 transition-opacity"
-            style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.4rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
-            {entry.term}
-          </span>
-          {!open && <p className="text-body text-ink-3 mt-2">{entry.simple}</p>}
-        </div>
-        <span className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
-          style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: '1.2rem' }}>+</span>
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div className="pb-8 grid md:grid-cols-2 gap-8">
-              <div className="space-y-5">
-                <div>
-                  <p className="text-overline text-ink-3 mb-2">Plain English</p>
-                  <p className="text-body text-ink-3">{entry.simple}</p>
-                </div>
-                <div>
-                  <p className="text-overline text-ink-3 mb-2">For designers</p>
-                  <p className="text-body text-ink-3">{entry.design}</p>
-                </div>
-              </div>
-              <div className="space-y-5">
-                <div>
-                  <p className="text-overline text-ink-3 mb-2">Example</p>
-                  <p className="text-body text-ink-3 italic">{entry.example}</p>
-                </div>
-                <div>
-                  <p className="text-overline text-ink-3 mb-2">Common confusion</p>
-                  <p className="text-body text-ink-3">{entry.confusion}</p>
-                </div>
-                <div>
-                  <p className="text-overline text-ink-3 mb-2">Related</p>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {entry.related.map(r => (
-                      <span key={r} className="tag">{r}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+    <figure className="rounded-3 p-6 md:p-10" style={{ background: 'var(--field-cobalt)' }}>
+      <div className="grid md:grid-cols-[minmax(0,380px)_1fr] gap-8 md:gap-12 items-center">
+        <svg viewBox="0 0 380 380" className="w-full max-w-[380px] mx-auto" role="img" aria-label="The Dual Fluency Loop: five steps in a cycle">
+          <circle cx={C} cy={C} r={R} fill="none" stroke="#ECEDEF" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="4 6" />
+          <text x={C} y={C - 6} textAnchor="middle" fill="#ECEDEF" style={{ font: '300 18px var(--font-sans)' }}>Design decision</text>
+          <text x={C} y={C + 18} textAnchor="middle" fill="#C8F55A" style={{ font: '400 11px var(--font-mono)', letterSpacing: '0.08em' }}>= A HYPOTHESIS</text>
+          {pts.map(([x, y], i) => (
+            <g key={i}>
+              <circle cx={x} cy={y} r="20" fill={i === 0 ? '#C8F55A' : '#1B2350'} stroke="#C8F55A" strokeWidth="1.5" />
+              <text x={x} y={y + 4} textAnchor="middle" fill={i === 0 ? '#0F1013' : '#ECEDEF'} style={{ font: '500 12px var(--font-mono)' }}>{String(i + 1).padStart(2, '0')}</text>
+            </g>
+          ))}
+        </svg>
+        <figcaption>
+          <p className="font-mono text-xs tracking-[0.08em] uppercase mb-4" style={{ color: '#C8F55A' }}>The Dual Fluency Loop</p>
+          <ol className="flex flex-col gap-3">
+            {LOOP.map((s, i) => <li key={s} className="flex gap-4 text-[1.0625rem] font-light" style={{ color: '#ECEDEF' }}><span className="font-mono text-xs pt-1.5" style={{ color: '#C8F55A' }}>{String(i + 1).padStart(2, '0')}</span>{s}</li>)}
+          </ol>
+        </figcaption>
+      </div>
+    </figure>
   )
 }
 
-// ── Page ───────────────────────────────────────────────────────────────────────
-
-const SECTIONS = [
-  { id: 'hero', label: 'Intro' },
-  { id: 'journey', label: 'Journey' },
-  { id: 'framework', label: 'Framework' },
-  { id: 'kpis', label: 'KPIs' },
-  { id: 'glossary', label: 'Glossary' },
-  { id: 'canvas', label: 'Canvas' },
-]
+/** The canvas, drawn as the sheet people fill in, with one worked example row. */
+function CanvasSheet() {
+  const cols = ['Business KPI', 'User metric', 'Design metric', 'Intervention']
+  const example = ['Retention', 'Task success rate', 'Findability', 'Make the core task reachable in one step from the home screen']
+  return (
+    <figure className="rounded-3 p-5 md:p-8 overflow-x-auto" style={{ background: 'var(--field-teal)' }}>
+      <div className="min-w-[680px]">
+        <div className="flex items-center justify-between mb-5">
+          <p className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Dual Fluency Canvas</p>
+          <p className="font-mono text-xs" style={{ color: '#ECEDEF', opacity: 0.7 }}>Decision: ____________________</p>
+        </div>
+        <div className="grid grid-cols-4 gap-3">
+          {cols.map((c, i) => (
+            <div key={c} className="rounded-2 p-4 flex flex-col gap-3 min-h-[260px]" style={{ background: 'rgb(255 255 255 / 0.06)', border: '1px solid rgb(255 255 255 / 0.14)' }}>
+              <div className="flex items-center justify-between"><span className="font-mono text-xs" style={{ color: '#C8F55A' }}>0{i + 1}</span>{i < 3 && <span aria-hidden="true" style={{ color: '#ECEDEF', opacity: 0.5 }}>←</span>}</div>
+              <p className="text-[1.0625rem] font-light" style={{ color: '#ECEDEF' }}>{c}</p>
+              <div className="rounded-1 p-3 text-sm" style={{ background: '#C8F55A', color: '#0F1013' }}>{example[i]}</div>
+              {[0, 1].map(k => <div key={k} className="h-9 rounded-1" style={{ border: '1px dashed rgb(255 255 255 / 0.25)' }} />)}
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-sm" style={{ color: '#ECEDEF', opacity: 0.8 }}>Read right to left: the intervention moves a design metric, which moves a user metric, which moves the business KPI. Measure both ends.</p>
+      </div>
+      <figcaption className="sr-only">The canvas has four columns: business KPI, user metric, design metric and intervention, with an example row.</figcaption>
+    </figure>
+  )
+}
 
 export default function DualFluencyPage() {
-  const [activeSection] = useState('hero')
-  const [glossarySearch, setGlossarySearch] = useState('')
-
-  const filteredGlossary = GLOSSARY.filter(e =>
-    e.term.toLowerCase().includes(glossarySearch.toLowerCase()) ||
-    e.simple.toLowerCase().includes(glossarySearch.toLowerCase())
-  )
-
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end start'] })
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, -80])
+  const [layer, setLayer] = useState(KPI_CHAIN[0].id)
+  const [q, setQ] = useState('')
+  const glossary = GLOSSARY.filter(g => !q || (g.term + g.simple + g.design).toLowerCase().includes(q.toLowerCase()))
+  const current = KPI_CHAIN.find(l => l.id === layer)!
 
   return (
-    <div ref={containerRef} className="bg-black min-h-screen">
-      <DotsNav sections={SECTIONS} active={activeSection} />
-
-      {/* ── Hero ── */}
-      <section id="hero" className="relative min-h-screen flex flex-col justify-end overflow-hidden pt-28 md:pt-32 pb-20 px-6 md:px-12">
-        <GrainOverlay opacity={0.05} />
-
-        {/* Animated concept loop — subtle background */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          style={{ y: heroY }}
-        >
-          <div className="relative w-[600px] h-[600px] opacity-[0.04]">
-            {['Business', 'Users', 'Design', 'Business'].map((label, i) => (
-              <motion.div
-                key={i}
-                className="absolute text-white font-light"
-                style={{
-                  fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-                  letterSpacing: '-0.03em',
-                  top: `${[10, 40, 70, 10][i]}%`,
-                  left: `${[40, 80, 40, 40][i]}%`,
-                  transform: 'translate(-50%, -50%)',
-                }}
-                animate={{ opacity: [0.3, 0.7, 0.3] }}
-                transition={{ duration: 3, delay: i * 0.75, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                {label}
-              </motion.div>
-            ))}
-            {/* Connecting lines */}
-            <svg className="absolute inset-0 w-full h-full">
-              <motion.path
-                d="M 300 60 Q 480 240 300 420 Q 120 240 300 60"
-                stroke="rgb(var(--ink-rgb) / 0.3)"
-                strokeWidth="1"
-                fill="none"
-                strokeDasharray="600"
-                animate={{ strokeDashoffset: [600, 0, -600] }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-              />
-            </svg>
-          </div>
-        </motion.div>
-
-        {/* Back link */}
-        <div className="relative z-10 mb-12">
-          <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors inline-flex items-center gap-2">
-            ← Resources
-          </Link>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <motion.p
-            className="text-overline text-ink-3 mb-6"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
-          >
-            Framework · Workshop Toolkit · Design Leadership
-          </motion.p>
-
-          <motion.h1
-            className="text-white mb-8"
-            style={{ fontSize: 'clamp(3rem, 7vw, 6.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.05 }}
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Dual Fluency
-          </motion.h1>
-
-          <div className="grid md:grid-cols-[2fr_1fr] gap-12 md:gap-20 items-end">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <p className="text-ink-3 mb-6"
-                style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}>
-                Imagine a designer working on an amazing feature. It launches. Users love it.
-                Then leadership asks: <em>"What business impact did it create?"</em>
-              </p>
-              <p className="text-body text-ink-3">
-                Dual Fluency is the capacity to operate equally in the language of design and the language of business —
-                and to translate fluently between them in any room.
-                This page is your everyday reference after the workshop.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="space-y-3"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {[
-                ['Sold out', 'DesignUp 2023'],
-                ['6 hrs', 'Full-day workshop'],
-                ['250+', 'Designers trained'],
-              ].map(([val, label]) => (
-                <div key={label} className="flex items-baseline gap-3">
-                  <span className="text-white" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 200, letterSpacing: '-0.03em' }}>{val}</span>
-                  <span className="text-label text-ink-3">{label}</span>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Story arc strip */}
-        <motion.div
-          className="relative z-10 max-w-7xl mx-auto w-full mt-16 pt-10 border-t border-white border-opacity-10"
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <p className="text-overline text-ink-3 mb-6">The learning journey</p>
-          <div className="flex flex-wrap gap-3 items-center">
-            {[
-              "I don't know why business matters",
-              "I understand the metrics",
-              "I can connect them",
-              "I can create strategy",
-              "I can speak business",
-            ].map((stage, i, arr) => (
-              <div key={stage} className="flex items-center gap-3">
-                <span className="text-body text-ink-3" style={{ fontSize: '0.85rem' }}>{stage}</span>
-                {i < arr.length - 1 && <span className="text-faint">↓</span>}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ── Workshop Journey ── */}
-      <section id="journey" className="relative bg-black section-y px-6 md:px-12">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
-            <div>
-              <p className="text-overline text-ink-3 mb-4">Workshop Journey</p>
-              <h2 className="text-heading text-white">Six sessions. One coherent story.</h2>
-            </div>
-            <p className="text-body text-ink-3 self-end">
-              Every session builds on the previous. Click any session to expand what was covered,
-              which framework was introduced, and what the key takeaway was.
-            </p>
-          </div>
-
-          {JOURNEY.map((milestone, i) => (
-            <JourneyMilestone key={milestone.id} milestone={milestone} index={i} />
-          ))}
-          <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.08)' }} />
-        </div>
-      </section>
-
-      {/* ── Framework: KPI Chain ── */}
-      <section id="framework" className="relative bg-black section-y px-6 md:px-12">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
-            <div>
-              <p className="text-overline text-ink-3 mb-4">The Dual Fluency Loop</p>
-              <h2 className="text-heading text-white">Every design decision is a hypothesis about a business outcome.</h2>
-            </div>
-            <p className="text-body text-ink-3 self-end">
-              The three metric layers and how they connect. A design metric that doesn't trace back to a business KPI
-              is a measure of activity, not impact. Click any KPI to see its formula and downstream influences.
-            </p>
-          </div>
-
-          <div className="space-y-12">
-            {KPI_CHAIN.map((layer, li) => (
-              <motion.div
-                key={layer.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: li * 0.1 }}
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: layer.color }} />
-                  <p className="text-overline text-ink-3" >{layer.label}</p>
-                  {li < KPI_CHAIN.length - 1 && (
-                    <div className="ml-auto flex items-center gap-2 text-label text-ink-3">
-                      <span>influences</span>
-                      <span>↓</span>
-                    </div>
-                  )}
-                </div>
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px grid-hairline">
-                  {layer.items.map(item => (
-                    <KPICard key={item.name} item={item} layerColor={layer.color} />
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* The loop callout */}
-          <motion.div
-            className="mt-16 p-10 md:p-14 border border-white border-opacity-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <p className="text-overline text-ink-3 mb-6">The Dual Fluency Loop</p>
-            <div className="flex flex-wrap gap-4 items-center">
-              {['Identify the business KPI', 'Find the user metric that moves it', 'Find the design metric that moves that', 'Design the intervention', 'Measure both'].map((step, i, arr) => (
-                <div key={step} className="flex items-center gap-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="text-body text-ink-3">{step}</span>
-                  </div>
-                  {i < arr.length - 1 && <span className="text-faint">→</span>}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── KPI Library ── */}
-      <section id="kpis" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
-            <div>
-              <p className="text-overline text-ink-3 mb-4">KPI Library</p>
-              <h2 className="text-heading text-white">The metrics that matter — and what influences them.</h2>
-            </div>
-            <p className="text-body text-ink-3 self-end">
-              Every KPI is a knowledge card. Click to expand the formula, benchmarks, and the design decisions
-              that most directly move it.
-            </p>
-          </div>
-
-          {KPI_CHAIN.map((layer) => (
-            <div key={layer.id} className="mb-16">
-              <p className="text-overline text-ink-3 mb-6" >{layer.label}</p>
-              <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-px grid-hairline">
-                {layer.items.map(item => (
-                  <KPICard key={item.name} item={item} layerColor={layer.color} />
-                ))}
+    <>
+      {/* Header */}
+      <section style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="container-site pt-10 md:pt-14 pb-16 md:pb-20">
+          <div className="mb-10"><Breadcrumb items={[{ label: 'Resources', to: '/resources' }, { label: 'Dual Fluency' }]} /></div>
+          <div className="grid-site gap-y-10 items-end">
+            <div className="col-span-4 md:col-span-8">
+              <p className="text-overline text-ink-3 mb-5">Playbook · Design leadership</p>
+              <motion.h1 className="text-display-xl text-ink" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease }}>Dual Fluency</motion.h1>
+              <motion.p className="text-body-lg text-ink-2 mt-6 max-w-2xl" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15, ease }}>
+                Imagine a designer working on an amazing feature. It launches. Users love it. Then leadership asks: <em>“What business impact did it create?”</em>
+              </motion.p>
+              <p className="text-body text-ink-2 mt-4 max-w-2xl">Dual Fluency is the capacity to operate equally in the language of design and the language of business, and to translate fluently between them in any room.</p>
+              <div className="flex flex-wrap gap-3 mt-8">
+                <Button href={REQUEST_PLAYBOOK}>Request the playbook</Button>
+                <Button variant="secondary" href={REQUEST_WORKSHOP}>Bring it to your team</Button>
               </div>
             </div>
-          ))}
+            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
+              <ResourceCover title="Dual Fluency" kind="Playbook" motif="loop" tone="cobalt" />
+            </div>
+          </div>
+          <nav aria-label="On this page" className="flex flex-wrap gap-2 mt-14">
+            {[['stages', 'Six stages'], ['loop', 'The loop'], ['kpis', 'KPI library'], ['glossary', 'Glossary'], ['canvas', 'Canvas']].map(([id, l]) => <a key={id} href={`#${id}`} className="chip">{l}</a>)}
+          </nav>
         </div>
       </section>
 
-      {/* ── Glossary ── */}
-      <section id="glossary" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
-            <div>
-              <p className="text-overline text-ink-3 mb-4">Glossary</p>
-              <h2 className="text-heading text-white">The dictionary every designer wishes existed.</h2>
-            </div>
-            <div className="self-end">
-              <p className="text-body text-ink-3 mb-6">
-                Business terms defined for designers — not just what they mean, but why they matter and how your work connects to them.
-              </p>
-              <input
-                type="text"
-                placeholder="Search terms..."
-                value={glossarySearch}
-                onChange={e => setGlossarySearch(e.target.value)}
-                className="field"
-                style={{ opacity: glossarySearch ? 1 : 0.7 }}
-              />
-            </div>
-          </div>
-
-          <div>
-            {filteredGlossary.map((entry, i) => (
-              <GlossaryEntry key={entry.term} entry={entry} index={i} />
-            ))}
-            {filteredGlossary.length === 0 && (
-              <p className="text-body text-ink-3 py-12 text-center">No terms matching "{glossarySearch}"</p>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Canvas ── */}
-      <section id="canvas" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-12">
-            <div>
-              <p className="text-overline text-ink-3 mb-4">The Canvas</p>
-              <h2 className="text-heading text-white">The Dual Fluency Canvas — your translation tool.</h2>
-            </div>
-            <p className="text-body text-ink-3 self-end">
-              The workshop canvas for mapping any design decision to a business outcome in under 20 minutes.
-              Request the editable Figma or PDF version.
-            </p>
-          </div>
-
-          {/* Canvas placeholder */}
-          <motion.div
-            className="relative overflow-hidden"
-            style={{ aspectRatio: '16/9', background: 'rgb(var(--ink-rgb) / 0.03)', border: '1px solid rgb(var(--ink-rgb) / 0.08)' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="absolute inset-0 grid grid-cols-4 gap-px p-8 md:p-14">
-              {['Business KPI', 'User Metric', 'Design Metric', 'Intervention'].map((col, i) => (
-                <div key={col} className="border border-white border-opacity-10 p-6 flex flex-col gap-4">
-                  <p className="text-overline text-ink-3">{`0${i + 1}`}</p>
-                  <p className="text-body text-ink-3">{col}</p>
-                  <div className="flex-1 border-b border-white border-opacity-10" />
-                  <div className="h-6 border-b border-white border-opacity-10" />
-                  <div className="h-6 border-b border-white border-opacity-10" />
+      {/* Six stages: no clock times, no agenda */}
+      <Section id="stages" label="Six stages" title="From “why does business matter?” to speaking it fluently." intro="Each stage builds on the one before and leaves you with one framework. Open a stage to see what it covers, the takeaway and the mistake to avoid.">
+        <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {JOURNEY.map((m, i) => (
+            <li key={m.id} className="card flex flex-col gap-4">
+              <div className="flex items-center justify-between"><span className="text-label text-signal-ink">Stage {String(i + 1).padStart(2, '0')}</span><Tag>{m.framework.toLowerCase()}</Tag></div>
+              <h3 className="text-title text-ink">{m.title}</h3>
+              <p className="text-body-sm text-ink-2">{m.summary}</p>
+              <details className="mt-auto pt-2">
+                <summary className="cursor-pointer list-none text-body-sm text-ink underline underline-offset-4 decoration-[var(--line-control)] hover:decoration-current">What this stage covers</summary>
+                <div className="mt-4 flex flex-col gap-4">
+                  <ul className="flex flex-col gap-2">{m.learned.map(l => <li key={l} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{l}</li>)}</ul>
+                  <p className="text-body-sm text-ink"><span className="text-label text-signal-ink block mb-1">Takeaway</span>{m.takeaway}</p>
+                  <p className="text-body-sm text-ink-2"><span className="text-label text-ink-3 block mb-1">Common mistake</span>{m.mistake}</p>
                 </div>
-              ))}
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-label text-ink-3">Canvas preview</p>
-            </div>
-          </motion.div>
+              </details>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
-          <div className="flex flex-wrap gap-4 mt-8">
-            <a
-              href="mailto:uxbyamit@gmail.com?subject=Request - Dual Fluency Canvas&body=Hi Amit,%0A%0AI'd like to request the Dual Fluency Canvas.%0A%0AName:%0ARole:%0AOrganisation:"
-              className="btn btn-secondary"
-            >
-              Request Figma canvas →
-            </a>
-            <a
-              href="mailto:uxbyamit@gmail.com?subject=Request - Dual Fluency Workshop&body=Hi Amit,%0A%0AI'm interested in bringing the Dual Fluency workshop to my team.%0A%0AName:%0ARole:%0AOrganisation:%0ATeam size:"
-              className="text-label text-ink-3 hover:text-white transition-colors px-6 py-3"
-            >
-              Bring the workshop to your team
-            </a>
-          </div>
+      {/* Concepts + loop */}
+      <Section id="loop" label="Core idea" title="Every design decision is a hypothesis about a business outcome." intro="Make the hypothesis explicit before you design, and you can measure it after you ship. The loop is how.">
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <div className="card"><p className="text-label text-ink-3 mb-3">Concept</p><p className="text-title text-ink mb-2">Design decision</p><p className="text-body-sm text-ink-2">A choice about what to build and how. On its own it is an opinion; connected to a metric it becomes a bet you can check.</p></div>
+          <div className="card"><p className="text-label text-ink-3 mb-3">Concept</p><p className="text-title text-ink mb-2">Hypothesis about a business outcome</p><p className="text-body-sm text-ink-2">“If we change this, this user behaviour will change, and this business KPI will move.” Written down before the work starts.</p></div>
+        </div>
+        <LoopDiagram />
+      </Section>
+
+      {/* KPI library */}
+      <Section id="kpis" label="KPI library" title="The metrics that matter, and what moves them." intro="Three layers: business KPIs, the user metrics that move them, and the design metrics that move those.">
+        <Tabs label="Metric layers" value={layer} onChange={setLayer} tabs={KPI_CHAIN.map(l => ({ id: l.id, label: l.label }))}>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {current.items.map(k => (
+              <li key={k.name} className="card flex flex-col gap-3">
+                <h3 className="text-title text-ink">{k.name}</h3>
+                <p className="text-body-sm text-ink-2">{k.definition}</p>
+                <p className="font-mono text-xs text-ink-3 leading-relaxed">{k.formula}</p>
+                <div className="mt-auto pt-3 hairline-top">
+                  <p className="text-label text-ink-3 mb-2">Moved by</p>
+                  <ul className="tag-list">{k.influences.map(x => <li key={x} className="tag">{x}</li>)}</ul>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Tabs>
+      </Section>
+
+      {/* Glossary */}
+      <Section id="glossary" label="Glossary" title="Business terms, defined for designers." intro="What each term means, why it matters to your work, and the confusion to avoid.">
+        <div className="max-w-md mb-8">
+          <label htmlFor="gl-search" className="field-label">Search the glossary</label>
+          <input id="gl-search" type="search" className="field" placeholder="For example: churn" value={q} onChange={e => setQ(e.target.value)} />
+          <p className="sr-only" aria-live="polite">{glossary.length} terms</p>
+        </div>
+        <div className="accordion">
+          {glossary.map(g => (
+            <details key={g.term}>
+              <summary><span><span className="text-ink">{g.term}</span><span className="block text-body-sm text-ink-3 mt-1">{g.simple}</span></span></summary>
+              <div className="accordion-body grid md:grid-cols-2 gap-6">
+                <div><p className="text-label text-ink-3 mb-2">For designers</p><p className="text-body-sm text-ink-2">{g.design}</p></div>
+                <div><p className="text-label text-ink-3 mb-2">Example</p><p className="text-body-sm text-ink-2">{g.example}</p></div>
+                <div><p className="text-label text-ink-3 mb-2">Common confusion</p><p className="text-body-sm text-ink-2">{g.confusion}</p></div>
+                <div><p className="text-label text-ink-3 mb-2">Related</p><ul className="tag-list">{g.related.map(r => <li key={r} className="tag">{r}</li>)}</ul></div>
+              </div>
+            </details>
+          ))}
+          {glossary.length === 0 && <p className="text-body text-ink-3 py-10">No terms match “{q}”.</p>}
+        </div>
+      </Section>
+
+      {/* Canvas */}
+      <Section id="canvas" label="Canvas" title="The Dual Fluency Canvas." intro="Map any design decision to a business outcome in about twenty minutes. Request the editable Figma or PDF version.">
+        <CanvasSheet />
+        <div className="flex flex-wrap gap-3 mt-8">
+          <Button href={REQUEST_CANVAS}>Request the canvas</Button>
+          <Button variant="secondary" href={REQUEST_WORKSHOP}>Bring the workshop to your team</Button>
+        </div>
+      </Section>
+
+      <section className="hairline-top py-12">
+        <div className="container-site flex flex-wrap items-center justify-between gap-4">
+          <Button to="/resources" variant="tertiary">Back to Resources</Button>
+          <Button to="/resources/ai-native-patterns" variant="tertiary" arrow>Next: AI-Native Frameworks</Button>
         </div>
       </section>
-
-      {/* ── Footer nav ── */}
-      <section className="relative bg-black py-16 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors">
-            ← Back to Resources
-          </Link>
-          <a
-            href="mailto:uxbyamit@gmail.com?subject=Dual Fluency Workshop"
-            className="text-label text-ink-3 hover:text-white transition-colors"
-          >
-            Get in touch about the workshop →
-          </a>
-        </div>
-      </section>
-    </div>
+    </>
   )
 }

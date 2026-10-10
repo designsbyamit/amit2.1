@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import Button from '../components/ds/Button'
+import Stat from '../components/ds/Stat'
 import { motion } from 'framer-motion'
 import heroImg from '../assets/images/amit-stage.webp'
 import PageHeader from '../components/ui/PageHeader'
@@ -10,36 +11,15 @@ import { colleagueTestimonials } from '../data/testimonials'
 
 function CommunityCallout() {
   return (
-    <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.08]">
-      <div className="mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">
-        <motion.p
-          className="text-overline text-ink-3"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Community
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="mb-6">
-            <p className="text-white mb-1" style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1 }}>250+</p>
-            <p className="text-overline text-ink-3">Designers in SAP Design Hub India</p>
-          </div>
-          <p className="text-body text-ink-3 max-w-xl mb-8">
+    <section className="section-y hairline-top">
+      <div className="container-site grid-site gap-y-8 items-start">
+        <p className="col-span-4 md:col-span-4 text-overline text-ink-3">Community</p>
+        <motion.div className="col-span-4 md:col-span-8" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
+          <Stat value="250+" label="Designers in SAP Design Hub India" />
+          <p className="text-body text-ink-2 max-w-xl mt-6 mb-8">
             Led by Amit since February 2025. Monthly events, peer critique, and a growing culture of design excellence inside the enterprise. A community that revealed what organisations suppress — and what happens when you give designers a room of their own.
           </p>
-          <Link
-            to="/community"
-            className="text-label text-ink-3 hover:text-white transition-colors duration-300"
-          >
-            Explore the community →
-          </Link>
+          <Button to="/community" variant="tertiary" arrow>Explore the community</Button>
         </motion.div>
       </div>
     </section>

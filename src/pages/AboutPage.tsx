@@ -1,7 +1,8 @@
 import PageHeader from '../components/ui/PageHeader'
 import Contact from '../components/sections/Contact'
-import GrainOverlay from '../components/ui/GrainOverlay'
-import SectionLabel from '../components/ui/SectionLabel'
+import heroImg from '../assets/images/amit-stage.webp'
+import SectionHeader from '../components/ds/SectionHeader'
+import Button from '../components/ds/Button'
 import Testimonials from '../components/sections/Testimonials'
 import { colleagueTestimonials, menteeTestimonials } from '../data/testimonials'
 import { motion } from 'framer-motion'
@@ -14,104 +15,89 @@ const timeline = [
   { year: 'Jan 2011–Jul 2014', role: 'Senior UX Designer', org: 'Infosys Limited', detail: '20+ client engagements delivering simple UIs and research artefacts, across the full UX cycle.' },
 ]
 
+const steady = [
+  { t: 'Morning runs', d: 'I’m a morning runner.', icon: 'M4 18c3-1 5-4 6-8l3 2 3-5M14 5a1.5 1.5 0 1 0 0-.01' },
+  { t: 'Old melodies and Indian classical music', d: 'Old melodies and Indian classical music are what I listen to.', icon: 'M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm10-2a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z' },
+  { t: 'Meditation', d: 'I meditate.', icon: 'M12 4a2 2 0 1 0 0 .01M5 19c2-3 4-4 7-4s5 1 7 4M8 12l4 2 4-2' },
+  { t: 'The science behind spirituality', d: 'I read about the science behind spirituality.', icon: 'M4 6h7v13H4zM13 6h7v13h-7M11 8h2' },
+]
+
+const drives = [
+  'Driving suite-first design by crafting harmonised experiences across SAP products into scalable, connected ecosystems.',
+  'Shaping AI-native and multi-modal experiences through experimentation, systems thinking, and value-centred innovation.',
+  'Championing design excellence through strategic execution, customer co-creation, critiques, and high-quality delivery standards.',
+  'Building and nurturing resilient design talent through mentoring, AI-led upskilling, and future-ready capability development.',
+  'Leading and growing design communities through partnerships, initiatives, and events that expand the impact of design beyond designers.',
+]
+
 export default function AboutPage() {
   return (
     <>
       <PageHeader
         label="About"
-        title="16+ years. One throughline."
-        subtitle="Dual Fluency. AI-Native Design. Agentic Process. Three interlocking ideas — one position on where enterprise design is going and what it takes to lead it."
+        title="Hi, I’m Amit."
+        subtitle="A design leader in Bengaluru who started out writing code, took on leadership roles as early as college, and has spent 16+ years turning complicated ideas into products people can use."
+        image={heroImg}
+        imageAlt="Amit Kumar Tiwari speaking on stage"
       />
 
-      {/* Impact areas */}
-      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <div className="mb-16">
-            <SectionLabel>What I drive</SectionLabel>
-            <motion.h2
-              className="text-display-l text-white mt-4 max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Impact across AI, design &amp; community.
-            </motion.h2>
-          </div>
-          <div className="space-y-0">
-            {[
-              { label: '01', text: 'Driving suite-first design by crafting harmonised experiences across SAP products into scalable, connected ecosystems.' },
-              { label: '02', text: 'Shaping AI-native and multi-modal experiences through experimentation, systems thinking, and value-centred innovation.' },
-              { label: '03', text: 'Championing design excellence through strategic execution, customer co-creation, critiques, and high-quality delivery standards.' },
-              { label: '04', text: 'Building and nurturing resilient design talent through mentoring, AI-led upskilling, and future-ready capability development.' },
-              { label: '05', text: 'Leading and growing design communities through partnerships, initiatives, and events that expand the impact of design beyond designers.' },
-            ].map((item, i) => (
-              <motion.div
-                key={item.label}
-                className="py-8 border-b border-white border-opacity-10 grid md:grid-cols-[80px_1fr] gap-6 items-start"
-                initial={{ opacity: 0, x: -12 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-5%' }}
-                transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <p className="text-label text-ink-3 pt-1">{item.label}</p>
-                <p className="text-body text-ink-3">{item.text}</p>
-              </motion.div>
-            ))}
+      {/* The person first */}
+      <section className="section-y hairline-top">
+        <div className="container-site grid-site gap-y-10">
+          <div className="col-span-4 md:col-span-4"><p className="text-overline text-ink-3">The person</p></div>
+          <div className="col-span-4 md:col-span-7 md:col-start-6 flex flex-col gap-6">
+            <p className="text-heading text-ink">I started in computer science and development, which is why I’m comfortable with the technical side of design.</p>
+            <p className="text-body-editorial text-ink-2">I then spent my career turning complicated business ideas into simple, usable products, and learning how to lead the people who build them. Sixteen years in, I still believe great experiences emerge where design, business and technology intersect.</p>
+            
           </div>
         </div>
       </section>
 
-      {/* Journey */}
-      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
-        <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 mx-auto max-w-7xl grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
-          <div>
-            <motion.p
-              className="text-overline text-ink-3"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              Journey
-            </motion.p>
-          </div>
-          <div className="space-y-0">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={item.year}
-                className="py-8 border-b border-white border-opacity-10 grid md:grid-cols-[160px_1fr] gap-6"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-5%' }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              >
+      <section className="section-y hairline-top">
+        <div className="container-site">
+          <SectionHeader label="What keeps me steady" title="Four habits outside work." intro="Quiet, unhurried habits. I think they show up in how I design and lead." />
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {steady.map(s => (
+              <li key={s.t} className="card flex flex-col gap-4">
+                <span className="w-11 h-11 rounded-2 grid place-items-center" style={{ background: 'var(--field-cobalt)' }} aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C8F55A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d={s.icon} /></svg>
+                </span>
+                <h3 className="text-title text-ink">{s.t}</h3>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* The work */}
+      <section className="section-y hairline-top">
+        <div className="container-site">
+          <SectionHeader label="What I drive" title="Impact across AI, design and community." intro="Three ideas run through all of it: Dual Fluency, AI-native design and agentic experiences." />
+          <ol>
+            {drives.map((d, i) => (
+              <motion.li key={i} className="hairline-top py-6 grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_1fr] gap-4" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: i * 0.05 }}>
+                <span className="text-label text-signal-ink pt-1">{String(i + 1).padStart(2, '0')}</span>
+                <p className="text-body text-ink-2">{d}</p>
+              </motion.li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section-y hairline-top">
+        <div className="container-site">
+          <SectionHeader label="Career" title="Where I’ve worked." action={<Button to="/leadership#journey" variant="secondary" arrow>The leadership journey</Button>} />
+          <ol>
+            {timeline.map(item => (
+              <li key={item.year} className="hairline-top py-7 grid md:grid-cols-[12rem_1fr] gap-3 md:gap-8">
                 <p className="text-label text-ink-3 pt-1">{item.year}</p>
                 <div>
-                  <p className="text-body text-white mb-1" style={{ fontWeight: 400 }}>{item.role} · {item.org}</p>
-                  <p className="text-body text-ink-3">{item.detail}</p>
+                  <p className="text-title text-ink">{item.role} · {item.org}</p>
+                  <p className="text-body-sm text-ink-2 mt-2 max-w-2xl">{item.detail}</p>
                 </div>
-              </motion.div>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The person */}
-      <section className="section-y hairline-top">
-        <div className="container-site grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20">
-          <p className="text-overline text-ink-3">Beyond the work</p>
-          <div className="space-y-8 max-w-2xl">
-            <p className="text-body-lg text-ink-2">
-              I started in computer science and development, which is why I'm comfortable with the technical side of design. I then spent my career turning complicated business ideas into simple, usable products, and learning how to lead the people who build them.
-            </p>
-            <p className="text-body text-ink-2">
-              Outside work I'm a morning runner. I listen to old melodies and Indian classical music, I meditate, and I read about the science behind spirituality. Those habits are quiet and unhurried, and I think they show up in how I design and lead.
-            </p>
-            <p className="text-body text-ink-3">Based in Bengaluru, India.</p>
-          </div>
+          </ol>
         </div>
       </section>
 
