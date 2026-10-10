@@ -20,6 +20,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'))
 const DualFluencyPage = lazy(() => import('./pages/DualFluencyPage'))
 const AINativeFrameworksPage = lazy(() => import('./pages/AINativeFrameworksPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
+const SAPAgenticStoryPage = lazy(() => import('./pages/SAPAgenticStoryPage'))
 const MentoringPage = lazy(() => import('./pages/MentoringPage'))
 const DesignSystemPage = lazy(() => import('./pages/DesignSystemPage'))
 const ConversationExperiencePage = lazy(() => import('./pages/ConversationExperiencePage'))
@@ -56,6 +57,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
         <Route path="/craft/sap-search" element={<PageTransition><SAPSearchStoryPage /></PageTransition>} />
+        <Route path="/craft/sap-agentic" element={<PageTransition><SAPAgenticStoryPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
         <Route path="/mentoring" element={<PageTransition><MentoringPage /></PageTransition>} />
