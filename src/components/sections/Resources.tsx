@@ -76,6 +76,20 @@ const resources: Resource[] = [
     requestLabel: 'Request full playbook',
   },
   {
+    id: 'aai-toolkit',
+    title: 'Agent-Agent Interaction (AAI) Toolkit',
+    type: ['Interactive Toolkit', 'Guidelines', 'Playbook'],
+    description: 'A toolkit for designing how AI agents work with each other, across organisations and inside a single multi-agent system. 22 guidelines, 14 reusable interaction patterns with worksheets, and a four-step playbook (Context, Assess or plan, Analyse, Resolve) that turns your agent map into gaps, fixes and a brief. Validated against case studies and stress-test scenarios.',
+    outcomes: ['22 agent-agent guidelines', '14 patterns and worksheets', 'Agent mapping and gap analysis', 'Worked AR-collections example'],
+    tags: ['AI', 'Agentic Design', 'Multi-Agent Systems', 'Guidelines'],
+    filterTags: ['AI', 'UX', 'Strategy'],
+    // Blueprint grid: systems and structure
+    imageId: 'photo-1558618666-fcd25c85cd64',
+    imageAlt: 'Blueprint geometric grid',
+    previewUrl: 'https://claude.ai/artifact/GjmVNPfQiFfiCbFt24VYBG',
+    previewLabel: 'Open the toolkit',
+  },
+  {
     id: 'reading-list',
     title: 'Design Leadership Reading List',
     type: ['Curated Reading Collection'],
