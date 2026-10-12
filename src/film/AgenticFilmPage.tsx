@@ -10,6 +10,7 @@ const chapters: Chapter[] = [
 export default function AgenticFilmPage() {
   return (
     <Player
+      audioSrc="/audio/agentic-film-score.mp3"
       title="Agentic Order Confirmation"
       subtitle="A two-minute film. NorthStar Chemicals & Pharma sends one RFQ to 14 suppliers. What happens when the answers come back?"
       chapters={chapters}

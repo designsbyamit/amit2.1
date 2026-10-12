@@ -94,7 +94,7 @@ function Doc({ t }: { t: number }) {
       <div style={{ padding: '36px 40px 0', fontSize: 20, color: '#5B616C', fontFamily: mono, letterSpacing: '0.08em' }}>HELIOS COMPONENTS AG · KUNDENSERVICE</div>
       <div style={{ padding: '10px 40px', fontSize: 44, fontWeight: 600, letterSpacing: '-0.02em' }}>Auftragsbestätigung</div>
       <div style={{ padding: '0 40px', fontSize: 22, color: '#5B616C' }}>Nr. 1505899 · Ihre Bestellung 4994546957</div>
-      {[170, 240, 310].map((y, i) => <div key={y} style={{ position: 'absolute', left: 40, top: y + 130, width: 700 - i * 90, height: 10, borderRadius: 5, background: '#D5D9DF' }} />)}
+      {[240, 284].map((y, i) => <div key={y} style={{ position: 'absolute', left: 40, top: y, width: 700 - i * 120, height: 10, borderRadius: 5, background: '#D5D9DF' }} />)}
       {row(340, 'Gesamtbetrag:  € 164.865,00', flare(34.6), true)}
       {row(430, 'Zahlungsbedingungen:  45 Tage netto', flare(36.6), true)}
       {row(520, 'Pos. 1002 · Menge:  2.000 Stk', flare(38.6), true)}
@@ -108,7 +108,7 @@ export function Problem({ t }: { t: number }) {
   const docOut = 1 - easeOut(seg(t, 48.4, 49.2))
   const rowIn = (a: number) => easeOut(seg(t, a, a + 0.6))
   const sev = easeInOut(seg(t, 43, 48.5))
-  const N = 420
+  const N = 412
   const grid = seg(t, 49.4, 52)
   return (
     <Scene t={t} s={28} e={55}>
@@ -116,14 +116,14 @@ export function Problem({ t }: { t: number }) {
       <div style={{ opacity: docOut * (1 - easeOut(seg(t, 42.4, 43.2))), transform: `translateX(${(1 - easeOut(seg(t, 28.3, 29.4))) * -300}px)` }}><Doc t={t} /></div>
       {/* comparison cards */}
       {t < 49 && (
-        <div style={{ position: 'absolute', left: 1000, top: 110, width: 800, opacity: docOut }}>
+        <div style={{ position: 'absolute', left: lerp(1000, 560, easeInOut(seg(t, 42.2, 43.4))), top: 100, width: 800, opacity: docOut }}>
           <In t={t} a={34.2} y={10} style={{ position: 'relative' }}><div style={{ fontFamily: mono, fontSize: 20, color: C.mute, letterSpacing: '0.12em', marginBottom: 14 }}>PO 4994546957 → WHAT THEY CONFIRMED</div></In>
           {[
             { a: 34.8, f: 'Total value', from: '€142,800', to: '€164,865', d: '+ €22,065 · 15.4%', tag: 'HIGH' },
             { a: 36.8, f: 'Payment terms', from: 'Net 30', to: '“45 Tage netto”', d: '+ 15 days · German', tag: 'HIGH' },
             { a: 38.8, f: 'Quantity · line 1002', from: '2,500', to: '2,000', d: '− 500 units', tag: 'MEDIUM' },
           ].map(r => (
-            <div key={r.f} style={{ height: 172, marginBottom: 16, borderRadius: 16, background: C.panel, border: `1px solid ${r.tag === 'HIGH' ? C.red : C.amber}`, padding: '20px 26px', opacity: rowIn(r.a), transform: `translateX(${(1 - rowIn(r.a)) * 60}px)` }}>
+            <div key={r.f} style={{ marginBottom: 14, borderRadius: 16, background: C.panel, border: `1px solid ${r.tag === 'HIGH' ? C.red : C.amber}`, padding: '20px 26px 22px', opacity: rowIn(r.a), transform: `translateX(${(1 - rowIn(r.a)) * 60}px)` }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: mono, fontSize: 18, letterSpacing: '0.1em', color: C.mute }}><span>{r.f.toUpperCase()}</span><span style={{ color: r.tag === 'HIGH' ? C.red : C.amber }}>{r.tag}</span></div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 20, marginTop: 14 }}>
                 <span style={{ fontSize: 34, color: C.mute, textDecoration: 'line-through', fontWeight: 300 }}>{r.from}</span>
@@ -132,7 +132,7 @@ export function Problem({ t }: { t: number }) {
               <div style={{ fontSize: 24, color: r.tag === 'HIGH' ? C.red : C.amber, marginTop: 6 }}>{r.d}</div>
             </div>
           ))}
-          <In t={t} a={41} o={48} y={10} style={{ position: 'relative' }}><div style={{ fontSize: 33, fontWeight: 300, marginTop: 6, whiteSpace: 'nowrap' }}>Three differences. One page. <span style={{ color: C.red }}>Buried in German.</span></div></In>
+          <In t={t} a={41} o={48} y={10} style={{ position: 'relative' }}><div style={{ fontSize: 33, fontWeight: 300, marginTop: 14, whiteSpace: 'nowrap', textAlign: 'center' }}>Three differences. One page. <span style={{ color: C.red }}>Buried in German.</span></div></In>
         </div>
       )}
       {/* severity chain */}
@@ -154,15 +154,15 @@ export function Problem({ t }: { t: number }) {
       {/* scale */}
       {t > 49 && (
         <div>
-          <div style={{ position: 'absolute', left: 100, top: 90, width: 1720, display: 'grid', gridTemplateColumns: 'repeat(28, 1fr)', gap: 8 }}>
+          <div style={{ position: 'absolute', left: 100, top: 80, width: 1720, display: 'grid', gridTemplateColumns: 'repeat(35, 1fr)', gap: 8 }}>
             {Array.from({ length: N }, (_, i) => {
               const p = clamp(grid * 1.7 - rnd(i + 3) * 0.7)
               const bad = rnd(i * 1.7 + 9) < 0.34
               const hot = bad && t > 52.5
-              return <div key={i} style={{ aspectRatio: '3/4', borderRadius: 3, background: hot ? C.red : '#E4E7EC', opacity: p * (hot ? 0.9 : 0.55), transform: `scale(${easeOut(p)})` }} />
+              return <div key={i} style={{ aspectRatio: '4/5', borderRadius: 3, background: hot ? C.red : '#E4E7EC', opacity: p * (hot ? 0.9 : 0.55), transform: `scale(${easeOut(p)})` }} />
             })}
           </div>
-          <In t={t} a={51.4} o={54.4} y={10} style={{ left: 0, width: 1920, top: 800, textAlign: 'center', background: 'transparent' }}>
+          <In t={t} a={51.4} o={54.4} y={10} style={{ left: 0, width: 1920, top: 840, textAlign: 'center', background: 'transparent' }}>
             <div style={{ display: 'inline-block', padding: '26px 46px', borderRadius: 18, background: 'rgba(15,16,19,0.88)', border: `1px solid ${C.line}` }}>
               <div style={{ fontSize: 58, fontWeight: 200 }}><span style={{ color: C.amber }}>{fmt(countTo(t, 51.4, 53, 0, 412))}</span> confirmations a week · <span style={{ color: C.red }}>3 people</span> to read them</div>
               <div style={{ fontSize: 30, color: C.mute, marginTop: 8 }}>≈ 172 hours of reading. Some will slip through.</div>
@@ -202,7 +202,7 @@ export function Process({ t }: { t: number }) {
           const a = 57 + i * 1.1
           const q = easeOut(seg(t, a, a + 0.8))
           return (
-            <div key={p.id} style={{ position: 'absolute', left: 140 + i * 590, top: 420, width: 520, height: 520, borderRadius: 22, background: C.panel, border: `1px solid ${C.line}`, overflow: 'hidden', opacity: q * (1 - seg(t, 60.7, 61.4)), transform: `translateY(${(1 - q) * 60}px)` }}>
+            <div key={p.id} style={{ position: 'absolute', left: 140 + i * 590, top: 380, width: 520, height: 520, borderRadius: 22, background: C.panel, border: `1px solid ${C.line}`, overflow: 'hidden', opacity: q * (1 - seg(t, 60.7, 61.4)), transform: `translateY(${(1 - q) * 60}px)` }}>
               <img src={`${dir}persona-${p.id}.jpg`} alt="" style={{ width: '100%', height: 300, objectFit: 'cover', filter: 'grayscale(1) contrast(1.05)', opacity: 0.9 }} />
               <div style={{ padding: '22px 28px' }}>
                 <div style={{ fontFamily: mono, fontSize: 18, color: C.lime, letterSpacing: '0.12em' }}>{p.role.toUpperCase()}</div>
@@ -226,9 +226,9 @@ export function Process({ t }: { t: number }) {
       )}
       {/* sketch → screen */}
       {t >= 69.6 && (
-        <div style={{ position: 'absolute', left: 260, top: 170, width: 1400, height: 875, transform: `scale(${lerp(0.94, 1, easeOut(seg(t, 69.6, 72)))})`, opacity: easeOut(seg(t, 69.6, 70.2)) }}>
+        <div style={{ position: 'absolute', left: 310, top: 190, width: 1300, height: 812, transform: `scale(${lerp(0.94, 1, easeOut(seg(t, 69.6, 72)))})`, opacity: easeOut(seg(t, 69.6, 70.2)) }}>
           <img src={`${dir}buyer-review.svg`} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', borderRadius: 14, opacity: hi, boxShadow: '0 40px 100px rgba(0,0,0,0.6)' }} />
-          <svg viewBox="0 0 1400 875" width="1400" height="875" style={{ position: 'absolute', inset: 0, opacity: 1 - hi }} aria-hidden="true">
+          <svg viewBox="0 0 1400 875" width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 1 - hi }} aria-hidden="true">
             <g fill="none" stroke={C.lime} strokeWidth="3" strokeLinecap="round">
               {[
                 'M20 20 H1380 V855 H20 Z', 'M20 90 H1380', 'M60 150 H700', 'M60 190 H420',
@@ -239,20 +239,20 @@ export function Process({ t }: { t: number }) {
           </svg>
         </div>
       )}
-      <In t={t} a={70} o={74} style={{ left: 0, width: 1920, top: 70, textAlign: 'center' }}><div style={{ fontSize: 40, fontWeight: 300 }}>Craft: from a sketch to a screen people can trust.</div></In>
+      <In t={t} a={70} o={74} style={{ left: 100, top: 112 }}><div style={{ fontSize: 40, fontWeight: 300 }}>Craft: from a sketch to a screen people can trust.</div></In>
     </Scene>
   )
 }
 
 /* ───────────── 4 · ARCHITECTURE  (75–95) ───────────── */
 const NODES = [
-  { id: 'mail', label: 'Supplier email', sub: 'PDF arrives', x: 90, y: 400, kind: 'sys' },
-  { id: 'agent', label: 'AI Agent', sub: 'Extracts & compares', x: 380, y: 400, kind: 'ai' },
-  { id: 'ops', label: 'Procurement Ops', sub: 'Validates extraction', x: 670, y: 400, kind: 'human' },
-  { id: 'view', label: 'Discrepancy view', sub: 'Generated & routed', x: 960, y: 400, kind: 'ai' },
-  { id: 'buyer', label: 'Buyer', sub: 'Cost & logistics', x: 1250, y: 270, kind: 'human' },
-  { id: 'gr', label: 'Goods Recipient', sub: 'Quantity & dates', x: 1250, y: 530, kind: 'human' },
-  { id: 'mailout', label: 'Email supplier', sub: 'Drafted by the agent', x: 1540, y: 400, kind: 'ai' },
+  { id: 'mail', label: 'Supplier email', sub: 'PDF arrives', x: 100, y: 400, kind: 'sys' },
+  { id: 'agent', label: 'AI Agent', sub: 'Extracts & compares', x: 390, y: 400, kind: 'ai' },
+  { id: 'ops', label: 'Procurement Ops', sub: 'Validates extraction', x: 680, y: 400, kind: 'human' },
+  { id: 'view', label: 'Discrepancy view', sub: 'Generated & routed', x: 970, y: 400, kind: 'ai' },
+  { id: 'buyer', label: 'Buyer', sub: 'Cost & logistics', x: 1260, y: 270, kind: 'human' },
+  { id: 'gr', label: 'Goods Recipient', sub: 'Quantity & dates', x: 1260, y: 530, kind: 'human' },
+  { id: 'mailout', label: 'Email supplier', sub: 'Drafted by the agent', x: 1560, y: 400, kind: 'ai' },
 ]
 const EDGES: [string, string][] = [['mail', 'agent'], ['agent', 'ops'], ['ops', 'view'], ['view', 'buyer'], ['view', 'gr'], ['buyer', 'mailout'], ['gr', 'mailout']]
 export function Architecture({ t }: { t: number }) {
@@ -278,7 +278,7 @@ export function Architecture({ t }: { t: number }) {
           return <path key={i} d={`M${x1} ${y1} C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}`} fill="none" stroke={C.mute} strokeWidth="2.5" pathLength={1} strokeDasharray="1" strokeDashoffset={1 - p} opacity={0.8} />
         })}
         {/* audit thread */}
-        <path d="M90 740 H1830" stroke={C.line} strokeWidth="3" fill="none" pathLength={1} strokeDasharray="1" strokeDashoffset={1 - easeOut(seg(t, 84, 87))} />
+        <path d="M100 740 H1820" stroke={C.line} strokeWidth="3" fill="none" pathLength={1} strokeDasharray="1" strokeDashoffset={1 - easeOut(seg(t, 84, 87))} />
       </svg>
       {NODES.map((n, i) => {
         const p = easeOutBack(seg(t, 76.6 + i * 1.0, 77.4 + i * 1.0))
@@ -291,7 +291,7 @@ export function Architecture({ t }: { t: number }) {
         )
       })}
       {t > 85 && <div style={{ position: 'absolute', left: lerp(pa.x + W, pb.x, easeInOut(pp)) - 14, top: lerp(pa.y + H / 2, pb.y + H / 2, easeInOut(pp)) - 14, width: 28, height: 28, borderRadius: '50%', background: C.lime, boxShadow: '0 0 36px rgba(200,245,90,0.9)' }} />}
-      <In t={t} a={84.4} o={94.2} style={{ left: 90, top: 760 }}>
+      <In t={t} a={84.4} o={94.2} style={{ left: 100, top: 760 }}>
         <div style={{ fontFamily: mono, fontSize: 20, color: C.mute, letterSpacing: '0.12em' }}>ACTIVITY LOG · AI AGENT · OPERATIONS · BUYER · GOODS RECIPIENT · SYSTEM</div>
         <div style={{ fontSize: 30, color: C.ink, marginTop: 10, fontWeight: 300 }}>Every correction, recommendation, decision and email, in one audit trail.</div>
       </In>
@@ -318,7 +318,7 @@ function Cam({ src, t, a, b, from, to, children }: { src: string; t: number; a: 
   )
 }
 const Chip = ({ children, color = C.lime, style }: { children: React.ReactNode; color?: string; style?: React.CSSProperties }) => (
-  <div style={{ padding: '14px 26px', borderRadius: 40, background: 'rgba(15,16,19,0.92)', border: `2px solid ${color}`, color, fontSize: 32, fontWeight: 400, whiteSpace: 'nowrap', boxShadow: `0 10px 40px rgba(0,0,0,0.5)`, ...style }}>{children}</div>
+  <div style={{ display: 'inline-block', padding: '14px 26px', borderRadius: 40, background: 'rgba(15,16,19,0.92)', border: `2px solid ${color}`, color, fontSize: 32, fontWeight: 400, whiteSpace: 'nowrap', boxShadow: `0 10px 40px rgba(0,0,0,0.5)`, ...style }}>{children}</div>
 )
 export function Peak({ t }: { t: number }) {
   const hl = (a: number, y: number, color: string) => <div style={{ position: 'absolute', left: 46, top: y, width: 1350, height: 32, borderRadius: 6, background: color, opacity: 0.22 * easeOut(seg(t, a, a + 0.4)), outline: `2px solid ${color}`, outlineOffset: -2 }} />
@@ -329,30 +329,30 @@ export function Peak({ t }: { t: number }) {
       <div style={{ position: 'absolute', inset: 0, background: C.bg }} />
       {t < 99.5 && (
         <div style={{ opacity: 1 - seg(t, 99, 99.6) }}>
-          <Cam src="ops-read" t={t} a={95} b={99} from={[720, 450, 0.95]} to={[760, 300, 1.45]}>
+          <Cam src="ops-read" t={t} a={95} b={99} from={[720, 450, 0.95]} to={[760, 380, 1.45]}>
             <div style={{ position: 'absolute', left: 1000, top: 215, width: 420, height: 560, border: `3px solid ${C.cobalt}`, borderRadius: 8, boxShadow: `0 0 40px ${C.cobalt}`, opacity: easeOut(seg(t, 95.6, 96.2)) }} />
             <div style={{ position: 'absolute', left: 440, top: 92, width: 180, height: 30, border: `3px solid ${C.green}`, borderRadius: 16, opacity: easeOut(seg(t, 97.3, 97.8)) }} />
           </Cam>
-          <In t={t} a={95.4} o={98.8} style={{ left: 70, top: 130 }}><Chip color={C.cobalt}>The agent reads the German PDF</Chip></In>
-          <In t={t} a={97.2} o={98.9} style={{ left: 70, top: 220 }}><Chip color={C.green}>Extracted · confidence shown</Chip></In>
-          <In t={t} a={98.2} o={99.4} style={{ left: 70, top: 310 }}><Chip>David confirms. Nothing moves on without him.</Chip></In>
+          <In t={t} a={95.4} o={96.9} style={{ left: 0, width: 1920, top: 930, textAlign: 'center' }}><Chip color={C.cobalt}>The agent reads the German PDF</Chip></In>
+          <In t={t} a={97.0} o={98.2} style={{ left: 0, width: 1920, top: 930, textAlign: 'center' }}><Chip color={C.green}>Extracted · confidence shown</Chip></In>
+          <In t={t} a={98.3} o={99.4} style={{ left: 0, width: 1920, top: 930, textAlign: 'center' }}><Chip>David confirms. Nothing moves on without him.</Chip></In>
         </div>
       )}
       {t >= 99.2 && t < 103.8 && (
         <div style={{ opacity: easeOut(seg(t, 99.2, 99.9)) * (1 - seg(t, 103.3, 103.9)) }}>
-          <Cam src="buyer-review" t={t} a={99.2} b={103.4} from={[720, 330, 1.0]} to={[720, 520, 1.5]}>
+          <Cam src="buyer-review" t={t} a={99.2} b={103.4} from={[720, 330, 1.0]} to={[720, 500, 1.35]}>
             {hl(100.4, 508, C.red)}{hl(101.1, 540, C.red)}{hl(101.8, 572, C.amber)}
           </Cam>
-          <In t={t} a={99.8} o={103.2} style={{ left: 70, top: 120 }}><Chip>Adrian sees every difference</Chip></In>
-          <In t={t} a={101.2} o={103.3} style={{ left: 70, top: 210 }}><Chip color={C.amber}>…and the reason: “Translated from German ‘45 Tage netto’”</Chip></In>
+          <In t={t} a={99.8} o={101.3} style={{ left: 0, width: 1920, top: 930, textAlign: 'center' }}><Chip>Adrian sees every difference</Chip></In>
+          <In t={t} a={101.4} o={103.3} style={{ left: 0, width: 1920, top: 930, textAlign: 'center' }}><Chip color={C.amber}>…and the reason: “Translated from German ‘45 Tage netto’”</Chip></In>
         </div>
       )}
       {t >= 103.4 && t < 106.2 && (
         <div style={{ opacity: easeOut(seg(t, 103.4, 104)) * (1 - seg(t, 105.7, 106.3)) }}>
-          <Cam src="gr-review" t={t} a={103.4} b={106} from={[720, 560, 1.15]} to={[640, 740, 1.55]}>
+          <Cam src="gr-review" t={t} a={103.4} b={106} from={[720, 480, 1.15]} to={[720, 485, 1.3]}>
             {hl(104.4, 704, C.amber)}{hl(104.9, 744, C.red)}
           </Cam>
-          <In t={t} a={103.8} o={105.8} style={{ left: 70, top: 120 }}><Chip>Rajan judges only what he can: quantity and delivery</Chip></In>
+          <In t={t} a={103.8} o={105.8} style={{ left: 0, width: 1920, top: 930, textAlign: 'center' }}><Chip>Rajan judges only what he can: quantity and delivery</Chip></In>
         </div>
       )}
       {t >= 106 && (
@@ -369,27 +369,27 @@ export function Peak({ t }: { t: number }) {
           </In>
         </div>
       )}
-      <In t={t} a={95.1} o={99} y={0} style={{ right: 70, top: 40 }}><div style={{ fontFamily: mono, fontSize: 22, color: C.lime, letterSpacing: '0.14em' }}>05 · THE SAME ORDER, REPLAYED</div></In>
+      
     </Scene>
   )
 }
 
 /* ───────────── 6 · DENOUEMENT  (108–120) ───────────── */
 export function Denouement({ t }: { t: number }) {
-  const N = 420
+  const N = 412
   const calm = seg(t, 108.4, 112)
   return (
     <Scene t={t} s={108} e={120.4}>
-      <div style={{ position: 'absolute', left: 100, top: 90, width: 1720, display: 'grid', gridTemplateColumns: 'repeat(28, 1fr)', gap: 8, opacity: 0.8 * (1 - 0.6 * seg(t, 112.5, 114)) }}>
+      <div style={{ position: 'absolute', left: 100, top: 80, width: 1720, display: 'grid', gridTemplateColumns: 'repeat(35, 1fr)', gap: 8, opacity: 0.8 * (1 - 0.6 * seg(t, 112.5, 114)) }}>
         {Array.from({ length: N }, (_, i) => {
           const bad = rnd(i * 1.7 + 9) < 0.34
           const resolved = clamp(calm * 1.8 - rnd(i + 5) * 0.8)
           const waiting = bad && rnd(i * 3.1) < 0.18
           const colr = waiting ? C.amber : resolved > 0.5 ? (bad ? C.green : '#4E5A52') : bad ? C.red : '#E4E7EC'
-          return <div key={i} style={{ aspectRatio: '3/4', borderRadius: 3, background: colr, opacity: waiting ? 0.9 : 0.55 }} />
+          return <div key={i} style={{ aspectRatio: '4/5', borderRadius: 3, background: colr, opacity: waiting ? 0.9 : 0.55 }} />
         })}
       </div>
-      <In t={t} a={109} o={115.2} style={{ left: 0, width: 1920, top: 760, textAlign: 'center' }}>
+      <In t={t} a={109} o={115.2} style={{ left: 0, width: 1920, top: 800, textAlign: 'center' }}>
         <div style={{ display: 'inline-block', padding: '28px 54px', borderRadius: 20, background: 'rgba(15,16,19,0.92)', border: `1px solid ${C.line}` }}>
           <div style={{ fontSize: 62, fontWeight: 200, letterSpacing: '-0.03em' }}>The same wall of confirmations. <span style={{ color: C.lime }}>Calm.</span></div>
           <div style={{ fontSize: 30, color: C.mute, marginTop: 10 }}>People only see what needs a person.</div>

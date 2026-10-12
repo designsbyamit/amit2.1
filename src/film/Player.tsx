@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useClock, type Chapter } from './engine'
-import { DURATION, Score } from './score'
+import { DURATION } from './score'
+import { Track } from './track'
 import { C, mono } from './ui'
 
 const fmtT = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
 
-export default function Player({ title, chapters, render, backTo, backLabel, subtitle }: { title: string; chapters: Chapter[]; render: (t: number) => ReactNode; backTo: string; backLabel: string; subtitle: string }) {
-  const score = useMemo(() => new Score(), [])
+export default function Player({ title, chapters, render, backTo, backLabel, subtitle, audioSrc }: { audioSrc: string; title: string; chapters: Chapter[]; render: (t: number) => ReactNode; backTo: string; backLabel: string; subtitle: string }) {
+  const score = useMemo(() => new Track(audioSrc), [audioSrc])
   const clockRef = useRef<ReturnType<typeof useClock> | null>(null)
   const clock = useClock(DURATION, {
     onPlay: t => score.play(t),
@@ -34,6 +35,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
   }, [seek])
 
   useEffect(() => () => score.stop(), [score])
+  useEffect(() => { if (playing) score.drift(t) }, [t, playing, score])
   useEffect(() => { score.setMuted(muted) }, [muted, score])
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
           <div ref={wrap} className="relative w-full" style={{ aspectRatio: '16 / 9', overflow: 'hidden', fontFamily: "'Geist Variable','Geist',system-ui,sans-serif", color: C.ink }}>
             <div style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transformOrigin: '0 0', transform: `scale(${scale})`, background: C.bg }}>
               {render(t)}
-              <div style={{ position: 'absolute', right: 70, bottom: 36, fontFamily: mono, fontSize: 18, letterSpacing: '0.14em', color: C.dim }}>{chapter.label.toUpperCase()}</div>
+              <div style={{ position: 'absolute', right: 40, bottom: 24, fontFamily: mono, fontSize: 18, letterSpacing: '0.14em', color: C.mute, padding: '6px 14px', borderRadius: 20, background: 'rgba(15,16,19,0.78)' }}>{chapter.label.toUpperCase()}</div>
             </div>
             {!started && (
               <button onClick={start} aria-label="Play the film with sound" className="absolute inset-0 grid place-items-center cursor-pointer" style={{ background: 'rgba(15,16,19,0.78)' }}>
