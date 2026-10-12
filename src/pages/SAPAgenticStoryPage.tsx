@@ -5,6 +5,7 @@ import { caseStudies } from '../data/work'
 import { sapAgentic as S } from '../data/sapAgentic'
 import type { AScreen } from '../data/sapAgentic'
 import SectionHeader from '../components/ds/SectionHeader'
+import Button from '../components/ds/Button'
 
 const cs = caseStudies.find(c => c.id === 'sap-agentic')!
 const shotOf = (id: string) => S.journeys.flatMap(j => j.screens).find(s => s.id === id)!
@@ -31,6 +32,7 @@ export default function SAPAgenticStoryPage() {
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
+          <div className="mt-8"><Button to="/craft/sap-agentic/film" arrow>Watch the 2-minute film</Button></div>
           <div className="flex flex-wrap gap-2 mt-8">
             <span className="tag">{S.kicker}</span>
             {S.pillars.map(p => <span key={p} className="tag">{p}</span>)}
