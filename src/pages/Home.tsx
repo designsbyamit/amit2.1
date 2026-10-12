@@ -50,7 +50,7 @@ export default function Home() {
                 color: 'var(--color-ink-2)',
                 maxWidth: '60ch',
               }}>
-                The shift is already here. AI is taking over the work interfaces were built for: finding, deciding, drafting, doing. Screens are giving way to systems that act, and design is moving from shaping what people see to shaping what they trust, delegate and still control. After 16+ years in enterprise design, that is where I work: making sure that as AI takes over, people stay in charge.
+                The paradox of the current shift, that’s shaking up the industry today, is that the more capable our systems become, the more important human judgement becomes. Not because humans will always outperform machines, but because capability alone cannot determine purpose, establish values, or decide which trade-offs society should accept.
               </p>
             </FadeUp>
           </div>
