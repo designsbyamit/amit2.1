@@ -50,11 +50,11 @@ export default function Home() {
                 color: 'var(--color-ink-2)',
                 maxWidth: '60ch',
               }}>
-                16+ years across enterprise design have taught me that great experiences emerge where design, business, and technology intersect. Today, my work is guided by three interconnected areas of exploration:{' '}
+                16+ years across enterprise design have taught me that great experiences emerge where design, business, and technology intersect. That conviction now drives three bets on where design goes next:{' '}
                 <strong style={{ fontWeight: 400, color: 'rgb(var(--ink-rgb) / 0.9)' }}>Dual Fluency</strong>,{' '}
-                <strong style={{ fontWeight: 400, color: 'rgb(var(--ink-rgb) / 0.9)' }}>AI-Native Design</strong>, and{' '}
+                <strong style={{ fontWeight: 400, color: 'rgb(var(--ink-rgb) / 0.9)' }}>AI-Native Design</strong> and{' '}
                 <strong style={{ fontWeight: 400, color: 'rgb(var(--ink-rgb) / 0.9)' }}>Agentic Experiences</strong>{' '}
-                — together shaping how I think about products, people, and the future of experiences.
+                — so design leads, rather than follows, as software learns to think and act.
               </p>
             </FadeUp>
           </div>
