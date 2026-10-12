@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="hairline-top py-8">
       <div className="container-site flex flex-col-reverse gap-6 md:flex-row md:items-center md:justify-between">
-        <p className="text-label text-ink-3">© {new Date().getFullYear()} Amit Kumar Tiwari · Bengaluru, India · <Link to="/design-system" className="hover:text-white transition-colors underline-offset-4 hover:underline">Design system</Link></p>
+        <p className="text-label text-ink-3">© {new Date().getFullYear()} Amit Kumar Tiwari · Bengaluru, India · <Link to="/design-system" className="hover:text-white transition-colors underline-offset-4 hover:underline">Design Leader</Link></p>
 
         <div className="flex items-center gap-5">
           <a
