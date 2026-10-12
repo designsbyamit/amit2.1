@@ -81,7 +81,7 @@ export default function AboutPage() {
       {/* The work */}
       <section className="section-y hairline-top">
         <div className="container-site">
-          <SectionHeader label="What I drive" title="Impact across AI, design and community." intro="Three ideas run through all of it: Dual Fluency, AI-native design and agentic experiences." />
+          <SectionHeader label="What I drive" title="Impact across AI, design and community." intro="Three ideas shape everything I build and lead: Dual Fluency, AI-native design and agentic experiences. Together they answer one question: how does design earn its place when software starts to think and act?" />
           <ol>
             {drives.map((d, i) => (
               <motion.li key={i} className="hairline-top py-6 grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_1fr] gap-4" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: i * 0.05 }}>
