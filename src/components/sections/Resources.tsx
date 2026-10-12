@@ -28,20 +28,18 @@ interface Resource {
 
 const resources: Resource[] = [
   {
-    id: 'dual-fluency',
-    title: 'Dual Fluency',
-    type: ['Framework', 'Workshop Toolkit'],
-    description: 'A practical framework for helping designers become fluent in both the language of design and the language of business. Covers the translation gap, metric mapping, maturity model, and the Dual Fluency Loop.',
-    outcomes: ['Business fluency', 'Strategic influence', 'Better stakeholder communication', 'Enterprise design maturity'],
-    tags: ['Business', 'Strategy', 'Leadership', 'Design'],
-    filterTags: ['Leadership', 'Strategy', 'Workshops'],
-    // Soft glass gradients — intelligence and explainability
-    imageId: 'photo-1518531933037-91b2f5f229cc',
-    imageAlt: 'Abstract light geometry',
-    internalUrl: '/resources/dual-fluency',
-    previewLabel: 'Explore the framework',
-    requestAccess: true,
-    requestLabel: 'Request workshop toolkit',
+    id: 'aai-toolkit',
+    title: 'Agent-Agent Interaction (AAI) Toolkit',
+    type: ['Interactive Toolkit', 'Guidelines', 'Playbook'],
+    description: 'A toolkit for designing how AI agents work with each other, across organisations and inside a single multi-agent system. 22 guidelines, 14 reusable interaction patterns with worksheets, and a four-step playbook (Context, Assess or plan, Analyse, Resolve) that turns your agent map into gaps, fixes and a brief. Validated against case studies and stress-test scenarios.',
+    outcomes: ['22 agent-agent guidelines', '14 patterns and worksheets', 'Agent mapping and gap analysis', 'Worked AR-collections example'],
+    tags: ['AI', 'Agentic Design', 'Multi-Agent Systems', 'Guidelines'],
+    filterTags: ['AI', 'UX', 'Strategy'],
+    // Blueprint grid: systems and structure
+    imageId: 'photo-1558618666-fcd25c85cd64',
+    imageAlt: 'Blueprint geometric grid',
+    previewUrl: '/aai-toolkit/',
+    previewLabel: 'Open the toolkit',
   },
   {
     id: 'ai-native-patterns',
@@ -60,6 +58,22 @@ const resources: Resource[] = [
     requestLabel: 'Request PDF playbook',
   },
   {
+    id: 'dual-fluency',
+    title: 'Dual Fluency',
+    type: ['Framework', 'Workshop Toolkit'],
+    description: 'A practical framework for helping designers become fluent in both the language of design and the language of business. Covers the translation gap, metric mapping, maturity model, and the Dual Fluency Loop.',
+    outcomes: ['Business fluency', 'Strategic influence', 'Better stakeholder communication', 'Enterprise design maturity'],
+    tags: ['Business', 'Strategy', 'Leadership', 'Design'],
+    filterTags: ['Leadership', 'Strategy', 'Workshops'],
+    // Soft glass gradients — intelligence and explainability
+    imageId: 'photo-1518531933037-91b2f5f229cc',
+    imageAlt: 'Abstract light geometry',
+    internalUrl: '/resources/dual-fluency',
+    previewLabel: 'Explore the framework',
+    requestAccess: true,
+    requestLabel: 'Request workshop toolkit',
+  },
+  {
     id: 'conversation-experience',
     title: 'Conversation Experience: The New Frontier of UX',
     type: ['Playbook'],
@@ -74,20 +88,6 @@ const resources: Resource[] = [
     previewLabel: 'Read the playbook',
     requestAccess: true,
     requestLabel: 'Request full playbook',
-  },
-  {
-    id: 'aai-toolkit',
-    title: 'Agent-Agent Interaction (AAI) Toolkit',
-    type: ['Interactive Toolkit', 'Guidelines', 'Playbook'],
-    description: 'A toolkit for designing how AI agents work with each other, across organisations and inside a single multi-agent system. 22 guidelines, 14 reusable interaction patterns with worksheets, and a four-step playbook (Context, Assess or plan, Analyse, Resolve) that turns your agent map into gaps, fixes and a brief. Validated against case studies and stress-test scenarios.',
-    outcomes: ['22 agent-agent guidelines', '14 patterns and worksheets', 'Agent mapping and gap analysis', 'Worked AR-collections example'],
-    tags: ['AI', 'Agentic Design', 'Multi-Agent Systems', 'Guidelines'],
-    filterTags: ['AI', 'UX', 'Strategy'],
-    // Blueprint grid: systems and structure
-    imageId: 'photo-1558618666-fcd25c85cd64',
-    imageAlt: 'Blueprint geometric grid',
-    previewUrl: 'https://claude.ai/artifact/GjmVNPfQiFfiCbFt24VYBG',
-    previewLabel: 'Open the toolkit',
   },
   {
     id: 'reading-list',
