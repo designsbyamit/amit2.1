@@ -44,7 +44,7 @@ export const engaze = {
   ex: {
     title: 'Deep dive: employee experience',
     intro: 'The module that shipped. A conversational companion for leave balances, approvals, benefits and pay, designed principle-first rather than flow-first, and measured against enterprise HR bots that typically score below 60% CSAT.',
-    teaserLabel: 'Watch the teaser · 58 s',
+    teaserLabel: 'Watch the teaser · 1 min 6 s',
     stats: [['90%', 'CSAT'], ['<60%', 'typical enterprise HR bot'], ['45+', 'conversational products evaluated'], ['5', 'design principles']] as [string, string][],
     steps: [
       { label: 'Scope', heading: 'What was in, what was out', body: 'HR operations broken into its parts. Talent management, employee relations and information systems were in scope for the first release; recruitment and employer branding were not. The suite vision extends the same companion to those areas.', image: O('engaze-01.png'), alt: 'HR operations scope tree showing in-scope and out-of-scope areas' },

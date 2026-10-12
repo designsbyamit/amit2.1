@@ -37,7 +37,7 @@ export default function EngazeStoryPage() {
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{E.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[62ch]">{cs.tagline}</p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <Button to="/craft/engaze/film" arrow>Watch the employee-experience teaser · 58 s</Button>
+            <Button to="/craft/engaze/film" arrow>Watch the employee-experience teaser · 1 min 6 s</Button>
           </div>
           <div className="flex flex-wrap gap-2 mt-8"><span className="tag">{E.kicker}</span>{(cs.tags ?? []).map(t => <span key={t} className="tag">{t}</span>)}</div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-4xl">

@@ -1,10 +1,13 @@
 import type { ReactNode, CSSProperties } from 'react'
 import { easeOut, easeOutBack, seg } from './engine'
 import { In, Words, Scene, mono, countTo } from './ui'
+import { MARK_D, MARK_VB } from './engazeMark'
 
 export const V = { bg: '#0D0C15', p1: '#151424', p2: '#1D1C31', p3: '#26253F', line: '#34325A', ink: '#F1F0FF', mute: '#A9A7CF', dim: '#6F6D99', violet: '#7F7DEA', deep: '#6446DD', mag: '#BA5AF2', green: '#5BE3A0', amber: '#FFC857', red: '#FF7A7A' }
 const grad = 'linear-gradient(135deg,#6446DD,#BA5AF2)'
 const Over = ({ children, color = V.violet, style }: { children: ReactNode; color?: string; style?: CSSProperties }) => <div style={{ fontFamily: mono, fontSize: 22, letterSpacing: '0.14em', textTransform: 'uppercase', color, ...style }}>{children}</div>
+export const Mark = ({ size = 80, color = V.violet, style }: { size?: number; color?: string; style?: CSSProperties }) => <svg viewBox={MARK_VB} style={{ width: size * 0.876, height: size, fill: color, ...style }}><path fillRule="evenodd" d={MARK_D} /></svg>
+const Logo = ({ size = 80, color = V.violet, word = V.ink }: { size?: number; color?: string; word?: string }) => <div style={{ display: 'flex', alignItems: 'center', gap: size * 0.3 }}><Mark size={size} color={color} /><span style={{ fontSize: size * 0.8, fontWeight: 700, letterSpacing: '-0.02em', color: word }}>Engaze</span></div>
 const Bg = () => <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(1100px 700px at 85% -10%, rgba(100,70,221,.35), transparent 60%), radial-gradient(900px 600px at -5% 105%, rgba(186,90,242,.18), transparent 60%), ${V.bg}` }} />
 
 function Bubble({ t, a, me, children, w, y }: { t: number; a: number; me?: boolean; children: ReactNode; w?: number; y: number }) {
@@ -16,9 +19,10 @@ function Bubble({ t, a, me, children, w, y }: { t: number; a: number; me?: boole
 export function EHook({ t }: { t: number }) {
   return <Scene t={t} s={0} e={5}>
     <Bg />
-    <Over style={{ position: 'absolute', left: 140, top: 250 }}>Engaze · AI-native HCM</Over>
-    <Words t={t} a={0.5} text="Ask. Don't navigate." size={150} weight={600} style={{ left: 140, top: 340 }} />
-    <In t={t} a={2.6} style={{ left: 140, top: 640 }}><div style={{ fontSize: 40, color: V.mute, width: 1300, lineHeight: 1.3 }}>A teaser: the employee-experience module of a larger HCM suite.</div></In>
+    <In t={t} a={0.2} y={20} style={{ left: 140, top: 150 }}><Logo size={92} /></In>
+    <Over style={{ position: 'absolute', left: 140, top: 330 }}>AI-native HCM</Over>
+    <Words t={t} a={0.9} text="Ask. Don't navigate." size={150} weight={600} style={{ left: 140, top: 400 }} />
+    <In t={t} a={2.9} style={{ left: 140, top: 700 }}><div style={{ fontSize: 40, color: V.mute, width: 1300, lineHeight: 1.3 }}>A teaser: the employee-experience module of a larger HCM suite.</div></In>
   </Scene>
 }
 
@@ -59,7 +63,7 @@ export function EPrototype({ t }: { t: number }) {
     <Over style={{ position: 'absolute', left: 140, top: 70 }}>The prototype · employee experience</Over>
     <In t={t} a={24.4} y={30} style={{ left: 140, top: 130, width: 1060, height: 840 }}>
       <div style={{ position: 'relative', width: 1060, height: 840, borderRadius: 32, background: V.p1, border: `1px solid ${V.line}`, overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', left: 36, top: 28, display: 'flex', gap: 14, alignItems: 'center', fontSize: 28, color: V.ink, fontWeight: 600 }}><span style={{ width: 44, height: 44, borderRadius: 14, background: grad, display: 'grid', placeItems: 'center' }}>✦</span>engaze</div>
+        <div style={{ position: 'absolute', left: 36, top: 28, display: 'flex', gap: 14, alignItems: 'center', fontSize: 28, color: V.ink, fontWeight: 600 }}><Mark size={46} color="#9A98F5" />Engaze</div>
         <div style={{ position: 'absolute', left: 0, top: 110, width: 1060 }}>
           {t > 26.0 && t < 27.9 && <div style={{ position: 'absolute', top: 18, right: 40 }} />}
           <Bubble t={t} a={27.9} me y={20} w={560}>{msg}</Bubble>
@@ -105,10 +109,29 @@ export function EOutcome({ t }: { t: number }) {
     </In>
     <In t={t} a={51} y={20} style={{ left: 140, top: 700, width: 1640 }}>
       <div style={{ fontSize: 56, fontWeight: 600, letterSpacing: '-0.03em', color: V.ink }}>One module. <span style={{ color: V.violet }}>Six roles</span> in the full suite.</div></In>
-    <div style={{ position: 'absolute', left: 140, top: 830, display: 'flex', gap: 14 }}>
+    <div style={{ position: 'absolute', left: 140, top: 810, display: 'flex', gap: 14 }}>
       {roles.map((r, i) => { const p = easeOut(seg(t, 52 + i * 0.3, 52.6 + i * 0.3)); return <span key={r} style={{ opacity: p, transform: `translateY(${(1 - p) * 14}px)`, padding: '14px 26px', borderRadius: 30, background: i === 0 ? grad : V.p3, border: i === 0 ? 'none' : `1px solid ${V.line}`, fontSize: 28, color: V.ink }}>{r}</span> })}
     </div>
-    <In t={t} a={54.6} style={{ left: 140, top: 960 }}><div style={{ fontSize: 30, color: V.dim }}>Read the full case study →</div></In>
+    <In t={t} a={54.6} style={{ left: 140, top: 930 }}><div style={{ display: 'flex', alignItems: 'center', gap: 40 }}><Logo size={64} /><span style={{ fontSize: 30, color: V.dim }}>Read the full case study →</span></div></In>
   </Scene>
 }
 
+
+export function ELayers({ t }: { t: number }) {
+  const L: [string, string, string[]][] = [
+    ['Interface layer', V.violet, ['One primary function', 'Bold, clean, minimal visuals', '1.5× type scale', 'Subtle micro-animation']],
+    ['Content layer', V.mag, ['1 to 3 light sentences', 'Menus and buttons guide', 'Brevity, then test it', 'Nudge turns, never burden']],
+    ['Experience layer', V.green, ['Achieve goals', 'Personalise', 'Adapt to context', 'Emotional intelligence']],
+  ]
+  return <Scene t={t} s={24} e={32}>
+    <Bg />
+    <Over style={{ position: 'absolute', left: 140, top: 110 }}>Design strategy</Over>
+    <Words t={t} a={24.3} text="Three layers, one voice." size={92} weight={600} style={{ left: 140, top: 170, width: 1600 }} />
+    {L.map(([name, c, items], i) => { const a = 25.4 + i * 1.7; return <In key={name} t={t} a={a} y={30} style={{ left: 140, top: 380 + i * 205, width: 1640 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 36, padding: '0 40px', height: 175, borderRadius: 28, background: V.p2, border: `1px solid ${V.line}` }}>
+        <div style={{ width: 8, height: 90, borderRadius: 4, background: c }} />
+        <div style={{ width: 420, fontSize: 46, fontWeight: 600, color: V.ink }}>{name}</div>
+        <div style={{ flex: 1, display: 'flex', flexWrap: 'wrap', gap: '12px 14px' }}>{items.map((it, k) => { const p = easeOut(seg(t, a + 0.35 + k * 0.22, a + 0.8 + k * 0.22)); return <span key={it} style={{ opacity: p, transform: `translateY(${(1 - p) * 10}px)`, padding: '10px 22px', borderRadius: 24, background: V.p3, border: `1px solid ${V.line}`, fontSize: 28, color: '#D9D7FF' }}>{it}</span> })}</div>
+      </div></In> })}
+  </Scene>
+}
