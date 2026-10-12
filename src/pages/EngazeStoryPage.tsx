@@ -106,22 +106,18 @@ export default function EngazeStoryPage() {
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {E.ex.stats.map(([v, k]) => <div key={k} className="card"><dd className="text-display-l text-white">{v}</dd><dt className="text-body-sm text-ink-3 mt-2">{k}</dt></div>)}
         </dl>
-        <div className="space-y-20">
+        <div className="space-y-24">
           {E.ex.steps.map((s, i) => (
-            <div key={s.label} className="grid lg:grid-cols-[1fr_1.6fr] gap-10 items-center">
-              <div className={i % 2 ? 'lg:order-2' : ''}><p className="text-overline text-ink-3">{s.label}</p><h3 className="text-title text-white mt-3">{s.heading}</h3><p className="text-body text-ink-2 mt-4">{s.body}</p></div>
-              <img src={s.image} alt={s.heading} loading="lazy" className="w-full rounded-xl border" style={{ borderColor: 'var(--line-2)' }} />
+            <div key={s.label} className={`grid gap-10 items-center ${s.tall ? 'lg:grid-cols-[1fr_minmax(0,0.9fr)]' : 'lg:grid-cols-[1fr_1.6fr]'}`}>
+              <div className={i % 2 ? 'lg:order-2' : ''}><p className="text-overline text-ink-3">{String(i + 1).padStart(2, '0')} · {s.label}</p><h3 className="text-title text-white mt-3">{s.heading}</h3><p className="text-body text-ink-2 mt-4 max-w-[52ch]">{s.body}</p></div>
+              <div className="rounded-xl border p-3 md:p-5 bg-surface-1" style={{ borderColor: 'var(--line-2)' }}><img src={s.image} alt={s.alt} loading="lazy" className={`w-full rounded-lg ${s.tall ? 'max-h-[900px] object-contain' : ''}`} /></div>
             </div>
           ))}
-        </div>
-        <p className="text-overline text-ink-3 mt-20 mb-6">Conversational interface</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {E.ex.screens.map((src, i) => <img key={src} src={src} alt={`Engaze conversational screen ${i + 1}`} loading="lazy" className="w-full rounded-xl border" style={{ borderColor: 'var(--line-2)' }} />)}
         </div>
       </Section>
 
       <Section id="language" tone="raised">
-        <SectionHeader label="08 · Design language" title="Dark by default. Human in tone. Explainable in every pixel." />
+        <SectionHeader label="08 · Design language, extended" title="Dark by default. Human in tone. Explainable in every pixel." intro="The employee-experience language, formalised so every role in the suite shares it." />
         <Fig src={E.language.image} alt={E.language.alt} />
       </Section>
 
