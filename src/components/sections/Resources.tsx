@@ -96,6 +96,10 @@ const resources: Resource[] = [
   },
   {
     id: 'aai-toolkit',
+    motif: 'phases',
+    tone: 'teal',
+    kind: 'Toolkit',
+    topics: ['agent-agent interaction', 'multi-agent systems', 'guidelines'],
     title: 'Agent-Agent Interaction (AAI) Toolkit',
     type: ['Interactive Toolkit', 'Guidelines', 'Playbook'],
     description: 'A toolkit for designing how AI agents work with each other, across organisations and inside a single multi-agent system. 22 guidelines, 14 reusable interaction patterns with worksheets, and a four-step playbook (Context, Assess or plan, Analyse, Resolve) that turns your agent map into gaps, fixes and a brief. Validated against case studies and stress-test scenarios.',
@@ -105,7 +109,7 @@ const resources: Resource[] = [
     // Blueprint grid: systems and structure
     imageId: 'photo-1558618666-fcd25c85cd64',
     imageAlt: 'Blueprint geometric grid',
-    previewUrl: 'https://claude.ai/artifact/GjmVNPfQiFfiCbFt24VYBG',
+    previewUrl: '/aai-toolkit/',
     previewLabel: 'Open the toolkit',
   },
   {
