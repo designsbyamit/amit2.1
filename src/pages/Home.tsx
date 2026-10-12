@@ -30,14 +30,14 @@ export default function Home() {
       {/* 2. Scale — grid blocks */}
       <ImpactSnapshot />
 
-      {/* 3. About — single paragraph */}
+      {/* 3. Point of view — single paragraph */}
       <section className="relative">
         
         <div className="relative z-10 container-site py-24 md:py-36">
           <div className="grid md:grid-cols-[1fr_2.2fr] gap-14 md:gap-24 items-start">
             <FadeUp>
               <div className="flex items-center gap-5 md:pt-1">
-                <p className="text-overline text-ink-3">About</p>
+                <p className="text-overline text-ink-3">Point of view</p>
                 <div className="flex-1 border-t border-white opacity-[0.06]" />
               </div>
             </FadeUp>
