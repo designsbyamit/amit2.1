@@ -50,7 +50,7 @@ export default function Home() {
                 color: 'var(--color-ink-2)',
                 maxWidth: '60ch',
               }}>
-                16+ years across enterprise design have taught me that great experiences emerge where design, business, and technology intersect. Today, one question guides my work: how does design earn its seat when software starts to think and act? I answer it by speaking the language of the business, designing around intelligence from the first sketch, and shaping products that act on people's behalf.
+                The shift is already here. AI is taking over the work interfaces were built for: finding, deciding, drafting, doing. Screens are giving way to systems that act, and design is moving from shaping what people see to shaping what they trust, delegate and still control. After 16+ years in enterprise design, that is where I work: making sure that as AI takes over, people stay in charge.
               </p>
             </FadeUp>
           </div>
