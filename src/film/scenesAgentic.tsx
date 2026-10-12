@@ -6,7 +6,7 @@ const dir = `${B}images/case-studies/sap-agentic/`
 
 const VENDORS = ['Helios Components AG', 'Baumann Chemie', 'Kestrel Reagents', 'Orchid Solvents', 'Veritas Fine Chem', 'Nordlicht GmbH', 'Altamira Pharma', 'Sable Polymers', 'Tessera Labs', 'Quillon Catalysts', 'Meridian Excipients', 'Brightwater Bio', 'Onyx Packaging', 'Ferro & Vale']
 
-const Star = ({ size = 80, color = C.lime }: { size?: number; color?: string }) => (
+export const Star = ({ size = 80, color = C.lime }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 C53 36 64 47 96 50 C64 53 53 64 50 96 C47 64 36 53 4 50 C36 47 47 36 50 4Z" fill={color} /></svg>
 )
 

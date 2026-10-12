@@ -1,3 +1,4 @@
+import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -44,6 +45,7 @@ export default function SAPSearchStoryPage() {
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
+          <div className="mt-8"><Button to="/craft/sap-search/film" arrow>Watch the film · 2 min 46 s</Button></div>
           <div className="flex flex-wrap gap-2 mt-8">
             <span className="tag">{S.kicker}</span>
             {S.pillars.map(p => <span key={p} className="tag">{p}</span>)}

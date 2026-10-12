@@ -23,9 +23,9 @@ const prog = (bar: number): Chord => {
   return [{ root: C, q: MAJOR }, { root: F, q: MAJ7 }, { root: C, q: MAJOR }, { root: C, q: MAJ7 }][(bar - 43) % 4]
 }
 
-interface Out { ctx: AudioContext; out: AudioNode; noise: AudioBuffer }
+export interface Out { ctx: AudioContext; out: AudioNode; noise: AudioBuffer }
 
-function env(_ctx: AudioContext, g: GainNode, t0: number, a: number, peak: number, d: number, sus = 0, r = 0.1) {
+export function env(_ctx: AudioContext, g: GainNode, t0: number, a: number, peak: number, d: number, sus = 0, r = 0.1) {
   g.gain.cancelScheduledValues(t0)
   g.gain.setValueAtTime(0.0001, t0)
   g.gain.linearRampToValueAtTime(peak, t0 + a)
@@ -33,7 +33,7 @@ function env(_ctx: AudioContext, g: GainNode, t0: number, a: number, peak: numbe
   g.gain.exponentialRampToValueAtTime(0.0001, t0 + a + d + r)
 }
 
-function tone(o: Out, type: OscillatorType, freq: number, t0: number, len: number, a: number, peak: number, opts: { detune?: number; lp?: number; sus?: number } = {}) {
+export function tone(o: Out, type: OscillatorType, freq: number, t0: number, len: number, a: number, peak: number, opts: { detune?: number; lp?: number; sus?: number } = {}) {
   const { ctx, out } = o
   const osc = ctx.createOscillator(); osc.type = type; osc.frequency.value = freq; if (opts.detune) osc.detune.value = opts.detune
   const g = ctx.createGain(); const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = opts.lp ?? 2400; f.Q.value = 0.7
@@ -42,7 +42,7 @@ function tone(o: Out, type: OscillatorType, freq: number, t0: number, len: numbe
   osc.start(t0); osc.stop(t0 + len + 0.4)
 }
 
-function pad(o: Out, ch: Chord, t0: number, len: number, level: number, bright = 1800) {
+export function pad(o: Out, ch: Chord, t0: number, len: number, level: number, bright = 1800) {
   ch.q.forEach((iv, i) => {
     const f = mtof(ch.root + 12 + iv)
     tone(o, 'sawtooth', f, t0, len, len * 0.35, level / 5, { detune: i % 2 ? 6 : -6, lp: bright })
@@ -50,22 +50,22 @@ function pad(o: Out, ch: Chord, t0: number, len: number, level: number, bright =
   })
 }
 
-function bass(o: Out, root: number, t0: number, len: number, level: number) {
+export function bass(o: Out, root: number, t0: number, len: number, level: number) {
   tone(o, 'triangle', mtof(root), t0, len, 0.01, level, { lp: 500 })
   tone(o, 'sine', mtof(root - 12), t0, len, 0.01, level * 0.8)
 }
 
-function pluck(o: Out, midi: number, t0: number, level: number, lp = 3200) {
+export function pluck(o: Out, midi: number, t0: number, level: number, lp = 3200) {
   tone(o, 'triangle', mtof(midi), t0, 0.5, 0.004, level, { lp })
   tone(o, 'sine', mtof(midi + 12), t0, 0.3, 0.004, level * 0.35)
 }
 
-function bell(o: Out, midi: number, t0: number, level: number) {
+export function bell(o: Out, midi: number, t0: number, level: number) {
   tone(o, 'sine', mtof(midi), t0, 2.4, 0.005, level)
   tone(o, 'sine', mtof(midi) * 2.76, t0, 1.2, 0.005, level * 0.2)
 }
 
-function kick(o: Out, t0: number, level: number) {
+export function kick(o: Out, t0: number, level: number) {
   const { ctx, out } = o
   const osc = ctx.createOscillator(); const g = ctx.createGain()
   osc.frequency.setValueAtTime(140, t0); osc.frequency.exponentialRampToValueAtTime(42, t0 + 0.14)
@@ -73,7 +73,7 @@ function kick(o: Out, t0: number, level: number) {
   osc.connect(g); g.connect(out); osc.start(t0); osc.stop(t0 + 0.3)
 }
 
-function hat(o: Out, t0: number, level: number, hp = 7000, len = 0.05) {
+export function hat(o: Out, t0: number, level: number, hp = 7000, len = 0.05) {
   const { ctx, out, noise } = o
   const src = ctx.createBufferSource(); src.buffer = noise
   const f = ctx.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = hp
@@ -81,7 +81,7 @@ function hat(o: Out, t0: number, level: number, hp = 7000, len = 0.05) {
   src.connect(f); f.connect(g); g.connect(out); src.start(t0, Math.random() * 0.5); src.stop(t0 + len + 0.02)
 }
 
-function riser(o: Out, t0: number, len: number, level: number) {
+export function riser(o: Out, t0: number, len: number, level: number) {
   const { ctx, out, noise } = o
   const src = ctx.createBufferSource(); src.buffer = noise; src.loop = true
   const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 2
@@ -96,7 +96,7 @@ function riser(o: Out, t0: number, len: number, level: number) {
   osc.connect(of); of.connect(og); og.connect(out); osc.start(t0); osc.stop(t0 + len + 0.2)
 }
 
-function impact(o: Out, t0: number, level: number) {
+export function impact(o: Out, t0: number, level: number) {
   kick(o, t0, level)
   const { ctx, out, noise } = o
   const src = ctx.createBufferSource(); src.buffer = noise
