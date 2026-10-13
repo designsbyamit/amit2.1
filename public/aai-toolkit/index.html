@@ -54,6 +54,9 @@ p { margin: 0; }
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; margin-inline: -16px; padding-inline: 16px; background: var(--surface); border-bottom: 1px solid var(--line); }
 .top-in { max-width: 1240px; margin-inline: auto; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .brand { color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; white-space: nowrap; }
+.back-site { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.back-site:hover { background: var(--bg); }
+@media (max-width: 520px) { .back-site span { display: none; } .back-site { padding: 0 10px; } }
 .brand-mark { width: 32px; height: 32px; flex: none; }
 .tools { display: flex; align-items: center; gap: 12px; }
 .count { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
@@ -549,6 +552,7 @@ p { margin: 0; }
     </a>
     <nav class="nav" id="nav" aria-label="Main"></nav>
     <div class="tools">
+      <a class="back-site" href="/" aria-label="Back to portfolio">&larr; <span>Portfolio</span></a>
       <button class="sq" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
       <span class="count" id="count" title="Guidelines you marked as applied. Saved in this browser only."></span>
       <button class="sq" id="themeBtn" type="button" aria-label="Switch between light and dark"></button>
@@ -653,10 +657,6 @@ p { margin: 0; }
         <div>
           <h3>Limits of the evidence</h3>
           <p id="evLimits"></p>
-        </div>
-        <div>
-          <h3>Where this comes from</h3>
-          <p>The structure follows the <a href="https://www.microsoft.com/en-us/haxtoolkit/ai-guidelines/" target="_blank" rel="noopener">Microsoft HAX guidelines for human&ndash;AI interaction</a>. This is a draft for discussion, and the SPF and RTC case is fictional.</p>
         </div>
       </div>
       <h3 class="sub-h">What testing changed</h3>

@@ -27,7 +27,7 @@ interface Resource {
   requestAccess?: boolean
   requestLabel?: string
   readingList?: boolean
-  motif: 'loop' | 'phases' | 'conversation' | 'books' | 'checklist' | 'spark'
+  motif: 'loop' | 'phases' | 'conversation' | 'books' | 'checklist' | 'spark' | 'network'
   tone: 'cobalt' | 'teal' | 'plum' | 'graphite'
   kind: string
   topics: string[]
@@ -36,7 +36,7 @@ interface Resource {
 const resources: Resource[] = [
   {
     id: 'aai-toolkit',
-    motif: 'phases',
+    motif: 'network',
     tone: 'teal',
     kind: 'Toolkit',
     topics: ['agent-agent interaction', 'multi-agent systems', 'guidelines'],
