@@ -13,6 +13,8 @@ const Craft = lazy(() => import('./pages/Craft'))
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage'))
 const LeadershipStoriesPage = lazy(() => import('./pages/LeadershipStoriesPage'))
 const LeadershipStoryPage = lazy(() => import('./pages/LeadershipStoryPage'))
+const LeadershipCasePage = lazy(() => import('./pages/LeadershipCasePage'))
+const LearnPage = lazy(() => import('./pages/LearnPage'))
 const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
 const CommunityPage = lazy(() => import('./pages/CommunityPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
@@ -81,6 +83,8 @@ function AnimatedRoutes() {
         <Route path="/craft/sap-agentic/film" element={<PageTransition><AgenticFilmPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
+        <Route path="/leadership/cases/:slug" element={<PageTransition><LeadershipCasePage /></PageTransition>} />
+        <Route path="/learn" element={<PageTransition><LearnPage /></PageTransition>} />
         <Route path="/leadership/stories" element={<PageTransition><LeadershipStoriesPage /></PageTransition>} />
         <Route path="/leadership/stories/:slug" element={<PageTransition><LeadershipStoryPage /></PageTransition>} />
         <Route path="/mentoring" element={<PageTransition><MentoringPage /></PageTransition>} />

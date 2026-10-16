@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 const heroImg = '/images/Community/Impulse.webp'
 import PageHeader from '../components/ui/PageHeader'
 import Journey from '../components/sections/Journey'
+import LeadershipCases from '../components/sections/LeadershipCases'
 import LeadershipStories from '../components/sections/LeadershipStories'
 import Testimonials from '../components/sections/Testimonials'
 import { colleagueTestimonials } from '../data/testimonials'
@@ -49,6 +50,7 @@ export default function LeadershipPage() {
         image={heroImg} imagePosition="50% 8%"
         imageAlt="Amit Kumar Tiwari on stage"
       />
+      <LeadershipCases />
       <Journey />
       <LeadershipStories />
       <CommunityCallout />

@@ -5,14 +5,14 @@ import { caseStudies } from '../../data/work'
 import Logo from './Logo'
 import ThemeToggle from '../ds/ThemeToggle'
 
-const navItems = [
-  { label: 'Craft', to: '/craft' },
+// Leadership-first flow. "Learn" (mentoring, community, resources, reflections) stays available but quiet.
+const navItems: { label: string; to: string; quiet?: boolean }[] = [
   { label: 'Leadership', to: '/leadership' },
-  { label: 'Mentoring', to: '/mentoring' },
-  { label: 'Community', to: '/community' },
-  { label: 'Reflections', to: '/reflections' },
-  { label: 'Resources', to: '/resources' },
+  { label: 'Practices', to: '/resources' },
+  { label: 'Work', to: '/craft' },
   { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+  { label: 'Learn', to: '/learn', quiet: true },
 ]
 
 const featured = caseStudies.slice(0, 3)
@@ -75,18 +75,18 @@ export default function Nav() {
 
           <div className="flex items-center gap-6">
             <ul className="hidden lg:flex items-center gap-7">
-              {navItems.map(item => item.label === 'Craft' ? (
+              {navItems.map(item => item.label === 'Work' ? (
                 <li key={item.to} onMouseEnter={hoverOpen}>
                   <button ref={triggerRef} type="button" aria-expanded={craftOpen} aria-controls={panelId}
                     onClick={() => setCraftOpen(o => !o)}
                     className={`flex items-center gap-1.5 py-2 text-[0.9375rem] transition-colors ${craftOpen || craftActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`}>
-                    Craft
+                    Work
                     <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${craftOpen ? 'rotate-180' : ''}`}><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
                   </button>
                 </li>
               ) : (
-                <li key={item.to} onMouseEnter={hoverClose}>
-                  <NavLink to={item.to} className={navCls}>
+                <li key={item.to} onMouseEnter={hoverClose} className={item.quiet ? 'pl-7 ml-1 border-l' : undefined} style={item.quiet ? { borderColor: 'rgb(var(--ink-rgb) / 0.14)' } : undefined}>
+                  <NavLink to={item.to} className={item.quiet ? (({ isActive }: { isActive: boolean }) => `relative py-2 text-[0.875rem] transition-colors duration-150 ${isActive ? 'text-ink' : 'text-ink-3 hover:text-ink'}`) : navCls}>
                     {({ isActive }) => <>{item.label}{isActive && <span aria-hidden="true" className="absolute left-0 right-0 -bottom-[3px] h-[2px] bg-signal" />}</>}
                   </NavLink>
                 </li>
@@ -147,7 +147,7 @@ export default function Nav() {
                     <NavLink to={item.to} className={({ isActive }) => `flex items-center justify-between py-4 text-heading ${isActive ? 'text-ink' : 'text-ink-2'}`}>
                       {item.label}
                     </NavLink>
-                    {item.label === 'Craft' && (
+                    {item.label === 'Work' && (
                       <ul className="pb-4 flex flex-col">
                         {caseStudies.map(cs => (
                           <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex gap-3 py-2.5 text-body-sm text-ink-2"><span className="text-label text-ink-3 pt-0.5">{cs.number}</span>{cs.title}</Link></li>
