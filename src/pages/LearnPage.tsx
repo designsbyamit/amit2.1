@@ -3,7 +3,7 @@ import PageHeader from '../components/ui/PageHeader'
 
 const items = [
   { to: '/mentoring', title: 'Mentoring', text: 'How I coach designers, and templates you can use with your own mentor or team.' },
-  { to: '/resources', title: 'Practices and resources', text: 'Frameworks, toolkits and a reading list, with a note on how far each has been tested.' },
+  { to: '/resources', title: 'Practices and resources', text: 'Frameworks, toolkits and a reading list you can use with your own team.' },
   { to: '/community', title: 'Community', text: 'SAP Design Hub India and the events I help run.' },
   { to: '/reflections', title: 'Reflections', text: 'Essays on leadership, craft and AI.' },
 ]
@@ -11,7 +11,7 @@ const items = [
 export default function LearnPage() {
   return (
     <>
-      <PageHeader label="Learn" title="For designers who are growing." subtitle="Mentoring, practices, community and writing. These are always here, alongside the leadership work." />
+      <PageHeader label="Learn" title="For designers who are growing." subtitle="Mentoring, practices, community and writing." />
       <section className="section-y hairline-top">
         <div className="container-site">
           <ul className="grid md:grid-cols-2 gap-4">

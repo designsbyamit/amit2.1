@@ -58,7 +58,7 @@ export default function LeadershipCasePage() {
             </section>
 
             <section aria-labelledby="strands-h">
-              <h2 id="strands-h" className="text-overline text-ink-3 mb-6">People, craft and business in one piece of work</h2>
+              <h2 id="strands-h" className="text-overline text-ink-3 mb-6">People, craft and business</h2>
               <div className="grid md:grid-cols-3 gap-4">
                 {([['People', c.strands.people], ['Craft', c.strands.craft], ['Business', c.strands.business]] as const).map(([k, v]) => (
                   <div key={k} className="card !p-6"><p className="text-label text-signal-ink mb-2">{k}</p><p className="text-body text-ink-2">{v}</p></div>

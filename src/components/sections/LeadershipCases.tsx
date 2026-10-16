@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom'
 import { cases } from '../../data/cases'
 import SectionHeader from '../ds/SectionHeader'
 
-/** Hub of leadership cases: the evidence-first view of how I lead. */
+/** Hub of leadership cases: the leadership cases hub. */
 export default function LeadershipCases({ limit }: { limit?: number }) {
   const list = limit ? cases.slice(0, limit) : cases
   return (
     <section className="section-y hairline-top" id="cases">
       <div className="container-site">
-        <SectionHeader label="Leadership cases" title="What changed, and how." intro="Each case says what we achieved and ends with a practice you can adapt." />
+        <SectionHeader label="Leadership cases" title="What changed, and how." intro="What the team achieved, and a practice you can adapt from each." />
         <ul className="grid gap-4">
           {list.map(c => (
             <li key={c.slug}>

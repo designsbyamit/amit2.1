@@ -28,7 +28,7 @@ export default function Home() {
       {/* 1. Hero */}
       <Hero />
 
-      {/* 2. Four things to check, then the leadership cases */}
+      {/* 2. Leadership cases */}
       <LeadershipCases />
 
       {/* 3. Scale — grid blocks */}
