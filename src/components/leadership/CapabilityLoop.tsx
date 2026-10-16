@@ -26,7 +26,7 @@ export default function CapabilityLoop() {
         <text x="480" y="230" textAnchor="middle" fontSize="20" fontWeight="500" fill="currentColor">People grow through real work</text>
         <text x="480" y="252" textAnchor="middle" fontSize="16" fill="currentColor" fillOpacity="0.65">coaching &middot; regular reviews &middot; owning their thinking and presentations</text>
       </svg></div>
-      <figcaption className="text-label text-ink-3 mt-4">Diagram of the approach as described; not project data.</figcaption>
+      <figcaption className="text-label text-ink-3 mt-4">How the approach works.</figcaption>
     </figure>
   )
 }

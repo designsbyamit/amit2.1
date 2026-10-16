@@ -3,8 +3,8 @@ import SectionHeader from '../ds/SectionHeader'
 
 const items = [
   { n: '01', title: 'Distinctive thinking', text: 'Why adopting AI tools is not the same as building AI capability, and what a leader does about it.', to: '/leadership/cases/ai-experimentation-to-capability', cta: 'Read the case' },
-  { n: '02', title: 'Structured practices', text: 'Methods other leaders can adapt, each marked field-tested, adapted from experience or experimental.', to: '/resources', cta: 'See the practices' },
-  { n: '03', title: 'Evidence, not adjectives', text: 'Each case separates what I did from what the team did, and says where the evidence is still missing.', to: '/leadership', cta: 'See the cases' },
+  { n: '02', title: 'Structured practices', text: 'Methods other leaders can adapt, each one drawn from work I have actually led.', to: '/resources', cta: 'See the practices' },
+  { n: '03', title: 'Outcomes, not adjectives', text: 'Each case states what changed, in numbers where they exist, and what the team achieved together.', to: '/leadership', cta: 'See the cases' },
   { n: '04', title: 'People, craft and business together', text: 'One piece of work shows all three: designers who grew, design that was reviewed, and a use for it in the business.', to: '/leadership/cases/ai-experimentation-to-capability', cta: 'See it in one case' },
 ]
 

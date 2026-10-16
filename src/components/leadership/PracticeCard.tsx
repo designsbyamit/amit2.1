@@ -1,5 +1,4 @@
 import type { Practice } from '../../data/cases'
-import { StatusChip } from './EvidenceChip'
 
 /** A reusable method another leader can adapt: problem, when, steps, signals, failure modes, status. */
 export default function PracticeCard({ practice }: { practice: Practice }) {
@@ -8,7 +7,6 @@ export default function PracticeCard({ practice }: { practice: Practice }) {
     <section aria-labelledby="practice-h" className="rounded-3 p-8 md:p-10" style={{ background: 'var(--field-graphite)', color: '#ECEDEF' }}>
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <h2 id="practice-h" className="text-overline" style={{ color: '#C8F55A' }}>Reusable practice</h2>
-        <StatusChip status={p.status} onDark />
       </div>
       <p className="text-heading max-w-[26ch] mb-8" style={{ color: '#fff', fontWeight: 300 }}>{p.title}</p>
       <dl className="grid md:grid-cols-2 gap-x-10 gap-y-6 mb-10">
@@ -35,7 +33,6 @@ export default function PracticeCard({ practice }: { practice: Practice }) {
           <ul className="flex flex-col gap-2">{p.failureModes.map((x, i) => <li key={i} className="text-body flex gap-2"><span aria-hidden="true" className="opacity-60">&times;</span>{x}</li>)}</ul>
         </div>
       </div>
-      <p className="text-label opacity-60 mt-8">{p.note}</p>
     </section>
   )
 }

@@ -3,10 +3,9 @@ import { motion } from 'framer-motion'
 import { cases, caseBySlug } from '../data/cases'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import RevealText from '../components/ui/RevealText'
-import ClaimLedger from '../components/leadership/ClaimLedger'
+import OutcomesLedger from '../components/leadership/OutcomesLedger'
 import PracticeCard from '../components/leadership/PracticeCard'
 import CapabilityLoop from '../components/leadership/CapabilityLoop'
-import { StatusChip } from '../components/leadership/EvidenceChip'
 
 export default function LeadershipCasePage() {
   const { slug } = useParams()
@@ -67,15 +66,13 @@ export default function LeadershipCasePage() {
               </div>
             </section>
 
-            <ClaimLedger rows={c.ledger} gaps={c.gaps} />
+            <OutcomesLedger rows={c.outcomes} />
+
 
             <PracticeCard practice={c.practice} />
 
             <section aria-labelledby="next-h">
-              <div className="flex flex-wrap items-center gap-3 mb-5">
-                <h2 id="next-h" className="text-overline text-ink-3">{c.next.title}</h2>
-                <StatusChip status={c.next.status} />
-              </div>
+              <h2 id="next-h" className="text-overline text-ink-3 mb-5">{c.next.title}</h2>
               <ol className="flex flex-col gap-3">
                 {c.next.steps.map((s, i) => (
                   <li key={i} className="flex gap-4"><span className="text-label text-signal-ink pt-1 flex-none">{String(i + 1).padStart(2, '0')}</span><p className="text-body text-ink-2">{s}</p></li>

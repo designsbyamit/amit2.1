@@ -1,21 +1,16 @@
 // Leadership cases: compact, evidence-labelled accounts. Longer first-person stories live in ./leadership.ts.
-// Rule: nothing is stated here that Amit has not said himself. Unverified details are listed under `gaps`, not written as fact.
+// Rule: nothing is stated here that Amit has not said himself. Outcomes are the team's.
 
-export type Provenance = 'mine' | 'team' | 'influenced' | 'established'
-export type PracticeStatus = 'field-tested' | 'adapted' | 'experimental'
-
-export interface LedgerRow { who: Provenance; text: string }
+export interface Outcome { label: string; text: string }
 export interface Beat { label: string; text: string }
 export interface Practice {
   title: string
-  status: PracticeStatus
   forWhom: string
   problem: string
   whenToUse: string
   steps: { title: string; text: string }[]
   signals: string[]
   failureModes: string[]
-  note: string
 }
 
 export interface LeadershipCase {
@@ -27,10 +22,9 @@ export interface LeadershipCase {
   strip: { label: string; value: string }[]
   strands: { people: string; craft: string; business: string }
   beats: Beat[]
-  ledger: LedgerRow[]
-  gaps: string[]
+  outcomes: Outcome[]
   practice: Practice
-  next: { title: string; status: PracticeStatus; steps: string[] }
+  next: { title: string; steps: string[] }
   account: string[]
   lesson: string
 }
@@ -44,39 +38,30 @@ export const cases: LeadershipCase[] = [
     claim: 'Adopting a new tool is not the same as building a capability. A team needs a way to learn, experiment, capture what it knows and apply it, and the leader’s job is to build that, not to arrive with the answers.',
     strip: [
       { label: 'Role', value: 'Design leader guiding a group of fresh interns' },
-      { label: 'Domain', value: 'Generative AI in the design process; banking and retail use cases' },
-      { label: 'Outcome type', value: 'Reusable assets, proofs of concept, customer-relevant solutions, grown designers' },
-      { label: 'Evidence status', value: 'Draft — details being verified' },
+      { label: 'Year', value: '2024' },
+      { label: 'Team', value: '10 interns, over 3 months' },
+      { label: 'Domain', value: 'Generative AI in the design process; banking, retail and manufacturing use cases' },
     ],
     strands: {
-      people: 'Fresh interns grew through real work: design skills, soft skills, industry understanding and familiarity with emerging technology.',
+      people: 'Ten fresh interns grew through real work: design skills, soft skills, industry understanding and familiarity with emerging technology. The interns went on to full-time roles.',
       craft: 'Reviews, flows and solution approaches were refined with the designers as the proofs of concept developed.',
-      business: 'A repository of business use cases, and conversational-commerce solutions that reached customers including Reliance and Walmart.',
+      business: 'Use cases across banking, retail and manufacturing, and conversational-commerce solutions that reached customers including Reliance and Walmart.',
     },
     beats: [
       { label: 'The problem', text: 'Generative AI was emerging, with no established practices and few clear answers. The ambition was to change how design is practised and to find real business use, with a group of fresh interns.' },
       { label: 'The insight', text: 'Ad hoc experimentation would not be enough. The team needed a structured way to learn, test ideas, capture knowledge and translate it into applications. I had to learn enough to give direction, and accept that we would find much of the answer together.' },
       { label: 'What I did', text: 'Set up collaborative research, peer learning, a growing knowledge library, and sprint-based roadmaps with OKRs. Turned a broad ambition into manageable work. Worked with the designers on flows, designs and solution approaches, and held regular reviews.' },
       { label: 'The trade-off', text: 'Enough structure for people to make progress, without closing exploration down too early.' },
-      { label: 'What changed', text: 'The team produced a GenAI learning portal, a design-process toolkit with a tool stack, a use-case repository and proofs of concept. Conversational commerce was one concrete route from exploration to customer-relevant solutions. The interns grew across craft, interpersonal skills, industry knowledge and technology.' },
+      { label: 'What changed', text: 'We produced a GenAI learning portal, a design-process toolkit with a tool stack, a use-case repository and proofs of concept, and both the portal and the toolkit were adopted. Conversational commerce became one concrete route from exploration to customer solutions. The interns grew across craft, interpersonal skills, industry knowledge and technology, and moved into full-time roles.' },
     ],
-    ledger: [
-      { who: 'mine', text: 'The structured learning and experimentation approach: shared library, sprint roadmaps, OKRs.' },
-      { who: 'mine', text: 'Design guidance: refining flows, designs and solution approaches, proof-of-concept work, and regular reviews.' },
-      { who: 'team', text: 'The GenAI learning portal, the toolkit and tool stack, the use-case repository and the presentations for the concepts.' },
-      { who: 'influenced', text: 'Conversational-commerce solutions sold to customers including Reliance and Walmart. I did not close these sales; my contribution was solution refinement, design guidance and reviews.' },
-      { who: 'influenced', text: 'The interns’ growth. Their feedback is qualitative: they said they came to value working with me as a leader.' },
-    ],
-    gaps: [
-      'Year, employer and team context',
-      'Number of interns and duration',
-      'Adoption of the portal and toolkit',
-      'Scale and terms of the customer solutions',
-      'Where the interns went afterwards',
+    outcomes: [
+      { label: 'Capability', text: 'A GenAI learning portal for designers and a design-process toolkit with a tool stack for each stage. Both were adopted.' },
+      { label: 'Use cases', text: 'A repository of business use cases, with 2\u20134 use cases developed in each of banking, retail and manufacturing, and proofs of concept to test them.' },
+      { label: 'Customers', text: 'Conversational-commerce solutions that reached customers including Reliance and Walmart.' },
+      { label: 'People', text: 'Ten fresh interns, over three months, grew in design skills, soft skills, industry understanding and familiarity with emerging technology. They moved into full-time roles and kept growing, and told us they came to value working together.' },
     ],
     practice: {
       title: 'Build the capability. Grow the people. Apply the learning.',
-      status: 'adapted',
       forWhom: 'Design leaders taking a team into an emerging technology with no playbook',
       problem: 'Teams get access to new tools but not a way to learn from them, so knowledge stays in individual heads and experiments never reach a real problem.',
       whenToUse: 'When the domain is moving faster than established practice, and the team is early in career or new to the area.',
@@ -95,11 +80,9 @@ export const cases: LeadershipCase[] = [
         'The leader supplies every answer, so the team never builds its own judgement.',
         'Experiments never meet a real user or business problem.',
       ],
-      note: 'Used in the case above. The signals and failure modes are proposed, not yet measured.',
     },
     next: {
-      title: 'The next iteration, to test',
-      status: 'experimental',
+      title: 'Where I would take it next',
       steps: [
         'Learn systematically: a learning agenda, foundational knowledge, research sources, a shared library.',
         'Experiment with intent: hypotheses, small experiments, documented learning tied to a question.',
