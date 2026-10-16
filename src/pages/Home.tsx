@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { caseStudies } from '../data/work'
 import Hero from '../components/sections/Hero'
 import ImpactSnapshot from '../components/sections/ImpactSnapshot'
-import WhyMe from '../components/sections/WhyMe'
 import LeadershipCases from '../components/sections/LeadershipCases'
 import CaseRow from '../components/ds/CaseRow'
 import SectionHeader from '../components/ds/SectionHeader'
@@ -30,7 +29,6 @@ export default function Home() {
       <Hero />
 
       {/* 2. Four things to check, then the leadership cases */}
-      <WhyMe />
       <LeadershipCases />
 
       {/* 3. Scale — grid blocks */}
