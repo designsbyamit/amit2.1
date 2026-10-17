@@ -50,7 +50,7 @@ const allCaseStudies: CaseStudy[] = [
     tags: ['Service Design', 'OmniChannel', 'Airlines', 'Revenue Growth'],
     distinct: {
       title: 'Led end to end, on an aggressive timeline.',
-      body: 'I led the whole mobile experience: an 8–9 person team for almost a year. The job covered planning the work, running the sprints and working day to day with product managers and the client, to timelines that left little slack.',
+      body: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year. The job covered planning the work, running the sprints and working day to day with product managers and the client, to timelines that left little slack.',
     },
     challenge: 'Leading airline in the Middle East, brand value $500M in 2022, 95+ destinations across four continents. Target: 100M tourists/year by 2030. Digital team was structured around functional owners — each building independently — producing an incoherent whole. The mandate: grow digital bookings from a $2M channel to a $100M revenue stream.',
     approach: 'Reframed the engagement as a service architecture problem, not a UI problem. Led experience strategy across 11+ designers in a modular pod structure where each pod owned a journey node. Research happened in airport lounges and stakeholder sessions — because the friction that mattered most was physical before it was digital.',
@@ -86,6 +86,11 @@ const allCaseStudies: CaseStudy[] = [
         image: `${B}images/case-studies/saudia-03.png`,
       },
       {
+        label: 'Leading the programme',
+        heading: 'Planning, sprints and people, on an aggressive timeline',
+        body: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8\u20139 person team for almost a year. That meant planning the work, running the three-week sprints, and working day to day with product managers and the client, to timelines that left little slack. The pod structure stayed the same while the people did not: designers joined and left throughout, and each newcomer had to be brought up to speed. Skilling people up was a challenge in its own right.',
+      },
+      {
         label: 'User Research',
         heading: 'Unveiling users\' pain points — a deep dive',
         body: 'A compact view of user-journey mapping across three key flows. Research conducted at airport lounges surfaced friction that no analytics dashboard could — the most consequential UX insights came from watching passengers navigate check-in desks, not from session recordings.',
@@ -115,7 +120,7 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Impact',
         heading: '92% engagement boost',
-        body: '92% engagement boost including 50× growth in ancillary sales — which had been structurally invisible in the previous architecture. Moving add-ons to the right moment in the journey, with the right framing, was a design decision that translated directly into revenue. No new features. No new capability. The same content, in the right place, at the right time.',
+        body: '92% engagement boost including 50× growth in ancillary sales, measured after the final release, at the end of 8–9 months of work — which had been structurally invisible in the previous architecture. Moving add-ons to the right moment in the journey, with the right framing, was a design decision that translated directly into revenue. No new features. No new capability. The same content, in the right place, at the right time.',
         images: [
           `${B}images/case-studies/saudia-12.png`,
           `${B}images/case-studies/saudia-13.png`,
@@ -128,6 +133,7 @@ const allCaseStudies: CaseStudy[] = [
     highlights: [
       'Framing the engagement as service ecosystem design — not UI redesign — changed what stakeholders requested. They stopped asking for features and started asking for journeys.',
       'Research at airport lounges surfaced friction no analytics could. The most consequential insights came from watching passengers navigate check-in desks.',
+      'Leading at this pace meant keeping a pod structure steady while the people in it changed: joiners, leavers and constant skilling up.',
       'The 50× increase in ancillary sales came from no new functionality — only from repositioning existing content at the right moment in the journey.',
     ],
     testimonial: {
@@ -218,7 +224,7 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Background',
         heading: 'Simplifying employee interactions',
-        body: '"Engaze" streamlines employee interactions, eliminating friction and offering a more human touch. The challenge was not to replace an existing chatbot with something prettier — it was to demonstrate why a principle-first design approach outperforms a flow-based engineering approach in a domain where edge cases outnumber happy paths.',
+        body: '"Engaze" streamlines employee interactions, eliminating friction and offering a more human touch. This is the case for conversation design: the team researched how to build a persona for a conversational assistant before writing dialogs. The challenge was not to replace an existing chatbot with something prettier — it was to demonstrate why a principle-first design approach outperforms a flow-based engineering approach in a domain where edge cases outnumber happy paths.',
         image: `${B}images/case-studies/engaze-01.png`,
       },
       {
@@ -312,6 +318,11 @@ const allCaseStudies: CaseStudy[] = [
         image: `${B}images/case-studies/dnetworx-01.png`,
       },
       {
+        label: 'What was at stake',
+        heading: 'Complex technology, with the customer\'s infrastructure on the line',
+        body: 'Customers use dNetWorX to modify and upgrade network services with zero downtime. What it changes lands on their own infrastructure: network devices such as routers and switches that must stay up around the clock. A massive project on complex technology, so the design carried operational weight, not only usability weight. Changes are made in separate tenants, so there is always a backup to return to.',
+      },
+      {
         label: 'Design Process',
         heading: 'Agile, adaptable and organic approach',
         body: 'Weekly sprint structure with each sprint dedicated to a specific module. 2 checkpoint reviews + 2 co-working sessions per week kept stakeholders aligned without slowing design. The approach built trust with change-resistant technical stakeholders — weekly reviews where they could see decisions being made, not just outcomes being presented.',
@@ -347,6 +358,7 @@ const allCaseStudies: CaseStudy[] = [
     ],
     highlights: [
       'Progressive disclosure worked because it respected what expert users already knew. The framing was never "simpler" — it was "faster to the thing you need."',
+      'When a change touches live infrastructure, safety is part of the design: changes are made in separate tenants, so a backup is always there.',
       'Trust in a change-resistant environment is earned through transparency. Weekly sprint reviews built confidence before any final decisions were required.',
       'The $5M saving framed design work in operational impact terms — not UX quality. Design that cannot be measured in business outcomes is decoration.',
     ],

@@ -125,7 +125,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Patterns */}
       <Section id="patterns" tone="raised">
-        <SectionHeader label="05 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined so every product team applies them the same way." />
+        <SectionHeader label="05 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined by how each behaves, so every product team applies them the same way." />
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
           {S.patternGroups.map((g, i) => (
             <div key={g.title} className="card">
@@ -145,7 +145,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Experience */}
       <Section id="experience">
-        <SectionHeader label="06 · The experience" title="One search, six journeys." intro="Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
+        <SectionHeader label="06 · The experience" title="One search, specified down to the state." intro="The component is specified, not sketched: anatomy and spacing, states, and behaviour from the first focus to Enter. Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.flows.map(f => (
             <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" aria-pressed={f.id === active} onClick={() => setActive(f.id)}>
@@ -174,7 +174,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Outcome */}
       <Section id="outcome" tone="raised">
-        <SectionHeader label="07 · Outcome" title="From fragmented search to a suite-wide standard." intro={cs.outcome} />
+        <SectionHeader label="07 · Outcome" title="From fragmented search to one shared component." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>
