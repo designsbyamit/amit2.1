@@ -10,7 +10,7 @@ const microStories = [
     body: 'In conversational AI, dialog flows only cover the happy path. The generative layer handles everything else. We recognised early that writing more flows was the wrong answer — instead, we defined five principles (trust, guidance, discoverability, cognitive simplicity, continuity) that taught the system how to behave in any situation. Those five principles outlasted every screen we designed.',
   },
   {
-    label: 'Service Design · Saudia',
+    label: 'Service Design · Airline',
     heading: 'The booking app was not the product. The passenger journey was.',
     body: 'When a business wants to grow digital revenue 50-fold, every stakeholder sees a booking flow problem. Reframing it as a service ecosystem problem changed what we built. The pod structure that delivered the work was itself a design decision: when designers own journeys instead of features, they design for coherence rather than correctness.',
   },

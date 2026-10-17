@@ -23,8 +23,8 @@ export const thumbs: Record<string, Thumb> = {
   },
   'airline-app': {
     from: '#FBF1E1', to: '#EDD5AE',
-    hero: { src: I('saudia-13.png'), size: [2472, 1720], crop: [0.015, 0.03, 0.6, 0.46] },
-    detail: { src: I('saudia-16.png'), size: [4060, 2276], crop: [0.478, 0.035, 0.235, 0.275] },
+    hero: { src: I('airline-13.png'), size: [2472, 1720], crop: [0.015, 0.03, 0.6, 0.46] },
+    detail: { src: I('airline-16.png'), size: [4060, 2276], crop: [0.478, 0.035, 0.235, 0.275] },
   },
   'data-ai': {
     from: '#FDEFF2', to: '#F4C9D3',

@@ -40,9 +40,9 @@ const allCaseStudies: CaseStudy[] = [
   {
     id: 'airline-app',
     number: '01',
-    category: 'Saudia Airlines · Service Design · OmniChannel · B2C',
+    category: 'Airline App · Service Design · OmniChannel · B2C',
     title: 'OmniChannel Travel Experience — Leading Airlines',
-    shortTitle: 'Saudia Airlines',
+    shortTitle: 'Airline App',
     tagline: 'A service ecosystem, not an app. I led the mobile experience for a carrier serving 30M+ guests a year: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.',
     role: 'App Design Lead',
     timeline: 'Jan 2023',
@@ -55,7 +55,7 @@ const allCaseStudies: CaseStudy[] = [
     challenge: 'Leading airline in the Middle East, brand value $500M in 2022, 95+ destinations across four continents. Target: 100M tourists/year by 2030. Digital team was structured around functional owners — each building independently — producing an incoherent whole. The mandate: grow digital bookings from a $2M channel to a $100M revenue stream.',
     approach: 'Reframed the engagement as a service architecture problem, not a UI problem. Led experience strategy across 11+ designers in a modular pod structure where each pod owned a journey node. Research happened in airport lounges and stakeholder sessions — because the friction that mattered most was physical before it was digital.',
     outcome: '92% engagement boost. 50× increase in ancillary sales — a category previously buried so deep in the booking flow that most users never encountered it. The pod delivery model became the standard framework for large-scale design programmes at Accenture ME.',
-    image: `${B}images/case-studies/saudia-hero.png`,
+    image: `${B}images/case-studies/airline-hero.png`,
     stats: [
       { label: 'Engagement Boost', value: '92%' },
       { label: 'Add-on Sales', value: '50×' },
@@ -65,13 +65,13 @@ const allCaseStudies: CaseStudy[] = [
         label: 'Ambitions',
         heading: 'Ambitions to soar beyond the sky',
         body: 'The airline had ambitions to reach 100 million annual tourists by 2030. Goals: 50× conversion growth, $100M revenue growth through digital channels, optimise support operations with AI. Design direction: Effortlessly Simple & Delightful / Innovation at its Core / Building Trust & Connection.',
-        image: `${B}images/case-studies/saudia-01.png`,
+        image: `${B}images/case-studies/airline-01.png`,
       },
       {
         label: 'Getting Started',
         heading: 'Navigation, inconsistency & fragmented experiences were key struggles',
         body: 'UX Audit surfaced six failure categories: Navigation & Discoverability failures, Fragmented Experience across touchpoints, Poor Information Architecture, Lack of Engagement and ancillary discovery, Brand inconsistency between web and app, and Accessibility failures for a carrier serving millions.',
-        image: `${B}images/case-studies/saudia-02.png`,
+        image: `${B}images/case-studies/airline-02.png`,
         items: [
           { title: 'Navigation & Discoverability', description: 'No consistent model for how passengers moved between journeys — every section had to be relearned.' },
           { title: 'Fragmented experience', description: 'Booking, manage, check-in, and ancillaries each had their own logic, visual language, and user assumptions.' },
@@ -83,7 +83,7 @@ const allCaseStudies: CaseStudy[] = [
         label: 'Design Direction',
         heading: 'Unify, simplify, and modernise the experience',
         body: 'Modular "pod" structure with 11+ designers, each owning a journey node. 3-week collaborative sprints. 6 user archetypes from surveys, lounge interviews, and stakeholder interviews. Design direction unified around three principles: Effortlessly Simple & Delightful, Innovation at its Core, Building Trust & Connection.',
-        image: `${B}images/case-studies/saudia-03.png`,
+        image: `${B}images/case-studies/airline-03.png`,
       },
       {
         label: 'Leading the programme',
@@ -94,16 +94,16 @@ const allCaseStudies: CaseStudy[] = [
         label: 'User Research',
         heading: 'Unveiling users\' pain points — a deep dive',
         body: 'A compact view of user-journey mapping across three key flows. Research conducted at airport lounges surfaced friction that no analytics dashboard could — the most consequential UX insights came from watching passengers navigate check-in desks, not from session recordings.',
-        image: `${B}images/case-studies/saudia-04.png`,
+        image: `${B}images/case-studies/airline-04.png`,
       },
       {
         label: 'Plan & Book',
         heading: 'Plan and book a trip',
         body: 'Key problems in the booking flow: Fragmented planning, search, and booking experience / Information overload on search results / Unclear ancillary services. Idea generation workshops using Crazy 8s and stakeholder co-creation sessions produced the new booking architecture.',
         images: [
-          `${B}images/case-studies/saudia-05.png`,
-          `${B}images/case-studies/saudia-06.png`,
-          `${B}images/case-studies/saudia-07.jpg`,
+          `${B}images/case-studies/airline-05.png`,
+          `${B}images/case-studies/airline-06.png`,
+          `${B}images/case-studies/airline-07.jpg`,
         ],
       },
       {
@@ -111,10 +111,10 @@ const allCaseStudies: CaseStudy[] = [
         heading: 'Manage bookings and check-in',
         body: 'Users\' pain points in the manage flow: Onboarding with existing trips, unintuitive booking management, cumbersome post-booking ancillaries, and check-in discoverability. Each pain point addressed systematically through the pod structure.',
         images: [
-          `${B}images/case-studies/saudia-08.jpg`,
-          `${B}images/case-studies/saudia-09.jpg`,
-          `${B}images/case-studies/saudia-10.png`,
-          `${B}images/case-studies/saudia-11.png`,
+          `${B}images/case-studies/airline-08.jpg`,
+          `${B}images/case-studies/airline-09.jpg`,
+          `${B}images/case-studies/airline-10.png`,
+          `${B}images/case-studies/airline-11.png`,
         ],
       },
       {
@@ -122,11 +122,11 @@ const allCaseStudies: CaseStudy[] = [
         heading: '92% engagement boost',
         body: '92% engagement boost including 50× growth in ancillary sales, measured after the final release, at the end of 8–9 months of work — which had been structurally invisible in the previous architecture. Moving add-ons to the right moment in the journey, with the right framing, was a design decision that translated directly into revenue. No new features. No new capability. The same content, in the right place, at the right time.',
         images: [
-          `${B}images/case-studies/saudia-12.png`,
-          `${B}images/case-studies/saudia-13.png`,
-          `${B}images/case-studies/saudia-14.png`,
-          `${B}images/case-studies/saudia-15.png`,
-          `${B}images/case-studies/saudia-16.png`,
+          `${B}images/case-studies/airline-12.png`,
+          `${B}images/case-studies/airline-13.png`,
+          `${B}images/case-studies/airline-14.png`,
+          `${B}images/case-studies/airline-15.png`,
+          `${B}images/case-studies/airline-16.png`,
         ],
       },
     ],
@@ -139,7 +139,7 @@ const allCaseStudies: CaseStudy[] = [
     testimonial: {
       quote: 'As a leader, Amit focused on developing skills and expanding the competencies of his team. His vast knowledge of UI/UX never left questions unanswered. Amit championed design thinking, putting in the effort to get to know everyone and embed himself into the team culture.',
       name: 'Stepan G.',
-      title: 'Design Direction for Saudia, Accenture ME',
+      title: 'Design Direction for the airline programme, Accenture ME',
     },
   },
   {

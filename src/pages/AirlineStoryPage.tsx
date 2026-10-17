@@ -3,7 +3,7 @@ import Breadcrumb from '../components/ds/Breadcrumb'
 import SectionHeader from '../components/ds/SectionHeader'
 import Distinct from '../components/case/Distinct'
 import { caseStudies } from '../data/work'
-import { saudia as S } from '../data/saudia'
+import { airline as S } from '../data/airline'
 
 const cs = caseStudies.find(c => c.id === 'airline-app')!
 
@@ -28,12 +28,12 @@ const Stat = ({ v, k }: { v: string; k: string }) => (
   <div className="card"><dd className="text-display-l text-white">{v}</dd><dt className="text-body-sm text-ink-3 mt-2">{k}</dt></div>
 )
 
-export default function SaudiaStoryPage() {
+export default function AirlineStoryPage() {
   return (
     <div className="bg-surface-0 min-h-screen">
       <header className="pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="container-site relative">
-          <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'Saudia Airlines' }]} />
+          <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'Airline App' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[62ch]">A service ecosystem, not an app. I led the mobile experience: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.</p>
@@ -133,7 +133,7 @@ export default function SaudiaStoryPage() {
         </div>
         <div className="mt-16 hairline-top pt-6">
           <p className="text-overline text-ink-3">Sources</p>
-          <ul className="mt-3 space-y-1">{S.sources.map(([t, u]) => <li key={u}><a href={u} target="_blank" rel="noopener noreferrer" className="text-body-sm text-ink-2 underline">{t}</a></li>)}</ul>
+          <ul className="mt-3 space-y-1">{S.sources.map(t => <li key={t} className="text-body-sm text-ink-2">{t}</li>)}</ul>
         </div>
         <div className="mt-16 flex flex-wrap gap-3 items-end justify-between">
           <a href="/craft" className="btn btn-secondary">All case studies</a>
