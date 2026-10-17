@@ -45,22 +45,83 @@ export default function SAPAgenticStoryPage() {
         </div>
       </header>
 
-      <Section id="vision">
-        <SectionHeader label="01 · Vision and impact" title={S.vision.title} intro={S.vision.intro} />
-        <div className="grid md:grid-cols-3 gap-4">
-          {S.vision.cards.map(c => (
-            <div key={c.title} className="card">
-              <p className="text-overline text-ink-3">{c.label}</p>
-              <p className="text-title text-white mt-3">{c.title}</p>
-              <p className="text-body text-ink-2 mt-4">{c.body}</p>
-            </div>
+      <Section id="framing">
+        <SectionHeader label="01 · The business problem" title={S.framing.title} intro={S.framing.intro} />
+        <div className="flex flex-wrap items-end gap-x-8 gap-y-4">
+          <p className="text-display-l text-white leading-none">{S.framing.from}</p>
+          <svg width="56" height="24" viewBox="0 0 56 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-ink-3 mb-3" aria-hidden="true"><path d="M2 12h50M42 4l10 8-10 8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          <p className="text-display-l text-white leading-none">{S.framing.to}</p>
+        </div>
+        <p className="text-label text-ink-3 mt-5">{S.framing.note}</p>
+      </Section>
+
+      <Section id="role" tone="raised">
+        <SectionHeader label="02 · My role" title={S.role.title} intro={S.role.intro} />
+        <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {S.role.items.map((it, i) => (
+            <li key={it.title} className="card">
+              <p className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</p>
+              <p className="text-title text-white mt-2">{it.title}</p>
+              <p className="text-body text-ink-2 mt-4">{it.body}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section id="agent">
+        <SectionHeader label="03 · The agent" title={S.agent.title} intro={S.agent.intro} />
+        <dl className="max-w-4xl">
+          {S.agent.rows.map(([k, v]) => (
+            <div key={k} className="grid sm:grid-cols-[160px_1fr] gap-2 sm:gap-8 py-5 hairline-top"><dt className="text-overline text-ink-3 pt-1">{k}</dt><dd className="text-body-lg text-ink-2">{v}</dd></div>
+          ))}
+        </dl>
+      </Section>
+
+      <Section id="collaboration" tone="raised">
+        <SectionHeader label="04 · Human and agent" title={S.collab.title} intro={S.collab.intro} />
+        <div className="overflow-x-auto" tabIndex={0} aria-label="Table, scrolls sideways on small screens">
+          <table className="w-full min-w-[720px] text-left border-collapse">
+            <thead><tr className="text-overline text-ink-3"><th className="py-3 pr-6 font-normal w-[22%]">Step</th><th className="py-3 pr-6 font-normal w-[39%]">The agent</th><th className="py-3 font-normal">The person</th></tr></thead>
+            <tbody>
+              {S.collab.steps.map(([step, agent, person], i) => (
+                <tr key={step} className="hairline-top align-top">
+                  <td className="py-5 pr-6"><span className="text-label text-ink-3 mr-3">{String(i + 1).padStart(2, '0')}</span><span className="text-body text-white">{step}</span></td>
+                  <td className="py-5 pr-6 text-body text-ink-2">{agent}</td>
+                  <td className="py-5 text-body text-ink-2">{person}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <h3 className="text-heading text-white mt-20 max-w-3xl">{S.collab.measuresTitle}</h3>
+        <div className="grid md:grid-cols-2 gap-4 mt-8">
+          {S.collab.measures.map(m => (
+            <div key={m.title} className="card"><p className="text-title text-white">{m.title}</p><p className="text-body text-ink-2 mt-4">{m.body}</p></div>
           ))}
         </div>
-        <p className="text-body-lg text-ink-2 mt-12 max-w-[62ch]">{S.vision.why}</p>
+      </Section>
+
+      <Section id="architecture">
+        <SectionHeader label="05 · The architecture" title={S.architecture.title} intro={S.architecture.intro} />
+        <ol className="grid md:grid-cols-2 gap-x-8 gap-y-14">
+          {S.architecture.stages.map(st => {
+            const sh = shotOf(st.shot)
+            return (
+              <li key={st.n}>
+                <button type="button" onClick={() => setZoom(sh)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen: ${sh.name}`}>
+                  <img src={sh.img} alt={sh.name} width={1440} height={899} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
+                </button>
+                <p className="text-label text-ink-3 mt-5">{st.n}</p>
+                <h3 className="text-heading text-white mt-1">{st.title}</h3>
+                <p className="text-body text-ink-2 mt-3 max-w-[48ch]">{st.body}</p>
+              </li>
+            )
+          })}
+        </ol>
       </Section>
 
       <Section id="problem">
-        <SectionHeader label="02 · The problem" title="Every order confirmation is a small investigation." intro={cs.challenge} />
+        <SectionHeader label="06 · The use case" title="Every order confirmation is a small investigation." intro={cs.challenge} />
         <div className="grid md:grid-cols-3 gap-4">
           {S.problem.map((p, i) => (
             <div key={p.title} className="card">
@@ -73,7 +134,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="approach" tone="raised">
-        <SectionHeader label="03 · The approach" title="The agent does the reading. People make the decisions." intro={cs.approach} />
+        <SectionHeader label="07 · Design principles" title="The agent does the reading. People make the decisions." intro={cs.approach} />
         <ol className="space-y-14">
           {S.principles.map((p, i) => {
             const s = shotOf(p.shot)
@@ -94,7 +155,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="personas">
-        <SectionHeader label="04 · Personas" title="Three people, three kinds of judgement." intro="Each role sees only the decisions it is qualified to make." />
+        <SectionHeader label="08 · Personas" title="Three people, three kinds of judgement." intro="Each role sees only the decisions it is qualified to make." />
         <div className="grid md:grid-cols-3 gap-4">
           {S.personas.map(p => (
             <article key={p.id} className="card !p-0 overflow-hidden">
@@ -112,7 +173,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="flow" tone="raised">
-        <SectionHeader label="05 · The flow" title="From the supplier's email to approve and close." intro="One agent-led flow, with two people reviewing in parallel." />
+        <SectionHeader label="09 · The flow" title="From the supplier's email to approve and close." intro="One agent-led flow, with two people reviewing in parallel." />
         <div className="rounded-xl overflow-hidden border bg-white" style={{ borderColor: 'var(--line-2)' }}>
           <img src={S.flowImg} alt="System flow: order confirmation received via email, data extracted and corrected if required, validation marked complete, discrepancy view generated and routed to two parallel reviews, sent back to the supplier if a revision is required, then approved and closed." width={1720} height={500} className="w-full h-auto block" loading="lazy" decoding="async" />
         </div>
@@ -124,7 +185,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="experience">
-        <SectionHeader label="06 · The experience" title="Four journeys, one assistant." intro="Built with native enterprise UI components. Pick a journey and select any screen to enlarge it." />
+        <SectionHeader label="10 · The experience" title="Four journeys, one assistant." intro="Built with native enterprise UI components. Pick a journey and select any screen to enlarge it." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.journeys.map(j => (
             <button key={j.id} type="button" role="tab" aria-selected={j.id === active} className="chip" aria-pressed={j.id === active} onClick={() => setActive(j.id)}>
@@ -149,7 +210,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="outcome" tone="raised">
-        <SectionHeader label="07 · Outcome" title="A complete path, and a pattern that travels." intro={cs.outcome} />
+        <SectionHeader label="11 · Outcome" title="Built to take weeks down to hours." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>

@@ -15,15 +15,66 @@ export const sapAgentic = {
   pillars: ['Agent reads and compares', 'People decide', 'Every step logged'],
   flowImg: `${dir}system-flow.svg`,
 
-  vision: {
-    title: 'Not one screen set. A pattern an agent can repeat.',
-    intro: 'The brief was order confirmations. The opportunity was larger. Wherever an agent reads a document from outside the company, compares it with what the business expects and needs a person to decide, the same experience applies. I set out to solve that pattern, and the order confirmation became its first complete case.',
-    cards: [
-      { label: 'With customers', title: 'Co-created, not handed over', body: 'We worked with customers as design partners rather than stakeholders to be briefed, which kept the work grounded in how their procurement teams actually operate.' },
-      { label: 'Beyond one use case', title: 'A white-labelled solution across SCM', body: 'I looked past a single customer and a single document at how the experience sits inside supply chain management, and designed it as a white-labelled solution rather than a one-off.' },
-      { label: 'The pattern', title: 'Five moves that carry over', body: 'The agent extracts and a person confirms. Every difference shows its reasoning. Each decision routes to the role that can judge it. Every page names the next action. Every step is logged.' },
+  framing: {
+    title: 'A design problem, not an automation project.',
+    intro: 'Processing a supplier order confirmation took weeks. The goal was a few hours. The obvious reading was automation: read the PDF, update the system. I framed it as a design problem instead: what an agent should take on, what people should keep, and how the two work together so that hours is realistic. Treating it as a pattern, a document in, a comparison, a decision, meant the answer would hold for the next customer and the next document too.',
+    from: 'Weeks',
+    to: 'A few hours',
+    note: 'Order confirmation processing: where it started, and the goal.',
+  },
+
+  role: {
+    title: 'What I led.',
+    intro: 'On the surface this is a short flow with a table in it. What made it work was a set of decisions that had to be made before any screen could be right, and I led them.',
+    items: [
+      { title: 'Framed the problem', body: 'Turned a processing-time problem into a design pattern that could be solved once and reused.' },
+      { title: 'Defined the agent', body: 'Set what the agent does, what it never does, and exactly where it hands over to a person.' },
+      { title: 'Set the human-agent contract', body: 'Human in the loop from the start, with the agent\u2019s autonomy designed to increase.' },
+      { title: 'Shaped the architecture', body: 'Worklist, object page, processing and permissions as one structure that every role shares.' },
+      { title: 'Defined how risk is measured', body: 'Extraction confidence and deviation risk as the measures that decide when a person steps in.' },
+      { title: 'Worked with customers', body: 'Co-created with customers as a white-labelled solution across supply chain management.' },
     ],
-    why: 'A bespoke screen set serves one customer once. A reusable pattern serves every customer with the same problem: a document in, a comparison, a decision. That is the difference between a delivered project and a white-labelled solution, and it is why the work started from the pattern.',
+  },
+
+  agent: {
+    title: 'The agent, defined.',
+    intro: 'An agent is a promise about what it will and will not do. Defining it precisely is what let every screen, role and permission follow from it.',
+    rows: [
+      ['Job', 'Read each supplier order confirmation, compare it with the purchase order and prepare every decision for a person.'],
+      ['Inputs', 'The supplier\u2019s email and PDF, in the supplier\u2019s own layout and often in German, and the purchase order in the ERP system.'],
+      ['Actions', 'Extracts the data with a confidence score. Finds every difference from the purchase order and gives each a severity and a plain-language reason. Routes each one to the right role. Drafts the email to the supplier. Logs everything as the AI Agent.'],
+      ['Never', 'Accepts or rejects a deviation, confirms its own extraction, or answers the supplier without the buyer.'],
+      ['Hands over to', 'Procurement operations for validation, the buyer for commercial deviations, the goods recipient for quantity and delivery.'],
+    ] as [string, string][],
+  },
+
+  collab: {
+    title: 'Human in the loop, with autonomy designed to grow.',
+    intro: 'Keeping a person in the loop is where the design starts, not where it ends. Each step a person confirms is also a signal of how far the agent can be trusted, and the experience is built so the agent can take on more over time and the minutes people spend on each order keep falling.',
+    steps: [
+      ['Confirmation arrives', 'Picks up the supplier\u2019s email and PDF.', 'No action needed.'],
+      ['Data extracted', 'Extracts the data and scores its own confidence.', 'Procurement operations checks it against the PDF and corrects.'],
+      ['Validation complete', 'Waits.', 'Operations confirms, which starts the routing.'],
+      ['Discrepancies routed', 'Compares with the purchase order, rates severity, explains each difference and routes it.', 'Buyer and goods recipient each accept or reject their own deviations, in parallel.'],
+      ['Back to the supplier', 'Drafts the email with the discrepancy list attached.', 'The buyer reviews and sends it.'],
+      ['Approve and close', 'Closes the confirmation when nothing is left to resolve.', 'No action needed.'],
+    ] as [string, string, string][],
+    measuresTitle: 'Two measures decide when a person steps in.',
+    measures: [
+      { title: 'Extraction confidence', body: 'How sure the agent is that it read the document correctly. It is shown on the worklist and on every extraction, so the operations manager spends attention where there is doubt.' },
+      { title: 'Order risk and deviation severity', body: 'How much a difference matters. Every deviation carries a severity of High, Medium or Low with the agent\u2019s reasoning, and every order carries a risk rating on the worklist, so people start with what matters most. The metric is probabilistic rather than a fixed rule.' },
+    ],
+  },
+
+  architecture: {
+    title: 'One structure for every role: worklist, object page, processing, permissions.',
+    intro: 'Three personas with different jobs share one assistant. Making that feel simple took a structure that stays the same for everyone and changes only in what each role can see and decide.',
+    stages: [
+      { n: '01', title: 'Worklist', body: 'Where every role starts: the orders waiting for them, with risk, status and discrepancies, so the next action is obvious.', shot: 'buyer-worklist' },
+      { n: '02', title: 'Object page', body: 'One page per order confirmation with Discrepancies, Extraction and Activity: the agent\u2019s reading, its reasoning and the audit trail together.', shot: 'buyer-review' },
+      { n: '03', title: 'Processing', body: 'The actions that move an order forward: validate, accept or reject, share with the supplier, submit. Each one names what happens next.', shot: 'buyer-share' },
+      { n: '04', title: 'Permissions', body: 'Each role sees and decides only what it can judge. Operations validates, buyers decide commercial deviations, goods recipients decide quantity and delivery. Administrators connect the mailbox and ERP and manage users.', shot: 'gr-review' },
+    ],
   },
 
   problem: [
