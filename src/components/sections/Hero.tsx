@@ -19,7 +19,7 @@ function Line({ children, delay = 0 }: { children: React.ReactNode; delay?: numb
 }
 
 const proof = [
-  { value: '300M+', label: 'Users reached' },
+  { value: '16+', label: 'Years in design' },
   { value: '$5M', label: 'Documented savings' },
   { value: '90%', label: 'CSAT where average is 60%' },
 ]

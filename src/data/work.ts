@@ -284,7 +284,7 @@ const allCaseStudies: CaseStudy[] = [
     tags: ['Enterprise UX', 'Telecommunications', 'Self-Serve', 'Operational Design'],
     challenge: '"dNetWorX" helps enterprises modify and upgrade network services with zero downtime. Client: leading CMT company (NDA). Expert users had adapted to years of dysfunction — mistaking workarounds for competence. Every network modification for 70,000+ enterprise customers required multi-team handoffs. The cost: $5M in overhead.',
     approach: 'Weekly sprint structure, each sprint dedicated to a specific module with 2 checkpoint reviews and 2 co-working sessions per week. Progressive disclosure as the core design principle. 4 weeks of deep-dive uncovering navigational challenges, access restrictions, cognitive load, and complex processes.',
-    outcome: '$5M saved through reduction in support tickets, manual intervention hours, and multi-team escalations. Network modifications that required three-team handoffs now completed in a single self-serve flow.',
+    outcome: '$5M saved, a realised figure reported by the client, through reduction in support tickets, manual intervention hours, and multi-team escalations. Network modifications that required three-team handoffs now completed in a single self-serve flow.',
     image: `${B}images/case-studies/dnetworx-hero.png`,
     stats: [
       { label: 'Cost Savings', value: '$5M' },
@@ -318,17 +318,17 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Information Architecture',
         heading: 'Untangling the complex information architecture',
-        body: 'IA decision: dNetWorX entry points on the Vertex Enterprise Center landing page — prominent, with direct CTAs, static links within Pods, and tweaked global navigation. Engineers reached their most common tasks in two actions instead of seven.',
-        image: `${B}images/case-studies/dnetworx-04.png`,
+        body: 'The question was where dNetWorX functions should live so that new users find them, expert users are not annoyed by them, the pattern stays consistent with the Vertex Enterprise Center, and the team can build it. Six placements were explored: a sticky button opening a panel, a product-tools list under the header, the welcome banner, a banner of key functions, recommendations below the banner, and a floating icon. Each was set aside: not consistent with the existing pattern, too prominent for expert users who are not frequent users of the tool, redundant, or hard to build. The answer put the entry points on the landing page with direct calls to action and static links within the pods, and tweaked the global navigation into a mega menu that shows the dNetWorX functions. Engineers reached their most common tasks in two actions instead of seven.',
+        images: [
+          `${B}images/case-studies/dnetworx-04.png`,
+          `${B}images/case-studies/dnetworx-05.png`,
+        ],
       },
       {
         label: 'Impact',
         heading: 'Simple and seamless',
-        body: '$5M saved. Network modifications from 3-team handoffs to single self-serve flow. Key highlights: Design standards established in ambiguous technical environments / Cross-geo stakeholder management / Evangelising design thinking in an engineering-first organisation.',
-        images: [
-          `${B}images/case-studies/dnetworx-05.png`,
-          `${B}images/case-studies/dnetworx-06.png`,
-        ],
+        body: '$5M saved, a realised figure reported by the client, through fewer support tickets, manual intervention hours and multi-team escalations. Network modifications went from three-team handoffs to a single self-serve flow. Changes are made in separate tenants, so there is always a backup to return to. Key highlights: Design standards established in ambiguous technical environments / Cross-geo stakeholder management / Evangelising design thinking in an engineering-first organisation.',
+        image: `${B}images/case-studies/dnetworx-06.png`,
       },
     ],
     highlights: [
@@ -356,14 +356,14 @@ const allCaseStudies: CaseStudy[] = [
     tags: ['AI', 'Search Design', 'Enterprise UX'],
     challenge: 'Each product in the suite had its own legacy search implementation, vocabulary, and assumptions. Introducing AI-powered search meant solving fragmentation and trust simultaneously — making AI-surfaced results trustworthy to enterprise users who are already sceptical of AI.',
     approach: 'Three principles: intent over query, contextual relevance over completeness, transparent reasoning over magical results. The hardest decision: surfacing AI confidence levels to users already sceptical of automation.',
-    outcome: 'Deployed as a foundational suite capability. Because it lives in the design system, one search component, one results layout and a shared pattern library now guide AI-surfaced discovery across products, and every improvement reaches all of them.',
+    outcome: 'Piloted in three products so far, and owned by the design team. Because it lives in the design system, one search component, one results layout and a shared pattern library guide AI-surfaced discovery, and every improvement reaches each product that adopts it.',
     stats: [
-      { label: 'Scope', value: 'Suite-wide' },
-      { label: 'Scale', value: '300M+ users' },
+      { label: 'Scope', value: 'Design system' },
+      { label: 'Adoption', value: '3 pilots' },
     ],
     highlights: [
       'Trust in AI search is a design problem before it is a model problem.',
-      'Designing standards for 300M+ users required principles, not prescriptions.',
+      'A standard that many product teams will adopt needs principles, not prescriptions.',
       'Enterprise users detect evasion faster than uncertainty — and they punish evasion with distrust.',
     ],
   },

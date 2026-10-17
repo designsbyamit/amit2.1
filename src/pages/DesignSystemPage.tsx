@@ -295,7 +295,7 @@ export default function DesignSystemPage() {
           <Quote by="Mentee" role="Product designer">The session changed how I present design decisions to my leadership.</Quote>
         </Spec>
         <Spec name="Stat">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8"><Stat value="300M+" label="Users reached" /><Stat value="$5M" label="Documented savings" /><Stat value="16+" label="Years in design" /></div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8"><Stat value="3" label="Products piloting search" /><Stat value="$5M" label="Documented savings" /><Stat value="16+" label="Years in design" /></div>
         </Spec>
         <Spec name="Keyboard key and table">
           <p className="text-body-sm text-ink-2 mb-6">Press <kbd className="kbd">↓</kbd> then <kbd className="kbd">Enter</kbd>.</p>
