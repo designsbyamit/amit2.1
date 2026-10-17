@@ -6,6 +6,14 @@ import { sapAgentic as S } from '../data/sapAgentic'
 import type { AScreen } from '../data/sapAgentic'
 import SectionHeader from '../components/ds/SectionHeader'
 import Button from '../components/ds/Button'
+import { motion } from 'framer-motion'
+import AsIsFlow from '../components/agentic/AsIsFlow'
+import Architecture from '../components/agentic/Architecture'
+import ContractWorksheet from '../components/agentic/ContractWorksheet'
+import Swimlane from '../components/agentic/Swimlane'
+import RiskVisual from '../components/agentic/RiskVisual'
+import FlowPlayer from '../components/agentic/FlowPlayer'
+import AutonomyLadder from '../components/agentic/AutonomyLadder'
 
 const cs = caseStudies.find(c => c.id === 'sap-agentic')!
 const shotOf = (id: string) => S.journeys.flatMap(j => j.screens).find(s => s.id === id)!
@@ -47,29 +55,54 @@ export default function SAPAgenticStoryPage() {
 
       <Section id="framing">
         <SectionHeader label="01 · The business problem" title={S.framing.title} intro={S.framing.intro} />
-        <div className="flex flex-wrap items-end gap-x-8 gap-y-4">
-          <p className="text-display-l text-white leading-none">{S.framing.from}</p>
-          <svg width="56" height="24" viewBox="0 0 56 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-ink-3 mb-3" aria-hidden="true"><path d="M2 12h50M42 4l10 8-10 8" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          <p className="text-display-l text-white leading-none">{S.framing.to}</p>
-        </div>
-        <p className="text-label text-ink-3 mt-5">{S.framing.note}</p>
+        <AsIsFlow title={S.framing.asisTitle} steps={S.framing.asis} nuances={S.framing.nuances} />
       </Section>
 
-      <Section id="role" tone="raised">
-        <SectionHeader label="02 · My role" title={S.role.title} intro={S.role.intro} />
-        <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <Section id="personas" tone="raised">
+        <SectionHeader label="02 · Personas" title={S.personasTitle} intro="Three roles share one order and see it differently." />
+        <div className="grid md:grid-cols-3 gap-4">
+          {S.personas.map((p, i) => (
+            <motion.article key={p.id} className="card !p-0 overflow-hidden" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
+              <img src={p.img} alt={`${p.name}, ${p.title}`} width={900} height={900} className="w-full aspect-[16/10] object-cover" loading="lazy" decoding="async" />
+              <div className="p-6">
+                <p className="text-overline text-ink-3">{p.role}</p>
+                <p className="text-title text-white mt-2">{p.name}</p>
+                <p className="text-body-sm text-ink-3">{p.title}</p>
+                <p className="text-label text-signal-ink mt-6">Their struggle</p>
+                <p className="text-body text-ink-2 mt-2">{p.struggle}</p>
+                <p className="text-label text-ink-3 mt-6">They own</p>
+                <ul className="mt-2 space-y-2">{p.resp.map(r => <li key={r} className="text-body-sm text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">&mdash;</span>{r}</li>)}</ul>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="role">
+        <SectionHeader label="03 · My role" title={S.role.title} intro={S.role.intro} />
+        <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8">
           {S.role.items.map((it, i) => (
-            <li key={it.title} className="card">
+            <li key={it.title} className="hairline-top py-6">
               <p className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</p>
               <p className="text-title text-white mt-2">{it.title}</p>
-              <p className="text-body text-ink-2 mt-4">{it.body}</p>
+              <p className="text-body text-ink-2 mt-2">{it.body}</p>
             </li>
           ))}
         </ol>
       </Section>
 
-      <Section id="agent">
-        <SectionHeader label="03 · The agent" title={S.agent.title} intro={S.agent.intro} />
+      <Section id="architecture" tone="raised">
+        <SectionHeader label="04 · Flow architecture" title={S.architecture.title} intro={S.architecture.intro} />
+        <Architecture stages={S.architecture.stages.map(st => ({ ...st, img: shotOf(st.shot).img, name: shotOf(st.shot).name }))} onZoom={i => setZoom(shotOf(S.architecture.stages[i].shot))} />
+      </Section>
+
+      <Section id="contract">
+        <SectionHeader label="05 · Human-agent contract" title={S.contract.title} intro={S.contract.intro} />
+        <ContractWorksheet d={S.contract} />
+      </Section>
+
+      <Section id="agent" tone="raised">
+        <SectionHeader label="06 · Agent definition" title={S.agent.title} intro={S.agent.intro} />
         <dl className="max-w-4xl">
           {S.agent.rows.map(([k, v]) => (
             <div key={k} className="grid sm:grid-cols-[160px_1fr] gap-2 sm:gap-8 py-5 hairline-top"><dt className="text-overline text-ink-3 pt-1">{k}</dt><dd className="text-body-lg text-ink-2">{v}</dd></div>
@@ -77,115 +110,61 @@ export default function SAPAgenticStoryPage() {
         </dl>
       </Section>
 
-      <Section id="collaboration" tone="raised">
-        <SectionHeader label="04 · Human and agent" title={S.collab.title} intro={S.collab.intro} />
-        <div className="overflow-x-auto" tabIndex={0} aria-label="Table, scrolls sideways on small screens">
-          <table className="w-full min-w-[720px] text-left border-collapse">
-            <thead><tr className="text-overline text-ink-3"><th className="py-3 pr-6 font-normal w-[22%]">Step</th><th className="py-3 pr-6 font-normal w-[39%]">The agent</th><th className="py-3 font-normal">The person</th></tr></thead>
-            <tbody>
-              {S.collab.steps.map(([step, agent, person], i) => (
-                <tr key={step} className="hairline-top align-top">
-                  <td className="py-5 pr-6"><span className="text-label text-ink-3 mr-3">{String(i + 1).padStart(2, '0')}</span><span className="text-body text-white">{step}</span></td>
-                  <td className="py-5 pr-6 text-body text-ink-2">{agent}</td>
-                  <td className="py-5 text-body text-ink-2">{person}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <h3 className="text-heading text-white mt-20 max-w-3xl">{S.collab.measuresTitle}</h3>
-        <div className="grid md:grid-cols-2 gap-4 mt-8">
-          {S.collab.measures.map(m => (
-            <div key={m.title} className="card"><p className="text-title text-white">{m.title}</p><p className="text-body text-ink-2 mt-4">{m.body}</p></div>
-          ))}
-        </div>
+      <Section id="hitl">
+        <SectionHeader label="07 · Human in the loop" title={S.hitl.title} intro={S.hitl.intro} />
+        <Swimlane cols={S.hitl.cols} lanes={S.hitl.lanes as never} legendA={S.hitl.legendA} legendG={S.hitl.legendG} legendH={S.hitl.legendH} />
       </Section>
 
-      <Section id="architecture">
-        <SectionHeader label="05 · The architecture" title={S.architecture.title} intro={S.architecture.intro} />
-        <ol className="grid md:grid-cols-2 gap-x-8 gap-y-14">
-          {S.architecture.stages.map(st => {
-            const sh = shotOf(st.shot)
+      <Section id="worklist" tone="raised">
+        <SectionHeader label="08 · Worklist definition" title={S.worklist.title} intro={S.worklist.intro} />
+        <div className="grid md:grid-cols-3 gap-6">
+          {S.worklist.roles.map((r, i) => {
+            const sh = shotOf(r.shot)
             return (
-              <li key={st.n}>
+              <motion.div key={r.who} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
                 <button type="button" onClick={() => setZoom(sh)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen: ${sh.name}`}>
-                  <img src={sh.img} alt={sh.name} width={1440} height={899} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
+                  <img src={sh.img} alt={sh.name} width={1440} height={899} className="w-full aspect-[4/3] object-cover bg-white block" style={{ objectPosition: r.pos }} loading="lazy" decoding="async" />
                 </button>
-                <p className="text-label text-ink-3 mt-5">{st.n}</p>
-                <h3 className="text-heading text-white mt-1">{st.title}</h3>
-                <p className="text-body text-ink-2 mt-3 max-w-[48ch]">{st.body}</p>
-              </li>
+                <h3 className="text-title text-white mt-5">{r.who}</h3>
+                <ul className="mt-3 space-y-2">{r.points.map(pt => <li key={pt} className="text-body-sm text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">&mdash;</span>{pt}</li>)}</ul>
+              </motion.div>
             )
           })}
-        </ol>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 mt-12 pt-8 hairline-top">
+          <span className="text-overline text-ink-3 mr-3">Shared columns</span>
+          {S.worklist.anatomy.map(c => <span key={c} className="tag">{c}</span>)}
+        </div>
       </Section>
 
-      <Section id="problem">
-        <SectionHeader label="06 · The use case" title="Every order confirmation is a small investigation." intro={cs.challenge} />
+      <Section id="risk">
+        <SectionHeader label="09 · Risk scoring" title={S.risk.title} intro={S.risk.intro} />
+        <RiskVisual chain={S.risk.chain} examples={S.risk.examples} orderRisk={S.risk.orderRisk} confidence={S.risk.confidence} note={S.risk.note} />
+      </Section>
+
+      <Section id="prototype" tone="raised">
+        <SectionHeader label="10 · The whole flow" title={S.prototype.title} intro={S.prototype.intro} />
+        <FlowPlayer imgs={Object.fromEntries(S.journeys.flatMap(j => j.screens).map(sc => [sc.id, sc.img]))} title="Order 1505899" intro="Real screens from the prototype, played in order." />
+      </Section>
+
+      <Section id="autonomy">
+        <SectionHeader label="11 · Autonomy" title={S.autonomy.title} intro={S.autonomy.intro} />
+        <AutonomyLadder levels={S.autonomy.levels as never} next={S.autonomy.next} />
+      </Section>
+
+      <Section id="outcome" tone="raised">
+        <SectionHeader label="12 · Outcome" title="Built to take weeks down to hours." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
-          {S.problem.map((p, i) => (
-            <div key={p.title} className="card">
-              <p className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</p>
-              <p className="text-title text-white mt-2">{p.title}</p>
-              <p className="text-body text-ink-2 mt-4">{p.body}</p>
-            </div>
-          ))}
+          {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
+        </div>
+        <div className="mt-16 flex flex-wrap gap-3">
+          <Link to="/craft" className="btn btn-secondary">All case studies</Link>
+          <Link to="/contact" className="btn btn-primary">Talk about agentic AI</Link>
         </div>
       </Section>
 
-      <Section id="approach" tone="raised">
-        <SectionHeader label="07 · Design principles" title="The agent does the reading. People make the decisions." intro={cs.approach} />
-        <ol className="space-y-14">
-          {S.principles.map((p, i) => {
-            const s = shotOf(p.shot)
-            return (
-              <li key={p.n} className={`grid lg:grid-cols-2 gap-8 lg:gap-14 items-center ${i % 2 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
-                <div>
-                  <p className="text-label text-ink-3">{p.n}</p>
-                  <h3 className="text-heading text-white mt-2">{p.title}</h3>
-                  <p className="text-body-lg text-ink-2 mt-4 max-w-[52ch]">{p.body}</p>
-                </div>
-                <button type="button" onClick={() => setZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen: ${s.name}`}>
-                  <img src={s.img} alt={s.name} width={1440} height={899} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
-                </button>
-              </li>
-            )
-          })}
-        </ol>
-      </Section>
-
-      <Section id="personas">
-        <SectionHeader label="08 · Personas" title="Three people, three kinds of judgement." intro="Each role sees only the decisions it is qualified to make." />
-        <div className="grid md:grid-cols-3 gap-4">
-          {S.personas.map(p => (
-            <article key={p.id} className="card !p-0 overflow-hidden">
-              <img src={p.img} alt={`${p.name}, ${p.title}`} width={900} height={900} className="w-full aspect-[4/3] object-cover" loading="lazy" decoding="async" />
-              <div className="p-6">
-                <p className="text-overline text-ink-3">{p.role}</p>
-                <p className="text-title text-white mt-3">{p.name}</p>
-                <p className="text-body-sm text-ink-3 mt-1">{p.title}</p>
-                <p className="text-label text-ink-3 mt-6">Responsibilities</p>
-                <ul className="mt-3 space-y-3">{p.resp.map(r => <li key={r} className="text-body-sm text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">—</span>{r}</li>)}</ul>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="flow" tone="raised">
-        <SectionHeader label="09 · The flow" title="From the supplier's email to approve and close." intro="One agent-led flow, with two people reviewing in parallel." />
-        <div className="rounded-xl overflow-hidden border bg-white" style={{ borderColor: 'var(--line-2)' }}>
-          <img src={S.flowImg} alt="System flow: order confirmation received via email, data extracted and corrected if required, validation marked complete, discrepancy view generated and routed to two parallel reviews, sent back to the supplier if a revision is required, then approved and closed." width={1720} height={500} className="w-full h-auto block" loading="lazy" decoding="async" />
-        </div>
-        <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 mt-10">
-          {S.flowSteps.map(([t, d], i) => (
-            <li key={t} className="flex gap-5 py-4 hairline-top"><span className="text-label text-ink-3 w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span><span><span className="text-body text-white block">{t}</span><span className="text-body-sm text-ink-3 block mt-1">{d}</span></span></li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section id="experience">
-        <SectionHeader label="10 · The experience" title="Four journeys, one assistant." intro="Built with native enterprise UI components. Pick a journey and select any screen to enlarge it." />
+      <Section id="experience" tone="raised">
+        <SectionHeader label="13 · All screens" title="Every screen, by journey." intro="Built with native enterprise UI components. Pick a journey and select any screen to enlarge it." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.journeys.map(j => (
             <button key={j.id} type="button" role="tab" aria-selected={j.id === active} className="chip" aria-pressed={j.id === active} onClick={() => setActive(j.id)}>
@@ -206,17 +185,6 @@ export default function SAPAgenticStoryPage() {
               </figure>
             ))}
           </div>
-        </div>
-      </Section>
-
-      <Section id="outcome" tone="raised">
-        <SectionHeader label="11 · Outcome" title="Built to take weeks down to hours." intro={cs.outcome} />
-        <div className="grid md:grid-cols-3 gap-4">
-          {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
-        </div>
-        <div className="mt-16 flex flex-wrap gap-3">
-          <Link to="/craft" className="btn btn-secondary">All case studies</Link>
-          <Link to="/contact" className="btn btn-primary">Talk about agentic AI</Link>
         </div>
       </Section>
 

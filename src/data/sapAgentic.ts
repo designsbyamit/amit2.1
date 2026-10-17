@@ -17,63 +17,160 @@ export const sapAgentic = {
 
   framing: {
     title: 'A design problem, not an automation project.',
-    intro: 'Processing a supplier order confirmation took weeks. The goal was a few hours. The obvious reading was automation: read the PDF, update the system. I framed it as a design problem instead: what an agent should take on, what people should keep, and how the two work together so that hours is realistic. Treating it as a pattern, a document in, a comparison, a decision, meant the answer would hold for the next customer and the next document too.',
-    from: 'Weeks',
-    to: 'A few hours',
-    note: 'Order confirmation processing: where it started, and the goal.',
-  },
-
-  role: {
-    title: 'What I led.',
-    intro: 'On the surface this is a short flow with a table in it. What made it work was a set of decisions that had to be made before any screen could be right, and I led them.',
-    items: [
-      { title: 'Framed the problem', body: 'Turned a processing-time problem into a design pattern that could be solved once and reused.' },
-      { title: 'Defined the agent', body: 'Set what the agent does, what it never does, and exactly where it hands over to a person.' },
-      { title: 'Set the human-agent contract', body: 'Human in the loop from the start, with the agent\u2019s autonomy designed to increase.' },
-      { title: 'Shaped the architecture', body: 'Worklist, object page, processing and permissions as one structure that every role shares.' },
-      { title: 'Defined how risk is measured', body: 'Extraction confidence and deviation risk as the measures that decide when a person steps in.' },
-      { title: 'Worked with customers', body: 'Co-created with customers as a white-labelled solution across supply chain management.' },
+    intro: 'Processing a supplier order confirmation took weeks. The goal was a few hours. It looked like automation: read the PDF, update the system. I framed it as a design problem: what an agent should take on, what people should keep, and how the two work together. Solved as a pattern, a document in, a comparison, a decision, the answer holds for the next customer and the next document.',
+    asisTitle: 'How it worked before',
+    asis: [
+      { t: 'Supplier replies', d: 'An email with a PDF, in the supplier’s own layout.' },
+      { t: 'Someone reads it', d: 'Often in German, checked by eye.' },
+      { t: 'Compared with the PO', d: 'Line by line, in another system.' },
+      { t: 'Risk judged by hand', d: 'Supplier and risk profiles, mapped without structure.' },
+      { t: 'Owners chased', d: 'Buyer and goods recipient, by email.' },
+      { t: 'Supplier told what to fix', d: 'And the cycle repeats.' },
+    ],
+    nuances: [
+      { k: 'Time', t: 'Weeks, not hours', d: 'One confirmation took weeks to process. The business needed hours.' },
+      { k: 'Scattered', t: 'Documents live everywhere', d: 'Emails, PDF attachments, the ERP and other apps, with no single place for an order’s story.' },
+      { k: 'Unstructured', t: 'Risk mapped by hand', d: 'Supplier and risk profiles were mapped by hand, with no common structure.' },
     ],
   },
 
-  agent: {
-    title: 'The agent, defined.',
-    intro: 'An agent is a promise about what it will and will not do. Defining it precisely is what let every screen, role and permission follow from it.',
-    rows: [
-      ['Job', 'Read each supplier order confirmation, compare it with the purchase order and prepare every decision for a person.'],
-      ['Inputs', 'The supplier\u2019s email and PDF, in the supplier\u2019s own layout and often in German, and the purchase order in the ERP system.'],
-      ['Actions', 'Extracts the data with a confidence score. Finds every difference from the purchase order and gives each a severity and a plain-language reason. Routes each one to the right role. Drafts the email to the supplier. Logs everything as the AI Agent.'],
-      ['Never', 'Accepts or rejects a deviation, confirms its own extraction, or answers the supplier without the buyer.'],
-      ['Hands over to', 'Procurement operations for validation, the buyer for commercial deviations, the goods recipient for quantity and delivery.'],
-    ] as [string, string][],
-  },
+  personasTitle: 'Three roles, three kinds of struggle.',
 
-  collab: {
-    title: 'Human in the loop, with autonomy designed to grow.',
-    intro: 'Keeping a person in the loop is where the design starts, not where it ends. Each step a person confirms is also a signal of how far the agent can be trusted, and the experience is built so the agent can take on more over time and the minutes people spend on each order keep falling.',
-    steps: [
-      ['Confirmation arrives', 'Picks up the supplier\u2019s email and PDF.', 'No action needed.'],
-      ['Data extracted', 'Extracts the data and scores its own confidence.', 'Procurement operations checks it against the PDF and corrects.'],
-      ['Validation complete', 'Waits.', 'Operations confirms, which starts the routing.'],
-      ['Discrepancies routed', 'Compares with the purchase order, rates severity, explains each difference and routes it.', 'Buyer and goods recipient each accept or reject their own deviations, in parallel.'],
-      ['Back to the supplier', 'Drafts the email with the discrepancy list attached.', 'The buyer reviews and sends it.'],
-      ['Approve and close', 'Closes the confirmation when nothing is left to resolve.', 'No action needed.'],
-    ] as [string, string, string][],
-    measuresTitle: 'Two measures decide when a person steps in.',
-    measures: [
-      { title: 'Extraction confidence', body: 'How sure the agent is that it read the document correctly. It is shown on the worklist and on every extraction, so the operations manager spends attention where there is doubt.' },
-      { title: 'Order risk and deviation severity', body: 'How much a difference matters. Every deviation carries a severity of High, Medium or Low with the agent\u2019s reasoning, and every order carries a risk rating on the worklist, so people start with what matters most. The metric is probabilistic rather than a fixed rule.' },
+  role: {
+    title: 'What I led.',
+    intro: 'A simple-looking flow rests on decisions made first. I led them.',
+    items: [
+      { title: 'Framed the problem', body: 'Weeks of waiting became a design pattern we could solve once and reuse.' },
+      { title: 'Defined the agent', body: 'What it does, what it never does, where it hands over.' },
+      { title: 'Set the human-agent contract', body: 'A person in the loop, and autonomy designed to grow.' },
+      { title: 'Shaped the architecture', body: 'Worklist, object page, processing, permissions: one structure for every role.' },
+      { title: 'Defined how risk is measured', body: 'Confidence and risk decide when a person steps in.' },
+      { title: 'Worked with customers', body: 'Co-created as a white-labelled solution across supply chain management.' },
     ],
   },
 
   architecture: {
-    title: 'One structure for every role: worklist, object page, processing, permissions.',
-    intro: 'Three personas with different jobs share one assistant. Making that feel simple took a structure that stays the same for everyone and changes only in what each role can see and decide.',
+    title: 'One structure for every role.',
+    intro: 'Three personas with different jobs share one assistant. The structure stays the same for everyone and changes only in what each role can see and decide.',
     stages: [
-      { n: '01', title: 'Worklist', body: 'Where every role starts: the orders waiting for them, with risk, status and discrepancies, so the next action is obvious.', shot: 'buyer-worklist' },
-      { n: '02', title: 'Object page', body: 'One page per order confirmation with Discrepancies, Extraction and Activity: the agent\u2019s reading, its reasoning and the audit trail together.', shot: 'buyer-review' },
-      { n: '03', title: 'Processing', body: 'The actions that move an order forward: validate, accept or reject, share with the supplier, submit. Each one names what happens next.', shot: 'buyer-share' },
-      { n: '04', title: 'Permissions', body: 'Each role sees and decides only what it can judge. Operations validates, buyers decide commercial deviations, goods recipients decide quantity and delivery. Administrators connect the mailbox and ERP and manage users.', shot: 'gr-review' },
+      { n: '01', title: 'Worklist', body: 'Where every role starts: orders waiting, with risk and status.', shot: 'buyer-worklist', pos: '40% 70%' },
+      { n: '02', title: 'Object page', body: 'One page per confirmation: Discrepancies, Extraction, Activity.', shot: 'buyer-review', pos: '0% 45%' },
+      { n: '03', title: 'Processing', body: 'Validate, accept or reject, share, submit. Each names what comes next.', shot: 'buyer-share', pos: '0% 30%' },
+      { n: '04', title: 'Permissions', body: 'Each role sees and decides only what it can judge.', shot: 'gr-review', pos: '0% 80%' },
+    ],
+  },
+
+  contract: {
+    title: 'The human-agent contract.',
+    intro: 'Before any screen, a working agreement between people and the agent: what it covers, what it may do, when a person decides, and how it grows. Filled in for this use case.',
+    useCase: 'Supplier order confirmation',
+    team: 'Procurement, supply chain management',
+    capabilities: [
+      ['Retrieve and read information', true, 'Email, PDF and purchase order'],
+      ['Analyze and summarize', true, 'Compare, rate severity, explain'],
+      ['Create content or recommendations', true, 'Next action and a drafted supplier email'],
+      ['Update records', false, ''],
+      ['Trigger workflows or transactions', true, 'Routes each deviation to its owner'],
+      ['Communicate with users', true, 'Recommends the next action on every page'],
+    ] as [string, boolean, string][],
+    levels: [
+      { name: 'Assist', text: 'Agent recommends, human executes.', when: 'Confidence is low or risk is high.', today: false },
+      { name: 'Guided autonomy', text: 'Agent executes routine tasks, escalates exceptions.', when: 'Routine reading, comparing and drafting. A person decides at three gates.', today: true },
+      { name: 'Bounded autonomy', text: 'Agent executes within explicit limits and policies.', when: 'Confidence is high and risk is low, inside policy.', today: false },
+    ],
+    roles: [
+      ['AI agent', 'Reads, compares, rates, routes, drafts, logs.'],
+      ['Procurement operations', 'Validates the extraction.'],
+      ['Buyer', 'Decides commercial deviations, replies to the supplier, escalates critical risks.'],
+      ['Goods recipient', 'Decides quantity and delivery.'],
+      ['Administrator', 'Connects the mailbox and ERP, manages users.'],
+    ] as [string, string][],
+  },
+
+  agent: {
+    title: 'The agent, defined.',
+    intro: 'An agent is a promise about what it will and will not do. Every screen, role and permission follows from it.',
+    rows: [
+      ['Job', 'Read each supplier order confirmation, compare it with the purchase order and prepare every decision for a person.'],
+      ['Reads', 'The supplier’s email and PDF, in the supplier’s layout and often in German, and the purchase order in the ERP.'],
+      ['Does', 'Extracts with a confidence score. Finds every difference, rates its severity and explains it in plain language. Routes each to its owner. Drafts the supplier email. Logs everything as the AI Agent.'],
+      ['Never', 'Accepts or rejects a deviation, confirms its own extraction, or answers the supplier without the buyer.'],
+      ['Hands over to', 'Operations for validation, the buyer for commercial deviations, the goods recipient for quantity and delivery.'],
+    ] as [string, string][],
+  },
+
+  hitl: {
+    title: 'Human in the loop, by design.',
+    intro: 'The agent does the reading and the preparing. A person decides at three gates: validate, decide, send.',
+    cols: ['Receive', 'Extract', 'Validate', 'Compare and route', 'Reply', 'Close'],
+    lanes: [
+      { who: 'Agent', cells: [
+        [{ k: 'a', t: 'Picks up email and PDF' }],
+        [{ k: 'a', t: 'Extracts, scores confidence' }],
+        [],
+        [{ k: 'a', t: 'Compares, rates severity, explains, routes' }],
+        [{ k: 'a', t: 'Drafts supplier email' }],
+        [{ k: 'a', t: 'Closes when nothing is left' }],
+      ] },
+      { who: 'Operations', cells: [
+        [], [{ k: 'h', t: 'Checks and corrects' }], [{ k: 'g', t: 'Confirms validation' }], [], [], [],
+      ] },
+      { who: 'Buyer', cells: [
+        [], [], [], [{ k: 'g', t: 'Decides commercial deviations' }], [{ k: 'g', t: 'Reviews and sends' }], [],
+      ] },
+      { who: 'Goods recipient', cells: [
+        [], [], [], [{ k: 'g', t: 'Decides quantity and delivery' }], [], [],
+      ] },
+    ],
+    legendA: 'Agent acts',
+    legendG: 'Person decides: a gate',
+    legendH: 'Person checks',
+  },
+
+  worklist: {
+    title: 'Three worklists, one anatomy.',
+    intro: 'Each role starts in a worklist built for its job. The columns are shared, so the next action is always in the same place.',
+    roles: [
+      { who: 'Operations', shot: 'ops-worklist', pos: '0% 30%', points: ['Pending validation and average confidence at the top', 'The queue of confirmations waiting for validation', 'Status moves from New to In progress to Processed'] },
+      { who: 'Buyer', shot: 'buyer-worklist', pos: '40% 70%', points: ['Every confirmation with its discrepancies, risk and status', 'Revisions grouped under one purchase order', 'Filter by risk and status'] },
+      { who: 'Goods recipient', shot: 'gr-worklist', pos: '40% 70%', points: ['Grouped by purchase order, with versions', 'Only quantity and delivery deviations', 'Review, then submit'] },
+    ],
+    anatomy: ['PO no.', 'Document no.', 'Supplier', 'Order value', 'Received on', 'Discrepancies', 'Risk', 'Status', 'Action'],
+  },
+
+  risk: {
+    title: 'How a deviation becomes a risk rating.',
+    intro: 'Two measures run through the experience. Confidence says how sure the agent is that it read the document correctly. Risk says how much a difference matters. Both are probabilistic rather than rule-based.',
+    chain: ['Deviation', 'Severity', 'Order risk', 'Worklist priority'],
+    confidence: { value: 91, label: 'Average extraction confidence on the operations worklist' },
+    examples: [
+      ['Total invoice value', '€142,800 → €164,865', '+€22,065 (15.4%)', 'High'],
+      ['Payment terms', 'Net 30 → Net 45 days', '+15 days', 'High'],
+      ['Additional costs', 'none → €65.00', 'new cost', 'Medium'],
+      ['Quantity, line 1002', '2,500 → 2,000', '−500 units', 'Medium'],
+      ['Description, line 1001', 'German term differs', 'no functional difference', 'Low'],
+    ] as [string, string, string, 'High' | 'Medium' | 'Low'][],
+    orderRisk: 'High',
+    note: 'Real deviations from one order in the prototype.',
+  },
+
+  prototype: {
+    title: 'One order, from email to close.',
+    intro: 'Follow a single confirmation through the assistant, handing between the agent and three people.',
+  },
+
+  autonomy: {
+    title: 'Autonomy, and where it goes next.',
+    intro: 'Today a person decides at three gates. The two measures that already run through the product, confidence and risk, are what let autonomy grow safely: each step up the ladder is earned where confidence is high and risk is low.',
+    levels: [
+      { name: 'Assist', text: 'The agent recommends. The person does the work.', state: 'floor' },
+      { name: 'Guided autonomy', text: 'The agent reads, compares, routes and drafts. A person decides at three gates.', state: 'today' },
+      { name: 'Bounded autonomy', text: 'High confidence, low risk: the agent resolves inside explicit policy. People review exceptions.', state: 'next' },
+    ],
+    next: [
+      'Let high-confidence, low-risk differences resolve inside policy, with the buyer reviewing exceptions.',
+      'Keep every step in the activity log, so autonomy can always be audited.',
+      'Extend the same pattern across supply chain management.',
     ],
   },
 
@@ -92,9 +189,9 @@ export const sapAgentic = {
   ],
 
   personas: [
-    { id: 'david', role: 'Procurement Operations', name: 'David Paul', title: 'Procurement Operations Manager', img: `${dir}persona-david.jpg`, resp: ['Review the extracted data from the order confirmations and make corrections', 'Confirm validated to kick off the discrepancy routing as per the policy'] },
-    { id: 'adrian', role: 'Buyer', name: 'Adrian Smith', title: 'Category Buyer', img: `${dir}persona-adrian.jpg`, resp: ['Evaluate and accept/reject deviations based on logistics and cost impact', 'Escalate critical commercial risks to procurement leadership'] },
-    { id: 'rajan', role: 'Goods Recipient', name: 'Rajan Nair', title: 'Store Executive', img: `${dir}persona-rajan.jpg`, resp: ['Validate quantity deviations based on actual business requirements', 'Review delivery date changes and assess impact on operations and flag risks'] },
+    { id: 'david', role: 'Procurement Operations', name: 'David Paul', title: 'Procurement Operations Manager', img: `${dir}persona-david.jpg`, struggle: 'Reads each PDF in the supplier\u2019s own layout, often in German, and checks every figure by hand.', resp: ['Review the extracted data from the order confirmations and make corrections', 'Confirm validated to kick off the discrepancy routing as per the policy'] },
+    { id: 'adrian', role: 'Buyer', name: 'Adrian Smith', title: 'Category Buyer', img: `${dir}persona-adrian.jpg`, struggle: 'Must weigh cost and logistics impact on each difference, then tell the supplier exactly what to fix.', resp: ['Evaluate and accept/reject deviations based on logistics and cost impact', 'Escalate critical commercial risks to procurement leadership'] },
+    { id: 'rajan', role: 'Goods Recipient', name: 'Rajan Nair', title: 'Store Executive', img: `${dir}persona-rajan.jpg`, struggle: 'Must judge whether quantity and delivery changes work for what the business actually needs.', resp: ['Validate quantity deviations based on actual business requirements', 'Review delivery date changes and assess impact on operations and flag risks'] },
   ],
 
   flowSteps: [
