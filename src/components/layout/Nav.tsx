@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useId } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { caseStudies } from '../../data/work'
+import CaseThumb from '../ds/CaseThumb'
 import Logo from './Logo'
 import ThemeToggle from '../ds/ThemeToggle'
 
@@ -17,7 +18,6 @@ const navItems: { label: string; to: string; quiet?: boolean }[] = [
 
 const featured = caseStudies.slice(0, 3)
 const more = caseStudies.slice(3)
-const toneBg: Record<string, string> = { cobalt: 'var(--field-cobalt)', teal: 'var(--field-teal)', plum: 'var(--field-plum)' }
 
 function navCls({ isActive }: { isActive: boolean }) {
   return `relative py-2 text-[0.9375rem] transition-colors duration-150 ${isActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`
@@ -112,9 +112,7 @@ export default function Nav() {
                   <p className="col-span-12 text-overline text-ink-3 mb-5">Selected work</p>
                   {featured.map(cs => (
                     <Link key={cs.id} to={`/craft/${cs.id}`} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
-                      <div className="rounded-2 overflow-hidden p-3 aspect-[16/10]" style={{ background: toneBg[cs.tone ?? 'cobalt'] }}>
-                        {cs.image && <img src={cs.image} alt="" className="w-full h-full object-cover object-left-top rounded-[3px]" loading="lazy" />}
-                      </div>
+                      <CaseThumb id={cs.id} compact />
                       <span className="text-label text-signal-ink">{cs.number} / {cs.category.split(' · ')[0]}</span>
                       <span className="text-[1.0625rem] leading-snug font-light tracking-[-0.01em] text-ink group-hover:underline underline-offset-4 decoration-1">{cs.title}</span>
                     </Link>
