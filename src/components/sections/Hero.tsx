@@ -47,11 +47,11 @@ export default function Hero() {
             <Status>Now · Leading Core Design at SAP</Status>
           </motion.div>
           <h1 className="text-display-xl text-ink">
-            <Line delay={0.15}>A hands-on design leader.</Line>
-            <Line delay={0.3}>I build the <span className="accent-signal">work, the people</span> and the case for both.</Line>
+            <Line delay={0.15}>Building designers,</Line>
+            <Line delay={0.3}>products, and <span className="accent-signal">what’s next.</span></Line>
           </h1>
           <motion.p className="text-body-lg text-ink-2 max-w-[34rem]" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7, ease }}>
-            I lead design where craft, people and business meet: setting the quality bar by doing the work, building the designers who raise it, and tying what we ship to outcomes the business can measure. Sixteen years in enterprise and AI products.
+            I explore the intersection of human behaviour, business systems, and artificial intelligence to reimagine how people work, how products evolve, and how businesses create lasting value.
           </motion.p>
           <motion.div className="flex flex-wrap items-center gap-3" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.7, ease }}>
             <Button to="/leadership" arrow>See how I lead</Button>
