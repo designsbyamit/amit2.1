@@ -12,7 +12,7 @@ export default function AgenticFilmV2Page() {
   useEffect(() => { SHOTS.forEach(id => { const im = new Image(); im.src = shotUrl(id) }) }, [])
   return (
     <Player
-      audioSrc="/audio/agentic-film-lead-score.mp3"
+      audioSrc="/audio/archive-agentic-film-v2.mp3"
       title="Agentic Order Confirmation · v2 concepts (archived)"
       subtitle="Concept-led cut: the pattern, the agent, the contract, the risk model and the whole flow."
       chapters={chapters}
