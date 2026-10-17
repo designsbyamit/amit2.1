@@ -25,7 +25,7 @@ export default function Hero() {
   const photoY = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -60])
 
   return (
-    <section ref={ref} className="relative overflow-hidden" style={{ minHeight: 'min(100dvh, 980px)', paddingTop: 'var(--header-h)' }}>
+    <section ref={ref} className="relative overflow-hidden flex flex-col" style={{ minHeight: 'min(100dvh, 980px)', paddingTop: 'var(--header-h)' }}>
       {/* Portrait: right side on desktop, top band on mobile */}
       <motion.div className="absolute right-0 top-0 h-[46vh] w-full md:h-full md:w-[46%]" style={{ y: photoY }} aria-hidden="true">
         <div className="hero-portrait is-amit">
@@ -35,7 +35,7 @@ export default function Hero() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, var(--bg) 0%, rgb(var(--bg-rgb) / 0) 35%)' }} />
       </motion.div>
 
-      <div className="relative container-site grid-site pt-[38vh] md:pt-24 lg:pt-28 pb-10">
+      <div className="relative container-site grid-site pt-[38vh] pb-10 md:pt-0 md:pb-0 md:my-auto">
         <div className="col-span-4 md:col-span-8 lg:col-span-7 flex flex-col gap-7 md:gap-8">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1, duration: 0.8 }}>
             <Status>Now · Leading Core Design at SAP</Status>
