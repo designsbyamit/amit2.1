@@ -89,7 +89,7 @@ export const saudia = {
     intro: 'The same content, in the right place, at the right moment. No new features.',
     booking: { image: I('saudia-13'), alt: 'Booking flow screens: where to, flight search, dates, passengers, fares, seats and extras', note: 'Plan and book: search, dates, passengers, fares, extras and seats.', points: ['Booking time down 9%', 'Multi-city flight selection in 3 minutes', 'Booking in 7 minutes with the eWallet'] },
     manage: { image: I('saudia-14'), alt: 'Manage and check-in screens: trips, passenger check-in, travel documents and boarding pass', note: 'Manage and check in: trips, passengers, documents and the boarding pass.', points: ['Check-in in 2 steps, down from 9', 'Claiming miles in 1 step', 'eVisa application in 3 steps'] },
-    ancillaries: 'Add-ons moved to the right moment in the journey, with the right framing. That repositioning alone drove the 50×.',
+    ancillaries: 'Add-ons were brought into the journey at the moments they matter. Ancillary sales grew 50× after the final release.',
     lifestyle: { image: I('saudia-15'), alt: 'The Saudia app in use', note: 'The app in use.' },
   },
 
