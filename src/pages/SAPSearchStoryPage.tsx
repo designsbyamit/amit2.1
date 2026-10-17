@@ -58,9 +58,23 @@ export default function SAPSearchStoryPage() {
         </div>
       </header>
 
+      <Section id="vision">
+        <SectionHeader label="01 · Vision and impact" title={S.vision.title} intro={S.vision.intro} />
+        <div className="grid md:grid-cols-3 gap-4">
+          {S.vision.cards.map(c => (
+            <div key={c.title} className="card">
+              <p className="text-overline text-ink-3">{c.label}</p>
+              <p className="text-title text-white mt-3">{c.title}</p>
+              <p className="text-body text-ink-2 mt-4">{c.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-body-lg text-ink-2 mt-12 max-w-[62ch]">{S.vision.why}</p>
+      </Section>
+
       {/* Problem */}
       <Section id="problem">
-        <SectionHeader label="01 · The problem" title="What needed to be fixed?" intro={cs.challenge} />
+        <SectionHeader label="02 · The problem" title="What needed to be fixed?" intro={cs.challenge} />
         <div className="grid md:grid-cols-3 gap-4">
           {S.challenges.map(c => (
             <div key={c.area} className="card">
@@ -73,7 +87,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Exploration */}
       <Section id="explore" tone="raised">
-        <SectionHeader label="02 · Exploration" title="Where search capability meets AI and real user problems." intro="Every idea was tested against three inputs at once: what search can do, what AI can offer, and the problems users actually have." />
+        <SectionHeader label="03 · Exploration" title="Where search capability meets AI and real user problems." intro="Every idea was tested against three inputs at once: what search can do, what AI can offer, and the problems users actually have." />
         <div className="grid md:grid-cols-3 gap-4 mb-14">
           {S.ideas.inputs.map(i => <div key={i} className="card text-center"><p className="text-title text-white">{i}</p></div>)}
         </div>
@@ -97,7 +111,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Recommendations */}
       <Section id="recommendations">
-        <SectionHeader label="03 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
+        <SectionHeader label="04 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
         <ol className="grid sm:grid-cols-2 gap-x-10">
           {S.recommendations.map((r, i) => (
             <li key={r} className="flex gap-5 py-4 hairline-top"><span className="text-label text-ink-3 w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span><span className="text-body text-white">{r}</span></li>
@@ -107,7 +121,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Patterns */}
       <Section id="patterns" tone="raised">
-        <SectionHeader label="04 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined so every product team applies them the same way." />
+        <SectionHeader label="05 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined so every product team applies them the same way." />
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
           {S.patternGroups.map((g, i) => (
             <div key={g.title} className="card">
@@ -127,7 +141,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Experience */}
       <Section id="experience">
-        <SectionHeader label="05 · The experience" title="One search, six journeys." intro="Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
+        <SectionHeader label="06 · The experience" title="One search, six journeys." intro="Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.flows.map(f => (
             <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" aria-pressed={f.id === active} onClick={() => setActive(f.id)}>
@@ -156,7 +170,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Outcome */}
       <Section id="outcome" tone="raised">
-        <SectionHeader label="06 · Outcome" title="From fragmented search to a suite-wide standard." intro={cs.outcome} />
+        <SectionHeader label="07 · Outcome" title="From fragmented search to a suite-wide standard." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>

@@ -15,6 +15,17 @@ export const sapAgentic = {
   pillars: ['Agent reads and compares', 'People decide', 'Every step logged'],
   flowImg: `${dir}system-flow.svg`,
 
+  vision: {
+    title: 'Not one screen set. A pattern an agent can repeat.',
+    intro: 'The brief was order confirmations. The opportunity was larger. Wherever an agent reads a document from outside the company, compares it with what the business expects and needs a person to decide, the same experience applies. I set out to solve that pattern, and the order confirmation became its first complete case.',
+    cards: [
+      { label: 'With the customer', title: 'Co-created, not handed over', body: 'We worked with the customer as a design partner rather than a stakeholder to be briefed, which kept the work grounded in how their procurement teams actually operate.' },
+      { label: 'Beyond one use case', title: 'Designed to fit supply chain management', body: 'I looked past this customer and this document at how the experience would sit inside supply chain management, so it could be offered as a white-labelled solution to other customers too.' },
+      { label: 'The pattern', title: 'Five moves that carry over', body: 'The agent extracts and a person confirms. Every difference shows its reasoning. Each decision routes to the role that can judge it. Every page names the next action. Every step is logged.' },
+    ],
+    why: 'A bespoke screen set serves one customer once. A reusable pattern serves every customer with the same problem: a document in, a comparison, a decision. That is the difference between a delivered project and a solution that can be offered, and it is why the work started from the pattern.',
+  },
+
   problem: [
     { title: 'A supplier replies', body: "Order confirmations arrive by email as PDFs, in the supplier's own layout and often in German: “Tage netto”, “Auftragsbestätigung”." },
     { title: 'Someone has to check it', body: 'Every price, payment term, quantity and delivery date has to be read and compared with the purchase order, line by line.' },

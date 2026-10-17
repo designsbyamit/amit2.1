@@ -45,8 +45,22 @@ export default function SAPAgenticStoryPage() {
         </div>
       </header>
 
+      <Section id="vision">
+        <SectionHeader label="01 · Vision and impact" title={S.vision.title} intro={S.vision.intro} />
+        <div className="grid md:grid-cols-3 gap-4">
+          {S.vision.cards.map(c => (
+            <div key={c.title} className="card">
+              <p className="text-overline text-ink-3">{c.label}</p>
+              <p className="text-title text-white mt-3">{c.title}</p>
+              <p className="text-body text-ink-2 mt-4">{c.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-body-lg text-ink-2 mt-12 max-w-[62ch]">{S.vision.why}</p>
+      </Section>
+
       <Section id="problem">
-        <SectionHeader label="01 · The problem" title="Every order confirmation is a small investigation." intro={cs.challenge} />
+        <SectionHeader label="02 · The problem" title="Every order confirmation is a small investigation." intro={cs.challenge} />
         <div className="grid md:grid-cols-3 gap-4">
           {S.problem.map((p, i) => (
             <div key={p.title} className="card">
@@ -59,7 +73,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="approach" tone="raised">
-        <SectionHeader label="02 · The approach" title="The agent does the reading. People make the decisions." intro={cs.approach} />
+        <SectionHeader label="03 · The approach" title="The agent does the reading. People make the decisions." intro={cs.approach} />
         <ol className="space-y-14">
           {S.principles.map((p, i) => {
             const s = shotOf(p.shot)
@@ -80,7 +94,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="personas">
-        <SectionHeader label="03 · Personas" title="Three people, three kinds of judgement." intro="Each role sees only the decisions it is qualified to make." />
+        <SectionHeader label="04 · Personas" title="Three people, three kinds of judgement." intro="Each role sees only the decisions it is qualified to make." />
         <div className="grid md:grid-cols-3 gap-4">
           {S.personas.map(p => (
             <article key={p.id} className="card !p-0 overflow-hidden">
@@ -98,7 +112,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="flow" tone="raised">
-        <SectionHeader label="04 · The flow" title="From the supplier's email to approve and close." intro="One agent-led flow, with two people reviewing in parallel." />
+        <SectionHeader label="05 · The flow" title="From the supplier's email to approve and close." intro="One agent-led flow, with two people reviewing in parallel." />
         <div className="rounded-xl overflow-hidden border bg-white" style={{ borderColor: 'var(--line-2)' }}>
           <img src={S.flowImg} alt="System flow: order confirmation received via email, data extracted and corrected if required, validation marked complete, discrepancy view generated and routed to two parallel reviews, sent back to the supplier if a revision is required, then approved and closed." width={1720} height={500} className="w-full h-auto block" loading="lazy" decoding="async" />
         </div>
@@ -110,7 +124,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="experience">
-        <SectionHeader label="05 · The experience" title="Four journeys, one assistant." intro="Built with native enterprise UI components. Pick a journey and select any screen to enlarge it." />
+        <SectionHeader label="06 · The experience" title="Four journeys, one assistant." intro="Built with native enterprise UI components. Pick a journey and select any screen to enlarge it." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.journeys.map(j => (
             <button key={j.id} type="button" role="tab" aria-selected={j.id === active} className="chip" aria-pressed={j.id === active} onClick={() => setActive(j.id)}>
@@ -135,7 +149,7 @@ export default function SAPAgenticStoryPage() {
       </Section>
 
       <Section id="outcome" tone="raised">
-        <SectionHeader label="06 · Outcome" title="A complete, role-based path from email to close." intro={cs.outcome} />
+        <SectionHeader label="07 · Outcome" title="A complete path, and a pattern that travels." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>
