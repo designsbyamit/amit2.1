@@ -7,8 +7,8 @@ import { seg, easeOut, easeInOut, easeOutBack, lerp, rnd, clamp } from './engine
    Timed to a 124 bpm score: every scene starts on a bar line. */
 const BEAT = 60 / 124
 export const BAR = BEAT * 4
-export const at = (bar: number) => bar * BAR
-export const FILM = { hook: [0, at(4)], setup: [at(4), at(12)], people: [at(12), at(18)], problem: [at(18), at(26)], concept: [at(26), at(38)], solution: [at(38), at(52)], impact: [at(52), at(58)], next: [at(58), at(66)] } as const
+export const at = (bar: number) => bar * BAR + 0.03 // the supplied track sits on a 124 bpm grid, first beat at 0.03 s
+export const FILM = { hook: [0, at(4)], setup: [at(4), at(8)], people: [at(8), at(12)], problem: [at(12), at(24)], concept: [at(24), at(32)], solution: [at(32), at(45)], impact: [at(45), at(52)], next: [at(52), at(60)] } as const
 
 const B = import.meta.env.BASE_URL
 const dir = `${B}images/case-studies/sap-agentic/`
@@ -35,9 +35,9 @@ const panel: CSSProperties = { position: 'absolute', borderRadius: 18, backgroun
 
 /** Four beat dots, bottom left, from the first beat to the impact. */
 export function Frame({ t }: { t: number }) {
-  if (t < at(4) - 0.2 || t > at(58)) return null
+  if (t < at(4) - 0.2 || t > at(57)) return null
   const bi = Math.floor(t / BEAT) % 4, ph = (t % BEAT) / BEAT
-  const o = easeOut(seg(t, at(4) - 0.2, at(4) + 0.6)) * (1 - easeOut(seg(t, at(58) - 0.6, at(58))))
+  const o = easeOut(seg(t, at(4) - 0.2, at(4) + 0.6)) * (1 - easeOut(seg(t, at(57) - 0.6, at(57))))
   return (
     <div style={{ position: 'absolute', left: 100, bottom: 30, display: 'flex', gap: 8, opacity: o }}>
       {[0, 1, 2, 3].map(i => <span key={i} style={{ width: 10, height: 10, borderRadius: 5, background: i === bi ? C.lime : C.line, transform: `scale(${i === bi ? 1.5 - 0.5 * ph : 1})` }} />)}
@@ -69,8 +69,9 @@ export function Hook({ t }: { t: number }) {
 }
 
 /* ───────────── 1 · THE SETUP ───────────── */
-export function Setup({ t }: { t: number }) {
-  const [s, e] = FILM.setup
+export function Setup({ t: t0 }: { t: number }) {
+  const [s, e0] = FILM.setup
+  const K = 2, e = s + (e0 - s) * K, t = s + (t0 - s) * K // the scene was drawn for 15.5 s, played in 7.7
   const cx = 960, cy = 470
   const pos = VENDORS.map((_, i) => { const a = (i / VENDORS.length) * Math.PI * 2 - Math.PI / 2; return [cx + Math.cos(a) * 760, cy + Math.sin(a) * 320] as [number, number] })
   const rfq = countTo(t, s + 2, s + 3.4, 0, 14)
@@ -114,8 +115,9 @@ export function Setup({ t }: { t: number }) {
 }
 
 /* ───────────── 2 · THE PEOPLE ───────────── */
-export function People({ t }: { t: number }) {
-  const [s, e] = FILM.people
+export function People({ t: t0 }: { t: number }) {
+  const [s, e0] = FILM.people
+  const K = 1.5, e = s + (e0 - s) * K, t = s + (t0 - s) * K
   return (
     <Scene t={t} s={s} e={e}>
       <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label>02 · The people</Label></In>
@@ -159,8 +161,9 @@ function Doc({ t, a }: { t: number; a: number }) {
     </div>
   )
 }
-export function Problem({ t }: { t: number }) {
-  const [s, e] = FILM.problem
+export function Problem({ t: t0 }: { t: number }) {
+  const [s, e0] = FILM.problem
+  const K = 0.75, e = s + (e0 - s) * K, t = s + (t0 - s) * K
   const docOut = 1 - easeOut(seg(t, s + 8, s + 8.6))
   const rowIn = (x: number) => easeOut(seg(t, s + x, s + x + 0.6))
   const sev = easeInOut(seg(t, s + 9, s + 12.4))
@@ -285,24 +288,27 @@ function RiskCard({ t, a, o }: { t: number; a: number; o: number }) {
     </>
   )
 }
-export function Concept({ t }: { t: number }) {
+export function Concept({ t: t0 }: { t: number }) {
   const [s, e] = FILM.concept
-  const strike = easeOut(seg(t, s + 1.9, s + 2.5))
-  const W = 5.8
+  const QL = 2 * BAR, CL = 2 * BAR
+  const KQ = 1.24, tq = s + (t0 - s) * KQ
+  const strike = easeOut(seg(tq, s + 1.9, s + 2.5))
   return (
-    <Scene t={t} s={s} e={e}>
-      {t < s + 4.8 && (
-        <div style={{ position: 'absolute', inset: 0, opacity: 1 - easeOut(seg(t, s + 4.2, s + 4.7)) }}>
-          <In t={t} a={s + 0.1} o={s + 4.4} style={{ left: 100, top: 90 }}><Label>04 · The concept</Label></In>
-          <Words t={t} a={s + 0.2} text="So the question changed." size={110} weight={200} style={{ left: 100, top: 190 }} />
-          <In t={t} a={s + 1.2} o={s + 4.4} style={{ left: 100, top: 470 }}><div style={{ position: 'relative', display: 'inline-block', fontSize: 62, fontWeight: 300, color: C.dim }}>How do we automate it?<span style={{ position: 'absolute', left: 0, top: '56%', height: 4, width: `${strike * 100}%`, background: C.red }} /></div></In>
-          <Words t={t} a={s + 2.6} text="Who decides what, and when?" size={104} weight={300} style={{ left: 100, top: 590 }} accent={['decides']} />
+    <Scene t={t0} s={s} e={e}>
+      {t0 < s + QL && (
+        <div style={{ position: 'absolute', inset: 0, opacity: 1 - easeOut(seg(t0, s + QL - 0.5, s + QL - 0.1)) }}>
+          <In t={tq} a={s + 0.1} o={s + 6} style={{ left: 100, top: 90 }}><Label>04 · The concept</Label></In>
+          <Words t={tq} a={s + 0.2} text="So the question changed." size={110} weight={200} style={{ left: 100, top: 190 }} />
+          <In t={tq} a={s + 1.2} o={s + 6} style={{ left: 100, top: 470 }}><div style={{ position: 'relative', display: 'inline-block', fontSize: 62, fontWeight: 300, color: C.dim }}>How do we automate it?<span style={{ position: 'absolute', left: 0, top: '56%', height: 4, width: `${strike * 100}%`, background: C.red }} /></div></In>
+          <Words t={tq} a={s + 2.6} text="Who decides what, and when?" size={104} weight={300} style={{ left: 100, top: 590 }} accent={['decides']} />
         </div>
       )}
       {[AgentCard, ContractMini, RiskCard].map((V, i) => {
-        const a = s + 4.8 + i * W, o = a + W - 0.3
-        if (t < a - 0.01 || t > o + 0.7) return null
-        return <div key={i} style={{ position: 'absolute', inset: 0, opacity: 1 - easeOut(seg(t, o, o + 0.5)) }}><V t={t} a={a} o={o} /></div>
+        const a = s + QL + i * CL, KC = 5.8 / CL
+        if (t0 < a - 0.01 || t0 > a + CL + 0.1) return null
+        const tc = a + (t0 - a) * KC
+        const fade = i === 2 ? 1 : 1 - easeOut(seg(t0, a + CL - 0.4, a + CL))
+        return <div key={i} style={{ position: 'absolute', inset: 0, opacity: fade }}><V t={tc} a={a} o={a + 5.5} /></div>
       })}
     </Scene>
   )
@@ -441,14 +447,14 @@ export function Impact({ t }: { t: number }) {
 const LEVELS: [string, string, string][] = [['Assist', 'Agent recommends. Person acts.', 'FLOOR'], ['Guided autonomy', 'Agent prepares. Person decides.', 'TODAY'], ['Bounded autonomy', 'Agent resolves within policy. People handle exceptions.', 'NEXT']]
 export function Next({ t }: { t: number }) {
   const [s, e] = FILM.next
-  const card = easeOut(seg(t, s + 8.2, s + 9))
+  const card = easeOut(seg(t, s + 9.2, s + 10))
   return (
     <Scene t={t} s={s} e={e + 2}>
       <div style={{ position: 'absolute', inset: 0, opacity: 1 - card }}>
-        <In t={t} a={s + 0.2} o={s + 8.2} style={{ left: 100, top: 70 }}><Label>07 · What comes next</Label></In>
+        <In t={t} a={s + 0.2} o={s + 9.2} style={{ left: 100, top: 70 }}><Label>07 · What comes next</Label></In>
         <Words t={t} a={s + 0.4} text="Toward the" size={76} weight={200} style={{ left: 100, top: 170 }} />
         <Words t={t} a={s + 1.2} text="autonomous enterprise." size={76} weight={300} style={{ left: 100, top: 260 }} accent={['autonomous']} />
-        <In t={t} a={s + 2.4} o={s + 8.2} y={14} style={{ left: 100, top: 440, width: 760 }}><div style={{ fontSize: 32, fontWeight: 300, color: C.mute, lineHeight: 1.3 }}>Earned where confidence is high and risk is low.</div></In>
+        <In t={t} a={s + 2.4} o={s + 9.2} y={14} style={{ left: 100, top: 440, width: 760 }}><div style={{ fontSize: 32, fontWeight: 300, color: C.mute, lineHeight: 1.3 }}>Earned where confidence is high and risk is low.</div></In>
         {LEVELS.map(([n, d, tag], i) => {
           const p = pop(t, s + 1.6 + i * BEAT * 2.5, 0.6)
           const hot = tag === 'TODAY'
@@ -460,7 +466,7 @@ export function Next({ t }: { t: number }) {
           )
         })}
       </div>
-      <In t={t} a={s + 8.8} style={{ left: 0, width: 1920, top: 330, textAlign: 'center' }}>
+      <In t={t} a={s + 10} style={{ left: 0, width: 1920, top: 330, textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}><Star size={70} /></div>
         <div style={{ fontSize: 88, fontWeight: 200, letterSpacing: '-0.035em', marginTop: 20 }}>Agentic Order Confirmation</div>
         <div style={{ fontSize: 50, fontWeight: 300, color: C.lime, marginTop: 18 }}>Simplifying the complex.</div>
