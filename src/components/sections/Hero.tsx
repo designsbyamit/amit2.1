@@ -18,12 +18,6 @@ function Line({ children, delay = 0 }: { children: React.ReactNode; delay?: numb
   )
 }
 
-const proof = [
-  { value: '16+', label: 'Years in design' },
-  { value: '$5M', label: 'Documented savings' },
-  { value: '90%', label: 'CSAT where average is 60%' },
-]
-
 export default function Hero() {
   const ref = useRef<HTMLElement>(null)
   const reduced = useReducedMotion()
@@ -60,17 +54,6 @@ export default function Hero() {
         </div>
       </div>
 
-      <motion.div className="relative container-site" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.8 }}>
-        <dl className="grid-site hairline-top py-6 md:py-8 gap-y-6">
-          {proof.map(p => (
-            <div key={p.value} className="col-span-4 md:col-span-3 flex flex-col gap-1.5">
-              <dt className="sr-only">{p.label}</dt>
-              <dd className="text-[2rem] md:text-[2.25rem] font-extralight tracking-[-0.03em] leading-none text-ink">{p.value}</dd>
-              <dd className="text-label text-ink-3">{p.label}</dd>
-            </div>
-          ))}
-        </dl>
-      </motion.div>
     </section>
   )
 }

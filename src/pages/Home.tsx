@@ -1,12 +1,7 @@
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { caseStudies } from '../data/work'
 import Hero from '../components/sections/Hero'
 import ImpactSnapshot from '../components/sections/ImpactSnapshot'
-import LeadershipCases from '../components/sections/LeadershipCases'
-import CaseRow from '../components/ds/CaseRow'
-import SectionHeader from '../components/ds/SectionHeader'
-import Button from '../components/ds/Button'
+import Latest from '../components/sections/Latest'
 
 function FadeUp({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -28,8 +23,8 @@ export default function Home() {
       {/* 1. Hero */}
       <Hero />
 
-      {/* 2. Leadership cases */}
-      <LeadershipCases />
+      {/* 2. Latest: one work, one leadership story, one talk */}
+      <Latest />
 
       {/* 3. Scale — grid blocks */}
       <ImpactSnapshot />
@@ -61,78 +56,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Case Studies */}
-      <section className="relative">
-        <div className="container-site pb-24 md:pb-36">
-          <SectionHeader label="Craft" title="Selected work" action={<Button to="/craft" variant="secondary" arrow>All work</Button>} />
-          <ul>
-            {caseStudies.slice(0, 3).map((cs, i) => <CaseRow key={cs.id} cs={cs} index={i} />)}
-          </ul>
-          <div className="hairline-top" />
-        </div>
-      </section>
-
-      {/* 5. Events / Talks / Articles */}
-      <section className="relative">
-        
-        <div className="relative z-10 container-site pb-32 md:pb-48">
-          <div className="flex items-end justify-between border-t border-white border-opacity-[0.07] pt-14 mb-0">
-            <FadeUp><p className="text-overline text-ink-3">Talks & Writing</p></FadeUp>
-          </div>
-
-          {/* DesignUp Workshop */}
-          <motion.div
-            className="border-t border-white"
-            style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65 }}
-          >
-            <Link to="/community"
-              className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-surface-1 transition-colors duration-500"
-              data-cursor="article" data-cursor-label="Community">
-              <div>
-                <p className="text-label text-ink-3 mb-4">Workshop · DesignUp</p>
-                <h3 className="text-white group-hover:opacity-72 transition-opacity"
-                  style={{ fontSize: 'clamp(1.3rem, 2.6vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
-                  DesignUp — Dual Fluency Workshop
-                </h3>
-              </div>
-              <p className="hidden md:block text-label text-ink-3 group-hover:text-ink-2 transition-colors shrink-0 mt-2">
-                Community →
-              </p>
-            </Link>
-          </motion.div>
-
-          {/* Vedic Essay */}
-          <motion.div
-            className="border-t border-white"
-            style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.08 }}
-          >
-            <Link to="/reflections"
-              className="group flex items-start justify-between py-12 md:py-14 -mx-6 md:-mx-0 px-6 md:px-0 hover:bg-surface-1 transition-colors duration-500"
-              data-cursor="article" data-cursor-label="Read">
-              <div>
-                <p className="text-label text-ink-3 mb-4">Essay Series · Ancient Wisdom · 5 parts</p>
-                <h3 className="text-white group-hover:opacity-72 transition-opacity"
-                  style={{ fontSize: 'clamp(1.3rem, 2.6vw, 2.4rem)', fontWeight: 200, letterSpacing: '-0.032em', lineHeight: 1.18 }}>
-                  How Vedic Secrets Can Disrupt<br />Your Design Game
-                </h3>
-              </div>
-              <p className="hidden md:block text-label text-ink-3 group-hover:text-ink-2 transition-colors shrink-0 mt-2">
-                Reflections →
-              </p>
-            </Link>
-          </motion.div>
-
-          <div className="border-t border-white" style={{ borderColor: 'rgb(var(--ink-rgb) / 0.07)' }} />
-        </div>
-      </section>
     </>
   )
 }
