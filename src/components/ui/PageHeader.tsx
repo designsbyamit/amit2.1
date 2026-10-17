@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import RevealText from './RevealText'
 import Breadcrumb from '../ds/Breadcrumb'
+import Illustration, { type IllustrationName } from '../illustrations/Illustration'
 
 interface PageHeaderProps {
   label: string
@@ -12,12 +13,14 @@ interface PageHeaderProps {
   imagePosition?: string
   /** Pages deeper than one level pass their trail, e.g. [{label:'Resources', to:'/resources'}, {label:'Dual Fluency'}] */
   breadcrumb?: { label: string; to?: string }[]
+  /** A spot illustration that says what the page is about. Used when the page has no portrait. */
+  illustration?: IllustrationName
 }
 
 const ease = [0.16, 1, 0.3, 1] as const
 
 /** Top of every page: optional breadcrumb, mono overline, thin display title, intro. */
-export default function PageHeader({ label, title, subtitle, image, imageAlt, imagePosition, breadcrumb }: PageHeaderProps) {
+export default function PageHeader({ label, title, subtitle, image, imageAlt, imagePosition, breadcrumb, illustration }: PageHeaderProps) {
   return (
     <section className={`relative overflow-hidden ${image ? 'md:min-h-[72vh] flex flex-col justify-end' : ''}`} style={{ paddingTop: 'var(--header-h)' }}>
       {image && (
@@ -32,7 +35,7 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt, im
         <motion.p className="text-overline text-ink-3 mb-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           {label}
         </motion.p>
-        <div className={image ? 'md:max-w-[56%]' : 'max-w-5xl'}>
+        <div className={image ? 'md:max-w-[56%]' : illustration ? 'md:max-w-[58%]' : 'max-w-5xl'}>
           <h1 className="text-display-l text-ink"><RevealText text={title} delay={0.1} /></h1>
           {subtitle && (
             <motion.p className="text-body-lg text-ink-2 mt-6 max-w-2xl" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35, ease }}>
@@ -40,6 +43,12 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt, im
             </motion.p>
           )}
         </div>
+        {illustration && !image && (
+          <>
+            <Illustration name={illustration} className="hidden md:block absolute right-6 bottom-14 w-[34%] max-w-[440px] h-auto" />
+            <Illustration name={illustration} className="md:hidden mt-10 w-[72%] max-w-[320px] h-auto" />
+          </>
+        )}
       </div>
     </section>
   )

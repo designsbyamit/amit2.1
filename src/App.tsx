@@ -29,6 +29,8 @@ const AgenticFilmPage = lazy(() => import('./film/AgenticFilmPage'))
 const AgenticFilmV1Page = lazy(() => import('./film/archive/AgenticFilmV1Page'))
 const AgenticFilmV2Page = lazy(() => import('./film/archive/AgenticFilmV2Page'))
 const AgenticFilmV3Page = lazy(() => import('./film/archive/AgenticFilmV3Page'))
+const IllustrationGallery = lazy(() => import('./pages/IllustrationGallery'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const EngazeStoryPage = lazy(() => import('./pages/EngazeStoryPage'))
 const EngazeFilmPage = lazy(() => import('./film/EngazeFilmPage'))
 const SearchFilmPage = lazy(() => import('./film/SearchFilmPage'))
@@ -103,6 +105,8 @@ function AnimatedRoutes() {
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
         <Route path="/design-system" element={<PageTransition><DesignSystemPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/illustrations" element={<PageTransition><IllustrationGallery /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
         <Route path="/philosophy" element={<Navigate to="/about" replace />} />
       </Routes>
     </AnimatePresence>

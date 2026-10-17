@@ -5,7 +5,7 @@ export default function ReflectionsPage() {
   return (
     <>
       <PageHeader
-        label="Reflections"
+        label="Reflections" illustration="reflections"
         title="Thinking out loud about where design goes next."
         subtitle="Essays, observations, and provocations — the questions worth asking out loud about design, AI, and the systems we're building."
       />

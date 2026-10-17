@@ -30,7 +30,7 @@ export default function Craft() {
   return (
     <>
       <PageHeader
-        label="Craft"
+        label="Craft" illustration="craft"
         title="Work that matters at scale."
         subtitle="Case studies across AI experiences, conversational design, enterprise UX, and large-scale design systems."
       />

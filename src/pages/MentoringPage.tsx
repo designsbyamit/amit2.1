@@ -1,3 +1,4 @@
+import Illustration from '../components/illustrations/Illustration'
 import Testimonials from '../components/sections/Testimonials'
 import Button from '../components/ds/Button'
 import Card from '../components/ds/Card'
@@ -76,10 +77,13 @@ export default function MentoringPage() {
               </div>
             ))}
           </dl>
-          <figure className="mt-14 md:mt-20 max-w-3xl">
+          <div className="mt-14 md:mt-20 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+          <figure className="max-w-3xl">
             <blockquote className="text-heading text-ink" style={{ fontWeight: 300, lineHeight: 1.35 }}>“{quoteExcerpts.mahesh.quote}”</blockquote>
             <figcaption className="mt-5 text-caption text-ink-3">{quoteExcerpts.mahesh.name} · {quoteExcerpts.mahesh.role} · <a className="link" href={ADPLIST} target="_blank" rel="noopener noreferrer">ADPList</a></figcaption>
           </figure>
+          <Illustration name="mentoring" className="w-[78%] max-w-[360px] md:w-[34%] md:max-w-[400px] h-auto shrink-0" />
+          </div>
         </div>
       </section>
 

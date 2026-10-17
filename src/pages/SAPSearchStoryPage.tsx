@@ -1,3 +1,4 @@
+import Illustration from '../components/illustrations/Illustration'
 import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
@@ -40,10 +41,11 @@ export default function SAPSearchStoryPage() {
     <div className="bg-surface-0 min-h-screen">
       {/* Hero */}
       <header className="pt-32 md:pt-40 pb-16 md:pb-24">
-        <div className="container-site">
+        <div className="container-site relative">
+          <Illustration name="search" className="hidden lg:block absolute right-6 top-24 w-[30%] max-w-[420px] h-auto" />
           <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'AI-Powered Search' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
           <div className="mt-8"><Button to="/craft/sap-search/film" arrow>Watch the film · 2 min 46 s</Button></div>
           <div className="flex flex-wrap gap-2 mt-8">

@@ -4,6 +4,7 @@ import SectionLabel from '../ui/SectionLabel'
 import GrainOverlay from '../ui/GrainOverlay'
 import SweepLines from '../ui/SweepLines'
 import Button from '../ds/Button'
+import Illustration from '../illustrations/Illustration'
 
 const EMAIL = 'uxbyamit@gmail.com'
 const mail = (subject: string, body: string) => `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
@@ -50,6 +51,7 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
       <GrainOverlay opacity={0.05} />
 
       <div className="relative z-10 mx-auto max-w-7xl">
+        <Illustration name="contact" className="hidden lg:block absolute right-0 top-0 w-[30%] max-w-[400px] h-auto" />
         <div className="mb-14 md:mb-20 max-w-3xl">
           <SectionLabel>Contact</SectionLabel>
           <Heading
