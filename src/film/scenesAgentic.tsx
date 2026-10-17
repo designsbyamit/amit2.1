@@ -2,12 +2,12 @@ import type { CSSProperties, ReactNode } from 'react'
 import { C, In, Words, Label, Scene, mono } from './ui'
 import { seg, easeOut, easeInOut, clamp } from './engine'
 
-/* Agentic order confirmation, told as a design leader's case: the problem, the concept layer, the architecture, the whole flow, what is next.
+/* Agentic order confirmation, told as one story: the problem, the concept layer, the architecture, the whole flow, what is next.
    Timed to a 124 bpm score: every scene starts on a bar line. */
 const BEAT = 60 / 124
 export const BAR = BEAT * 4
 export const at = (bar: number) => bar * BAR
-export const FILM = { hook: [0, at(4)], problem: [at(4), at(12)], concept: [at(12), at(28)], arch: [at(28), at(34)], flow: [at(34), at(52)], auto: [at(52), at(58)], close: [at(58), at(66)] } as const
+export const FILM = { hook: [0, at(4)], problem: [at(4), at(10)], question: [at(10), at(12)], concept: [at(12), at(28)], arch: [at(28), at(34)], flow: [at(34), at(52)], auto: [at(52), at(58)], close: [at(58), at(66)] } as const
 
 const B = import.meta.env.BASE_URL
 const dir = `${B}images/case-studies/sap-agentic/`
@@ -31,7 +31,7 @@ export function Frame({ t }: { t: number }) {
   return (
     <div style={{ position: 'absolute', left: 100, bottom: 34, display: 'flex', alignItems: 'center', gap: 22, opacity: o }}>
       <div style={{ display: 'flex', gap: 8 }}>{[0, 1, 2, 3].map(i => <span key={i} style={{ width: 10, height: 10, borderRadius: 5, background: i === bi ? C.lime : C.line, transform: `scale(${i === bi ? 1.5 - 0.5 * ph : 1})` }} />)}</div>
-      <span style={{ fontFamily: mono, fontSize: 17, letterSpacing: '0.14em', color: C.dim }}>DESIGN LEADERSHIP · AMIT KUMAR TIWARI</span>
+      <span style={{ fontFamily: mono, fontSize: 17, letterSpacing: '0.14em', color: C.dim }}>AGENTIC ORDER CONFIRMATION</span>
     </div>
   )
 }
@@ -42,13 +42,14 @@ export function Hook({ t }: { t: number }) {
   const grow = easeInOut(seg(t, 2.6, 6.8))
   return (
     <Scene t={t} s={s} e={e}>
-      <In t={t} a={0.3} o={e - 0.4} style={{ left: 120, top: 150 }}><Label>Agentic order confirmation · a design leader’s case</Label></In>
-      <Words t={t} a={0.9} text="Weeks." size={300} weight={200} style={{ left: 114, top: 250 }} />
+      <In t={t} a={0.3} o={e - 0.4} style={{ left: 120, top: 150 }}><Label>Agentic order confirmation · a design story</Label></In>
+      <Words t={t} a={0.9} text="One order." size={250} weight={200} style={{ left: 114, top: 290 }} />
+      <Words t={t} a={1.8} text="One supplier confirmation. How long until it is confirmed?" size={44} weight={300} style={{ left: 120, top: 560, width: 1500 }} />
       <In t={t} a={2.6} o={e - 0.3} style={{ left: 120, top: 640, width: 1680 }}>
         <div style={{ height: 10, borderRadius: 5, background: C.line, overflow: 'hidden' }}><div style={{ width: `${grow * 100}%`, height: '100%', background: C.amber }} /></div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12, fontFamily: mono, fontSize: 20, letterSpacing: '0.12em', color: C.mute }}><span>A SUPPLIER REPLIES</span><span>THE ORDER IS CONFIRMED</span></div>
       </In>
-      <Words t={t} a={4.4} text="The goal: hours." size={120} weight={300} style={{ left: 120, top: 760 }} accent={['hours']} />
+      <Words t={t} a={4.4} text="Weeks. The goal: hours." size={110} weight={300} style={{ left: 120, top: 790 }} accent={['hours']} />
     </Scene>
   )
 }
@@ -58,14 +59,14 @@ const ASIS = [['Supplier replies', 'An email with a PDF, in the supplier’s own
 const NUANCE = [['Time', 'Weeks, not hours', 'One confirmation took weeks to process. The business needed hours.'], ['Scattered', 'Documents live everywhere', 'Emails, PDF attachments, the ERP and other apps. No single place for an order’s story.'], ['Unstructured', 'Risk mapped by hand', 'Supplier and risk profiles, mapped by hand with no common structure.']]
 export function Problem({ t }: { t: number }) {
   const [s, e] = FILM.problem
-  const bar = easeInOut(seg(t, s + 2.6, s + 9.2))
+  const bar = easeInOut(seg(t, s + 2.2, s + 6.2))
   return (
     <Scene t={t} s={s} e={e}>
       <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label color={C.red}>01 · The business problem</Label></In>
       <Words t={t} a={s + 0.4} text="It looked like automation." size={84} weight={200} style={{ left: 100, top: 120 }} />
       <Words t={t} a={s + 1.7} text="It was a design problem." size={84} weight={300} style={{ left: 100, top: 220 }} accent={['design']} />
       {ASIS.map(([a, b], i) => {
-        const p = pop(t, s + 2.6 + i * BEAT * 1.5)
+        const p = pop(t, s + 2.2 + i * BEAT)
         return (
           <div key={a} style={{ position: 'absolute', left: 100 + i * 290, top: 380, width: 270, opacity: p, transform: `translateY(${(1 - p) * 18}px)` }}>
             <div style={{ width: 40, height: 40, borderRadius: 20, border: `1.5px solid ${C.dim}`, display: 'grid', placeItems: 'center', fontFamily: mono, fontSize: 18, color: C.mute }}>{i + 1}</div>
@@ -74,12 +75,12 @@ export function Problem({ t }: { t: number }) {
           </div>
         )
       })}
-      <In t={t} a={s + 2.6} o={e - 0.3} style={{ left: 100, top: 640, width: 1720 }}>
+      <In t={t} a={s + 2.2} o={e - 0.3} style={{ left: 100, top: 640, width: 1720 }}>
         <div style={{ height: 12, borderRadius: 6, background: C.line, overflow: 'hidden' }}><div style={{ width: `${bar * 100}%`, height: '100%', background: C.lime }} /></div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12, fontFamily: mono, fontSize: 19, letterSpacing: '0.12em', color: C.dim }}><span>CONFIRMATION ARRIVES</span><span style={{ color: C.ink, opacity: seg(t, s + 8.4, s + 9.2) }}>WEEKS LATER</span></div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12, fontFamily: mono, fontSize: 19, letterSpacing: '0.12em', color: C.dim }}><span>CONFIRMATION ARRIVES</span><span style={{ color: C.ink, opacity: seg(t, s + 5.4, s + 6.2) }}>WEEKS LATER</span></div>
       </In>
       {NUANCE.map(([k, h, d], i) => {
-        const p = pop(t, s + 9.8 + i * BEAT * 2)
+        const p = pop(t, s + 6.6 + i * BEAT * 1.5)
         return (
           <div key={k} style={{ position: 'absolute', left: 100 + i * 580, top: 740, width: 560, height: 240, borderRadius: 18, background: C.panel, border: `1px solid ${C.line}`, padding: '28px 32px', opacity: p, transform: `translateY(${(1 - p) * 24}px)` }}>
             <div style={{ fontFamily: mono, fontSize: 18, letterSpacing: '0.14em', color: C.lime, textTransform: 'uppercase' }}>{k}</div>
@@ -92,14 +93,43 @@ export function Problem({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 2 · THE CONCEPT ───────────── */
+/* ───────────── 2 · THE QUESTION (the turn) ───────────── */
+export function Question({ t }: { t: number }) {
+  const [s, e] = FILM.question
+  const strike = easeOut(seg(t, s + 1.9, s + 2.5))
+  return (
+    <Scene t={t} s={s} e={e}>
+      <In t={t} a={s + 0.1} o={e - 0.3} style={{ left: 100, top: 90 }}><Label>02 · The question</Label></In>
+      <Words t={t} a={s + 0.2} text="So the question changed." size={110} weight={200} style={{ left: 100, top: 190 }} />
+      <In t={t} a={s + 1.2} o={e - 0.3} style={{ left: 100, top: 470 }}>
+        <div style={{ position: 'relative', display: 'inline-block', fontSize: 62, fontWeight: 300, color: C.dim }}>How do we automate it?<span style={{ position: 'absolute', left: 0, top: '56%', height: 4, width: `${strike * 100}%`, background: C.red }} /></div>
+      </In>
+      <Words t={t} a={s + 2.6} text="Who decides what, and when?" size={104} weight={300} style={{ left: 100, top: 590 }} accent={['decides']} />
+      <In t={t} a={s + 3.6} o={e - 0.3} style={{ left: 100, top: 860 }}><div style={{ fontFamily: mono, fontSize: 24, letterSpacing: '0.12em', color: C.lime }}>FOUR DECISIONS FOLLOWED →</div></In>
+    </Scene>
+  )
+}
+
+/* ───────────── 3 · THE DECISIONS ───────────── */
 function ConceptHead({ t, a, o, n, title, sub }: { t: number; a: number; o: number; n: number; title: string; sub: string }) {
   return (
     <>
-      <In t={t} a={a} o={o} style={{ left: 100, top: 80 }}><Label>02 · The concept · {n} of 4</Label></In>
+      <In t={t} a={a} o={o} style={{ left: 100, top: 80 }}><Label>03 · The decisions · {n} of 4</Label></In>
+      <Ribbon t={t} a={a} o={o} on={ON[n - 1]} />
       <Words t={t} a={a + 0.2} text={title} size={92} weight={200} style={{ left: 100, top: 190, width: 800 }} />
       <In t={t} a={a + 1.4} o={o} y={14} style={{ left: 100, top: 560, width: 760 }}><div style={{ fontSize: 34, fontWeight: 300, color: C.mute, lineHeight: 1.3 }}>{sub}</div></In>
     </>
+  )
+}
+const ON: number[][] = [[2, 3, 6], [5], [4], [1, 2, 3, 4, 5, 6]]
+const STEPS = ['Supplier replies', 'Read by eye', 'Compared by hand', 'Risk by hand', 'Owners chased', 'Supplier told']
+/** The six manual steps from the problem, small, with the ones this decision answers lit. It is the thread that ties the film together. */
+function Ribbon({ t, a, o, on }: { t: number; a: number; o: number; on: number[] }) {
+  return (
+    <In t={t} a={a + 0.5} o={o} style={{ left: 960, top: 52, width: 860 }}>
+      <div style={{ fontFamily: mono, fontSize: 15, letterSpacing: '0.14em', color: C.dim, marginBottom: 8 }}>THE SIX MANUAL STEPS · THIS DECISION ANSWERS</div>
+      <div style={{ display: 'flex', gap: 6 }}>{STEPS.map((x, i) => { const hot = on.includes(i + 1); return <span key={x} style={{ flex: 1, fontFamily: mono, fontSize: 14, letterSpacing: '0.04em', padding: '7px 6px', borderRadius: 8, textAlign: 'center', background: hot ? C.lime : 'transparent', color: hot ? C.bg : C.dim, border: `1px solid ${hot ? C.lime : C.line}`, opacity: hot ? 1 : 0.7 }}>{x}</span> })}</div>
+    </In>
   )
 }
 const panel: CSSProperties = { position: 'absolute', borderRadius: 18, background: C.panel, border: `1px solid ${C.line}` }
@@ -109,7 +139,7 @@ function Pattern({ t, a, o }: { t: number; a: number; o: number }) {
   const titles = ['A document in', 'A comparison', 'A decision']
   return (
     <>
-      <ConceptHead t={t} a={a} o={o} n={1} title="A pattern, not a use case." sub="Solve it once: a document in, a comparison, a decision. The answer holds for the next customer and the next document." />
+      <ConceptHead t={t} a={a} o={o} n={4} title="A pattern, not a use case." sub="Because the answer is a pattern, it holds for the next customer and the next document: a document in, a comparison, a decision." />
       {px.map((x, i) => {
         const p = pop(t, a + 1 + i * BEAT * 2)
         const col = i === 1 ? C.amber : i === 2 ? C.lime : C.cobalt
@@ -133,7 +163,7 @@ function AgentCard({ t, a, o }: { t: number; a: number; o: number }) {
   const rows: [string, string, string][] = [['Job', 'Read each confirmation, compare it with the purchase order, prepare every decision for a person.', C.lime], ['Does', 'Extracts with a confidence score. Rates every difference and explains it. Routes it to its owner. Drafts the reply. Logs everything.', C.cobalt], ['Never', 'Accepts a deviation. Confirms its own extraction. Answers the supplier alone.', C.red], ['Hands over to', 'Operations · the buyer · the goods recipient', C.amber]]
   return (
     <>
-      <ConceptHead t={t} a={a} o={o} n={2} title="The agent, defined." sub="A promise about what it will and will not do. Every screen, role and permission follows from it." />
+      <ConceptHead t={t} a={a} o={o} n={1} title="What does the agent own?" sub="A promise about what it will and will not do. Every screen, role and permission follows from it." />
       {rows.map(([k, v, col], i) => {
         const p = pop(t, a + 1 + i * BEAT * 2)
         return (
@@ -151,7 +181,7 @@ const CONTRACT = ['Purpose and scope', 'Agent capabilities', 'Guardrails and bou
 function ContractMini({ t, a, o }: { t: number; a: number; o: number }) {
   return (
     <>
-      <ConceptHead t={t} a={a} o={o} n={3} title="The human-agent contract." sub="Before any screen: what the agent may do, when a person decides, and how its autonomy grows." />
+      <ConceptHead t={t} a={a} o={o} n={2} title="When does a person decide?" sub="The human-agent contract, written before any screen: what the agent may do, who approves, and how its autonomy grows." />
       <div style={{ ...panel, left: 960, top: 130, width: 860, height: 800, padding: 28, opacity: pop(t, a + 0.8) }}>
         <div style={{ fontFamily: mono, fontSize: 19, letterSpacing: '0.14em', color: C.dim }}>WORKSHEET · AGENT–HUMAN CONTRACT</div>
         <div style={{ fontSize: 38, fontWeight: 300, marginTop: 8 }}>Supplier order confirmation</div>
@@ -178,7 +208,7 @@ function RiskCard({ t, a, o }: { t: number; a: number; o: number }) {
   const conf = Math.round(91 * easeOut(seg(t, a + 1.2, a + 3.2)))
   return (
     <>
-      <ConceptHead t={t} a={a} o={o} n={4} title="Risk, measured." sub="Confidence says how sure the agent is. Risk says how much a difference matters. Both decide when a person steps in." />
+      <ConceptHead t={t} a={a} o={o} n={3} title="What deserves a person’s time?" sub="Confidence says how sure the agent is. Risk says how much a difference matters. Together they decide when a person steps in." />
       <div style={{ ...panel, left: 980, top: 130, width: 380, height: 360, padding: 30, opacity: pop(t, a + 0.8) }}>
         <div style={{ fontFamily: mono, fontSize: 19, letterSpacing: '0.14em', color: C.dim }}>CONFIDENCE</div>
         <div style={{ fontSize: 150, fontWeight: 200, lineHeight: 1, marginTop: 18, letterSpacing: '-0.04em' }}>{conf}<span style={{ fontSize: 56, color: C.mute }}>%</span></div>
@@ -205,7 +235,7 @@ export function Concept({ t }: { t: number }) {
   const L = (e - s) / 4
   return (
     <Scene t={t} s={s} e={e}>
-      {[Pattern, AgentCard, ContractMini, RiskCard].map((V, i) => {
+      {[AgentCard, ContractMini, RiskCard, Pattern].map((V, i) => {
         const a = s + i * L, o = a + L - 0.3
         if (t < a - 0.01 || t > o + 0.7) return null
         return <div key={i} style={{ position: 'absolute', inset: 0, opacity: 1 - easeOut(seg(t, o, o + 0.5)) }}><V t={t} a={a} o={o} /></div>
@@ -231,8 +261,9 @@ export function Architecture({ t }: { t: number }) {
   const [s, e] = FILM.arch
   return (
     <Scene t={t} s={s} e={e}>
-      <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label>03 · Flow architecture</Label></In>
+      <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label>04 · Flow architecture</Label></In>
       <Words t={t} a={s + 0.4} text="One structure for every role." size={84} weight={200} style={{ left: 100, top: 120 }} />
+      <In t={t} a={s + 0.9} o={e - 0.3} style={{ left: 100, top: 222 }}><div style={{ fontSize: 30, fontWeight: 300, color: C.mute }}>Agent, contract and risk, drawn once as a single flow.</div></In>
       {STAGE.map((g, i) => <In key={g} t={t} a={s + 1 + i * BEAT} o={e - 0.3} y={8} style={{ left: gx(i), top: 300 }}><span style={{ fontFamily: mono, fontSize: 17, letterSpacing: '0.12em', color: C.dim }}>{`0${i + 1} ${g.toUpperCase()}`}</span></In>)}
       <svg width="1920" height="1080" style={{ position: 'absolute', inset: 0 }} aria-hidden="true">
         {LINKS.map(([a, b], i) => {
@@ -262,16 +293,16 @@ export function Architecture({ t }: { t: number }) {
 
 /* ───────────── 4 · THE WHOLE FLOW ───────────── */
 type Who = 'Agent' | 'Operations' | 'Buyer' | 'Goods recipient'
-const FLOW: { shot: string; overlay?: boolean; who: Who; title: string; text: string; ring?: [number, number, number, number] }[] = [
-  { shot: 'ops-worklist', who: 'Operations', title: 'The worklist is already waiting', text: 'The agent has read the new confirmations. Operations sees what needs validating, and how confident the agent is.', ring: [0.03, 0.24, 0.36, 0.12] },
-  { shot: 'ops-validate', who: 'Operations', title: 'Gate one: validation', text: 'Corrections are logged. Nothing moves on until a person confirms.', ring: [0.33, 0.44, 0.34, 0.26] },
-  { shot: 'buyer-worklist', who: 'Buyer', title: 'The buyer starts with risk', text: 'Every confirmation with its discrepancies, risk and status. Highest risk first.', ring: [0, 0.42, 1, 0.36] },
-  { shot: 'buyer-review', who: 'Agent', title: 'Every difference, with reasoning', text: 'Compared with the purchase order, rated, and explained in plain language.', ring: [0.02, 0.5, 0.96, 0.22] },
-  { shot: 'gr-review', who: 'Goods recipient', title: 'In parallel: quantity and delivery', text: 'The goods recipient decides only what they can judge.', ring: [0.02, 0.7, 0.96, 0.22] },
-  { shot: 'buyer-share', overlay: true, who: 'Agent', title: 'The reply drafts itself', text: 'The email to the supplier opens over the object page, discrepancy list attached.' },
-  { shot: 'buyer-sent', who: 'Buyer', title: 'Gate three: send', text: 'The buyer reviews and sends. The page says what happens next.', ring: [0.02, 0.27, 0.96, 0.2] },
-  { shot: 'buyer-revised', who: 'Agent', title: 'A revision comes back', text: 'The supplier’s revised confirmation arrives as a new version of the same order.', ring: [0, 0.04, 0.72, 0.2] },
-  { shot: 'buyer-activity', who: 'Agent', title: 'Everything on the record', text: 'One timeline of who did what, including the AI Agent.', ring: [0, 0.25, 0.64, 0.66] },
+const FLOW: { shot: string; was: string; overlay?: boolean; who: Who; title: string; text: string; ring?: [number, number, number, number] }[] = [
+  { shot: 'ops-worklist', was: 'An email with a PDF, in the supplier’s own layout.', who: 'Operations', title: 'The worklist is already waiting', text: 'The agent has read the new confirmations. Operations sees what needs validating, and how confident the agent is.', ring: [0.03, 0.24, 0.36, 0.12] },
+  { shot: 'ops-validate', was: 'Read by eye, often in German.', who: 'Operations', title: 'Gate one: validation', text: 'Corrections are logged. Nothing moves on until a person confirms.', ring: [0.33, 0.44, 0.34, 0.26] },
+  { shot: 'buyer-worklist', was: 'Risk judged by hand.', who: 'Buyer', title: 'The buyer starts with risk', text: 'Every confirmation with its discrepancies, risk and status. Highest risk first.', ring: [0, 0.42, 1, 0.36] },
+  { shot: 'buyer-review', was: 'Compared with the PO line by line, in another system.', who: 'Agent', title: 'Every difference, with reasoning', text: 'Compared with the purchase order, rated, and explained in plain language.', ring: [0.02, 0.5, 0.96, 0.22] },
+  { shot: 'gr-review', was: 'Owners chased by email.', who: 'Goods recipient', title: 'In parallel: quantity and delivery', text: 'The goods recipient decides only what they can judge.', ring: [0.02, 0.7, 0.96, 0.22] },
+  { shot: 'buyer-share', was: 'The supplier told what to fix, by hand.', overlay: true, who: 'Agent', title: 'The reply drafts itself', text: 'The email to the supplier opens over the object page, discrepancy list attached.' },
+  { shot: 'buyer-sent', was: 'And the cycle began again.', who: 'Buyer', title: 'Gate three: send', text: 'The buyer reviews and sends. The page says what happens next.', ring: [0.02, 0.27, 0.96, 0.2] },
+  { shot: 'buyer-revised', was: 'The cycle repeated from the top.', who: 'Agent', title: 'A revision comes back', text: 'The supplier’s revised confirmation arrives as a new version of the same order.', ring: [0, 0.04, 0.72, 0.2] },
+  { shot: 'buyer-activity', was: 'The story lived in inboxes.', who: 'Agent', title: 'Everything on the record', text: 'One timeline of who did what, including the AI Agent.', ring: [0, 0.25, 0.64, 0.66] },
 ]
 const WHO: Who[] = ['Agent', 'Operations', 'Buyer', 'Goods recipient']
 export function Flow({ t }: { t: number }) {
@@ -284,7 +315,7 @@ export function Flow({ t }: { t: number }) {
   const FW = 1120, FH = FW / (1440 / 899)
   return (
     <Scene t={t} s={s} e={e}>
-      <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label>04 · The whole flow</Label></In>
+      <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label>05 · One order, from inbox to close</Label></In>
       <div style={{ position: 'absolute', left: 100, top: 150, display: 'flex', flexWrap: 'wrap', gap: 10, width: 520 }}>
         {WHO.map(w => <span key={w} style={{ fontFamily: mono, fontSize: 16, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '7px 14px', borderRadius: 999, background: w === st.who ? (w === 'Agent' ? C.lime : C.ink) : 'transparent', color: w === st.who ? C.bg : C.dim, border: `1px solid ${w === st.who ? 'transparent' : C.line}` }}>{w}</span>)}
       </div>
@@ -292,6 +323,9 @@ export function Flow({ t }: { t: number }) {
         <div style={{ fontFamily: mono, fontSize: 18, letterSpacing: '0.14em', color: C.lime }}>STEP {i + 1} OF {FLOW.length}</div>
         <div style={{ fontSize: 60, fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 1.05, marginTop: 14 }}>{st.title}</div>
         <div style={{ fontSize: 30, color: C.mute, fontWeight: 300, lineHeight: 1.35, marginTop: 22 }}>{st.text}</div>
+        <div style={{ marginTop: 34, paddingTop: 18, borderTop: `1px solid ${C.line}`, opacity: easeOut(seg(t, a + 0.7, a + 1.2)) }}>
+          <span style={{ fontFamily: mono, fontSize: 16, letterSpacing: '0.14em', color: C.red }}>BEFORE </span><span style={{ fontSize: 26, color: C.dim, textDecoration: 'line-through', textDecorationColor: C.red }}>{st.was}</span>
+        </div>
       </div>
       <div style={{ position: 'absolute', left: 700, top: 170, width: FW, height: FH, borderRadius: 18, overflow: 'hidden', background: '#F5F6F7', boxShadow: '0 40px 100px rgba(0,0,0,0.55)', border: `1px solid ${C.line}` }}>
         {FLOW.map((f, n) => (n === i || n === i - 1) && (
@@ -320,9 +354,9 @@ export function Autonomy({ t }: { t: number }) {
   const [s, e] = FILM.auto
   return (
     <Scene t={t} s={s} e={e}>
-      <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label>05 · Autonomy</Label></In>
+      <In t={t} a={s + 0.2} o={e - 0.3} style={{ left: 100, top: 70 }}><Label>06 · Autonomy</Label></In>
       <Words t={t} a={s + 0.4} text="Autonomy that is earned." size={92} weight={200} style={{ left: 100, top: 190, width: 800 }} />
-      <In t={t} a={s + 1.6} o={e - 0.3} style={{ left: 100, top: 560, width: 760 }}><div style={{ fontSize: 34, fontWeight: 300, color: C.mute, lineHeight: 1.3 }}>Each step up is earned where confidence is high and risk is low. Every step stays in the activity log.</div></In>
+      <In t={t} a={s + 1.6} o={e - 0.3} style={{ left: 100, top: 560, width: 760 }}><div style={{ fontSize: 34, fontWeight: 300, color: C.mute, lineHeight: 1.3 }}>The same contract sets how far the agent goes. It moves up only where confidence is high and risk is low, and every step stays in the log.</div></In>
       {LEVELS.map(([n, d, tag], i) => {
         const p = pop(t, s + 1 + i * BEAT * 2.5, 0.6)
         const hot = tag === 'TODAY'
@@ -343,14 +377,14 @@ export function Close({ t }: { t: number }) {
   const chips = ['An agent definition', 'A human-agent contract', 'A risk model', 'One architecture, three roles']
   return (
     <Scene t={t} s={s} e={e + 2}>
-      <Words t={t} a={s + 0.3} text="Weeks to hours." size={210} weight={200} style={{ left: 110, top: 110 }} accent={['hours']} />
+      <Words t={t} a={s + 0.3} text="Weeks to hours." size={200} weight={200} style={{ left: 110, top: 110 }} accent={['hours']} />
       <div style={{ position: 'absolute', left: 120, top: 400, display: 'flex', flexWrap: 'wrap', gap: 14, width: 1500 }}>{chips.map((c, i) => <span key={c} style={{ opacity: pop(t, s + 2.2 + i * BEAT * 1.5) }}><Tag color={C.mute}>{c}</Tag></span>)}</div>
-      <In t={t} a={s + 4.6} style={{ left: 120, top: 520, width: 1400 }}><div style={{ fontSize: 38, fontWeight: 300, color: C.mute, lineHeight: 1.3 }}>Built to take order confirmation from weeks to a few hours, across three personas and 33 screens.</div></In>
+      <In t={t} a={s + 4.6} style={{ left: 120, top: 520, width: 1400 }}><div style={{ fontSize: 38, fontWeight: 300, color: C.mute, lineHeight: 1.3 }}>Six manual steps became one flow, designed to take order confirmation from weeks to a few hours across three personas and 33 screens.</div></In>
       <Words t={t} a={s + 5.4} text="Simplifying the complex." size={118} weight={300} style={{ left: 120, top: 650 }} accent={['complex.']} />
       <In t={t} a={s + 6.6} style={{ left: 120, top: 860, width: 1600 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 26 }}>
           <Star size={64} />
-          <div><div style={{ fontSize: 44, fontWeight: 400 }}>Led by Amit Kumar Tiwari</div><div style={{ fontFamily: mono, fontSize: 21, letterSpacing: '0.12em', color: C.mute, marginTop: 8 }}>DESIGN LEAD · VISION AND PATTERN · CO-CREATED WITH CUSTOMERS AS A WHITE-LABELLED SOLUTION ACROSS SUPPLY CHAIN MANAGEMENT</div></div>
+          <div><div style={{ fontSize: 44, fontWeight: 400 }}>Agentic order confirmation</div><div style={{ fontFamily: mono, fontSize: 21, letterSpacing: '0.12em', color: C.mute, marginTop: 8 }}>CO-CREATED WITH CUSTOMERS AS A WHITE-LABELLED SOLUTION ACROSS SUPPLY CHAIN MANAGEMENT</div></div>
         </div>
       </In>
     </Scene>
