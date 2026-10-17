@@ -8,11 +8,10 @@ import ThemeToggle from '../ds/ThemeToggle'
 
 // Leadership-first flow. "Learn" (mentoring, community, resources, reflections) stays available but quiet.
 const navItems: { label: string; to: string; quiet?: boolean }[] = [
-  { label: 'Leadership', to: '/leadership' },
-  { label: 'Practices', to: '/resources' },
   { label: 'Work', to: '/craft' },
+  { label: 'Leadership', to: '/leadership' },
+  { label: 'Practice', to: '/resources' },
   { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
   { label: 'Learn', to: '/learn', quiet: true },
 ]
 
