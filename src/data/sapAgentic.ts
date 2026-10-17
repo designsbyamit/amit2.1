@@ -50,14 +50,8 @@ export const sapAgentic = {
   },
 
   architecture: {
-    title: 'One structure for every role.',
-    intro: 'Three personas with different jobs share one assistant. The structure stays the same for everyone and changes only in what each role can see and decide.',
-    stages: [
-      { n: '01', title: 'Worklist', body: 'Where every role starts: orders waiting, with risk and status.', shot: 'buyer-worklist', pos: '40% 70%' },
-      { n: '02', title: 'Object page', body: 'One page per confirmation: Discrepancies, Extraction, Activity.', shot: 'buyer-review', pos: '0% 45%' },
-      { n: '03', title: 'Processing', body: 'Validate, accept or reject, share, submit. Each names what comes next.', shot: 'buyer-share', pos: '0% 30%' },
-      { n: '04', title: 'Permissions', body: 'Each role sees and decides only what it can judge.', shot: 'gr-review', pos: '0% 80%' },
-    ],
+    title: 'One flow, from inbox to close.',
+    intro: 'Where the document comes in, how it is parsed, and how the work moves between the agent and three roles. Each person enters the same order at a different step.',
   },
 
   contract: {
@@ -129,13 +123,23 @@ export const sapAgentic = {
 
   worklist: {
     title: 'Three worklists, one anatomy.',
-    intro: 'Each role starts in a worklist built for its job. The columns are shared, so the next action is always in the same place.',
+    intro: 'Each role starts in a worklist built for its job. The shared columns stay in the same place, so the next action is always where you expect it. What differs is what each role needs in order to decide.',
     roles: [
-      { who: 'Operations', shot: 'ops-worklist', pos: '0% 30%', points: ['Pending validation and average confidence at the top', 'The queue of confirmations waiting for validation', 'Status moves from New to In progress to Processed'] },
-      { who: 'Buyer', shot: 'buyer-worklist', pos: '40% 70%', points: ['Every confirmation with its discrepancies, risk and status', 'Revisions grouped under one purchase order', 'Filter by risk and status'] },
-      { who: 'Goods recipient', shot: 'gr-worklist', pos: '40% 70%', points: ['Grouped by purchase order, with versions', 'Only quantity and delivery deviations', 'Review, then submit'] },
+      { who: 'Operations', job: 'Is the extraction right?' },
+      { who: 'Buyer', job: 'Which commercial deviations to accept?' },
+      { who: 'Goods recipient', job: 'Do quantity and delivery work for the store?' },
     ],
-    anatomy: ['PO no.', 'Document no.', 'Supplier', 'Order value', 'Received on', 'Discrepancies', 'Risk', 'Status', 'Action'],
+    columns: [
+      ['PO no.', true, true, true],
+      ['Document no.', true, true, true],
+      ['Supplier', true, true, true],
+      ['Order value', true, true, true],
+      ['Received on', true, true, true],
+      ['Status', true, true, true],
+      ['Action', true, true, true],
+      ['Discrepancies', false, true, true],
+      ['Risk', false, true, true],
+    ] as [string, boolean, boolean, boolean][],
   },
 
   risk: {
@@ -156,7 +160,7 @@ export const sapAgentic = {
 
   prototype: {
     title: 'One order, from email to close.',
-    intro: 'Follow a single confirmation through the assistant, handing between the agent and three people.',
+    intro: 'Follow a single confirmation through the assistant, from set-up to the revised version, handing between the agent and three people. Press play, or pick a chapter.',
   },
 
   autonomy: {
@@ -189,9 +193,9 @@ export const sapAgentic = {
   ],
 
   personas: [
-    { id: 'david', role: 'Procurement Operations', name: 'David Paul', title: 'Procurement Operations Manager', img: `${dir}persona-david.jpg`, struggle: 'Reads each PDF in the supplier\u2019s own layout, often in German, and checks every figure by hand.', resp: ['Review the extracted data from the order confirmations and make corrections', 'Confirm validated to kick off the discrepancy routing as per the policy'] },
-    { id: 'adrian', role: 'Buyer', name: 'Adrian Smith', title: 'Category Buyer', img: `${dir}persona-adrian.jpg`, struggle: 'Must weigh cost and logistics impact on each difference, then tell the supplier exactly what to fix.', resp: ['Evaluate and accept/reject deviations based on logistics and cost impact', 'Escalate critical commercial risks to procurement leadership'] },
-    { id: 'rajan', role: 'Goods Recipient', name: 'Rajan Nair', title: 'Store Executive', img: `${dir}persona-rajan.jpg`, struggle: 'Must judge whether quantity and delivery changes work for what the business actually needs.', resp: ['Validate quantity deviations based on actual business requirements', 'Review delivery date changes and assess impact on operations and flag risks'] },
+    { id: 'david', role: 'Procurement Operations', name: 'David Paul', title: 'Procurement Operations Manager', img: `${dir}persona-david-face.jpg`, struggle: 'Reads each PDF in the supplier\u2019s own layout, often in German, and checks every figure by hand.', resp: ['Review the extracted data from the order confirmations and make corrections', 'Confirm validated to kick off the discrepancy routing as per the policy'] },
+    { id: 'adrian', role: 'Buyer', name: 'Adrian Smith', title: 'Category Buyer', img: `${dir}persona-adrian-face.jpg`, struggle: 'Must weigh cost and logistics impact on each difference, then tell the supplier exactly what to fix.', resp: ['Evaluate and accept/reject deviations based on logistics and cost impact', 'Escalate critical commercial risks to procurement leadership'] },
+    { id: 'rajan', role: 'Goods Recipient', name: 'Rajan Nair', title: 'Store Executive', img: `${dir}persona-rajan-face.jpg`, struggle: 'Must judge whether quantity and delivery changes work for what the business actually needs.', resp: ['Validate quantity deviations based on actual business requirements', 'Review delivery date changes and assess impact on operations and flag risks'] },
   ],
 
   flowSteps: [

@@ -34,9 +34,9 @@ export default function AsIsFlow({ title, steps, nuances }: { title: string; ste
       </div>
       <div className="grid md:grid-cols-3 gap-4 mt-12">
         {nuances.map((n, i) => (
-          <motion.div key={n.k} className="card" style={i === 0 ? { borderColor: 'var(--signal)' } : undefined} initial={reduce ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 * i, ease }}>
-            <p className="text-overline text-signal-ink">{n.k}{i === 0 ? ' · the one that matters most' : ''}</p>
-            <p className={`${i === 0 ? 'text-heading' : 'text-title'} text-white mt-3`}>{n.t}</p>
+          <motion.div key={n.k} className="card" initial={reduce ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 * i, ease }}>
+            <p className="text-overline text-signal-ink">{n.k}</p>
+            <p className="text-title text-white mt-3">{n.t}</p>
             <p className="text-body text-ink-2 mt-3">{n.d}</p>
           </motion.div>
         ))}
