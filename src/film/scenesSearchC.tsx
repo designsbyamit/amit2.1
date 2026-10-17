@@ -234,7 +234,6 @@ export function SOutcome({ t }: { t: number }) {
       <In t={t} a={161.3} d={1} style={{ left: 0, width: 1920, top: 380, textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}><Star size={70} /></div>
         <div style={{ fontSize: 84, fontWeight: 200, letterSpacing: '-0.035em', marginTop: 20 }}>AI-Powered Search</div>
-        <div style={{ fontFamily: mono, fontSize: 24, color: C.mute, letterSpacing: '0.14em', marginTop: 20 }}>DESIGN LEAD · AMIT KUMAR TIWARI</div>
         <div style={{ fontSize: 26, color: C.dim, marginTop: 34 }}>NorthStar is a fictional company. Scenario figures are illustrative.</div>
       </In>
     </Scene>
