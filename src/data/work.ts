@@ -43,7 +43,7 @@ const allCaseStudies: CaseStudy[] = [
     category: 'Saudia Airlines · Service Design · OmniChannel · B2C',
     title: 'OmniChannel Travel Experience — Leading Airlines',
     shortTitle: 'Saudia Airlines',
-    tagline: 'Designing a service ecosystem, not an app. Turning a $2M digital channel into a $100M revenue engine.',
+    tagline: 'A service ecosystem, not an app. I led the mobile experience for a carrier serving 30M+ guests a year: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.',
     role: 'App Design Lead',
     timeline: 'Jan 2023',
     domain: 'Airlines & Travel · Service Design',
