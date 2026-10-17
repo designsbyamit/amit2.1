@@ -51,7 +51,7 @@ export default function ImpactSnapshot() {
             return (
               <motion.div
                 key={metric.label}
-                className={`bg-black flex flex-col justify-between p-7 md:p-9 ${i === metrics.length - 1 && metrics.length % 2 === 1 ? 'col-span-2 aspect-[2/1]' : 'aspect-square'} ${i === metrics.length - 1 && metrics.length % 4 === 3 ? 'md:col-span-2 md:aspect-auto' : i === metrics.length - 1 && metrics.length % 4 === 1 ? 'md:col-span-4 md:aspect-auto' : ''}`}
+                className={`bg-black flex flex-col justify-between p-7 md:p-9 ${i === metrics.length - 1 && metrics.length % 2 === 1 ? 'col-span-2 aspect-[2/1]' : 'aspect-square'} ${i === metrics.length - 1 && metrics.length % 4 === 3 ? 'md:col-span-2 md:aspect-auto' : i === metrics.length - 1 && metrics.length % 4 === 1 ? 'md:col-span-4 md:aspect-auto' : i === metrics.length - 1 && metrics.length % 4 === 2 ? 'md:col-span-2 md:aspect-auto' : ''}`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ backgroundColor: 'rgb(var(--ink-rgb) / 0.028)', transition: { duration: 0.2 } }}
