@@ -1,4 +1,5 @@
 import Illustration from '../components/illustrations/Illustration'
+import Distinct from '../components/case/Distinct'
 import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
@@ -57,6 +58,7 @@ export default function SAPSearchStoryPage() {
               <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
             ))}
           </dl>
+          {cs.distinct && <div className="mt-12"><Distinct title={cs.distinct.title} body={cs.distinct.body} /></div>}
         </div>
       </header>
 

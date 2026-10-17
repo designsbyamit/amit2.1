@@ -1,4 +1,5 @@
 import Illustration from '../components/illustrations/Illustration'
+import Distinct from '../components/case/Distinct'
 import { useState } from 'react'
 import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
@@ -47,6 +48,7 @@ export default function EngazeStoryPage() {
               <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
             ))}
           </dl>
+          {cs.distinct && <div className="mt-12"><Distinct title={cs.distinct.title} body={cs.distinct.body} /></div>}
           <div className="mt-14"><Fig src={E.hero} alt="Engaze: one companion for every role" /></div>
         </div>
       </header>
@@ -118,13 +120,20 @@ export default function EngazeStoryPage() {
         </div>
       </Section>
 
-      <Section id="language" tone="raised">
-        <SectionHeader label="08 · Design language, extended" title="Dark by default. Human in tone. Explainable in every pixel." intro="The employee-experience language, formalised so every role in the suite shares it." />
+      <Section id="persona-template" tone="raised">
+        <SectionHeader label="08 · Tool · Persona template" title={E.personaTemplate.title} intro={E.personaTemplate.intro} />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {E.personaTemplate.parts.map(([t, d], i) => <div key={t} className="card"><p className="text-overline text-ink-3">{String(i + 1).padStart(2, '0')}</p><p className="text-title text-white mt-3">{t}</p><p className="text-body-sm text-ink-2 mt-3">{d}</p></div>)}
+        </div>
+      </Section>
+
+      <Section id="language">
+        <SectionHeader label="09 · Design language, extended" title="Dark by default. Human in tone. Explainable in every pixel." intro="The employee-experience language, formalised so every role in the suite shares it." />
         <Fig src={E.language.image} alt={E.language.alt} />
       </Section>
 
-      <Section id="outcome">
-        <SectionHeader label="09 · Outcome" title="Measured where it shipped. Designed where it did not." />
+      <Section id="outcome" tone="raised">
+        <SectionHeader label="10 · Outcome" title="Measured where it shipped. Designed where it did not." />
         <div className="grid md:grid-cols-2 gap-4">
           <div className="card"><p className="text-overline text-ink-3">Measured · employee experience</p>
             <ul className="mt-5 space-y-5">{E.outcomes.measured.map(([t, d]) => <li key={t}><p className="text-title text-white">{t}</p><p className="text-body-sm text-ink-2 mt-1">{d}</p></li>)}</ul></div>

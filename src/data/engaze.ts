@@ -60,6 +60,20 @@ export const engaze = {
       { label: 'In context', heading: 'Inside the workplace portal', body: 'The companion sits beside the employee\'s existing portal: apps, benefits, productivity, and Ask Engaze one tap away.', image: O('engaze-11.png'), alt: 'Engaze companion inside the workplace portal on a tablet' },
     ] as { label: string; heading: string; body: string; image: string; alt: string; tall?: boolean }[],
   },
+  personaTemplate: {
+    title: 'A persona template for a conversational assistant.',
+    intro: 'A persona is what keeps an assistant consistent from the first turn to the thousandth. Fill in each part before writing any dialog, and test the sample turns against it.',
+    parts: [
+      ['Identity', 'Name, role and one-line purpose. Who it serves, and in which situations they reach for it.'],
+      ['Personality', 'Three traits, each with what it is and what it is not. Example format: warm, not chatty.'],
+      ['Voice', 'Tone for each moment: greeting, answering, bad news, error. Sentence length, how it addresses the person, rules for punctuation and emoji.'],
+      ['Vocabulary', 'Words it uses and words it never uses. The terms the organisation uses for its own things.'],
+      ['Conversation pattern', 'How it opens, how it asks a clarifying question, how it confirms before acting, how it closes.'],
+      ['Knowledge and limits', 'What it knows, what it never does, and what it says when it does not know.'],
+      ['Failure and handover', 'How it apologises, when it hands over to a person, and what it passes along so nobody repeats themselves.'],
+      ['Sample turns', 'Three short exchanges in its voice: a simple answer, an action with confirmation, and a refusal. The test for every later turn.'],
+    ] as [string, string][],
+  },
   language: { image: I('hcm-system'), alt: 'Engaze design language: colour, type, components, principles' },
   outcomes: {
     measured: [['90% CSAT', 'in a category that typically scores below 60%'], ['#1 HR AI', 'most praised HR AI product at the client'], ['Executive recognition', '"Stands beside any other leading studios\' work globally."']] as [string, string][],

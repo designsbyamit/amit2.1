@@ -30,6 +30,8 @@ export interface CaseStudy {
   prototypeUrl?: string
   /** Colour of the media field behind this case study's images (same in both modes). */
   tone?: 'cobalt' | 'teal' | 'plum'
+  /** What is unusual about this case, in its own terms. */
+  distinct?: { title: string; body: string }
 }
 
 const B = import.meta.env.BASE_URL
@@ -46,6 +48,10 @@ const allCaseStudies: CaseStudy[] = [
     timeline: 'Jan 2023',
     domain: 'Airlines & Travel · Service Design',
     tags: ['Service Design', 'OmniChannel', 'Airlines', 'Revenue Growth'],
+    distinct: {
+      title: 'Led end to end, on an aggressive timeline.',
+      body: 'I led the whole mobile experience: an 8–9 person team for almost a year. The job covered planning the work, running the sprints and working day to day with product managers and the client, to timelines that left little slack.',
+    },
     challenge: 'Leading airline in the Middle East, brand value $500M in 2022, 95+ destinations across four continents. Target: 100M tourists/year by 2030. Digital team was structured around functional owners — each building independently — producing an incoherent whole. The mandate: grow digital bookings from a $2M channel to a $100M revenue stream.',
     approach: 'Reframed the engagement as a service architecture problem, not a UI problem. Led experience strategy across 11+ designers in a modular pod structure where each pod owned a journey node. Research happened in airport lounges and stakeholder sessions — because the friction that mattered most was physical before it was digital.',
     outcome: '92% engagement boost. 50× increase in ancillary sales — a category previously buried so deep in the booking flow that most users never encountered it. The pod delivery model became the standard framework for large-scale design programmes at Accenture ME.',
@@ -196,6 +202,10 @@ const allCaseStudies: CaseStudy[] = [
     timeline: 'May 2024',
     domain: 'Generative AI · HR Tech',
     tags: ['Generative AI', 'Conversational Design', 'HCM', 'Enterprise UX'],
+    distinct: {
+      title: 'A case study in conversation design.',
+      body: 'The team researched conversation design in depth, including how to build a persona for a conversational assistant so that it keeps one consistent conversation pattern. The persona template below carries that method.',
+    },
     challenge: 'Human capital suites are built for administrators and sold as separate modules. Design an AI-powered suite that improves the experience of every role, set against the best of the category.',
     approach: 'Start from five principles instead of flows, prove them in the employee-experience module, then extend one companion, one trust model and one people graph across recruiting, onboarding, management, HR operations and workforce planning.',
     outcome: 'Employee-experience module: 90% CSAT in a category where enterprise HR bots typically score below 60%, and the most praised HR AI product at the client. Wider suite: designed and prototyped as a design vision.',
@@ -282,6 +292,10 @@ const allCaseStudies: CaseStudy[] = [
     timeline: 'Jun 2023',
     domain: 'Telecom · Enterprise Operations',
     tags: ['Enterprise UX', 'Telecommunications', 'Self-Serve', 'Operational Design'],
+    distinct: {
+      title: 'Complex technology, real consequences.',
+      body: 'A massive project on complex technology. What the platform changes lands on the customer’s own infrastructure, so the design carried real operational weight.',
+    },
     challenge: '"dNetWorX" helps enterprises modify and upgrade network services with zero downtime. Client: leading CMT company (NDA). Expert users had adapted to years of dysfunction — mistaking workarounds for competence. Every network modification for 70,000+ enterprise customers required multi-team handoffs. The cost: $5M in overhead.',
     approach: 'Weekly sprint structure, each sprint dedicated to a specific module with 2 checkpoint reviews and 2 co-working sessions per week. Progressive disclosure as the core design principle. 4 weeks of deep-dive uncovering navigational challenges, access restrictions, cognitive load, and complex processes.',
     outcome: '$5M saved, a realised figure reported by the client, through reduction in support tickets, manual intervention hours, and multi-team escalations. Network modifications that required three-team handoffs now completed in a single self-serve flow.',
@@ -354,6 +368,10 @@ const allCaseStudies: CaseStudy[] = [
     timeline: '2024–Ongoing',
     domain: 'AI · Enterprise SaaS',
     tags: ['AI', 'Search Design', 'Enterprise UX'],
+    distinct: {
+      title: 'A component case: craft, behaviour and specification.',
+      body: 'This is a design-system component and pattern project. The work is the craft of interaction and behaviour, the anatomy of the component, and the specification that product teams build from.',
+    },
     challenge: 'Each product in the suite had its own legacy search implementation, vocabulary, and assumptions. Introducing AI-powered search meant solving fragmentation and trust simultaneously — making AI-surfaced results trustworthy to enterprise users who are already sceptical of AI.',
     approach: 'Three principles: intent over query, contextual relevance over completeness, transparent reasoning over magical results. The hardest decision: surfacing AI confidence levels to users already sceptical of automation.',
     outcome: 'Piloted in three products so far, and owned by the design team. Because it lives in the design system, one search component, one results layout and a shared pattern library guide AI-surfaced discovery, and every improvement reaches each product that adopts it.',

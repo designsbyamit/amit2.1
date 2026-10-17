@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/ds/Breadcrumb'
+import Distinct from '../components/case/Distinct'
 import CaseThumb from '../components/ds/CaseThumb'
 import { TagList } from '../components/ds/Tag'
 import ZoomImage from '../components/ui/ZoomImage'
@@ -63,6 +64,8 @@ export default function CaseStudyPage() {
           </div>
         </div>
       </section>
+
+      {cs.distinct && <section className="container-site pb-16 md:pb-20"><Distinct title={cs.distinct.title} body={cs.distinct.body} /></section>}
 
       {/* Challenge / Approach / Outcome */}
       <section className="relative bg-black py-24 px-6 md:px-12">
