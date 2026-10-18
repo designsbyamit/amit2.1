@@ -69,7 +69,6 @@ export default function Nav() {
         <nav aria-label="Main" className="container-site flex items-center justify-between" style={{ height: 'var(--header-h)' }}>
           <Link to="/" className="flex items-center gap-3 text-ink" aria-label="Amit Kumar Tiwari, home">
             <Logo size={32} />
-            <span className="hidden sm:inline text-[0.9375rem] font-normal tracking-[-0.01em]">Amit Kumar Tiwari</span>
           </Link>
 
           <div className="flex items-center gap-6">

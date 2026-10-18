@@ -437,3 +437,12 @@ html[data-theme='dark'] .hero-portrait img { filter: grayscale(1) contrast(1.12)
 
 /* Hairline grid: 1px lines between cells without filling empty cells */
 @layer components { .grid-hairline > * { box-shadow: 0 0 0 1px var(--line-1); background-color: var(--bg); } }
+
+/* Headings (h1–h6) use the serif; everything else stays Geist.
+   Unlayered with attribute selectors so it wins over the Geist type-scale
+   weights (200–300), which are too thin for a serif. */
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-serif); }
+h1[class], h2[class], h3[class], h4[class], h5[class], h6[class] {
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}

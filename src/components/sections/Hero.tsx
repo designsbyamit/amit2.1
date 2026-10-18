@@ -38,7 +38,7 @@ export default function Hero() {
       <div className="relative container-site grid-site pt-[38vh] pb-10 md:pt-0 md:pb-0 md:my-auto">
         <div className="col-span-4 md:col-span-8 lg:col-span-7 flex flex-col gap-7 md:gap-8">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1, duration: 0.8 }}>
-            <Status>Now · Leading Core Design at SAP</Status>
+            <Status>Now · Design at SAP</Status>
           </motion.div>
           <h1 className="text-display-xl text-ink">
             <Line delay={0.15}>Building designers,</Line>
