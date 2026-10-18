@@ -41,7 +41,7 @@ export default function Latest() {
         <h2 className="text-display-l text-ink mb-12 md:mb-16">Latest</h2>
         <ul className="grid gap-4 md:gap-6">
           <Row to={`/craft/${work.id}`} kind="Project" title={work.title} text={work.tagline} cta="Read the case study" delay={0}
-            visual={<CaseThumb id={work.id} className="w-full h-full object-cover" />} />
+            visual={<div className="absolute inset-0"><CaseThumb id={work.id} flush ratio="auto" className="w-full h-full" /></div>} />
           <Row to={`/leadership/cases/${practice.slug}`} kind="Practice" title={practice.title} text={practice.subtitle} cta="Read the case" delay={0.06}
             visual={<StoryCover motif="culture" tone="teal" number={practice.number} className="!rounded-none w-full h-full" ratio="16 / 10" />} />
           <Row to="/resources/dual-fluency" kind="Workshop" title={talk.name} text="Participants left with a framework, a vocabulary and a set of tools for translating design quality into business outcomes." cta="See the workshop" delay={0.12}
