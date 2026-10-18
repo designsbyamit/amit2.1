@@ -24,6 +24,13 @@ function Layer({ l, className, style }: { l: ThumbLayer; className: string; styl
 export default function CaseThumb({ id, className = '', ratio = '16 / 10', compact = false }: { id: string; className?: string; ratio?: string; compact?: boolean }) {
   const t = thumbs[id]
   if (!t) return null
+  if (t.image) {
+    return (
+      <div className={`thumb relative overflow-hidden ${className}`} style={{ aspectRatio: ratio, borderRadius: compact ? 10 : 20 }} aria-hidden="true">
+        <img src={t.image} alt="" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+    )
+  }
   return (
     <div className={`thumb group/thumb relative overflow-hidden ${className}`} style={{ aspectRatio: ratio, borderRadius: compact ? 10 : 20, background: `radial-gradient(120% 90% at 18% 8%, ${t.from}, ${t.to})` }} aria-hidden="true">
       <Layer l={t.hero} className="thumb-hero" style={{ left: '6%', top: '11%', width: '76%', borderRadius: compact ? 6 : 12, boxShadow: '0 30px 60px -18px rgb(20 28 48 / 0.32), 0 6px 16px -6px rgb(20 28 48 / 0.18)' }} />

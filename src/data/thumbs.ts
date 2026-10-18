@@ -3,11 +3,12 @@ const I = (p: string) => `${B}images/case-studies/${p}`
 
 /** crop = [x, y, w, h] as fractions of the source image; size = source pixel size (sets the crop's aspect). */
 export interface ThumbLayer { src: string; size: [number, number]; crop: [number, number, number, number]; bg?: string }
-export interface Thumb { from: string; to: string; hero: ThumbLayer; detail: ThumbLayer }
+export interface Thumb { from: string; to: string; hero: ThumbLayer; detail: ThumbLayer; /** A finished, composed thumbnail. When set it replaces the hero and detail layers. */ image?: string }
 
 export const thumbs: Record<string, Thumb> = {
   'sap-agentic': {
     from: '#EEF2FF', to: '#CFDAFB',
+    image: I('sap-agentic/thumbnail.webp'),
     hero: { src: I('sap-agentic/buyer-review.svg'), size: [1440, 899], crop: [0.02, 0.255, 0.62, 0.38] },
     detail: { src: I('sap-agentic/buyer-email.svg'), size: [638, 1059], crop: [0.125, 0.057, 0.75, 0.3] },
   },

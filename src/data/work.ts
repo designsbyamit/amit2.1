@@ -399,7 +399,7 @@ const allCaseStudies: CaseStudy[] = [
   },
   {
     id: 'sap-agentic',
-    image: `${B}images/case-studies/sap-agentic/cover.jpg`,
+    image: `${B}images/case-studies/sap-agentic/thumbnail.webp`,
     number: '06',
     category: 'Agentic AI · Procurement · Enterprise',
     title: 'Agentic AI: Supplier Order Confirmation Experience',
