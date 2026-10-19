@@ -1,6 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import Illustration from '../components/illustrations/Illustration'
 import {
   Button, Card, Chip, Tag, TagList, Status, MediaFrame, Breadcrumb, Tabs, Accordion,
   TextField, TextArea, Callout, Quote, Stat, SectionHeader, ThemeToggle, useTheme,
@@ -141,7 +140,6 @@ export default function DesignSystemPage() {
     <>
       <section style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site relative pt-12 md:pt-20 pb-16">
-          <Illustration name="design-system" className="hidden xl:block absolute right-6 top-16 w-[26%] max-w-[340px] h-auto" />
           <div className="mb-10"><Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Design system' }]} /></div>
           <SectionHeader as="h1" label="Signal · Design system v2" title={<>Premium, minimal, <span className="accent-signal">clear.</span></>}
             intro="The tokens, type, layout, components and rules behind this website, in dark and light. Every page is built from what is on this page, so the experience stays consistent and meets WCAG 2.2 AA."

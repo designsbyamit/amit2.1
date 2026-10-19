@@ -14,7 +14,7 @@ export const reflections: Reflection[] = [
     title: 'How Vedic Secrets Can Disrupt Your Design Game',
     excerpt: 'A five-part series exploring what ancient Indian philosophy — Nyaya Darshan, the Vedas, and Vedic epistemology — has to teach modern designers about process, knowledge, and intention.',
     url: 'https://medium.com/@amitkrt/how-vedic-secrets-can-disrupt-your-design-game-1-286b6cee79d6',
-    image: '/images/reflections/Vedic Secrets.webp',
+    image: '/images/reflections/vedic-secrets-cover.webp',
   },
   {
     id: 'ai-genai-framework',

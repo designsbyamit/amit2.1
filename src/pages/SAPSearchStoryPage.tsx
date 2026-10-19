@@ -1,4 +1,3 @@
-import Illustration from '../components/illustrations/Illustration'
 import Distinct from '../components/case/Distinct'
 import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
@@ -43,8 +42,7 @@ export default function SAPSearchStoryPage() {
       {/* Hero */}
       <header className="pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="container-site relative">
-          <Illustration name="search" className="hidden lg:block absolute right-6 top-24 w-[30%] max-w-[420px] h-auto" />
-          <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'AI-Powered Search' }]} />
+          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'AI-Powered Search' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>

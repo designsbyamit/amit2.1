@@ -1,4 +1,3 @@
-import Illustration from '../components/illustrations/Illustration'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import SectionHeader from '../components/ds/SectionHeader'
 import Distinct from '../components/case/Distinct'
@@ -33,7 +32,7 @@ export default function AirlineStoryPage() {
     <div className="bg-surface-0 min-h-screen">
       <header className="pt-32 md:pt-40 pb-16 md:pb-24">
         <div className="container-site relative">
-          <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'Airline App' }]} />
+          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Airline App' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[62ch]">A service ecosystem, not an app. I led the mobile experience: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.</p>
@@ -137,7 +136,6 @@ export default function AirlineStoryPage() {
         </div>
         <div className="mt-16 flex flex-wrap gap-3 items-end justify-between">
           <a href="/craft" className="btn btn-secondary">All case studies</a>
-          <Illustration name="craft" className="hidden md:block w-[220px] h-auto" />
         </div>
       </Section>
     </div>

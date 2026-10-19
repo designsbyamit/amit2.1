@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import { caseStudies } from '../../data/work'
 import { cases } from '../../data/cases'
 import { reflections } from '../../data/reflections'
-import { initiatives } from '../../data/community'
 import CaseThumb from '../ds/CaseThumb'
 import StoryCover from '../ds/StoryCover'
+import ResourceCover from '../ds/ResourceCover'
 
 const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -32,7 +32,6 @@ function Row({ to, kind, title, text, cta, visual, delay }: { to: string; kind: 
 export default function Latest() {
   const work = caseStudies.find(c => c.id === 'sap-agentic') ?? caseStudies[0]
   const practice = cases.find(c => c.slug === 'ai-experimentation-to-capability') ?? cases[0]
-  const talk = initiatives.find(i => i.id === 'designup-workshop') ?? initiatives[0]
   const piece = reflections.find(r => r.id === 'vedic-design-series') ?? reflections[0]
   const img = (src?: string, pos?: string) => src ? <img src={src} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: pos }} /> : <div className="w-full h-full bg-surface-1" />
   return (
@@ -44,8 +43,8 @@ export default function Latest() {
             visual={<div className="absolute inset-0"><CaseThumb id={work.id} flush ratio="auto" className="w-full h-full" /></div>} />
           <Row to={`/leadership/cases/${practice.slug}`} kind="Practice" title={practice.title} text={practice.subtitle} cta="Read the case" delay={0.06}
             visual={<StoryCover motif="culture" tone="teal" number={practice.number} className="!rounded-none w-full h-full" ratio="16 / 10" />} />
-          <Row to="/resources/dual-fluency" kind="Workshop" title={talk.name} text="Participants left with a framework, a vocabulary and a set of tools for translating design quality into business outcomes." cta="See the workshop" delay={0.12}
-            visual={img(talk.image, 'center 42%')} />
+          <Row to="/resources/dual-fluency" kind="Workshop" title="Build Dual Fluency" text="A Framework, a vocabulary and set of tools for translating design quality into business outcomes." cta="View Toolkit" delay={0.12}
+            visual={<div className="absolute inset-0 flex items-center justify-center bg-surface-1 py-6"><div className="h-full" style={{ aspectRatio: '3 / 4' }}><ResourceCover title="Dual Fluency" kind="Playbook" motif="loop" tone="cobalt" index={3} /></div></div>} />
           <Row to="/reflections" kind="Writing" title={piece.title} text={piece.excerpt} cta="Read the series" delay={0.18}
             visual={img(piece.image)} />
         </ul>

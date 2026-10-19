@@ -22,7 +22,7 @@ export default function CaseStudyPage() {
         <div className="text-center">
           <p className="text-body text-ink-3 mb-6">Case study not found.</p>
           <Link to="/craft" className="text-label text-ink-3 hover:text-white transition-colors">
-            ← Back to Craft
+            ← Back to Works
           </Link>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function CaseStudyPage() {
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-10 md:pt-14 pb-16 md:pb-20">
-          <div className="mb-10"><Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: cs.shortTitle }]} /></div>
+          <div className="mb-10"><Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: cs.shortTitle }]} /></div>
           <div className="grid-site gap-y-10 items-end">
             <div className={cs.image ? 'col-span-4 md:col-span-6' : 'col-span-4 md:col-span-9'}>
               <motion.p className="text-label text-ink-3 mb-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.1 }}>

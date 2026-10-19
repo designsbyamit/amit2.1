@@ -29,7 +29,6 @@ const AgenticFilmPage = lazy(() => import('./film/AgenticFilmPage'))
 const AgenticFilmV1Page = lazy(() => import('./film/archive/AgenticFilmV1Page'))
 const AgenticFilmV2Page = lazy(() => import('./film/archive/AgenticFilmV2Page'))
 const AgenticFilmV3Page = lazy(() => import('./film/archive/AgenticFilmV3Page'))
-const IllustrationGallery = lazy(() => import('./pages/IllustrationGallery'))
 const AirlineStoryPage = lazy(() => import('./pages/AirlineStoryPage'))
 const ScmPrototype = lazy(() => import('./labs/scm/ScmPrototype'))
 const EngazePrototype = lazy(() => import('./labs/engaze/EngazePrototype'))
@@ -111,7 +110,6 @@ function AnimatedRoutes() {
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
         <Route path="/design-system" element={<PageTransition><DesignSystemPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
-        <Route path="/illustrations" element={<PageTransition><IllustrationGallery /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
         <Route path="/philosophy" element={<Navigate to="/about" replace />} />
       </Routes>

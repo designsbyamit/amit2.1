@@ -8,11 +8,11 @@ import ThemeToggle from '../ds/ThemeToggle'
 
 // Leadership-first flow. "Learn" (mentoring, community, resources, reflections) stays available but quiet.
 const navItems: { label: string; to: string; quiet?: boolean }[] = [
-  { label: 'Work', to: '/craft' },
+  { label: 'Works', to: '/craft' },
   { label: 'Leadership', to: '/leadership' },
   { label: 'Practice', to: '/resources' },
   { label: 'About', to: '/about' },
-  { label: 'Learn', to: '/learn', quiet: true },
+  { label: 'Grow (For Designers)', to: '/learn', quiet: true },
 ]
 
 const featured = caseStudies.slice(0, 3)
@@ -73,12 +73,12 @@ export default function Nav() {
 
           <div className="flex items-center gap-6">
             <ul className="hidden lg:flex items-center gap-7">
-              {navItems.map(item => item.label === 'Work' ? (
+              {navItems.map(item => item.label === 'Works' ? (
                 <li key={item.to} onMouseEnter={hoverOpen}>
                   <button ref={triggerRef} type="button" aria-expanded={craftOpen} aria-controls={panelId}
                     onClick={() => setCraftOpen(o => !o)}
                     className={`flex items-center gap-1.5 py-2 text-[0.9375rem] transition-colors ${craftOpen || craftActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`}>
-                    Work
+                    Works
                     <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${craftOpen ? 'rotate-180' : ''}`}><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
                   </button>
                 </li>
@@ -143,7 +143,7 @@ export default function Nav() {
                     <NavLink to={item.to} className={({ isActive }) => `flex items-center justify-between py-4 text-heading ${isActive ? 'text-ink' : 'text-ink-2'}`}>
                       {item.label}
                     </NavLink>
-                    {item.label === 'Work' && (
+                    {item.label === 'Works' && (
                       <ul className="pb-4 flex flex-col">
                         {caseStudies.map(cs => (
                           <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex gap-3 py-2.5 text-body-sm text-ink-2"><span className="text-label text-ink-3 pt-0.5">{cs.number}</span>{cs.title}</Link></li>

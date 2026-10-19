@@ -11,7 +11,7 @@ const items = [
 export default function LearnPage() {
   return (
     <>
-      <PageHeader label="Learn" illustration="learn" title="For designers who are growing." subtitle="Mentoring, practices, community and writing." />
+      <PageHeader label="Grow" title="For designers who are growing." subtitle="Mentoring, practices, community and writing." />
       <section className="section-y hairline-top">
         <div className="container-site">
           <ul className="grid md:grid-cols-2 gap-4">
