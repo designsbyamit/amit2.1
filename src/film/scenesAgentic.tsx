@@ -13,7 +13,7 @@ export const FILM = { hook: [0, at(4)], setup: [at(4), at(8)], people: [at(8), a
 const B = import.meta.env.BASE_URL
 const dir = `${B}images/case-studies/sap-agentic/`
 export const SHOTS = ['buyer-worklist', 'buyer-review', 'buyer-share', 'buyer-email']
-export const shotUrl = (id: string) => `${dir}${id}.svg`
+export const shotUrl = (id: string) => `${dir}${id}.webp`
 /** Swap these files to change the persona portraits. */
 export const PEOPLE = [
   { id: 'david', name: 'David Paul', role: 'Procurement Operations', line: 'Reads every PDF.', img: `${dir}persona-david-face.jpg` },

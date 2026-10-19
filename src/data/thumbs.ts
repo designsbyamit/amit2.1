@@ -9,13 +9,13 @@ export const thumbs: Record<string, Thumb> = {
   'sap-agentic': {
     from: '#EEF2FF', to: '#CFDAFB',
     image: I('sap-agentic/thumbnail.webp'),
-    hero: { src: I('sap-agentic/buyer-review.svg'), size: [1440, 899], crop: [0.02, 0.255, 0.62, 0.38] },
-    detail: { src: I('sap-agentic/buyer-email.svg'), size: [638, 1059], crop: [0.125, 0.057, 0.75, 0.3] },
+    hero: { src: I('sap-agentic/buyer-review.webp'), size: [1440, 899], crop: [0.02, 0.255, 0.62, 0.38] },
+    detail: { src: I('sap-agentic/buyer-email.webp'), size: [638, 1059], crop: [0.125, 0.057, 0.75, 0.3] },
   },
   'sap-search': {
     from: '#EAF7F3', to: '#C3E6DC',
-    hero: { src: I('sap-search/3-3.svg'), size: [1440, 900], crop: [0.0, 0.1, 0.62, 0.45] },
-    detail: { src: I('sap-search/4-3.svg'), size: [1440, 900], crop: [0.03, 0.2, 0.5, 0.42] },
+    hero: { src: I('sap-search/3-3.webp'), size: [1440, 900], crop: [0.0, 0.1, 0.62, 0.45] },
+    detail: { src: I('sap-search/4-3.webp'), size: [1440, 900], crop: [0.03, 0.2, 0.5, 0.42] },
   },
   engaze: {
     from: '#F3EDFF', to: '#D9CBFB',

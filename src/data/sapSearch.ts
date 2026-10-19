@@ -2,7 +2,7 @@
 // (presentation frames: Cover, Intro, Challenges, Ideas to Explore, Search/AI Functionalities,
 // Solution Ideas, Common Patterns; screen frames 1.1–5.4).
 // Screens are the original SVG exports from Figma (text outlined), stored unmodified in
-// public/images/case-studies/sap-search/<id>.svg.
+// public/images/case-studies/sap-search/<id>.webp.
 
 export interface Screen { id: string; name: string; img?: string }
 export interface Flow { id: string; label: string; title: string; summary: string; hash: string; screens: Screen[] }
@@ -97,5 +97,5 @@ export const sapSearch = {
       screens: [{ id: '5-1', name: 'Search home' }, { id: '5-2', name: 'SF type-ahead' }, { id: '5-3', name: 'Team member goals' }, { id: '5-4', name: 'Goal draft' }] },
     { id: 'sow', label: '06', title: 'Use case: Fieldglass SOW status', hash: 'sow', summary: 'A plain-language question ("current status and end date of SOW IDs for CyberSecure Ltd?") returns an AI overview of every SOW, then the records themselves, already sorted into at-risk and expiring, with staffing actions on each row.',
       screens: [] },
-  ].map(f => ({ ...f, screens: f.screens.map(sc => ({ ...sc, img: `${B}images/case-studies/sap-search/${sc.id}.svg` })) })) as Flow[],
+  ].map(f => ({ ...f, screens: f.screens.map(sc => ({ ...sc, img: `${B}images/case-studies/sap-search/${sc.id}.webp` })) })) as Flow[],
 }

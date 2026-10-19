@@ -227,7 +227,7 @@ export function Process({ t }: { t: number }) {
       {/* sketch → screen */}
       {t >= 69.6 && (
         <div style={{ position: 'absolute', left: 310, top: 190, width: 1300, height: 812, transform: `scale(${lerp(0.94, 1, easeOut(seg(t, 69.6, 72)))})`, opacity: easeOut(seg(t, 69.6, 70.2)) }}>
-          <img src={`${dir}buyer-review.svg`} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', borderRadius: 14, opacity: hi, boxShadow: '0 40px 100px rgba(0,0,0,0.6)' }} />
+          <img src={`${dir}buyer-review.webp`} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', borderRadius: 14, opacity: hi, boxShadow: '0 40px 100px rgba(0,0,0,0.6)' }} />
           <svg viewBox="0 0 1400 875" width="100%" height="100%" style={{ position: 'absolute', inset: 0, opacity: 1 - hi }} aria-hidden="true">
             <g fill="none" stroke={C.lime} strokeWidth="3" strokeLinecap="round">
               {[
@@ -311,7 +311,7 @@ function Cam({ src, t, a, b, from, to, children }: { src: string; t: number; a: 
   return (
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
       <div style={{ position: 'absolute', left: 0, top: 0, width: 1440, height: 900, transformOrigin: '0 0', transform: `translate(${960 - cx * s}px, ${540 - cy * s}px) scale(${s})` }}>
-        <img src={`${dir}${src}.svg`} alt="" style={{ width: 1440, height: 900, display: 'block', borderRadius: 8, boxShadow: '0 30px 90px rgba(0,0,0,0.7)' }} />
+        <img src={`${dir}${src}.webp`} alt="" style={{ width: 1440, height: 900, display: 'block', borderRadius: 8, boxShadow: '0 30px 90px rgba(0,0,0,0.7)' }} />
         {children}
       </div>
     </div>

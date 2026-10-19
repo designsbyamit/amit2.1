@@ -12,7 +12,7 @@ export const FILM = { hook: [0, at(4)], problem: [at(4), at(10)], question: [at(
 const B = import.meta.env.BASE_URL
 const dir = `${B}images/case-studies/sap-agentic/`
 export const SHOTS = ['ops-worklist', 'ops-validate', 'buyer-worklist', 'buyer-review', 'gr-review', 'buyer-share', 'buyer-email', 'buyer-sent', 'buyer-versions', 'buyer-revised', 'buyer-activity']
-export const shotUrl = (id: string) => `${dir}${id}.svg`
+export const shotUrl = (id: string) => `${dir}${id}.webp`
 
 export const Star = ({ size = 80, color = C.lime }: { size?: number; color?: string }) => (
   <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 C53 36 64 47 96 50 C64 53 53 64 50 96 C47 64 36 53 4 50 C36 47 47 36 50 4Z" fill={color} /></svg>

@@ -1,6 +1,6 @@
 // Agentic AI — Supplier Order Confirmation Experience (Autonomous Ordering)
 // Content comes from the Figma frames "Autonomous Ordering": Cover, Personas, System Flow and the 33 screen frames.
-// Screens are the original SVG exports, stored in public/images/case-studies/sap-agentic/<id>.svg
+// Screens are the original SVG exports, stored in public/images/case-studies/sap-agentic/<id>.webp
 // (only the oversized embedded photos / document previews were recompressed; all vector content is untouched).
 
 export interface AScreen { id: string; name: string; note?: string; img: string }
@@ -13,7 +13,7 @@ export const sapAgentic = {
   title: 'Agentic AI: Supplier Order Confirmation Experience',
   kicker: 'Autonomous ordering',
   pillars: ['Agent reads and compares', 'People decide', 'Every step logged'],
-  flowImg: `${dir}system-flow.svg`,
+  flowImg: `${dir}system-flow.webp`,
 
   framing: {
     title: 'A design problem, not an automation project.',
@@ -257,5 +257,5 @@ export const sapAgentic = {
         { id: 'gr-confirm', name: 'Confirm the decisions, Submit' },
         { id: 'gr-submit', name: 'Submit for further processing, with a comment' },
       ] },
-  ].map(j => ({ ...j, screens: j.screens.map(s => ({ ...s, img: `${dir}${s.id}.svg` })) })) as AJourney[],
+  ].map(j => ({ ...j, screens: j.screens.map(s => ({ ...s, img: `${dir}${s.id}.webp` })) })) as AJourney[],
 }
