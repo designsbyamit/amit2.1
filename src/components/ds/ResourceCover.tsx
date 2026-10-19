@@ -37,14 +37,14 @@ function Diagram({ motif }: { motif: Motif }) {
 const bg: Record<FieldTone, string> = { cobalt: 'var(--field-cobalt)', teal: 'var(--field-teal)', plum: 'var(--field-plum)', graphite: 'var(--field-graphite)' }
 
 /** Sheet-style cover for a downloadable resource (3:4). Same in both modes. */
-export default function ResourceCover({ title, kind, motif, tone = 'cobalt', index }: { title: string; kind: string; motif: Motif; tone?: FieldTone; index?: number }) {
+export default function ResourceCover({ title, kind, motif, tone = 'cobalt', index, bleed }: { title: string; kind: string; motif: Motif; tone?: FieldTone; index?: number; bleed?: boolean }) {
   return (
-    <div className="relative rounded-2 p-5 md:p-6 flex flex-col justify-between overflow-hidden shadow-[0_18px_40px_rgb(0_0_0/0.25)]" style={{ aspectRatio: '3 / 4', background: bg[tone], color: I }} aria-hidden="true">
+    <div className={bleed ? 'relative w-full h-full p-6 md:p-8 flex flex-col justify-between overflow-hidden' : 'relative rounded-2 p-5 md:p-6 flex flex-col justify-between overflow-hidden shadow-[0_18px_40px_rgb(0_0_0/0.25)]'} style={{ ...(bleed ? {} : { aspectRatio: '3 / 4' }), background: bg[tone], color: I }} aria-hidden="true">
       <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
       <div className="relative flex justify-between font-mono text-[0.6875rem] tracking-[0.08em] uppercase" style={{ color: L }}>
         <span>{kind}</span>{index !== undefined && <span>{String(index).padStart(2, '0')}</span>}
       </div>
-      <div className="relative w-3/4 self-center"><Diagram motif={motif} /></div>
+      <div className={bleed ? 'relative w-1/2 max-w-[260px] self-center' : 'relative w-3/4 self-center'}><Diagram motif={motif} /></div>
       <p className="relative text-[1.375rem] md:text-[1.5rem] font-light tracking-[-0.02em] leading-[1.1]">{title}</p>
     </div>
   )

@@ -44,7 +44,7 @@ export default function Latest() {
           <Row to={`/leadership/cases/${practice.slug}`} kind="Practice" title={practice.title} text={practice.subtitle} cta="Read the case" delay={0.06}
             visual={<StoryCover motif="culture" tone="teal" number={practice.number} className="!rounded-none w-full h-full" ratio="16 / 10" />} />
           <Row to="/resources/dual-fluency" kind="Workshop" title="Build Dual Fluency" text="A Framework, a vocabulary and set of tools for translating design quality into business outcomes." cta="View Toolkit" delay={0.12}
-            visual={<div className="absolute inset-0 flex items-center justify-center bg-surface-1 py-6"><div className="h-full" style={{ aspectRatio: '3 / 4' }}><ResourceCover title="Dual Fluency" kind="Playbook" motif="loop" tone="cobalt" index={3} /></div></div>} />
+            visual={<div className="absolute inset-0"><ResourceCover bleed title="Dual Fluency" kind="Playbook" motif="loop" tone="cobalt" index={3} /></div>} />
           <Row to="/reflections" kind="Writing" title={piece.title} text={piece.excerpt} cta="Read the series" delay={0.18}
             visual={img(piece.image)} />
         </ul>
