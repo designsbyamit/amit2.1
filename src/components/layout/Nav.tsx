@@ -92,7 +92,7 @@ export default function Nav() {
                 </li>
               ))}
             </ul>
-            <ThemeToggle />
+            <div className="hidden lg:block"><ThemeToggle /></div>
             <button type="button" className="lg:hidden btn btn-secondary btn-sm btn-icon" onClick={() => setMenuOpen(o => !o)} aria-expanded={menuOpen} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 {menuOpen ? <path d="M4 4l10 10M14 4L4 14" strokeLinecap="round" /> : <path d="M2.5 5h13M2.5 9h13M2.5 13h13" strokeLinecap="round" />}
@@ -138,7 +138,11 @@ export default function Nav() {
         {menuOpen && (
           <motion.div className="fixed inset-x-0 bottom-0 lg:hidden overflow-y-auto" style={{ top: 'var(--header-h)', zIndex: 'var(--z-overlay)' as unknown as number, background: 'var(--bg)' }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-            <nav aria-label="Mobile" className="container-site py-8">
+            <nav aria-label="Mobile" className="container-site pt-4 pb-8">
+              <div className="flex items-center justify-between text-body-sm text-ink-2 pb-2 hairline-bottom">
+                <span>Appearance</span>
+                <ThemeToggle />
+              </div>
               <ul className="flex flex-col">
                 {navItems.map(item => (
                   <li key={item.to} className="hairline-bottom">
