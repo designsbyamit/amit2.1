@@ -4,6 +4,9 @@ import heroImg from '../../assets/images/amit-stage.webp'
 import heroImgSm from '../../assets/images/amit-stage-1200.webp'
 import Button from '../ds/Button'
 import { Status } from '../ds/Tag'
+import TypedWord from '../ds/TypedWord'
+
+const words = ['Capabilities', 'Experiences', 'Products', 'Cultures', 'Community', 'Systems', 'Intelligence']
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -41,11 +44,15 @@ export default function Hero() {
             <Status>Now · Design at SAP</Status>
           </motion.div>
           <h1 className="text-display-xl text-ink">
-            <Line delay={0.15}>Building designers,</Line>
-            <Line delay={0.3}>products, and <span className="accent-signal">what’s next.</span></Line>
+            <span className="sr-only">Building capabilities, experiences, products, cultures, community, systems and intelligence, and what’s next.</span>
+            <span aria-hidden="true">
+              <Line delay={0.15}>Building</Line>
+              <Line delay={0.3}><TypedWord words={words} className="typed-word" /></Line>
+              <Line delay={0.45}>and what’s next.</Line>
+            </span>
           </h1>
           <motion.p className="text-body-lg text-ink-2 max-w-[34rem]" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7, ease }}>
-            I explore the intersection of human behaviour, business systems, and artificial intelligence to reimagine how people work, how products evolve, and how businesses create lasting value.
+            Advancing the convergence of human behaviour, business systems, and artificial intelligence to shape how people work, how products evolve, and how businesses create lasting value.
           </motion.p>
           <motion.div className="flex flex-wrap items-center gap-3" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.7, ease }}>
             <Button to="/leadership" arrow>See how I lead</Button>

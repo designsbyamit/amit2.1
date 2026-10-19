@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { caseStudies } from '../../data/work'
 import CaseThumb from '../ds/CaseThumb'
 import Logo from './Logo'
+import NameRoles from './RoleRotator'
 import ThemeToggle from '../ds/ThemeToggle'
 
 // Leadership-first flow. "Learn" (mentoring, community, resources, reflections) stays available but quiet.
@@ -69,6 +70,7 @@ export default function Nav() {
         <nav aria-label="Main" className="container-site flex items-center justify-between" style={{ height: 'var(--header-h)' }}>
           <Link to="/" className="flex items-center gap-3 text-ink" aria-label="Amit Kumar Tiwari, home">
             <Logo size={32} />
+            <NameRoles />
           </Link>
 
           <div className="flex items-center gap-6">

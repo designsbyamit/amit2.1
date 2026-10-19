@@ -446,3 +446,10 @@ h1[class], h2[class], h3[class], h4[class], h5[class], h6[class] {
   font-weight: 400;
   letter-spacing: -0.02em;
 }
+
+/* Typewriter caret in the hero headline */
+.typed-caret { display: inline-block; width: 0.06em; height: 0.82em; margin-left: 0.06em; vertical-align: -0.04em; background: currentColor; opacity: .55; animation: typed-blink 1.1s steps(1) infinite; }
+@keyframes typed-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .typed-caret { animation: none; opacity: 0; } }
+.typed-word { color: var(--signal); }
+html[data-theme='light'] .typed-word { color: var(--color-ink); background: linear-gradient(var(--signal), var(--signal)) 0 94% / 100% 0.07em no-repeat; }
