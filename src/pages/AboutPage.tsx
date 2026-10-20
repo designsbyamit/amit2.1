@@ -52,7 +52,7 @@ export default function AboutPage() {
           <ul className="grid sm:grid-cols-3 gap-4 md:gap-6">
             {steady.map(h => (
               <li key={h.t} className="flex flex-col gap-4">
-                <figure className="habit-fig" style={{ aspectRatio: '1 / 1' }}>
+                <figure className="relative rounded-2 overflow-hidden bg-black" style={{ aspectRatio: '1 / 1' }}>
                   <img src={h.image} alt={h.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 </figure>
                 <h3 className="text-title text-ink">{h.t}</h3>
