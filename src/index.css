@@ -478,3 +478,10 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 @keyframes anim-drift-a { to { transform: translate3d(180px, 120px, 0) scale(1.12); } }
 @keyframes anim-drift-b { to { transform: translate3d(-200px, -90px, 0) scale(1.08); } }
 @media (prefers-reduced-motion: reduce) { .anim-drift i { animation: none; } }
+
+/* Testimonials: continuous looping row of cards */
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee var(--dur, 70s) linear infinite; will-change: transform; }
+.marquee:hover .marquee-track, .marquee:focus-within .marquee-track, .marquee[data-paused='true'] .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .marquee-track { animation: none; } }

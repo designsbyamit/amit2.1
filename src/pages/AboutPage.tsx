@@ -89,7 +89,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Testimonials label="In their words" title="Colleagues, clients and mentees." items={[quoteExcerpts.mayura, clientTestimonials[0], colleagueTestimonials[0], clientTestimonials[1], clientTestimonials[2], quoteExcerpts.stepan, quoteExcerpts.mahesh]} />
+      <Testimonials rotate label="In their words" title="Colleagues, clients and mentees." items={[quoteExcerpts.mayura, clientTestimonials[0], colleagueTestimonials[0], clientTestimonials[1], clientTestimonials[2], quoteExcerpts.stepan, quoteExcerpts.mahesh]} />
 
       <Contact />
     </>
