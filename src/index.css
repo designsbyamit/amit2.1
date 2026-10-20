@@ -463,7 +463,8 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 .anim-plane { position: relative; overflow: hidden; transform-origin: 50% 50%; will-change: transform; }
 .anim-layer { position: absolute; inset: 0; }
 .anim-layer svg { display: block; } .anim-layer text { fill: var(--wf-ink); }
-.anim-cursor { position: absolute; left: 0; top: 0; pointer-events: none; filter: drop-shadow(0 3px 4px rgb(0 0 0 / .3)); }
+.anim-cursor { position: absolute; left: 0; top: 0; pointer-events: none; }
+.anim-dot { position: absolute; left: -17px; top: -17px; width: 34px; height: 34px; border-radius: 50%; background: rgb(255 255 255 / .82); border: 2px solid rgb(30 30 40 / .55); box-shadow: 0 8px 18px -4px rgb(0 0 0 / .35), inset 0 0 0 7px rgb(30 30 40 / .14); }
 .anim-ripple { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
 .anim-ripple::after { content: ''; position: absolute; left: -30px; top: -30px; width: 60px; height: 60px; border-radius: 50%; border: 4px solid rgb(120 110 255 / .85); opacity: 0; }
 .anim-ripple.go::after { animation: anim-rip .6s ease-out; }

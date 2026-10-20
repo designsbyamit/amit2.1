@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react'
 import * as scenes from './scenes'
+import * as more from './scenes2'
 import { resolve, timelines, type Beat } from './timelines'
 
 const draw = (b: Beat): string => {
@@ -8,7 +9,10 @@ const draw = (b: Beat): string => {
     case 'fly': return scenes.agenticFly()
     case 'split': return scenes.agenticSplit()
     case 'search': return scenes.search(s)
-    case 'engaze': return scenes.engaze(s)
+    case 'engaze': return more.engaze(s)
+    case 'agRead': return more.agRead(s)
+    case 'agTable': return more.agTable(s)
+    case 'dnm': return more.dnm(s)
     case 'travel': return scenes.travel(s)
     case 'data': return scenes.data(s)
     case 'options': return scenes.options(s)
@@ -22,7 +26,8 @@ const W = 1280, H = 800
  *  to follow where the eye goes, and a cursor. Plays only while on screen; shows a still frame for reduced motion. */
 export default function Player({ id }: { id: string }) {
   const tl = timelines[id]
-  const beats = useMemo(() => resolve(tl.beats), [tl])
+  const sp = tl.speed ?? 1
+  const beats = useMemo(() => resolve(tl.beats).map(b => ({ ...b, at: b.at * sp, ms: b.ms != null ? b.ms * sp : undefined })), [tl, sp])
   const root = useRef<HTMLDivElement>(null)
   const cam = useRef<HTMLDivElement>(null)
   const plane = useRef<HTMLDivElement>(null)
@@ -47,19 +52,18 @@ export default function Player({ id }: { id: string }) {
       camEl.style.transition = ms ? `transform ${ms}ms ${EASE}` : 'none'
       camEl.style.transform = `translate(${size.w / 2 - cx * z * k}px, ${size.h / 2 - cy * z * k}px) scale(${z * k})`
       const [rx, ry] = b.tilt ?? [0, 0]
-      const tilted = rx !== 0 || ry !== 0
-      planeEl.style.transition = ms ? `transform ${ms}ms ${EASE}, border-radius ${ms}ms, box-shadow ${ms}ms` : 'none'
-      planeEl.style.transform = `perspective(1500px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${tilted ? 0.88 : 1})`
-      planeEl.style.borderRadius = tilted ? '36px' : '0px'
-      planeEl.style.boxShadow = tilted ? '0 60px 80px -30px rgb(0 0 0 / .45)' : '0 0 0 0 rgb(0 0 0 / 0)'
+      const k2 = 1 + 0.012 * Math.max(Math.abs(rx), Math.abs(ry))
+      planeEl.style.transition = ms ? `transform ${ms}ms ${EASE}` : 'none'
+      planeEl.style.transform = `perspective(1800px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${k2})`
     }
     const show = (b: Beat, first: boolean) => {
       const html = draw(b)
       if (html !== lastHtml) {
         const next = layers[1 - top].current!, prev = layers[top].current!
         next.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" class="wf">${html}</svg>`
-        next.style.transition = first ? 'none' : 'opacity 160ms linear'
-        prev.style.transition = first ? 'none' : 'opacity 160ms linear'
+        const f = first || b.snap ? 'none' : 'opacity 140ms linear'
+        next.style.transition = f
+        prev.style.transition = f
         next.style.opacity = '1'; prev.style.opacity = '0'
         top = 1 - top; lastHtml = html
       }
@@ -79,7 +83,7 @@ export default function Player({ id }: { id: string }) {
     const loop = () => {
       timers.forEach(clearTimeout)
       timers = beats.map((b, i) => window.setTimeout(() => show(b, i === 0), b.at))
-      timers.push(window.setTimeout(loop, tl.duration))
+      timers.push(window.setTimeout(loop, tl.duration * sp))
     }
     const stop = () => { timers.forEach(clearTimeout); timers = [] }
 
@@ -107,7 +111,7 @@ export default function Player({ id }: { id: string }) {
           <div ref={layers[1]} className="anim-layer" style={{ opacity: 0 }} />
           <div ref={ripple} className="anim-ripple" />
           <div ref={cursor} className="anim-cursor" style={{ opacity: 0 }}>
-            <svg width="40" height="44" viewBox="0 0 40 44"><path d="M2 2 l0 30 l8-7 l6 13 l6-3 l-6-13 l11 0z" fill="#111" stroke="#fff" strokeWidth="2.5" strokeLinejoin="round" /></svg>
+            <span className="anim-dot" />
           </div>
         </div>
       </div>
