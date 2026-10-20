@@ -37,6 +37,14 @@ const P: Record<string, string> = {
   home: 'M3.5 9 10 3.5 16.5 9v8h-13zM8 17v-5h4v5',
   grid: 'M3.5 3.5h5.5V9H3.5zM11 3.5h5.5V9H11zM3.5 11h5.5v5.5H3.5zM11 11h5.5v5.5H11z',
   chat: 'M3.5 4.5h13v9h-7L5.5 17v-3.5h-2z',
+  edit: 'M3.5 16.5l.8-3.6L13.6 3.6a1.6 1.6 0 0 1 2.3 0l.5.5a1.6 1.6 0 0 1 0 2.3L7.1 15.7l-3.6.8ZM12 5.2l2.8 2.8',
+  filter: 'M3 4.5h14l-5.4 6.4v4.6L8.4 17v-6.1L3 4.5Z',
+  target: 'M10 17.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15ZM10 13.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM10 10.01h.01',
+  flag: 'M5 17.5v-14M5 4h9l-1.6 3L14 10H5',
+  alert: 'M10 3 17.5 16.5h-15L10 3ZM10 8v3.5M10 14h.01',
+  sliders: 'M4 6h5M13 6h3M4 14h3M11 14h5M9 4v4M7 12v4',
+  trend: 'M3 14l4.5-4.5 3 3L17 6M12.5 6H17v4.5',
+  dots: 'M5 10h.01M10 10h.01M15 10h.01',
   receipt: 'M5 2.5h10v15l-2-1.3-1.7 1.3-1.3-1.3-1.3 1.3L7 16.2 5 17.5zM8 7h4M8 10h4',
 }
 export default function Icon({ name, size = 18, className = '', strokeWidth = 1.6 }: { name: keyof typeof P | string; size?: number; className?: string; strokeWidth?: number }) {

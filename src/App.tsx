@@ -32,6 +32,7 @@ const AgenticFilmV3Page = lazy(() => import('./film/archive/AgenticFilmV3Page'))
 const AirlineStoryPage = lazy(() => import('./pages/AirlineStoryPage'))
 const ScmPrototype = lazy(() => import('./labs/scm/ScmPrototype'))
 const EngazePrototype = lazy(() => import('./labs/engaze/EngazePrototype'))
+const SearchPrototype = lazy(() => import('./labs/search/SearchPrototype'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const EngazeStoryPage = lazy(() => import('./pages/EngazeStoryPage'))
 const EngazeFilmPage = lazy(() => import('./film/EngazeFilmPage'))
@@ -94,6 +95,7 @@ function AnimatedRoutes() {
         <Route path="/craft/sap-agentic/film-v3" element={<PageTransition><AgenticFilmV3Page /></PageTransition>} />
         <Route path="/labs/order-confirmation" element={<ScmPrototype />} />
         <Route path="/labs/engaze" element={<EngazePrototype />} />
+        <Route path="/labs/ai-search" element={<SearchPrototype />} />
         <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
         <Route path="/leadership/cases/:slug" element={<PageTransition><LeadershipCasePage /></PageTransition>} />
