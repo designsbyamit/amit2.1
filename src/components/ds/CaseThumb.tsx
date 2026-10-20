@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { thumbs, type ThumbLayer } from '../../data/thumbs'
 
 /** One consistent thumbnail recipe for every case study:
@@ -21,9 +22,40 @@ function Layer({ l, className, style }: { l: ThumbLayer; className: string; styl
   )
 }
 
+/** A muted, looping clip of the prototype. Plays only while on screen, and stays a still frame for reduced motion. */
+function LoopClip({ name }: { name: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  const [still, setStill] = useState(false)
+  useEffect(() => {
+    const v = ref.current
+    if (!v) return
+    const rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    setStill(rm)
+    if (rm) return
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause() }, { threshold: 0.25 })
+    io.observe(v)
+    return () => io.disconnect()
+  }, [])
+  const base = `${import.meta.env.BASE_URL}loops/${name}`
+  if (still) return <img src={`${base}.jpg`} alt="" className="absolute inset-0 w-full h-full object-cover" />
+  return (
+    <video ref={ref} className="absolute inset-0 w-full h-full object-cover" muted loop playsInline preload="metadata" poster={`${base}.jpg`} aria-hidden="true">
+      <source src={`${base}.webm`} type="video/webm" />
+      <source src={`${base}.mp4`} type="video/mp4" />
+    </video>
+  )
+}
+
 export default function CaseThumb({ id, className = '', ratio = '16 / 10', compact = false, flush = false }: { id: string; className?: string; ratio?: string; compact?: boolean; /** No corner radius of its own: the parent card clips it. */ flush?: boolean }) {
   const t = thumbs[id]
   if (!t) return null
+  if (t.loop) {
+    return (
+      <div className={`thumb relative overflow-hidden bg-black/5 ${className}`} style={{ aspectRatio: ratio, borderRadius: flush ? 0 : compact ? 10 : 20 }} aria-hidden="true">
+        <LoopClip name={t.loop} />
+      </div>
+    )
+  }
   if (t.image) {
     return (
       <div className={`thumb relative overflow-hidden ${className}`} style={{ aspectRatio: ratio, borderRadius: flush ? 0 : compact ? 10 : 20 }} aria-hidden="true">
