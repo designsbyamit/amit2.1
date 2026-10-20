@@ -16,7 +16,7 @@ export interface Beat {
   /** Swap the picture without a cross-fade (for frame-by-frame motion such as scrolling). */
   snap?: boolean
 }
-export interface Timeline { stage: string; duration: number; beats: Beat[]; /** Slows the whole loop down (1 = as authored). */ speed?: number }
+export interface Timeline { stage: string; duration: number; beats: Beat[]; /** Slows the whole loop down (1 = as authored). */ speed?: number; /** Soft drifting colour behind the UI, for stages with empty margins. */ drift?: string[] }
 
 const typing = (text: string, from: number, step: number, base: Record<string, unknown>, extra: Partial<Beat> = {}): Beat[] =>
   Array.from({ length: text.length }, (_, i) => ({ at: from + i * step, s: { ...base, typed: text.slice(0, i + 1) }, ...extra }))
@@ -83,7 +83,7 @@ export const timelines: Record<string, Timeline> = {
     { at: 11900, cur: [1236, 60], ms: 700 }, { at: 12500, s: { results: true, typed: 'PR 7800098765', steps: 3, lines: 3, rows: 3, hover: 1, detail: true, closeHot: true }, click: true },
     { at: 12800, s: { results: true, typed: 'PR 7800098765', steps: 3, lines: 3, rows: 3 }, cam: [640, 400, 1], cur: null, ms: 600 },
   ] },
-  engaze: { stage: '#F4F1FC', duration: 17000, beats: [
+  engaze: { stage: '#F4F1FC', drift: ['#C9BDFB', '#FBC9E0', '#BFD3FF'], duration: 17000, beats: [
     { at: 0, k: 'engaze', s: { n: 0 }, cam: [640, 420, 1], ms: 0 },
     { at: 1400, cam: [640, 560, 1.45], ms: 1000 },
     { at: 1500, cur: [900, 560], ms: 0 },

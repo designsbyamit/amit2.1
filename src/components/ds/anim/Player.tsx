@@ -107,6 +107,7 @@ export default function Player({ id }: { id: string }) {
     <div ref={root} className="anim-stage absolute inset-0 overflow-hidden" style={{ background: tl.stage }}>
       <div ref={cam} className="anim-cam" style={{ width: W, height: H }}>
         <div ref={plane} className="anim-plane" style={{ width: W, height: H }}>
+          {tl.drift && <div className="anim-drift" aria-hidden>{tl.drift.map((c, i) => <i key={i} style={{ background: `radial-gradient(circle, ${c}, transparent 68%)` }} />)}</div>}
           <div ref={layers[0]} className="anim-layer" style={{ opacity: 1 }} />
           <div ref={layers[1]} className="anim-layer" style={{ opacity: 0 }} />
           <div ref={ripple} className="anim-ripple" />

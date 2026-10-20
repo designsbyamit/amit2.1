@@ -469,3 +469,12 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 .anim-ripple::after { content: ''; position: absolute; left: -30px; top: -30px; width: 60px; height: 60px; border-radius: 50%; border: 4px solid rgb(120 110 255 / .85); opacity: 0; }
 .anim-ripple.go::after { animation: anim-rip .6s ease-out; }
 @keyframes anim-rip { 0% { transform: scale(.2); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+
+.anim-drift { position: absolute; inset: 0; overflow: hidden; }
+.anim-drift i { position: absolute; width: 720px; height: 720px; border-radius: 50%; opacity: .8; will-change: transform; }
+.anim-drift i:nth-child(1) { left: -220px; top: -180px; animation: anim-drift-a 16s ease-in-out infinite alternate; }
+.anim-drift i:nth-child(2) { right: -240px; bottom: -220px; animation: anim-drift-b 20s ease-in-out infinite alternate; }
+.anim-drift i:nth-child(3) { left: 40%; top: 30%; width: 560px; height: 560px; opacity: .55; animation: anim-drift-a 24s ease-in-out infinite alternate-reverse; }
+@keyframes anim-drift-a { to { transform: translate3d(180px, 120px, 0) scale(1.12); } }
+@keyframes anim-drift-b { to { transform: translate3d(-200px, -90px, 0) scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .anim-drift i { animation: none; } }

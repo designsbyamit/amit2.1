@@ -6,7 +6,7 @@ import SectionHeader from '../components/ds/SectionHeader'
 import Button from '../components/ds/Button'
 import Testimonials from '../components/sections/Testimonials'
 import { colleagueTestimonials, menteeTestimonials, quoteExcerpts } from '../data/testimonials'
-import { motion } from 'framer-motion'
+import DriveGrid from '../components/sections/DriveGrid'
 
 const timeline = [
   { year: 'Aug 2024–Now', role: 'Design Leader (User Experience Manager)', org: 'SAP Labs', detail: 'Harmonising enterprise product experience across SAP products. Evangelising the value and power of design while unifying experiences coherently across products.' },
@@ -22,13 +22,6 @@ const steady = [
   { t: 'The science behind spirituality', image: '/images/about/science-behind-spirituality.svg', alt: 'Line illustration for the science behind spirituality' },
 ]
 
-const drives = [
-  'Driving suite-first design by crafting harmonised experiences across SAP products into scalable, connected ecosystems.',
-  'Shaping AI-native and multi-modal experiences through experimentation, systems thinking, and value-centred innovation.',
-  'Championing design excellence through strategic execution, customer co-creation, critiques, and high-quality delivery standards.',
-  'Building and nurturing resilient design talent through mentoring, AI-led upskilling, and future-ready capability development.',
-  'Leading and growing design communities through partnerships, initiatives, and events that expand the impact of design beyond designers.',
-]
 
 export default function AboutPage() {
   return (
@@ -59,7 +52,7 @@ export default function AboutPage() {
           <ul className="grid sm:grid-cols-3 gap-4 md:gap-6">
             {steady.map(h => (
               <li key={h.t} className="flex flex-col gap-4">
-                <figure className="relative rounded-2 overflow-hidden bg-black" style={{ aspectRatio: '1 / 1' }}>
+                <figure className="habit-fig" style={{ aspectRatio: '1 / 1' }}>
                   <img src={h.image} alt={h.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 </figure>
                 <h3 className="text-title text-ink">{h.t}</h3>
@@ -71,16 +64,11 @@ export default function AboutPage() {
 
       {/* The work */}
       <section className="section-y hairline-top">
-        <div className="container-site">
+        <div className="container-site relative">
           <SectionHeader label="What I drive" title="Impact across AI, design and community." intro="Three ideas run through all of it: Dual Fluency, AI-native design and agentic experiences." />
-          <ol>
-            {drives.map((d, i) => (
-              <motion.li key={i} className="hairline-top py-6 grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_1fr] gap-4" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: i * 0.05 }}>
-                <span className="text-label text-signal-ink pt-1">{String(i + 1).padStart(2, '0')}</span>
-                <p className="text-body text-ink-2">{d}</p>
-              </motion.li>
-            ))}
-          </ol>
+        </div>
+        <div className="container-site relative">
+          <DriveGrid />
         </div>
       </section>
 
