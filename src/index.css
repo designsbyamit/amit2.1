@@ -453,3 +453,6 @@ h1[class], h2[class], h3[class], h4[class], h5[class], h6[class] {
 @media (prefers-reduced-motion: reduce) { .typed-caret { animation: none; opacity: 0; } }
 .typed-word { color: var(--signal); }
 html[data-theme='light'] .typed-word { color: var(--color-ink); background: linear-gradient(var(--signal), var(--signal)) 0 94% / 100% 0.07em no-repeat; }
+.hero-portrait.is-mono::after { display: none; }
+.hero-portrait.is-mono img, html[data-theme='dark'] .hero-portrait.is-mono img { filter: grayscale(1) contrast(1.08) brightness(.9); }
+html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contrast(1.04) brightness(1); }

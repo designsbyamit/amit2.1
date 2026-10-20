@@ -1,7 +1,7 @@
 import PageHeader from '../components/ui/PageHeader'
 import Contact from '../components/sections/Contact'
 // Temporary: swap for the new About portrait when supplied
-const aboutImg = '/images/Community/DesignUp.webp'
+const aboutImg = '/images/about/amit-hero-bw.webp'
 import SectionHeader from '../components/ds/SectionHeader'
 import Button from '../components/ds/Button'
 import Testimonials from '../components/sections/Testimonials'
@@ -37,8 +37,8 @@ export default function AboutPage() {
         label="About"
         title="Hi, I’m Amit."
         subtitle="A design leader in Bengaluru who started out writing code, took on leadership roles as early as college, and has spent 16+ years turning complicated ideas into products people can use."
-        image={aboutImg} imagePosition="50% 22%"
-        imageAlt="Amit Kumar Tiwari at a design conference"
+        image={aboutImg} imagePosition="50% 28%" mono
+        imageAlt="Amit Kumar Tiwari speaking at a design event"
       />
 
       {/* The person first */}
