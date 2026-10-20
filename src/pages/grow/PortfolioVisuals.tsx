@@ -9,7 +9,6 @@ const I = '#ECEDEF'
 const ring = { fill: 'none', stroke: I, strokeWidth: 2 } as const
 const lime = { fill: 'none', stroke: L, strokeWidth: 2 } as const
 const dash = { stroke: I, strokeOpacity: 0.55, strokeWidth: 1.2, strokeDasharray: '3 3', fill: 'none' } as const
-const svgp = { viewBox: '0 0 120 70', className: 'w-full h-full', 'aria-hidden': true } as const
 const grid = { backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '16px 16px' }
 
 type Tone = 'cobalt' | 'teal' | 'plum' | 'graphite'
