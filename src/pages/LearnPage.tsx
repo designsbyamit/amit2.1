@@ -14,7 +14,8 @@ const items = [
 export default function LearnPage() {
   return (
     <>
-      <PageHeader label="Grow" title="For designers who are growing." subtitle="Mentoring, practices, community, writing, and places to practise, present your work and ask questions." />
+      <PageHeader label="Grow" title="For designers who are growing." subtitle="Mentoring, practices, community, writing, and places to practise, present your work and ask questions."
+        image="/images/about/grow-hero.webp" imagePosition="50% 35%" mono imageAlt="Amit speaking to a room of designers during a session" />
       <section className="section-y hairline-top">
         <div className="container-site">
           <ul className="grid md:grid-cols-2 gap-4">
