@@ -1,7 +1,7 @@
 import Button from '../components/ds/Button'
 import Stat from '../components/ds/Stat'
 import { motion } from 'framer-motion'
-const heroImg = '/images/Community/Impulse.webp'
+const heroImg = '/images/about/leadership-hero.webp'
 import PageHeader from '../components/ui/PageHeader'
 import Journey from '../components/sections/Journey'
 import LeadershipCases from '../components/sections/LeadershipCases'
@@ -47,7 +47,7 @@ export default function LeadershipPage() {
         label="Leadership"
         title="Design is a leadership practice."
         subtitle="The career arc, the philosophy, and what I've learned about making design matter inside large organizations — where influence is earned, not assigned."
-        image={heroImg} imagePosition="50% 8%"
+        image={heroImg} imagePosition="100% 62%"
         imageAlt="Amit Kumar Tiwari on stage"
       />
       <LeadershipCases />
