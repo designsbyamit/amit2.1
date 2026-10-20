@@ -21,12 +21,12 @@ const draw = (b: Beat): string => {
   }
 }
 const EASE = 'cubic-bezier(.45,0,.2,1)'
-const W = 1280, H = 800
 
 /** A live, looping animation of one prototype: a scripted UI drawn at 1280 x 800, a camera that pans, zooms and turns in 3D
  *  to follow where the eye goes, and a cursor. Plays only while on screen; shows a still frame for reduced motion. */
 export default function Player({ id }: { id: string }) {
   const tl = timelines[id]
+  const [W, H] = tl.size ?? [1280, 800]
   const sp = tl.speed ?? 1
   const beats = useMemo(() => resolve(tl.beats).map(b => ({ ...b, at: b.at * sp, ms: b.ms != null ? b.ms * sp : undefined })), [tl, sp])
   const root = useRef<HTMLDivElement>(null)
@@ -49,8 +49,8 @@ export default function Player({ id }: { id: string }) {
       const [cx0, cy0, z] = b.cam!
       const k = Math.max(size.w / W, size.h / H)
       const vw = size.w / (k * z), vh = size.h / (k * z)
-      const cx = Math.min(Math.max(cx0, vw / 2), W - vw / 2), cy = Math.min(Math.max(cy0, vh / 2), H - vh / 2)
-      camEl.style.transition = ms ? `transform ${ms}ms ${EASE}` : 'none'
+      const cx = vw >= W ? W / 2 : Math.min(Math.max(cx0, vw / 2), W - vw / 2), cy = vh >= H ? H / 2 : Math.min(Math.max(cy0, vh / 2), H - vh / 2)
+      camEl.style.transition = ms ? `transform ${ms}ms ${b.ease ?? EASE}` : 'none'
       camEl.style.transform = `translate(${size.w / 2 - cx * z * k}px, ${size.h / 2 - cy * z * k}px) scale(${z * k})`
       const [rx, ry] = b.tilt ?? [0, 0]
       const k2 = 1 + 0.012 * Math.max(Math.abs(rx), Math.abs(ry))
@@ -62,7 +62,7 @@ export default function Player({ id }: { id: string }) {
       if (html !== lastHtml) {
         const next = layers[1 - top].current!, prev = layers[top].current!
         next.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" class="wf">${html}</svg>`
-        const f = first || b.snap ? 'none' : 'opacity 140ms linear'
+        const f = first || b.snap ? 'none' : `opacity ${tl.fade ?? 140}ms linear`
         next.style.transition = f
         prev.style.transition = f
         next.style.opacity = '1'; prev.style.opacity = '0'
@@ -102,7 +102,7 @@ export default function Player({ id }: { id: string }) {
     document.addEventListener('visibilitychange', sync)
     show(beats[0], true)
     return () => { stop(); io.disconnect(); ro.disconnect(); document.removeEventListener('visibilitychange', sync) }
-  }, [beats, tl])
+  }, [beats, tl, W, H])
 
   return (
     <div ref={root} className="anim-stage absolute inset-0 overflow-hidden" style={{ background: tl.stage }}>

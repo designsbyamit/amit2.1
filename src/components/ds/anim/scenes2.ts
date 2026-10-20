@@ -143,18 +143,17 @@ export function dnm(s = {}) {
 /* ---------- Agentic: the order-confirmation flow, in the look of the film's solution scene (graphite, lime agent, cobalt people) ---------- */
 const FL = { bg: '#0F1013', panel: '#181A1F', line: '#2C3038', ink: '#ECEDEF', mu: '#A3A7B0', dim: '#6B7078', lime: '#C8F55A', cob: '#6E8BFF', cobS: '#1B2140' };
 const MONO = "'Geist Mono Variable','Geist Mono',ui-monospace,monospace";
-const NW = 150, NH = 96;
+const NW = 210, NH = 100, CW = 2560;
 const LY = { agent: 235, ops: 385, buyer: 535, goods: 685 };
-const CX = [240, 410, 580, 760, 935, 1095, 1230];
-// step, lane, col, [title lines], kind (a agent, h person, g person gate), tag
+const CX = [250, 590, 930, 1300, 1690, 2060, 2380];
 const FN = [
   [0, 'agent', 0, ['Email and PDF', 'picked up'], 'a'],
   [1, 'agent', 1, ['Reads, scores', 'confidence'], 'a'],
   [2, 'ops', 1, ['Checks and', 'corrects'], 'h'],
   [3, 'ops', 2, ['Confirms', 'validation'], 'g', 'GATE 1'],
-  [4, 'agent', 3, ['Compares to PO,', 'rates, routes'], 'a'],
+  [4, 'agent', 3, ['Compares to the PO,', 'rates and routes'], 'a'],
   [5, 'buyer', 4, ['Decides on', 'cost and terms'], 'g', 'GATE 2'],
-  [5, 'goods', 4, ['Decides on', 'quantity, dates'], 'g', 'GATE 2'],
+  [5, 'goods', 4, ['Decides on', 'quantity and dates'], 'g', 'GATE 2'],
   [6, 'agent', 5, ['Drafts the', 'supplier reply'], 'a'],
   [7, 'buyer', 5, ['Reviews and', 'sends it'], 'g', 'GATE 3'],
   [8, 'agent', 6, ['Closes'], 'a'],
@@ -162,11 +161,10 @@ const FN = [
 const FE = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [4, 6], [5, 7], [6, 7], [7, 8], [8, 9]];
 export function agFlow(s = {}) {
   const step = s.step ?? 0, end = !!s.end, K = FL;
-  let o = r(0, 0, 1280, 800, K.bg, 0);
-  o += t(40, 62, 'THE SOLUTION', 14, 500, K.dim, null, MONO) + t(40, 112, 'The agent reads. <tspan style="fill:#C8F55A">People decide.</tspan>', 46, 300, K.ink);
-  o += t(1118, 62, 'AGENT', 13, 500, K.lime, null, MONO) + `<circle cx="1108" cy="57" r="5" fill="${K.lime}"/><circle cx="1196" cy="57" r="5" fill="${K.cob}"/>` + t(1206, 62, 'PERSON', 13, 500, K.cob, null, MONO);
-  [['agent', 'AI agent'], ['ops', 'Operations'], ['buyer', 'Buyer'], ['goods', 'Goods recipient']].forEach(([l, nm]) => {
-    o += `<line x1="40" x2="1240" y1="${LY[l] + 74}" y2="${LY[l] + 74}" stroke="${K.line}" stroke-width="1.5"/>` + t(40, LY[l] - 52, nm.toUpperCase(), 12.5, 500, K.dim, null, MONO);
+  let o = r(0, 0, CW, 800, K.bg, 0);
+  o += t(60, 66, 'THE SOLUTION', 14, 400, K.dim, null, MONO).replace('<text', '<text letter-spacing="2.4"') + t(60, 124, 'The agent reads. <tspan style="fill:#C8F55A">People decide.</tspan>', 52, 200, K.ink);
+  [['agent', 'AI AGENT'], ['ops', 'OPERATIONS'], ['buyer', 'BUYER'], ['goods', 'GOODS RECIPIENT']].forEach(([l, nm]) => {
+    o += `<line x1="60" x2="${CW - 60}" y1="${LY[l] + 76}" y2="${LY[l] + 76}" stroke="${K.line}" stroke-width="1"/>` + t(60, LY[l] - 58, nm, 12, 400, K.dim, null, MONO).replace('<text', '<text letter-spacing="2"');
   });
   const P = (n) => ({ x: CX[n[2]], y: LY[n[1]] });
   FE.forEach(([a, b]) => {
@@ -174,26 +172,27 @@ export function agFlow(s = {}) {
     let d, x2, y2;
     if (pa.x === pb.x) { d = `M${pa.x} ${pa.y + NH / 2} V${pb.y - NH / 2}`; x2 = pb.x; y2 = pb.y - NH / 2; }
     else { const x1 = pa.x + NW / 2, y1 = pa.y; x2 = pb.x - NW / 2; y2 = pb.y; const mx = (x1 + x2) / 2; d = `M${x1} ${y1} C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}`; }
-    o += `<path d="${d}" fill="none" stroke="${on ? (act ? K.lime : K.mu) : K.line}" stroke-width="${act ? 3.5 : 2.5}" ${on ? '' : 'stroke-dasharray="3 8"'} opacity="${on ? 0.9 : 1}"/>`;
-    if (act) o += `<circle cx="${x2}" cy="${y2}" r="16" fill="${K.lime}" opacity=".25"/><circle cx="${x2}" cy="${y2}" r="8" fill="${K.lime}"/>`;
+    o += `<path d="${d}" fill="none" stroke="${on ? (act ? K.lime : '#7C818B') : K.line}" stroke-width="${act ? 1.6 : 1.1}" ${on ? '' : 'stroke-dasharray="2 6"'}/>`;
+    if (act) o += `<circle cx="${x2}" cy="${y2}" r="11" fill="${K.lime}" opacity=".16"/><circle cx="${x2}" cy="${y2}" r="4" fill="${K.lime}"/>`;
   });
   FN.forEach((n) => {
     const [st, lane, col, lines, kind, tag] = n, x = CX[col] - NW / 2, y = LY[lane] - NH / 2, on = step >= st, act = step === st;
     if (st === 8) {
       const cx = CX[col], cy = LY[lane];
-      o += on ? `<circle cx="${cx}" cy="${cy}" r="${act ? 56 : 48}" fill="${K.lime}" opacity="${act ? .16 : 0}"/><circle cx="${cx}" cy="${cy}" r="42" fill="${K.panel}" stroke="${K.lime}" stroke-width="2.5"/>` + ck(cx - 13, cy + 2, K.lime, 22) + t(cx, cy + 66, 'Logged', 13, 500, K.mu, 'middle', MONO)
-        : `<circle cx="${cx}" cy="${cy}" r="42" fill="none" stroke="${K.line}" stroke-width="2" stroke-dasharray="3 8"/>`;
+      o += on ? `<circle cx="${cx}" cy="${cy}" r="${act ? 60 : 50}" fill="${K.lime}" opacity="${act ? .09 : 0}"/><circle cx="${cx}" cy="${cy}" r="42" fill="${K.panel}" stroke="${K.lime}" stroke-width="1.2"/>` + ck(cx - 12, cy + 2, K.lime, 20) + t(cx, cy + 70, 'LOGGED', 12, 400, K.mu, 'middle', MONO).replace('<text', '<text letter-spacing="2"')
+        : `<circle cx="${cx}" cy="${cy}" r="42" fill="none" stroke="${K.line}" stroke-width="1" stroke-dasharray="2 6"/>`;
       return;
     }
-    if (!on) { o += r(x, y, NW, NH, 'none', 18, K.line, 2).replace('<rect', '<rect stroke-dasharray="3 8"'); return; }
+    if (!on) { o += r(x, y, NW, NH, 'none', 14, K.line, 1).replace('<rect', '<rect stroke-dasharray="2 6"'); return; }
     const c = kind === 'a' ? K.lime : K.cob;
-    if (kind === 'a' && act) o += r(x - 16, y - 16, NW + 32, NH + 32, c, 32, null, 0, .14);
-    if (kind !== 'a' && (act || (kind === 'g' && end))) o += r(x - 14, y - 14, NW + 28, NH + 28, 'none', 30, K.cob, 3, act ? .7 : .4);
-    o += r(x, y, NW, NH, kind === 'g' ? K.cobS : K.panel, 18, c, kind === 'g' ? 3.5 : 2.2);
-    o += t(x + 18, y + 26, kind === 'a' ? 'AGENT' : 'PERSON', 12, 500, c, null, MONO);
-    lines.forEach((q, i) => { o += t(x + 18, y + 52 + i * 22, q, 16.5, 400, K.ink); });
-    if (tag) o += r(x + NW - 74, y - 15, 84, 28, K.cob, 14) + t(x + NW - 32, y + 4, tag, 12.5, 700, '#0F1013', 'middle', MONO);
+    if (kind === 'a' && act) o += r(x - 18, y - 18, NW + 36, NH + 36, c, 30, null, 0, .07);
+    if (kind !== 'a' && (act || (kind === 'g' && end))) o += r(x - 10, y - 10, NW + 20, NH + 20, 'none', 24, K.cob, 1, act ? .6 : .35);
+    o += r(x, y, NW, NH, kind === 'g' ? K.cobS : K.panel, 14, c, 1.2);
+    o += t(x + 22, y + 30, kind === 'a' ? 'AGENT' : 'PERSON', 11, 400, c, null, MONO).replace('<text', '<text letter-spacing="2"');
+    lines.forEach((q, i) => { o += t(x + 22, y + 58 + i * 23, q, 17.5, 300, K.ink); });
+    if (tag) o += r(x + NW - 84, y - 11, 92, 22, K.cobS, 11, K.cob, 1) + t(x + NW - 38, y + 4.5, tag, 11, 500, K.cob, 'middle', MONO).replace('<text', '<text letter-spacing="1.5"');
   });
-  if (end) o += t(640, 786, 'AGENT READS AND COMPARES  ·  PEOPLE DECIDE  ·  EVERY STEP LOGGED', 13, 500, K.lime, 'middle', MONO);
+  o += `<circle cx="64" cy="764" r="3.5" fill="${K.lime}"/>` + t(78, 768, 'THE AGENT ACTS', 11, 400, K.mu, null, MONO).replace('<text', '<text letter-spacing="2"') + `<circle cx="258" cy="764" r="3.5" fill="${K.cob}"/>` + t(272, 768, 'A PERSON DECIDES', 11, 400, K.mu, null, MONO).replace('<text', '<text letter-spacing="2"');
+  if (end) o += t(CW / 2, 768, 'AGENT READS AND COMPARES  ·  PEOPLE DECIDE  ·  EVERY STEP LOGGED', 12, 400, K.lime, 'middle', MONO).replace('<text', '<text letter-spacing="2.4"');
   return o;
 }

@@ -15,8 +15,10 @@ export interface Beat {
   ms?: number
   /** Swap the picture without a cross-fade (for frame-by-frame motion such as scrolling). */
   snap?: boolean
+  /** CSS easing for this camera move (default ease-in-out). Use 'linear' to chain moves into one continuous glide. */
+  ease?: string
 }
-export interface Timeline { stage: string; duration: number; beats: Beat[]; /** Slows the whole loop down (1 = as authored). */ speed?: number; /** Soft drifting colour behind the UI, for stages with empty margins. */ drift?: string[] }
+export interface Timeline { stage: string; /** Canvas size, default 1280 x 800. */ size?: [number, number]; /** Cross-fade between pictures in ms (default 140). */ fade?: number; duration: number; beats: Beat[]; /** Slows the whole loop down (1 = as authored). */ speed?: number; /** Soft drifting colour behind the UI, for stages with empty margins. */ drift?: string[] }
 
 const typing = (text: string, from: number, step: number, base: Record<string, unknown>, extra: Partial<Beat> = {}): Beat[] =>
   Array.from({ length: text.length }, (_, i) => ({ at: from + i * step, s: { ...base, typed: text.slice(0, i + 1) }, ...extra }))
@@ -43,18 +45,21 @@ const dd = (typed: string, pick?: number) => ({ focus: true, lit: true, typed, d
 
 export const timelines: Record<string, Timeline> = {
   /* The order-confirmation flow: the camera follows the work from inbox to close; lime = agent, indigo ring = a person decides. */
-  agentic: { stage: '#0F1013', duration: 13800, beats: [
-    { at: 0, k: 'agFlow', s: { step: -1 }, cam: [640, 400, 1], ms: 0 },
-    { at: 1300, s: { step: 0 }, cam: [340, 230, 1.75], ms: 1100 },
-    { at: 2300, s: { step: 1 }, cam: [420, 300, 1.75], ms: 800 },
-    { at: 3100, s: { step: 2 }, cam: [490, 340, 1.75], ms: 700 },
-    { at: 3900, s: { step: 3 }, cam: [585, 380, 1.75], ms: 800 },
-    { at: 5000, s: { step: 4 }, cam: [760, 330, 1.75], ms: 1000 },
-    { at: 6300, s: { step: 5 }, cam: [940, 610, 1.55], ms: 1000 },
-    { at: 7700, s: { step: 6 }, cam: [1070, 340, 1.75], ms: 900 },
-    { at: 8700, s: { step: 7 }, cam: [1090, 390, 1.6], ms: 800 },
-    { at: 9800, s: { step: 8 }, cam: [1110, 300, 1.75], ms: 800 },
-    { at: 10900, s: { step: 8, end: true }, cam: [640, 410, 1], ms: 1300 },
+  agentic: { stage: '#0F1013', size: [2560, 800], fade: 450, duration: 21500, beats: [
+    { at: 0, k: 'agFlow', s: { step: -1 }, cam: [1280, 400, 0.5], ms: 0 },
+    { at: 1800, cam: [430, 300, 1.4], ms: 2800 },
+    { at: 3400, s: { step: 0 } },
+    { at: 4600, cam: [720, 360, 1.4], ms: 2400, ease: 'linear' },
+    { at: 5200, s: { step: 1 } }, { at: 6000, s: { step: 2 } }, { at: 6800, s: { step: 3 } },
+    { at: 7000, cam: [1150, 380, 1.4], ms: 2600, ease: 'linear' },
+    { at: 8200, s: { step: 4 } },
+    { at: 9600, cam: [1700, 500, 1.35], ms: 2600, ease: 'linear' },
+    { at: 10600, s: { step: 5 } },
+    { at: 12200, cam: [2060, 420, 1.35], ms: 2400, ease: 'linear' },
+    { at: 12800, s: { step: 6 } }, { at: 13800, s: { step: 7 } },
+    { at: 14600, cam: [2380, 300, 1.4], ms: 2000, ease: 'linear' },
+    { at: 15600, s: { step: 8 } },
+    { at: 17000, s: { step: 8, end: true }, cam: [1280, 400, 0.5], ms: 2600 },
   ] },
   agenticDemo: { stage: '#DDE3EA', duration: 14200, beats: [
     ...[0, 100, 200, 260, 350, 420, 500, 600].map((sc, i): Beat => ({ at: i * 300, k: 'agRead', s: { scan: sc, found: [106, 156, 206, 256, 346, 396, 494].filter(v => v < sc).length, bars: 0 }, ...(i === 0 ? { cam: [320, 300, 1.5] as [number, number, number], ms: 0 } : { snap: true }) })),
