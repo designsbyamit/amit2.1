@@ -45,7 +45,7 @@ const dd = (typed: string, pick?: number) => ({ focus: true, lit: true, typed, d
 
 export const timelines: Record<string, Timeline> = {
   /* The order-confirmation flow: the camera follows the work from inbox to close; lime = agent, indigo ring = a person decides. */
-  agentic: { stage: '#0F1013', size: [2560, 800], fade: 450, duration: 21500, beats: [
+  agenticFlow: { stage: '#0F1013', size: [2560, 800], fade: 450, duration: 21500, beats: [
     { at: 0, k: 'agFlow', s: { step: -1 }, cam: [1280, 400, 0.5], ms: 0 },
     { at: 1800, cam: [430, 300, 1.4], ms: 2800 },
     { at: 3400, s: { step: 0 } },
