@@ -21,7 +21,7 @@ export default function AdminPage() {
   useEffect(() => {
     document.title = 'Portal · Amit Kumar Tiwari'
     const m = document.createElement('meta'); m.name = 'robots'; m.content = 'noindex,nofollow'; document.head.appendChild(m)
-    api('/api/admin/enquiries?limit=1').then(r => setState(r.status === 200 || r.status === 503 ? 'in' : 'out')).catch(() => setState('out'))
+    api('/api/admin/enquiries?limit=1').then(r => setState(r.body && (r.status === 200 || r.status === 503) ? 'in' : 'out')).catch(() => setState('out'))
     return () => { m.remove() }
   }, [])
 
@@ -69,7 +69,7 @@ function Inbox({ onOut }: { onOut: () => void }) {
     setLoading(true)
     const r = await api(`/api/admin/enquiries?status=${encodeURIComponent(status)}&q=${encodeURIComponent(qNow)}`)
     if (r.status === 401) { onOut(); return }
-    if (r.status === 200) { setRows(r.body.rows); setCounts(Object.fromEntries((r.body.counts as { status: string; n: number }[]).map(c => [c.status, c.n]))); setMsg('') }
+    if (r.status === 200 && r.body) { setRows(r.body.rows); setCounts(Object.fromEntries((r.body.counts as { status: string; n: number }[]).map(c => [c.status, c.n]))); setMsg('') }
     else setMsg(r.body?.error || 'Could not load enquiries.')
     setLoading(false)
   }, [status, qNow, onOut])

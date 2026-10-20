@@ -239,7 +239,7 @@ export default function DesignSystemPage() {
             <Button to="/craft" arrow>See the work</Button>
             <Button variant="secondary" to="/contact">Get in touch</Button>
             <Button variant="tertiary" to="/about" arrow>About me</Button>
-            <Button small variant="secondary" href="mailto:uxbyamit@gmail.com">Small</Button>
+            <Button small variant="secondary">Small</Button>
             <Button href="https://adplist.org" variant="secondary" arrow>External</Button>
             <Button disabled>Disabled</Button>
           </div>

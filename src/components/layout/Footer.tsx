@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
+import { useContact } from '../contact/ContactProvider'
 
 export default function Footer() {
+  const { open } = useContact()
   return (
     <footer className="hairline-top py-8">
       <div className="container-site flex flex-col-reverse gap-6 md:flex-row md:items-center md:justify-between">
@@ -40,15 +42,16 @@ export default function Footer() {
               <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2c4.418 0 8 3.582 8 8s-3.582 8-8 8-8-3.582-8-8 3.582-8 8-8zm-1 4v2H7v2h4v6h2v-6h4v-2h-4V8h-2z" />
             </svg>
           </a>
-          <a
-            href="mailto:uxbyamit@gmail.com"
+          <button
+            type="button"
+            onClick={() => open({})}
             className="tap-target text-ink-3 hover:text-white transition-colors"
-            aria-label="Email"
+            aria-label="Contact"
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
     </footer>

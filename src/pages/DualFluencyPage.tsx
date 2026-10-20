@@ -1,3 +1,4 @@
+import { useContact } from '../components/contact/ContactProvider'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Breadcrumb from '../components/ds/Breadcrumb'
@@ -126,10 +127,9 @@ const GLOSSARY = [
 
 const LOOP = ['Identify the business KPI', 'Find the user metric that moves it', 'Find the design metric that moves that', 'Design the intervention', 'Measure both']
 const ease = [0.16, 1, 0.3, 1] as const
-const mail = (subject: string, body: string) => `mailto:uxbyamit@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-const REQUEST_PLAYBOOK = mail('Request - Dual Fluency playbook', 'Hi Amit,\n\nI would like to request the Dual Fluency playbook.\n\nName:\nRole:\nOrganisation:')
-const REQUEST_CANVAS = mail('Request - Dual Fluency Canvas', 'Hi Amit,\n\nI would like to request the Dual Fluency Canvas.\n\nName:\nRole:\nOrganisation:')
-const REQUEST_WORKSHOP = mail('Request - Dual Fluency workshop', 'Hi Amit,\n\nI am interested in bringing the Dual Fluency workshop to my team.\n\nName:\nRole:\nOrganisation:\nTeam size:')
+const REQUEST_PLAYBOOK = { topic: 'resource', subject: 'Request - Dual Fluency playbook', message: 'I would like to request the Dual Fluency playbook.' } as const
+const REQUEST_CANVAS = { topic: 'resource', subject: 'Request - Dual Fluency Canvas', message: 'I would like to request the Dual Fluency Canvas.' } as const
+const REQUEST_WORKSHOP = { topic: 'speaking', subject: 'Request - Dual Fluency workshop', message: 'I am interested in bringing the Dual Fluency workshop to my team.\n\nTeam size:\n' } as const
 
 function Section({ id, label, title, intro, children }: { id: string; label: string; title: string; intro?: string; children: React.ReactNode }) {
   return (
@@ -206,6 +206,7 @@ function CanvasSheet() {
 }
 
 export default function DualFluencyPage() {
+  const { open } = useContact()
   const [layer, setLayer] = useState(KPI_CHAIN[0].id)
   const [q, setQ] = useState('')
   const glossary = GLOSSARY.filter(g => !q || (g.term + g.simple + g.design).toLowerCase().includes(q.toLowerCase()))
@@ -226,8 +227,8 @@ export default function DualFluencyPage() {
               </motion.p>
               <p className="text-body text-ink-2 mt-4 max-w-2xl">Dual Fluency is the capacity to operate equally in the language of design and the language of business, and to translate fluently between them in any room.</p>
               <div className="flex flex-wrap gap-3 mt-8">
-                <Button href={REQUEST_PLAYBOOK}>Request the playbook</Button>
-                <Button variant="secondary" href={REQUEST_WORKSHOP}>Bring it to your team</Button>
+                <Button onClick={() => open(REQUEST_PLAYBOOK)}>Request the playbook</Button>
+                <Button variant="secondary" onClick={() => open(REQUEST_WORKSHOP)}>Bring it to your team</Button>
               </div>
             </div>
             <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
@@ -316,8 +317,8 @@ export default function DualFluencyPage() {
       <Section id="canvas" label="Canvas" title="The Dual Fluency Canvas." intro="Map any design decision to a business outcome in about twenty minutes. Request the editable Figma or PDF version.">
         <CanvasSheet />
         <div className="flex flex-wrap gap-3 mt-8">
-          <Button href={REQUEST_CANVAS}>Request the canvas</Button>
-          <Button variant="secondary" href={REQUEST_WORKSHOP}>Bring the workshop to your team</Button>
+          <Button onClick={() => open(REQUEST_CANVAS)}>Request the canvas</Button>
+          <Button variant="secondary" onClick={() => open(REQUEST_WORKSHOP)}>Bring the workshop to your team</Button>
         </div>
       </Section>
 

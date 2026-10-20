@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SectionLabel from '../ui/SectionLabel'
 import GrainOverlay from '../ui/GrainOverlay'
@@ -8,7 +7,6 @@ import ContactForm from '../contact/ContactForm'
 import { useContact } from '../contact/ContactProvider'
 import type { ContactOptions } from '../../lib/contact'
 
-const EMAIL = 'uxbyamit@gmail.com'
 const paths: readonly ({ id: string; label: string; body: string; cta: string } & ({ to: string } | { open: ContactOptions }))[] = [
   {
     id: 'work',
@@ -35,16 +33,7 @@ const paths: readonly ({ id: string; label: string; body: string; cta: string } 
 
 export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' | 'h2' }) {
   const Heading = headingLevel === 'h1' ? motion.h1 : motion.h2
-  const [copied, setCopied] = useState(false)
   const { open } = useContact()
-
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(EMAIL)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch { /* clipboard unavailable: the address is shown on the button */ }
-  }
 
   return (
     <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden" id="contact">
@@ -93,14 +82,6 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10 hairline-top pt-8">
-          <button
-            onClick={copyEmail}
-            className="btn btn-secondary justify-between gap-6 w-full md:w-auto normal-case tracking-normal"
-            aria-label="Copy email address"
-          >
-            <span>{EMAIL}</span>
-            <span className="text-xs text-ink-3">{copied ? '✓ Copied' : 'Copy'}</span>
-          </button>
           <div className="flex items-center gap-6">
             <a href="https://linkedin.com/in/amitkrt" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-white transition-colors tap-target">LinkedIn</a>
             <a href="https://medium.com/@amitkrt" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-white transition-colors tap-target">Medium</a>

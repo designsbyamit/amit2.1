@@ -1,3 +1,4 @@
+import { useContact } from '../components/contact/ContactProvider'
 import Testimonials from '../components/sections/Testimonials'
 import Button from '../components/ds/Button'
 import Card from '../components/ds/Card'
@@ -53,7 +54,6 @@ const templates: { id: string; title: string; motif: 'checklist' | 'loop' | 'pha
   },
 ]
 
-const requestTemplate = (title: string) => `mailto:uxbyamit@gmail.com?subject=${encodeURIComponent(`Template request - ${title}`)}&body=${encodeURIComponent(`Hello Amit,\n\nCould you send me the "${title}" template?\n\nName:\nRole:\n\nThank you.`)}`
 
 const principles = [
   ['I read your work first', 'Before the call, I go through what you send. The time together goes to feedback and decisions, not to catching up.'],
@@ -63,6 +63,7 @@ const principles = [
 ]
 
 export default function MentoringPage() {
+  const { open } = useContact()
   return (
     <>
       <section className="relative" style={{ paddingTop: 'var(--header-h)' }}>
@@ -143,7 +144,7 @@ export default function MentoringPage() {
                       {tpl.prompts.map((p, j) => <li key={j} className="flex gap-3 text-body-sm text-ink-2"><span className="text-label text-signal-ink pt-0.5">{String(j + 1).padStart(2, '0')}</span>{p}</li>)}
                     </ol>
                   </details>
-                  <div className="mt-auto pt-2"><Button small variant="secondary" href={requestTemplate(tpl.title)}>Request the template</Button></div>
+                  <div className="mt-auto pt-2"><Button small variant="secondary" onClick={() => open({ topic: 'mentoring', subject: `Template request - ${tpl.title}`, message: `Could you send me the “${tpl.title}” template?` })}>Request the template</Button></div>
                 </div>
               </article>
             ))}

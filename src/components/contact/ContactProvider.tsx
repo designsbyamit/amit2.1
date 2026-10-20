@@ -2,7 +2,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import ContactForm from './ContactForm'
 import { DIRECT_EMAIL, fromMailto, type ContactOptions } from '../../lib/contact'
 
-const Ctx = createContext<{ open: (o?: ContactOptions) => void }>({ open: () => {} })
+type Api = { open: (o?: ContactOptions) => void; /** A click handler for a link: opens the form instead of following it. */ ask: (o?: ContactOptions) => (e: React.MouseEvent) => void }
+const Ctx = createContext<Api>({ open: () => {}, ask: () => () => {} })
 export const useContact = () => useContext(Ctx)
 
 /** Hosts the contact dialog, and turns every mailto: link to Amit into the form so no enquiry leaves the site by email client. */
@@ -44,7 +45,7 @@ export default function ContactProvider({ children }: { children: React.ReactNod
     return () => { document.body.style.overflow = prev; document.removeEventListener('keydown', onKey) }
   }, [opts, close])
 
-  const value = useMemo(() => ({ open }), [open])
+  const value = useMemo<Api>(() => ({ open, ask: (o = {}) => (e: React.MouseEvent) => { e.preventDefault(); open(o) } }), [open])
   return (
     <Ctx.Provider value={value}>
       {children}

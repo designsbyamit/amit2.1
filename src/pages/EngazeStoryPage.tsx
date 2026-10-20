@@ -38,7 +38,7 @@ export default function EngazeStoryPage() {
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{E.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[62ch]">{cs.tagline}</p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <Button to="/craft/engaze/film" arrow>Watch the employee-experience teaser · 1 min 6 s</Button>
+            <Button to="/craft/engaze/film" arrow className="!whitespace-normal text-left max-w-full">Watch the employee-experience teaser · 1 min 6 s</Button>
           </div>
           <div className="flex flex-wrap gap-2 mt-8"><span className="tag">{E.kicker}</span>{(cs.tags ?? []).map(t => <span key={t} className="tag">{t}</span>)}</div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-4xl">
@@ -104,7 +104,7 @@ export default function EngazeStoryPage() {
       </Section>
 
       <Section id="employee-experience">
-        <SectionHeader label="07 · Deep dive" title={E.ex.title} intro={E.ex.intro} action={<Button to="/craft/engaze/film" arrow>{E.ex.teaserLabel}</Button>} />
+        <SectionHeader label="07 · Deep dive" title={E.ex.title} intro={E.ex.intro} action={<Button to="/craft/engaze/film" arrow className="!whitespace-normal text-left max-w-full">{E.ex.teaserLabel}</Button>} />
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {E.ex.stats.map(([v, k]) => <div key={k} className="card"><dd className="text-display-l text-white">{v}</dd><dt className="text-body-sm text-ink-3 mt-2">{k}</dt></div>)}
         </dl>

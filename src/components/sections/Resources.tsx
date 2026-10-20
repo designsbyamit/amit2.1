@@ -1,3 +1,4 @@
+import { useContact } from '../contact/ContactProvider'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -166,12 +167,6 @@ const readingItems = {
   ],
 }
 
-function makeMailto(resourceTitle: string) {
-  const subject = encodeURIComponent(`Requesting Access - ${resourceTitle}`)
-  const body = encodeURIComponent(`Hello Amit,\n\nI came across your resource "${resourceTitle}" and would love to request access.\n\nA little about me:\n\nName:\nRole:\nOrganization:\n\nThank you.\n\nRegards`)
-  return `mailto:uxbyamit@gmail.com?subject=${subject}&body=${body}`
-}
-
 function ReadingListContent() {
   return (
     <div className="mt-8 border-t border-white border-opacity-10 pt-8">
@@ -206,6 +201,7 @@ function ReadingListContent() {
 // ── Resource item: sheet cover + summary + actions ─────────────────────────
 
 function ResourceCard({ resource, index }: { resource: Resource; index: number }) {
+  const { open } = useContact()
   const [expanded, setExpanded] = useState(false)
   const titleId = `res-${resource.id}`
   return (
@@ -228,7 +224,7 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
             <>
               {resource.internalUrl && <Button to={resource.internalUrl} arrow>{resource.previewLabel || 'Explore'}</Button>}
               {!resource.internalUrl && resource.previewUrl && <Button href={resource.previewUrl} arrow>{resource.previewLabel || 'Preview'}</Button>}
-              {resource.requestAccess && <Button variant="secondary" href={makeMailto(resource.title)}>{resource.requestLabel || 'Request access'}</Button>}
+              {resource.requestAccess && <Button variant="secondary" onClick={() => open({ topic: 'resource', subject: `Requesting Access - ${resource.title}`, message: `I would like to request access to “${resource.title}”.` })}>{resource.requestLabel || 'Request access'}</Button>}
             </>
           )}
         </div>
@@ -248,6 +244,7 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
 // ── Main component ───────────────────────────────────────────────────────────
 
 export default function Resources() {
+  const { open } = useContact()
   const [activeFilter, setActiveFilter] = useState('All')
   const filtered = activeFilter === 'All' ? resources : resources.filter(r => r.filterTags.includes(activeFilter))
   return (
@@ -264,7 +261,7 @@ export default function Resources() {
             <p className="text-heading text-ink mb-3">Many of these came from real projects, workshops, mentoring conversations and community work.</p>
             <p className="text-body text-ink-2">If you need something particular, reach out.</p>
           </div>
-          <div className="flex md:justify-end"><Button variant="secondary" href="mailto:uxbyamit@gmail.com">Get in touch</Button></div>
+          <div className="flex md:justify-end"><Button variant="secondary" onClick={() => open({ topic: 'other' })}>Get in touch</Button></div>
         </div>
       </div>
     </section>

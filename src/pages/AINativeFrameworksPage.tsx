@@ -1,3 +1,4 @@
+import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
@@ -271,6 +272,7 @@ const GLOSSARY = [
 // ── Sub-components ────────────────────────────────────────────────────────────
 
 function ProcessRoadmap() {
+  const { ask } = useContact()
   const [active, setActive] = useState<string | null>(null)
 
   return (
@@ -364,7 +366,7 @@ function ProcessRoadmap() {
                     {phase.artifacts.map(a => (
                       <li key={a} className="flex items-center gap-3">
                         <span className="text-ink-3 text-xs">↓</span>
-                        <a href={`mailto:uxbyamit@gmail.com?subject=Request - ${a}`}
+                        <a href="/contact" onClick={ask({ topic: 'resource', subject: `Request - ${a}`, message: `I would like to request ${a}.` })}
                           className="text-label text-ink-3 hover:text-white transition-colors">{a}</a>
                       </li>
                     ))}
@@ -412,6 +414,7 @@ function ProcessRoadmap() {
 }
 
 function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number }) {
+  const { ask } = useContact()
   const [open, setOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('mentalModel')
 
@@ -581,7 +584,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                     <div className="grid md:grid-cols-2 gap-4">
                       {fw.downloads.map((d, j) => (
                         <motion.a key={j}
-                          href={`mailto:uxbyamit@gmail.com?subject=Request - ${d}&body=Hi Amit,%0A%0AI'd like to request the ${d}.%0A%0AName:%0ARole:%0AOrganisation:`}
+                          href="/contact" onClick={ask({ topic: 'resource', subject: `Request - ${d}`, message: `I would like to request the ${d}.` })}
                           className="border border-white border-opacity-10 p-5 hover:border-opacity-25 hover:bg-white hover:bg-opacity-[0.02] transition-all duration-200 group"
                           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: j * 0.06 }}>
                           <div className="flex items-center justify-between mb-2">
@@ -660,6 +663,7 @@ const NAV_SECTIONS = [
 ]
 
 export default function AINativeFrameworksPage() {
+  const { ask } = useContact()
   const [activeSection, setActiveSection] = useState('hero')
   const [glossarySearch, setGlossarySearch] = useState('')
   const { scrollYProgress } = useScroll()
@@ -730,7 +734,7 @@ export default function AINativeFrameworksPage() {
                   className="btn btn-secondary">
                   Explore Frameworks
                 </a>
-                <a href={`mailto:uxbyamit@gmail.com?subject=Request - AI-native Design PDF Playbook`}
+                <a href="/contact" onClick={ask({ topic: 'resource', subject: 'Request - AI-native Design PDF Playbook', message: 'I would like to request the AI-native Design PDF Playbook.' })}
                   className="text-label text-ink-3 hover:text-white transition-colors px-6 py-3">
                   Request PDF Playbook →
                 </a>
@@ -928,7 +932,7 @@ export default function AINativeFrameworksPage() {
           <div className="grid md:grid-cols-2 gap-px grid-hairline">
             {DOWNLOADS.map((dl, i) => (
               <motion.a key={dl.name}
-                href={`mailto:uxbyamit@gmail.com?subject=Request - ${dl.name}&body=Hi Amit,%0A%0AI'd like to request: ${dl.name}.%0A%0AName:%0ARole:%0AOrganisation:`}
+                href="/contact" onClick={ask({ topic: 'resource', subject: `Request - ${dl.name}`, message: `I would like to request ${dl.name}.` })}
                 className="bg-black p-8 md:p-10 group hover:bg-white hover:bg-opacity-[0.025] transition-colors duration-200"
                 initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}>
@@ -990,7 +994,7 @@ export default function AINativeFrameworksPage() {
             </p>
           </div>
           <div className="flex flex-col gap-3 flex-shrink-0">
-            <a href="mailto:uxbyamit@gmail.com?subject=AI-native Design Workshop Enquiry"
+            <a href="/contact" onClick={ask({ topic: 'speaking', subject: 'AI-native Design Workshop enquiry' })}
               className="btn btn-secondary">
               Get in touch →
             </a>

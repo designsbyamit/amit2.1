@@ -10,7 +10,7 @@ const ways: readonly { n: string; title: string; body: string; cta: string; open
   { n: '03', title: 'Put me in the room', body: 'A talk, a workshop or a portfolio review for your team or event.', cta: 'Plan it', open: { topic: 'speaking', message: 'Team or event:\n\nDate and place:\n\nWhat the audience needs:\n' } },
 ]
 
-/** The close of the Works page: three ways to start, each a short email with the right questions already in it. */
+/** The close of the Works page: three ways to start, each opening the contact form with the right questions already in it. */
 export default function WorksCTA() {
   const { open } = useContact()
   return (

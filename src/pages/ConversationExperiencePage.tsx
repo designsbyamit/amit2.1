@@ -1,3 +1,4 @@
+import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -82,6 +83,7 @@ const METRICS = [
 ]
 
 export default function ConversationExperiencePage() {
+  const { ask } = useContact()
   const [activeChapter, setActiveChapter] = useState<string | null>(null)
 
   return (
@@ -258,7 +260,7 @@ export default function ConversationExperiencePage() {
             <p className="text-body text-ink-3">Covers intent design, prompt and response systems, multi-turn flows, trust and safety, and agentic UX. Includes the full Engaze design methodology.</p>
           </div>
           <div className="flex flex-col gap-4">
-            <a href="mailto:uxbyamit@gmail.com?subject=Request - Conversation Experience Playbook"
+            <a href="/contact" onClick={ask({ topic: 'resource', subject: 'Request - Conversation Experience Playbook', message: 'I would like to request the Conversation Experience Playbook.' })}
               className="btn btn-secondary">
               Request full playbook →
             </a>
