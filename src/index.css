@@ -485,3 +485,24 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 .marquee:hover .marquee-track, .marquee:focus-within .marquee-track, .marquee[data-paused='true'] .marquee-track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; } .marquee-track { animation: none; } }
+
+/* Grow hub pictograms */
+.pg { transform-box: fill-box; transform-origin: center; }
+.pg-shuttle { animation: pg-shuttle 3.6s ease-in-out infinite; }
+.pg-bob { animation: pg-bob 3s ease-in-out infinite; }
+.pg-pulse { animation: pg-pulse 2.8s ease-in-out infinite; }
+.pg-draw { animation: pg-draw 4.5s ease-in-out infinite; }
+.pg-blink { animation: pg-blink 1s steps(2, jump-none) infinite; }
+.pg-climb { animation: pg-climb 6s ease-in-out infinite; }
+.pg-hl { animation: pg-hl 4.2s ease-in-out infinite; opacity: 0; }
+@keyframes pg-shuttle { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(var(--dx, 28px)); } }
+@keyframes pg-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes pg-pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.22); opacity: .8; } }
+@keyframes pg-draw { 0% { stroke-dashoffset: var(--len); } 35%, 80% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: var(--len); } }
+@keyframes pg-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes pg-climb {
+  0%, 12% { transform: translate(0, 0); } 25%, 37% { transform: translate(24px, -10px); }
+  50%, 62% { transform: translate(48px, -20px); } 75%, 87% { transform: translate(72px, -30px); } 100% { transform: translate(0, 0); }
+}
+@keyframes pg-hl { 0%, 28% { opacity: .9; } 36%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pg { animation: none !important; } .pg-hl { opacity: 0; } }
