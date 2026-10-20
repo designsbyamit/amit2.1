@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0F1013" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#F5F6F7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F1013" />
     <title>Amit Kumar Tiwari — Design Leader</title>
     <meta name="description" content="Amit Kumar Tiwari — Design Leader shaping AI-native enterprise experiences at SAP." />
     <link rel="canonical" href="https://neo.designsbyamit.com/" />
@@ -28,7 +27,7 @@
       (function () {
         try {
           var s = localStorage.getItem('theme');
-          var t = s === 'light' || s === 'dark' ? s : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          var t = s === 'light' ? 'light' : 'dark';
           document.documentElement.setAttribute('data-theme', t);
         } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
       })();
