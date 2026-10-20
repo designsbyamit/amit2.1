@@ -114,16 +114,17 @@ function End({ i, lt }: { i: number; lt: number }) {
     </div>)
 }
 
-export default function FlowThumb() {
+/** `at` freezes the loop on one moment (seconds) and `bare` drops the running captions: used to cut still covers from the loop. */
+export default function FlowThumb({ at, bare, zoom = 1, oy = 0 }: { at?: number; bare?: boolean; zoom?: number; oy?: number } = {}) {
   const box = useRef<HTMLDivElement>(null)
-  const [t, setT] = useState(1.5 * D + 1.5)
+  const [t, setT] = useState(at ?? 1.5 * D + 1.5)
   const [dim, setDim] = useState({ w: 1280, h: 800 })
 
   useEffect(() => {
     const el = box.current; if (!el) return
     const ro = new ResizeObserver(() => setDim({ w: el.clientWidth || 1280, h: el.clientHeight || 800 }))
     ro.observe(el); setDim({ w: el.clientWidth || 1280, h: el.clientHeight || 800 })
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => ro.disconnect()
+    if (at !== undefined || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => ro.disconnect()
     let raf = 0, visible = false, t0 = 0
     const frame = (now: number) => { if (!t0) t0 = now; setT(((now - t0) / 1000) % LOOP); raf = requestAnimationFrame(frame) }
     const sync = () => { cancelAnimationFrame(raf); raf = 0; if (visible && !document.hidden) { t0 = 0; raf = requestAnimationFrame(frame) } }
@@ -132,9 +133,9 @@ export default function FlowThumb() {
     return () => { cancelAnimationFrame(raf); io.disconnect(); ro.disconnect(); document.removeEventListener('visibilitychange', sync) }
   }, [])
 
-  const k = dim.h / H, Wd = dim.w / k
+  const k = (dim.h / H) * zoom, Wd = dim.w / k
   const cam = camAt(t), camX = cam * SP
-  const fade = Math.min(seg(t, 0, 0.7), 1 - seg(t, LOOP - 0.7, LOOP))
+  const fade = at !== undefined ? 1 : Math.min(seg(t, 0, 0.7), 1 - seg(t, LOOP - 0.7, LOOP))
   const ci = Math.min(6, Math.round(cam))
   const settled = Math.abs(cam - ci) < 0.02
   const sx = (x: number) => Wd / 2 + (x - camX)
@@ -143,14 +144,14 @@ export default function FlowThumb() {
   const wrap: CSSProperties = { position: 'absolute', inset: 0, overflow: 'hidden', background: 'radial-gradient(120% 100% at 15% 0%, #1B2457 0%, #0C1129 56%, #080B1A 100%)', fontFamily: "'Geist Variable','Geist',system-ui,sans-serif", color: C.ink }
   return (
     <div ref={box} style={wrap}>
-      <div style={{ position: 'absolute', left: 0, top: 0, width: Wd, height: H, transformOrigin: '0 0', transform: `scale(${k})`, opacity: fade }}>
+      <div style={{ position: 'absolute', left: 0, top: oy, width: Wd, height: H, transformOrigin: '0 0', transform: `scale(${k})`, opacity: fade }}>
         {/* backdrop: slow parallax grid and glow */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1.4px)', backgroundSize: '44px 44px', backgroundPosition: `${-camX * 0.22}px 0`, maskImage: 'radial-gradient(70% 70% at 50% 50%, #000, transparent)', WebkitMaskImage: 'radial-gradient(70% 70% at 50% 50%, #000, transparent)' }} />
         <div style={{ position: 'absolute', width: 760, height: 760, borderRadius: '50%', left: Wd / 2 - 380 - camX * 0.1 % 400, top: 20, background: `radial-gradient(circle, ${col(STEPS[ci].kind)}1F, transparent 65%)`, opacity: 0.8 }} />
 
         {/* chrome that stays put */}
-        <div style={{ position: 'absolute', left: 64, top: 52, fontFamily: MONO, fontSize: 14, letterSpacing: '.16em', color: C.dim }}>ORDER CONFIRMATION · THE FLOW</div>
-        <div style={{ position: 'absolute', right: 64, top: 52, fontFamily: MONO, fontSize: 14, letterSpacing: '.16em', color: C.mute }}>{String(ci + 1).padStart(2, '0')} / 07</div>
+        {!bare && <div style={{ position: 'absolute', left: 64, top: 52, fontFamily: MONO, fontSize: 14, letterSpacing: '.16em', color: C.dim }}>ORDER CONFIRMATION · THE FLOW</div>}
+        {!bare && <div style={{ position: 'absolute', right: 64, top: 52, fontFamily: MONO, fontSize: 14, letterSpacing: '.16em', color: C.mute }}>{String(ci + 1).padStart(2, '0')} / 07</div>}
 
         {/* the world, softly faded at both edges */}
         <div style={{ position: 'absolute', inset: 0, WebkitMaskImage: 'linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%)', maskImage: 'linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%)' }}>
@@ -202,7 +203,7 @@ export default function FlowThumb() {
         </div>
 
         {/* progress rail: the whole flow, always legible */}
-        <div style={{ position: 'absolute', left: 0, right: 0, bottom: 52, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 0 }}>
+        {!bare && <div style={{ position: 'absolute', left: 0, right: 0, bottom: 52, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 0 }}>
           {STEPS.map((s, i) => {
             const on = i <= ci, c = col(s.kind), cur = i === ci
             return (
@@ -212,8 +213,8 @@ export default function FlowThumb() {
               </div>
             )
           })}
-        </div>
-        <div style={{ position: 'absolute', left: 0, right: 0, bottom: 20, textAlign: 'center', fontFamily: MONO, fontSize: 13, letterSpacing: '.16em', color: col(STEPS[ci].kind) }}>{STEPS[ci].name.toUpperCase()}</div>
+        </div>}
+        {!bare && <div style={{ position: 'absolute', left: 0, right: 0, bottom: 20, textAlign: 'center', fontFamily: MONO, fontSize: 13, letterSpacing: '.16em', color: col(STEPS[ci].kind) }}>{STEPS[ci].name.toUpperCase()}</div>}
       </div>
     </div>
   )

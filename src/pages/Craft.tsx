@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import PageHeader from '../components/ui/PageHeader'
 import WorksBento from '../components/sections/WorksBento'
 import GrainOverlay from '../components/ui/GrainOverlay'
+import WorksCTA from '../components/sections/WorksCTA'
 
 const microStories = [
   {
@@ -125,6 +126,8 @@ export default function Craft() {
           </div>
         </div>
       </section>
+
+      <WorksCTA />
     </>
   )
 }

@@ -1,79 +1,103 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><title>Project covers</title>
 <style>
-@font-face{font-family:'Bodoni';src:url('../../node_modules/@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-normal.woff2');font-weight:400 900}
 @font-face{font-family:'Geist';src:url('../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2');font-weight:100 900}
-@font-face{font-family:'GeistMono';src:url('../../node_modules/@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2');font-weight:100 900}
+@font-face{font-family:'Instrument Sans Variable';src:url('../../node_modules/@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2');font-weight:400 700}
 *{box-sizing:border-box;margin:0}
-body{background:#222;display:grid;gap:40px;padding:40px;width:1680px}
-.c{position:relative;width:1600px;height:1000px;overflow:hidden;font-family:Geist,sans-serif;color:#fff}
-.lab{position:absolute;left:84px;top:76px;font:500 22px/1 GeistMono,monospace;letter-spacing:.14em;text-transform:uppercase;color:#C8F55A;z-index:5}
-.lab i{display:inline-block;width:44px;height:2px;background:#C8F55A;vertical-align:middle;margin-right:18px}
-.serif{font-family:Bodoni,serif;font-weight:400;letter-spacing:-.02em;z-index:5;position:absolute}
-.cap{position:absolute;font:400 26px/1.35 Geist,sans-serif;color:rgba(255,255,255,.72);z-index:5}
-.shot{position:absolute;border-radius:18px;box-shadow:0 70px 130px -20px rgba(0,0,0,.7),0 12px 30px rgba(0,0,0,.4);overflow:hidden}
-.shot img{display:block;width:100%}
-.fade-l{position:absolute;inset:0;z-index:3}
-.lime{color:#C8F55A}
-.rail{position:absolute;left:84px;width:640px;bottom:92px;height:2px;background:rgba(255,255,255,.28);z-index:5}
-.node{position:absolute;bottom:-11px;width:24px;height:24px;border-radius:50%;border:2px solid #C8F55A;background:#0b1030}
-.node.on{background:#C8F55A}
-.node b{position:absolute;left:-6px;top:-44px;font:500 18px/1 GeistMono,monospace;letter-spacing:.14em;color:#C8F55A;white-space:nowrap}
+body{background:#222;display:grid;gap:40px;padding:40px;width:1680px;font-family:Geist,sans-serif}
+.c{position:relative;width:1600px;height:1000px;overflow:hidden}
+.fill{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ph svg{display:block;width:100%;height:100%}
+.ph{position:absolute;filter:drop-shadow(0 50px 50px rgba(74,16,36,.38)) drop-shadow(0 8px 14px rgba(40,12,20,.3))}
+
+/* 2 · search */
+#sap-search{background:#07080F}
+#sap-search .b1{position:absolute;left:-120px;top:-260px;width:900px;height:900px;border-radius:50%;background:#6C8BFF;opacity:.16;filter:blur(60px)}
+#sap-search .b2{position:absolute;right:-200px;top:120px;width:780px;height:780px;border-radius:50%;background:#8B7CFF;opacity:.15;filter:blur(70px)}
+#sap-search .stage{position:absolute;left:200px;top:170px;width:1200px;transform:perspective(2600px) rotateX(5deg) rotateY(-5deg);transform-origin:50% 0}
+.bar{position:relative;height:112px;border-radius:34px;background:#0E1120;border:4px solid #6C8BFF;display:flex;align-items:center;padding:0 44px;gap:28px;box-shadow:0 0 0 9px rgba(108,139,255,.22),0 40px 90px -20px rgba(60,90,255,.45)}
+.bar .sp{width:60px;height:60px;border-radius:50%;background:rgba(108,139,255,.22);display:grid;place-items:center}
+.bar .q{font:500 38px/1 Geist;color:#EEF0F8;letter-spacing:-.01em}.bar .q i{display:inline-block;width:3px;height:42px;background:#8FA5FF;vertical-align:-8px;margin-left:4px}
+.dd{margin-top:22px;border-radius:30px;background:#0E1120;border:2px solid #262C48;padding:16px;box-shadow:0 60px 120px -30px rgba(0,0,0,.8)}
+.row{display:flex;align-items:center;gap:24px;height:94px;padding:0 28px;border-radius:20px;color:#EEF0F8}
+.row.hot{background:#1B2140;box-shadow:inset 0 0 0 2px #262C48}
+.row .ring{width:16px;height:16px;border-radius:50%;border:3px solid #6F768C;flex:none}
+.row .t{font:500 27px/1.1 Geist;flex:1;white-space:nowrap;letter-spacing:-.005em}
+.app{display:flex;align-items:center;gap:10px;font:500 19px Geist;color:#A5ABC0;min-width:150px}
+.app b{width:26px;height:26px;border-radius:50%;display:block}
+.act{font:600 20px Geist;padding:11px 22px;border-radius:999px;border:2px solid #2C3354;color:#EEF0F8;min-width:124px;text-align:center}
+.row.hot .act{background:#6C8BFF;border-color:#6C8BFF;color:#fff}
+
+/* 3 · engaze */
+#engaze{background:#F4F1FC}
+#engaze i.bl{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75}
+.ecard{position:absolute;left:50%;display:flex;align-items:center;gap:26px;padding:0 40px;background:#fff;border:2px solid #E4DFF2;border-radius:34px;color:#17122B;font:550 33px/1.15 Geist;letter-spacing:-.01em;box-shadow:0 26px 60px -24px rgba(60,40,140,.35),0 4px 10px rgba(60,40,140,.06)}
+.ecard .o{flex:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0,#9DB4FF 40%,#B26BFF 75%,#FF8FB8 100%)}
+.ecard.front{box-shadow:0 50px 90px -30px rgba(80,50,200,.5),0 6px 14px rgba(60,40,140,.08);border-color:#6C4BF4;border-width:3px}
+
+/* 5 · data */
+#data-ai{background:#0A0617}
+#data-ai .g{position:absolute;border-radius:50%;filter:blur(90px)}
+.dwrap{position:absolute;left:110px;top:170px;width:1400px;transform:perspective(2600px) rotateY(-14deg) rotateX(6deg) rotateZ(1.2deg);transform-origin:50% 50%}
+.dui{position:relative;border-radius:26px;overflow:hidden;box-shadow:0 0 0 2px rgba(255,255,255,.22),0 0 160px 20px rgba(168,85,247,.55),0 90px 140px -20px rgba(0,0,0,.85)}
+.dui img{display:block;width:100%}
+.dui::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.0) 20%,rgba(255,255,255,.28) 38%,rgba(255,255,255,0) 52%);pointer-events:none}
+
+/* 6 · dnetworx */
+#dnetworx{background:radial-gradient(90% 90% at 70% 35%,#2a4a4f 0%,#15262b 52%,#0a1114 100%)}
+#dnetworx .floor{position:absolute;left:150px;right:150px;bottom:150px;height:70px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(34px)}
 </style></head><body>
 
-<!-- 1 · SAP Agentic: the human gates -->
-<div class="c" id="sap-agentic" style="background:radial-gradient(110% 120% at 85% 15%,#22358a 0%,#0e1646 45%,#070a22 100%)">
-  <div class="lab"><i></i>Agentic AI · Procurement</div>
-  <div class="shot" style="left:800px;top:150px;width:920px;transform:perspective(2600px) rotateY(-11deg) rotateX(3deg) rotateZ(.8deg);transform-origin:0 50%"><img src="../../public/images/case-studies/sap-agentic/buyer-review.webp"></div>
-  <div class="shot" style="left:900px;top:560px;width:600px;transform:perspective(2600px) rotateY(-11deg) rotateX(3deg) rotateZ(.8deg)"><img src="../../public/images/case-studies/sap-agentic/ops-validate.webp"></div>
-  <div class="fade-l" style="background:linear-gradient(90deg,#070a22 0%,rgba(7,10,34,.92) 30%,rgba(7,10,34,0) 58%)"></div>
-  <h2 class="serif" style="left:84px;top:200px;width:700px;font-size:118px;line-height:1.04;font-weight:400">Who decides what, <span class="lime" style="font-style:italic">and when?</span></h2>
-  <div class="rail"><span class="node on" style="left:10%"><b>GATE 1</b></span><span class="node on" style="left:46%"><b>GATE 2</b></span><span class="node on" style="left:82%"><b>GATE 3</b></span></div>
+<!-- 1 · SAP Agentic: a frame cut from the loop, the agent routing to two people -->
+<div class="c" id="sap-agentic"><img class="fill" src="frames/ag.png"></div>
+
+<!-- 2 · AI Search: the bar active, suggestions from different applications and actions -->
+<div class="c" id="sap-search">
+  <div class="b1"></div><div class="b2"></div>
+  <div class="stage">
+    <div class="bar"><div class="sp"><svg width="32" height="32" viewBox="0 0 24 24" fill="#9DB0FF"><path d="M12 2l2.2 6.3L20.5 10.5l-6.3 2.2L12 19l-2.2-6.3L3.5 10.5l6.3-2.2z"/></svg></div><div class="q">purchase<i></i></div></div>
+    <div class="dd">
+      <div class="row"><span class="ring"></span><span class="t">PO 4500012345 — ACME Office Supplies</span><span class="app"><b style="background:#6C8BFF"></b>S/4HANA</span><span class="act">Follow up</span></div>
+      <div class="row hot"><span class="ring" style="border-color:#9DB0FF"></span><span class="t">PR 7800098765 — IT Equipment Request</span><span class="app"><b style="background:#6C8BFF"></b>S/4HANA</span><span class="act">Approve</span></div>
+      <div class="row"><span class="ring"></span><span class="t">Business Trip · SFO → BLR · Emirates EK237</span><span class="app"><b style="background:#2DD4BF"></b>Concur</span><span class="act">Open</span></div>
+      <div class="row"><span class="ring"></span><span class="t">Flight to Bangalore</span><span class="app"><b style="background:#2DD4BF"></b>Concur</span><span class="act">Book</span></div>
+      <div class="row"><span class="ring"></span><span class="t">Contract CNT-2026-001 — Facilities Mgmt</span><span class="app"><b style="background:#6C8BFF"></b>S/4HANA</span><span class="act">Open</span></div>
+    </div>
+  </div>
 </div>
 
-<!-- 2 · AI Search: one search, every product -->
-<div class="c" id="sap-search" style="background:radial-gradient(110% 120% at 80% 0%,#157068 0%,#0a3a3a 42%,#05191b 100%)">
-  <div class="lab"><i></i>AI Search · Design system</div>
-  <div class="shot" style="left:830px;top:110px;width:980px;border-radius:20px;transform:rotateZ(-2.5deg)"><img src="../../public/images/case-studies/sap-search/3-3.webp"></div>
-  <div class="shot" style="left:820px;top:540px;width:700px;border-radius:18px;transform:rotateZ(2deg)"><img src="../../public/images/case-studies/sap-search/4-3.webp"></div>
-  <div class="fade-l" style="background:linear-gradient(90deg,#05191b 0%,rgba(5,25,27,.9) 30%,rgba(5,25,27,0) 46%)"></div>
-  <h2 class="serif" style="left:84px;top:200px;width:820px;font-size:96px;line-height:1.06;white-space:nowrap">One search.<br><span class="lime" style="font-style:italic">Every</span> product.</h2>
-  <div style="position:absolute;left:84px;top:520px;z-index:6;display:flex;align-items:center;gap:16px;background:#fff;color:#0a3a3a;border-radius:999px;padding:20px 32px;font:500 26px Geist;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0a3a3a" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 20 20"/></svg>Palo Alto to Bangalore</div>
+<!-- 3 · Engaze: a stack of employee prompts, the leave query on top -->
+<div class="c" id="engaze">
+  <i class="bl" style="left:-160px;top:-200px;width:780px;height:780px;background:#C9BDFB"></i>
+  <i class="bl" style="right:-200px;bottom:-240px;width:820px;height:820px;background:#FBC9E0"></i>
+  <i class="bl" style="left:560px;top:80px;width:560px;height:560px;background:#BFD3FF;opacity:.6"></i>
+  <div style="position:absolute;left:700px;top:120px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0,#9DB4FF 40%,#B26BFF 75%,#FF8FB8 100%);box-shadow:0 40px 90px rgba(150,110,255,.5)"></div>
+  <div class="ecard" style="top:340px;width:820px;height:130px;margin-left:-410px;opacity:.55;transform:scale(1)"><span class="o" style="width:46px;height:46px"></span>Can I carry forward unused leave?</div>
+  <div class="ecard" style="top:424px;width:900px;height:140px;margin-left:-450px;opacity:.75"><span class="o" style="width:48px;height:48px"></span>Claim my Pune flight</div>
+  <div class="ecard" style="top:516px;width:980px;height:150px;margin-left:-490px;opacity:.92"><span class="o" style="width:52px;height:52px"></span>Old or new tax regime: which is better for me?</div>
+  <div class="ecard front" style="top:626px;width:1080px;height:190px;margin-left:-540px"><span class="o" style="width:84px;height:84px;box-shadow:0 14px 34px rgba(150,110,255,.45)"></span><span style="font-size:42px">I’m down with a fever. Can I take today off?</span></div>
 </div>
 
-<!-- 3 · Engaze: 90% CSAT -->
-<div class="c" id="engaze" style="background:radial-gradient(100% 120% at 75% 10%,#3c2491 0%,#1b0f45 48%,#0a0623 100%)">
-  <div class="lab"><i></i>Generative AI · HCM</div>
-  <div class="shot" style="left:760px;top:120px;width:1260px;transform:rotateZ(-2deg)"><img src="../../public/images/case-studies/engaze-hcm/hcm-manager.webp"></div>
-  <div class="shot" style="left:620px;top:420px;width:1000px;transform:rotateZ(1.5deg)"><img src="../../public/images/case-studies/engaze-hcm/hcm-employee.webp"></div>
-  <div class="fade-l" style="background:linear-gradient(90deg,#0a0623 0%,rgba(10,6,35,.9) 26%,rgba(10,6,35,0) 48%)"></div>
-  <div class="serif" style="left:76px;top:190px;font-size:330px;line-height:.9;letter-spacing:-.04em">90<span class="lime" style="font-size:190px">%</span></div>
-  <div class="cap" style="left:90px;top:560px;width:520px"><b style="color:#fff;font-weight:500;letter-spacing:.14em;font:500 22px GeistMono;text-transform:uppercase">CSAT</b><br>The employee-experience module, shipped.</div>
+<!-- 4 · Airline App: three phones in the loop's own cream and maroon -->
+<div class="c" id="airline-app" style="background:linear-gradient(135deg,#FBF1E1 0%,#F1DDB9 55%,#E6CFA6 100%)">
+  <div style="position:absolute;right:-180px;bottom:-320px;width:1000px;height:1000px;border-radius:50%;background:#8E2F45;opacity:.2;filter:blur(90px)"></div>
+  <div style="position:absolute;left:-200px;top:-300px;width:900px;height:900px;border-radius:50%;background:#fff;opacity:.6;filter:blur(80px)"></div>
+  <div class="ph" data-svg="travel-home" style="left:200px;top:150px;width:400px;height:800px;transform:rotate(-7deg)"></div>
+  <div class="ph" data-svg="travel-two" style="left:1000px;top:110px;width:400px;height:800px;transform:rotate(7deg)"></div>
+  <div class="ph" data-svg="travel-one" style="left:590px;top:70px;width:430px;height:860px"></div>
 </div>
 
-<!-- 4 · Airline App: 92% and 50x -->
-<div class="c" id="airline-app" style="background:#0d2b30 url('../../public/images/case-studies/airline-hero.png') 78% 40%/auto 150% no-repeat">
-  <div class="fade-l" style="background:linear-gradient(90deg,#061a1d 0%,rgba(6,26,29,.92) 34%,rgba(6,26,29,.15) 62%,rgba(6,26,29,0) 80%)"></div>
-  <div class="lab"><i></i>Airline App · Service design</div>
-  <div class="serif" style="left:76px;top:170px;font-size:290px;line-height:.9;letter-spacing:-.04em">92<span class="lime" style="font-size:170px">%</span></div>
-  <div class="cap" style="left:90px;top:455px;width:480px">engagement boost</div>
-  <div class="serif" style="left:76px;top:560px;font-size:210px;line-height:.9;letter-spacing:-.04em">50<span class="lime" style="font-size:150px;font-style:italic">×</span></div>
-  <div class="cap" style="left:90px;top:780px;width:480px">add-on sales</div>
+<!-- 5 · Data Products: the governance dashboard, tilted and lit -->
+<div class="c" id="data-ai">
+  <i class="g" style="left:-200px;bottom:-300px;width:900px;height:900px;background:#C026D3;opacity:.4"></i>
+  <i class="g" style="right:-160px;top:-260px;width:800px;height:800px;background:#34D399;opacity:.2"></i>
+  <i class="g" style="left:520px;top:200px;width:800px;height:600px;background:#7C3AED;opacity:.35"></i>
+  <div class="dwrap"><div class="dui"><img src="frames/data-ui.png"></div></div>
 </div>
 
-<!-- 5 · Data Products: 76% adoption -->
-<div class="c" id="data-ai" style="background:#120d22 url('../../public/images/case-studies/dataai-02.jpg') 72% 50%/auto 128% no-repeat">
-  <div class="fade-l" style="background:linear-gradient(90deg,#0c0818 0%,rgba(12,8,24,.94) 30%,rgba(12,8,24,.2) 62%,rgba(12,8,24,0) 80%),linear-gradient(0deg,rgba(12,8,24,.6),rgba(12,8,24,0) 35%)"></div>
-  <div class="lab"><i></i>Data Products · Governance</div>
-  <div class="serif" style="left:76px;top:200px;font-size:330px;line-height:.9;letter-spacing:-.04em">76<span class="lime" style="font-size:190px">%</span></div>
-  <div class="cap" style="left:90px;top:590px;width:520px"><b style="font:500 22px GeistMono;letter-spacing:.14em;text-transform:uppercase;color:#fff">Marketplace adoption</b><br>Executive-grade data products, across a global practice.</div>
-</div>
-
-<!-- 6 · dNetWorX: $5M -->
-<div class="c" id="dnetworx" style="background:#0d1f1c url('../../public/images/case-studies/dnetworx-hero.png') 82% 46%/auto 138% no-repeat">
-  <div class="fade-l" style="background:linear-gradient(90deg,#08140f 0%,rgba(8,20,15,.94) 32%,rgba(8,20,15,.3) 60%,rgba(8,20,15,0) 78%)"></div>
-  <div class="lab"><i></i>dNetWorX · Enterprise UX</div>
-  <div class="serif" style="left:76px;top:200px;font-size:330px;line-height:.9;letter-spacing:-.04em"><span class="lime" style="font-size:210px">$</span>5M</div>
-  <div class="cap" style="left:90px;top:590px;width:520px"><b style="font:500 22px GeistMono;letter-spacing:.14em;text-transform:uppercase;color:#fff">Saved</b><br>A self-serve platform for 70K+ enterprise customers.</div>
+<!-- 6 · dNetWorX: the laptop mock alone -->
+<div class="c" id="dnetworx">
+  <div class="floor"></div>
+  <img src="frames/dnx-mock.png" style="position:absolute;left:50px;top:130px;width:1500px;filter:drop-shadow(0 50px 60px rgba(0,0,0,.55))">
 </div>
 </body></html>
