@@ -64,7 +64,8 @@
 .ais-sb-field { position: relative; display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 10px 0 14px; border-radius: 16px; background: rgb(17 18 28 / .88); backdrop-filter: blur(16px); box-shadow: 0 10px 40px -14px rgb(0 0 0 / .7); transition: box-shadow .3s, background .3s; }
 .ais-sb-hero .ais-sb-field { height: 64px; padding: 0 14px 0 20px; border-radius: 22px; gap: 12px; box-shadow: 0 30px 80px -24px rgb(0 0 0 / .8), 0 0 0 1px rgb(255 255 255 / .02); }
 .is-focus .ais-sb-field { box-shadow: 0 0 0 4px color-mix(in srgb, var(--app) 18%, transparent), 0 24px 70px -20px color-mix(in srgb, var(--app) 55%, #000); }
-.ais-sb-ai { display: grid; place-items: center; color: var(--app); flex: none; animation: ais-pulse 3.4s ease-in-out infinite; transition: color .8s; }
+.ais-sb-ai { position: relative; display: grid; place-items: center; color: var(--ink3); flex: none; transition: color .35s, filter .35s; }
+.is-focus .ais-sb-ai { color: var(--app); animation: ais-pulse 3.4s ease-in-out infinite; }
 @keyframes ais-pulse { 50% { transform: scale(1.14) rotate(8deg); filter: drop-shadow(0 0 6px var(--app)); } }
 .ais-sb-field input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; font-size: 15px; color: var(--ink); }
 .ais-sb-hero input { font-size: 18px; }
@@ -314,3 +315,18 @@
 .ais .ais-dd-i > .ais-dd-pill { position: absolute; }
 .ais-ov-text .ais-link { margin-left: 6px; }
 .ais .ais-sb-field input, .ais .ais-sb-field input:focus, .ais .ais-sb-field input:focus-visible { border: 0 !important; outline: 0 !important; box-shadow: none !important; background: transparent !important; border-radius: 0; padding: 0; }
+
+/* typing: the sparkle lights up */
+.ais-sb-spark { display: grid; place-items: center; }
+.ais-sb-halo { position: absolute; inset: -9px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--app) 65%, transparent), transparent 68%); opacity: 0; transform: scale(.4); transition: opacity .4s, transform .5s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+.is-typing .ais-sb-ai { color: #fff; animation: none; filter: drop-shadow(0 0 7px var(--app)) drop-shadow(0 0 14px color-mix(in srgb, var(--app) 70%, transparent)); }
+.is-typing .ais-sb-halo { opacity: 1; transform: scale(1); animation: ais-halo 2.2s ease-in-out infinite; }
+.is-typing .ais-sb-spark { animation: ais-key .38s cubic-bezier(.2,.9,.3,1.4); }
+@keyframes ais-halo { 50% { transform: scale(1.25); opacity: .6; } }
+@keyframes ais-key { 0% { transform: scale(.7) rotate(-18deg); } 55% { transform: scale(1.35) rotate(10deg); } 100% { transform: scale(1) rotate(0); } }
+.is-typing .ais-sb-ring { background: conic-gradient(from var(--ang, 0deg), var(--app), var(--violet), #1BC6B2, var(--app)); animation: ais-spin 2.2s linear infinite; }
+.ais-sb-field::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, var(--app) 16%, transparent) 50%, transparent 70%); background-size: 250% 100%; background-position: 130% 0; opacity: 0; }
+.is-typing .ais-sb-field::after { opacity: 1; animation: ais-sweep 2.8s ease-in-out infinite; }
+@keyframes ais-sweep { to { background-position: -30% 0; } }
+.is-typing.ais-sb-hero .ais-sb-field { box-shadow: 0 0 0 4px color-mix(in srgb, var(--app) 22%, transparent), 0 30px 90px -20px color-mix(in srgb, var(--app) 65%, #000); }
+@media (prefers-reduced-motion: reduce) { .ais-sb-halo, .ais-sb-spark, .ais-sb-field::after, .is-typing .ais-sb-ring { animation: none !important; } }

@@ -100,10 +100,10 @@ function SearchBox({ variant, q, setQ, onPick, onSubmit, inputRef, bumpKey }: {
 
   let idx = -1
   return (
-    <div className={`ais-sb ais-sb-${variant} ${focus ? 'is-focus' : ''} ${listening ? 'is-listening' : ''}`} role="search">
+    <div className={`ais-sb ais-sb-${variant} ${focus ? 'is-focus' : ''} ${listening ? 'is-listening' : ''} ${q ? 'is-typing' : ''}`} role="search">
       <div className="ais-sb-ring" aria-hidden="true" />
       <div className="ais-sb-field">
-        <span className="ais-sb-ai" aria-hidden="true"><Icon name="spark" size={variant === 'hero' ? 20 : 17} strokeWidth={1.5} /></span>
+        <span className="ais-sb-ai" aria-hidden="true"><i className="ais-sb-halo" /><span key={q.length} className="ais-sb-spark"><Icon name="spark" size={variant === 'hero' ? 20 : 17} strokeWidth={q ? 1.9 : 1.5} /></span></span>
         <input ref={inputRef} value={q} onChange={e => { setQ(e.target.value); setOpen(true) }} onFocus={() => { setFocus(true); setOpen(true) }} onBlur={() => { setFocus(false); setTimeout(() => setOpen(false), 120) }} onKeyDown={key}
           placeholder={variant === 'bar' ? 'Search across all applications…' : ''} aria-label="AI search across all applications" aria-expanded={open} aria-autocomplete="list" role="combobox" spellCheck={false} autoComplete="off" />
         {variant === 'hero' && !q && (
