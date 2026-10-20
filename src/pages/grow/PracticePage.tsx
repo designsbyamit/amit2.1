@@ -11,11 +11,11 @@ export default function PracticePage() {
   const count = done.length
   return (
     <>
-      <PageHeader label="Grow · Practice Toolkits" title="Learn by doing the work." subtitle="Topic-wise design challenges. Do the exercise, reflect on it, then compare your approach with others. Your answers stay in this browser."
+      <PageHeader label="Grow · Practice Toolkits" title="Practice designing with AI." subtitle="A ladder in four steps: a conversational interface, a conversational system, an agentic experience, then many agents working together. Do the exercise, reflect, then compare your approach with others. Your answers stay in this browser."
         breadcrumb={[{ label: 'Grow', to: '/learn' }, { label: 'Practice Toolkits' }]} />
       <section className="hairline-top">
         <div className="container-site py-6 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-label text-ink-3">{topics.length} topics · {totalChallenges} challenges</p>
+          <p className="text-label text-ink-3">{topics.length} stages · {totalChallenges} challenges</p>
           <p className="text-label text-ink-2" aria-live="polite">{count} of {totalChallenges} done</p>
         </div>
       </section>
@@ -25,10 +25,23 @@ export default function PracticePage() {
           <section key={t.id} id={t.id} className="section-y hairline-top">
             <div className="container-site grid md:grid-cols-12 gap-10">
               <div className="md:col-span-4">
-                <p className="text-overline text-ink-3">{t.kicker}</p>
+                <p className="text-overline text-ink-3">STEP {t.step} · {t.kicker}</p>
                 <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>{t.title}</h2>
                 <p className="text-body text-ink-2 mt-5 max-w-[40ch]">{t.blurb}</p>
                 <p className="text-label text-ink-3 mt-6">{n} of {t.challenges.length} done</p>
+                <div className="mt-8">
+                  <p className="text-overline text-ink-3">PAIR WITH THE TOOLKIT</p>
+                  <ul className="mt-3 space-y-4">
+                    {t.toolkits.map(k => (
+                      <li key={k.title}>
+                        {k.external
+                          ? <a href={k.to} className="text-body-sm text-ink underline underline-offset-4 decoration-[color:var(--line-1)] hover:decoration-[color:var(--signal-ink)]">{k.title} &rarr;</a>
+                          : <Link to={k.to} className="text-body-sm text-ink underline underline-offset-4 decoration-[color:var(--line-1)] hover:decoration-[color:var(--signal-ink)]">{k.title} &rarr;</Link>}
+                        <span className="block text-body-sm text-ink-3 mt-1 max-w-[40ch]">{k.note}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               <ol className="md:col-span-8">
                 {t.challenges.map((c, i) => {

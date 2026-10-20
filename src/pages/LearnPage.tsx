@@ -8,13 +8,13 @@ import { qas } from '../data/growCurious'
 
 const portals = [
   { to: '/learn/practice', n: '01', tag: 'CHALLENGES · CRAFT · APPLICATION', title: 'Practice Toolkits',
-    text: 'Topic-wise design challenges that let you apply what you know, exercise judgement and learn by doing.',
+    text: 'A ladder for designing with AI: a conversational interface, a conversational system, an agentic experience, then multi-agent orchestration. Each step pairs with the matching toolkit.',
     output: 'Completed exercises, reflection prompts, and a way to compare your approach with others.',
-    asks: 'How do I get better at doing the work?', meta: `${totalChallenges} challenges`, art: <PracticeArt /> },
+    asks: 'How do I get better at doing the work?', meta: `4 stages · ${totalChallenges} challenges`, art: <PracticeArt /> },
   { to: '/learn/portfolio', n: '02', tag: 'STORYTELLING · PRESENTATION · IMPACT', title: 'Portfolio Best Practices',
-    text: 'Practical guidance on presenting design work, communicating decisions, telling case-study stories and showing impact.',
-    output: 'Better case studies, and a portfolio that shows your thinking, not just your deliverables.',
-    asks: 'How do I communicate the value of my work?', meta: `${guide.length} chapters + template`, art: <PortfolioArt /> },
+    text: 'Your portfolio is a reflection of you. Define its character, build your personal brand into it, then give every project a clear anatomy and a story.',
+    output: 'A portfolio with a character, and projects that tell a story and show your thinking.',
+    asks: 'How do I make my portfolio feel like me?', meta: `${guide.length} chapters + template`, art: <PortfolioArt /> },
   { to: '/learn/curious', n: '03', tag: 'QUESTIONS · PERSPECTIVES · EXPERIENCE', title: 'Curious Minds',
     text: 'Meaningful questions from conversations with designers, answered through experience and a point of view.',
     output: 'Honest, useful perspectives on careers, craft, leadership, intuition, business and AI.',

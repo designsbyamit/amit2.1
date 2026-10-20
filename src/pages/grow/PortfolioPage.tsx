@@ -2,17 +2,20 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PageHeader from '../../components/ui/PageHeader'
 import Button from '../../components/ds/Button'
-import { guide, mistakes, checklist, template } from '../../data/growPortfolio'
+import { guide, mistakes, checklist, template, characterPrompts } from '../../data/growPortfolio'
 import { copyText, useLocalState } from '../../hooks/useLocalState'
 
 export default function PortfolioPage() {
   const [checked, setChecked] = useLocalState<number[]>('grow.portfolio.checklist', [])
   const [copied, setCopied] = useState(false)
+  const [sheet, setSheet] = useLocalState<Record<string, string>>('grow.portfolio.character', {})
+  const [sheetCopied, setSheetCopied] = useState(false)
+  const sheetText = ['MY PORTFOLIO CHARACTER', '', ...characterPrompts.flatMap(q => [q.label.toUpperCase(), sheet[q.id] || '', ''])].join('\n')
   const tog = (i: number) => setChecked(c => (c.includes(i) ? c.filter(x => x !== i) : [...c, i]))
-  const toc = [...guide.map(g => ({ id: g.id, label: g.title })), { id: 'mistakes', label: 'Common mistakes' }, { id: 'checklist', label: 'Self-review checklist' }, { id: 'template', label: 'Case-study template' }]
+  const toc = [...guide.map(g => ({ id: g.id, label: g.title })), { id: 'mistakes', label: 'Common mistakes' }, { id: 'checklist', label: 'Self-review checklist' }, { id: 'template', label: 'Project template' }]
   return (
     <>
-      <PageHeader label="Grow · Portfolio Best Practices" title="Show your thinking, not just your screens." subtitle="How to present design work, tell a case study, communicate your decisions and show impact. With examples from the case studies on this site."
+      <PageHeader label="Grow · Portfolio Best Practices" title="Give your portfolio a character." subtitle="Your portfolio is a reflection of you. Define its character, build it into every surface, then shape each project with a clear anatomy and a story worth reading."
         breadcrumb={[{ label: 'Grow', to: '/learn' }, { label: 'Portfolio Best Practices' }]} />
 
       <div className="container-site hairline-top">
@@ -33,6 +36,24 @@ export default function PortfolioPage() {
                   <dl className="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-8">
                     {g.points.map(p => <div key={p.t}><dt className="text-title text-ink" style={{ fontWeight: 400 }}>{p.t}</dt><dd className="text-body text-ink-2 mt-2">{p.d}</dd></div>)}
                   </dl>
+                )}
+                {g.worksheet && (
+                  <div className="mt-10 card !p-6 md:!p-8">
+                    <div className="flex flex-col gap-7">
+                      {characterPrompts.map(q => (
+                        <label key={q.id} className="block">
+                          <span className="text-title text-ink" style={{ fontWeight: 400 }}>{q.label}</span>
+                          <span className="block text-body-sm text-ink-3 mt-1">{q.hint}</span>
+                          <textarea rows={3} value={sheet[q.id] || ''} onChange={e => setSheet(v => ({ ...v, [q.id]: e.target.value }))}
+                            className="mt-3 w-full rounded-2 border border-[color:var(--line-1)] bg-surface-0 p-3 text-body text-ink focus:outline-none focus:border-[color:var(--signal-ink)]" />
+                        </label>
+                      ))}
+                    </div>
+                    <div className="mt-7 flex flex-wrap items-center gap-3">
+                      <Button variant="secondary" onClick={async () => { setSheetCopied(await copyText(sheetText)); setTimeout(() => setSheetCopied(false), 1800) }}>{sheetCopied ? 'Copied' : 'Copy my character sheet'}</Button>
+                      <span className="text-label text-ink-3">Saved in this browser only.</span>
+                    </div>
+                  </div>
                 )}
                 {g.example && (
                   <figure className="card !p-7 md:!p-8 mt-10">
@@ -80,7 +101,7 @@ export default function PortfolioPage() {
             </section>
 
             <section id="template" className="py-16 md:py-20 scroll-mt-24">
-              <p className="text-overline text-ink-3">Case-study template</p>
+              <p className="text-overline text-ink-3">Project template</p>
               <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>A skeleton to start from.</h2>
               <pre className="card !p-6 mt-8 text-body-sm text-ink-2 whitespace-pre-wrap overflow-x-auto" style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)' }}>{template}</pre>
               <div className="mt-6 flex flex-wrap gap-3">

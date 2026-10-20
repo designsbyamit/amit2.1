@@ -85,7 +85,7 @@ export default function ChallengePage() {
       <section className="section-y hairline-top">
         <div className="container-site flex flex-wrap items-center justify-between gap-6">
           <Link to="/learn/practice" className="text-label text-ink-3 hover:text-ink">&larr; All challenges</Link>
-          {next ? <Button to={`/learn/practice/${topic.id}/${next.id}`} variant="secondary" arrow>Next: {next.title}</Button> : <Button to="/learn/practice" variant="secondary" arrow>Choose another topic</Button>}
+          {next ? <Button to={`/learn/practice/${topic.id}/${next.id}`} variant="secondary" arrow>Next: {next.title}</Button> : <Button to="/learn/practice" variant="secondary" arrow>Choose another stage</Button>}
         </div>
       </section>
     </>

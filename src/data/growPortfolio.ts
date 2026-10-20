@@ -1,4 +1,4 @@
-// Grow · Portfolio Best Practices. Guidance on presenting design work, with examples taken from the case studies on this site.
+// Grow · Portfolio Best Practices. Guidance on building a portfolio with a character, and on presenting design work, with examples taken from the case studies on this site.
 
 export interface GuideSection {
   id: string
@@ -9,21 +9,55 @@ export interface GuideSection {
   points?: { t: string; d: string }[]
   example?: { label: string; quote: string; note: string; to?: string }
   pairs?: { weak: string; strong: string; why: string }[]
+  worksheet?: boolean
 }
+
+export const characterPrompts = [
+  { id: 'values', label: 'What you stand for', hint: 'Two or three beliefs about design that you would defend in a disagreement.' },
+  { id: 'voice', label: 'How you sound', hint: 'Plain or playful, precise or poetic. Write three words, then one sentence in that voice.' },
+  { id: 'taste', label: 'What you find beautiful', hint: 'What you lean towards and what you avoid, in type, colour, space and motion.' },
+  { id: 'view', label: 'Your point of view', hint: 'One thing you believe about your field that most people would push back on.' },
+  { id: 'behaviour', label: 'How you behave in the work', hint: 'The habits a colleague would recognise: how you start, how you disagree, how you finish.' },
+]
 
 export const guide: GuideSection[] = [
   {
-    id: 'job', n: '01', kicker: 'THE JOB', title: 'A portfolio shows how you think.',
-    lead: 'Screens show what you made. A portfolio earns its place when the reader can see what you noticed, what you chose and what you left out. Everything below follows from that.',
+    id: 'character', n: '', kicker: 'THE IDEA', title: 'Your portfolio is a reflection of you.',
+    lead: 'A portfolio is the one place where you control the whole impression. If it could belong to anyone, it will be remembered as no one. Give it a character: a consistent way of seeing, speaking and choosing that a reader can feel within seconds.',
     points: [
-      { t: 'Write for a reader with a few minutes', d: 'They are comparing you with many others. Make the first screen tell them what the project was, what you did and what changed.' },
-      { t: 'Show fewer projects, deeper', d: 'Three well-told case studies say more than ten galleries. Pick the work that shows a range of judgement, not a range of tools.' },
-      { t: 'Let the work be specific', d: 'Real constraints, real trade-offs, real people. Specificity is what makes a case study believable.' },
+      { t: 'Character is felt before it is read', d: 'Tone, pace, spacing and what is left out say who you are before the first paragraph does.' },
+      { t: 'It is consistent, not decorated', d: 'The same values show up in the words, the layout, the motion and the projects you choose to show.' },
+      { t: 'It makes the work easier to trust', d: 'A reader who understands how you think reads each project as evidence of it, not as an isolated result.' },
     ],
   },
   {
-    id: 'anatomy', n: '02', kicker: 'ANATOMY', title: 'The parts of a case study.',
-    lead: 'Most strong case studies carry the same six parts. Order them so a reader can stop after any one and still have understood something.',
+    id: 'brand', n: '', kicker: 'CHARACTER AND BRAND', title: 'Personal brand and character are not the same thing.',
+    lead: 'Personal brand is how you want to be known: a role, a focus, a reputation. Character is how you actually are: what you value, how you speak, what you notice. Brand is the label on the door. Character is the room. Start with character, and let the brand be a short, honest summary of it.',
+    pairs: [
+      { weak: 'Personal brand: “Design leader focused on AI.”', strong: 'Character: someone who asks who decides what, and when, before asking what to automate.', why: 'The brand tells people where to file you. The character tells them what working with you is like.' },
+      { weak: 'Brand: a logo, a palette, a headline.', strong: 'Character: the way every sentence, layout and motion on the site behaves the same way.', why: 'A brand can be copied in an afternoon. A character is built through repeated choices.' },
+    ],
+  },
+  {
+    id: 'define', n: '', kicker: 'DEFINE IT', title: 'How to define the character of your portfolio.',
+    lead: 'Answer five questions in your own words. Keep each answer short and concrete. Then read the result back and ask: would a stranger recognise this person from the portfolio alone?',
+    worksheet: true,
+  },
+  {
+    id: 'show', n: '', kicker: 'MAKE IT VISIBLE', title: 'Build the character into the whole site.',
+    lead: 'Once you have named it, check every surface against it. A character that lives only in the “About” page is a slogan.',
+    points: [
+      { t: 'Name and role', d: 'How you introduce yourself in the first second: the words, the order, what is current. Make it specific enough to be only you.' },
+      { t: 'Voice', d: 'Write headings and captions the way you would explain the work to a colleague. Cut anything you would never say aloud.' },
+      { t: 'Visual language', d: 'Choose type, colour and space that express your taste, and keep to them. Restraint reads as confidence.' },
+      { t: 'Motion and interaction', d: 'Speed, easing and feedback show how considerate you are. Fast and quiet says something different from slow and theatrical.' },
+      { t: 'Choice of projects', d: 'The projects you include, and the ones you leave out, are the strongest statement of what you value.' },
+      { t: 'Recurring ideas', d: 'Two or three ideas that return across projects give a reader a thread to follow, and make the whole feel designed.' },
+    ],
+  },
+  {
+    id: 'anatomy', n: '02', kicker: 'ANATOMY', title: 'The anatomy of any project.',
+    lead: 'Whatever the project, the same six parts do the work. Order them so a reader can stop after any one and still have understood something. Use this as a skeleton for every project, then let the story shape what you emphasise.',
     points: [
       { t: '1 · Context', d: 'Who it was for, what the business needed, and why it was hard. Two or three sentences.' },
       { t: '2 · Your role', d: 'What you were responsible for, in one sentence, with the team as a team. Be exact rather than modest or grand.' },
@@ -40,7 +74,25 @@ export const guide: GuideSection[] = [
     },
   },
   {
-    id: 'decisions', n: '03', kicker: 'DECISIONS', title: 'Tell the decision, not the deliverable.',
+    id: 'story', n: '', kicker: 'STORYTELLING', title: 'Tell it as a story, with a turn in the middle.',
+    lead: 'A story is not a longer case study. It is the same facts arranged so the reader wants to know what happens next. Anchor it to one tension and let every section move it forward.',
+    points: [
+      { t: 'Open with the stake', d: 'Start where something was wrong or at risk, in one or two plain sentences, before you mention any solution.' },
+      { t: 'Find the turning point', d: 'Most projects have one moment where the question changed. Find it, name it and give it room. It is the heart of the story.' },
+      { t: 'Show the struggle', d: 'The options that failed, the constraint that hurt and the disagreement that mattered make the result believable.' },
+      { t: 'Be specific, not general', d: 'One real detail beats three adjectives. A number, a quote or a single screen can carry a whole section.' },
+      { t: 'Let the reader see you think', d: 'Write what you noticed, what you chose and why, so the story is also a portrait of your character.' },
+      { t: 'End on what changed', d: 'Close with the outcome and a short reflection, then stop. Do not summarise what the reader has just read.' },
+    ],
+    example: {
+      label: 'A turning point in the Agentic case study',
+      quote: 'How do we automate it? becomes Who decides what, and when?',
+      note: 'The film shows the first question struck out and the second written in its place. The story turns on that reframe, and every later decision follows from it.',
+      to: '/craft/sap-agentic',
+    },
+  },
+  {
+    id: 'decisions', n: '03', kicker: 'DECISIONS', title: 'Show the decision, not the deliverable.',
     lead: 'Recruiters and design leaders hire judgement. Show a decision the way you would explain it to a colleague: what the options were, how you judged them, what you chose and what that cost.',
     points: [
       { t: 'Name the options you set aside', d: 'A reader trusts a choice more when they can see the alternatives it beat.' },
@@ -99,6 +151,9 @@ export const mistakes = [
 ]
 
 export const checklist = [
+  'The portfolio has a character I can describe in one sentence.',
+  'My name, voice, visuals and motion all behave the same way.',
+  'Each project has a stake at the start and a turning point in the middle.',
   'The first screen says what the project was and what changed.',
   'My role is stated in one clear sentence.',
   'The problem is framed before the solution appears.',
@@ -133,3 +188,5 @@ What changed for people and for the business. Source for every number.
 
 REFLECTION
 What I would do differently, or what this taught me.`
+
+guide.forEach((g, i) => { g.n = String(i + 1).padStart(2, '0') })
