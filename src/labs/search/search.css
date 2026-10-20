@@ -185,15 +185,10 @@
 .ais-fchip.on { color: #fff; background: color-mix(in srgb, var(--app) 26%, transparent); border-color: color-mix(in srgb, var(--app) 60%, transparent); }
 
 .ais-list { display: grid; gap: 14px; }
-.ais-row { --mx: 50%; --my: 50%; position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; padding: 22px 22px 20px 26px; border-radius: 22px; background: var(--glass); border: 1px solid var(--line); overflow: hidden; transition: border-color .3s, background .3s, transform .3s; }
+.ais-row { --mx: 50%; --my: 50%; position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; padding: 22px; border-radius: 22px; background: var(--glass); border: 1px solid var(--line); overflow: hidden; transition: border-color .3s, background .3s, transform .3s; }
 .ais-row::before { content: ''; position: absolute; inset: 0; background: radial-gradient(360px circle at var(--mx) var(--my), rgb(255 255 255 / .06), transparent 65%); opacity: 0; transition: opacity .3s; pointer-events: none; }
 .ais-row:hover { border-color: rgb(255 255 255 / .18); background: var(--glass2); transform: translateY(-2px); }
 .ais-row:hover::before { opacity: 1; }
-.ais-row-rail { position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; border-radius: 0 3px 3px 0; background: var(--ink3); transition: background .4s, box-shadow .4s; }
-.ais-row.r-pos .ais-row-rail { background: var(--pos); box-shadow: 0 0 14px var(--pos); }
-.ais-row.r-neg .ais-row-rail { background: var(--neg); box-shadow: 0 0 14px var(--neg); }
-.ais-row.r-warn .ais-row-rail { background: var(--warn); box-shadow: 0 0 14px var(--warn); }
-.ais-row.r-info .ais-row-rail { background: var(--info); box-shadow: 0 0 14px color-mix(in srgb, var(--info) 70%, transparent); }
 .ais-row-main { position: relative; display: grid; gap: 6px; cursor: pointer; min-width: 0; }
 .ais-row-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .ais-row h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; }

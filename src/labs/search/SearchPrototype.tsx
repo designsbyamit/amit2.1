@@ -238,7 +238,6 @@ function ResultRow({ row, i, state, onAction, onOpen }: { row: Row; i: number; s
   const status = state.approved ? { label: 'Approved', tone: 'pos' as Tone } : row.status
   return (
     <motion.li ref={ref} className={`ais-row r-${status.tone}`} onMouseMove={move} initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.07, ease }} layout>
-      <span className="ais-row-rail" aria-hidden="true" />
       <div className="ais-row-main" onClick={onOpen} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter') onOpen() }} aria-label={`Open details for ${row.title}`}>
         <div className="ais-row-top">
           <h3>{row.title}</h3>
