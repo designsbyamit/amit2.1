@@ -4,6 +4,16 @@ import PageHeader from '../../components/ui/PageHeader'
 import Button from '../../components/ds/Button'
 import { guide, mistakes, checklist, template, characterPrompts } from '../../data/growPortfolio'
 import { copyText, useLocalState } from '../../hooks/useLocalState'
+import { AnatomyDiagram, BrandVsCharacter, CharacterWheel, DecisionFlow, PointTiles, StoryArc, type IconKey } from './PortfolioVisuals'
+
+const tileKeys: Record<string, { keys: IconKey[]; tone: 'cobalt' | 'teal' | 'plum' | 'graphite' }> = {
+  character: { keys: ['voice', 'thread', 'flag'], tone: 'cobalt' },
+  show: { keys: ['nametag', 'voice', 'palette', 'motion', 'projects', 'thread'], tone: 'plum' },
+  story: { keys: ['start', 'turn', 'struggle', 'detail', 'think', 'end'], tone: 'teal' },
+  decisions: { keys: ['projects', 'think', 'flag'], tone: 'graphite' },
+  impact: { keys: ['number', 'behaviour', 'flag', 'quote'], tone: 'cobalt' },
+  presenting: { keys: ['headline', 'caption', 'oneVisual', 'length', 'lock'], tone: 'graphite' },
+}
 
 export default function PortfolioPage() {
   const [checked, setChecked] = useLocalState<number[]>('grow.portfolio.checklist', [])
@@ -32,7 +42,13 @@ export default function PortfolioPage() {
                 <p className="text-overline text-ink-3">{g.n} · {g.kicker}</p>
                 <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>{g.title}</h2>
                 <p className="text-body-lg text-ink-2 mt-5 max-w-[62ch]">{g.lead}</p>
-                {g.points && (
+                {g.id === 'character' && <CharacterWheel />}
+                {g.id === 'brand' && <BrandVsCharacter />}
+                {g.id === 'story' && <StoryArc />}
+                {g.id === 'decisions' && <DecisionFlow />}
+                {g.points && g.id === 'anatomy' && <AnatomyDiagram points={g.points} />}
+                {g.points && g.id !== 'anatomy' && tileKeys[g.id] && <PointTiles points={g.points} keys={tileKeys[g.id].keys} tone={tileKeys[g.id].tone} />}
+                {g.points && g.id !== 'anatomy' && !tileKeys[g.id] && (
                   <dl className="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-8">
                     {g.points.map(p => <div key={p.t}><dt className="text-title text-ink" style={{ fontWeight: 400 }}>{p.t}</dt><dd className="text-body text-ink-2 mt-2">{p.d}</dd></div>)}
                   </dl>
