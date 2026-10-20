@@ -7,11 +7,12 @@ import Logo from './Logo'
 import NameRoles from './RoleRotator'
 import ThemeToggle from '../ds/ThemeToggle'
 
-// Leadership-first flow. "Learn" (mentoring, community, resources, reflections) stays available but quiet.
+// Leadership-first flow. "Grow" (mentoring, community, resources) stays available but quiet.
 const navItems: { label: string; to: string; quiet?: boolean }[] = [
   { label: 'Works', to: '/craft' },
   { label: 'Leadership', to: '/leadership' },
   { label: 'Practice', to: '/resources' },
+  { label: 'Reflections', to: '/reflections' },
   { label: 'About', to: '/about' },
   { label: 'Grow (For Designers)', to: '/learn', quiet: true },
 ]
