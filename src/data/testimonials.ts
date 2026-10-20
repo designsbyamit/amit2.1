@@ -2,7 +2,7 @@ export interface Testimonial {
   quote: string
   name: string
   role: string
-  source: 'ADPList' | 'Colleague'
+  source: 'ADPList' | 'Colleague' | 'Client'
   url?: string
 }
 
@@ -64,6 +64,28 @@ export const colleagueTestimonials: Testimonial[] = [
     name: 'Stepan Glukhovetsky',
     role: 'Design Director, Experience Strategy, Accenture Song, UAE',
     source: 'Colleague',
+  },
+]
+
+/** Client and programme-leadership voices, verbatim from the case studies (see data/work.ts). */
+export const clientTestimonials: Testimonial[] = [
+  {
+    quote: 'Greatly impressed by the quality of designs, the attention to detail and delightful experience. Happy to see that the standards are set quite high and it proudly stands beside any other leading studios\' work globally.',
+    name: 'Saran S.',
+    role: 'Managing Director, Accenture Operations',
+    source: 'Client',
+  },
+  {
+    quote: 'Amit spent a couple of weeks to understand how Collibra is used across the DG practice before proposing a design direction. That level of investment before recommendations is rare and it showed in the quality of the output.',
+    name: 'Liz Rivas',
+    role: 'Associate Director, Data Governance, Accenture US',
+    source: 'Client',
+  },
+  {
+    quote: 'Right from day one, Amit established himself as an expert who understood the Customer Experience journey. This application is external client-facing — 70k+ customers — and customer experience is critical to the company brand, customer retention, and pivot to digital experience.',
+    name: 'Mitesh Shah',
+    role: 'Associate Director, Accenture CMT, US',
+    source: 'Client',
   },
 ]
 

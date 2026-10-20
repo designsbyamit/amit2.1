@@ -5,7 +5,7 @@ const aboutImg = '/images/about/amit-hero-bw.webp'
 import SectionHeader from '../components/ds/SectionHeader'
 import Button from '../components/ds/Button'
 import Testimonials from '../components/sections/Testimonials'
-import { colleagueTestimonials, menteeTestimonials, quoteExcerpts } from '../data/testimonials'
+import { colleagueTestimonials, clientTestimonials, quoteExcerpts } from '../data/testimonials'
 import DriveGrid from '../components/sections/DriveGrid'
 
 const timeline = [
@@ -89,7 +89,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Testimonials label="In their words" title="Colleagues and mentees." items={[quoteExcerpts.mayura, colleagueTestimonials[0], quoteExcerpts.stepan, menteeTestimonials[1]]} />
+      <Testimonials label="In their words" title="Colleagues, clients and mentees." items={[quoteExcerpts.mayura, clientTestimonials[0], colleagueTestimonials[0], clientTestimonials[1], clientTestimonials[2], quoteExcerpts.stepan, quoteExcerpts.mahesh]} />
 
       <Contact />
     </>
