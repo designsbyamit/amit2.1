@@ -32,9 +32,6 @@ const AgenticFilmV3Page = lazy(() => import('./film/archive/AgenticFilmV3Page'))
 const AirlineStoryPage = lazy(() => import('./pages/AirlineStoryPage'))
 const ScmPrototype = lazy(() => import('./labs/scm/ScmPrototype'))
 const EngazePrototype = lazy(() => import('./labs/engaze/EngazePrototype'))
-const OptionsLoop = lazy(() => import('./labs/loops/OptionsLoop'))
-const TravelLoop = lazy(() => import('./labs/loops/TravelLoop'))
-const DataLoop = lazy(() => import('./labs/loops/DataLoop'))
 const SearchPrototype = lazy(() => import('./labs/search/SearchPrototype'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const EngazeStoryPage = lazy(() => import('./pages/EngazeStoryPage'))
@@ -99,9 +96,6 @@ function AnimatedRoutes() {
         <Route path="/labs/order-confirmation" element={<ScmPrototype />} />
         <Route path="/labs/engaze" element={<EngazePrototype />} />
         <Route path="/labs/ai-search" element={<SearchPrototype />} />
-        <Route path="/labs/loop/options" element={<OptionsLoop />} />
-        <Route path="/labs/loop/travel" element={<TravelLoop />} />
-        <Route path="/labs/loop/data" element={<DataLoop />} />
         <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
         <Route path="/leadership/cases/:slug" element={<PageTransition><LeadershipCasePage /></PageTransition>} />

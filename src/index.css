@@ -456,3 +456,15 @@ html[data-theme='light'] .typed-word { color: var(--color-ink); background: line
 .hero-portrait.is-mono::after { display: none; }
 .hero-portrait.is-mono img, html[data-theme='dark'] .hero-portrait.is-mono img { filter: grayscale(1) contrast(1.08) brightness(.9); }
 html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contrast(1.04) brightness(1); }
+
+/* Animated thumbnails: a 1280 x 800 scene moved by a camera (see components/ds/anim). */
+.anim-stage { --wf-bg: #FBFAFE; --wf-surface: #fff; --wf-line: #D9D6EA; --wf-ink: #2A2745; --wf-mute: #B9B5D3; --wf-fill: #EFEDFA; --wf-hot: #5B49D6; --wf-hot-soft: #DDD7FA; font-family: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif; }
+.anim-cam { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+.anim-plane { position: relative; overflow: hidden; transform-origin: 50% 50%; will-change: transform; }
+.anim-layer { position: absolute; inset: 0; }
+.anim-layer svg { display: block; } .anim-layer text { fill: var(--wf-ink); }
+.anim-cursor { position: absolute; left: 0; top: 0; pointer-events: none; filter: drop-shadow(0 3px 4px rgb(0 0 0 / .3)); }
+.anim-ripple { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
+.anim-ripple::after { content: ''; position: absolute; left: -30px; top: -30px; width: 60px; height: 60px; border-radius: 50%; border: 4px solid rgb(120 110 255 / .85); opacity: 0; }
+.anim-ripple.go::after { animation: anim-rip .6s ease-out; }
+@keyframes anim-rip { 0% { transform: scale(.2); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
