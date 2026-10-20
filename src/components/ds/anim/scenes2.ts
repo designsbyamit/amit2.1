@@ -139,3 +139,61 @@ export function dnm(s = {}) {
   if (s.toast) o += r(380, 706, 520, 46, '#000', 23) + ck(412, 729, K.ok, 11) + t(438, 735, s.toast, 14, 550, '#fff');
   return o;
 }
+
+/* ---------- Agentic: the order-confirmation flow, in the look of the film's solution scene (graphite, lime agent, cobalt people) ---------- */
+const FL = { bg: '#0F1013', panel: '#181A1F', line: '#2C3038', ink: '#ECEDEF', mu: '#A3A7B0', dim: '#6B7078', lime: '#C8F55A', cob: '#6E8BFF', cobS: '#1B2140' };
+const MONO = "'Geist Mono Variable','Geist Mono',ui-monospace,monospace";
+const NW = 150, NH = 96;
+const LY = { agent: 235, ops: 385, buyer: 535, goods: 685 };
+const CX = [240, 410, 580, 760, 935, 1095, 1230];
+// step, lane, col, [title lines], kind (a agent, h person, g person gate), tag
+const FN = [
+  [0, 'agent', 0, ['Email and PDF', 'picked up'], 'a'],
+  [1, 'agent', 1, ['Reads, scores', 'confidence'], 'a'],
+  [2, 'ops', 1, ['Checks and', 'corrects'], 'h'],
+  [3, 'ops', 2, ['Confirms', 'validation'], 'g', 'GATE 1'],
+  [4, 'agent', 3, ['Compares to PO,', 'rates, routes'], 'a'],
+  [5, 'buyer', 4, ['Decides on', 'cost and terms'], 'g', 'GATE 2'],
+  [5, 'goods', 4, ['Decides on', 'quantity, dates'], 'g', 'GATE 2'],
+  [6, 'agent', 5, ['Drafts the', 'supplier reply'], 'a'],
+  [7, 'buyer', 5, ['Reviews and', 'sends it'], 'g', 'GATE 3'],
+  [8, 'agent', 6, ['Closes'], 'a'],
+];
+const FE = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [4, 6], [5, 7], [6, 7], [7, 8], [8, 9]];
+export function agFlow(s = {}) {
+  const step = s.step ?? 0, end = !!s.end, K = FL;
+  let o = r(0, 0, 1280, 800, K.bg, 0);
+  o += t(40, 62, 'THE SOLUTION', 14, 500, K.dim, null, MONO) + t(40, 112, 'The agent reads. <tspan style="fill:#C8F55A">People decide.</tspan>', 46, 300, K.ink);
+  o += t(1118, 62, 'AGENT', 13, 500, K.lime, null, MONO) + `<circle cx="1108" cy="57" r="5" fill="${K.lime}"/><circle cx="1196" cy="57" r="5" fill="${K.cob}"/>` + t(1206, 62, 'PERSON', 13, 500, K.cob, null, MONO);
+  [['agent', 'AI agent'], ['ops', 'Operations'], ['buyer', 'Buyer'], ['goods', 'Goods recipient']].forEach(([l, nm]) => {
+    o += `<line x1="40" x2="1240" y1="${LY[l] + 74}" y2="${LY[l] + 74}" stroke="${K.line}" stroke-width="1.5"/>` + t(40, LY[l] - 52, nm.toUpperCase(), 12.5, 500, K.dim, null, MONO);
+  });
+  const P = (n) => ({ x: CX[n[2]], y: LY[n[1]] });
+  FE.forEach(([a, b]) => {
+    const A = FN[a], B = FN[b], pa = P(A), pb = P(B), on = step >= B[0], act = step === B[0];
+    let d, x2, y2;
+    if (pa.x === pb.x) { d = `M${pa.x} ${pa.y + NH / 2} V${pb.y - NH / 2}`; x2 = pb.x; y2 = pb.y - NH / 2; }
+    else { const x1 = pa.x + NW / 2, y1 = pa.y; x2 = pb.x - NW / 2; y2 = pb.y; const mx = (x1 + x2) / 2; d = `M${x1} ${y1} C${mx} ${y1} ${mx} ${y2} ${x2} ${y2}`; }
+    o += `<path d="${d}" fill="none" stroke="${on ? (act ? K.lime : K.mu) : K.line}" stroke-width="${act ? 3.5 : 2.5}" ${on ? '' : 'stroke-dasharray="3 8"'} opacity="${on ? 0.9 : 1}"/>`;
+    if (act) o += `<circle cx="${x2}" cy="${y2}" r="16" fill="${K.lime}" opacity=".25"/><circle cx="${x2}" cy="${y2}" r="8" fill="${K.lime}"/>`;
+  });
+  FN.forEach((n) => {
+    const [st, lane, col, lines, kind, tag] = n, x = CX[col] - NW / 2, y = LY[lane] - NH / 2, on = step >= st, act = step === st;
+    if (st === 8) {
+      const cx = CX[col], cy = LY[lane];
+      o += on ? `<circle cx="${cx}" cy="${cy}" r="${act ? 56 : 48}" fill="${K.lime}" opacity="${act ? .16 : 0}"/><circle cx="${cx}" cy="${cy}" r="42" fill="${K.panel}" stroke="${K.lime}" stroke-width="2.5"/>` + ck(cx - 13, cy + 2, K.lime, 22) + t(cx, cy + 66, 'Logged', 13, 500, K.mu, 'middle', MONO)
+        : `<circle cx="${cx}" cy="${cy}" r="42" fill="none" stroke="${K.line}" stroke-width="2" stroke-dasharray="3 8"/>`;
+      return;
+    }
+    if (!on) { o += r(x, y, NW, NH, 'none', 18, K.line, 2).replace('<rect', '<rect stroke-dasharray="3 8"'); return; }
+    const c = kind === 'a' ? K.lime : K.cob;
+    if (kind === 'a' && act) o += r(x - 16, y - 16, NW + 32, NH + 32, c, 32, null, 0, .14);
+    if (kind !== 'a' && (act || (kind === 'g' && end))) o += r(x - 14, y - 14, NW + 28, NH + 28, 'none', 30, K.cob, 3, act ? .7 : .4);
+    o += r(x, y, NW, NH, kind === 'g' ? K.cobS : K.panel, 18, c, kind === 'g' ? 3.5 : 2.2);
+    o += t(x + 18, y + 26, kind === 'a' ? 'AGENT' : 'PERSON', 12, 500, c, null, MONO);
+    lines.forEach((q, i) => { o += t(x + 18, y + 52 + i * 22, q, 16.5, 400, K.ink); });
+    if (tag) o += r(x + NW - 74, y - 15, 84, 28, K.cob, 14) + t(x + NW - 32, y + 4, tag, 12.5, 700, '#0F1013', 'middle', MONO);
+  });
+  if (end) o += t(640, 786, 'AGENT READS AND COMPARES  ·  PEOPLE DECIDE  ·  EVERY STEP LOGGED', 13, 500, K.lime, 'middle', MONO);
+  return o;
+}

@@ -1,7 +1,7 @@
 // Beat timelines for the animated thumbnails. Each beat sets the UI state (a scene + parameters), where the camera looks
 // (cx, cy on a 1280 x 800 canvas, plus zoom), an optional 3D turn, and where the cursor is. Loops stay under 10 seconds.
 
-export type Scene = 'agentic' | 'fly' | 'split' | 'agRead' | 'agTable' | 'search' | 'engaze' | 'travel' | 'data' | 'options' | 'dnm'
+export type Scene = 'agentic' | 'fly' | 'split' | 'agRead' | 'agFlow' | 'agTable' | 'search' | 'engaze' | 'travel' | 'data' | 'options' | 'dnm'
 export interface Beat {
   at: number
   k?: Scene
@@ -42,7 +42,21 @@ const SUG = ['PO 4500012345 — ACME Office Supplies', 'PR 7800098765 — IT Equ
 const dd = (typed: string, pick?: number) => ({ focus: true, lit: true, typed, dd: true, ddHead: 'SUGGESTIONS', ddItems: SUG, pick })
 
 export const timelines: Record<string, Timeline> = {
-  agentic: { stage: '#DDE3EA', duration: 14200, beats: [
+  /* The order-confirmation flow: the camera follows the work from inbox to close; lime = agent, indigo ring = a person decides. */
+  agentic: { stage: '#0F1013', duration: 13800, beats: [
+    { at: 0, k: 'agFlow', s: { step: -1 }, cam: [640, 400, 1], ms: 0 },
+    { at: 1300, s: { step: 0 }, cam: [340, 230, 1.75], ms: 1100 },
+    { at: 2300, s: { step: 1 }, cam: [420, 300, 1.75], ms: 800 },
+    { at: 3100, s: { step: 2 }, cam: [490, 340, 1.75], ms: 700 },
+    { at: 3900, s: { step: 3 }, cam: [585, 380, 1.75], ms: 800 },
+    { at: 5000, s: { step: 4 }, cam: [760, 330, 1.75], ms: 1000 },
+    { at: 6300, s: { step: 5 }, cam: [940, 610, 1.55], ms: 1000 },
+    { at: 7700, s: { step: 6 }, cam: [1070, 340, 1.75], ms: 900 },
+    { at: 8700, s: { step: 7 }, cam: [1090, 390, 1.6], ms: 800 },
+    { at: 9800, s: { step: 8 }, cam: [1110, 300, 1.75], ms: 800 },
+    { at: 10900, s: { step: 8, end: true }, cam: [640, 410, 1], ms: 1300 },
+  ] },
+  agenticDemo: { stage: '#DDE3EA', duration: 14200, beats: [
     ...[0, 100, 200, 260, 350, 420, 500, 600].map((sc, i): Beat => ({ at: i * 300, k: 'agRead', s: { scan: sc, found: [106, 156, 206, 256, 346, 396, 494].filter(v => v < sc).length, bars: 0 }, ...(i === 0 ? { cam: [320, 300, 1.5] as [number, number, number], ms: 0 } : { snap: true }) })),
     { at: 2700, s: { bars: 0, found: 7 }, cam: [900, 300, 1.4], ms: 1000 },
     ...[0.14, 0.28, 0.43, 0.57, 0.71, 0.86, 1].map((b, i): Beat => ({ at: 3300 + i * 330, s: { bars: b, found: 7, done: b === 1 }, snap: true })),

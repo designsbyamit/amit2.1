@@ -12,6 +12,7 @@ import ContractWorksheet from '../components/agentic/ContractWorksheet'
 import Swimlane from '../components/agentic/Swimlane'
 import RiskVisual from '../components/agentic/RiskVisual'
 import FlowPlayer from '../components/agentic/FlowPlayer'
+import AnimThumb from '../components/ds/AnimThumb'
 import AutonomyLadder from '../components/agentic/AutonomyLadder'
 
 const cs = caseStudies.find(c => c.id === 'sap-agentic')!
@@ -47,6 +48,16 @@ export default function SAPAgenticStoryPage() {
           </dl>
         </div>
       </header>
+
+      <section aria-label="The agent at work" className="pb-16 md:pb-24 bg-surface-0">
+        <div className="container-site">
+          <p className="text-overline text-ink-3 mb-4">The agent at work</p>
+          <div className="relative overflow-hidden rounded-3 border border-[color:var(--line-1)]" style={{ aspectRatio: '16 / 10' }} aria-hidden="true">
+            <AnimThumb id="agenticDemo" />
+          </div>
+          <p className="text-body-sm text-ink-3 mt-3 max-w-[60ch]">It reads the supplier&rsquo;s PDF, compares it with the purchase order, and prepares every decision for a person.</p>
+        </div>
+      </section>
 
       <Section id="framing">
         <SectionHeader label="01 · The business problem" title={S.framing.title} intro={S.framing.intro} />

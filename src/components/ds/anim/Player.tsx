@@ -11,6 +11,7 @@ const draw = (b: Beat): string => {
     case 'search': return scenes.search(s)
     case 'engaze': return more.engaze(s)
     case 'agRead': return more.agRead(s)
+    case 'agFlow': return more.agFlow(s)
     case 'agTable': return more.agTable(s)
     case 'dnm': return more.dnm(s)
     case 'travel': return scenes.travel(s)
