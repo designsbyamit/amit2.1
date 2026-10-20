@@ -7,6 +7,7 @@ import ScrollToTop from './components/ui/ScrollToTop'
 import ScrollProgressLine from './components/ui/ScrollProgressLine'
 import { useLenis } from './hooks/useLenis'
 import Home from './pages/Home'
+import ContactProvider from './components/contact/ContactProvider'
 
 // Route-level code splitting: only the page being visited is downloaded.
 const Craft = lazy(() => import('./pages/Craft'))
@@ -24,6 +25,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'))
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'))
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
+const AdminPage = lazy(() => import('./pages/AdminPage'))
 const DualFluencyPage = lazy(() => import('./pages/DualFluencyPage'))
 const AINativeFrameworksPage = lazy(() => import('./pages/AINativeFrameworksPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
@@ -120,6 +122,7 @@ function AnimatedRoutes() {
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
         <Route path="/design-system" element={<PageTransition><DesignSystemPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
         <Route path="/philosophy" element={<Navigate to="/about" replace />} />
       </Routes>
@@ -133,6 +136,7 @@ export default function App() {
   usePrefetchRoutes()
   return (
     <BrowserRouter>
+      <ContactProvider>
       <div className="bg-bg text-ink min-h-screen">
         <ScrollProgressLine />
         <ScrollToTop />
@@ -143,6 +147,7 @@ export default function App() {
         </main>
         <Footer />
       </div>
+      </ContactProvider>
     </BrowserRouter>
   )
 }
