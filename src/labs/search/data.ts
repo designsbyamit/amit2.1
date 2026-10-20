@@ -7,7 +7,7 @@ export type Tone = 'pos' | 'neg' | 'warn' | 'info'
 export type RouteKey = 'po' | 'travel' | 'buy' | 'goals' | 'sow'
 
 export const apps: Record<AppId, { name: string; short: string; hue: string; role: string }> = {
-  s4: { name: 'S/4HANA Cloud', short: 'S4', hue: '#6C8BFF', role: 'Procurement' },
+  s4: { name: 'iSearch', short: 'iS', hue: '#6C8BFF', role: 'Procurement' },
   concur: { name: 'Concur', short: 'C', hue: '#34D6B6', role: 'Travel & Expense' },
   ariba: { name: 'Ariba', short: 'A', hue: '#FFB35C', role: 'Procurement' },
   sf: { name: 'SuccessFactors', short: 'SF', hue: '#C58BFF', role: 'People & Performance' },
@@ -103,10 +103,10 @@ const pdf = (n: string): Action => ({ label: n, kind: 'ghost', icon: 'paperclip'
 const po: Result = {
   app: 's4', key: 'po', icon: 'receipt', query: 'Pending POs', question: 'Pending purchase orders',
   summaryTitle: 'Purchase Order Summary',
-  summary: 'There are 14 purchase orders pending in S/4HANA Cloud, with $1.8M impacted. One is overdue: Office Depot GmbH ($42,500) is 8 days past its 31 January due date. Two are waiting on approval: Lenovo Solutions AG ($127,800) at level 2 and CleanPro Services ($18,200) at level 1,',
+  summary: 'There are 14 purchase orders pending in iSearch, with $1.8M impacted. One is overdue: Office Depot GmbH ($42,500) is 8 days past its 31 January due date. Two are waiting on approval: Lenovo Solutions AG ($127,800) at level 2 and CleanPro Services ($18,200) at level 1,',
   more: 'which together hold up $146,000. The other orders are on schedule. Approving the Lenovo order clears the largest single amount, and the Office Depot order needs a follow-up with T. Mueller in Facility Mgmt.',
-  total: 14, sources: ['S/4HANA Cloud · Purchase orders', 'Approval workflow'],
-  how: ['Read “Pending POs” as: purchase orders not yet fully processed', 'Searched purchase orders in S/4HANA Cloud you can see', 'Grouped them by overdue and waiting on approval', 'Ranked by amount, so the largest exposure comes first'],
+  total: 14, sources: ['iSearch · Purchase orders', 'Approval workflow'],
+  how: ['Read “Pending POs” as: purchase orders not yet fully processed', 'Searched purchase orders in iSearch you can see', 'Grouped them by overdue and waiting on approval', 'Ranked by amount, so the largest exposure comes first'],
   tabs: ['All', 'Overdue', 'Pending Approval'],
   facets: [
     { label: 'Over $100K', test: r => /127,800/.test(r.chips[0]) },
