@@ -18,7 +18,7 @@ export interface Playback {
 export const playbacks: Playback[] = [
   {
     id: 'sap-agentic',
-    headline: 'From weeks to hours. Procurement accelerated, decisions human-led.',
+    headline: 'Human-led agentic AI cuts order confirmation TAT from weeks to hours',
     dek: 'An agent extracts and compares, people validate and decide. Co-created with customers as a white-labelled solution across supply chain management.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
@@ -33,8 +33,8 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'engaze',
-    headline: 'One AI companion for every HR role. 9 in 10 employees satisfied.',
-    dek: 'One AI companion across the HR suite, from employee to leadership, built on five principles instead of flows. The employee module shipped at 90% CSAT.',
+    headline: 'Conversation-first HCM suite that earned 90% employee satisfaction',
+    dek: 'A conversational experience built on five principles instead of flows, with one companion across the HR suite from employee to leadership. The employee module shipped at 90% CSAT.',
     roleNote: 'The team researched conversation design in depth, including how to build a persona that keeps one consistent conversation pattern.',
     beats: {
       about: 'An AI-native HR suite where one companion serves employees, managers, recruiters, HR and leadership.',
@@ -48,7 +48,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'airline-app',
-    headline: '50× add-on sales. An airline app designed as a journey, not a booking flow.',
+    headline: 'Air travel booking journey redesign drove 50× in-app add-on sales',
     dek: 'The mobile experience for a carrier serving 30M+ guests a year: engagement up 92%, check-in cut from 9 steps to 2.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year.',
     beats: {
@@ -63,7 +63,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'dnetworx',
-    headline: '$5M saved. Three-team handoffs became one self-serve flow.',
+    headline: 'Dynamic network management app that saved $5M',
     dek: 'A change-resistant network platform made self-serve for enterprises, with 70,000+ customers and a client-reported $5M saving.',
     roleNote: 'A massive project on complex technology, where what the platform changes lands on the customer’s own infrastructure.',
     beats: {
@@ -78,7 +78,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'One AI search for every product. Defined once, piloted in three.',
+    headline: 'Designing AI-Search experience scaling across 15,000+ products',
     dek: 'AI search built into the design system so each improvement reaches every product that adopts it, designed to earn the trust of sceptical enterprise users.',
     roleNote: 'A design-system component case: the craft of interaction and behaviour, the anatomy of the component, and the specification product teams build from.',
     beats: {
@@ -88,12 +88,12 @@ export const playbacks: Playback[] = [
       solution: 'Intent over query, relevance over completeness, and reasoning shown instead of magic, including surfacing the AI’s confidence.',
       impact: 'Piloted in three products and owned by the design team. Every improvement reaches each product that adopts it.',
     },
-    metric: { value: '3', label: 'Products piloting' },
+    metric: { value: '15,000+', label: 'Products it is designed to scale across' },
     featured: false,
   },
   {
     id: 'data-ai',
-    headline: '76% adoption. Data governance made clear for non-technical users.',
+    headline: 'Marketplace for data governance apps driving 76% adoption',
     dek: 'Executive data products for a global data and AI practice. The scorecard became a reference for presenting governance health to enterprise clients.',
     roleNote: 'I led the redesign of the Collibra data-governance experience and defined the NCPI heuristic evaluation framework.',
     beats: {
