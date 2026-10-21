@@ -33,7 +33,7 @@ export default function Craft() {
       <PageHeader
         label="Works"
         title="Work that matters at scale."
-        subtitle="Case studies across AI experiences, conversational design, enterprise UX, and large-scale design systems."
+        subtitle="Case studies across AI experiences, conversational design, enterprise UX, and large-scale design systems. Every project here is live in market today."
       />
 
       <WorksBento />
