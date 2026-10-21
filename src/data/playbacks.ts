@@ -18,7 +18,7 @@ export interface Playback {
 export const playbacks: Playback[] = [
   {
     id: 'sap-agentic',
-    headline: 'Built to take supplier order confirmation from weeks to hours, with people deciding every step',
+    headline: 'From weeks to hours. Procurement accelerated, decisions human-led.',
     dek: 'An agent extracts and compares, people validate and decide. Co-created with customers as a white-labelled solution across supply chain management.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
