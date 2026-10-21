@@ -33,7 +33,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'engaze',
-    headline: 'An HR companion that 9 in 10 employees were satisfied with',
+    headline: 'One AI companion for every HR role. 9 in 10 employees satisfied.',
     dek: 'One AI companion across the HR suite, from employee to leadership, built on five principles instead of flows. The employee module shipped at 90% CSAT.',
     roleNote: 'The team researched conversation design in depth, including how to build a persona that keeps one consistent conversation pattern.',
     beats: {
@@ -48,7 +48,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'airline-app',
-    headline: 'An airline app that grew add-on sales 50× by designing the journey, not the booking flow',
+    headline: '50× add-on sales. An airline app designed as a journey, not a booking flow.',
     dek: 'The mobile experience for a carrier serving 30M+ guests a year: engagement up 92%, check-in cut from 9 steps to 2.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year.',
     beats: {
@@ -63,7 +63,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'dnetworx',
-    headline: '$5M saved by turning three-team handoffs into one self-serve flow',
+    headline: '$5M saved. Three-team handoffs became one self-serve flow.',
     dek: 'A change-resistant network platform made self-serve for enterprises, with 70,000+ customers and a client-reported $5M saving.',
     roleNote: 'A massive project on complex technology, where what the platform changes lands on the customer’s own infrastructure.',
     beats: {
@@ -78,7 +78,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'One AI search for every product in the suite, defined once and piloted in three',
+    headline: 'One AI search for every product. Defined once, piloted in three.',
     dek: 'AI search built into the design system so each improvement reaches every product that adopts it, designed to earn the trust of sceptical enterprise users.',
     roleNote: 'A design-system component case: the craft of interaction and behaviour, the anatomy of the component, and the specification product teams build from.',
     beats: {
@@ -93,7 +93,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'data-ai',
-    headline: '76% adoption for a data-governance marketplace made for non-technical users',
+    headline: '76% adoption. Data governance made clear for non-technical users.',
     dek: 'Executive data products for a global data and AI practice. The scorecard became a reference for presenting governance health to enterprise clients.',
     roleNote: 'I led the redesign of the Collibra data-governance experience and defined the NCPI heuristic evaluation framework.',
     beats: {
