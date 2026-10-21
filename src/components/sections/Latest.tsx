@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { caseStudies } from '../../data/work'
 import { cases } from '../../data/cases'
 import { reflections } from '../../data/reflections'
-import CaseThumb from '../ds/CaseThumb'
 import StoryCover from '../ds/StoryCover'
 import ResourceCover from '../ds/ResourceCover'
 
@@ -28,9 +26,8 @@ function Row({ to, kind, title, text, cta, visual, delay }: { to: string; kind: 
   )
 }
 
-/** Latest: a project, a leadership practice, a workshop and a piece of writing, each at full width. */
+/** Latest: a leadership practice, a workshop and a piece of writing, each at full width. Projects live in Selected work above. */
 export default function Latest() {
-  const work = caseStudies.find(c => c.id === 'sap-agentic') ?? caseStudies[0]
   const practice = cases.find(c => c.slug === 'ai-experimentation-to-capability') ?? cases[0]
   const piece = reflections.find(r => r.id === 'vedic-design-series') ?? reflections[0]
   const img = (src?: string, pos?: string) => src ? <img src={src} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: pos }} /> : <div className="w-full h-full bg-surface-1" />
@@ -39,8 +36,6 @@ export default function Latest() {
       <div className="container-site">
         <h2 className="text-display-l text-ink mb-12 md:mb-16">Latest</h2>
         <ul className="grid gap-4 md:gap-6">
-          <Row to={`/craft/${work.id}`} kind="Project" title={work.title} text={work.tagline} cta="Read the case study" delay={0}
-            visual={<div className="absolute inset-0"><CaseThumb id={work.id} flush ratio="auto" className="w-full h-full" /></div>} />
           <Row to={`/leadership/cases/${practice.slug}`} kind="Practice" title={practice.title} text={practice.subtitle} cta="Read the case" delay={0.06}
             visual={<StoryCover motif="culture" tone="teal" number={practice.number} className="!rounded-none w-full h-full" ratio="16 / 10" />} />
           <Row to="/resources/dual-fluency" kind="Workshop" title="Build Dual Fluency" text="A Framework, a vocabulary and set of tools for translating design quality into business outcomes." cta="View Toolkit" delay={0.12}

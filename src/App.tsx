@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, useParams, Navigate } from 'react-router-dom'
 import { Suspense, lazy, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
@@ -23,6 +23,7 @@ const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
 const CommunityPage = lazy(() => import('./pages/CommunityPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'))
+const PlaybackPage = lazy(() => import('./pages/PlaybackPage'))
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 const AdminPage = lazy(() => import('./pages/AdminPage'))
@@ -50,7 +51,7 @@ const ConversationExperiencePage = lazy(() => import('./pages/ConversationExperi
 /** Warm every page chunk once the browser is idle, so the first click on any nav item is instant. */
 function usePrefetchRoutes() {
   useEffect(() => {
-    const load = () => { import('./pages/Craft'); import('./pages/LeadershipPage'); import('./pages/LeadershipStoriesPage'); import('./pages/LeadershipStoryPage'); import('./pages/ReflectionsPage'); import('./pages/CommunityPage'); import('./pages/AboutPage'); import('./pages/CaseStudyPage'); import('./pages/ResourcesPage'); import('./pages/ContactPage'); import('./pages/DualFluencyPage'); import('./pages/AINativeFrameworksPage'); import('./pages/SAPSearchStoryPage'); import('./pages/SAPAgenticStoryPage'); import('./pages/MentoringPage'); import('./pages/DesignSystemPage'); import('./pages/ConversationExperiencePage') }
+    const load = () => { import('./pages/Craft'); import('./pages/LeadershipPage'); import('./pages/LeadershipStoriesPage'); import('./pages/LeadershipStoryPage'); import('./pages/ReflectionsPage'); import('./pages/CommunityPage'); import('./pages/AboutPage'); import('./pages/CaseStudyPage'); import('./pages/PlaybackPage'); import('./pages/ResourcesPage'); import('./pages/ContactPage'); import('./pages/DualFluencyPage'); import('./pages/AINativeFrameworksPage'); import('./pages/SAPSearchStoryPage'); import('./pages/SAPAgenticStoryPage'); import('./pages/MentoringPage'); import('./pages/DesignSystemPage'); import('./pages/ConversationExperiencePage') }
     const w = window as Window & { requestIdleCallback?: (cb: () => void) => number }
     const id = w.requestIdleCallback ? w.requestIdleCallback(load) : window.setTimeout(load, 1200)
     return () => { if (!w.requestIdleCallback) clearTimeout(id) }
@@ -80,6 +81,13 @@ function LegacyHashRedirect() {
   return null
 }
 
+/** The detailed case study for a project. Each of the larger projects has its own page; the rest use the standard one. */
+function CaseDetail() {
+  const { id } = useParams<{ id: string }>()
+  const Page = ({ 'airline-app': AirlineStoryPage, engaze: EngazeStoryPage, 'sap-search': SAPSearchStoryPage, 'sap-agentic': SAPAgenticStoryPage } as Record<string, React.ComponentType>)[id ?? ''] ?? CaseStudyPage
+  return <Page />
+}
+
 function AnimatedRoutes() {
   const location = useLocation()
   return (
@@ -88,11 +96,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
-        <Route path="/craft/airline-app" element={<PageTransition><AirlineStoryPage /></PageTransition>} />
-        <Route path="/craft/engaze" element={<PageTransition><EngazeStoryPage /></PageTransition>} />
         <Route path="/craft/engaze/film" element={<PageTransition><EngazeFilmPage /></PageTransition>} />
-        <Route path="/craft/sap-search" element={<PageTransition><SAPSearchStoryPage /></PageTransition>} />
-        <Route path="/craft/sap-agentic" element={<PageTransition><SAPAgenticStoryPage /></PageTransition>} />
         <Route path="/craft/sap-search/film" element={<PageTransition><SearchFilmPage /></PageTransition>} />
         <Route path="/craft/sap-agentic/film" element={<PageTransition><AgenticFilmPage /></PageTransition>} />
         <Route path="/craft/sap-agentic/film-v1" element={<PageTransition><AgenticFilmV1Page /></PageTransition>} />
@@ -101,7 +105,8 @@ function AnimatedRoutes() {
         <Route path="/labs/order-confirmation" element={<ScmPrototype />} />
         <Route path="/labs/engaze" element={<EngazePrototype />} />
         <Route path="/labs/ai-search" element={<SearchPrototype />} />
-        <Route path="/craft/:id" element={<PageTransition><CaseStudyPage /></PageTransition>} />
+        <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />
+        <Route path="/craft/:id" element={<PageTransition><PlaybackPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
         <Route path="/leadership/cases/:slug" element={<PageTransition><LeadershipCasePage /></PageTransition>} />
         <Route path="/learn" element={<PageTransition><LearnPage /></PageTransition>} />

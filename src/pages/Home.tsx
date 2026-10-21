@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Hero from '../components/sections/Hero'
 import ImpactSnapshot from '../components/sections/ImpactSnapshot'
 import Latest from '../components/sections/Latest'
+import FeaturedWork from '../components/sections/FeaturedWork'
 
 function FadeUp({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -23,7 +24,10 @@ export default function Home() {
       {/* 1. Hero */}
       <Hero />
 
-      {/* 2. Latest: one work, one leadership story, one talk */}
+      {/* 2. Selected work: a swipeable carousel of projects told by their impact */}
+      <FeaturedWork />
+
+      {/* 3. Latest: a leadership practice, a workshop and a piece of writing */}
       <Latest />
 
       {/* 3. Scale — grid blocks */}
