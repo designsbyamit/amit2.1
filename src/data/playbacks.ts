@@ -48,7 +48,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'airline-app',
-    headline: 'Air travel booking journey redesign drove 50× in-app add-on sales',
+    headline: 'Air travel booking journey redesign drove 50x in-app add-on sales',
     dek: 'The mobile experience for a carrier serving 30M+ guests a year: engagement up 92%, check-in cut from 9 steps to 2.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year.',
     beats: {
@@ -78,7 +78,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'Designing AI-Search experience scaling across 15,000+ products',
+    headline: 'Designing AI-Search experience scaling across 15000+ products',
     dek: 'AI search built into the design system so each improvement reaches every product that adopts it, designed to earn the trust of sceptical enterprise users.',
     roleNote: 'A design-system component case: the craft of interaction and behaviour, the anatomy of the component, and the specification product teams build from.',
     beats: {
