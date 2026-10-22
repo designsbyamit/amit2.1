@@ -1,3 +1,4 @@
+declare const __SITE_URL__: string
 // One place for what every page says about itself to search engines, AI assistants and link previews.
 // The runtime hook (useRouteSeo) and the build-time page generator (tools/seo/build.ts) both read this.
 import { playbacks } from '../data/playbacks'
@@ -5,14 +6,15 @@ import { caseStudies } from '../data/work'
 import { publishedStories, storySlug } from '../data/leadership'
 
 export const SITE = {
-  url: 'https://neo.designsbyamit.com',
+  /** Production is www; the staging branch (neo) is a beta that points at itself and is kept out of search. */
+  url: __SITE_URL__,
   name: 'Amit Kumar Tiwari',
   role: 'Design Leader',
   employer: 'SAP Labs',
   city: 'Bengaluru',
   country: 'IN',
   /** Accounts and sites that are verifiably the same person. Add LinkedIn and others here. */
-  sameAs: ['https://www.designsbyamit.com'] as string[],
+  sameAs: [] as string[],
   ogDefault: '/og/home.jpg',
 }
 

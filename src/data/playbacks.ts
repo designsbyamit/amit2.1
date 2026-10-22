@@ -28,7 +28,7 @@ export const playbacks: Playback[] = [
       solution: 'The agent extracts and compares, and people validate and decide. Every difference carries its reasoning, and every step is logged.',
       impact: 'A complete path from the supplier’s email to approve and close, across 33 screens. Co-created with customers as a white-labelled solution across supply chain management.',
     },
-    metric: { value: 'Weeks → hours', label: 'Order confirmation time the design is built to reach' },
+    metric: { value: 'Weeks → hours', label: 'Order confirmation turnaround time' },
     featured: true,
   },
   {
