@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, useParams, Navigate } from 'react-router-dom'
 import { Suspense, lazy, useEffect } from 'react'
+import useRouteSeo from './seo/useRouteSeo'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
@@ -90,6 +91,7 @@ function CaseDetail() {
 
 function AnimatedRoutes() {
   const location = useLocation()
+  useRouteSeo()
   return (
     <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
     <AnimatePresence mode="wait">
