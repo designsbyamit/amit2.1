@@ -86,7 +86,7 @@ export const playbacks: Playback[] = [
       challenge: 'Each product had its own legacy search, vocabulary and assumptions, and enterprise users were sceptical of AI-surfaced results.',
       users: 'Enterprise users across the suite who already distrust automation and need to see why a result appeared.',
       solution: 'Intent over query, relevance over completeness, and reasoning shown instead of magic, including surfacing the AI’s confidence.',
-      impact: 'Piloted in three products and owned by the design team. Every improvement reaches each product that adopts it.',
+      impact: 'Owned by the design team as part of the design system. Every improvement reaches each product that adopts it.',
     },
     metric: { value: '15,000+', label: 'Products it is designed to scale across' },
     featured: false,

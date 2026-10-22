@@ -400,7 +400,7 @@ const allCaseStudies: CaseStudy[] = [
     },
     challenge: 'Each product in the suite had its own legacy search implementation, vocabulary, and assumptions. Introducing AI-powered search meant solving fragmentation and trust simultaneously — making AI-surfaced results trustworthy to enterprise users who are already sceptical of AI.',
     approach: 'Three principles: intent over query, contextual relevance over completeness, transparent reasoning over magical results. The hardest decision: surfacing AI confidence levels to users already sceptical of automation.',
-    outcome: 'Piloted in three products so far, and owned by the design team. Because it lives in the design system, one search component, one results layout and a shared pattern library guide AI-surfaced discovery, and every improvement reaches each product that adopts it.',
+    outcome: 'Owned by the design team. Because it lives in the design system, one search component, one results layout and a shared pattern library guide AI-surfaced discovery, and every improvement reaches each product that adopts it.',
     stats: [
       { label: 'Scope', value: 'Design system' },
       { label: 'Adoption', value: '3 pilots' },
