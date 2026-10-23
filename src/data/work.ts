@@ -290,9 +290,9 @@ const allCaseStudies: CaseStudy[] = [
   {
     id: 'dnetworx',
     number: '04',
-    category: 'dNetWorX · Enterprise UX · Telecommunications',
+    category: 'Enterprise UX · Telecommunications',
     title: 'Enterprise Experience for Self-Serve Network Installations',
-    shortTitle: 'dNetWorX',
+    shortTitle: 'Network Installations',
     tagline: 'Turning a technically complex, change-resistant enterprise platform into a self-serve operational capability saving $5M.',
     role: 'Design Lead',
     timeline: 'Jun 2023',

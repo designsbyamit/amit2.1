@@ -19,7 +19,7 @@ const microStories = [
     body: 'When a business wants to grow digital revenue 50-fold, every stakeholder sees a booking flow problem. Reframing it as a service ecosystem problem changed what we built. The pod structure that delivered the work was itself a design decision: when designers own journeys instead of features, they design for coherence rather than correctness.',
   },
   {
-    label: 'Enterprise UX · dNetWorX',
+    label: 'Enterprise UX',
     heading: 'Introducing progressive disclosure into a system that resisted simplification',
     body: 'Enterprise engineers had spent years learning to navigate complexity: removing it felt like a regression. Progressive disclosure was the solution: show less by default without removing anything. Expert users still had full control on demand. First-time users saw only what they needed. Nobody lost anything. Adoption followed.',
   },
