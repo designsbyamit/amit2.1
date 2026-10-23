@@ -10,6 +10,20 @@ import ShortStoryTag from '../components/playback/ShortStoryTag'
 import ProcessFlow from '../components/playback/ProcessFlow'
 import Distinct from '../components/case/Distinct'
 import Brands from '../components/sections/Brands'
+import FlowDiagram from '../components/agentic/FlowDiagram'
+import FlowPlayer from '../components/agentic/FlowPlayer'
+import Swimlane from '../components/agentic/Swimlane'
+import AutonomyLadder from '../components/agentic/AutonomyLadder'
+import AsIsFlow from '../components/agentic/AsIsFlow'
+import RiskVisual from '../components/agentic/RiskVisual'
+import WorklistCompare from '../components/agentic/WorklistCompare'
+import ContractWorksheet from '../components/agentic/ContractWorksheet'
+import SearchAnatomy from '../components/case/SearchAnatomy'
+import CapabilityLoop from '../components/leadership/CapabilityLoop'
+import OutcomesLedger from '../components/leadership/OutcomesLedger'
+import PracticeCard from '../components/leadership/PracticeCard'
+import { sapAgentic as S } from '../data/sapAgentic'
+import { cases } from '../data/cases'
 import { caseStudies } from '../data/work'
 import { playbacks } from '../data/playbacks'
 import Logo from '../components/layout/Logo'
@@ -26,7 +40,7 @@ import { markForStory } from '../components/marks/Marks'
 
 const sections = [
   ['principles', 'Principles'], ['foundations', 'Foundations'], ['icons', 'Icons'], ['illustration', 'Illustration'],
-  ['pictograms', 'Pictograms'], ['imagery', 'Imagery'], ['components', 'Components'], ['patterns', 'Patterns'], ['interaction', 'Interaction'],
+  ['pictograms', 'Pictograms'], ['imagery', 'Imagery'], ['components', 'Components'], ['patterns', 'Patterns'], ['diagrams', 'Diagrams'], ['interaction', 'Interaction'],
   ['motion', 'Motion'], ['voice', 'Voice'], ['governance', 'Governance'],
 ] as const
 
@@ -585,23 +599,6 @@ export default function DesignSystemReferencePage() {
         <Spec name="Distinct card" note="One short card on a detailed case study: what is unusual about it.">
           <div className="max-w-md"><Distinct title="The agent proposes, people decide" body="Every outcome is routed to a person who can approve, escalate or ask for clarification." /></div>
         </Spec>
-        <Spec name="Diagram kit" note="How case studies explain systems. Built in the page, never exported images, so they follow the mode and stay sharp.">
-          <Table head={['Component', 'Explains']} rows={[
-            ['FlowDiagram', 'End-to-end system flow, animated on scroll'],
-            ['FlowPlayer', 'One order from start to finish over the real screens'],
-            ['Swimlane', 'Who acts at each step: agent work filled, human gates outlined'],
-            ['AutonomyLadder', 'Three rising steps. Today is filled, next is dashed'],
-            ['AsIsFlow', 'The before flow: hand-offs on a time bar that grows from hours to weeks'],
-            ['RiskVisual', 'Deviation, severity, order risk and priority'],
-            ['WorklistCompare', 'Three worklists compared by what is distinctive'],
-            ['ContractWorksheet', 'The agent-human contract, in the site’s own type and colour'],
-            ['SearchAnatomy', 'Search component anatomy inside a real shell bar'],
-            ['CapabilityLoop', 'A learning loop with people growth underneath'],
-            ['OutcomesLedger', 'One row per kind of result. The team owns every row'],
-            ['PracticeCard', 'A method others can adapt: problem, steps, signals, failure modes'],
-          ]} />
-          <p className="text-body-sm text-ink-3 mt-5 max-w-[62ch]">Conventions: filled means the agent, outlined means people, dashed means next or optional, signal marks the one thing to look at. Screens inside diagrams are shown whole, never zoomed or cropped.</p>
-        </Spec>
         <Spec name="Page sections" note="The building blocks of Home and Works.">
           <Table head={['Section', 'Used on', 'What it is']} rows={[
             ['Hero', 'Home', 'Name, rotating role, typed word, one line, two actions'],
@@ -618,8 +615,47 @@ export default function DesignSystemReferencePage() {
         </Spec>
       </Block>
 
+      {/* diagrams */}
+      <Block id="diagrams" n="09" title="Bespoke diagrams, in one place." intro="How case studies and leadership stories explain a system. Each is built in the page from real content, so it follows the mode, stays sharp at any size and can be read by a screen reader. They are shown here exactly as they appear, with the same data.">
+        <Spec name="Conventions" note="Shared by every diagram below.">
+          <Table head={['Mark', 'Meaning']} rows={[
+            ['Filled chip', 'The agent’s work'],
+            ['Outlined chip', 'A person: a decision or a gate'],
+            ['Dashed line or chip', 'Next, optional or not yet done'],
+            ['Signal colour', 'The one thing to look at, used once per diagram'],
+            ['Screens', 'Shown whole, never zoomed or cropped'],
+            ['Motion', 'Animated on scroll once at most, with a still version when reduced motion is on'],
+            ['Labels', 'Mono for tags and numbers, serif for titles, body text for explanation'],
+          ]} />
+        </Spec>
+        <div className="flex flex-col gap-16 mt-8">
+          {([
+            ['01 · System flow', 'FlowDiagram', 'Where a document enters, how it is parsed and where each role joins. Animated on scroll.', <FlowDiagram key="a" />],
+            ['02 · Before: the as-is flow', 'AsIsFlow', 'Six hand-offs on a time bar that grows from hours to weeks, with the nuances called out.', <AsIsFlow key="b" title={S.framing.asisTitle} steps={S.framing.asis} nuances={S.framing.nuances} />],
+            ['03 · Swimlane', 'Swimlane', 'Who acts at each step: the agent’s work filled, the human gates outlined.', <Swimlane key="c" cols={S.hitl.cols} lanes={S.hitl.lanes as never} legendA={S.hitl.legendA} legendG={S.hitl.legendG} legendH={S.hitl.legendH} />],
+            ['04 · Contract worksheet', 'ContractWorksheet', 'The agent-human contract, filled in for the use case, in the site’s own type and colour.', <ContractWorksheet key="d" d={S.contract} />],
+            ['05 · Worklist comparison', 'WorklistCompare', 'Three worklists compared by what is distinctive in each, not by screenshots.', <WorklistCompare key="e" roles={S.worklist.roles} columns={S.worklist.columns} />],
+            ['06 · Risk', 'RiskVisual', 'Deviation, severity, order risk and priority, with real examples and the confidence measure.', <RiskVisual key="f" chain={S.risk.chain} examples={S.risk.examples} orderRisk={S.risk.orderRisk} confidence={S.risk.confidence} note={S.risk.note} />],
+            ['07 · Autonomy ladder', 'AutonomyLadder', 'Three steps rising left to right. Today is filled, next is dashed.', <AutonomyLadder key="g" levels={S.autonomy.levels as never} next={S.autonomy.next} />],
+            ['08 · Flow player', 'FlowPlayer', 'One order, start to finish, over the real screens. Every frame shows the whole screen.', <FlowPlayer key="h" imgs={Object.fromEntries(S.journeys.flatMap(j => j.screens).map(sc => [sc.id, sc.img]))} title="Order 1505899" intro="Real screens from the prototype, played in order." />],
+            ['09 · Search anatomy', 'SearchAnatomy', 'The anatomy of the AI search component, drawn as live HTML inside a real shell bar.', <SearchAnatomy key="i" />],
+            ['10 · Capability loop', 'CapabilityLoop', 'A learning loop with people growth running underneath it.', <CapabilityLoop key="j" />],
+            ['11 · Outcomes ledger', 'OutcomesLedger', 'One row per kind of result. The team owns every row.', <OutcomesLedger key="k" rows={cases[0].outcomes} />],
+            ['12 · Practice card', 'PracticeCard', 'A method another leader can adapt: problem, when, steps, signals and failure modes.', <PracticeCard key="l" practice={cases[0].practice} />],
+          ] as [string, string, string, ReactNode][]).map(([title, name, note, node]) => (
+            <section key={name} aria-label={title} className="hairline-top pt-8">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 mb-6">
+                <div><p className="text-title text-ink">{title}</p><p className="text-body-sm text-ink-3 mt-2 max-w-[62ch]">{note}</p></div>
+                <p className="font-mono text-label text-ink-3">{name}</p>
+              </div>
+              <div className="rounded-3 overflow-hidden" style={{ border: '1px solid var(--line-1)', background: 'var(--bg)' }}>{node}</div>
+            </section>
+          ))}
+        </div>
+      </Block>
+
       {/* 08 */}
-      <Block id="interaction" n="09" title="Interaction guidelines." intro="Predictable, forgiving and fast. The same gesture does the same thing everywhere.">
+      <Block id="interaction" n="10" title="Interaction guidelines." intro="Predictable, forgiving and fast. The same gesture does the same thing everywhere.">
         <Spec name="States" note="Every control has all five.">
           <Table head={['State', 'Treatment']} rows={[
             ['Rest', 'Clear affordance without hovering: buttons are filled or bordered, links are underlined'],
@@ -672,7 +708,7 @@ export default function DesignSystemReferencePage() {
       </Block>
 
       {/* 09 */}
-      <Block id="motion" n="10" title="Motion supports, never performs." intro="Motion explains change and adds polish at the moment of arrival. It is short, uses one easing curve and always has a still fallback.">
+      <Block id="motion" n="11" title="Motion supports, never performs." intro="Motion explains change and adds polish at the moment of arrival. It is short, uses one easing curve and always has a still fallback.">
         <Spec name="Easing" note="One curve for everything: a fast start with a long, soft landing.">
           <div className="flex flex-wrap items-center gap-8"><Curve /><div><p className="font-mono text-label text-ink">--ease-out</p><p className="font-mono text-body-sm text-ink-2">cubic-bezier(0.16, 1, 0.3, 1)</p><p className="text-body-sm text-ink-3 mt-3 max-w-[36ch]">Linear and bouncy easings are not used.</p></div></div>
         </Spec>
@@ -732,7 +768,7 @@ export default function DesignSystemReferencePage() {
       </Block>
 
       {/* 10 */}
-      <Block id="voice" n="11" title="Words follow rules too." intro="Short, specific and plain. The writing is part of the design.">
+      <Block id="voice" n="12" title="Words follow rules too." intro="Short, specific and plain. The writing is part of the design.">
         <Rules items={[
           ['Plain hyphens only', 'No em-dashes or en-dashes anywhere on the site. Use a colon, a comma or a plain hyphen. Ranges use a hyphen.'],
           ['Sentence case', 'Buttons, headings and labels use sentence case. Mono labels are the only capitals, set by style, not typed.'],
@@ -746,7 +782,7 @@ export default function DesignSystemReferencePage() {
       </Block>
 
       {/* 11 */}
-      <Block id="governance" n="12" title="Where everything lives." intro="The system is code. If it is not in these files, it is not in the system.">
+      <Block id="governance" n="13" title="Where everything lives." intro="The system is code. If it is not in these files, it is not in the system.">
         <Table head={['Path', 'What it holds']} rows={files.map(([p, w]) => [p, w])} />
         <Spec name="Page templates" note="Every route and the template it uses.">
           <Table head={['Route', 'Template']} rows={[
