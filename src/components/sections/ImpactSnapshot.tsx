@@ -59,11 +59,11 @@ export default function ImpactSnapshot() {
                 transition={{ duration: 0.55, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               >
                 <p
-                  className="text-ink-2"
+                  className="font-serif text-ink-2"
                   style={{
-                    fontSize: 'clamp(1.8rem, 3.5vw, 3.2rem)',
-                    fontWeight: 200,
-                    letterSpacing: '-0.04em',
+                    fontSize: 'clamp(2.2rem, 4.4vw, 4rem)',
+                    fontWeight: 400,
+                    letterSpacing: '-0.02em',
                     lineHeight: 1,
                     }}
                 >
