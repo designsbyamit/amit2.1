@@ -1,4 +1,4 @@
-import { menuWorks } from '../../data/ia'
+import { allWorks } from '../../data/ia'
 import { playbackById } from '../../data/playbacks'
 import ProjectCard from '../playback/ProjectCard'
 
@@ -9,7 +9,7 @@ export default function WorksBento() {
       <div className="container-site">
         <h2 className="text-overline text-ink-3 mb-6">Case studies</h2>
         <ul>
-          {menuWorks.map(cs => {
+          {allWorks.map(cs => {
             const pb = playbackById(cs.id)
             if (!pb) return null
             return <li key={cs.id} className="hairline-top list-none"><ProjectCard cs={cs} pb={pb} variant="row" headingLevel="h2" /></li>

@@ -85,7 +85,7 @@ export default function Nav() {
       ))}
       <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
         <span className="text-label text-ink-3 mb-2">More work</span>
-        {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{cs.shortTitle}</Link>)}
+        {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{cs.title}</Link>)}
         <Link to="/craft" className="btn btn-ghost mt-3 self-start">All work{arrowSvg}</Link>
       </div>
     </div>
@@ -175,7 +175,7 @@ export default function Nav() {
                     </NavLink>
                     {item.menu === 'Works' && (
                       <ul className="pb-4">
-                        {menuWorks.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex py-2 text-body-sm text-ink-2">{cs.shortTitle}</Link></li>)}
+                        {menuWorks.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex py-2 text-body-sm text-ink-2">{cs.title}</Link></li>)}
                         <li><Link to="/craft" className="flex py-2 text-body-sm text-ink-2">All work</Link></li>
                       </ul>
                     )}
