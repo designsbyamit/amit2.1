@@ -53,8 +53,10 @@ export default function Craft() {
             {shortStories.map(s => (
               <li key={s.slug}>
                 <Link to={`/craft/stories/${s.slug}`} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
-                  <div className="grid place-items-center text-white" style={{ background: s.field, aspectRatio: '16 / 8', ['--mk-accent' as string]: '#C8F55A', ['--mk-bg' as string]: 'transparent' }} aria-hidden="true">
-                    {markForStory(s.slug) && <Mark name={markForStory(s.slug)!} size={84} />}
+                  <div className="relative grid place-items-center text-white" style={{ background: s.field, aspectRatio: '16 / 8', ['--mk-accent' as string]: '#C8F55A', ['--mk-bg' as string]: 'transparent' }} aria-hidden="true">
+                    {s.image
+                      ? <img src={s.image} alt="" loading="lazy" className="absolute inset-0 m-auto max-h-[82%] max-w-[86%] rounded-2" />
+                      : markForStory(s.slug) && <Mark name={markForStory(s.slug)!} size={84} />}
                   </div>
                   <div className="p-6 flex flex-col gap-3 flex-1">
                     <h3 className="text-title text-ink">{s.title}</h3>

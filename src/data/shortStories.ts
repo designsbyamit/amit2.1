@@ -10,6 +10,8 @@ export interface ShortStory {
   meta?: string[]
   /** A gradient behind the cover, taken from the design. */
   field: string
+  /** Hero image from the one-pager design, if exported. */
+  image?: string
   sections: { label: string; items: { lead?: string; text: string }[] }[]
   link?: { label: string; href: string }
 }
@@ -20,6 +22,7 @@ export const shortStories: ShortStory[] = [
     nav: 'File18 for Network18 journalists',
     title: 'Resolving adoption barriers of the File18 app for Network18 journalists',
     field: 'linear-gradient(135deg, #3A5C9E 0%, #6F8CC4 55%, #DCE3F2 100%)',
+    image: '/images/stories/file18.webp',
     sections: [
       {
         label: 'Quick snapshot',
@@ -40,6 +43,7 @@ export const shortStories: ShortStory[] = [
     nav: 'GreenUX design system',
     title: 'A living design system with sustainability and greener UX as a foundational pillar',
     field: 'linear-gradient(135deg, #1F6B5A 0%, #3C8F7C 55%, #CFE5DE 100%)',
+    image: '/images/stories/greenux.webp',
     sections: [
       {
         label: 'Additional activities',
@@ -58,6 +62,7 @@ export const shortStories: ShortStory[] = [
     title: 'Exploring possibilities for Gen AI and making business sense in design',
     meta: ['Feb 2023 - present', 'Design Lead', 'Design strategy · Data viz'],
     field: 'linear-gradient(135deg, #5B2C8F 0%, #AE83F4 55%, #E7CEF7 100%)',
+    image: '/images/stories/generative-experience-design.webp',
     sections: [
       {
         label: 'Quick snapshot',
