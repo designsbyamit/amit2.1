@@ -108,7 +108,7 @@ function SearchBox({ variant, q, setQ, onPick, onSubmit, inputRef, bumpKey }: {
           placeholder={variant === 'bar' ? 'Search across all applications…' : ''} aria-label="AI search across all applications" aria-expanded={open} aria-autocomplete="list" role="combobox" spellCheck={false} autoComplete="off" />
         {variant === 'hero' && !q && (
           <span className="ais-sb-ph" aria-hidden="true">
-            <span>Search across all applications — try </span>
+            <span>Search across all applications: try </span>
             <AnimatePresence mode="wait" initial={false}>
               <motion.em key={ph} initial={{ opacity: 0, y: reduced ? 0 : 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -8 }} transition={{ duration: 0.28 }}>“{tries[ph]}”</motion.em>
             </AnimatePresence>
@@ -287,7 +287,7 @@ function ResultsView({ res, q, onGo, toast, onFeedback }: { res: Result; q: stri
   const act = (r: Row, a: Row['actions'][number]) => {
     if (a.go) return onGo(a.go, r)
     const set = (patch: RowState) => setRows(s => ({ ...s, [r.title]: { ...s[r.title], ...patch } }))
-    if (a.does === 'approve') { set({ approved: true }); toast(`Approved ${r.title.split(' — ')[0]} (${r.chips[0]})`) }
+    if (a.does === 'approve') { set({ approved: true }); toast(`Approved ${r.title.split(' - ')[0]} (${r.chips[0]})`) }
     else if (a.does === 'follow') { set({ followed: true }); toast(`Follow-up to ${r.ref.replace('Requestor: ', '').split(' • ')[0]} drafted`) }
     else if (a.does === 'request') { set({ requested: true }); toast('Approval requested for this fare') }
     else if (a.does === 'file') toast(`Opening ${a.label}`)
@@ -547,7 +547,7 @@ export default function SearchPrototype() {
 
   const goApp = (to: 'booking' | 'ariba' | 'goaldraft', row: Row) => {
     const dest: Record<typeof to, { app: AppId; carry: string[] }> = {
-      booking: { app: 'concur', carry: ['Trip SFO → BLR', 'Jun 10–17, 2026', row.title.split(' — ')[0]] },
+      booking: { app: 'concur', carry: ['Trip SFO → BLR', 'Jun 10–17, 2026', row.title.split(' - ')[0]] },
       ariba: { app: 'ariba', carry: [row.title, row.ref.split(' • ')[0].replace('Supplier: ', 'Supplier '), 'Quantity ready for a requisition'] },
       goaldraft: { app: 'sf', carry: [row.title, 'Alex Johnson', 'Q2 2026'] },
     }

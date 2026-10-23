@@ -77,7 +77,7 @@ export default function SAPAgenticStoryPage() {
                 <p className="text-label text-signal-ink mt-6">Their struggle</p>
                 <p className="text-body text-ink-2 mt-2">{p.struggle}</p>
                 <p className="text-label text-ink-3 mt-6">They own</p>
-                <ul className="mt-2 space-y-2">{p.resp.map(r => <li key={r} className="text-body-sm text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">&mdash;</span>{r}</li>)}</ul>
+                <ul className="mt-2 space-y-2">{p.resp.map(r => <li key={r} className="text-body-sm text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{r}</li>)}</ul>
               </div>
             </motion.article>
           ))}

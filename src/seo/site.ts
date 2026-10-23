@@ -32,7 +32,7 @@ export interface RouteMeta {
 const T = (s: string) => `${s} · ${SITE.name}`
 
 const base: RouteMeta[] = [
-  { path: '/', title: `${SITE.name} — Design Leader for AI-native enterprise experiences`, description: 'Design Leader at SAP with 16+ years shaping AI-native enterprise experiences: agentic AI, conversational design, AI search and design systems, delivered at scale.', type: 'profile' },
+  { path: '/', title: `${SITE.name} - Design Leader for AI-native enterprise experiences`, description: 'Design Leader at SAP with 16+ years shaping AI-native enterprise experiences: agentic AI, conversational design, AI search and design systems, delivered at scale.', type: 'profile' },
   { path: '/craft', title: T('Selected work'), description: 'Case studies across AI experiences, conversational design, enterprise UX and large-scale design systems. Every project is live in market.' },
   { path: '/leadership', title: T('Design leadership'), description: 'The career arc, the philosophy and what I have learned about making design matter inside large organisations, where influence is earned, not assigned.' },
   { path: '/leadership/stories', title: T('Leadership stories'), description: 'Moments that shaped how I lead: the conflicts, the first team, the community and the culture work. Each story ends with what I learned.' },

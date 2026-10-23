@@ -1,5 +1,5 @@
 /*
- * Signal — design tokens for Amit Kumar Tiwari's portfolio
+ * Signal: design tokens for Amit Kumar Tiwari's portfolio
  * ---------------------------------------------------------
  * Two modes, one set of names. Components only ever use the semantic
  * tokens below, never raw hex values, so every screen works in both modes.
@@ -31,7 +31,7 @@ html[data-theme='dark'] {
   --surface-2-rgb: 34 37 43;   /* #22252B raised, inputs, menus */
   --surface-3-rgb: 44 48 56;   /* #2C3038 hover on raised */
 
-  /* Ink (text) — contrast on --bg */
+  /* Ink (text): contrast on --bg */
   --ink-rgb: 236 237 239;      /* #ECEDEF 16.4:1 headings, body */
   --ink-2-rgb: 196 199 205;    /* #C4C7CD 11.4:1 long body, secondary */
   --ink-3-rgb: 163 167 176;    /* #A3A7B0  7.9:1 labels, metadata */
@@ -95,7 +95,7 @@ html[data-theme='light'] {
 }
 
 :root {
-  /* Image fields — identical in both modes; text on them uses --on-field */
+  /* Image fields: identical in both modes; text on them uses --on-field */
   --field-cobalt: #1B2350;
   --field-teal: #0F3B3A;
   --field-plum: #33203F;

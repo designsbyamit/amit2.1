@@ -175,7 +175,7 @@ function Legend({ items }: { items: [string, string][] }) {
       {items.map(([t, d], i) => (
         <li key={t} className="flex gap-4 py-3 hairline-top">
           <span className="w-6 h-6 shrink-0 rounded-full grid place-items-center text-caption" style={{ background: '#1d2d3e', color: '#fff', boxShadow: '0 0 0 1px rgba(255,255,255,.4)' }}>{i + 1}</span>
-          <span className="text-body-sm text-ink-2"><span className="text-white">{t}</span> — {d}</span>
+          <span className="text-body-sm text-ink-2"><span className="text-white">{t}</span> - {d}</span>
         </li>
       ))}
     </ol>
@@ -281,8 +281,8 @@ const OPEN_GROUPS: [string, Sug[]][] = [
 export const TYPEAHEAD: Sug[] = [
   { t: 'Current status & end date of SOW IDs for CyberSecure Ltd', app: 'Fieldglass', icon: 'search' },
   { t: 'Current status of PO 4500012345 (ACME)', app: 'iSearch', icon: 'search' },
-  { t: 'Current trip — SFO → BLR, Jun 10–17', app: 'Concur', icon: 'search' },
-  { t: 'Current quarter goals — Product Design team', app: 'SuccessFactors', icon: 'search' },
+  { t: 'Current trip - SFO → BLR, Jun 10–17', app: 'Concur', icon: 'search' },
+  { t: 'Current quarter goals - Product Design team', app: 'SuccessFactors', icon: 'search' },
 ]
 const SUG_SEGS: Seg[] = [
   { key: 'open', label: 'Focus: recent & suggested', d: 2400 },

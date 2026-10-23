@@ -53,16 +53,16 @@ export const suggested: Sug[] = [
 const current: Sug[] = [
   { text: 'Current status & end date of SOW IDs for CyberSecure Ltd', app: 'fieldglass', route: 'sow' },
   { text: 'Current status of PO 4500012345 (ACME)', app: 's4', route: 'po' },
-  { text: 'Current trip — SFO → BLR, Jun 10–17', app: 'concur', route: 'travel' },
-  { text: 'Current quarter goals — Product Design team', app: 'sf', route: 'goals' },
+  { text: 'Current trip - SFO → BLR, Jun 10–17', app: 'concur', route: 'travel' },
+  { text: 'Current quarter goals - Product Design team', app: 'sf', route: 'goals' },
 ]
 const sets = {
-  sow: s('fieldglass', 'sow', ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs — CyberSecure Ltd', 'SOWs expiring in the next 30 days — CyberSecure Ltd', 'Pending items on SOW 1150 — Endpoint Protection Rollout', 'Workers assigned to SOW 1133 — Compliance Readiness']),
-  purchase: s('s4', 'po', ['PO 4500012345 — ACME Office Supplies', 'PR 7800098765 — IT Equipment Request', 'Contract CNT-2026-001 — Facilities Mgmt', 'Invoice INV-884521 — Accenture Services', 'GR 5500045321 — Electronics Delivery']),
-  pur: s('s4', 'po', ['Purchase Orders — Pending Approval (14)', 'Purchase Requisitions — New This Week (8)', 'Purchase Contract — IT Equipment 2026', 'Purchase Invoice — Due This Week (3)']),
+  sow: s('fieldglass', 'sow', ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs, CyberSecure Ltd', 'SOWs expiring in the next 30 days, CyberSecure Ltd', 'Pending items on SOW 1150, Endpoint Protection Rollout', 'Workers assigned to SOW 1133, Compliance Readiness']),
+  purchase: s('s4', 'po', ['PO 4500012345 - ACME Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Accenture Services', 'GR 5500045321 - Electronics Delivery']),
+  pur: s('s4', 'po', ['Purchase Orders, Pending Approval (14)', 'Purchase Requisitions, New This Week (8)', 'Purchase Contract, IT Equipment 2026', 'Purchase Invoice, Due This Week (3)']),
   flight: s('concur', 'travel', ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5–12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20–27']),
   laptop: s('ariba', 'buy', ['Difference: iPhone 17 vs iPhone 17 Pro', 'Difference: iPhone 17 vs iPhone 17 Air', 'Difference: iPhone 17 vs iPhone 16 Pro', 'Difference: iPhone 17 Pro vs Samsung S25 Ultra', 'Difference: iPhone 17 Pro vs iPhone 17 Pro Max']),
-  goals: s('sf', 'goals', ['Draft quarterly OKRs — Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress — Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates']),
+  goals: s('sf', 'goals', ['Draft quarterly OKRs, Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress, Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates']),
 }
 
 /** Same matching rules as the original prototype: plain-language prefixes decide which product answers. */
@@ -114,11 +114,11 @@ const po: Result = {
     { label: 'Level 2 approval', test: r => r.kv.some(([, v]) => v === 'Level 2') },
   ],
   rows: [
-    { title: 'Office Depot GmbH — Office supplies', chips: ['$42,500'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Due Date', '31-Jan-2026'], ['Approval', 'Approved']], status: { label: 'Overdue', tone: 'neg' }, level: lvl('High'), note: 'Overdue 8 days: follow up with the supplier', actions: [{ label: 'Follow Up', kind: 'primary', icon: 'mail', does: 'follow' }, pdf('PO_Details.pdf')], tabs: [1] },
-    { title: 'Lenovo Solutions AG — IT equipment', chips: ['$127,800'], ref: 'Requestor: A. Schneider • IT', desc: 'Purchase order with Vendor_Quote.pdf attached.', kv: [['Due Date', '03-Feb-2026'], ['Approval', 'Level 2']], status: { label: 'Pending Approval', tone: 'warn' }, level: lvl('Medium'), note: 'Largest pending amount', actions: [{ label: 'Approve', kind: 'primary', icon: 'check', does: 'approve' }, pdf('Vendor_Quote.pdf')], tabs: [2] },
-    { title: 'CleanPro Services — Facility services', chips: ['$18,200'], ref: 'Requestor: D. Park • Operations', desc: 'Service agreement with Service_Agreement.pdf attached.', kv: [['Due Date', '28-Jan-2026'], ['Approval', 'Level 1']], status: { label: 'Pending Approval', tone: 'warn' }, level: lvl('Medium'), note: 'Waiting on level-1 approval', actions: [{ label: 'Approve', kind: 'primary', icon: 'check', does: 'approve' }, pdf('Service_Agreement.pdf')], tabs: [2] },
-    { title: 'Northwind SE — Software services', chips: ['€45,000'], ref: 'Requestor: L. Kim • Finance', desc: 'Invoice draft with Invoice_Draft.pdf attached.', kv: [['Created', '28-Apr-2026'], ['Approval', 'Not required']], status: { label: 'Open', tone: 'info' }, level: lvl('Low'), note: 'On schedule', actions: [pdf('Invoice_Draft.pdf')], tabs: [] },
-    { title: 'Corporate Travel — Travel services', chips: ['€3,200'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Created', '20-Apr-2026'], ['Approval', 'Not required']], status: { label: 'Open', tone: 'info' }, level: lvl('Low'), note: 'On schedule', actions: [pdf('PO_Details.pdf')], tabs: [] },
+    { title: 'Office Depot GmbH - Office supplies', chips: ['$42,500'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Due Date', '31-Jan-2026'], ['Approval', 'Approved']], status: { label: 'Overdue', tone: 'neg' }, level: lvl('High'), note: 'Overdue 8 days: follow up with the supplier', actions: [{ label: 'Follow Up', kind: 'primary', icon: 'mail', does: 'follow' }, pdf('PO_Details.pdf')], tabs: [1] },
+    { title: 'Lenovo Solutions AG - IT equipment', chips: ['$127,800'], ref: 'Requestor: A. Schneider • IT', desc: 'Purchase order with Vendor_Quote.pdf attached.', kv: [['Due Date', '03-Feb-2026'], ['Approval', 'Level 2']], status: { label: 'Pending Approval', tone: 'warn' }, level: lvl('Medium'), note: 'Largest pending amount', actions: [{ label: 'Approve', kind: 'primary', icon: 'check', does: 'approve' }, pdf('Vendor_Quote.pdf')], tabs: [2] },
+    { title: 'CleanPro Services - Facility services', chips: ['$18,200'], ref: 'Requestor: D. Park • Operations', desc: 'Service agreement with Service_Agreement.pdf attached.', kv: [['Due Date', '28-Jan-2026'], ['Approval', 'Level 1']], status: { label: 'Pending Approval', tone: 'warn' }, level: lvl('Medium'), note: 'Waiting on level-1 approval', actions: [{ label: 'Approve', kind: 'primary', icon: 'check', does: 'approve' }, pdf('Service_Agreement.pdf')], tabs: [2] },
+    { title: 'Northwind SE - Software services', chips: ['€45,000'], ref: 'Requestor: L. Kim • Finance', desc: 'Invoice draft with Invoice_Draft.pdf attached.', kv: [['Created', '28-Apr-2026'], ['Approval', 'Not required']], status: { label: 'Open', tone: 'info' }, level: lvl('Low'), note: 'On schedule', actions: [pdf('Invoice_Draft.pdf')], tabs: [] },
+    { title: 'Corporate Travel - Travel services', chips: ['€3,200'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Created', '20-Apr-2026'], ['Approval', 'Not required']], status: { label: 'Open', tone: 'info' }, level: lvl('Low'), note: 'On schedule', actions: [pdf('PO_Details.pdf')], tabs: [] },
   ],
 }
 
@@ -137,10 +137,10 @@ const travel: Result = {
     { label: 'Business', test: r => r.chips.includes('Business') },
   ],
   rows: [
-    { title: 'Emirates EK237 — via Dubai', chips: ['$1,240', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Preferred route, with The Leela Palace as the preferred hotel.', kv: [['Duration', '21h 30m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, level: { label: 'Preferred Route', tone: 'pos' }, note: 'Recommended for this trip', actions: [book], tabs: [1] },
-    { title: 'Emirates — via Dubai', chips: ['$980', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Estimated cost: $1,247 per person.', kv: [['Duration', '23h 15m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Lowest fare', actions: [book], tabs: [1] },
-    { title: 'United Airlines — via Frankfurt', chips: ['$1,100', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Visa required; processing takes 5–7 days.', kv: [['Duration', '22h 50m'], ['Stops', '1 (FRA)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Apply for the visa first', actions: [book], tabs: [1] },
-    { title: 'Lufthansa — via Munich', chips: ['$1,850', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Fastest option on this route.', kv: [['Duration', '20h 15m'], ['Stops', '1 (MUC)']], status: { label: 'Exceeds Policy', tone: 'neg' }, level: { label: 'Approval Needed', tone: 'warn' }, note: 'Over the policy limit', actions: [{ label: 'Request Approval', kind: 'ghost', icon: 'send', does: 'request' }], tabs: [2] },
+    { title: 'Emirates EK237: via Dubai', chips: ['$1,240', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Preferred route, with The Leela Palace as the preferred hotel.', kv: [['Duration', '21h 30m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, level: { label: 'Preferred Route', tone: 'pos' }, note: 'Recommended for this trip', actions: [book], tabs: [1] },
+    { title: 'Emirates: via Dubai', chips: ['$980', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Estimated cost: $1,247 per person.', kv: [['Duration', '23h 15m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Lowest fare', actions: [book], tabs: [1] },
+    { title: 'United Airlines: via Frankfurt', chips: ['$1,100', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Visa required; processing takes 5–7 days.', kv: [['Duration', '22h 50m'], ['Stops', '1 (FRA)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Apply for the visa first', actions: [book], tabs: [1] },
+    { title: 'Lufthansa: via Munich', chips: ['$1,850', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Fastest option on this route.', kv: [['Duration', '20h 15m'], ['Stops', '1 (MUC)']], status: { label: 'Exceeds Policy', tone: 'neg' }, level: { label: 'Approval Needed', tone: 'warn' }, note: 'Over the policy limit', actions: [{ label: 'Request Approval', kind: 'ghost', icon: 'send', does: 'request' }], tabs: [2] },
   ],
 }
 
@@ -160,8 +160,8 @@ const buy: Result = {
   ],
   rows: [
     { title: 'Apple iPhone 17 Pro', chips: ['$1,199 / unit'], ref: 'Supplier: CDW • Apple Enterprise 2026', desc: 'Intel Core i7-1365U · 16 GB DDR5 · 512 GB NVMe SSD · 3 years on-site.', kv: [['Display', '14" 2.8K OLED'], ['Weight', '1.12 kg'], ['Lead Time', '2–3 days']], status: { label: 'On Contract', tone: 'pos' }, level: { label: 'Preferred', tone: 'pos' }, note: 'Lightest of the three', actions: [req(true)], tabs: [1] },
-    { title: 'Dell Latitude 5540', chips: ['Dell'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB SSD · 3 years ProSupport.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.78 kg'], ['Lead Time', '—']], status: { label: 'Catalog', tone: 'info' }, note: 'Heavier, larger display', actions: [req(false)], tabs: [2] },
-    { title: 'HP EliteBook 850', chips: ['HP'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB PCIe SSD · 3 years next-day.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.79 kg'], ['Lead Time', '—']], status: { label: 'Catalog', tone: 'info' }, note: 'Next-day warranty service', actions: [req(false)], tabs: [2] },
+    { title: 'Dell Latitude 5540', chips: ['Dell'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB SSD · 3 years ProSupport.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.78 kg'], ['Lead Time', '-']], status: { label: 'Catalog', tone: 'info' }, note: 'Heavier, larger display', actions: [req(false)], tabs: [2] },
+    { title: 'HP EliteBook 850', chips: ['HP'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB PCIe SSD · 3 years next-day.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.79 kg'], ['Lead Time', '-']], status: { label: 'Catalog', tone: 'info' }, note: 'Next-day warranty service', actions: [req(false)], tabs: [2] },
   ],
 }
 
@@ -235,16 +235,16 @@ export const results: Record<RouteKey, Result> = { po, travel, buy, goals, sow }
 /* ---------- App screens reached from a result ---------- */
 
 export const booking = {
-  title: 'Book Flight — Palo Alto to Bangalore', crumbs: ['Travel', 'SFO to Bangalore', 'Select Flight', 'Review'],
-  flight: 'EK237 — San Francisco (SFO) → Bangalore (BLR)',
-  details: [['Airline', 'Emirates'], ['Departure', "08:00 — San Francisco Int'l (SFO)"], ['Arrival', "23:30+1 — Kempegowda Int'l Airport (BLR)"], ['Class', 'Economy'], ['Fare', '$1,240.00']] as [string, string][],
+  title: 'Book Flight - Palo Alto to Bangalore', crumbs: ['Travel', 'SFO to Bangalore', 'Select Flight', 'Review'],
+  flight: 'EK237 - San Francisco (SFO) → Bangalore (BLR)',
+  details: [['Airline', 'Emirates'], ['Departure', "08:00, San Francisco Int'l (SFO)"], ['Arrival', "23:30+1, Kempegowda Int'l Airport (BLR)"], ['Class', 'Economy'], ['Fare', '$1,240.00']] as [string, string][],
   summary: [['Traveller', 'Maria Schmidt'], ['Company Code', '1000'], ['Cost Center', 'IT-0450'], ['Trip Purpose', 'Business Meeting'], ['Approval Required', 'No (< €400)']] as [string, string][],
   total: '$1,240.00',
 }
 export const ariba = {
-  title: 'Procurement — iPhone 17 Pro', crumbs: ['Catalog', 'IT Equipment', 'Mobile Devices', 'iPhone 17 Pro'],
-  product: 'Apple iPhone 17 Pro — 256GB Natural Titanium', unit: 1199, qty: 50,
-  details: [['Supplier', 'CDW Enterprise Technology Solutions'], ['SKU', 'MYPG3LL/A — Natural Titanium 256GB'], ['Lead Time', '2–3 business days'], ['Contract', 'Apple Enterprise 2026 — CDW Preferred Contract']] as [string, string][],
+  title: 'Procurement: iPhone 17 Pro', crumbs: ['Catalog', 'IT Equipment', 'Mobile Devices', 'iPhone 17 Pro'],
+  product: 'Apple iPhone 17 Pro - 256GB Natural Titanium', unit: 1199, qty: 50,
+  details: [['Supplier', 'CDW Enterprise Technology Solutions'], ['SKU', 'MYPG3LL/A - Natural Titanium 256GB'], ['Lead Time', '2–3 business days'], ['Contract', 'Apple Enterprise 2026 - CDW Preferred Contract']] as [string, string][],
 }
 export const goalDraft = {
   name: 'Deliver Q2 Product Roadmap', description: 'Complete all 3 milestones by end of June 2026 with full stakeholder sign-off',

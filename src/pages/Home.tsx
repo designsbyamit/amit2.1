@@ -30,10 +30,10 @@ export default function Home() {
       {/* 3. Latest: a leadership practice, a workshop and a piece of writing */}
       <Latest />
 
-      {/* 3. Scale — grid blocks */}
+      {/* 3. Scale: grid blocks */}
       <ImpactSnapshot />
 
-      {/* 3. Point of view — single paragraph */}
+      {/* 3. Point of view: single paragraph */}
       <section className="relative">
         
         <div className="relative z-10 container-site py-24 md:py-36">

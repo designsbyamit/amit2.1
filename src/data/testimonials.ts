@@ -82,7 +82,7 @@ export const clientTestimonials: Testimonial[] = [
     source: 'Client',
   },
   {
-    quote: 'Right from day one, Amit established himself as an expert who understood the Customer Experience journey. This application is external client-facing — 70k+ customers — and customer experience is critical to the company brand, customer retention, and pivot to digital experience.',
+    quote: 'Right from day one, Amit established himself as an expert who understood the Customer Experience journey. This application is external client-facing, 70k+ customers, and customer experience is critical to the company brand, customer retention, and pivot to digital experience.',
     name: 'Mitesh Shah',
     role: 'Associate Director, Accenture CMT, US',
     source: 'Client',

@@ -40,7 +40,7 @@ function CommunityCallout() {
         <motion.div className="col-span-4 md:col-span-8" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <Stat value="250+" label="Designers in SAP Design Hub India" />
           <p className="text-body text-ink-2 max-w-xl mt-6 mb-8">
-            Led by Amit since February 2025. Monthly events, peer critique, and a growing culture of design excellence inside the enterprise. A community that revealed what organisations suppress — and what happens when you give designers a room of their own.
+            Led by Amit since February 2025. Monthly events, peer critique, and a growing culture of design excellence inside the enterprise. A community that revealed what organisations suppress, and what happens when you give designers a room of their own.
           </p>
           <Button to="/community" variant="tertiary" arrow>Explore the community</Button>
         </motion.div>
@@ -69,7 +69,7 @@ export default function LeadershipPage() {
       <PageHeader
         label="Leadership"
         title="Design is a leadership practice."
-        subtitle="The career arc, the philosophy, and what I've learned about making design matter inside large organizations — where influence is earned, not assigned."
+        subtitle="The career arc, the philosophy, and what I've learned about making design matter inside large organizations, where influence is earned, not assigned."
         image={heroImg} imagePosition="100% 62%"
         imageAlt="Amit Kumar Tiwari on stage"
       />

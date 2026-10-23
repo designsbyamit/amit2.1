@@ -11,10 +11,10 @@ const CHAPTERS = [
     number: '01',
     title: 'Intent Design',
     summary: 'Designing for what users mean, not what they say. The foundation of every conversational experience.',
-    body: 'Intent design precedes interface design. Before you design a single message, you need to map the full universe of what users are trying to accomplish — not just the task, but the context, the emotional state, and the constraints they\'re operating within. Most conversational AI fails because it was designed to respond to inputs, not to understand intentions.',
+    body: 'Intent design precedes interface design. Before you design a single message, you need to map the full universe of what users are trying to accomplish, not just the task, but the context, the emotional state, and the constraints they\'re operating within. Most conversational AI fails because it was designed to respond to inputs, not to understand intentions.',
     principles: [
       'Define intent categories before designing dialog flows',
-      'Map the gap between what users say and what they mean — this gap is your design opportunity',
+      'Map the gap between what users say and what they mean: this gap is your design opportunity',
       'Build intent models collaboratively with the engineers training the AI model',
       'Test with real utterances from real users, not hypothetical ones from a workshop',
     ],
@@ -24,11 +24,11 @@ const CHAPTERS = [
     number: '02',
     title: 'Prompt & Response Systems',
     summary: 'The language layer. Response architecture, tone calibration, and content strategy for conversational products.',
-    body: 'Most conversational AI fails on language before it fails on capability. The model can answer the question — but the response is formatted like a database output, not a conversation. Response systems design is the discipline of defining how information is structured, sequenced, and voiced — across every interaction type, at every emotional register.',
+    body: 'Most conversational AI fails on language before it fails on capability. The model can answer the question, but the response is formatted like a database output, not a conversation. Response systems design is the discipline of defining how information is structured, sequenced, and voiced: across every interaction type, at every emotional register.',
     principles: [
       'Define response architecture by interaction type, not by topic',
       'Informational, transactional, clarifying, and escalating responses each have a different optimal structure',
-      'Failure states deserve as much design attention as success states — more, actually',
+      'Failure states deserve as much design attention as success states: more, actually',
       'Tone calibration is a design decision, not a copywriting afterthought',
     ],
   },
@@ -37,10 +37,10 @@ const CHAPTERS = [
     number: '03',
     title: 'Multi-Turn Flows',
     summary: 'Conversations that span multiple exchanges. Context retention, repair strategies, and flow recovery.',
-    body: 'A single-turn chatbot is a FAQ engine. A conversational AI product is something that can hold context, remember what was established earlier in the session, and recover gracefully when the conversation goes off-track. Multi-turn design is fundamentally about memory and repair — knowing what to carry forward and knowing what to do when things break.',
+    body: 'A single-turn chatbot is a FAQ engine. A conversational AI product is something that can hold context, remember what was established earlier in the session, and recover gracefully when the conversation goes off-track. Multi-turn design is fundamentally about memory and repair: knowing what to carry forward and knowing what to do when things break.',
     principles: [
       'Context window design: what does the system remember and for how long?',
-      'Design explicit repair strategies — what happens when the system misunderstands?',
+      'Design explicit repair strategies: what happens when the system misunderstands?',
       'Progressive disclosure applies to conversations too: don\'t surface all capabilities at once',
       'Session continuity across return visits is a retention decision, not just a UX convenience',
     ],
@@ -50,11 +50,11 @@ const CHAPTERS = [
     number: '04',
     title: 'Trust & Safety',
     summary: 'The hardest problem in conversational AI design. How to make systems trustworthy without making them useless.',
-    body: 'Trust in conversational AI is not built by getting everything right. It\'s built by being honest about uncertainty, recovering gracefully from errors, and never pretending to know more than the system knows. Safety is not a constraint on top of the design — it\'s a design material. Every trust decision is a design decision.',
+    body: 'Trust in conversational AI is not built by getting everything right. It\'s built by being honest about uncertainty, recovering gracefully from errors, and never pretending to know more than the system knows. Safety is not a constraint on top of the design: it\'s a design material. Every trust decision is a design decision.',
     principles: [
       'Confidence surfacing: high-confidence and low-confidence responses should look different',
       'Design the "I don\'t know" response with as much care as the answer',
-      'Source attribution builds trust — anonymous information is unverifiable information',
+      'Source attribution builds trust: anonymous information is unverifiable information',
       'Safety guardrails should be designed to be invisible when not triggered, and clear when they are',
     ],
   },
@@ -63,12 +63,12 @@ const CHAPTERS = [
     number: '05',
     title: 'The Future of Conversational UX',
     summary: 'Where the discipline is going. Agentic systems, multimodal conversations, and the disappearing interface.',
-    body: 'Conversational UX is not a feature category — it\'s becoming the primary interaction model for intelligent software. The next frontier is agentic: systems that don\'t just respond to requests but proactively act, escalate, and operate on behalf of users. The interface is disappearing. The relationship between human intent and system action is becoming the product.',
+    body: 'Conversational UX is not a feature category: it\'s becoming the primary interaction model for intelligent software. The next frontier is agentic: systems that don\'t just respond to requests but proactively act, escalate, and operate on behalf of users. The interface is disappearing. The relationship between human intent and system action is becoming the product.',
     principles: [
       'Agentic systems require oversight design, not just interaction design',
       'Multimodal conversations (voice, text, image) require consistent intent models across modalities',
-      'The collapse of the screen as primary canvas is not a threat to UX designers — it\'s the biggest opportunity',
-      'Measure conversational experiences differently: task completion, containment rate, and trust signals — not page views',
+      'The collapse of the screen as primary canvas is not a threat to UX designers: it\'s the biggest opportunity',
+      'Measure conversational experiences differently: task completion, containment rate, and trust signals, not page views',
     ],
   },
 ]
@@ -76,8 +76,8 @@ const CHAPTERS = [
 const METRICS = [
   { name: 'Task Completion Rate', definition: 'Percentage of user intents successfully resolved without human escalation.', target: '>75% for primary flows', formula: 'Resolved intents / Total intents × 100' },
   { name: 'Containment Rate', definition: 'Percentage of conversations handled entirely by the AI without escalation to a human agent.', target: '>60% is strong for enterprise', formula: 'AI-only conversations / Total conversations × 100' },
-  { name: 'Resolution Quality Score', definition: 'User-rated quality of responses — combining accuracy, tone, and helpfulness.', target: '>4.0/5.0 in usability testing', formula: 'Post-conversation survey (5-point scale)' },
-  { name: 'Escalation Rate', definition: 'Percentage of conversations that require human handoff — a signal of AI capability gaps.', target: '<25% for mature systems', formula: 'Human-escalated conversations / Total × 100' },
+  { name: 'Resolution Quality Score', definition: 'User-rated quality of responses: combining accuracy, tone, and helpfulness.', target: '>4.0/5.0 in usability testing', formula: 'Post-conversation survey (5-point scale)' },
+  { name: 'Escalation Rate', definition: 'Percentage of conversations that require human handoff: a signal of AI capability gaps.', target: '<25% for mature systems', formula: 'Human-escalated conversations / Total × 100' },
   { name: 'Repair Success Rate', definition: 'When the system misunderstands, how often does the repair strategy work?', target: '>80% recovery on first repair', formula: 'Successful repairs / Triggered repairs × 100' },
   { name: 'Trust Score', definition: 'Composite measure of user confidence in system accuracy, honesty, and reliability.', target: '>7/10 after 3 sessions', formula: 'Multi-item trust scale (post-session)' },
 ]
@@ -109,7 +109,7 @@ export default function ConversationExperiencePage() {
               style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
               A practical guide for designing conversational, assistant-driven, and agentic experiences.
-              Built from three years of production conversational AI work — not from conference slides.
+              Built from three years of production conversational AI work, not from conference slides.
             </motion.p>
             <motion.div className="space-y-3"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}>
@@ -134,7 +134,7 @@ export default function ConversationExperiencePage() {
               <h2 className="text-heading text-white">Five chapters. One discipline.</h2>
             </div>
             <p className="text-body text-ink-3 self-end">
-              Each chapter covers a distinct domain of conversational design — from intent through to the future of agentic systems.
+              Each chapter covers a distinct domain of conversational design, from intent through to the future of agentic systems.
               Click to expand principles, tools, and guidance.
             </p>
           </div>
@@ -216,7 +216,7 @@ export default function ConversationExperiencePage() {
               <h2 className="text-heading text-white">Metrics that actually measure conversational quality.</h2>
             </div>
             <p className="text-body text-ink-3 self-end">
-              Traditional UX metrics don't map to conversational experiences. These six metrics are what actually matter — drawn from the Engaze engagement that achieved 90% CSAT.
+              Traditional UX metrics don't map to conversational experiences. These six metrics are what actually matter: drawn from the Engaze engagement that achieved 90% CSAT.
             </p>
           </div>
 
@@ -256,7 +256,7 @@ export default function ConversationExperiencePage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-[2fr_1fr] gap-12 items-end">
           <div>
             <p className="text-overline text-ink-3 mb-4">Full Playbook</p>
-            <h2 className="text-heading text-white mb-4">The complete guide — including templates, measurement frameworks, and case study breakdowns.</h2>
+            <h2 className="text-heading text-white mb-4">The complete guide: including templates, measurement frameworks, and case study breakdowns.</h2>
             <p className="text-body text-ink-3">Covers intent design, prompt and response systems, multi-turn flows, trust and safety, and agentic UX. Includes the full Engaze design methodology.</p>
           </div>
           <div className="flex flex-col gap-4">

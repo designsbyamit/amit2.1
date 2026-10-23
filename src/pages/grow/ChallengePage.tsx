@@ -41,7 +41,7 @@ export default function ChallengePage() {
             <div>
               <p className="text-overline text-ink-3">The constraints</p>
               <ul className="mt-5 flex flex-col gap-3">
-                {c.constraints.map((t, i) => <li key={i} className="flex gap-3 text-body-sm text-ink-2"><span aria-hidden className="text-ink-3">&mdash;</span>{t}</li>)}
+                {c.constraints.map((t, i) => <li key={i} className="flex gap-3 text-body-sm text-ink-2"><span aria-hidden className="text-ink-3">-</span>{t}</li>)}
               </ul>
             </div>
           </div>

@@ -168,8 +168,8 @@ export const checklist = [
 
 export const template = `CASE STUDY TEMPLATE
 
-TITLE — what the project was, in plain words
-ONE-LINE SUMMARY — what changed, and for whom
+TITLE: what the project was, in plain words
+ONE-LINE SUMMARY: what changed, and for whom
 
 CONTEXT (2–3 sentences)
 Who it was for, what the business needed, and why it was hard.

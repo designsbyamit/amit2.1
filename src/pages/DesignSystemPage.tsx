@@ -114,7 +114,7 @@ function SwatchTable({ rows }: { rows: Swatch[] }) {
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.dark }} />{r.dark}</span></td>
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.light }} />{r.light}</span></td>
               <td>{r.role}</td>
-              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, '#0F1013').toFixed(1)} · ${grade(ratio(r.dark, '#0F1013'))} / ${ratio(r.light, '#F5F6F7').toFixed(1)} · ${grade(ratio(r.light, '#F5F6F7'))}` : '—'}</td>
+              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, '#0F1013').toFixed(1)} · ${grade(ratio(r.dark, '#0F1013'))} / ${ratio(r.light, '#F5F6F7').toFixed(1)} · ${grade(ratio(r.light, '#F5F6F7'))}` : '-'}</td>
             </tr>
           ))}
         </tbody>

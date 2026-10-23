@@ -486,7 +486,7 @@ function Worklist({ persona, status, validated, onOpen, onOther }: { persona: Pe
             <tr className="is-live" onClick={onOpen}>
               <td><span className="scm-sup-cell"><span className="scm-sup-mini">HC</span>{order.supplier}</span></td><td>{order.po}</td><td>{order.oc}</td><td>{order.value}</td><td>Today, 07:42</td>
               {isOps ? <td><span className="scm-confcell"><i style={{ width: '93%' }} />93%</span></td>
-                : <><td>{validated ? (persona === 'adrian' ? '3 yours, 2 Rajan’s' : '2') : '—'}</td><td>{validated ? (status.tone === 'done' && status.label === 'Confirmed' ? <span className="scm-sev sev-low">Resolved</span> : <span className="scm-sev sev-high">High</span>) : <span className="scm-muted">Not rated</span>}</td></>}
+                : <><td>{validated ? (persona === 'adrian' ? '3 yours, 2 Rajan’s' : '2') : '-'}</td><td>{validated ? (status.tone === 'done' && status.label === 'Confirmed' ? <span className="scm-sev sev-low">Resolved</span> : <span className="scm-sev sev-high">High</span>) : <span className="scm-muted">Not rated</span>}</td></>}
               <td><span className={`scm-status is-${status.tone}`}>{status.label}</span></td>
               <td><button className="scm-btn is-sm" onClick={e => { e.stopPropagation(); onOpen() }}>Open<Icon name="arrow" size={14} /></button></td>
             </tr>

@@ -53,7 +53,7 @@ function snapshot(r: (typeof routes)[number]) {
     parts.push('<h2>Nine tenets</h2><ol>' + tenets.map(t => `<li><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></li>`).join('') + '</ol>')
     parts.push('<h2>Worksheets</h2><ul>' + [...hiringDocs, ...experienceDocs].map(d => `<li><a href="${docHref(d.slug)}">${esc(d.title)}</a>: ${esc(d.summary)}</li>`).join('') + '</ul>')
   }
-  if (r.path === '/' || r.path === '/about') parts.push('<h2>Career</h2><ul>' + timeline.map((t: any) => `<li>${esc(t.role)} — ${esc(t.org)} (${esc(t.year)})</li>`).join('') + '</ul>')
+  if (r.path === '/' || r.path === '/about') parts.push('<h2>Career</h2><ul>' + timeline.map((t: any) => `<li>${esc(t.role)} - ${esc(t.org)} (${esc(t.year)})</li>`).join('') + '</ul>')
   if (r.path === '/' || r.path === '/craft') parts.push('<h2>Selected work</h2><ul>' + playbacks.map(p => `<li><a href="/craft/${p.id}">${esc(p.headline)}</a></li>`).join('') + '</ul>')
   return `<main>${parts.join('')}</main>`
 }

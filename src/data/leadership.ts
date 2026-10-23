@@ -23,9 +23,9 @@ export const stories: LeadershipStory[] = [
     context: 'DevOps plugin marketplace · design, engineering and product',
     title: 'The moment design almost lost its seat at the table',
     cues: [
-      'What was the moment you realised design was about to be removed or sidelined — and what was at stake?',
+      'What was the moment you realised design was about to be removed or sidelined, and what was at stake?',
       'How did you make the case? What did you say, and to whom?',
-      'What changed in the room — and what changed in you after that moment?',
+      'What changed in the room, and what changed in you after that moment?',
     ],
     narrative: [
       'A few years ago, I was asked to design a marketplace for DevOps professionals: a place where they could discover plugins and extensions and use them to deploy applications to the cloud.',
@@ -62,7 +62,7 @@ export const stories: LeadershipStory[] = [
     context: 'From first hire to leading designers',
     title: 'What building my first design team actually taught me',
     cues: [
-      'What did you get wrong early — about hiring, onboarding, or what a team actually needs to do good work?',
+      'What did you get wrong early: about hiring, onboarding, or what a team actually needs to do good work?',
       'Was there a specific moment or conversation that made you realise the gap between leading output and leading people?',
       'What would you tell a first-time design manager today that no one told you?',
     ],
@@ -104,7 +104,7 @@ export const stories: LeadershipStory[] = [
     context: 'Design maturity and trust in large organisations',
     title: 'How I learned to influence without authority',
     cues: [
-      'Describe a situation where you had to change how an organisation thought about design — without having the title or the mandate.',
+      'Describe a situation where you had to change how an organisation thought about design: without having the title or the mandate.',
       'What did you try that didn\'t work? What finally did?',
       'What does "earning trust" actually look like in practice inside a large enterprise?',
     ],
@@ -148,7 +148,7 @@ export const stories: LeadershipStory[] = [
     title: 'Leading SAP Design Hub India',
     cues: [
       'What did you inherit when you became Lead of SAP Design Hub India in February 2025, and what did you decide to change first?',
-      'What surprised you most about what the community revealed — about designers, or about organisations?',
+      'What surprised you most about what the community revealed: about designers, or about organisations?',
       'What does it mean to build design culture from inside a large enterprise rather than starting fresh?',
       'As Lead Curator of Impulse India, what do you want a designer to walk away with?',
     ],

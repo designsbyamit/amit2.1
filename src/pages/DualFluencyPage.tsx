@@ -15,7 +15,7 @@ const JOURNEY = [
     time: '09:00',
     label: 'Opening',
     title: 'Why business language is the designer\'s unlock',
-    summary: 'Most designers speak one language fluently. This session names the gap — and makes the cost of the gap visible.',
+    summary: 'Most designers speak one language fluently. This session names the gap, and makes the cost of the gap visible.',
     learned: ['The difference between how designers describe impact vs how business leaders measure it', 'Why craft alone has never earned a seat at the strategy table', 'The specific moments where designers lose influence inside organisations'],
     framework: 'The Translation Gap',
     takeaway: 'Influence isn\'t earned through craft. It\'s earned through translation.',
@@ -49,7 +49,7 @@ const JOURNEY = [
     label: 'Application',
     title: 'Speaking to different stakeholders',
     summary: 'A CFO, a CPO, and an engineering lead all care about different things. Dual Fluency means knowing which language each room requires.',
-    learned: ['What a CFO actually cares about (and it isn\'t your persona work)', 'How PMs translate user needs into roadmap — and how to use that', 'Why engineers push back on design and how business framing changes the conversation'],
+    learned: ['What a CFO actually cares about (and it isn\'t your persona work)', 'How PMs translate user needs into roadmap, and how to use that', 'Why engineers push back on design and how business framing changes the conversation'],
     framework: 'The Stakeholder Translation Map',
     takeaway: 'The same design decision requires four different narratives depending on who is in the room.',
     mistake: 'Using the same pitch deck for every audience.',
@@ -73,7 +73,7 @@ const JOURNEY = [
     summary: 'How to keep this alive after the workshop. Habits, tools, and the one question to ask yourself before every stakeholder meeting.',
     learned: ['The one question that triggers Dual Fluency thinking', 'How to build translation habit into your existing design process', 'What to read, study, and practise next'],
     framework: 'The Daily Translation Practice',
-    takeaway: '"How does this create measurable business value?" — ask it before every design decision.',
+    takeaway: '"How does this create measurable business value?": ask it before every design decision.',
     mistake: 'Treating Dual Fluency as a presentation skill rather than a thinking skill.',
   },
 ]
@@ -87,7 +87,7 @@ const KPI_CHAIN = [
       { name: 'Revenue', definition: 'Total income generated from products or services.', formula: 'Price × Volume', influences: ['Conversion Rate', 'Average Order Value', 'Customer Lifetime Value'] },
       { name: 'Retention', definition: 'Percentage of customers who continue using the product over time.', formula: '(End users − New users) / Start users × 100', influences: ['DAU/MAU Ratio', 'Churn Rate', 'Engagement Depth'] },
       { name: 'CAC', definition: 'Cost to acquire one new customer.', formula: 'Total acquisition spend / New customers', influences: ['Onboarding Completion', 'Time to First Value', 'Activation Rate'] },
-      { name: 'NPS', definition: 'Net Promoter Score — likelihood of recommendation.', formula: '% Promoters − % Detractors', influences: ['Task Success Rate', 'Error Rate', 'Support Contact Rate'] },
+      { name: 'NPS', definition: 'Net Promoter Score: likelihood of recommendation.', formula: '% Promoters − % Detractors', influences: ['Task Success Rate', 'Error Rate', 'Support Contact Rate'] },
     ],
   },
   {
@@ -97,7 +97,7 @@ const KPI_CHAIN = [
     items: [
       { name: 'Task Success Rate', definition: 'Percentage of users completing a defined task successfully.', formula: 'Successful completions / Attempts × 100', influences: ['Conversion Rate', 'Support Cost'] },
       { name: 'Time on Task', definition: 'How long it takes a user to complete a specific task.', formula: 'Measured in seconds/minutes per user', influences: ['Efficiency gains', 'Support Contact Rate'] },
-      { name: 'DAU/MAU Ratio', definition: 'Daily active users divided by monthly active users — stickiness.', formula: 'DAU / MAU', influences: ['Retention', 'Revenue per user'] },
+      { name: 'DAU/MAU Ratio', definition: 'Daily active users divided by monthly active users: stickiness.', formula: 'DAU / MAU', influences: ['Retention', 'Revenue per user'] },
       { name: 'Error Rate', definition: 'Frequency of errors users encounter per session.', formula: 'Errors / Total interactions × 100', influences: ['NPS', 'Support CAC'] },
     ],
   },
@@ -115,12 +115,12 @@ const KPI_CHAIN = [
 ]
 
 const GLOSSARY = [
-  { term: 'Business Case', simple: 'The argument for why something is worth doing — in numbers.', design: 'The document a designer should be able to write before any project begins. Not a brief. A justification.', example: '"This feature will reduce support contacts by 30%, saving £200K annually."', confusion: 'A business case is not a brief. A brief describes what to make. A business case explains why it\'s worth making.', related: ['ROI', 'KPI', 'OKR'] },
-  { term: 'ROI', simple: 'Return on Investment — what you get back relative to what you put in.', design: 'For design: the measurable business outcome attributable to a design decision, relative to the cost of making it.', example: '"Redesigning the onboarding flow cost £40K and increased activation by 15% — a £200K annual revenue impact."', confusion: 'ROI is not the same as value. Value is broader. ROI is specifically financial return on a specific investment.', related: ['Business Case', 'Conversion Rate', 'CAC'] },
-  { term: 'OKR', simple: 'Objectives and Key Results — a goal-setting framework used by most tech companies.', design: 'The system most product teams use to prioritise work. Understanding OKRs tells you exactly what your PM is being measured on — which tells you which design work will get resourced.', example: '"Objective: Grow revenue. KR: Increase trial conversion from 8% to 12% by Q3."', confusion: 'OKRs describe outcomes, not activities. "Redesign the dashboard" is not a KR. "Increase dashboard engagement by 40%" is.', related: ['KPI', 'Business Case', 'Product Strategy'] },
-  { term: 'Conversion Rate', simple: 'Percentage of users who take a desired action.', design: 'The metric most directly influenced by design quality at the interaction layer. Signup conversion, checkout conversion, activation conversion — each maps to a specific design decision.', example: '"12% of trial users convert to paid — improving this by 2pp would be worth £1.2M annually at current volume."', confusion: 'Conversion rate measures the right action, not just any action. Define the action precisely before measuring.', related: ['Funnel', 'Activation', 'CAC'] },
-  { term: 'ARPU', simple: 'Average Revenue Per User — how much each user generates on average.', design: 'The metric that explains why ancillary features matter. Improving ARPU often requires discovering and surfacing value users didn\'t know existed.', example: '"Moving ancillary services earlier in the booking flow increased ARPU from £42 to £63."', confusion: 'ARPU is an average — outliers distort it. High ARPU from a few power users can mask low monetisation of the majority.', related: ['Revenue', 'LTV', 'Upsell Rate'] },
-  { term: 'Churn', simple: 'The rate at which customers stop using a product.', design: 'The metric that reveals where the product fails to deliver on its promise. High churn usually indicates a gap between what was promised and what was delivered — often a design and communication problem.', example: '"Monthly churn dropped from 8% to 5% after redesigning the empty state experience for new users."', confusion: 'Not all churn is equal. Involuntary churn (payment failure) is different from voluntary churn (chose to leave). Design can address both but in different ways.', related: ['Retention', 'LTV', 'Onboarding'] },
+  { term: 'Business Case', simple: 'The argument for why something is worth doing: in numbers.', design: 'The document a designer should be able to write before any project begins. Not a brief. A justification.', example: '"This feature will reduce support contacts by 30%, saving £200K annually."', confusion: 'A business case is not a brief. A brief describes what to make. A business case explains why it\'s worth making.', related: ['ROI', 'KPI', 'OKR'] },
+  { term: 'ROI', simple: 'Return on Investment: what you get back relative to what you put in.', design: 'For design: the measurable business outcome attributable to a design decision, relative to the cost of making it.', example: '"Redesigning the onboarding flow cost £40K and increased activation by 15%: a £200K annual revenue impact."', confusion: 'ROI is not the same as value. Value is broader. ROI is specifically financial return on a specific investment.', related: ['Business Case', 'Conversion Rate', 'CAC'] },
+  { term: 'OKR', simple: 'Objectives and Key Results: a goal-setting framework used by most tech companies.', design: 'The system most product teams use to prioritise work. Understanding OKRs tells you exactly what your PM is being measured on, which tells you which design work will get resourced.', example: '"Objective: Grow revenue. KR: Increase trial conversion from 8% to 12% by Q3."', confusion: 'OKRs describe outcomes, not activities. "Redesign the dashboard" is not a KR. "Increase dashboard engagement by 40%" is.', related: ['KPI', 'Business Case', 'Product Strategy'] },
+  { term: 'Conversion Rate', simple: 'Percentage of users who take a desired action.', design: 'The metric most directly influenced by design quality at the interaction layer. Signup conversion, checkout conversion, activation conversion, each maps to a specific design decision.', example: '"12% of trial users convert to paid, improving this by 2pp would be worth £1.2M annually at current volume."', confusion: 'Conversion rate measures the right action, not just any action. Define the action precisely before measuring.', related: ['Funnel', 'Activation', 'CAC'] },
+  { term: 'ARPU', simple: 'Average Revenue Per User: how much each user generates on average.', design: 'The metric that explains why ancillary features matter. Improving ARPU often requires discovering and surfacing value users didn\'t know existed.', example: '"Moving ancillary services earlier in the booking flow increased ARPU from £42 to £63."', confusion: 'ARPU is an average: outliers distort it. High ARPU from a few power users can mask low monetisation of the majority.', related: ['Revenue', 'LTV', 'Upsell Rate'] },
+  { term: 'Churn', simple: 'The rate at which customers stop using a product.', design: 'The metric that reveals where the product fails to deliver on its promise. High churn usually indicates a gap between what was promised and what was delivered: often a design and communication problem.', example: '"Monthly churn dropped from 8% to 5% after redesigning the empty state experience for new users."', confusion: 'Not all churn is equal. Involuntary churn (payment failure) is different from voluntary churn (chose to leave). Design can address both but in different ways.', related: ['Retention', 'LTV', 'Onboarding'] },
 ]
 
 // ── Components ─────────────────────────────────────────────────────────────────

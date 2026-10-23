@@ -40,7 +40,7 @@ export function resolve(beats: Beat[]): Beat[] {
   })
 }
 
-const SUG = ['PO 4500012345 — ACME Office Supplies', 'PR 7800098765 — IT Equipment Request', 'Contract CNT-2026-001 — Facilities Mgmt', 'Invoice INV-884521 — Accenture Services', 'GR 5500045321 — Electronics Delivery']
+const SUG = ['PO 4500012345 - ACME Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Accenture Services', 'GR 5500045321 - Electronics Delivery']
 const dd = (typed: string, pick?: number) => ({ focus: true, lit: true, typed, dd: true, ddHead: 'SUGGESTIONS', ddItems: SUG, pick })
 
 export const timelines: Record<string, Timeline> = {

@@ -19,7 +19,7 @@ interface Resource {
   outcomes: string[]
   tags: string[]
   filterTags: string[]
-  // Unsplash image ID — meaning mapped per resource
+  // Unsplash image ID: meaning mapped per resource
   imageId: string
   imageAlt: string
   internalUrl?: string
@@ -61,11 +61,11 @@ const resources: Resource[] = [
     topics: ['AI-native', 'agentic', 'frameworks'],
     title: 'AI-Native Frameworks',
     type: ['Interactive Playbook', 'Framework Library'],
-    description: 'The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks — Context Engineering through Prototype & Validation — each producing a tangible artifact.',
+    description: 'The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks, Context Engineering through Prototype & Validation, each producing a tangible artifact.',
     outcomes: ['End-to-end AI-native methodology', 'Five reusable frameworks', 'Tool orchestration guide', 'Downloadable canvases & templates'],
     tags: ['AI', 'UX', 'Frameworks', 'Agentic Design'],
     filterTags: ['AI', 'UX'],
-    // Particle flows and semantic clusters — AI reasoning and retrieval
+    // Particle flows and semantic clusters - AI reasoning and retrieval
     imageId: 'photo-1639322537504-6427a16b0a28',
     imageAlt: 'Abstract particle network',
     internalUrl: '/resources/ai-native-patterns',
@@ -85,7 +85,7 @@ const resources: Resource[] = [
     outcomes: ['Business fluency', 'Strategic influence', 'Better stakeholder communication', 'Enterprise design maturity'],
     tags: ['Business', 'Strategy', 'Leadership', 'Design'],
     filterTags: ['Leadership', 'Strategy', 'Workshops'],
-    // Soft glass gradients — intelligence and explainability
+    // Soft glass gradients: intelligence and explainability
     imageId: 'photo-1518531933037-91b2f5f229cc',
     imageAlt: 'Abstract light geometry',
     internalUrl: '/resources/dual-fluency',
@@ -105,7 +105,7 @@ const resources: Resource[] = [
     outcomes: ['Conversation design', 'Prompt design', 'Interaction flows', 'Trust and transparency'],
     tags: ['Conversational UX', 'AI', 'Interaction Design'],
     filterTags: ['AI', 'UX'],
-    // Nebula of connected nodes — enterprise knowledge universe
+    // Nebula of connected nodes: enterprise knowledge universe
     imageId: 'photo-1451187580459-43490279c0fa',
     imageAlt: 'Abstract node network nebula',
     internalUrl: '/resources/conversation-experience',
@@ -125,7 +125,7 @@ const resources: Resource[] = [
     outcomes: ['Leadership growth', 'Systems thinking', 'Decision-making', 'Design maturity'],
     tags: ['Leadership', 'Books', 'Growth'],
     filterTags: ['Leadership', 'Career Growth'],
-    // Blueprint grids — investigation and systems thinking
+    // Blueprint grids: investigation and systems thinking
     imageId: 'photo-1558618666-fcd25c85cd64',
     imageAlt: 'Blueprint geometric grid',
     readingList: true,
@@ -142,7 +142,7 @@ const resources: Resource[] = [
     outcomes: ['Better project discovery', 'Faster alignment', 'Improved stakeholder conversations'],
     tags: ['Discovery', 'Research', 'Workshops', 'UX'],
     filterTags: ['Research', 'Workshops', 'UX'],
-    // Minimal dark gradient — keep focus on the content
+    // Minimal dark gradient: keep focus on the content
     imageId: 'photo-1554147090-e1221a04a025',
     imageAlt: 'Minimal dark abstract',
     previewUrl: 'https://forms.gle/FHJ1qEvRRsXzmkvu8',
@@ -155,14 +155,14 @@ const resources: Resource[] = [
 const readingItems = {
   articles: [
     { title: 'The Looking Glass: On Feedback', author: 'Julie Zhuo', publication: 'Medium', why: 'The clearest writing on how design leaders give and receive feedback without crushing the people or the work.', url: 'https://medium.com/the-year-of-the-looking-glass/how-to-give-feedback-without-being-a-dick-b9e87ee018e8' },
-    { title: 'How to Be a Design Leader (Not Just a Senior Designer)', author: 'Julie Zhuo', publication: 'Medium', why: 'The most precise articulation of the shift from individual contributor to leader — what changes, and what must change about you.', url: 'https://medium.com/the-year-of-the-looking-glass/how-to-be-a-design-leader-not-just-a-senior-designer-24db8fc278d7' },
-    { title: "The Designer's Dilemma", author: 'John Maeda', publication: 'KPCB Design in Tech Report', why: 'A systems-level view of where design sits in tech organisations — and the structural reasons it struggles for influence.', url: 'https://designintech.report' },
+    { title: 'How to Be a Design Leader (Not Just a Senior Designer)', author: 'Julie Zhuo', publication: 'Medium', why: 'The most precise articulation of the shift from individual contributor to leader: what changes, and what must change about you.', url: 'https://medium.com/the-year-of-the-looking-glass/how-to-be-a-design-leader-not-just-a-senior-designer-24db8fc278d7' },
+    { title: "The Designer's Dilemma", author: 'John Maeda', publication: 'KPCB Design in Tech Report', why: 'A systems-level view of where design sits in tech organisations, and the structural reasons it struggles for influence.', url: 'https://designintech.report' },
     { title: 'Why Design Thinking is Not Enough', author: 'Natasha Jen', publication: 'Fast Company', why: 'Design thinking without rigour and depth of craft produces mediocre outcomes. The counterargument every design leader should internalise.', url: 'https://www.fastcompany.com/90147798/why-design-thinking-is-not-enough' },
-    { title: 'Managing Design at Scale', author: 'Jean-Marc Denis', publication: 'Medium', why: 'The practical mechanics of running a design organisation — hiring bars, critique culture, and how to keep quality high as the team grows.', url: 'https://medium.com/@jmd' },
+    { title: 'Managing Design at Scale', author: 'Jean-Marc Denis', publication: 'Medium', why: 'The practical mechanics of running a design organisation: hiring bars, critique culture, and how to keep quality high as the team grows.', url: 'https://medium.com/@jmd' },
   ],
   books: [
     { title: 'The Making of a Manager', author: 'Julie Zhuo', why: 'The most honest and practical book on design management. Required reading before you manage your first designer.' },
-    { title: 'The Design of Everyday Things', author: 'Don Norman', why: 'The foundational text. Every design leader must have internalised its vocabulary — affordances, feedback, mental models.' },
+    { title: 'The Design of Everyday Things', author: 'Don Norman', why: 'The foundational text. Every design leader must have internalised its vocabulary: affordances, feedback, mental models.' },
     { title: 'Inspired: How to Create Tech Products Customers Love', author: 'Marty Cagan', why: 'The business context design leaders operate in. Understanding product discovery separates designers who advise from designers who influence.' },
   ],
 }

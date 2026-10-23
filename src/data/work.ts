@@ -41,7 +41,7 @@ const allCaseStudies: CaseStudy[] = [
     id: 'airline-app',
     number: '01',
     category: 'Airline App · Service Design · OmniChannel · B2C',
-    title: 'OmniChannel Travel Experience — Leading Airlines',
+    title: 'OmniChannel Travel Experience - Leading Airlines',
     shortTitle: 'Airline App',
     tagline: 'A service ecosystem, not an app. I led the mobile experience for a carrier serving 30M+ guests a year: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.',
     role: 'App Design Lead',
@@ -52,9 +52,9 @@ const allCaseStudies: CaseStudy[] = [
       title: 'Led end to end, on an aggressive timeline.',
       body: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year. The job covered planning the work, running the sprints and working day to day with product managers and the client, to timelines that left little slack.',
     },
-    challenge: 'Leading airline in the Middle East, brand value $500M in 2022, 95+ destinations across four continents. Target: 100M tourists/year by 2030. Digital team was structured around functional owners — each building independently — producing an incoherent whole. The mandate: grow digital bookings from a $2M channel to a $100M revenue stream.',
-    approach: 'Reframed the engagement as a service architecture problem, not a UI problem. Led experience strategy across 11+ designers in a modular pod structure where each pod owned a journey node. Research happened in airport lounges and stakeholder sessions — because the friction that mattered most was physical before it was digital.',
-    outcome: '92% engagement boost. 50× increase in ancillary sales — a category previously buried so deep in the booking flow that most users never encountered it. The pod delivery model became the standard framework for large-scale design programmes at Accenture ME.',
+    challenge: 'Leading airline in the Middle East, brand value $500M in 2022, 95+ destinations across four continents. Target: 100M tourists/year by 2030. Digital team was structured around functional owners, each building independently, producing an incoherent whole. The mandate: grow digital bookings from a $2M channel to a $100M revenue stream.',
+    approach: 'Reframed the engagement as a service architecture problem, not a UI problem. Led experience strategy across 11+ designers in a modular pod structure where each pod owned a journey node. Research happened in airport lounges and stakeholder sessions, because the friction that mattered most was physical before it was digital.',
+    outcome: '92% engagement boost. 50× increase in ancillary sales: a category previously buried so deep in the booking flow that most users never encountered it. The pod delivery model became the standard framework for large-scale design programmes at Accenture ME.',
     image: `${B}images/case-studies/airline-hero.png`,
     stats: [
       { label: 'Engagement Boost', value: '92%' },
@@ -73,9 +73,9 @@ const allCaseStudies: CaseStudy[] = [
         body: 'UX Audit surfaced six failure categories: Navigation & Discoverability failures, Fragmented Experience across touchpoints, Poor Information Architecture, Lack of Engagement and ancillary discovery, Brand inconsistency between web and app, and Accessibility failures for a carrier serving millions.',
         image: `${B}images/case-studies/airline-02.png`,
         items: [
-          { title: 'Navigation & Discoverability', description: 'No consistent model for how passengers moved between journeys — every section had to be relearned.' },
+          { title: 'Navigation & Discoverability', description: 'No consistent model for how passengers moved between journeys: every section had to be relearned.' },
           { title: 'Fragmented experience', description: 'Booking, manage, check-in, and ancillaries each had their own logic, visual language, and user assumptions.' },
-          { title: 'Hidden ancillary value', description: 'Add-ons buried too late in the booking flow — not a discovery problem, an architecture problem.' },
+          { title: 'Hidden ancillary value', description: 'Add-ons buried too late in the booking flow, not a discovery problem, an architecture problem.' },
           { title: 'Accessibility failures', description: 'No accessibility consideration for one of the region\'s busiest carriers.' },
         ],
       },
@@ -92,8 +92,8 @@ const allCaseStudies: CaseStudy[] = [
       },
       {
         label: 'User Research',
-        heading: 'Unveiling users\' pain points — a deep dive',
-        body: 'A compact view of user-journey mapping across three key flows. Research conducted at airport lounges surfaced friction that no analytics dashboard could — the most consequential UX insights came from watching passengers navigate check-in desks, not from session recordings.',
+        heading: 'Unveiling users\' pain points: a deep dive',
+        body: 'A compact view of user-journey mapping across three key flows. Research conducted at airport lounges surfaced friction that no analytics dashboard could: the most consequential UX insights came from watching passengers navigate check-in desks, not from session recordings.',
         image: `${B}images/case-studies/airline-04.png`,
       },
       {
@@ -120,7 +120,7 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Impact',
         heading: '92% engagement boost',
-        body: '92% engagement boost including 50× growth in ancillary sales, measured after the final release, at the end of 8–9 months of work — which had been structurally invisible in the previous architecture. Moving add-ons to the right moment in the journey, with the right framing, was a design decision that translated directly into revenue. No new features. No new capability. The same content, in the right place, at the right time.',
+        body: '92% engagement boost including 50× growth in ancillary sales, measured after the final release, at the end of 8–9 months of work, which had been structurally invisible in the previous architecture. Moving add-ons to the right moment in the journey, with the right framing, was a design decision that translated directly into revenue. No new features. No new capability. The same content, in the right place, at the right time.',
         images: [
           `${B}images/case-studies/airline-12.png`,
           `${B}images/case-studies/airline-13.png`,
@@ -131,10 +131,10 @@ const allCaseStudies: CaseStudy[] = [
       },
     ],
     highlights: [
-      'Framing the engagement as service ecosystem design — not UI redesign — changed what stakeholders requested. They stopped asking for features and started asking for journeys.',
+      'Framing the engagement as service ecosystem design, not UI redesign, changed what stakeholders requested. They stopped asking for features and started asking for journeys.',
       'Research at airport lounges surfaced friction no analytics could. The most consequential insights came from watching passengers navigate check-in desks.',
       'Leading at this pace meant keeping a pod structure steady while the people in it changed: joiners, leavers and constant skilling up.',
-      'The 50× increase in ancillary sales came from no new functionality — only from repositioning existing content at the right moment in the journey.',
+      'The 50× increase in ancillary sales came from no new functionality, only from repositioning existing content at the right moment in the journey.',
     ],
     testimonial: {
       quote: 'As a leader, Amit focused on developing skills and expanding the competencies of his team. His vast knowledge of UI/UX never left questions unanswered. Amit championed design thinking, putting in the effort to get to know everyone and embed himself into the team culture.',
@@ -148,14 +148,14 @@ const allCaseStudies: CaseStudy[] = [
     category: 'Data Products · Data Visualisation · AI · Enterprise',
     title: 'Executive Data-Products for Insights-Driven Decisions',
     shortTitle: 'Data Products',
-    tagline: 'Anchoring the data-governance pillar — designing executive-grade data products that translate complexity into actionable intelligence.',
+    tagline: 'Anchoring the data-governance pillar: designing executive-grade data products that translate complexity into actionable intelligence.',
     role: 'Design Lead',
     timeline: 'May 2024',
     domain: 'Data Governance · Enterprise AI',
     tags: ['Data Visualisation', 'AI', 'Enterprise UX', 'Governance'],
     challenge: 'Anchoring the data-governance pillar for Accenture\'s global data and AI capability. Led redesign of Collibra (data governance tool) experience and defined an NCPI heuristic evaluation framework. The platform had grown through acquisition and engineering decisions, not design intent.',
     approach: 'Structured UX audit of the Collibra ecosystem using the custom NCPI heuristic evaluation framework. Goals alignment with product and stakeholders, as-is state evaluation, FY24 Design Strategy Roadmap for Data Governance. Cross-functional co-design sessions with product, data, and business stakeholders.',
-    outcome: '76% adoption of the governance marketplace — driven by a redesign that made data assets discoverable and trustworthy to non-technical users. The DG Scorecard became a reference product for how Accenture presents data governance health to enterprise clients.',
+    outcome: '76% adoption of the governance marketplace: driven by a redesign that made data assets discoverable and trustworthy to non-technical users. The DG Scorecard became a reference product for how Accenture presents data governance health to enterprise clients.',
     image: `${B}images/case-studies/dataai-hero.png`,
     stats: [
       { label: 'Marketplace Adoption', value: '76%' },
@@ -171,12 +171,12 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Design, Test & Track',
         heading: 'Design, test and track',
-        body: 'Portfolio of products delivered: Collibra redesign — heuristic evaluation surfacing 40+ friction points prioritised by business impact / DG Scorecard releases — executive-readable governance health signals with drill-down capability / PowerBI design system — consistent visual language for data visualisation across the practice.',
+        body: 'Portfolio of products delivered: Collibra redesign: heuristic evaluation surfacing 40+ friction points prioritised by business impact / DG Scorecard releases: executive-readable governance health signals with drill-down capability / PowerBI design system: consistent visual language for data visualisation across the practice.',
         image: `${B}images/case-studies/dataai-02.jpg`,
         items: [
-          { title: 'Collibra Redesign', description: 'NCPI heuristic evaluation of the data governance platform — surfaced friction points, prioritised by business impact and implementation cost.' },
+          { title: 'Collibra Redesign', description: 'NCPI heuristic evaluation of the data governance platform: surfaced friction points, prioritised by business impact and implementation cost.' },
           { title: 'DG Scorecard', description: 'Executive-readable governance health score. One signal, drill-down available. Designed for the CDO\'s review, not the data steward\'s daily workflow.' },
-          { title: 'PowerBI Design System', description: 'Consistent visual language for data visualisation — charts, tables, and KPI tiles that read as one system regardless of author.' },
+          { title: 'PowerBI Design System', description: 'Consistent visual language for data visualisation: charts, tables, and KPI tiles that read as one system regardless of author.' },
         ],
       },
       {
@@ -187,8 +187,8 @@ const allCaseStudies: CaseStudy[] = [
       },
     ],
     highlights: [
-      'Data governance UX is fundamentally a trust problem, not an information problem. Executives don\'t need more data — they need confidence signals that let them act.',
-      'The NCPI heuristic framework gave stakeholders a shared vocabulary for evaluating UX quality — transforming design critique from subjective preference to structured assessment.',
+      'Data governance UX is fundamentally a trust problem, not an information problem. Executives don\'t need more data: they need confidence signals that let them act.',
+      'The NCPI heuristic framework gave stakeholders a shared vocabulary for evaluating UX quality: transforming design critique from subjective preference to structured assessment.',
       'Co-design sessions with business stakeholders revealed decision-making workflows that no requirements document had captured.',
     ],
     testimonial: {
@@ -224,48 +224,48 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Background',
         heading: 'Simplifying employee interactions',
-        body: '"Engaze" streamlines employee interactions, eliminating friction and offering a more human touch. This is the case for conversation design: the team researched how to build a persona for a conversational assistant before writing dialogs. The challenge was not to replace an existing chatbot with something prettier — it was to demonstrate why a principle-first design approach outperforms a flow-based engineering approach in a domain where edge cases outnumber happy paths.',
+        body: '"Engaze" streamlines employee interactions, eliminating friction and offering a more human touch. This is the case for conversation design: the team researched how to build a persona for a conversational assistant before writing dialogs. The challenge was not to replace an existing chatbot with something prettier: it was to demonstrate why a principle-first design approach outperforms a flow-based engineering approach in a domain where edge cases outnumber happy paths.',
         image: `${B}images/case-studies/engaze-01.png`,
       },
       {
         label: 'Understanding Scope',
         heading: 'Understanding the employee-experience scope',
-        body: 'Adopted an organic design approach — shifted from a generic design process to a flexible, agile, experimental approach due to the pace of Gen AI evolution. Rapid prototyping enabled faster iteration cycles, validating hypotheses before committing to direction.',
+        body: 'Adopted an organic design approach: shifted from a generic design process to a flexible, agile, experimental approach due to the pace of Gen AI evolution. Rapid prototyping enabled faster iteration cycles, validating hypotheses before committing to direction.',
         image: `${B}images/case-studies/engaze-02.png`,
       },
       {
         label: 'Employee Struggles',
         heading: 'Uncovered the most common daily struggles of employees',
-        body: 'Three categories of employee struggle emerged from research: information-based interactions, communication, and complex transactional tasks. These became the design brief — not the engineering backlog.',
+        body: 'Three categories of employee struggle emerged from research: information-based interactions, communication, and complex transactional tasks. These became the design brief, not the engineering backlog.',
         image: `${B}images/case-studies/engaze-03.png`,
         items: [
-          { title: 'Information interactions', description: 'Leave balances, policy lookups, benefit details — questions employees ask dozens of times a year that should take seconds, not tickets.' },
-          { title: 'Communication tasks', description: 'Approvals, status updates, escalations — interactions that cross team boundaries and lose context at every handoff.' },
+          { title: 'Information interactions', description: 'Leave balances, policy lookups, benefit details: questions employees ask dozens of times a year that should take seconds, not tickets.' },
+          { title: 'Communication tasks', description: 'Approvals, status updates, escalations: interactions that cross team boundaries and lose context at every handoff.' },
           { title: 'Complex transactions', description: 'Multi-step processes like onboarding tasks, expense submissions, and requests that span multiple systems.' },
         ],
       },
       {
         label: 'Design Philosophy',
-        heading: 'Conversational AI Design Philosophy — 3-Layered Strategy',
+        heading: 'Conversational AI Design Philosophy - 3-Layered Strategy',
         body: 'The 3-layered design strategy governed every decision: Natural Conversational Experiences at the interaction layer, Content Strategy Thumb-rules at the language layer, and Conversational Interface Design Guidelines at the UI layer. Bot capabilities were defined as: Deep Organisation Knowledge, Emotional Intelligence (sentiment analysis), Creative Responder, and Natural Conversation Flow.',
         image: `${B}images/case-studies/engaze-04.png`,
       },
       {
         label: 'Holistic Approach',
         heading: 'Holistic approach for more human-like interactions',
-        body: 'Post evaluating 45+ conversational and Gen AI applications, the design direction emerged: interfaces embracing bold visual language, dark modes, and conversational tone — designed for the same quality bar as consumer AI products, not enterprise compliance tools.',
+        body: 'Post evaluating 45+ conversational and Gen AI applications, the design direction emerged: interfaces embracing bold visual language, dark modes, and conversational tone: designed for the same quality bar as consumer AI products, not enterprise compliance tools.',
         image: `${B}images/case-studies/engaze-05.png`,
       },
       {
         label: 'Dialog Flows',
         heading: 'Crafting dialog flows',
-        body: 'Dialog flows were built around the five principles — Trust, Guidance, Discoverability, Cognitive Simplicity, and Continuity. Each principle answered a specific failure mode from the previous generation of HR bots. Flows were tested against real employee scenarios, not hypothetical ones.',
+        body: 'Dialog flows were built around the five principles - Trust, Guidance, Discoverability, Cognitive Simplicity, and Continuity. Each principle answered a specific failure mode from the previous generation of HR bots. Flows were tested against real employee scenarios, not hypothetical ones.',
         image: `${B}images/case-studies/engaze-06.png`,
       },
       {
         label: 'Interface Design',
         heading: 'Conversational interface design',
-        body: 'The conversational UI was designed to feel like a trusted colleague, not a help desk ticket system. Response architecture, tone calibration, and failure grammar were treated as first-class design decisions — not content afterthoughts.',
+        body: 'The conversational UI was designed to feel like a trusted colleague, not a help desk ticket system. Response architecture, tone calibration, and failure grammar were treated as first-class design decisions, not content afterthoughts.',
         images: [
           `${B}images/case-studies/engaze-07.png`,
           `${B}images/case-studies/engaze-08.png`,
@@ -276,10 +276,10 @@ const allCaseStudies: CaseStudy[] = [
       },
     ],
     highlights: [
-      'Rapid prototyping approach enabled faster iteration — prototypes were the primary argument, not supporting material.',
+      'Rapid prototyping approach enabled faster iteration: prototypes were the primary argument, not supporting material.',
       'Led design direction enabling team growth in conversational design across the engagement.',
       'Close collaboration with development and data science teams is imperative for Gen-AI work.',
-      'Designs received strong validation during usability testing — 90% CSAT confirmed principles over flows.',
+      'Designs received strong validation during usability testing - 90% CSAT confirmed principles over flows.',
     ],
     testimonial: {
       quote: 'Greatly impressed by the quality of designs, the attention to detail and delightful experience. Happy to see that the standards are set quite high and it proudly stands beside any other leading studios\' work globally.',
@@ -302,7 +302,7 @@ const allCaseStudies: CaseStudy[] = [
       title: 'Complex technology, real consequences.',
       body: 'A massive project on complex technology. What the platform changes lands on the customer’s own infrastructure, so the design carried real operational weight.',
     },
-    challenge: '"dNetWorX" helps enterprises modify and upgrade network services with zero downtime. Client: leading CMT company (NDA). Expert users had adapted to years of dysfunction — mistaking workarounds for competence. Every network modification for 70,000+ enterprise customers required multi-team handoffs. The cost: $5M in overhead.',
+    challenge: '"dNetWorX" helps enterprises modify and upgrade network services with zero downtime. Client: leading CMT company (NDA). Expert users had adapted to years of dysfunction: mistaking workarounds for competence. Every network modification for 70,000+ enterprise customers required multi-team handoffs. The cost: $5M in overhead.',
     approach: 'Weekly sprint structure, each sprint dedicated to a specific module with 2 checkpoint reviews and 2 co-working sessions per week. Progressive disclosure as the core design principle. 4 weeks of deep-dive uncovering navigational challenges, access restrictions, cognitive load, and complex processes.',
     outcome: '$5M saved, a realised figure reported by the client, through reduction in support tickets, manual intervention hours, and multi-team escalations. Network modifications that required three-team handoffs now completed in a single self-serve flow.',
     image: `${B}images/case-studies/dnetworx-hero.png`,
@@ -314,7 +314,7 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Background',
         heading: 'Tim\'s story and his challenges',
-        body: 'Persona: Tim, 45, network engineer at a large bank — responsible for 24/7 uptime of network devices. Tim\'s team handles dozens of network modifications per week. Each one requires navigating a system designed for maximum configurability, not operational speed. Tim has adapted to the dysfunction. He doesn\'t know it\'s broken.',
+        body: 'Persona: Tim, 45, network engineer at a large bank: responsible for 24/7 uptime of network devices. Tim\'s team handles dozens of network modifications per week. Each one requires navigating a system designed for maximum configurability, not operational speed. Tim has adapted to the dysfunction. He doesn\'t know it\'s broken.',
         image: `${B}images/case-studies/dnetworx-01.png`,
       },
       {
@@ -325,19 +325,19 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Design Process',
         heading: 'Agile, adaptable and organic approach',
-        body: 'Weekly sprint structure with each sprint dedicated to a specific module. 2 checkpoint reviews + 2 co-working sessions per week kept stakeholders aligned without slowing design. The approach built trust with change-resistant technical stakeholders — weekly reviews where they could see decisions being made, not just outcomes being presented.',
+        body: 'Weekly sprint structure with each sprint dedicated to a specific module. 2 checkpoint reviews + 2 co-working sessions per week kept stakeholders aligned without slowing design. The approach built trust with change-resistant technical stakeholders: weekly reviews where they could see decisions being made, not just outcomes being presented.',
         image: `${B}images/case-studies/dnetworx-02.png`,
       },
       {
         label: 'Problem Space',
-        heading: 'Dig deeper — from vagueness towards clarity',
-        body: '4 weeks of deep-dive uncovered four thematic problems: Navigational Challenges — buried entry points and inconsistent navigation patterns / Access Restrictions & Approvals — multi-team handoffs for routine tasks / Cognitive Load & Technical Jargon — dense language that slowed expert users / Complex & Time-Consuming Processes — workflows that should be self-serve requiring escalation.',
+        heading: 'Dig deeper, from vagueness towards clarity',
+        body: '4 weeks of deep-dive uncovered four thematic problems: Navigational Challenges, buried entry points and inconsistent navigation patterns / Access Restrictions & Approvals, multi-team handoffs for routine tasks / Cognitive Load & Technical Jargon, dense language that slowed expert users / Complex & Time-Consuming Processes, workflows that should be self-serve requiring escalation.',
         image: `${B}images/case-studies/dnetworx-03.png`,
         items: [
           { title: 'Navigational challenges', description: 'Entry points buried within a large enterprise platform. Engineers needed to know where to look before they could begin work.' },
           { title: 'Access restrictions & approvals', description: 'Routine modifications required multi-team approval chains that had accumulated over years with no current operational reason.' },
           { title: 'Cognitive load & jargon', description: 'Dense technical language on every screen added reading overhead to already complex operational tasks.' },
-          { title: 'Complex processes', description: 'Tasks that should be self-serve required cross-team coordination — $5M in overhead that better design could eliminate.' },
+          { title: 'Complex processes', description: 'Tasks that should be self-serve required cross-team coordination - $5M in overhead that better design could eliminate.' },
         ],
       },
       {
@@ -371,13 +371,13 @@ const allCaseStudies: CaseStudy[] = [
       },
     ],
     highlights: [
-      'Progressive disclosure worked because it respected what expert users already knew. The framing was never "simpler" — it was "faster to the thing you need."',
+      'Progressive disclosure worked because it respected what expert users already knew. The framing was never "simpler": it was "faster to the thing you need."',
       'When a change touches live infrastructure, safety is part of the design: changes are made in separate tenants, so a backup is always there.',
       'Trust in a change-resistant environment is earned through transparency. Weekly sprint reviews built confidence before any final decisions were required.',
-      'The $5M saving framed design work in operational impact terms — not UX quality. Design that cannot be measured in business outcomes is decoration.',
+      'The $5M saving framed design work in operational impact terms, not UX quality. Design that cannot be measured in business outcomes is decoration.',
     ],
     testimonial: {
-      quote: 'Right from day one, Amit established himself as an expert who understood the Customer Experience journey. This application is external client-facing — 70k+ customers — and customer experience is critical to the company brand, customer retention, and pivot to digital experience.',
+      quote: 'Right from day one, Amit established himself as an expert who understood the Customer Experience journey. This application is external client-facing, 70k+ customers, and customer experience is critical to the company brand, customer retention, and pivot to digital experience.',
       name: 'Mitesh Shah',
       title: 'Associate Director, Accenture CMT, US',
     },
@@ -387,7 +387,7 @@ const allCaseStudies: CaseStudy[] = [
     image: `${B}images/case-studies/sap-search/cover.jpg`,
     number: '05',
     category: 'AI Search · AI · Enterprise UX',
-    title: 'AI-Powered Search — Contextual Discovery at Enterprise Scale',
+    title: 'AI-Powered Search - Contextual Discovery at Enterprise Scale',
     shortTitle: 'AI-Powered Search',
     tagline: 'Search as a shared design-system capability: one AI search experience, defined once and reflected across every product in the suite.',
     role: 'Design Lead',
@@ -398,7 +398,7 @@ const allCaseStudies: CaseStudy[] = [
       title: 'A component case: craft, behaviour and specification.',
       body: 'This is a design-system component and pattern project. The work is the craft of interaction and behaviour, the anatomy of the component, and the specification that product teams build from.',
     },
-    challenge: 'Each product in the suite had its own legacy search implementation, vocabulary, and assumptions. Introducing AI-powered search meant solving fragmentation and trust simultaneously — making AI-surfaced results trustworthy to enterprise users who are already sceptical of AI.',
+    challenge: 'Each product in the suite had its own legacy search implementation, vocabulary, and assumptions. Introducing AI-powered search meant solving fragmentation and trust simultaneously: making AI-surfaced results trustworthy to enterprise users who are already sceptical of AI.',
     approach: 'Three principles: intent over query, contextual relevance over completeness, transparent reasoning over magical results. The hardest decision: surfacing AI confidence levels to users already sceptical of automation.',
     outcome: 'Owned by the design team. Because it lives in the design system, one search component, one results layout and a shared pattern library guide AI-surfaced discovery, and every improvement reaches each product that adopts it.',
     stats: [
@@ -408,7 +408,7 @@ const allCaseStudies: CaseStudy[] = [
     highlights: [
       'Trust in AI search is a design problem before it is a model problem.',
       'A standard that many product teams will adopt needs principles, not prescriptions.',
-      'Enterprise users detect evasion faster than uncertainty — and they punish evasion with distrust.',
+      'Enterprise users detect evasion faster than uncertainty, and they punish evasion with distrust.',
     ],
   },
   {

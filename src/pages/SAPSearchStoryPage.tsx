@@ -81,7 +81,7 @@ export default function SAPSearchStoryPage() {
           {S.challenges.map(c => (
             <div key={c.area} className="card">
               <p className="text-overline text-ink-3">{c.area}</p>
-              <ul className="mt-5 space-y-3">{c.items.map(i => <li key={i} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">—</span>{i}</li>)}</ul>
+              <ul className="mt-5 space-y-3">{c.items.map(i => <li key={i} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{i}</li>)}</ul>
             </div>
           ))}
         </div>
@@ -161,7 +161,7 @@ export default function SAPSearchStoryPage() {
                 <button type="button" onClick={() => setZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen ${s.id.replace('-', '.')} ${s.name}`}>
                   <img src={s.img} alt={`${flow.title}: ${s.name}`} width={1440} height={900} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
                 </button>
-                <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} — {s.name}</figcaption>
+                <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} - {s.name}</figcaption>
               </figure>
             ))}
           </div>}
@@ -198,7 +198,7 @@ function Lightbox({ screen, onClose }: { screen: Screen; onClose: () => void }) 
       <div className="min-h-full flex flex-col items-center justify-center p-4 md:p-10 gap-4">
         <img src={screen.img} alt={screen.name} className="max-w-full max-h-[calc(100vh-7rem)] w-auto h-auto bg-white rounded-md" onClick={e => e.stopPropagation()} />
         <div className="flex items-center gap-4">
-          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} — {screen.name}</span>
+          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} - {screen.name}</span>
           <a href={screen.img} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white underline" onClick={e => e.stopPropagation()}>Open at full resolution ↗</a>
           <button type="button" className="btn btn-secondary btn-sm" onClick={onClose} autoFocus>Close</button>
         </div>

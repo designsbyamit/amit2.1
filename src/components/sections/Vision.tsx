@@ -19,7 +19,7 @@ export default function Vision() {
           viewport={{ once: true, margin: '-10%' }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          "The next frontier of enterprise design is not making software easier to use. It's making software that understands what you're trying to accomplish — and gets out of the way."
+          "The next frontier of enterprise design is not making software easier to use. It's making software that understands what you're trying to accomplish, and gets out of the way."
         </motion.blockquote>
 
         <motion.div
@@ -32,7 +32,7 @@ export default function Vision() {
           <div>
             <p className="text-overline text-ink-3 mb-4">On AI in Design</p>
             <p className="text-body text-ink-3">
-              AI will not replace designers. It will raise the minimum bar of what ships — and demand that designers move upstream, closer to strategy, intent, and ethics.
+              AI will not replace designers. It will raise the minimum bar of what ships, and demand that designers move upstream, closer to strategy, intent, and ethics.
             </p>
           </div>
           <div>
@@ -44,7 +44,7 @@ export default function Vision() {
           <div>
             <p className="text-overline text-ink-3 mb-4">On Design Culture</p>
             <p className="text-body text-ink-3">
-              The best design work happens in organizations that understand design — not just use it. Building that culture is the most important design project.
+              The best design work happens in organizations that understand design, not just use it. Building that culture is the most important design project.
             </p>
           </div>
         </motion.div>

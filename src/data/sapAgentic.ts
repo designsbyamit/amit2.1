@@ -1,4 +1,4 @@
-// Agentic AI — Supplier Order Confirmation Experience (Autonomous Ordering)
+// Agentic AI - Supplier Order Confirmation Experience (Autonomous Ordering)
 // Content comes from the Figma frames "Autonomous Ordering": Cover, Personas, System Flow and the 33 screen frames.
 // Screens are the original SVG exports, stored in public/images/case-studies/sap-agentic/<id>.webp
 // (only the oversized embedded photos / document previews were recompressed; all vector content is untouched).

@@ -1,4 +1,4 @@
-// AI-Powered Search prototype — built only with UI5 Web Components (Fiori, Horizon theme).
+// AI-Powered Search prototype: built only with UI5 Web Components (Fiori, Horizon theme).
 // Screens and content mirror the Figma frames 1.1–5.4 ("S-Projects › AI-Powered Search").
 import { registerLocaleDataLoader } from '@ui5/webcomponents-base/dist/asset-registries/LocaleData.js';
 import cldrEn from '@ui5/webcomponents-localization/dist/generated/assets/cldr/en.json';

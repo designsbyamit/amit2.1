@@ -98,7 +98,7 @@ const FRAMEWORKS = [
     title: 'Context Engineering',
     tagline: 'Know before you design.',
     challenge: 'Design teams jump into solutioning before building genuine understanding of the business, the work, and the people. The result: technically correct solutions that don\'t fit the actual system they\'re designed for.',
-    whyBreaks: 'Traditional UX research focuses on user tasks and pain points. In AI-native design, you need to understand the entire intelligence ecosystem — where data flows, where decisions are made, where automation already exists, and where it fails. Task-level research misses system-level opportunities.',
+    whyBreaks: 'Traditional UX research focuses on user tasks and pain points. In AI-native design, you need to understand the entire intelligence ecosystem, where data flows, where decisions are made, where automation already exists, and where it fails. Task-level research misses system-level opportunities.',
     mentalModel: [
       { step: 'Industry', description: 'What sector, competitive dynamics, and regulatory constraints shape this business?' },
       { step: 'Business', description: 'What are the company\'s goals, metrics, and constraints? What does success look like?' },
@@ -112,9 +112,9 @@ const FRAMEWORKS = [
       'How to validate context assumptions before moving to opportunity discovery',
     ],
     pitfalls: [
-      'Treating context engineering as a one-time activity — it should be ongoing',
+      'Treating context engineering as a one-time activity: it should be ongoing',
       'Focusing only on user pain points and missing system-level intelligence opportunities',
-      'Skipping the business model layer — agents that don\'t create business value don\'t get resourced',
+      'Skipping the business model layer: agents that don\'t create business value don\'t get resourced',
     ],
     downloads: ['Industry Brief Template', 'Ecosystem Map Canvas', 'Context Validation Worksheet', 'Discovery Prompt Pack'],
     related: ['Intelligence Opportunity Discovery', 'Agent Mission Blueprint'],
@@ -125,7 +125,7 @@ const FRAMEWORKS = [
     title: 'Intelligence Opportunity Discovery',
     tagline: 'Find where AI creates value, not where it\'s impressive.',
     challenge: 'Organizations want to add AI everywhere. The result is a set of AI features that are technically sophisticated but don\'t meaningfully reduce work or improve decisions. Intelligence opportunity discovery applies a rigorous filter.',
-    whyBreaks: 'Traditional feature prioritisation uses user stories and impact/effort matrices. These don\'t capture the specific types of value AI creates — the value of automation, prediction, synthesis, and coordination at scale. A different model is needed.',
+    whyBreaks: 'Traditional feature prioritisation uses user stories and impact/effort matrices. These don\'t capture the specific types of value AI creates: the value of automation, prediction, synthesis, and coordination at scale. A different model is needed.',
     mentalModel: [
       { step: 'Observe', description: 'What data does the system need to perceive? What currently requires human observation?' },
       { step: 'Understand', description: 'What patterns, meanings, or contexts need to be interpreted?' },
@@ -140,9 +140,9 @@ const FRAMEWORKS = [
       'Which opportunities to pursue first vs. defer',
     ],
     pitfalls: [
-      'Prioritising impressive AI over valuable AI — automation that saves 30 seconds per day is better than AI that\'s technically impressive but rarely used',
+      'Prioritising impressive AI over valuable AI: automation that saves 30 seconds per day is better than AI that\'s technically impressive but rarely used',
       'Ignoring risk: high-value opportunities with high error costs need more trust design, not less',
-      'Missing coordination opportunities — often the biggest value in enterprise AI is orchestration, not individual task automation',
+      'Missing coordination opportunities: often the biggest value in enterprise AI is orchestration, not individual task automation',
     ],
     downloads: ['Intelligence Opportunity Canvas', 'Prioritisation Matrix', 'Cognitive Task Audit Worksheet', 'Opportunity Scoring Template'],
     related: ['Context Engineering', 'Agent Mission Blueprint'],
@@ -152,7 +152,7 @@ const FRAMEWORKS = [
     number: '03',
     title: 'Agent Mission Blueprint',
     tagline: 'Define the agent before designing the interface.',
-    challenge: 'Teams design agent interfaces before defining what the agent actually is — its mission, its knowledge, its constraints, and its relationship to human authority. The interface becomes the specification. This always produces the wrong thing.',
+    challenge: 'Teams design agent interfaces before defining what the agent actually is: its mission, its knowledge, its constraints, and its relationship to human authority. The interface becomes the specification. This always produces the wrong thing.',
     whyBreaks: 'UI-first design for agents creates interfaces that make the agent\'s internal complexity visible rather than useful. Without a mission blueprint, the interface reflects how the system works rather than how humans should relate to it.',
     mentalModel: [
       { step: 'Mission', description: 'One sentence that captures what the agent does and why it matters.' },
@@ -162,7 +162,7 @@ const FRAMEWORKS = [
       { step: 'Constraints', description: 'What the agent cannot do. Hard limits, compliance boundaries, escalation triggers.' },
       { step: 'Autonomy', description: 'The spectrum from full autonomy to full human control, and where this agent sits.' },
       { step: 'Escalation', description: 'The specific conditions that require human intervention and how they are surfaced.' },
-      { step: 'Success Metrics', description: 'How the agent\'s performance is measured. Not just technical metrics — trust and oversight metrics too.' },
+      { step: 'Success Metrics', description: 'How the agent\'s performance is measured. Not just technical metrics: trust and oversight metrics too.' },
     ],
     decisions: [
       'Autonomy level: where on the automation/oversight spectrum should this agent operate?',
@@ -170,9 +170,9 @@ const FRAMEWORKS = [
       'Memory architecture: what should persist across sessions and what should be scoped to session only?',
     ],
     pitfalls: [
-      'Designing for maximum autonomy instead of appropriate autonomy — more autonomy requires more trust design investment',
-      'Vague escalation triggers — "when uncertain" is not a trigger, it\'s a placeholder',
-      'Missing the collaborating agents dimension — most enterprise agents work in systems, not isolation',
+      'Designing for maximum autonomy instead of appropriate autonomy: more autonomy requires more trust design investment',
+      'Vague escalation triggers - "when uncertain" is not a trigger, it\'s a placeholder',
+      'Missing the collaborating agents dimension: most enterprise agents work in systems, not isolation',
     ],
     downloads: ['Agent Mission Blueprint Template', 'Capability Wheel Template', 'Autonomy Spectrum Worksheet', 'Escalation Design Guide'],
     related: ['Intelligence Opportunity Discovery', 'AI-native Experience Blueprint'],
@@ -183,7 +183,7 @@ const FRAMEWORKS = [
     title: 'AI-native Experience Blueprint',
     tagline: 'Design the relationship between human judgment and AI autonomy.',
     challenge: 'Most AI product design treats the interface as the product. In AI-native design, the interface is the mechanism for human-agent collaboration. Designing the screens without designing the collaboration model produces an interface that works technically but fails at trust.',
-    whyBreaks: 'Traditional interaction design assumes a user who initiates every action and receives feedback. In agentic systems, the agent initiates, acts, and completes — and the user\'s role is oversight. This requires a completely different design vocabulary: oversight, escalation, transparency, and recovery.',
+    whyBreaks: 'Traditional interaction design assumes a user who initiates every action and receives feedback. In agentic systems, the agent initiates, acts, and completes, and the user\'s role is oversight. This requires a completely different design vocabulary: oversight, escalation, transparency, and recovery.',
     mentalModel: [
       { step: 'Human Checkpoints', description: 'The specific moments where human judgment is required. Designed, not defaulted.' },
       { step: 'Trust Ladder', description: 'How trust is built progressively as the agent demonstrates reliability in low-stakes situations.' },
@@ -193,14 +193,14 @@ const FRAMEWORKS = [
       { step: 'Feedback Loop', description: 'How user corrections are acknowledged and inform future agent behaviour.' },
     ],
     decisions: [
-      'Communication hierarchy: what tier does each agent action fall into — log, visible reasoning, or interrupt?',
+      'Communication hierarchy: what tier does each agent action fall into: log, visible reasoning, or interrupt?',
       'Trust design: how is trust built incrementally vs. assumed from day one?',
       'Recovery design: is error recovery faster and clearer than the error itself?',
     ],
     pitfalls: [
-      'Designing oversight as a modal or settings page — oversight must be inline and effortless',
+      'Designing oversight as a modal or settings page: oversight must be inline and effortless',
       'Information overload: surfacing all reasoning by default defeats the purpose of automation',
-      'Treating recovery as an edge case — recovery interactions have disproportionate impact on long-term trust',
+      'Treating recovery as an edge case: recovery interactions have disproportionate impact on long-term trust',
     ],
     downloads: ['Experience Blueprint Template', 'Trust Ladder Diagram', 'Collaboration Swimlane Template', 'Interaction Sequence Kit'],
     related: ['Agent Mission Blueprint', 'Prototype & Validation'],
@@ -210,7 +210,7 @@ const FRAMEWORKS = [
     number: '05',
     title: 'Prototype & Validation',
     tagline: 'At this level of maturity, the prototype is the argument.',
-    challenge: 'AI-native experiences are hard to specify in static documents. Stakeholders can\'t evaluate an architecture diagram the way they can evaluate an interactive experience. Prototyping is not the end of design — it is the medium of design argument.',
+    challenge: 'AI-native experiences are hard to specify in static documents. Stakeholders can\'t evaluate an architecture diagram the way they can evaluate an interactive experience. Prototyping is not the end of design: it is the medium of design argument.',
     whyBreaks: 'Traditional UX prototyping validates task flows and information architecture. AI-native prototyping must also validate the trust model, the communication hierarchy, the escalation experience, and the recovery experience. These can only be evaluated interactively.',
     mentalModel: [
       { step: 'Figma', description: 'Static screens, flows, and the visual design system. The reference for all other prototype tools.' },
@@ -225,9 +225,9 @@ const FRAMEWORKS = [
       'When the prototype is ready for stakeholder review vs. more iteration',
     ],
     pitfalls: [
-      'Prototyping the happy path only — prototype the failure states and escalation paths with equal care',
-      'Using the wrong tool for the validation question — static Figma can\'t validate dynamic agentic behaviour',
-      'Skipping the review against the Experience Blueprint — the prototype should answer the blueprint\'s questions',
+      'Prototyping the happy path only: prototype the failure states and escalation paths with equal care',
+      'Using the wrong tool for the validation question: static Figma can\'t validate dynamic agentic behaviour',
+      'Skipping the review against the Experience Blueprint: the prototype should answer the blueprint\'s questions',
     ],
     downloads: ['Prototype Review Checklist', 'Validation Criteria Template', 'Before/After Comparison Kit', 'Usability Test Script'],
     related: ['AI-native Experience Blueprint', 'Context Engineering'],
@@ -246,27 +246,27 @@ const TOOL_ORCHESTRATION = [
 ]
 
 const DOWNLOADS = [
-  { name: 'AI-native Design Playbook', type: 'PDF', description: 'Complete methodology guide — all five frameworks, enterprise examples, and evaluation criteria.' },
+  { name: 'AI-native Design Playbook', type: 'PDF', description: 'Complete methodology guide, all five frameworks, enterprise examples, and evaluation criteria.' },
   { name: 'Context Engineering Canvas', type: 'FigJam', description: 'Full canvas for the five discovery artifacts: Industry Brief, Ecosystem Map, Personas, Journey, Agent Map.' },
   { name: 'Intelligence Opportunity Canvas', type: 'Figma + FigJam', description: 'The Observe → Decide → Execute model with scoring matrix and prioritisation framework.' },
   { name: 'Agent Mission Blueprint', type: 'Figma', description: 'Complete agent definition template: Mission, Capabilities, Knowledge, Memory, Constraints, Escalation.' },
   { name: 'Experience Blueprint Kit', type: 'Figma', description: 'Trust ladder, collaboration swimlanes, escalation design patterns, and interaction sequence template.' },
   { name: 'Prompt Library', type: 'Notion / PDF', description: 'Curated prompt pack for each phase: research, synthesis, blueprint creation, and validation.' },
   { name: 'Prototype Review Kit', type: 'PDF + Figma', description: 'Checklist, validation criteria, before/after comparison template, and usability test script.' },
-  { name: 'Framework Poster Pack', type: 'PDF', description: 'A3/A1 poster for each framework — for studio walls and workshop rooms.' },
+  { name: 'Framework Poster Pack', type: 'PDF', description: 'A3/A1 poster for each framework: for studio walls and workshop rooms.' },
 ]
 
 const GLOSSARY = [
   { term: 'Context Engineering', definition: 'The discipline of building shared understanding of industry, business, users, and workflows before any design work begins. The foundation of AI-native methodology.', model: 'Industry → Business → Ecosystem → Users → Intelligence Opportunities', related: ['Intelligence Mapping', 'Ecosystem Design'] },
-  { term: 'Intelligence Opportunity', definition: 'A specific point in a workflow where AI can create measurable value by observing, understanding, reasoning, deciding, executing, or coordinating — and where the cost/risk of AI involvement is justified.', model: 'Value × Feasibility × Trust Cost = Priority Score', related: ['Agent Mission', 'Cognitive Automation'] },
+  { term: 'Intelligence Opportunity', definition: 'A specific point in a workflow where AI can create measurable value by observing, understanding, reasoning, deciding, executing, or coordinating, and where the cost/risk of AI involvement is justified.', model: 'Value × Feasibility × Trust Cost = Priority Score', related: ['Agent Mission', 'Cognitive Automation'] },
   { term: 'Agent Mission Blueprint', definition: 'A design artifact that fully specifies an enterprise AI agent before any interface design: mission, capabilities, knowledge, memory, constraints, autonomy level, escalation model, and success metrics.', model: 'Mission + Capabilities + Constraints + Escalation = Blueprint', related: ['Experience Blueprint', 'Agentic UX'] },
-  { term: 'Human Checkpoint', definition: 'A designed moment in an agentic workflow where human judgment is required before the agent proceeds. Not a fallback — a first-class interaction pattern that must be designed with the same care as any primary flow.', model: 'Agent Action → Checkpoint → Human Review → Proceed/Modify/Reject', related: ['Escalation Design', 'Trust Design'] },
-  { term: 'Trust Ladder', definition: 'A framework for building user trust in AI systems progressively — starting with low-stakes, observable actions and expanding autonomy as the system demonstrates reliability.', model: 'Low stakes + Visible → Medium stakes + Explained → High stakes + Autonomous', related: ['Graceful Uncertainty', 'Confidence Surfacing'] },
-  { term: 'Communication Hierarchy', definition: 'The designed system for categorising agent communications by the attention they require: Tier 1 (log — no action needed), Tier 2 (reasoning visible — action available), Tier 3 (escalation — action required).', model: 'Log → Visible reasoning → Interrupt', related: ['Agent Mission Blueprint', 'Escalation Design'] },
+  { term: 'Human Checkpoint', definition: 'A designed moment in an agentic workflow where human judgment is required before the agent proceeds. Not a fallback: a first-class interaction pattern that must be designed with the same care as any primary flow.', model: 'Agent Action → Checkpoint → Human Review → Proceed/Modify/Reject', related: ['Escalation Design', 'Trust Design'] },
+  { term: 'Trust Ladder', definition: 'A framework for building user trust in AI systems progressively: starting with low-stakes, observable actions and expanding autonomy as the system demonstrates reliability.', model: 'Low stakes + Visible → Medium stakes + Explained → High stakes + Autonomous', related: ['Graceful Uncertainty', 'Confidence Surfacing'] },
+  { term: 'Communication Hierarchy', definition: 'The designed system for categorising agent communications by the attention they require: Tier 1 (log, no action needed), Tier 2 (reasoning visible: action available), Tier 3 (escalation: action required).', model: 'Log → Visible reasoning → Interrupt', related: ['Agent Mission Blueprint', 'Escalation Design'] },
   { term: 'AI-native Experience Blueprint', definition: 'A design document that specifies the human-agent collaboration model: human checkpoints, trust mechanisms, transparency approach, escalation design, recovery experience, and feedback loops.', model: 'Collaboration + Trust + Transparency + Recovery = Experience Blueprint', related: ['Agent Mission Blueprint', 'Prototype'] },
-  { term: 'Cognitive Automation', definition: 'Automation that replaces human cognitive work — not just mechanical repetition but judgment, synthesis, and decision-making within defined parameters.', model: 'Defined boundaries + Sufficient data + Clear escalation = Automatable cognitive task', related: ['Intelligence Opportunity', 'Agent Mission'] },
+  { term: 'Cognitive Automation', definition: 'Automation that replaces human cognitive work, not just mechanical repetition but judgment, synthesis, and decision-making within defined parameters.', model: 'Defined boundaries + Sufficient data + Clear escalation = Automatable cognitive task', related: ['Intelligence Opportunity', 'Agent Mission'] },
   { term: 'Graceful Uncertainty', definition: 'The design principle that AI systems should surface their confidence levels explicitly rather than presenting uncertain results with the same weight as certain ones. Honest uncertainty builds more trust than false confidence.', model: 'High confidence → Act · Medium → Surface reasoning · Low → Escalate', related: ['Trust Design', 'Communication Hierarchy'] },
-  { term: 'Recovery Design', definition: 'The intentional design of what happens when an AI system makes an error. Recovery design is a primary trust mechanism — users forgive errors; they do not forgive bad recovery.', model: 'Error → Acknowledge → Correct → Learn → Signal', related: ['Trust Ladder', 'Escalation Design'] },
+  { term: 'Recovery Design', definition: 'The intentional design of what happens when an AI system makes an error. Recovery design is a primary trust mechanism: users forgive errors; they do not forgive bad recovery.', model: 'Error → Acknowledge → Correct → Learn → Signal', related: ['Trust Ladder', 'Escalation Design'] },
 ]
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -434,7 +434,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
       viewport={{ once: true, margin: '-5%' }}
       transition={{ duration: 0.6, delay: index * 0.07 }}
     >
-      {/* Header — always visible */}
+      {/* Header: always visible */}
       <button className="w-full text-left py-12 group flex items-start justify-between gap-8"
         onClick={() => setOpen(o => !o)}>
         <div className="flex items-start gap-8 flex-1">
@@ -779,7 +779,7 @@ export default function AINativeFrameworksPage() {
               <h2 className="text-heading text-white">The shift that changes everything.</h2>
             </div>
             <p className="text-body text-ink-3 self-end">
-              AI-native design is not about adding AI features to existing products. It requires rethinking what the product fundamentally is — what the user's role is, what the system's role is, and how trust is designed rather than assumed.
+              AI-native design is not about adding AI features to existing products. It requires rethinking what the product fundamentally is: what the user's role is, what the system's role is, and how trust is designed rather than assumed.
             </p>
           </div>
 
@@ -845,7 +845,7 @@ export default function AINativeFrameworksPage() {
               <h2 className="text-heading text-white">Five phases. One connected journey.</h2>
             </div>
             <p className="text-body text-ink-3 self-end">
-              Each phase builds on the previous. Click any phase to expand outputs, core questions, and downloads. The phases are always practiced together — never in isolation.
+              Each phase builds on the previous. Click any phase to expand outputs, core questions, and downloads. The phases are always practiced together: never in isolation.
             </p>
           </div>
           <ProcessRoadmap />
@@ -881,7 +881,7 @@ export default function AINativeFrameworksPage() {
               <h2 className="text-heading text-white">The right tool for each thinking task.</h2>
             </div>
             <p className="text-body text-ink-3 self-end">
-              Not a directory of AI tools. A map of cognitive tasks — and which tools are best suited to each one. The choice of tool is a design decision, not a personal preference.
+              Not a directory of AI tools. A map of cognitive tasks, and which tools are best suited to each one. The choice of tool is a design decision, not a personal preference.
             </p>
           </div>
 
@@ -925,7 +925,7 @@ export default function AINativeFrameworksPage() {
               <h2 className="text-heading text-white">Everything downloadable.</h2>
             </div>
             <p className="text-body text-ink-3 self-end">
-              Frameworks, canvases, templates, and prompt packs — all designed to be used immediately on real enterprise projects. Request any asset and it will be sent within 48 hours.
+              Frameworks, canvases, templates, and prompt packs, all designed to be used immediately on real enterprise projects. Request any asset and it will be sent within 48 hours.
             </p>
           </div>
 

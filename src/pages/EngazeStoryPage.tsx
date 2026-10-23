@@ -136,7 +136,7 @@ export default function EngazeStoryPage() {
           <div className="card"><p className="text-overline text-ink-3">Measured · employee experience</p>
             <ul className="mt-5 space-y-5">{E.outcomes.measured.map(([t, d]) => <li key={t}><p className="text-title text-white">{t}</p><p className="text-body-sm text-ink-2 mt-1">{d}</p></li>)}</ul></div>
           <div className="card"><p className="text-overline text-ink-3">Design vision · wider suite</p>
-            <ul className="mt-5 space-y-3">{E.outcomes.vision.map(t => <li key={t} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">—</span>{t}</li>)}</ul></div>
+            <ul className="mt-5 space-y-3">{E.outcomes.vision.map(t => <li key={t} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{t}</li>)}</ul></div>
         </div>
         {cs.testimonial && (
           <blockquote className="mt-16 max-w-3xl"><p className="text-title text-white">“{cs.testimonial.quote}”</p>

@@ -84,7 +84,7 @@ export default function PortfolioPage() {
               <p className="text-overline text-ink-3">Common mistakes</p>
               <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>What to look for in your own work.</h2>
               <ul className="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-4">
-                {mistakes.map(m => <li key={m} className="flex gap-3 text-body text-ink-2"><span aria-hidden className="text-ink-3">&mdash;</span>{m}</li>)}
+                {mistakes.map(m => <li key={m} className="flex gap-3 text-body text-ink-2"><span aria-hidden className="text-ink-3">-</span>{m}</li>)}
               </ul>
             </section>
 

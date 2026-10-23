@@ -34,7 +34,7 @@ export default function DotsNav({ sections, active }: DotsNavProps) {
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           />
 
-          {/* Label — appears on hover */}
+          {/* Label: appears on hover */}
           <span
             className="text-white pointer-events-none select-none whitespace-nowrap transition-all duration-200 opacity-0 group-hover:opacity-50 -translate-x-1 group-hover:translate-x-0"
             style={{ fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 500 }}

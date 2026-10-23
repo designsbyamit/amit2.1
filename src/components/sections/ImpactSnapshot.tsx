@@ -44,7 +44,7 @@ export default function ImpactSnapshot() {
           Scale & Reach
         </motion.p>
 
-        {/* Grid — equal square blocks */}
+        {/* Grid: equal square blocks */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px grid-hairline">
           {metrics.map((metric, i) => {
             const { num, suffix } = parseMetric(metric.value)

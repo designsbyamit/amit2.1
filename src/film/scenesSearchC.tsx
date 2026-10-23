@@ -67,7 +67,7 @@ export function SPrototype({ t }: { t: number }) {
       <In t={t} a={118} o={151} y={0} style={{ right: 100, top: 6 }}><div style={{ fontFamily: mono, fontSize: 24, color: t > 146 ? C.green : C.lime, letterSpacing: '0.1em' }}>ELAPSED {mm}</div></In>
       <Scaled left={96} top={46} k={1.2} style={{ width: W, height: H, opacity: easeOut(seg(t, 117.1, 117.8)), transform: `scale(1.2) translateY(${(1 - easeOut(seg(t, 117.1, 117.8))) * 24}px)`, fontFamily: FONT72 }}>
         <div style={{ position: 'relative', width: W, height: H, background: L.bg, borderRadius: 10, overflow: 'hidden', boxShadow: '0 40px 120px rgba(0,0,0,0.6)', color: L.ink }}>
-          {/* VIEW 1 — home */}
+          {/* VIEW 1: home */}
           {view === 1 && (
             <div style={{ position: 'absolute', inset: 0 }}>
               <div style={{ position: 'absolute', left: 64, top: 96, fontSize: 36, fontWeight: 700 }}>Good morning, Maria</div>
@@ -83,7 +83,7 @@ export function SPrototype({ t }: { t: number }) {
               </div>
             </div>
           )}
-          {/* VIEW 2 — results */}
+          {/* VIEW 2: results */}
           {view >= 2 && view <= 3 && (
             <div style={{ position: 'absolute', inset: 0, opacity: v2 }}>
               <div style={{ position: 'absolute', left: 0, top: 52, width: W, height: 44, background: '#fff', borderBottom: `1px solid ${L.line}`, fontSize: 14, color: L.sub, padding: '14px 64px', boxSizing: 'border-box' }}>8 flights found · San Francisco (SFO) → Bangalore (BLR) · Jun 10–17, 2026</div>
@@ -108,7 +108,7 @@ export function SPrototype({ t }: { t: number }) {
               })}
             </div>
           )}
-          {/* VIEW 3 — hand-off */}
+          {/* VIEW 3: hand-off */}
           {view === 3 && (
             <div style={{ position: 'absolute', inset: 0, background: `rgba(30,40,50,${0.5 * v3})`, display: 'grid', placeItems: 'center', opacity: v3 }}>
               <div style={{ width: 400, height: 300, borderRadius: 16, background: '#fff', boxShadow: '0 20px 60px rgba(0,0,0,.4)', textAlign: 'center', padding: '28px 40px', boxSizing: 'border-box', transform: `scale(${0.94 + 0.06 * v3})` }}>
@@ -120,14 +120,14 @@ export function SPrototype({ t }: { t: number }) {
               </div>
             </div>
           )}
-          {/* VIEW 4 — booking */}
+          {/* VIEW 4: booking */}
           {view === 4 && (
             <div style={{ position: 'absolute', inset: 0, opacity: v4 }}>
-              <div style={{ position: 'absolute', left: 0, top: 52, width: W, height: 56, background: '#0A91E4', color: '#fff', fontSize: 22, fontWeight: 700, padding: '15px 64px', boxSizing: 'border-box' }}>Book flight — Palo Alto to Bangalore</div>
+              <div style={{ position: 'absolute', left: 0, top: 52, width: W, height: 56, background: '#0A91E4', color: '#fff', fontSize: 22, fontWeight: 700, padding: '15px 64px', boxSizing: 'border-box' }}>Book flight - Palo Alto to Bangalore</div>
               <div style={{ position: 'absolute', left: 64, top: 124, fontSize: 13, color: L.sub }}>Travel → SFO to Bangalore → Select flight → Review</div>
               <div style={{ position: 'absolute', left: 64, top: 156, width: 840, height: 232, borderRadius: 10, background: '#fff', boxShadow: '0 1px 4px rgba(34,53,72,.18)', padding: '24px 32px', boxSizing: 'border-box' }}>
-                <div style={{ fontSize: 20, fontWeight: 700 }}>EK237 — San Francisco (SFO) → Bangalore (BLR)</div>
-                {[['Airline', 'Emirates'], ['Departure', '08:00 — San Francisco Int’l (SFO)'], ['Arrival', '23:30 +1 — Kempegowda Int’l Airport (BLR)'], ['Class', 'Economy'], ['Fare', '$1,240.00']].map(([a, b], i) => {
+                <div style={{ fontSize: 20, fontWeight: 700 }}>EK237 - San Francisco (SFO) → Bangalore (BLR)</div>
+                {[['Airline', 'Emirates'], ['Departure', '08:00, San Francisco Int’l (SFO)'], ['Arrival', '23:30 +1, Kempegowda Int’l Airport (BLR)'], ['Class', 'Economy'], ['Fare', '$1,240.00']].map(([a, b], i) => {
                   const p = easeOut(seg(t, 133.7 + i * 0.2, 134.2 + i * 0.2))
                   return <div key={a} style={{ display: 'flex', fontSize: 14, marginTop: 10, opacity: p }}><span style={{ width: 160, color: L.sub }}>{a}</span><span>{b}</span></div>
                 })}

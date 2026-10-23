@@ -8,7 +8,7 @@ const microStories = [
   {
     label: 'Conversational AI · Engaze',
     heading: 'Why we stopped designing flows and started designing principles',
-    body: 'In conversational AI, dialog flows only cover the happy path. The generative layer handles everything else. We recognised early that writing more flows was the wrong answer — instead, we defined five principles (trust, guidance, discoverability, cognitive simplicity, continuity) that taught the system how to behave in any situation. Those five principles outlasted every screen we designed.',
+    body: 'In conversational AI, dialog flows only cover the happy path. The generative layer handles everything else. We recognised early that writing more flows was the wrong answer: instead, we defined five principles (trust, guidance, discoverability, cognitive simplicity, continuity) that taught the system how to behave in any situation. Those five principles outlasted every screen we designed.',
   },
   {
     label: 'Service Design · Airline',
@@ -18,12 +18,12 @@ const microStories = [
   {
     label: 'Enterprise UX · dNetWorX',
     heading: 'Introducing progressive disclosure into a system that resisted simplification',
-    body: 'Enterprise engineers had spent years learning to navigate complexity — removing it felt like a regression. Progressive disclosure was the solution: show less by default without removing anything. Expert users still had full control on demand. First-time users saw only what they needed. Nobody lost anything. Adoption followed.',
+    body: 'Enterprise engineers had spent years learning to navigate complexity: removing it felt like a regression. Progressive disclosure was the solution: show less by default without removing anything. Expert users still had full control on demand. First-time users saw only what they needed. Nobody lost anything. Adoption followed.',
   },
   {
     label: 'Agentic AI',
     heading: 'In autonomous systems, what the agent doesn\'t show matters as much as what it does',
-    body: 'The instinct in agentic AI design is to surface everything — every step, every inference, every confidence score. But information overload defeats the purpose of automation. The principle we settled on: show the outcome, surface the reasoning only when it matters, and always preserve the human\'s ability to intervene. Trust is designed, not assumed.',
+    body: 'The instinct in agentic AI design is to surface everything: every step, every inference, every confidence score. But information overload defeats the purpose of automation. The principle we settled on: show the outcome, surface the reasoning only when it matters, and always preserve the human\'s ability to intervene. Trust is designed, not assumed.',
   },
 ]
 
@@ -69,7 +69,7 @@ export default function Craft() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              Each project is less about the screens that shipped and more about the systems they are part of — the business constraints that shaped decisions, the principles that held when the pressure mounted, and the moments where design changed how an organisation thought about a problem.
+              Each project is less about the screens that shipped and more about the systems they are part of: the business constraints that shaped decisions, the principles that held when the pressure mounted, and the moments where design changed how an organisation thought about a problem.
             </motion.p>
             <motion.p
               className="text-body text-ink-3"
@@ -84,7 +84,7 @@ export default function Craft() {
         </div>
       </section>
 
-      {/* Design Decisions — Micro-Stories */}
+      {/* Design Decisions - Micro-Stories */}
       <section className="relative bg-black section-y px-6 md:px-12">
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl">
