@@ -41,6 +41,7 @@ const base: RouteMeta[] = [
   { path: '/community', title: T('Design community'), description: 'The community initiatives, events and collaborations that extend design practice beyond organisational walls.' },
   { path: '/reflections', title: T('Reflections'), description: 'Essays and observations on where design, AI and the systems we are building go next.' },
   { path: '/resources', title: T('Resources'), description: 'Frameworks, templates, reading lists and thinking tools built from years of workshops, mentoring conversations and enterprise design challenges.' },
+  { path: '/resources/hiring', title: T('How I hire: a hiring playbook for design teams'), description: 'A hiring system for design teams, built from scratch with HR: role definition, employer story, candidate and interviewer journeys, evaluation, candidate care and onboarding, with downloadable worksheets.', type: 'article' },
   { path: '/resources/dual-fluency', title: T('Dual fluency'), description: 'A framework for designers working fluently with both people and AI systems.' },
   { path: '/resources/ai-native-patterns', title: T('AI-native design patterns'), description: 'Design patterns for AI-native products: how experiences change when software can reason.' },
   { path: '/resources/conversation-experience', title: T('Conversation experience'), description: 'Principles and patterns for designing conversational experiences that work in enterprise settings.' },
