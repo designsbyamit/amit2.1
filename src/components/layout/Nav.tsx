@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useId } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { playbackById } from '../../data/playbacks'
 import { menuWorks, growItems, leadershipItems } from '../../data/ia'
 import CaseThumb from '../ds/CaseThumb'
 import Logo from './Logo'
@@ -18,6 +19,8 @@ const navItems: { label: string; to: string; menu?: MenuKey; quiet?: boolean }[]
 ]
 
 const arrowSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
+/** Case studies are named by their one-line headline, the same wording as on each case study page. */
+const headlineOf = (cs: { id: string; title: string }) => playbackById(cs.id)?.headline ?? cs.title
 const soonTag = <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3 align-middle">Coming soon</span>
 
 function navCls({ isActive }: { isActive: boolean }) {
@@ -80,12 +83,12 @@ export default function Nav() {
         <Link key={cs.id} to={`/craft/${cs.id}`} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
           <CaseThumb id={cs.id} compact />
           <span className="text-label text-signal-ink">{cs.number} / {cs.category.split(' · ')[0]}</span>
-          <span className={titleCls}>{cs.title}</span>
+          <span className={titleCls}>{headlineOf(cs)}</span>
         </Link>
       ))}
       <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
         <span className="text-label text-ink-3 mb-2">More work</span>
-        {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{cs.title}</Link>)}
+        {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{headlineOf(cs)}</Link>)}
         <Link to="/craft" className="btn btn-ghost mt-3 self-start">All work{arrowSvg}</Link>
       </div>
     </div>
@@ -175,7 +178,7 @@ export default function Nav() {
                     </NavLink>
                     {item.menu === 'Works' && (
                       <ul className="pb-4">
-                        {menuWorks.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex py-2 text-body-sm text-ink-2">{cs.title}</Link></li>)}
+                        {menuWorks.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex py-2 text-body-sm text-ink-2">{headlineOf(cs)}</Link></li>)}
                         <li><Link to="/craft" className="flex py-2 text-body-sm text-ink-2">All work</Link></li>
                       </ul>
                     )}
