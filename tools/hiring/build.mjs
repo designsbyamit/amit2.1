@@ -79,9 +79,9 @@ const docHtml = d => `<!doctype html><html lang="en"><head><meta charset="utf-8"
 <div class="head"><p class="kind">${d.kind} · ${esc(partName[d.part])}</p><h1>${esc(d.title)}</h1><p class="sub">${esc(d.sub)}</p><div class="use"><b>How to use it.</b> ${esc(d.use)}</div></div>
 ${d.blocks.map(render).join('\n')}</div></body></html>`
 
-const coverHtml = `<!doctype html><html><head><meta charset="utf-8"><style>${css}@page{size:A4;margin:0}</style></head><body>
+const coverHtml = (title, blurb, list) => `<!doctype html><html><head><meta charset="utf-8"><style>${css}@page{size:A4;margin:0}</style></head><body>
 <div class="cover"><div class="in"><p class="kind">Hiring playbook</p><h1>The hiring handbook for design teams</h1><p>Eight worksheets, handbooks and playbooks for building a hiring experience from the first job description to a new designer’s first ninety days.</p></div>
-<div class="in" style="padding-top:0"><div class="toc">${docs.map((d, i) => `<div><span>${String(i + 1).padStart(2, '0')} · ${d.kind}</span><b style="font-weight:500">${esc(d.title)}</b></div>`).join('')}</div><p style="margin-top:14mm;font-size:9.5pt">Amit Kumar Tiwari · Design leadership</p></div></div></body></html>`
+<div class="in" style="padding-top:0"><div class="toc">${list.map((d, i) => `<div><span>${String(i + 1).padStart(2, '0')} · ${d.kind}</span><b style="font-weight:500">${esc(d.title)}</b></div>`).join('')}</div><p style="margin-top:14mm;font-size:9.5pt">Amit Kumar Tiwari · Design leadership</p></div></div></body></html>`
 
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-sandbox', '--allow-file-access-from-files'] })
 const page = await browser.newPage()
@@ -89,11 +89,14 @@ const footer = t => `<div style="font:400 7pt Geist,Arial,sans-serif;color:#6B71
 async function pdf(html, name, d) {
   const f = path.join(tmp, name + '.html'); fs.writeFileSync(f, html)
   await page.goto('file://' + f); await page.evaluate(() => document.fonts.ready)
-  const cover = name === 'cover'
+  const cover = name.startsWith('cover')
   await page.pdf({ path: path.join(cover ? tmp : out, name + '.pdf'), printBackground: true, preferCSSPageSize: true, displayHeaderFooter: !cover, headerTemplate: '<span></span>', footerTemplate: footer(d ? esc(d.title) + ' · Amit Kumar Tiwari' : '') })
 }
 for (const d of docs) { await pdf(docHtml(d), d.slug, d); console.log('built', d.slug) }
-await pdf(coverHtml, 'cover')
+const classic = docs.filter(d => !d.exp)
+await pdf(coverHtml('The hiring handbook for design teams', 'Eight worksheets, handbooks and playbooks for building a hiring experience from the first job description to a new designer\u2019s first ninety days.', classic), 'cover')
+execFileSync('pdfunite', [path.join(tmp, 'cover.pdf'), ...classic.map(d => path.join(out, d.slug + '.pdf')), path.join(out, 'hiring-handbook-complete.pdf')])
+await pdf(coverHtml('Hiring is an experience problem: the handbook', 'Eleven worksheets, handbooks and playbooks for redefining a design hiring experience, including how to design the on-site assignment, define the signals and ask candidates how it felt.', docs), 'cover-exp')
 await browser.close()
-execFileSync('pdfunite', [path.join(tmp, 'cover.pdf'), ...docs.map(d => path.join(out, d.slug + '.pdf')), path.join(out, 'hiring-handbook-complete.pdf')])
+execFileSync('pdfunite', [path.join(tmp, 'cover-exp.pdf'), ...docs.map(d => path.join(out, d.slug + '.pdf')), path.join(out, 'hiring-experience-handbook-complete.pdf')])
 console.log('bundle done')

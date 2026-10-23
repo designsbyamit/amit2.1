@@ -18,6 +18,7 @@ const LeadershipStoryPage = lazy(() => import('./pages/LeadershipStoryPage'))
 const LeadershipCasePage = lazy(() => import('./pages/LeadershipCasePage'))
 const LearnPage = lazy(() => import('./pages/LearnPage'))
 const HiringPlaybookPage = lazy(() => import('./pages/HiringPlaybookPage'))
+const HiringExperiencePage = lazy(() => import('./pages/HiringExperiencePage'))
 const PracticePage = lazy(() => import('./pages/grow/PracticePage'))
 const ChallengePage = lazy(() => import('./pages/grow/ChallengePage'))
 const PortfolioGuidePage = lazy(() => import('./pages/grow/PortfolioPage'))
@@ -126,6 +127,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
         <Route path="/resources" element={<PageTransition><ResourcesPage /></PageTransition>} />
         <Route path="/resources/hiring" element={<PageTransition><HiringPlaybookPage /></PageTransition>} />
+        <Route path="/resources/hiring-experience" element={<PageTransition><HiringExperiencePage /></PageTransition>} />
         <Route path="/resources/dual-fluency" element={<PageTransition><DualFluencyPage /></PageTransition>} />
         <Route path="/resources/ai-native-patterns" element={<PageTransition><AINativeFrameworksPage /></PageTransition>} />
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />

@@ -8,6 +8,7 @@ import { playbacks } from '../../src/data/playbacks'
 import { caseStudies } from '../../src/data/work'
 import { timeline } from '../../src/data/career'
 import { hiringParts, hiringDocs, docHref } from '../../src/data/hiring'
+import { patterns, caseSteps, tenets, results, experienceDocs } from '../../src/data/hiringExperience'
 
 const dist = path.resolve('dist')
 const tpl = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
@@ -44,6 +45,13 @@ function snapshot(r: (typeof routes)[number]) {
   if (r.path === '/resources/hiring') {
     for (const p of hiringParts) parts.push(`<h2>${esc(p.title)}</h2><p>${esc(p.lead)}</p><ol>${p.steps.map(s => `<li><h3>${esc(s.title)}</h3><p>${esc(s.what)}</p><ul>${s.how.map(h => `<li>${esc(h)}</li>`).join('')}</ul><p>Watch for: ${esc(s.watch)}</p></li>`).join('')}</ol>`)
     parts.push('<h2>Worksheets</h2><ul>' + hiringDocs.map(d => `<li><a href="${docHref(d.slug)}">${esc(d.title)}</a>: ${esc(d.summary)}</li>`).join('') + '</ul>')
+  }
+  if (r.path === '/resources/hiring-experience') {
+    parts.push('<h2>Seven patterns in design hiring</h2><ol>' + patterns.map(p => `<li><h3>${esc(p.title)}</h3><p>${esc(p.problem)}</p><p>${esc(p.evidence)} Source: <a href="${p.source.url}">${esc(p.source.label)}</a></p><ul>${p.doThis.map(h => `<li>${esc(h)}</li>`).join('')}</ul></li>`).join('') + '</ol>')
+    parts.push('<h2>What I did</h2><ol>' + caseSteps.map(s => `<li><h3>${esc(s.title)}</h3><p>${esc(s.text)}</p></li>`).join('') + '</ol>')
+    parts.push(`<h2>Results</h2><p>${esc(results.big)} ${esc(results.label)}.</p>`)
+    parts.push('<h2>Nine tenets</h2><ol>' + tenets.map(t => `<li><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></li>`).join('') + '</ol>')
+    parts.push('<h2>Worksheets</h2><ul>' + [...hiringDocs, ...experienceDocs].map(d => `<li><a href="${docHref(d.slug)}">${esc(d.title)}</a>: ${esc(d.summary)}</li>`).join('') + '</ul>')
   }
   if (r.path === '/' || r.path === '/about') parts.push('<h2>Career</h2><ul>' + timeline.map((t: any) => `<li>${esc(t.role)} — ${esc(t.org)} (${esc(t.year)})</li>`).join('') + '</ul>')
   if (r.path === '/' || r.path === '/craft') parts.push('<h2>Selected work</h2><ul>' + playbacks.map(p => `<li><a href="/craft/${p.id}">${esc(p.headline)}</a></li>`).join('') + '</ul>')
@@ -92,9 +100,10 @@ fs.writeFileSync(path.join(dist, 'robots.txt'),
   `User-agent: *\nAllow: /\n${block.map(b => `Disallow: ${b}`).join('\n')}\n\n${bots.map(b => `User-agent: ${b}\nAllow: /\n${block.map(b2 => `Disallow: ${b2}`).join('\n')}\n`).join('\n')}\nSitemap: ${SITE.url}/sitemap.xml\n`)
 
 const hiringFull = '\n\n## How I hire: a hiring playbook for design teams\n' + hiringParts.map(p => `### ${p.title}\n${p.lead}\n` + p.steps.map(s => `- ${s.title}: ${s.what}`).join('\n')).join('\n\n')
+const expFull = '\n\n## Hiring is an experience problem\n' + patterns.map(p => `- ${p.title}: ${p.problem}`).join('\n') + `\n\nResult: ${results.big} ${results.label}.`
 const projLines = playbacks.map(p => `- [${p.headline}](${abs('/craft/' + p.id)}): ${p.dek}`)
 fs.writeFileSync(path.join(dist, 'llms.txt'),
   `# ${SITE.name}\n\n> ${routes[0].description}\n\n## Work\n${projLines.join('\n')}\n\n## More\n${indexable.filter(r => !r.path.startsWith('/craft/')).map(r => `- [${r.title.split(' · ')[0]}](${abs(r.path)}): ${r.description}`).join('\n')}\n`)
 fs.writeFileSync(path.join(dist, 'llms-full.txt'),
-  `# ${SITE.name}\n\n${routes[0].description}\n\n` + playbacks.map(p => `## ${p.headline}\n${p.dek}\n\n` + Object.entries(p.beats).map(([k, v]) => `**${k}**: ${v}`).join('\n\n')).join('\n\n') + hiringFull + '\n')
+  `# ${SITE.name}\n\n${routes[0].description}\n\n` + playbacks.map(p => `## ${p.headline}\n${p.dek}\n\n` + Object.entries(p.beats).map(([k, v]) => `**${k}**: ${v}`).join('\n\n')).join('\n\n') + hiringFull + expFull + '\n')
 console.log(`seo: ${routes.length} pages, ${indexable.length} in sitemap`)
