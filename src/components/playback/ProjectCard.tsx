@@ -23,7 +23,7 @@ export default function ProjectCard({ cs, pb, variant = 'tile', headingLevel = '
       data-cursor-label="Watch"
     >
       <div className={row ? 'col-span-4 md:col-span-7 order-1 md:order-2' : ''}>
-        <CaseThumb id={cs.id} ratio="16 / 10" className="transition-transform duration-500 group-hover:scale-[1.012]" />
+        <CaseThumb id={cs.id} ratio="1800 / 1000" className="transition-transform duration-500 group-hover:scale-[1.012]" />
       </div>
       <div className={row ? 'col-span-4 md:col-span-5 order-2 md:order-1 flex flex-col justify-center gap-4 md:pr-6' : 'flex flex-col gap-4 pt-6'}>
         <p className="text-label text-ink-3"><span className="text-signal-ink">{cs.number}</span> / {cs.category.split(' · ').slice(0, 2).join(' · ')}</p>

@@ -8,7 +8,7 @@ const B = import.meta.env.BASE_URL
  *  While the link around it is hovered or keyboard-focused, a short animated preview of the prototype fades in over it;
  *  when interaction ends the preview fades out and is removed, so the cover is restored and nothing runs at rest.
  *  Reduced-motion visitors and touch devices keep the still cover. */
-export default function CaseThumb({ id, className = '', ratio = '16 / 10', compact = false, flush = false }: { id: string; className?: string; ratio?: string; compact?: boolean; /** No corner radius of its own: the parent card clips it. */ flush?: boolean }) {
+export default function CaseThumb({ id, className = '', ratio = '1800 / 1000', compact = false, flush = false }: { id: string; className?: string; ratio?: string; compact?: boolean; /** No corner radius of its own: the parent card clips it. */ flush?: boolean }) {
   const t = thumbs[id]
   const root = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
@@ -34,7 +34,7 @@ export default function CaseThumb({ id, className = '', ratio = '16 / 10', compa
   return (
     <div ref={root} className={`thumb relative overflow-hidden bg-[#0b0d12] ${className}`} style={{ aspectRatio: ratio, borderRadius: flush ? 0 : compact ? 10 : 20 }} aria-hidden="true">
       <img src={`${src}-1600.webp`} srcSet={`${src}-640.webp 640w, ${src}-1600.webp 1600w`} sizes={compact ? '320px' : '(min-width: 768px) 58vw, 100vw'}
-        alt="" width={1600} height={1000} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+        alt="" width={1800} height={1000} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
       {mounted && (
         <div className="absolute inset-0 transition-opacity duration-500 ease-out" style={{ opacity: shown ? 1 : 0 }}>
           <AnimThumb id={t.loop} />
