@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import Mark, { markForCase } from '../components/marks/Marks'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import CaseThumb from '../components/ds/CaseThumb'
 import Stat from '../components/ds/Stat'
@@ -37,6 +38,7 @@ export default function PlaybackPage() {
         <div className="container-site pt-10 md:pt-14 pb-12 md:pb-16">
           <div className="mb-8"><Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: cs.shortTitle }]} /></div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-5">
+            {markForCase(cs.id) && <Mark name={markForCase(cs.id)!} size={36} className="text-ink-2" />}
             <p className="text-label text-ink-3">
               <span className="text-signal-ink">{cs.number}</span> / {cs.category.split(' · ').slice(0, 2).join(' · ')}
             </p>

@@ -67,6 +67,7 @@ export default function LeadershipPage() {
   return (
     <>
       <PageHeader
+        mark="lead"
         label={NAMES.leadership}
         title="Design is a leadership practice."
         subtitle="The career arc, the philosophy, and what I've learned about making design matter inside large organizations, where influence is earned, not assigned."

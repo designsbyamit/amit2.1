@@ -506,3 +506,16 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 }
 @keyframes pg-hl { 0%, 28% { opacity: .9; } 36%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .pg { animation: none !important; } .pg-hl { opacity: 0; } }
+
+/* Pictogram marks: lines draw in once, the accent node settles after. Static when motion is reduced. */
+.mk .mk-ln { stroke-dasharray: 1; stroke-dashoffset: 1; animation: mk-draw 1.4s cubic-bezier(.16,1,.3,1) .15s forwards; }
+.mk .mk-node { opacity: 0; transform-box: fill-box; transform-origin: center; animation: mk-node .6s cubic-bezier(.16,1,.3,1) 1s forwards; }
+.mk .mk-guide { opacity: 0; animation: mk-fade .8s ease .5s forwards; }
+@keyframes mk-draw { to { stroke-dashoffset: 0; } }
+@keyframes mk-node { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+@keyframes mk-fade { to { opacity: .6; } }
+@media (prefers-reduced-motion: reduce) {
+  .mk .mk-ln { animation: none; stroke-dashoffset: 0; }
+  .mk .mk-node { animation: none; opacity: 1; }
+  .mk .mk-guide { animation: none; opacity: .6; }
+}
