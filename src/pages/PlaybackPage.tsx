@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import Breadcrumb from '../components/ds/Breadcrumb'
+import CaseThumb from '../components/ds/CaseThumb'
 import Stat from '../components/ds/Stat'
 import { TagList } from '../components/ds/Tag'
-import PlaybackPlayer from '../components/playback/PlaybackPlayer'
 import { caseStudies } from '../data/work'
 import { playbackById } from '../data/playbacks'
 
@@ -12,23 +10,12 @@ const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
 )
 
-/** The short version of a case study: the headline, a one-minute playback, the role in two lines, then the five beats.
- *  A button to the detailed case study stays within reach the whole way down. */
+/** The short version of a case study, as plain stacked sections: the headline, one clean cover, then five short beats.
+ *  Nothing plays and nothing slides. The button to the detailed case study is fixed to the bottom of the screen the whole way down. */
 export default function PlaybackPage() {
   const { id } = useParams<{ id: string }>()
   const cs = caseStudies.find(c => c.id === id)
   const pb = id ? playbackById(id) : undefined
-  const playerEnd = useRef<HTMLDivElement>(null)
-  const [past, setPast] = useState(false)
-
-  useEffect(() => {
-    const el = playerEnd.current
-    if (!el) return
-    const io = new IntersectionObserver(([e]) => setPast(!e.isIntersecting && e.boundingClientRect.top < 0), { threshold: 0 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [id])
-
   if (!cs || !pb) return <Navigate to="/craft" replace />
 
   const detail = `/craft/${cs.id}/details`
@@ -40,59 +27,38 @@ export default function PlaybackPage() {
     ['The solution', pb.beats.solution],
     ['The impact', pb.beats.impact],
   ]
-  const meta = [cs.role, cs.timeline, cs.domain].filter(Boolean).join(' · ')
+  const meta = [cs.role, cs.timeline, cs.domain].filter(Boolean)
 
   return (
-    <article>
-      <section style={{ paddingTop: 'var(--header-h)' }}>
-        <div className="container-site pt-10 md:pt-14">
+    <article style={{ paddingBottom: 'calc(4.5rem + env(safe-area-inset-bottom, 0px))' }}>
+      <header style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="container-site pt-10 md:pt-14 pb-12 md:pb-16">
           <div className="mb-8"><Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: cs.shortTitle }]} /></div>
-          <motion.p className="text-label text-ink-3 mb-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+          <p className="text-label text-ink-3 mb-5">
             <span className="text-signal-ink">{cs.number}</span> / {cs.category.split(' · ').slice(0, 2).join(' · ')}
-          </motion.p>
-          <motion.h1 className="text-display-l text-ink max-w-[22ch]" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            {pb.headline}
-          </motion.h1>
+          </p>
+          <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{pb.headline}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-2xl">{pb.dek}</p>
-          <div className="mt-10"><PlaybackPlayer id={cs.id} playback={pb} category={cs.category.split(' · ').slice(0, 2).join(' · ')} /></div>
-          <div ref={playerEnd} />
-        </div>
-      </section>
-
-      {/* Role in two lines, then the way into the full case study */}
-      <section className="container-site py-10 md:py-14">
-        <div className="grid-site gap-y-8 items-start">
-          <div className="col-span-4 md:col-span-8">
-            <p className="text-label text-ink-3 mb-3">{meta}</p>
-            <p className="text-body-lg text-ink max-w-2xl">{pb.roleNote}</p>
-            {cs.tags && <div className="mt-6"><TagList items={cs.tags.slice(0, 3)} label="Topics" /></div>}
+          <div className="mt-10"><CaseThumb id={cs.id} ratio="1800 / 1000" /></div>
+          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <p className="text-label text-ink-3">{meta.join(' · ')}</p>
+            {cs.tags && <TagList items={cs.tags.slice(0, 3)} label="Topics" />}
           </div>
-          <div className="col-span-4 md:col-span-4 md:justify-self-end">
-            <Link to={detail} className="btn btn-primary">View the detailed case study<Arrow /></Link>
-          </div>
+          <p className="text-body-lg text-ink mt-6 max-w-2xl">{pb.roleNote}</p>
         </div>
-      </section>
+      </header>
 
-      {/* The five beats */}
-      <section className="hairline-top section-y">
-        <div className="container-site">
-          <dl className="grid gap-y-12">
-            {beats.map(([label, text], i) => (
-              <motion.div key={label} className="grid-site gap-y-3 items-start" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-6%' }} transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
-                <dt className="col-span-4 md:col-span-3 text-overline text-ink-3"><span className="text-signal-ink mr-3">{String(i + 1).padStart(2, '0')}</span>{label}</dt>
-                <dd className="col-span-4 md:col-span-9">
-                  {label === 'The impact' && (
-                    <div className="mb-6">
-                      <Stat value={pb.metric.value} label={pb.metric.label} />
-                    </div>
-                  )}
-                  <p className="text-body-lg text-ink-2 max-w-2xl">{text}</p>
-                </dd>
-              </motion.div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      {beats.map(([label, text], i) => (
+        <section key={label} className={`hairline-top section-y ${i % 2 === 0 ? 'bg-surface-1' : 'bg-surface-0'}`} aria-labelledby={`beat-${i}`}>
+          <div className="container-site grid-site gap-y-6 items-start">
+            <h2 id={`beat-${i}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{label}</h2>
+            <div className="col-span-4 md:col-span-8">
+              {label === 'The impact' && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /></div>}
+              <p className="text-body-lg text-ink-2 max-w-2xl">{text}</p>
+            </div>
+          </div>
+        </section>
+      ))}
 
       <section className="hairline-top section-y">
         <div className="container-site grid-site gap-y-8 items-center">
@@ -100,23 +66,18 @@ export default function PlaybackPage() {
             <p className="text-label text-ink-3 mb-3">Want the whole story?</p>
             <h2 className="text-heading text-ink max-w-[24ch]">The process, the screens and the decisions behind it.</h2>
           </div>
-          <div className="col-span-4 md:col-span-4 md:justify-self-end flex flex-col sm:flex-row md:flex-col gap-3">
-            <Link to={detail} className="btn btn-primary">View the detailed case study<Arrow /></Link>
+          <div className="col-span-4 md:col-span-4 md:justify-self-end">
             <Link to={`/craft/${next.id}`} className="btn btn-ghost">Next: {next.shortTitle}<Arrow /></Link>
           </div>
         </div>
       </section>
 
-      {/* Stays in reach once the player has scrolled out of view */}
-      <div
-        className={`fixed inset-x-0 bottom-0 z-30 transition-transform duration-300 ${past ? 'translate-y-0' : 'translate-y-full'}`}
-        style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
-        aria-hidden={!past}
-      >
+      {/* Always in reach */}
+      <div className="fixed inset-x-0 bottom-0 z-30" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
         <div className="border-t" style={{ background: 'var(--surface-1, #0b0d12)', borderColor: 'var(--line-1)' }}>
           <div className="container-site py-3 flex items-center justify-between gap-4">
             <p className="text-label text-ink-2 truncate hidden sm:block">{cs.shortTitle}</p>
-            <Link to={detail} tabIndex={past ? 0 : -1} className="btn btn-primary !py-2 ml-auto">View the detailed case study<Arrow /></Link>
+            <Link to={detail} className="btn btn-primary !py-2 ml-auto">View the detailed case study<Arrow /></Link>
           </div>
         </div>
       </div>

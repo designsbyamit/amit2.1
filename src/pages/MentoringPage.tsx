@@ -116,7 +116,7 @@ export default function MentoringPage() {
 
       <section className="section-y hairline-top">
         <div className="container-site">
-          <SectionHeader label="How I mentor" title="Prepared, specific, honest." />
+          <SectionHeader label="How I mentor" title="Prepared and specific." />
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
             {principles.map(([t, d]) => (
               <div key={t}>

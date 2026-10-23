@@ -22,7 +22,7 @@ export default function WorksCTA() {
             Working on something <span style={{ color: 'var(--signal)', fontStyle: 'italic' }}>hard?</span>
           </motion.h2>
           <div>
-            <p className="text-body-lg text-ink-2">Send the problem, not a brief. A few honest lines are enough to start.</p>
+            <p className="text-body-lg text-ink-2">Send the problem, not a brief. A few lines are enough to start.</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button arrow onClick={() => open({ topic: 'work' })}>Start a conversation</Button>
             </div>

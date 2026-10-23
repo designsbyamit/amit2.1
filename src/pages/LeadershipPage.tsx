@@ -4,8 +4,7 @@ import { motion } from 'framer-motion'
 const heroImg = '/images/about/leadership-hero.webp'
 import PageHeader from '../components/ui/PageHeader'
 import Journey from '../components/sections/Journey'
-import LeadershipCases from '../components/sections/LeadershipCases'
-import LeadershipStories from '../components/sections/LeadershipStories'
+import LeadershipChange from '../components/sections/LeadershipChange'
 import Testimonials from '../components/sections/Testimonials'
 import { colleagueTestimonials } from '../data/testimonials'
 
@@ -74,9 +73,8 @@ export default function LeadershipPage() {
         imageAlt="Amit Kumar Tiwari on stage"
       />
       <LeadingPeople />
-      <LeadershipCases />
       <Journey />
-      <LeadershipStories />
+      <LeadershipChange />
       <CommunityCallout />
       <Testimonials label="Colleagues" title="How the people I work with describe it." items={colleagueTestimonials.slice(0, 5)} />
       <ReflectionsPointer />

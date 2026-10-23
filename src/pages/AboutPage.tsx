@@ -43,13 +43,13 @@ export default function AboutPage() {
       <section className="section-y hairline-top">
         <div className="container-site">
           <SectionHeader label="What keeps me steady" title="Three habits outside work." intro="Quiet, unhurried habits. I think they show up in how I design and lead." />
-          <ul className="grid sm:grid-cols-3 gap-4 md:gap-6">
+          <ul className="grid grid-cols-3 gap-4 md:gap-6 max-w-xl">
             {steady.map(h => (
-              <li key={h.t} className="flex flex-col gap-4">
+              <li key={h.t} className="flex flex-col gap-3">
                 <figure className="relative rounded-2 overflow-hidden bg-black" style={{ aspectRatio: '1 / 1' }}>
                   <img src={h.image} alt={h.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 </figure>
-                <h3 className="text-title text-ink">{h.t}</h3>
+                <h3 className="text-body-sm text-ink">{h.t}</h3>
               </li>
             ))}
           </ul>

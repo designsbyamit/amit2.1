@@ -1,13 +1,17 @@
 export interface Metric {
   value: string
   label: string
+  /** Counts up from zero when it comes into view. Text and ranges are shown as they are. */
+  count?: boolean
 }
 
 export const metrics: Metric[] = [
-  { value: '16+',  label: 'Years dedicated to design' },
-  { value: '61+',  label: 'Products and platforms designed end-to-end' },
-  { value: '200+', label: 'Designers hired across teams and organisations' },
-  { value: '30+',  label: 'Designers led at peak' },
-  { value: '252+', label: 'Design community' },
-  { value: '4+',   label: '0-1 founding designer, startups' },
+  { value: '16+',  label: 'Years dedicated to design', count: true },
+  { value: '61+',  label: 'Products and platforms designed end-to-end', count: true },
+  { value: '200+', label: 'Designers hired across teams and organisations', count: true },
+  { value: '30+',  label: 'Designers led at peak', count: true },
+  { value: '252+', label: 'Design community', count: true },
+  { value: '4+',   label: '0-1 founding designer, startups', count: true },
+  { value: '6 → 30', label: 'Team growth' },
+  { value: 'Startups', label: 'Consulting' },
 ]

@@ -250,10 +250,13 @@ export default function Resources() {
   return (
     <section className="relative pb-24 md:pb-32" id="resources">
       <div className="container-site">
-        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter resources">
-          {allFilters.map(f => <Chip key={f} pressed={activeFilter === f} onClick={() => setActiveFilter(f)}>{f}</Chip>)}
+        <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="Filter resources">
+          {allFilters.filter(f => f === 'All' || resources.some(r => r.filterTags.includes(f))).map(f => {
+            const n = f === 'All' ? resources.length : resources.filter(r => r.filterTags.includes(f)).length
+            return <Chip key={f} pressed={activeFilter === f} onClick={() => setActiveFilter(f)}>{f} <span className="opacity-60">{n}</span></Chip>
+          })}
         </div>
-        <p className="sr-only" aria-live="polite">{filtered.length} resources shown</p>
+        <p className="text-label text-ink-3 mb-8" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'resource' : 'resources'}{activeFilter === 'All' ? '' : ` in ${activeFilter}`}</p>
         <div>{filtered.map((r, i) => <ResourceCard key={r.id} resource={r} index={i} />)}</div>
         <div className="hairline-top pt-16 mt-4 grid md:grid-cols-[2fr_1fr] gap-10 items-end">
           <div>
