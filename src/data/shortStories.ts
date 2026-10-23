@@ -1,6 +1,8 @@
 // Short stories: one-page projects, written from the one-pager designs.
 // Rule: nothing here is stated that is not in those designs.
 
+import type { FieldTone } from '../components/ds/MediaFrame'
+
 export interface ShortStory {
   slug: string
   title: string
@@ -8,10 +10,8 @@ export interface ShortStory {
   nav: string
   /** Where it happened, if the design says. */
   meta?: string[]
-  /** A gradient behind the cover, taken from the design. */
-  field: string
-  /** Hero image from the one-pager design, if exported. */
-  image?: string
+  /** Flat field colour behind the cover pictogram. */
+  tone: FieldTone
   sections: { label: string; items: { lead?: string; text: string }[] }[]
   link?: { label: string; href: string }
 }
@@ -21,8 +21,7 @@ export const shortStories: ShortStory[] = [
     slug: 'file18',
     nav: 'File18 for Network18 journalists',
     title: 'Resolving adoption barriers of the File18 app for Network18 journalists',
-    field: 'linear-gradient(135deg, #3A5C9E 0%, #6F8CC4 55%, #DCE3F2 100%)',
-    image: '/images/stories/file18.webp',
+    tone: 'cobalt',
     sections: [
       {
         label: 'Quick snapshot',
@@ -42,8 +41,7 @@ export const shortStories: ShortStory[] = [
     slug: 'greenux',
     nav: 'GreenUX design system',
     title: 'A living design system with sustainability and greener UX as a foundational pillar',
-    field: 'linear-gradient(135deg, #1F6B5A 0%, #3C8F7C 55%, #CFE5DE 100%)',
-    image: '/images/stories/greenux.webp',
+    tone: 'teal',
     sections: [
       {
         label: 'Additional activities',
@@ -61,8 +59,7 @@ export const shortStories: ShortStory[] = [
     nav: 'Generative Experience Design',
     title: 'Exploring possibilities for Gen AI and making business sense in design',
     meta: ['Feb 2023 - present', 'Design Lead', 'Design strategy · Data viz'],
-    field: 'linear-gradient(135deg, #5B2C8F 0%, #AE83F4 55%, #E7CEF7 100%)',
-    image: '/images/stories/generative-experience-design.webp',
+    tone: 'plum',
     sections: [
       {
         label: 'Quick snapshot',
@@ -85,7 +82,7 @@ export const shortStories: ShortStory[] = [
     slug: 'conversational-ai-design-toolkit',
     nav: 'Conversational AI Design Toolkit',
     title: 'Conversational AI Design Toolkit',
-    field: 'linear-gradient(135deg, #25223B 0%, #3D3669 55%, #8F80E9 100%)',
+    tone: 'graphite',
     sections: [
       {
         label: 'What it is',
@@ -109,7 +106,7 @@ export const shortStories: ShortStory[] = [
     slug: 'ai-assistant-persona-builder',
     nav: 'AI Assistant Persona Builder',
     title: 'AI Assistant Persona Builder',
-    field: 'linear-gradient(135deg, #170425 0%, #45286F 55%, #AE83F4 100%)',
+    tone: 'plum',
     sections: [
       {
         label: 'What it is',
@@ -139,7 +136,7 @@ export const shortStories: ShortStory[] = [
     slug: 'generative-experience-design-portal',
     nav: 'Gen-AI design portal',
     title: 'A home for Gen-AI design tools, toolkits and resources',
-    field: 'linear-gradient(135deg, #14141F 0%, #32074D 55%, #7A5BD1 100%)',
+    tone: 'cobalt',
     sections: [
       {
         label: 'Purpose',

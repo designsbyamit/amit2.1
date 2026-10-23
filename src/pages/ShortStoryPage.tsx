@@ -1,7 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import ShortStoryTag from '../components/playback/ShortStoryTag'
-import Mark, { markForStory } from '../components/marks/Marks'
+import StoryField from '../components/ds/StoryField'
 import { shortStories, storyBySlug } from '../data/shortStories'
 
 const Arrow = () => (
@@ -27,11 +27,7 @@ export default function ShortStoryPage() {
           </div>
           <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{s.title}</h1>
           {s.meta && <p className="text-label text-ink-3 mt-6">{s.meta.join(' · ')}</p>}
-          <div className="relative mt-10 rounded-3 overflow-hidden grid place-items-center text-white" style={{ background: s.field, aspectRatio: '1800 / 700', ['--mk-accent' as string]: '#C8F55A', ['--mk-bg' as string]: 'transparent' }} aria-hidden="true">
-            {s.image
-              ? <img src={s.image} alt="" className="absolute inset-0 m-auto max-h-[84%] max-w-[86%] rounded-3" />
-              : markForStory(s.slug) && <Mark name={markForStory(s.slug)!} size={150} />}
-          </div>
+          <StoryField slug={s.slug} tone={s.tone} size={150} aspect="1800 / 700" className="mt-10 rounded-3" />
         </div>
       </header>
 

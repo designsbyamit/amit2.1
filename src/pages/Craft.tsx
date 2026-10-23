@@ -5,7 +5,7 @@ import GrainOverlay from '../components/ui/GrainOverlay'
 import WorksCTA from '../components/sections/WorksCTA'
 import { Link } from 'react-router-dom'
 import { research } from '../data/ia'
-import Mark, { markForStory } from '../components/marks/Marks'
+import StoryField from '../components/ds/StoryField'
 import { shortStories } from '../data/shortStories'
 
 const microStories = [
@@ -53,11 +53,7 @@ export default function Craft() {
             {shortStories.map(s => (
               <li key={s.slug}>
                 <Link to={`/craft/stories/${s.slug}`} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
-                  <div className="relative grid place-items-center text-white" style={{ background: s.field, aspectRatio: '16 / 8', ['--mk-accent' as string]: '#C8F55A', ['--mk-bg' as string]: 'transparent' }} aria-hidden="true">
-                    {s.image
-                      ? <img src={s.image} alt="" loading="lazy" className="absolute inset-0 m-auto max-h-[82%] max-w-[86%] rounded-2" />
-                      : markForStory(s.slug) && <Mark name={markForStory(s.slug)!} size={84} />}
-                  </div>
+                  <StoryField slug={s.slug} tone={s.tone} />
                   <div className="p-6 flex flex-col gap-3 flex-1">
                     <h3 className="text-title text-ink">{s.title}</h3>
                     {s.meta && <p className="text-label text-ink-3">{s.meta.join(' · ')}</p>}

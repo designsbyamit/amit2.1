@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Button, Card, Chip, Tag, TagList, Status, Breadcrumb, Callout, Stat, SectionHeader, ThemeToggle, useTheme, Tabs, Accordion, TextField, TextArea, Quote, MediaFrame } from '../components/ds'
 import CaseRow from '../components/ds/CaseRow'
 import StoryCover from '../components/ds/StoryCover'
+import StoryField from '../components/ds/StoryField'
 import ResourceCover from '../components/ds/ResourceCover'
 import TypedWord from '../components/ds/TypedWord'
 import ShortStoryTag from '../components/playback/ShortStoryTag'
@@ -33,7 +34,6 @@ import { SCENES } from '../components/illustrations/scenes'
 import CaseThumb from '../components/ds/CaseThumb'
 import { MentoringPictogram, ResourcesPictogram, CommunityPictogram, ReflectionsPictogram, PracticePictogram, PortfolioPictogram } from './grow/GrowPictograms'
 import { shortStories } from '../data/shortStories'
-import { markForStory } from '../components/marks/Marks'
 
 /* The full reference for the design system behind this site. Everything on the page is rendered with the real
    tokens, components and marks, so it can never drift from the site. Noindex, linked from /design-system. */
@@ -304,7 +304,7 @@ export default function DesignSystemReferencePage() {
             {fields.map(([n, h]) => <div key={n} className="w-36"><div className="h-16 rounded-3" style={{ background: h }} /><p className="font-mono text-label text-ink mt-2">{n}</p><p className="text-caption text-ink-3">{h}</p></div>)}
           </div>
           <p className="text-body-sm text-ink-3 mt-5 max-w-[62ch]">Short stories use a 135-degree gradient from a deep tone through a mid tone to a pale tone of one hue. Each story keeps its own hue.</p>
-          <div className="flex flex-wrap gap-4 mt-4">{shortStories.map(s => <div key={s.slug} className="w-36 h-16 rounded-3" style={{ background: s.field }} title={s.title} />)}</div>
+          <div className="flex flex-wrap gap-4 mt-4">{shortStories.map(s => <StoryField key={s.slug} slug={s.slug} tone={s.tone} size={44} aspect="16 / 8" className="w-36 rounded-3" />)}</div>
         </Spec>
         <Spec name="Typefaces" note="Four faces, each with one job. Loaded from the Fontsource variable fonts.">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -461,7 +461,7 @@ export default function DesignSystemReferencePage() {
             <div>
               <p className="text-label text-ink-3 mb-3">Short story card</p>
               <div className="rounded-3 overflow-hidden border" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}>
-                <div className="grid place-items-center text-white" style={{ background: shortStories[1].field, aspectRatio: '16 / 8', ['--mk-accent' as string]: '#C8F55A', ['--mk-bg' as string]: 'transparent' }}><Mark name={markForStory('greenux')!} size={84} /></div>
+                <StoryField slug="greenux" tone={shortStories[1].tone} />
                 <p className="p-4 font-serif text-ink" style={{ fontSize: '1.25rem', lineHeight: 1.2 }}>A living design system with sustainability as a pillar</p>
               </div>
             </div>
