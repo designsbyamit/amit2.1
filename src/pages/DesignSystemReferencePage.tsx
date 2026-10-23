@@ -1,7 +1,17 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { Button, Card, Chip, Tag, TagList, Status, Breadcrumb, Callout, Stat, SectionHeader, ThemeToggle, useTheme } from '../components/ds'
+import { Button, Card, Chip, Tag, TagList, Status, Breadcrumb, Callout, Stat, SectionHeader, ThemeToggle, useTheme, Tabs, Accordion, TextField, TextArea, Quote, MediaFrame } from '../components/ds'
+import CaseRow from '../components/ds/CaseRow'
+import StoryCover from '../components/ds/StoryCover'
+import ResourceCover from '../components/ds/ResourceCover'
+import TypedWord from '../components/ds/TypedWord'
+import ShortStoryTag from '../components/playback/ShortStoryTag'
+import ProcessFlow from '../components/playback/ProcessFlow'
+import Distinct from '../components/case/Distinct'
+import Brands from '../components/sections/Brands'
+import { caseStudies } from '../data/work'
+import { playbacks } from '../data/playbacks'
 import Logo from '../components/layout/Logo'
 import Mark, { type MarkName } from '../components/marks/Marks'
 import Illustration, { type IllustrationName } from '../components/illustrations/Illustration'
@@ -16,7 +26,7 @@ import { markForStory } from '../components/marks/Marks'
 
 const sections = [
   ['principles', 'Principles'], ['foundations', 'Foundations'], ['icons', 'Icons'], ['illustration', 'Illustration'],
-  ['pictograms', 'Pictograms'], ['imagery', 'Imagery'], ['components', 'Components'], ['interaction', 'Interaction'],
+  ['pictograms', 'Pictograms'], ['imagery', 'Imagery'], ['components', 'Components'], ['patterns', 'Patterns'], ['interaction', 'Interaction'],
   ['motion', 'Motion'], ['voice', 'Voice'], ['governance', 'Governance'],
 ] as const
 
@@ -90,6 +100,7 @@ const colour: { token: string; dark: string; light: string; role: string }[] = [
 ]
 const fields = [['field-cobalt', '#1B2350'], ['field-teal', '#0F3B3A'], ['field-plum', '#33203F'], ['field-graphite', '#22252B']]
 const types: { cls: string; name: string; spec: string; sample: string }[] = [
+  { cls: 'text-giant', name: 'giant', spec: 'Hero-only scale, one per page at most', sample: 'Hello' },
   { cls: 'text-display-2xl', name: 'display-2xl', spec: '52 to 128px · 200 · -0.045em', sample: 'Futures' },
   { cls: 'text-display-xl', name: 'display-xl', spec: '40 to 92px · 200 · -0.04em', sample: 'Build futures' },
   { cls: 'text-display-l', name: 'display-l', spec: '34 to 68px · 200 · -0.035em', sample: 'Craft, then leadership' },
@@ -97,7 +108,9 @@ const types: { cls: string; name: string; spec: string; sample: string }[] = [
   { cls: 'text-title', name: 'title', spec: '20 to 26px · 300 · -0.02em', sample: 'A title for a card or subsection' },
   { cls: 'text-body-lg text-ink-2', name: 'body-lg', spec: '18 to 20px · 300 · 1.6', sample: 'A lead paragraph, once per section, to set the tone before the detail.' },
   { cls: 'text-body text-ink-2', name: 'body', spec: '16 to 17px · 400 · 1.7', sample: 'Default reading text. Never below 16px, never thinner than 400.' },
+  { cls: 'text-body-editorial text-ink-2', name: 'body-editorial', spec: '17 to 19px · 350 · 1.75 · 68ch', sample: 'Long-form stories and essays. Line length is capped at 68 characters.' },
   { cls: 'text-body-sm text-ink-2', name: 'body-sm', spec: '15px · 400 · 1.6', sample: 'Dense copy, table cells, card descriptions.' },
+  { cls: 'text-caption text-ink-3', name: 'caption', spec: '13px · 400 · 1.5', sample: 'Image credits and footnotes.' },
   { cls: 'text-overline text-ink-3', name: 'overline', spec: 'Geist Mono · 12px · +0.08em · caps', sample: 'Section overline' },
   { cls: 'text-label text-ink-3', name: 'label', spec: 'Geist Mono · 12px · +0.06em · caps', sample: 'Metadata label' },
 ]
@@ -149,6 +162,10 @@ const files: [string, string][] = [
   ['src/components/ui/PageHeader.tsx', 'Top of every page, with the optional pictogram'],
   ['src/data/ia.ts', 'Page names, Works order, Grow and Leadership menu items'],
   ['src/seo/site.ts', 'Every route’s title, description and indexing rule'],
+  ['src/hooks/useLenis.ts', 'Eased page scrolling, off for reduced motion'],
+  ['src/components/contact/', 'The contact dialog and form'],
+  ['src/components/agentic/ and case/', 'The diagram kit for case studies'],
+  ['src/data/', 'All content: work, playbacks, short stories, leadership, resources, brands, testimonials'],
 ]
 
 /* ── small demo pieces ── */
@@ -214,6 +231,8 @@ export default function DesignSystemReferencePage() {
   const { theme } = useTheme()
   const reduce = useReducedMotion()
   const [chip, setChip] = useState('All')
+  const [tab, setTab] = useState('overview')
+  const [email, setEmail] = useState('')
 
   useEffect(() => {
     const m = document.createElement('meta')
@@ -273,7 +292,20 @@ export default function DesignSystemReferencePage() {
           <p className="text-body-sm text-ink-3 mt-5 max-w-[62ch]">Short stories use a 135-degree gradient from a deep tone through a mid tone to a pale tone of one hue. Each story keeps its own hue.</p>
           <div className="flex flex-wrap gap-4 mt-4">{shortStories.map(s => <div key={s.slug} className="w-36 h-16 rounded-3" style={{ background: s.field }} title={s.title} />)}</div>
         </Spec>
-        <Spec name="Type" note="Geist for everything, Geist Mono for labels and data. Weight 200 and 300 only at 20px and up.">
+        <Spec name="Typefaces" note="Four faces, each with one job. Loaded from the Fontsource variable fonts.">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ['Bodoni Moda', 'Headings', 'Every h1 to h6 is set in Bodoni by one global rule. It is the voice of the site.', 'var(--font-serif)', 'Design leadership'],
+              ['Geist', 'Body and interface', 'Text, buttons, navigation, forms. 200 and 300 only at 20px and up.', 'var(--font-sans)', 'Readable and calm'],
+              ['Geist Mono', 'Labels and data', 'Overlines, metadata, numbers in tables, keyboard keys. Uppercase with tracking.', 'var(--font-mono)', 'LABEL 02 / DATA'],
+              ['Caveat', 'Handwritten note', 'One place only: the "the short story" note on short story pages.', "'Caveat Variable', cursive", 'the short story'],
+            ].map(([n, r, d, f, sample]) => (
+              <div key={n} className="card !p-5 flex flex-col gap-3"><p className="text-ink" style={{ fontFamily: f, fontSize: '1.6rem', lineHeight: 1.1 }}>{sample}</p><div><p className="font-mono text-label text-ink">{n} · {r}</p><p className="text-caption text-ink-2 mt-2">{d}</p></div></div>
+            ))}
+          </div>
+          <p className="text-body-sm text-ink-3 mt-5 max-w-[66ch]">Instrument Sans and Bricolage Grotesque are installed but belong to the interactive prototypes at /labs, which carry their own interface kit. They are not used in the site itself.</p>
+        </Spec>
+        <Spec name="Type scale" note="Weight 200 and 300 only at 20px and up. Sizes are fluid between the two values.">
           <div className="flex flex-col">
             {types.map(t => (
               <div key={t.name} className="grid md:grid-cols-[12rem_1fr] gap-2 md:gap-8 py-5 hairline-top items-baseline">
@@ -310,6 +342,22 @@ export default function DesignSystemReferencePage() {
               <div key={n} className="w-44"><div className="h-0" style={{ borderTop: `2px solid var(--${n})` }} /><p className="font-mono text-label text-ink mt-3">{n}</p><p className="text-caption text-ink-3">{u}</p></div>
             ))}
           </div>
+        </Spec>
+        <Spec name="Layout utilities" note="The class names every page is built from. Defined in index.css.">
+          <Table head={['Class', 'What it does']} rows={[
+            ['container-site', 'Centres content at 1280px with the page margin. The header uses it too'],
+            ['grid-site', 'The 12-column grid (4 on phones) with the column gap'],
+            ['section-y', 'Vertical padding between sections: 72, 96 or 128px by breakpoint'],
+            ['hairline-top / hairline-bottom / divider', 'One-pixel rules in line-1. The only way sections are separated'],
+            ['tap-target', 'Enforces the 44px minimum on small controls'],
+            ['skip-link', 'First focusable element: "Skip to content", visible on focus'],
+            ['hide-scrollbar', 'Hides the scrollbar on scroll rows without disabling scrolling'],
+            ['accent-signal / mark-signal / text-signal', 'Signal as a text highlight, a marker underline, or a coloured word. Dark mode only for text; light mode uses signal-ink'],
+            ['on-field', 'Text and line colour for anything placed on a colour field'],
+            ['media-field, media-cobalt / teal / plum', 'The coloured ground behind screenshots and covers'],
+            ['menu-panel', 'The surface of header menus: surface-2, hairline border, 10px radius'],
+            ['prose-site', 'Long-form text: cobalt underlined links, 68ch measure, quiet lists'],
+          ]} />
         </Spec>
         <Spec name="Logo" note="The monogram uses the current text colour, so it follows the mode.">
           <div className="flex items-center gap-8"><span className="text-ink"><Logo size={48} /></span><span className="text-ink-3"><Logo size={28} /></span><p className="text-body-sm text-ink-3 max-w-[40ch]">Used in the header at 36px beside the name and role. Never recoloured, never on a busy image.</p></div>
@@ -470,6 +518,33 @@ export default function DesignSystemReferencePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8"><Stat value="30M+" label="Guests served a year" /><Stat value="50x" label="Add-on sales" /><Stat value="90%" label="Employee satisfaction" /><Stat value="$5M" label="Documented savings" /></div>
           <Callout title="Note">Outcomes are the team’s. Roles describe what I led.</Callout>
         </Spec>
+        <Spec name="Tabs and accordion" note="Tabs use the arrow keys, Home and End. Accordion is native details, so it works without JavaScript.">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Tabs label="Example tabs" value={tab} onChange={setTab} tabs={[{ id: 'overview', label: 'Overview' }, { id: 'process', label: 'Process' }, { id: 'outcome', label: 'Outcome' }]}><p className="text-body-sm text-ink-2">Panel: {tab}</p></Tabs>
+            <Accordion items={[{ title: 'What is Dual Fluency?', body: 'Speaking design and business with equal confidence.', open: true }, { title: 'Who is it for?', body: 'Designers moving into leadership.' }]} />
+          </div>
+        </Spec>
+        <Spec name="Form fields" note="Visible label, hint, error. 16px text so iOS does not zoom.">
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+            <TextField label="Email" type="email" required value={email} onChange={e => setEmail(e.target.value)} hint="Only used to reply to you." placeholder="you@company.com" />
+            <TextField label="Company" error="Enter your company name." defaultValue="" />
+            <div className="md:col-span-2"><TextArea label="What would you like to talk about?" /></div>
+          </div>
+        </Spec>
+        <Spec name="Breadcrumb, link, key, table" note="Small parts used across pages.">
+          <div className="flex flex-col gap-6">
+            <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Short stories', to: '/craft#short-stories' }, { label: 'Short story' }]} />
+            <p className="text-body text-ink-2 max-w-xl">Inline links are cobalt and underlined: <a href="#components" className="link">read the playbook</a>. Press <kbd className="kbd">Esc</kbd> to close a menu.</p>
+            <Table head={['Token', 'Value']} rows={[['radius-2', '6px'], ['touch-min', '44px']]} />
+          </div>
+        </Spec>
+        <Spec name="Quote" note="Always attributed, never decorative.">
+          <Quote by="Colleague" role="Design Director">He made the case for design in terms the business could act on.</Quote>
+        </Spec>
+        <Spec name="Media frame and case row" note="Screenshots sit on a field colour. The case row is the list item for projects.">
+          <div className="grid md:grid-cols-3 gap-4 mb-8">{caseStudies.slice(0, 3).map(cs => cs.image && <MediaFrame key={cs.id} src={cs.image} alt="" tone={cs.tone} />)}</div>
+          <ul><CaseRow cs={caseStudies[0]} /></ul>
+        </Spec>
         <Spec name="Header and menu" note="Patterns made of the parts above.">
           <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[62ch]">
             <li><span className="text-ink">Header:</span> 72px, logo and name with a rotating role, five items, theme toggle. Works, Leadership and For Designers open menus.</li>
@@ -480,8 +555,71 @@ export default function DesignSystemReferencePage() {
         </Spec>
       </Block>
 
+      {/* patterns */}
+      <Block id="patterns" n="08" title="Patterns and page sections." intro="Reusable compositions built from the components above. Each is used in more than one place, and each is shown here as it appears on the site.">
+        <Spec name="Short story note" note="A handwritten marker, only on short story pages.">
+          <ShortStoryTag />
+          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">Set in Caveat in signal colour with a hand-drawn underline. It says "this is the short version" and links the story to its detailed case study.</p>
+        </Spec>
+        <Spec name="Headline word" note="Types, holds, deletes, moves on. Home hero only.">
+          <p className="text-display-l text-ink"><TypedWord words={['Design', 'Strategy', 'Craft']} className="typed-word" /></p>
+          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">A name and a rotating role sit beside the logo in the header. With reduced motion the words swap on a slow timer instead of typing.</p>
+        </Spec>
+        <Spec name="Brand strip" note="Quiet and slow. Pauses on hover or focus.">
+          <div className="overflow-hidden [&>section]:!py-4 [&>section]:!pt-0"><Brands /></div>
+          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">One row of brand names, about seven seconds per brand. Still and scrollable with reduced motion. The same row is used for testimonials as tall quote cards.</p>
+        </Spec>
+        <Spec name="Covers" note="Abstract motifs on a field colour, identical in both modes. They carry no words of their own.">
+          <p className="text-label text-ink-3 mb-3">Leadership story covers</p>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+            {(['seat', 'team', 'influence', 'hub', 'culture'] as const).map((m, i) => <div key={m}><div className="rounded-3 overflow-hidden"><StoryCover motif={m} tone={(['cobalt', 'teal', 'plum', 'graphite', 'cobalt'] as const)[i]} number={String(i + 1).padStart(2, '0')} /></div><p className="font-mono text-label text-ink-3 mt-2">{m}</p></div>)}
+          </div>
+          <p className="text-label text-ink-3 mb-3">Resource covers (3:4 sheets)</p>
+          <div className="grid grid-cols-3 md:grid-cols-7 gap-4">
+            {(['loop', 'phases', 'conversation', 'books', 'checklist', 'spark', 'network'] as const).map((m, i) => <div key={m}><ResourceCover title={({ loop: 'Loop', phases: 'Phases', conversation: 'Dialogue', books: 'Reading', checklist: 'Checklist', spark: 'Spark', network: 'Network' } as Record<string, string>)[m]} kind="Template" motif={m} tone={(['cobalt', 'teal', 'plum', 'graphite'] as const)[i % 4]} index={i + 1} /><p className="font-mono text-label text-ink-3 mt-2">{m}</p></div>)}
+          </div>
+        </Spec>
+        <Spec name="Process flow" note="Who does each stage: the agent, people, or both.">
+          {playbacks.find(p => p.flow)?.flow && <ProcessFlow stages={playbacks.find(p => p.flow)!.flow!} />}
+        </Spec>
+        <Spec name="Distinct card" note="One short card on a detailed case study: what is unusual about it.">
+          <div className="max-w-md"><Distinct title="The agent proposes, people decide" body="Every outcome is routed to a person who can approve, escalate or ask for clarification." /></div>
+        </Spec>
+        <Spec name="Diagram kit" note="How case studies explain systems. Built in the page, never exported images, so they follow the mode and stay sharp.">
+          <Table head={['Component', 'Explains']} rows={[
+            ['FlowDiagram', 'End-to-end system flow, animated on scroll'],
+            ['FlowPlayer', 'One order from start to finish over the real screens'],
+            ['Swimlane', 'Who acts at each step: agent work filled, human gates outlined'],
+            ['AutonomyLadder', 'Three rising steps. Today is filled, next is dashed'],
+            ['AsIsFlow', 'The before flow: hand-offs on a time bar that grows from hours to weeks'],
+            ['RiskVisual', 'Deviation, severity, order risk and priority'],
+            ['WorklistCompare', 'Three worklists compared by what is distinctive'],
+            ['ContractWorksheet', 'The agent-human contract, in the site’s own type and colour'],
+            ['SearchAnatomy', 'Search component anatomy inside a real shell bar'],
+            ['CapabilityLoop', 'A learning loop with people growth underneath'],
+            ['OutcomesLedger', 'One row per kind of result. The team owns every row'],
+            ['PracticeCard', 'A method others can adapt: problem, steps, signals, failure modes'],
+          ]} />
+          <p className="text-body-sm text-ink-3 mt-5 max-w-[62ch]">Conventions: filled means the agent, outlined means people, dashed means next or optional, signal marks the one thing to look at. Screens inside diagrams are shown whole, never zoomed or cropped.</p>
+        </Spec>
+        <Spec name="Page sections" note="The building blocks of Home and Works.">
+          <Table head={['Section', 'Used on', 'What it is']} rows={[
+            ['Hero', 'Home', 'Name, rotating role, typed word, one line, two actions'],
+            ['Selected work', 'Home', 'Selected projects as single framed cards, stacked, no sideways scroll'],
+            ['Impact snapshot', 'Home, About', 'Big numbers on a quiet grid, two rows of four'],
+            ['Latest', 'Home', 'A leadership practice, a workshop and a piece of writing, each framed'],
+            ['Testimonial', 'Home, About', 'One voice with a way to the rest'],
+            ['Works list', 'Works', 'The case studies as large story rows, then short story cards, then research'],
+            ['Works call to action', 'Works', 'Three ways to start, each opening the contact form with the right questions'],
+            ['Journey', 'Leadership', 'A horizontal timeline, pinned and scroll-driven on large screens'],
+            ['Stories hub', 'Leadership', 'Story cards: cover, number, title, the lesson as a teaser'],
+            ['Community', 'Community', 'Initiatives shown in full, no hidden text'],
+          ]} />
+        </Spec>
+      </Block>
+
       {/* 08 */}
-      <Block id="interaction" n="08" title="Interaction guidelines." intro="Predictable, forgiving and fast. The same gesture does the same thing everywhere.">
+      <Block id="interaction" n="09" title="Interaction guidelines." intro="Predictable, forgiving and fast. The same gesture does the same thing everywhere.">
         <Spec name="States" note="Every control has all five.">
           <Table head={['State', 'Treatment']} rows={[
             ['Rest', 'Clear affordance without hovering: buttons are filled or bordered, links are underlined'],
@@ -504,17 +642,25 @@ export default function DesignSystemReferencePage() {
         <Spec name="Previews and cursor">
           <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
             <li>Covers preview on hover and keyboard focus only. Nothing animates at rest and nothing autoplays.</li>
-            <li>On devices with a mouse, a small cursor dot grows on links and shows a short word on key areas: <span className="text-ink">View</span> on projects, <span className="text-ink">Read</span> on articles, <span className="text-ink">Explore</span> on leadership, <span className="text-ink">Join</span> on community. It is off on touch.</li>
-            <li>The cursor never replaces focus styles. Keyboard users see the same focus ring everywhere.</li>
+            <li>The system pointer is used everywhere. A custom cursor dot was built and retired; the data-cursor attributes on cards remain but nothing reads them.</li>
+            <li>Keyboard users see the same focus ring everywhere, and cards that link are a single focusable link.</li>
           </ul>
         </Spec>
         <Spec name="Navigation and scroll">
           <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
             <li>Pages deeper than one level show a breadcrumb. Case studies link to their detailed version with one clear action.</li>
-            <li>Sections reveal once as they enter, then stay. No scroll jacking, no parallax, no sticky traps.</li>
-            <li>Anchor links scroll to their section with space under the header (scroll-margin 6rem).</li>
-            <li>A thin progress line shows reading position on long pages.</li>
+            <li>Scrolling is eased with Lenis (about 1.15 seconds, soft landing). It never blocks native scrolling, and it is off when reduced motion is on. Dialogs and lightboxes opt out so they scroll normally.</li>
+            <li>Sections reveal once as they enter, then stay. The one scroll-driven moment is the pinned Journey on large screens.</li>
+            <li>A new page opens at the top. A link with a #section opens that section once the page has rendered, with 6rem left under the header.</li>
+            <li>A 1px signal line at the very top of the window shows reading position on every page. Long pages also get dot navigation for their sections.</li>
           </ul>
+        </Spec>
+        <Spec name="Overlays" note="Two, both fully keyboard operable.">
+          <Table head={['Overlay', 'Behaviour']} rows={[
+            ['Contact dialog', 'Opens from any email link to Amit and from calls to action, so no enquiry leaves by email client. Role dialog, modal, focus kept inside, Escape closes. It saves the enquiry and notifies Amit; if the server is unreachable it offers the direct address'],
+            ['Image lightbox', 'Click, Enter or Space opens a screenshot at full size. Escape or a click outside closes it. Used for screens on detailed case studies'],
+            ['Skip link', 'The first tab stop on every page jumps past the header'],
+          ]} />
         </Spec>
         <Spec name="Forms and touch">
           <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
@@ -526,7 +672,7 @@ export default function DesignSystemReferencePage() {
       </Block>
 
       {/* 09 */}
-      <Block id="motion" n="09" title="Motion supports, never performs." intro="Motion explains change and adds polish at the moment of arrival. It is short, uses one easing curve and always has a still fallback.">
+      <Block id="motion" n="10" title="Motion supports, never performs." intro="Motion explains change and adds polish at the moment of arrival. It is short, uses one easing curve and always has a still fallback.">
         <Spec name="Easing" note="One curve for everything: a fast start with a long, soft landing.">
           <div className="flex flex-wrap items-center gap-8"><Curve /><div><p className="font-mono text-label text-ink">--ease-out</p><p className="font-mono text-body-sm text-ink-2">cubic-bezier(0.16, 1, 0.3, 1)</p><p className="text-body-sm text-ink-3 mt-3 max-w-[36ch]">Linear and bouncy easings are not used.</p></div></div>
         </Spec>
@@ -571,7 +717,13 @@ export default function DesignSystemReferencePage() {
             ['Card hover', 'Lifts 2px, title underlines', '500ms'],
             ['Cover preview', 'Cross-fades over the still, removed after leaving', '500ms in, 600ms out'],
             ['Pictogram', 'Draw-in once on load', '1.4s'],
-            ['Typed headline word', 'Types and rotates, with a blinking caret', 'Home only'],
+            ['Typed headline word', 'Types, holds, deletes and moves on, with a blinking caret', 'Home only'],
+            ['Page scroll', 'Eased with Lenis, off for reduced motion', '1.15s'],
+            ['Progress line', '1px signal line grows with scroll position', 'Continuous'],
+            ['Brand strip', 'Slow marquee, pauses on hover or focus', '7s per brand'],
+            ['Journey', 'Pinned and scroll-driven horizontal timeline, large screens only', 'Scroll'],
+            ['Prototype previews', 'Scripted loops of the real interface built in the page, not video', 'Hover only'],
+            ['Grow pictograms', 'Small looping line animations on the Grow cards', '3 to 6s loops'],
           ]} />
         </Spec>
         <Spec name="Rules">
@@ -580,7 +732,7 @@ export default function DesignSystemReferencePage() {
       </Block>
 
       {/* 10 */}
-      <Block id="voice" n="10" title="Words follow rules too." intro="Short, specific and plain. The writing is part of the design.">
+      <Block id="voice" n="11" title="Words follow rules too." intro="Short, specific and plain. The writing is part of the design.">
         <Rules items={[
           ['Plain hyphens only', 'No em-dashes or en-dashes anywhere on the site. Use a colon, a comma or a plain hyphen. Ranges use a hyphen.'],
           ['Sentence case', 'Buttons, headings and labels use sentence case. Mono labels are the only capitals, set by style, not typed.'],
@@ -594,8 +746,27 @@ export default function DesignSystemReferencePage() {
       </Block>
 
       {/* 11 */}
-      <Block id="governance" n="11" title="Where everything lives." intro="The system is code. If it is not in these files, it is not in the system.">
+      <Block id="governance" n="12" title="Where everything lives." intro="The system is code. If it is not in these files, it is not in the system.">
         <Table head={['Path', 'What it holds']} rows={files.map(([p, w]) => [p, w])} />
+        <Spec name="Page templates" note="Every route and the template it uses.">
+          <Table head={['Route', 'Template']} rows={[
+            ['/', 'Home: hero, brands, selected work, impact, latest, testimonial, contact'],
+            ['/craft', 'Works: case study rows, short story cards, research, call to action'],
+            ['/craft/:id', 'One-minute case page: label with pictogram, headline, cover, five beats, path to the detailed study'],
+            ['/craft/:id/details', 'Detailed case study with dot navigation, lightbox screens and links back to the short story. Not altered by the system pass'],
+            ['/craft/stories/:slug', 'Short story: note, serif headline, colour field with pictogram, sections of short points'],
+            ['/craft/*/film', 'Animated films for three projects, built in the page'],
+            ['/labs/*', 'Interactive prototypes with their own interface kit and Instrument Sans'],
+            ['/leadership, /leadership/stories, /leadership/cases/:slug', 'How I lead, story hub and story or case pages'],
+            ['/community, /reflections', 'Header with pictogram, then the list of initiatives or notes'],
+            ['/resources and /resources/*', 'Practice hub with resource covers, and frameworks and playbooks'],
+            ['/learn, /learn/practice, /learn/portfolio, /learn/curious, /mentoring', 'Grow: four cards, practice toolkits, portfolio guide, mentoring'],
+            ['/about, /contact, /philosophy', 'About, contact and philosophy pages'],
+            ['/design-system, /design-system/reference', 'This documentation'],
+            ['/admin', 'Private portal for enquiries. Not indexed'],
+            ['*', 'Not found'],
+          ]} />
+        </Spec>
         <Spec name="Before anything ships">
           <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
             <li>Looked at in dark and light, at phone width and desktop width.</li>
