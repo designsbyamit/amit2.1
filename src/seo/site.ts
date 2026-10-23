@@ -53,6 +53,7 @@ const base: RouteMeta[] = [
   { path: '/contact', title: T('Contact'), description: 'Get in touch about design leadership, speaking, mentoring or collaboration.' },
   { path: '/admin', title: T('Portal'), description: 'Private.', noindex: true },
   { path: '/design-system', title: T('Design system'), description: 'Internal design system reference.', noindex: true },
+  { path: '/design-system/reference', title: T('Design system: full reference'), description: 'Principles, tokens, icons, illustration, pictograms, imagery, components, interaction and motion behind this site.', noindex: true },
 ]
 
 const projects: RouteMeta[] = playbacks.flatMap(p => {

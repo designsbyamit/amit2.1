@@ -144,6 +144,7 @@ export default function DesignSystemPage() {
           <SectionHeader as="h1" label="Signal · Design system v2" title={<>Premium, minimal, <span className="accent-signal">clear.</span></>}
             intro="The tokens, type, layout, components and rules behind this website, in dark and light. Every page is built from what is on this page, so the experience stays consistent and meets WCAG 2.2 AA."
             action={<div className="flex items-center gap-3"><span className="text-label text-ink-3">Now: {theme}</span><ThemeToggle /></div>} />
+          <p className="text-body-sm text-ink-3 mb-6 max-w-[62ch]">Want everything, including icons, illustration, pictograms, imagery, interaction and motion? See <Link to="/design-system/reference" className="link">the full reference</Link>.</p>
           <nav aria-label="On this page" className="flex flex-wrap gap-2">
             {sections.map(([id, label]) => <a key={id} href={`#${id}`} className="chip">{label}</a>)}
           </nav>

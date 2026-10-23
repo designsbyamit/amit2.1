@@ -50,6 +50,7 @@ const EngazeFilmPage = lazy(() => import('./film/EngazeFilmPage'))
 const SearchFilmPage = lazy(() => import('./film/SearchFilmPage'))
 const MentoringPage = lazy(() => import('./pages/MentoringPage'))
 const DesignSystemPage = lazy(() => import('./pages/DesignSystemPage'))
+const DesignSystemReferencePage = lazy(() => import('./pages/DesignSystemReferencePage'))
 const ConversationExperiencePage = lazy(() => import('./pages/ConversationExperiencePage'))
 
 
@@ -142,6 +143,7 @@ function AnimatedRoutes() {
         <Route path="/resources/ai-native-patterns" element={<PageTransition><AINativeFrameworksPage /></PageTransition>} />
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
         <Route path="/design-system" element={<PageTransition><DesignSystemPage /></PageTransition>} />
+        <Route path="/design-system/reference" element={<PageTransition><DesignSystemReferencePage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/admin" element={<PageTransition><AdminPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
