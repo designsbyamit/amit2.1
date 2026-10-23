@@ -11,6 +11,9 @@ export const NAMES = {
 export const bigFiveIds = ['sap-agentic', 'sap-search', 'engaze', 'airline-app', 'dnetworx']
 export const bigFive = bigFiveIds.map(id => caseStudies.find(c => c.id === id)).filter((c): c is NonNullable<typeof c> => !!c)
 
+/** The six case studies shown in the Works dropdown: the five major works plus Executive data products. Everything else lives on the Works page. */
+export const menuWorks = [...bigFive, ...caseStudies.filter(c => c.id === 'data-ai')]
+
 /** Research that is on the way. Shown as coming soon, never as a half-finished page. */
 export const research = [
   'Compositional Design',

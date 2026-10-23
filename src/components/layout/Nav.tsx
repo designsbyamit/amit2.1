@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef, useId } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { bigFive, research, growItems, leadershipItems } from '../../data/ia'
-import { shortStories } from '../../data/shortStories'
+import { menuWorks, growItems, leadershipItems } from '../../data/ia'
 import CaseThumb from '../ds/CaseThumb'
 import Logo from './Logo'
 import NameRoles from './RoleRotator'
@@ -70,8 +69,8 @@ export default function Nav() {
 
   const titleCls = 'text-[1.0625rem] leading-snug font-light tracking-[-0.01em] text-ink group-hover:underline underline-offset-4 decoration-1'
   const linkCls = 'py-1.5 text-[0.9375rem] leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4'
-  const featured = bigFive.slice(0, 3)
-  const moreBig = bigFive.slice(3)
+  const featured = menuWorks.slice(0, 3)
+  const moreBig = menuWorks.slice(3)
 
   // Works: the same panel as before. Three featured covers with previews, then the "More work" column.
   const worksPanel = (
@@ -87,8 +86,6 @@ export default function Nav() {
       <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
         <span className="text-label text-ink-3 mb-2">More work</span>
         {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{cs.shortTitle}</Link>)}
-        {shortStories.map(x => <Link key={x.slug} to={`/craft/stories/${x.slug}`} className={linkCls}>{x.nav}</Link>)}
-        {research.map(x => <span key={x} className="py-1.5 text-[0.9375rem] leading-snug text-ink-3">{x}{soonTag}</span>)}
         <Link to="/craft" className="btn btn-ghost mt-3 self-start">All work{arrowSvg}</Link>
       </div>
     </div>
@@ -178,9 +175,8 @@ export default function Nav() {
                     </NavLink>
                     {item.menu === 'Works' && (
                       <ul className="pb-4">
-                        {bigFive.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex py-2 text-body-sm text-ink-2">{cs.shortTitle}</Link></li>)}
-                        {shortStories.map(x => <li key={x.slug}><Link to={`/craft/stories/${x.slug}`} className="flex py-2 text-body-sm text-ink-2">{x.nav}</Link></li>)}
-                        {research.map(x => <li key={x} className="py-2 text-body-sm text-ink-3">{x}{soonTag}</li>)}
+                        {menuWorks.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex py-2 text-body-sm text-ink-2">{cs.shortTitle}</Link></li>)}
+                        <li><Link to="/craft" className="flex py-2 text-body-sm text-ink-2">All work</Link></li>
                       </ul>
                     )}
                     {item.menu === 'Leadership' && (
