@@ -24,7 +24,7 @@ function Rotator({ label, title, items }: { label: string; title: string; items:
     </ul>
   )
   return (
-    <section className="section-y hairline-top overflow-hidden" aria-label={title}>
+    <section id="testimonials" className="section-y hairline-top overflow-hidden scroll-mt-24" aria-label={title}>
       <div className="container-site">
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>

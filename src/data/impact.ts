@@ -11,7 +11,6 @@ export const metrics: Metric[] = [
   { value: '200+', label: 'Designers hired across teams and organisations', count: true },
   { value: '30+',  label: 'Designers led at peak', count: true },
   { value: '252+', label: 'Design community', count: true },
-  { value: '4+',   label: '0-1 founding designer, startups', count: true },
+  { value: '4+',   label: 'Founding designer, startup consulting', count: true },
   { value: '6 → 30', label: 'Team growth' },
-  { value: 'Startups', label: 'Consulting' },
 ]
