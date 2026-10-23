@@ -110,33 +110,32 @@ function travel(s = {}) {
   let o = `<defs><linearGradient id="bgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6F6B"/><stop offset="1" stop-color="#19C46E"/></linearGradient><linearGradient id="gcard" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B8F47"/><stop offset="1" stop-color="#2DB866"/></linearGradient></defs><rect width="1280" height="800" fill="url(#bgG)"/>`;
   o += R(px - 12, py - 12, pw + 24, ph + 24, { f: '#1C1E20', rx: 66, s: '#3A3E40', sw: 2 }) + R(px, py, pw, ph, { f: K.bg, rx: 54 }) + R(px + 135, py + 12, 102, 28, { f: '#0A0B0B', rx: 14 });
   const scr = s.screen ?? 'home';
+  const hdr = (l, r2) => Tx(px + 24, py + 100, '←', 18, 600, K.g) + (l ? Tx(px + 52, py + 100, l, 18, 600, K.ink) : '') + (r2 ? Tx(px + 348, py + 100, r2, 13, 500, K.g, 'end') : '');
+  const n = s.ck ?? 0;
   if (scr === 'home') {
-    o += Tx(px + 24, py + 100, 'Good morning', 14, 500, K.mu) + Tx(px + 24, py + 138, 'Hi, Ahmad', 34, 600, K.ink) + C(px + 330, py + 112, 20, K.sf2) + `<circle cx="${px + 330}" cy="${py + 112}" r="20" fill="none" stroke="${K.g}" stroke-width="2"/>` + Tx(px + 330, py + 118, 'A', 16, 600, K.g, 'middle');
-    o += R(px + 20, py + 164, 332, 214, { f: K.sf2, rx: 22, s: K.ln, sw: 1.5 }) + R(px + 38, py + 182, 86, 28, { f: K.gs, rx: 14 }) + C(px + 54, py + 196, 4, K.g) + Tx(px + 64, py + 201, 'On time', 12, 600, K.gt) + Tx(px + 334, py + 201, 'SV 1021', 12, 500, K.mu, 'end');
-    o += Tx(px + 38, py + 252, 'RUH', 38, 600, K.ink) + Tx(px + 334, py + 252, 'DXB', 38, 600, K.ink, 'end') + line(px + 140, py + 240, px + 232, py + 240, K.g, 2, '3 5') + plane(px + 186, py + 240, K.g) + Tx(px + 38, py + 280, 'Gate closes in 1h 05m', 12, 500, K.mu);
-    o += R(px + 38, py + 296, 296, 52, { f: s.press ? K.g2 : K.g, rx: 16 }) + Tx(px + 186, py + 329, 'Check-in  →', 17, 600, '#fff', 'middle');
-    o += R(px + 20, py + 398, 332, 52, { f: K.sf, rx: 16, s: K.ln }) + Tx(px + 42, py + 430, 'Where to?', 15, 500, K.mu) + `<circle cx="${px + 322}" cy="${py + 424}" r="11" fill="none" stroke="${K.g}" stroke-width="2"/><circle cx="${px + 322}" cy="${py + 424}" r="3.5" fill="${K.g}"/>`;
-    o += Tx(px + 24, py + 480, 'Special offers', 14, 600, K.ink);
-    o += R(px + 20, py + 500, 160, 106, { f: 'url(#gcard)', rx: 20 }) + R(px + 34, py + 514, 38, 22, { f: 'rgba(255,255,255,.22)', rx: 11 }) + Tx(px + 53, py + 530, 'New', 11, 600, '#fff', 'middle') + Tx(px + 34, py + 570, 'Weekend fares', 15, 600, '#fff') + Tx(px + 34, py + 592, 'from SAR 299', 12, 500, 'rgba(255,255,255,.8)');
-    o += R(px + 192, py + 500, 160, 106, { f: K.sf, rx: 20, s: K.ln }) + Tx(px + 208, py + 544, '47,500', 26, 600, K.ink) + Tx(px + 208, py + 568, 'Reward miles', 12, 500, K.mu) + R(px + 208, py + 582, 70, 5, { f: K.ln, rx: 3 }) + R(px + 208, py + 582, 44, 5, { f: K.g, rx: 3 });
+    o += Tx(px + 24, py + 100, 'Good morning', 14, 500, K.mu) + Tx(px + 24, py + 138, 'Hi, Ahmad.', 34, 600, K.ink) + R(px + 268, py + 76, 84, 30, { f: K.g, rx: 8 }) + Tx(px + 310, py + 96, 'Check-in', 12, 600, '#fff', 'middle');
+    o += Tx(px + 24, py + 162, 'You have 47,500 Reward Miles', 13, 500, K.mu);
+    o += R(px + 20, py + 184, 332, 52, { f: s.press ? K.gs : K.sf, rx: 14, s: s.press ? K.g : K.ln, sw: s.press ? 2 : 1.5 }) + Tx(px + 42, py + 216, 'Where to?', 15, 500, K.mu) + `<circle cx="${px + 322}" cy="${py + 208}" r="7" fill="none" stroke="${K.g}" stroke-width="2.2"/><path d="M${px + 327} ${py + 213} l6 6" stroke="${K.g}" stroke-width="2.2" stroke-linecap="round"/>`;
+    o += Tx(px + 24, py + 272, 'Happening now', 14, 600, K.ink);
+    o += R(px + 20, py + 288, 332, 214, { f: K.sf2, rx: 20, s: K.ln }) + R(px + 38, py + 304, 66, 26, { f: K.gs, rx: 8 }) + Tx(px + 71, py + 322, 'On time', 12, 600, K.gt, 'middle') + Tx(px + 334, py + 322, 'Boarding pass', 13, 600, K.g, 'end');
+    o += Tx(px + 38, py + 372, 'RUH + DXB', 26, 600, K.ink) + Tx(px + 38, py + 398, 'Gate closes in 1h 05m', 13, 500, K.mu) + line(px + 38, py + 420, px + 334, py + 420, K.ln, 1.5);
+    [['Terminal', '4'], ['Gate', '12A'], ['Departure', '22:45']].forEach(([a2, b2], i) => { const x = i === 2 ? px + 334 : px + 38 + i * 100, an = i === 2 ? 'end' : undefined; o += Tx(x, py + 446, a2, 12, 500, K.mu, an) + Tx(x, py + 474, b2, 18, 600, K.ink, an); });
+    o += Tx(px + 24, py + 534, 'Special offers', 14, 600, K.ink) + R(px + 20, py + 548, 332, 120, { f: 'url(#gcard)', rx: 20 }) + R(px + 36, py + 564, 38, 22, { f: 'rgba(255,255,255,.22)', rx: 11 }) + Tx(px + 55, py + 580, 'New', 11, 600, '#fff', 'middle') + Tx(px + 36, py + 626, 'Weekend fares to Dubai', 18, 600, '#fff') + Tx(px + 36, py + 650, 'from SAR 299', 13, 500, 'rgba(255,255,255,.85)');
   } else if (scr === 'one') {
-    o += Tx(px + 24, py + 100, '←', 18, 600, K.g) + Tx(px + 52, py + 100, 'Check-in', 18, 600, K.ink) + Tx(px + 348, py + 100, 'Step 1 of 2', 12, 500, K.mu, 'end') + R(px + 24, py + 120, 324, 5, { f: K.ln, rx: 3 }) + R(px + 24, py + 120, 162, 5, { f: K.g, rx: 3 });
-    const n = s.ck ?? 0;
-    o += Tx(px + 24, py + 184, 'Find your booking', 27, 600, K.ink) + Tx(px + 24, py + 214, 'Enter your e-ticket number and last name.', 14, 500, K.mu);
-    [['E-Ticket number', '065 2184 773902'], ['Last name', 'Alsultan']].forEach(([l, v], i) => {
-      const y = py + 244 + i * 84, on = n > i, act = n === i;
-      o += R(px + 20, y, 332, 68, { f: K.sf, rx: 16, s: act ? K.g : K.ln, sw: act ? 2 : 1.5 }) + Tx(px + 40, y + 26, l, 12, 500, act || on ? K.gt : K.mu) + (on ? Tx(px + 40, y + 52, v, 18, 600, K.ink) : act ? R(px + 40, y + 38, 2, 20, { f: K.g, rx: 1 }) : '') + (on ? ck(px + 322, y + 34, K.g, 11) : '');
-    });
-    o += Tx(px + 24, py + 440, 'By continuing you accept the terms and conditions.', 12, 500, K.mu);
-    o += R(px + 20, py + 678, 332, 56, { f: n > 1 ? K.g : K.sf2, rx: 18 }) + Tx(px + 186, py + 713, 'Start check-in', 17, 600, n > 1 ? '#fff' : K.mu, 'middle');
+    o += hdr('', 'Add promo code') + Tx(px + 24, py + 168, 'Book a flight', 27, 600, K.ink);
+    o += Tx(px + 24, py + 214, 'Round trip', 14, 600, K.ink) + Tx(px + 118, py + 214, 'One way', 14, 500, K.mu) + Tx(px + 196, py + 214, 'Multi city', 14, 500, K.mu) + R(px + 24, py + 226, 74, 3, { f: K.g, rx: 2 }) + R(px + 24, py + 229, 324, 1, { f: K.ln, rx: 0 });
+    o += R(px + 20, py + 248, 160, 96, { f: K.sf, rx: 14, s: K.ln }) + R(px + 192, py + 248, 160, 96, { f: K.sf, rx: 14, s: K.ln }) + C(px + 186, py + 296, 16, K.sf2) + `<path d="M${px + 179} ${py + 296} h14 m-5 -5 l5 5 l-5 5" stroke="${K.g}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+    o += Tx(px + 100, py + 274, 'From', 12, 500, K.mu, 'middle') + Tx(px + 100, py + 308, 'DXB', 26, 600, K.ink, 'middle') + Tx(px + 100, py + 330, 'Dubai', 12, 500, K.mu, 'middle') + Tx(px + 272, py + 274, 'To', 12, 500, K.mu, 'middle') + Tx(px + 272, py + 308, 'RUH', 26, 600, K.ink, 'middle') + Tx(px + 272, py + 330, 'Riyadh', 12, 500, K.mu, 'middle');
+    const f2 = [['Travel dates', 'Tom, 24 Aug - Fri, 5 Sep', 'Select dates'], ['Passenger / Class', '1 Passenger, Economy', 'Select passengers']];
+    f2.forEach(([l, v, ph2], i) => { const y = py + 364 + i * 84, on = n > i, act = n === i; o += R(px + 20, y, 332, 68, { f: K.sf, rx: 14, s: act ? K.g : K.ln, sw: act ? 2 : 1.5 }) + Tx(px + 40, y + 26, l, 12, 500, act || on ? K.gt : K.mu) + Tx(px + 40, y + 52, on ? v : ph2, 17, on ? 600 : 500, on ? K.ink : K.mu) + (on ? ck(px + 322, y + 34, K.g, 11) : ''); });
+    o += R(px + 20, py + 678, 332, 56, { f: n > 1 ? K.g : K.sf2, rx: 14 }) + Tx(px + 186, py + 713, 'Search Flights', 17, 600, n > 1 ? '#fff' : K.mu, 'middle');
   } else {
-    o += Tx(px + 24, py + 100, '←', 18, 600, K.g) + Tx(px + 52, py + 100, 'Boarding pass', 18, 600, K.ink) + Tx(px + 348, py + 100, 'Step 2 of 2', 12, 500, K.mu, 'end') + R(px + 24, py + 120, 324, 5, { f: K.g, rx: 3 });
-    o += ck(px + 40, py + 170, K.g, 14) + Tx(px + 66, py + 178, 'You’re checked in', 22, 600, K.ink);
+    o += hdr('My trip', '') + ck(px + 40, py + 170, K.g, 14) + Tx(px + 66, py + 178, 'Trip to Dubai confirmed', 20, 600, K.ink);
     o += R(px + 20, py + 206, 332, 380, { f: 'url(#gcard)', rx: 26 }) + Tx(px + 40, py + 262, 'RUH', 32, 600, '#fff') + Tx(px + 332, py + 262, 'DXB', 32, 600, '#fff', 'end') + line(px + 128, py + 250, px + 244, py + 250, 'rgba(255,255,255,.6)', 2, '3 5') + plane(px + 186, py + 250, '#fff') + Tx(px + 40, py + 284, 'Riyadh', 12, 500, 'rgba(255,255,255,.75)') + Tx(px + 332, py + 284, 'Dubai', 12, 500, 'rgba(255,255,255,.75)', 'end');
-    [['Seat', '14A'], ['Gate', '12A'], ['Departs', '22:45']].forEach(([a, b], i) => { const x = px + 40 + i * 104; o += Tx(x, py + 310, a, 12, 500, 'rgba(255,255,255,.75)') + Tx(x, py + 334, b, 20, 600, '#fff'); });
+    [['Seat', '14A'], ['Gate', '12A'], ['Departs', '22:45']].forEach(([a2, b2], i) => { const x = px + 40 + i * 104; o += Tx(x, py + 310, a2, 12, 500, 'rgba(255,255,255,.75)') + Tx(x, py + 334, b2, 20, 600, '#fff'); });
     o += R(px + 98, py + 350, 176, 176, { f: '#fff', rx: 16 });
-    for (let a = 0; a < 9; a++) for (let c = 0; c < 9; c++) if ((a * 5 + c * 7 + (a * c)) % 3 === 0 || (a < 3 && c < 3)) o += `<rect x="${px + 112 + c * 16}" y="${py + 364 + a * 16}" width="13" height="13" rx="2" fill="#0F2A1D"/>`;
-    o += R(px + 20, py + 612, 332, 56, { f: s.wallet ? K.gs : K.sf, rx: 18, s: s.wallet ? K.g : K.ln, sw: s.wallet ? 3 : 1.5 }) + Tx(px + 186, py + 647, 'Add to Apple Wallet', 17, 600, s.wallet ? K.gt : K.ink, 'middle');
+    for (let a2 = 0; a2 < 9; a2++) for (let c2 = 0; c2 < 9; c2++) if ((a2 * 5 + c2 * 7 + (a2 * c2)) % 3 === 0 || (a2 < 3 && c2 < 3)) o += `<rect x="${px + 112 + c2 * 16}" y="${py + 364 + a2 * 16}" width="13" height="13" rx="2" fill="#0F2A1D"/>`;
+    o += R(px + 20, py + 612, 332, 56, { f: s.wallet ? K.gs : K.sf, rx: 14, s: s.wallet ? K.g : K.ln, sw: s.wallet ? 3 : 1.5 }) + Tx(px + 186, py + 647, 'Add to Apple Wallet', 17, 600, s.wallet ? K.gt : K.ink, 'middle');
   }
   o += R(px + 136, py + ph - 14, 100, 5, { f: K.ink, rx: 3 });
   if (s.cursor) o += cur(...s.cursor, '#fff', '#0B1F18');

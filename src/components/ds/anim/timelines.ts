@@ -132,8 +132,8 @@ export const timelines: Record<string, Timeline> = {
   travel: { stage: '#0E9A6A', duration: 9600, speed: 1.4, beats: [
     { at: 0, k: 'travel', s: { screen: 'home' }, cam: [640, 400, 1], tilt: [0, 18], ms: 0 },
     { at: 500, tilt: [0, 0], ms: 1100 },
-    { at: 1800, cam: [640, 270, 1.7], cur: [820, 520], ms: 1000 },
-    { at: 2700, cur: [640, 345], ms: 700 },
+    { at: 1800, cam: [640, 240, 1.7], cur: [820, 420], ms: 1000 },
+    { at: 2700, cur: [640, 230], ms: 700 },
     { at: 3400, s: { screen: 'home', press: true }, click: true },
     { at: 3700, s: { screen: 'one' }, cam: [640, 290, 1.6], cur: null, ms: 800 },
     { at: 4300, s: { screen: 'one', ck: 1 }, cam: [640, 300, 1.8], ms: 600 }, { at: 4800, s: { screen: 'one', ck: 2 } },
