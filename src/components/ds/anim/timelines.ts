@@ -129,7 +129,7 @@ export const timelines: Record<string, Timeline> = {
     { at: 14700, s: { n: 8, off: 142 }, ms: 600 },
     { at: 15700, cam: [640, 400, 1], cur: null, ms: 900 },
   ] },
-  travel: { stage: '#E6CFA6', duration: 9600, speed: 1.4, beats: [
+  travel: { stage: '#0E9A6A', duration: 9600, speed: 1.4, beats: [
     { at: 0, k: 'travel', s: { screen: 'home' }, cam: [640, 400, 1], tilt: [0, 18], ms: 0 },
     { at: 500, tilt: [0, 0], ms: 1100 },
     { at: 1800, cam: [640, 270, 1.7], cur: [820, 520], ms: 1000 },

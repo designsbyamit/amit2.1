@@ -100,31 +100,49 @@ function engaze(s = {}) {
   return o;
 }
 
-/* ---------- master 4: Airline mobile check-in (phone on a warm field) ---------- */
+/* ---------- master 4: Airline mobile check-in (dark green design system, same as the static cover) ---------- */
 function travel(s = {}) {
   const px = 454, py = 20, pw = 372, ph = 760;
-  let o = `<defs><linearGradient id="warm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBF1E1"/><stop offset="1" stop-color="#EDD5AE"/></linearGradient></defs><rect width="1280" height="800" fill="url(#warm)"/>`;
-  o += R(px - 12, py - 12, pw + 24, ph + 24, { f: '#14110D', rx: 66 }) + R(px, py, pw, ph, { f: '#FBF9F5', rx: 54 }) + R(px + 135, py + 12, 102, 28, { f: '#14110D', rx: 14 });
+  const K = { bg: '#141617', sf: '#1E2122', sf2: '#272B2C', ln: '#2F3436', ink: '#F4F7F5', mu: '#8E9A96', g: '#22B573', g2: '#14804F', gs: '#163A2C', gt: '#4ADE9A' };
+  const Tx = (x, y, str, z, w, f, a) => T(x, y, str, { z, w, f, a });
+  const line = (x1, y1, x2, y2, c, sw = 2, d) => `<path d="M${x1} ${y1} L${x2} ${y2}" stroke="${c}" stroke-width="${sw}" fill="none" stroke-linecap="round" ${d ? `stroke-dasharray="${d}"` : ''}/>`;
+  const plane = (x, y, c) => `<path d="M${x - 9} ${y + 5} l7-5 l-9-14 l4-2 l13 11 l9-5 c3-1.5 5 .5 3 3 l-8 5 l-4 14 l-4 1 l1-11 z" fill="${c}" transform="rotate(90 ${x} ${y})"/>`;
+  let o = `<defs><linearGradient id="bgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A6F6B"/><stop offset="1" stop-color="#19C46E"/></linearGradient><linearGradient id="gcard" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B8F47"/><stop offset="1" stop-color="#2DB866"/></linearGradient></defs><rect width="1280" height="800" fill="url(#bgG)"/>`;
+  o += R(px - 12, py - 12, pw + 24, ph + 24, { f: '#1C1E20', rx: 66, s: '#3A3E40', sw: 2 }) + R(px, py, pw, ph, { f: K.bg, rx: 54 }) + R(px + 135, py + 12, 102, 28, { f: '#0A0B0B', rx: 14 });
   const scr = s.screen ?? 'home';
   if (scr === 'home') {
-    o += T(px + 24, py + 100, 'Good morning', { z: 14, f: '#8A7B66' }) + T(px + 24, py + 138, 'Sara', { z: 34, w: 600, f: '#2A2118' }) + C(px + 330, py + 112, 19, '#C86F2A');
-    o += R(px + 20, py + 164, 332, 214, { f: '#6C2037', rx: 26 }) + R(px + 38, py + 182, 122, 28, { f: '#9A4560', rx: 14 }) + T(px + 54, py + 202, 'Check-in open', { z: 12, w: 600, f: '#fff' }) + T(px + 38, py + 262, 'DXB', { z: 38, w: 600, f: '#fff' }) + T(px + 270, py + 262, 'LHR', { z: 38, w: 600, f: '#fff' }) + `<line x1="${px + 130}" x2="${px + 250}" y1="${py + 248}" y2="${py + 248}" stroke="#fff" stroke-width="2" stroke-dasharray="6 6" opacity=".5"/>`;
-    o += R(px + 38, py + 296, 296, 52, { f: s.press ? '#EFE5D6' : '#fff', rx: 16 }) + T(px + 186, py + 329, 'Check in  →', { z: 17, w: 600, a: 'middle', f: '#4A1428' });
-    [0, 1, 2, 3].forEach(i => { o += R(px + 26 + i * 84, py + 400, 56, 56, { f: '#fff', rx: 18, s: '#EADFCC' }); }); o += R(px + 20, py + 500, 160, 106, { f: '#C98A41', rx: 20 }) + R(px + 192, py + 500, 160, 106, { f: '#4A7A7A', rx: 20 });
+    o += Tx(px + 24, py + 100, 'Good morning', 14, 500, K.mu) + Tx(px + 24, py + 138, 'Hi, Ahmad', 34, 600, K.ink) + C(px + 330, py + 112, 20, K.sf2) + `<circle cx="${px + 330}" cy="${py + 112}" r="20" fill="none" stroke="${K.g}" stroke-width="2"/>` + Tx(px + 330, py + 118, 'A', 16, 600, K.g, 'middle');
+    o += R(px + 20, py + 164, 332, 214, { f: K.sf2, rx: 22, s: K.ln, sw: 1.5 }) + R(px + 38, py + 182, 86, 28, { f: K.gs, rx: 14 }) + C(px + 54, py + 196, 4, K.g) + Tx(px + 64, py + 201, 'On time', 12, 600, K.gt) + Tx(px + 334, py + 201, 'SV 1021', 12, 500, K.mu, 'end');
+    o += Tx(px + 38, py + 252, 'RUH', 38, 600, K.ink) + Tx(px + 334, py + 252, 'DXB', 38, 600, K.ink, 'end') + line(px + 140, py + 240, px + 232, py + 240, K.g, 2, '3 5') + plane(px + 186, py + 240, K.g) + Tx(px + 38, py + 280, 'Gate closes in 1h 05m', 12, 500, K.mu);
+    o += R(px + 38, py + 296, 296, 52, { f: s.press ? K.g2 : K.g, rx: 16 }) + Tx(px + 186, py + 329, 'Check-in  →', 17, 600, '#fff', 'middle');
+    ['Trips', 'Bags', 'Seats', 'Miles'].forEach((n, i) => {
+      const cx = px + 54 + i * 84, cy = py + 428; o += R(px + 26 + i * 84, py + 400, 56, 56, { f: K.sf, rx: 18, s: K.ln });
+      o += [`<rect x="${cx - 10}" y="${cy - 8}" width="20" height="16" rx="4" fill="none" stroke="${K.g}" stroke-width="2"/><path d="M${cx - 4} ${cy - 8} v-3 h8 v3" fill="none" stroke="${K.g}" stroke-width="2"/>`, `<rect x="${cx - 8}" y="${cy - 9}" width="16" height="19" rx="4" fill="none" stroke="${K.g}" stroke-width="2"/><path d="M${cx - 3} ${cy - 9} v-3 h6 v3" fill="none" stroke="${K.g}" stroke-width="2"/>`, `<path d="M${cx - 6} ${cy - 10} h8 a4 4 0 0 1 4 4 v8 h-14 z M${cx - 6} ${cy + 6} h14 v5 h-14z" fill="none" stroke="${K.g}" stroke-width="2" stroke-linejoin="round"/>`, `<circle cx="${cx}" cy="${cy}" r="10" fill="none" stroke="${K.g}" stroke-width="2"/>${sparkP(cx, cy, K.g, .6)}`][i];
+      o += Tx(cx, py + 478, n, 11, 500, K.mu, 'middle');
+    });
+    o += R(px + 20, py + 500, 160, 106, { f: 'url(#gcard)', rx: 20 }) + R(px + 34, py + 514, 38, 22, { f: 'rgba(255,255,255,.22)', rx: 11 }) + Tx(px + 53, py + 530, 'New', 11, 600, '#fff', 'middle') + Tx(px + 34, py + 570, 'Special', 16, 600, '#fff') + Tx(px + 34, py + 592, 'offers', 16, 600, '#fff');
+    o += R(px + 192, py + 500, 160, 106, { f: K.sf, rx: 20, s: K.ln }) + Tx(px + 208, py + 544, '47,500', 26, 600, K.ink) + Tx(px + 208, py + 568, 'Reward miles', 12, 500, K.mu) + R(px + 208, py + 582, 70, 5, { f: K.ln, rx: 3 }) + R(px + 208, py + 582, 44, 5, { f: K.g, rx: 3 });
   } else if (scr === 'one') {
-    o += T(px + 24, py + 100, '←  Check-in', { z: 18, w: 600, f: '#2A2118' }) + T(px + 348, py + 100, 'Step 1 of 2', { z: 12, a: 'end', f: '#8A7B66' }) + R(px + 24, py + 120, 324, 5, { f: '#EADFCC', rx: 3 }) + R(px + 24, py + 120, 162, 5, { f: '#8E2F45', rx: 3 });
-    o += T(px + 24, py + 184, 'Confirm who’s flying', { z: 27, w: 600, f: '#2A2118' });
-    [['Sara Khan', 'Seat 14A · Window', '#C86F2A'], ['Adam Khan', 'Seat 14B · Middle', '#4A7A7A']].forEach(([n, d, c], i) => { const y = py + 214 + i * 84, on = (s.ck ?? 0) > i; o += R(px + 20, y, 332, 72, { f: on ? '#FFF7F8' : '#fff', rx: 20, s: on ? '#8E2F45' : '#EADFCC', sw: on ? 3 : 1.5 }) + C(px + 56, y + 36, 20, c) + T(px + 88, y + 32, n, { z: 17, w: 600, f: '#2A2118' }) + T(px + 88, y + 54, d, { z: 13, f: '#8A7B66' }) + R(px + 308, y + 24, 24, 24, { f: on ? '#8E2F45' : 'none', s: '#CFC2AD', rx: 8, sw: on ? 0 : 2 }); if (on) o += `<path d="M${px + 314} ${y + 36} l5 5 l8-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`; });
-    o += R(px + 20, py + 392, 332, 46, { f: '#F3ECDF', rx: 14 }) + T(px + 40, py + 421, 'Passport details are already on file.', { z: 13, f: '#6B5D49' });
-    o += R(px + 20, py + 678, 332, 56, { f: (s.ck ?? 0) > 1 ? '#8E2F45' : '#C9BFB1', rx: 18 }) + T(px + 186, py + 713, 'Check in 2 passengers', { z: 17, w: 600, a: 'middle', f: '#fff' });
+    o += Tx(px + 24, py + 100, '←', 18, 600, K.g) + Tx(px + 52, py + 100, 'Check-in', 18, 600, K.ink) + Tx(px + 348, py + 100, 'Step 1 of 2', 12, 500, K.mu, 'end') + R(px + 24, py + 120, 324, 5, { f: K.ln, rx: 3 }) + R(px + 24, py + 120, 162, 5, { f: K.g, rx: 3 });
+    o += Tx(px + 24, py + 184, 'Confirm who’s flying', 27, 600, K.ink);
+    [['Ahmad Alsultan', 'Seat 14A · Window', 'A'], ['Layla Alsultan', 'Seat 14B · Middle', 'L']].forEach(([n, d, l], i) => {
+      const y = py + 214 + i * 84, on = (s.ck ?? 0) > i;
+      o += R(px + 20, y, 332, 72, { f: on ? K.gs : K.sf, rx: 18, s: on ? K.g : K.ln, sw: on ? 2 : 1.5 }) + C(px + 56, y + 36, 20, K.sf2) + Tx(px + 56, y + 42, l, 16, 600, on ? K.gt : K.mu, 'middle') + Tx(px + 90, y + 32, n, 17, 600, K.ink) + Tx(px + 90, y + 54, d, 13, 500, K.mu);
+      o += on ? ck(px + 322, y + 36, K.g, 13) : `<circle cx="${px + 322}" cy="${y + 36}" r="12" fill="none" stroke="${K.ln}" stroke-width="2"/>`;
+    });
+    o += R(px + 20, py + 392, 332, 46, { f: K.sf, rx: 14, s: K.ln }) + C(px + 44, py + 415, 8, K.gs) + C(px + 44, py + 415, 3.5, K.g) + Tx(px + 62, py + 420, 'Passport details are already on file.', 13, 500, K.mu);
+    o += R(px + 20, py + 678, 332, 56, { f: (s.ck ?? 0) > 1 ? K.g : K.sf2, rx: 18 }) + Tx(px + 186, py + 713, 'Check in 2 passengers', 17, 600, (s.ck ?? 0) > 1 ? '#fff' : K.mu, 'middle');
   } else {
-    o += T(px + 24, py + 100, '←  Boarding pass', { z: 18, w: 600, f: '#2A2118' }) + T(px + 348, py + 100, 'Step 2 of 2', { z: 12, a: 'end', f: '#8A7B66' }) + R(px + 24, py + 120, 324, 5, { f: '#8E2F45', rx: 3 });
-    o += tick(px + 40, py + 170, '#16A34A') + T(px + 66, py + 178, 'You’re checked in', { z: 22, w: 600, f: '#2A2118' });
-    o += R(px + 20, py + 206, 332, 380, { f: '#6C2037', rx: 26 }) + T(px + 40, py + 264, 'DXB', { z: 32, w: 600, f: '#fff' }) + T(px + 332, py + 264, 'LHR', { z: 32, w: 600, a: 'end', f: '#fff' }) + [['Seat', '14A'], ['Gate', 'B12'], ['Boards', '05:35']].map(([k, v], i) => T(px + 40 + i * 100, py + 306, k, { z: 11, f: '#E3C0CB' }) + T(px + 40 + i * 100, py + 328, v, { z: 17, w: 600, f: '#fff' })).join('');
-    o += R(px + 98, py + 350, 176, 176, { f: '#fff', rx: 16 }); for (let r = 0; r < 9; r++) for (let c = 0; c < 9; c++) if ((r * 5 + c * 7 + (r * c)) % 3 === 0 || (r < 3 && c < 3)) o += `<rect x="${px + 112 + c * 16}" y="${py + 364 + r * 16}" width="13" height="13" fill="#1B1410"/>`;
-    o += R(px + 20, py + 612, 332, 56, { f: '#fff', rx: 18, s: s.wallet ? '#8E2F45' : '#E5DBCB', sw: s.wallet ? 3 : 1.5 }) + T(px + 186, py + 647, 'Add to Wallet', { z: 17, w: 600, a: 'middle', f: '#2A2118' });
+    o += Tx(px + 24, py + 100, '←', 18, 600, K.g) + Tx(px + 52, py + 100, 'Boarding pass', 18, 600, K.ink) + Tx(px + 348, py + 100, 'Step 2 of 2', 12, 500, K.mu, 'end') + R(px + 24, py + 120, 324, 5, { f: K.g, rx: 3 });
+    o += ck(px + 40, py + 170, K.g, 14) + Tx(px + 66, py + 178, 'You’re checked in', 22, 600, K.ink);
+    o += R(px + 20, py + 206, 332, 380, { f: 'url(#gcard)', rx: 26 }) + Tx(px + 40, py + 262, 'RUH', 32, 600, '#fff') + Tx(px + 332, py + 262, 'DXB', 32, 600, '#fff', 'end') + line(px + 128, py + 250, px + 244, py + 250, 'rgba(255,255,255,.6)', 2, '3 5') + plane(px + 186, py + 250, '#fff') + Tx(px + 40, py + 284, 'Riyadh', 12, 500, 'rgba(255,255,255,.75)') + Tx(px + 332, py + 284, 'Dubai', 12, 500, 'rgba(255,255,255,.75)', 'end');
+    [['Seat', '14A'], ['Gate', '12A'], ['Departs', '22:45']].forEach(([a, b], i) => { const x = px + 40 + i * 104; o += Tx(x, py + 310, a, 12, 500, 'rgba(255,255,255,.75)') + Tx(x, py + 334, b, 20, 600, '#fff'); });
+    o += R(px + 98, py + 350, 176, 176, { f: '#fff', rx: 16 });
+    for (let a = 0; a < 9; a++) for (let c = 0; c < 9; c++) if ((a * 5 + c * 7 + (a * c)) % 3 === 0 || (a < 3 && c < 3)) o += `<rect x="${px + 112 + c * 16}" y="${py + 364 + a * 16}" width="13" height="13" rx="2" fill="#0F2A1D"/>`;
+    o += R(px + 20, py + 612, 332, 56, { f: s.wallet ? K.gs : K.sf, rx: 18, s: s.wallet ? K.g : K.ln, sw: s.wallet ? 3 : 1.5 }) + Tx(px + 186, py + 647, 'Add to Wallet', 17, 600, s.wallet ? K.gt : K.ink, 'middle');
   }
-  if (s.cursor) o += cursor(...s.cursor);
+  o += R(px + 136, py + ph - 14, 100, 5, { f: K.ink, rx: 3 });
+  if (s.cursor) o += cur(...s.cursor, '#fff', '#0B1F18');
   return o;
 }
 
