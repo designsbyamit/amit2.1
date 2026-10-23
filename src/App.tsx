@@ -24,6 +24,7 @@ const PracticePage = lazy(() => import('./pages/grow/PracticePage'))
 const ChallengePage = lazy(() => import('./pages/grow/ChallengePage'))
 const PortfolioGuidePage = lazy(() => import('./pages/grow/PortfolioPage'))
 const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
+const ShortStoryPage = lazy(() => import('./pages/ShortStoryPage'))
 const CommunityPage = lazy(() => import('./pages/CommunityPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'))
@@ -117,6 +118,7 @@ function AnimatedRoutes() {
         <Route path="/labs/order-confirmation" element={<ScmPrototype />} />
         <Route path="/labs/engaze" element={<EngazePrototype />} />
         <Route path="/labs/ai-search" element={<SearchPrototype />} />
+        <Route path="/craft/stories/:slug" element={<PageTransition><ShortStoryPage /></PageTransition>} />
         <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><PlaybackPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />

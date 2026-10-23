@@ -1,4 +1,5 @@
 import Button from '../components/ds/Button'
+import { NAMES } from '../data/ia'
 import Stat from '../components/ds/Stat'
 import { motion } from 'framer-motion'
 const heroImg = '/images/about/leadership-hero.webp'
@@ -54,8 +55,8 @@ function ReflectionsPointer() {
       <div className="container-site grid-site gap-y-6 items-start">
         <p className="col-span-4 md:col-span-4 text-overline text-ink-3">Writing</p>
         <div className="col-span-4 md:col-span-8">
-          <p className="text-body-lg text-ink-2 max-w-xl mb-6">My essays on leadership, AI and the future of design live in Reflections.</p>
-          <Button to="/reflections" variant="tertiary" arrow>Read Reflections</Button>
+          <p className="text-body-lg text-ink-2 max-w-xl mb-6">My essays on leadership, AI and the future of design live in {NAMES.diary}.</p>
+          <Button to="/reflections" variant="tertiary" arrow>Read {NAMES.diary}</Button>
         </div>
       </div>
     </section>
@@ -66,7 +67,7 @@ export default function LeadershipPage() {
   return (
     <>
       <PageHeader
-        label="Leadership"
+        label={NAMES.leadership}
         title="Design is a leadership practice."
         subtitle="The career arc, the philosophy, and what I've learned about making design matter inside large organizations, where influence is earned, not assigned."
         image={heroImg} imagePosition="100% 62%"
