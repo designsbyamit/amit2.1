@@ -99,11 +99,10 @@ const block = ['/admin', '/api/', '/labs/', '/design-system', '/templates/', '/c
 fs.writeFileSync(path.join(dist, 'robots.txt'),
   `User-agent: *\nAllow: /\n${block.map(b => `Disallow: ${b}`).join('\n')}\n\n${bots.map(b => `User-agent: ${b}\nAllow: /\n${block.map(b2 => `Disallow: ${b2}`).join('\n')}\n`).join('\n')}\nSitemap: ${SITE.url}/sitemap.xml\n`)
 
-const hiringFull = '\n\n## How I hire: a hiring playbook for design teams\n' + hiringParts.map(p => `### ${p.title}\n${p.lead}\n` + p.steps.map(s => `- ${s.title}: ${s.what}`).join('\n')).join('\n\n')
 const expFull = '\n\n## Hiring is an experience problem\n' + patterns.map(p => `- ${p.title}: ${p.problem}`).join('\n') + `\n\nResult: ${results.big} ${results.label}.`
 const projLines = playbacks.map(p => `- [${p.headline}](${abs('/craft/' + p.id)}): ${p.dek}`)
 fs.writeFileSync(path.join(dist, 'llms.txt'),
   `# ${SITE.name}\n\n> ${routes[0].description}\n\n## Work\n${projLines.join('\n')}\n\n## More\n${indexable.filter(r => !r.path.startsWith('/craft/')).map(r => `- [${r.title.split(' · ')[0]}](${abs(r.path)}): ${r.description}`).join('\n')}\n`)
 fs.writeFileSync(path.join(dist, 'llms-full.txt'),
-  `# ${SITE.name}\n\n${routes[0].description}\n\n` + playbacks.map(p => `## ${p.headline}\n${p.dek}\n\n` + Object.entries(p.beats).map(([k, v]) => `**${k}**: ${v}`).join('\n\n')).join('\n\n') + hiringFull + expFull + '\n')
+  `# ${SITE.name}\n\n${routes[0].description}\n\n` + playbacks.map(p => `## ${p.headline}\n${p.dek}\n\n` + Object.entries(p.beats).map(([k, v]) => `**${k}**: ${v}`).join('\n\n')).join('\n\n') + expFull + '\n')
 console.log(`seo: ${routes.length} pages, ${indexable.length} in sitemap`)
