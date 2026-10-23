@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useId } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { menuWorks, growItems, leadershipItems } from '../../data/ia'
+import { menuWorks, growItems, leadershipItems, type MenuItem } from '../../data/ia'
+import MenuCover from '../ds/MenuCover'
 import CaseThumb from '../ds/CaseThumb'
 import Logo from './Logo'
 import NameRoles from './RoleRotator'
@@ -91,18 +92,32 @@ export default function Nav() {
     </div>
   )
 
-  // Leadership and Grow: the same panel surface and link style, with their pages listed.
-  const listPanel = (heading: string, items: { label: string; to: string; soon?: boolean; note?: string }[]) => (
-    <div className="container-site grid-site py-8">
-      <p className="col-span-12 text-overline text-ink-3 mb-5">{heading}</p>
-      <div className="col-span-12 flex flex-col gap-0.5">
-        {items.map(it => it.soon
-          ? <span key={it.label} className="py-1.5 text-[0.9375rem] leading-snug text-ink-3">{it.label}{soonTag}{it.note && <span className="block text-body-sm mt-0.5">{it.note}</span>}</span>
-          : <Link key={it.label} to={it.to} className={linkCls + ' self-start'}>{it.label}</Link>)}
+  // Leadership and Grow: the same rule as Works. The first three pages get a cover, any others are listed on the right,
+  // and the last link goes to the section's own page.
+  const coverPanel = (heading: string, items: MenuItem[], all: { label: string; to: string }) => {
+    const shown = items.slice(0, 3)
+    const rest = items.slice(3)
+    return (
+      <div className="container-site grid-site py-8">
+        <p className="col-span-12 text-overline text-ink-3 mb-5">{heading}</p>
+        {shown.map((it, i) => (
+          <Link key={it.label} to={it.to} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
+            <MenuCover mark={it.mark!} tone={it.tone!} />
+            <span className="text-label text-signal-ink">{String(i + 1).padStart(2, '0')} / {it.kind}</span>
+            <span className={titleCls}>{it.label}</span>
+          </Link>
+        ))}
+        <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
+          {rest.length > 0 && <span className="text-label text-ink-3 mb-2">More</span>}
+          {rest.map(it => it.soon
+            ? <span key={it.label} className="py-1.5 text-[0.9375rem] leading-snug text-ink-3">{it.label}{soonTag}{it.note && <span className="block text-body-sm mt-0.5">{it.note}</span>}</span>
+            : <Link key={it.label} to={it.to} className={linkCls}>{it.label}</Link>)}
+          <Link to={all.to} className={`btn btn-ghost self-start ${rest.length > 0 ? 'mt-3' : ''}`}>{all.label}{arrowSvg}</Link>
+        </div>
       </div>
-    </div>
-  )
-  const panels: Record<MenuKey, React.ReactNode> = { Works: worksPanel, Leadership: listPanel('Leadership', leadershipItems), Grow: listPanel('Grow', growItems) }
+    )
+  }
+  const panels: Record<MenuKey, React.ReactNode> = { Works: worksPanel, Leadership: coverPanel('Leadership', leadershipItems, { label: 'All leadership', to: '/leadership' }), Grow: coverPanel('Grow', growItems, { label: 'All Grow', to: '/learn' }) }
 
   return (
     <>

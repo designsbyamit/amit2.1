@@ -22,16 +22,22 @@ export const research = [
   'Agentic AI Interventions in FinTech',
 ]
 
+import type { MarkName } from '../components/marks/Marks'
+import type { FieldTone } from '../components/ds/MediaFrame'
+
+/** A page listed in a main-nav menu. The first three show a cover; the rest are listed on the right. */
+export interface MenuItem { label: string; to: string; kind: string; mark?: MarkName; tone?: FieldTone; soon?: boolean; note?: string }
+
 /** The Grow section: four places, the last still to come. */
-export const growItems = [
-  { label: 'Mentoring', to: '/mentoring' },
-  { label: 'Toolkits', to: '/learn/practice' },
-  { label: 'Portfolio Guide', to: '/learn/portfolio' },
-  { label: 'WingSpan', to: '', soon: true, note: 'Wings for your design career' },
+export const growItems: MenuItem[] = [
+  { label: 'Mentoring', to: '/mentoring', kind: 'Mentoring', mark: 'mentor', tone: 'cobalt' },
+  { label: 'Toolkits', to: '/learn/practice', kind: 'Toolkits', mark: 'toolkit', tone: 'teal' },
+  { label: 'Portfolio Guide', to: '/learn/portfolio', kind: 'Guide', mark: 'portfolio', tone: 'plum' },
+  { label: 'WingSpan', to: '', kind: 'Coming soon', soon: true, note: 'Wings for your design career' },
 ]
 
-export const leadershipItems = [
-  { label: NAMES.leadership, to: '/leadership' },
-  { label: 'Community', to: '/community' },
-  { label: NAMES.diary, to: '/reflections' },
+export const leadershipItems: MenuItem[] = [
+  { label: NAMES.leadership, to: '/leadership', kind: 'Approach', mark: 'lead', tone: 'cobalt' },
+  { label: 'Community', to: '/community', kind: 'Community', mark: 'community', tone: 'teal' },
+  { label: NAMES.diary, to: '/reflections', kind: 'Writing', mark: 'notes', tone: 'plum' },
 ]

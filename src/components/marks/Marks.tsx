@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
    Used sparingly: one per page header or card, never as decoration between sections. */
 
 export type MarkName =
-  | 'lead' | 'community' | 'notes'
+  | 'lead' | 'community' | 'notes' | 'mentor' | 'toolkit' | 'portfolio'
   | 'agentic' | 'search' | 'engaze' | 'airline' | 'data' | 'network'
   | 'file18' | 'greenux' | 'gxd' | 'convai' | 'persona' | 'portal'
 
@@ -28,6 +28,13 @@ const marks: Record<MarkName, ReactNode> = {
   community: <>{L({ cx: 24, cy: 26, r: 14 }, 1)}{L({ cx: 40, cy: 26, r: 14 }, 2)}{L({ cx: 32, cy: 40, r: 14 }, 3)}{N(32, 31)}</>,
   // Field Notes: lines of thought getting shorter, the last one still being written.
   notes: <>{L({ d: 'M10 18 H46' }, 1)}{L({ d: 'M10 30 H54' }, 2)}{L({ d: 'M10 42 H34' }, 3)}{N(41, 42, 3)}</>,
+
+  // Mentoring: one person a step ahead of another, with a hand-off between them.
+  mentor: <>{L({ cx: 18, cy: 40, r: 8 }, 1)}{L({ cx: 42, cy: 28, r: 12 }, 2)}{L({ d: 'M26 38 C30 38 32 36 33 33', o: 0.5 }, 3)}{N(30, 37, 3)}</>,
+  // Toolkits: a case, closed, with one thing ready to hand.
+  toolkit: <>{L({ x: 8, y: 22, w: 48, h: 32, rx: 4 }, 1)}{L({ d: 'M24 22 V15 H40 V22' }, 2)}{L({ d: 'M8 36 H56', o: 0.5 }, 3)}{N(32, 36, 3.4)}</>,
+  // Portfolio guide: a page of work, one piece picked out.
+  portfolio: <>{L({ x: 8, y: 10, w: 48, h: 30, rx: 3 }, 1)}{L({ d: 'M8 50 H34' }, 2)}{L({ d: 'M8 58 H22', o: 0.5 }, 3)}{N(40, 25, 3.4)}</>,
 
   // Agentic order confirmation: a document, an agent, a person who decides.
   agentic: <>{L({ x: 6, y: 22, w: 18, h: 20, rx: 3 }, 1)}{L({ d: 'M24 32 H33' }, 2)}{N(37, 32, 3.5)}{L({ d: 'M41 32 H47' }, 3)}{L({ cx: 55, cy: 32, r: 8 }, 4)}</>,
