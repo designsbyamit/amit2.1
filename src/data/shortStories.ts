@@ -71,6 +71,105 @@ export const shortStories: ShortStory[] = [
     ],
     link: { label: 'Generative Experience Design portal', href: 'https://genaixd.notion.site/08fdff678efb4b4bb51859bead3be867?v=bf5ca3386c3b41cd81e5e0b35ed89b06&pvs=4' },
   },
+  {
+    slug: 'conversational-ai-design-toolkit',
+    title: 'Conversational AI Design Toolkit',
+    field: 'linear-gradient(135deg, #25223B 0%, #3D3669 55%, #8F80E9 100%)',
+    sections: [
+      {
+        label: 'What it is',
+        items: [
+          { text: 'Discovering SMART goals, determining AI chatbot design direction, defining scope, prioritizing features, and establishing benchmarking maps for comparison.' },
+        ],
+      },
+      {
+        label: 'Discovery templates',
+        items: [
+          { lead: 'Design direction', text: 'Seeking the perfect path for crafting an AI chatbot.' },
+          { lead: 'SMART goals', text: 'Strategically mapping achievements for AI chatbot success.' },
+          { lead: 'Priority matrix', text: 'Aligning tasks with Must, Should, Would and Could categories.' },
+          { lead: 'Benchmarking', text: 'Examining AI chatbot rivals’ strengths, weaknesses and target audiences.' },
+          { lead: 'Wheel of scope', text: 'Navigating industry, market, functionality, target audience, technology stack, ethical considerations and timeframe.' },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'ai-assistant-persona-builder',
+    title: 'AI Assistant Persona Builder',
+    field: 'linear-gradient(135deg, #170425 0%, #45286F 55%, #AE83F4 100%)',
+    sections: [
+      {
+        label: 'What it is',
+        items: [
+          { text: 'Craft an AI Assistant persona: choose relevant brand archetypes, adopt traits, and create a mood board inspired by famous personalities.' },
+        ],
+      },
+      {
+        label: 'Approach',
+        items: [
+          { lead: 'Humanizing', text: 'Artificial intelligence with personality traits and characteristics.' },
+          { lead: 'Brand archetypes', text: 'Translated from Jungian archetypes, enhancing brand presence.' },
+          { lead: 'Personality traits', text: 'Ensure relevance, enhancing resonance with consumers and engagement.' },
+          { lead: 'Mood boards', text: 'Match with famous personalities to enhance persona development.' },
+          { lead: 'Tone of voice', text: 'A clear definition ensures message delivery aligns with the desired perception.' },
+        ],
+      },
+      {
+        label: 'Interactive template',
+        items: [
+          { text: 'Each brand archetype comes with its traits. Once you have finalised two brand archetypes, go through the traits provided for each, and adopt the ones for your chatbot that align with your brand’s identity and the user experience you aim to provide.' },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'generative-experience-design-portal',
+    title: 'A home for Gen-AI design tools, toolkits and resources',
+    field: 'linear-gradient(135deg, #14141F 0%, #32074D 55%, #7A5BD1 100%)',
+    sections: [
+      {
+        label: 'Purpose',
+        items: [
+          { text: 'Curating Gen-AI tools, toolkits and all the resources to help designers soar through this AI age.' },
+          { lead: 'Learn', text: 'Gen-AI design towards an SME track.' },
+          { lead: 'Create', text: 'Gen-AI PoVs and PoCs that create client value.' },
+          { lead: 'Evangelise', text: 'Equip designers with Gen-AI tools.' },
+        ],
+      },
+      {
+        label: 'Toolkits',
+        items: [
+          { lead: 'Gen AI Playbook', text: 'A playful beginner’s guide to Gen AI design.' },
+          { lead: 'Conv. AI Design Toolkit', text: 'A recipe to build delightful conversational experiences.' },
+          { lead: 'Gen-AI Design Systems', text: 'A Figma plugin concept to generate a design system using prompts.' },
+          { lead: 'Persona Builder', text: 'An AI Assistant persona builder.' },
+          { lead: 'Blazefast RFPs', text: 'Build high-quality winning RFPs at speed.' },
+          { lead: 'Industry Research Repo', text: 'Levers to ideate on Gen AI possibilities across industries.' },
+        ],
+      },
+      {
+        label: 'Success stories',
+        items: [
+          { lead: 'Travel companion', text: 'A conversational companion for a delightful, guided travel experience.' },
+          { lead: 'Logistics control tower', text: 'A Gen-AI powered logistics control system for seamless shipping.' },
+          { lead: 'Workplace bestie', text: 'A conversational companion for employees, helping with everything they need at work.' },
+          { lead: 'Grocery shopping', text: 'Conversational commerce through the grocery shopping experience.' },
+          { lead: 'Assistant for support agents', text: 'Making customer support resolution seamless and efficient.' },
+        ],
+      },
+      {
+        label: 'Gen-AI design services',
+        items: [
+          { lead: 'UX diagnosis and lean product design', text: 'Analyse current applications to find where Generative AI can streamline workflows, improve personalization and uncover new opportunities.' },
+          { lead: 'Innovation strategy with Gen AI', text: '' },
+          { lead: 'Conversational experiences', text: '' },
+          { lead: 'Generative content strategy', text: '' },
+        ],
+      },
+    ],
+    link: { label: 'Walk through the portal concepts', href: 'https://www.figma.com/proto/bY0ZxBe8wHHBSggRWqfSjh/GXD-Portal-Concepts?page-id=946%3A5615&node-id=953-6567&viewport=8118%2C2078%2C0.53&t=pT33zOZSE3uAnbkr-8&scaling=contain&starting-point-node-id=953%3A6567&hide-ui=1' },
+  },
 ]
 
 export const storyBySlug = (s: string) => shortStories.find(x => x.slug === s)

@@ -77,7 +77,7 @@ export const playbacks: Playback[] = [
     dek: 'A service ecosystem rather than an app: engagement up 92%, add-on sales up 50×, check-in cut from 9 steps to 2.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year.',
     beats: {
-      about: 'A mobile experience for a leading Middle East air carrier, serving 3M+ guests annually.',
+      about: 'A mobile experience for a leading Middle East air carrier, serving 30M+ guests annually.',
       challenge: 'Functional teams each built on their own, producing an incoherent whole. The goal was to grow digital bookings from a $2M channel to $100M.',
       users: 'Travellers of a carrier with 95+ destinations. The friction that mattered most was physical before it was digital.',
       solution: 'The work was reframed as a service architecture problem, with modular pods each owning a journey node and research done in airport lounges.',

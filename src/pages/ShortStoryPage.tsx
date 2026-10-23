@@ -36,8 +36,8 @@ export default function ShortStoryPage() {
             <h2 id={`sec-${k}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{sec.label}</h2>
             <ul className="col-span-4 md:col-span-8 flex flex-col gap-5 max-w-2xl">
               {sec.items.map(it => (
-                <li key={it.text} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">–</span>
-                  <span>{it.lead && <strong className="text-ink font-medium">{it.lead}: </strong>}{it.text}</span>
+                <li key={(it.lead ?? '') + it.text} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">–</span>
+                  <span>{it.lead && <strong className="text-ink font-medium">{it.lead}{it.text ? ': ' : ''}</strong>}{it.text}</span>
                 </li>
               ))}
             </ul>
