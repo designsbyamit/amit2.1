@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { bigFive, research, growItems, leadershipItems } from '../../data/ia'
 import { shortStories } from '../../data/shortStories'
 import CaseThumb from '../ds/CaseThumb'
-import Illustration, { type IllustrationName } from '../illustrations/Illustration'
-import { MentoringPictogram, PortfolioPictogram, PracticePictogram, ResourcesPictogram } from '../../pages/grow/GrowPictograms'
 import Logo from './Logo'
 import NameRoles from './RoleRotator'
 import ThemeToggle from '../ds/ThemeToggle'
@@ -70,81 +68,44 @@ export default function Nav() {
     : k === 'Leadership' ? ['/leadership', '/community', '/reflections'].some(x => path.startsWith(x))
     : ['/learn', '/mentoring'].some(x => path.startsWith(x))
 
-  const gridTex = { backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '16px 16px' }
-  const label = (n: number, c: string) => <span className="text-label text-signal-ink">{String(n).padStart(2, '0')} / {c}</span>
   const titleCls = 'text-[1.0625rem] leading-snug font-light tracking-[-0.01em] text-ink group-hover:underline underline-offset-4 decoration-1'
+  const linkCls = 'py-1.5 text-[0.9375rem] leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4'
+  const featured = bigFive.slice(0, 3)
+  const moreBig = bigFive.slice(3)
 
+  // Works: the same panel as before. Three featured covers with previews, then the "More work" column.
   const worksPanel = (
-    <div className="container-site py-8">
-      <p className="text-overline text-ink-3 mb-5">The big five</p>
-      <div className="grid grid-cols-5 gap-6">
-        {bigFive.map((cs, i) => (
-          <Link key={cs.id} to={`/craft/${cs.id}`} className="group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
-            <CaseThumb id={cs.id} compact />
-            {label(i + 1, cs.category.split(' · ')[0])}
-            <span className={titleCls}>{cs.shortTitle}</span>
-          </Link>
-        ))}
-      </div>
-      <div className="grid grid-cols-12 gap-x-8 gap-y-4 mt-8 pt-6" style={{ borderTop: '1px solid var(--line-1)' }}>
-        <div className="col-span-9">
-          <p className="text-overline text-ink-3 mb-4">Short stories</p>
-          <div className="grid grid-cols-3 gap-x-6 gap-y-3">
-            {shortStories.map(x => (
-              <Link key={x.slug} to={`/craft/stories/${x.slug}`} className="group flex items-center gap-3 rounded-3 p-2 -m-2 hover:bg-surface-2 transition-colors">
-                <span aria-hidden="true" className="shrink-0 w-[88px] aspect-[16/10] rounded-[8px]" style={{ background: x.field }} />
-                <span className="text-[0.875rem] leading-snug text-ink-2 group-hover:text-ink line-clamp-3">{x.title}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div className="col-span-3 pl-6 flex flex-col" style={{ borderLeft: '1px solid var(--line-1)' }}>
-          <p className="text-overline text-ink-3 mb-3">Research {soonTag}</p>
-          <ul>{research.map(x => <li key={x} className="py-1 text-[0.875rem] leading-snug text-ink-3">{x}</li>)}</ul>
-          <Link to="/craft" className="btn btn-ghost mt-auto self-start">All works{arrowSvg}</Link>
-        </div>
+    <div className="container-site grid-site py-8">
+      <p className="col-span-12 text-overline text-ink-3 mb-5">Selected work</p>
+      {featured.map(cs => (
+        <Link key={cs.id} to={`/craft/${cs.id}`} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
+          <CaseThumb id={cs.id} compact />
+          <span className="text-label text-signal-ink">{cs.number} / {cs.category.split(' · ')[0]}</span>
+          <span className={titleCls}>{cs.title}</span>
+        </Link>
+      ))}
+      <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
+        <span className="text-label text-ink-3 mb-2">More work</span>
+        {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{cs.shortTitle}</Link>)}
+        {shortStories.map(x => <Link key={x.slug} to={`/craft/stories/${x.slug}`} className={linkCls}>{x.nav}</Link>)}
+        {research.map(x => <span key={x} className="py-1.5 text-[0.9375rem] leading-snug text-ink-3">{x}{soonTag}</span>)}
+        <Link to="/craft" className="btn btn-ghost mt-3 self-start">All work{arrowSvg}</Link>
       </div>
     </div>
   )
 
-  const card = (key: string, to: string, n: number, total: number, name: string, art: React.ReactNode, tone: string, note?: string, soon?: boolean) => {
-    const inner = (
-      <>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-[10px]" style={{ background: tone }}>
-          <div className="absolute inset-0 opacity-[0.07]" style={gridTex} />
-          <div className="absolute inset-0 px-[18%] py-[8%]">{art}</div>
-        </div>
-        <span className="text-label text-signal-ink">{String(n).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
-        <span className={soon ? 'text-[1.0625rem] leading-snug font-light text-ink-3' : titleCls}>{name}{soon && soonTag}</span>
-        {note && <span className="text-body-sm text-ink-3 -mt-1">{note}</span>}
-      </>
-    )
-    return soon
-      ? <div key={key} className="flex flex-col gap-3">{inner}</div>
-      : <Link key={key} to={to} className="group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">{inner}</Link>
-  }
-  const lead: { label: string; to: string; ill: IllustrationName }[] = [
-    { label: leadershipItems[0].label, to: leadershipItems[0].to, ill: 'leadership' },
-    { label: leadershipItems[1].label, to: leadershipItems[1].to, ill: 'community' },
-    { label: leadershipItems[2].label, to: leadershipItems[2].to, ill: 'reflections' },
-  ]
-  const leadershipPanel = (
-    <div className="container-site py-8">
-      <div className="grid grid-cols-4 gap-6">
-        {lead.map((x, i) => card(x.label, x.to, i + 1, lead.length, x.label, <Illustration name={x.ill} className="w-full h-full" />, 'var(--surface-2)'))}
+  // Leadership and Grow: the same panel surface and link style, with their pages listed.
+  const listPanel = (heading: string, items: { label: string; to: string; soon?: boolean; note?: string }[]) => (
+    <div className="container-site grid-site py-8">
+      <p className="col-span-12 text-overline text-ink-3 mb-5">{heading}</p>
+      <div className="col-span-12 flex flex-col gap-0.5">
+        {items.map(it => it.soon
+          ? <span key={it.label} className="py-1.5 text-[0.9375rem] leading-snug text-ink-3">{it.label}{soonTag}{it.note && <span className="block text-body-sm mt-0.5">{it.note}</span>}</span>
+          : <Link key={it.label} to={it.to} className={linkCls + ' self-start'}>{it.label}</Link>)}
       </div>
     </div>
   )
-  const growArt = [<MentoringPictogram />, <PracticePictogram />, <PortfolioPictogram />, <ResourcesPictogram />]
-  const growTone = ['var(--field-cobalt)', 'var(--field-teal)', 'var(--field-plum)', 'var(--field-graphite)']
-  const growPanel = (
-    <div className="container-site py-8">
-      <div className="grid grid-cols-4 gap-6">
-        {growItems.map((x, i) => card(x.label, x.to, i + 1, growItems.length, x.label, growArt[i], growTone[i], x.note, x.soon))}
-      </div>
-    </div>
-  )
-  const panels: Record<MenuKey, React.ReactNode> = { Works: worksPanel, Leadership: leadershipPanel, Grow: growPanel }
+  const panels: Record<MenuKey, React.ReactNode> = { Works: worksPanel, Leadership: listPanel('Leadership', leadershipItems), Grow: listPanel('Grow', growItems) }
 
   return (
     <>
@@ -216,11 +177,11 @@ export default function Nav() {
                       {item.label}
                     </NavLink>
                     {item.menu === 'Works' && (
-                      <div className="pb-4 flex flex-col gap-4">
-                        <div><p className="text-overline text-ink-3 mb-1">Big five</p><ul>{bigFive.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex gap-3 py-2 text-body-sm text-ink-2">{cs.shortTitle}</Link></li>)}</ul></div>
-                        <div><p className="text-overline text-ink-3 mb-1">Short stories</p><ul>{shortStories.map(x => <li key={x.slug}><Link to={`/craft/stories/${x.slug}`} className="flex gap-3 py-2 text-body-sm text-ink-2">{x.title}</Link></li>)}</ul></div>
-                        <div><p className="text-overline text-ink-3 mb-1">Research {soonTag}</p><ul>{research.map(x => <li key={x} className="py-2 text-body-sm text-ink-3">{x}</li>)}</ul></div>
-                      </div>
+                      <ul className="pb-4">
+                        {bigFive.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex py-2 text-body-sm text-ink-2">{cs.shortTitle}</Link></li>)}
+                        {shortStories.map(x => <li key={x.slug}><Link to={`/craft/stories/${x.slug}`} className="flex py-2 text-body-sm text-ink-2">{x.nav}</Link></li>)}
+                        {research.map(x => <li key={x} className="py-2 text-body-sm text-ink-3">{x}{soonTag}</li>)}
+                      </ul>
                     )}
                     {item.menu === 'Leadership' && (
                       <ul className="pb-4">{leadershipItems.map(x => <li key={x.to}><Link to={x.to} className="flex py-2 text-body-sm text-ink-2">{x.label}</Link></li>)}</ul>

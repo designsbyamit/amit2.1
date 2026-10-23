@@ -4,6 +4,8 @@
 export interface ShortStory {
   slug: string
   title: string
+  /** Short name for menus and lists. */
+  nav: string
   /** Where it happened, if the design says. */
   meta?: string[]
   /** A gradient behind the cover, taken from the design. */
@@ -15,6 +17,7 @@ export interface ShortStory {
 export const shortStories: ShortStory[] = [
   {
     slug: 'file18',
+    nav: 'File18 for Network18 journalists',
     title: 'Resolving adoption barriers of the File18 app for Network18 journalists',
     field: 'linear-gradient(135deg, #3A5C9E 0%, #6F8CC4 55%, #DCE3F2 100%)',
     sections: [
@@ -34,6 +37,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'greenux',
+    nav: 'GreenUX design system',
     title: 'A living design system with sustainability and greener UX as a foundational pillar',
     field: 'linear-gradient(135deg, #1F6B5A 0%, #3C8F7C 55%, #CFE5DE 100%)',
     sections: [
@@ -50,6 +54,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'generative-experience-design',
+    nav: 'Generative Experience Design',
     title: 'Exploring possibilities for Gen AI and making business sense in design',
     meta: ['Feb 2023 - present', 'Design Lead', 'Design strategy · Data viz'],
     field: 'linear-gradient(135deg, #5B2C8F 0%, #AE83F4 55%, #E7CEF7 100%)',
@@ -73,6 +78,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'conversational-ai-design-toolkit',
+    nav: 'Conversational AI Design Toolkit',
     title: 'Conversational AI Design Toolkit',
     field: 'linear-gradient(135deg, #25223B 0%, #3D3669 55%, #8F80E9 100%)',
     sections: [
@@ -96,6 +102,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'ai-assistant-persona-builder',
+    nav: 'AI Assistant Persona Builder',
     title: 'AI Assistant Persona Builder',
     field: 'linear-gradient(135deg, #170425 0%, #45286F 55%, #AE83F4 100%)',
     sections: [
@@ -125,6 +132,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'generative-experience-design-portal',
+    nav: 'Gen-AI design portal',
     title: 'A home for Gen-AI design tools, toolkits and resources',
     field: 'linear-gradient(135deg, #14141F 0%, #32074D 55%, #7A5BD1 100%)',
     sections: [
