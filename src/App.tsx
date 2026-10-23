@@ -4,6 +4,7 @@ import useRouteSeo from './seo/useRouteSeo'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
+import { BackToShort, NextCase } from './components/case/StoryLinks'
 import ScrollToTop from './components/ui/ScrollToTop'
 import ScrollProgressLine from './components/ui/ScrollProgressLine'
 import { useLenis } from './hooks/useLenis'
@@ -88,7 +89,14 @@ function LegacyHashRedirect() {
 function CaseDetail() {
   const { id } = useParams<{ id: string }>()
   const Page = ({ 'airline-app': AirlineStoryPage, engaze: EngazeStoryPage, 'sap-search': SAPSearchStoryPage, 'sap-agentic': SAPAgenticStoryPage } as Record<string, React.ComponentType>)[id ?? ''] ?? CaseStudyPage
-  return <Page />
+  const own = Page === CaseStudyPage
+  return (
+    <div className="relative">
+      <BackToShort id={id ?? ''} />
+      <Page />
+      {!own && <NextCase id={id ?? ''} />}
+    </div>
+  )
 }
 
 function AnimatedRoutes() {

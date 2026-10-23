@@ -10,7 +10,15 @@ export interface Playback {
   dek: string
   /** A second line about the role, from what the case study already says. */
   roleNote: string
-  beats: { about: string; challenge: string; users: string; solution: string; impact: string }
+  beats: {
+    about: string; challenge: string; users: string; solution: string; impact: string
+    /** Optional: the challenge as a short list, followed by `challengeNote`. */
+    challengePoints?: string[]; challengeNote?: string
+    /** Optional: the personas, shown as chips above the sentence in `users`. */
+    personas?: string[]
+  }
+  /** Optional: the end-to-end process, shown as a flow between the solution and the impact. */
+  flow?: { title: string; text: string; by: 'Agent' | 'People' | 'Agent + people' }[]
   metric: { value: string; label: string }
   featured: boolean
 }
@@ -22,23 +30,40 @@ export const playbacks: Playback[] = [
     dek: 'An agent extracts and compares, people validate and decide. Co-created with customers as a white-labelled solution across supply chain management.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
-      about: 'An AI agent that reads supplier order confirmations and compares them to purchase orders, while people make every decision.',
-      challenge: 'Confirmation took weeks. Someone read each PDF, often in German, and checked it line by line against the order.',
-      users: 'Three personas: operations, the buyer and the goods recipient, with the supplier on the other end of every order.',
-      solution: 'The agent extracts and compares, and people validate and decide. Every difference carries its reasoning, and every step is logged.',
+      about: 'The opportunity was to design an agentic experience for procurement. The agent ingests many documents, including supplier order confirmations and RFQ responses, and compares them against purchase orders. Procurement specialists and operations teams then validate the discrepancies, approve outcomes and make the decisions.',
+      challenge: 'The process behind one order confirmation has many moving parts:',
+      challengePoints: [
+        'Multiple documents in different formats and languages.',
+        'Matching supplier order confirmations against purchase orders.',
+        'Identifying and validating discrepancies.',
+        'Coordinating approvals across multiple stakeholders.',
+        'Simplifying and accelerating the overall process.',
+      ],
+      challengeNote: 'The central design challenge was to understand the entire procurement ecosystem first, then translate that complexity into one coherent agentic experience.',
+      users: 'The buyer initiates the purchase order, operations validates the confirmation and its discrepancies, and the goods recipient supports the final fulfilment.',
+      personas: ['Operations executive', 'Buyer or procurement manager', 'Goods recipient'],
+      solution: 'The agent extracts and compares information, while people validate and make decisions. Every difference carries its reasoning, and every step is logged.',
       impact: 'A complete path from the supplier’s email to approve and close, across 33 screens. Co-created with customers as a white-labelled solution across supply chain management.',
     },
+    flow: [
+      { title: 'Document ingestion', text: 'Supplier order confirmations, RFQ responses, purchase orders and other documents arrive in many formats and languages.', by: 'Agent' },
+      { title: 'Extraction, parsing and mapping', text: 'The agent extracts the relevant data and attributes from every document and maps them to the order.', by: 'Agent' },
+      { title: 'Comparison and validation', text: 'Extracted information is compared against the purchase order. Discrepancies are identified and validated.', by: 'Agent' },
+      { title: 'Decision support', text: 'Results are presented clearly: pricing, terms, delivery, logistics and other attributes, each with its reasoning.', by: 'Agent' },
+      { title: 'Human decision-making', text: 'Results are routed to the right stakeholders to approve, escalate or ask for clarification.', by: 'People' },
+      { title: 'Communication and closure', text: 'Decisions and actions go back to the relevant parties, and the process is closed.', by: 'Agent + people' },
+    ],
     metric: { value: 'Weeks → hours', label: 'Order confirmation turnaround time' },
     featured: true,
   },
   {
     id: 'engaze',
     headline: 'Conversation-first HCM suite that earned 90% employee satisfaction',
-    dek: 'A conversational experience built on five principles instead of flows, with one companion across the HR suite from employee to leadership. The employee module shipped at 90% CSAT.',
+    dek: 'A conversational experience built on five principles instead of flows, with one companion serving employees and managers across the HCM suite. The employee module shipped at 90% CSAT.',
     roleNote: 'The team researched conversation design in depth, including how to build a persona that keeps one consistent conversation pattern.',
     beats: {
-      about: 'An AI-native HR suite where one companion serves employees, managers, recruiters, HR and leadership.',
-      challenge: 'HR suites are built for administrators and sold as separate modules. The brief was to improve the experience of every role.',
+      about: 'An AI-native HCM suite where the conversation is the product: five design principles, shaped into one conversational application and one companion that serves employees and managers.',
+      challenge: 'HCM suites are built for administrators and sold as separate modules. The brief was to improve the experience of every role.',
       users: 'Five roles: employee, manager, recruiter, HR and leadership, each starting from its own day.',
       solution: 'Five principles instead of flows, proven in the employee-experience module, then extended as one companion, one trust model and one people graph.',
       impact: 'The employee-experience module shipped at 90% CSAT and was the most praised HR AI product at the client.',
@@ -49,10 +74,10 @@ export const playbacks: Playback[] = [
   {
     id: 'airline-app',
     headline: 'Air travel booking journey redesign drove 50x in-app add-on sales',
-    dek: 'The mobile experience for a carrier serving 30M+ guests a year: engagement up 92%, check-in cut from 9 steps to 2.',
+    dek: 'A service ecosystem rather than an app: engagement up 92%, add-on sales up 50×, check-in cut from 9 steps to 2.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year.',
     beats: {
-      about: 'The mobile experience for a Middle East carrier serving 30M+ guests a year, designed as a service ecosystem.',
+      about: 'A mobile experience for a leading Middle East air carrier, serving 3M+ guests annually.',
       challenge: 'Functional teams each built on their own, producing an incoherent whole. The goal was to grow digital bookings from a $2M channel to $100M.',
       users: 'Travellers of a carrier with 95+ destinations. The friction that mattered most was physical before it was digital.',
       solution: 'The work was reframed as a service architecture problem, with modular pods each owning a journey node and research done in airport lounges.',
@@ -82,7 +107,7 @@ export const playbacks: Playback[] = [
     dek: 'AI search built into the design system so each improvement reaches every product that adopts it, designed to earn the trust of sceptical enterprise users.',
     roleNote: 'A design-system component case: the craft of interaction and behaviour, the anatomy of the component, and the specification product teams build from.',
     beats: {
-      about: 'One AI search experience, defined once in the design system and shared across every product in the suite.',
+      about: 'One unified AI-powered search experience across the product suite.',
       challenge: 'Each product had its own legacy search, vocabulary and assumptions, and enterprise users were sceptical of AI-surfaced results.',
       users: 'Enterprise users across the suite who already distrust automation and need to see why a result appeared.',
       solution: 'Intent over query, relevance over completeness, and reasoning shown instead of magic, including surfacing the AI’s confidence.',

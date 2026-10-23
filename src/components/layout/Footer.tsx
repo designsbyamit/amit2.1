@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useMatch } from 'react-router-dom'
 import { useContact } from '../contact/ContactProvider'
 
 export default function Footer() {
   const { open } = useContact()
+  // On a short story, the call-to-action bar sits directly above and carries the divider, so the two read as one piece.
+  const story = useMatch('/craft/:id')
   return (
-    <footer className="hairline-top py-8">
+    <footer className={story ? 'py-6' : 'hairline-top py-8'}>
       <div className="container-site flex flex-col-reverse gap-6 md:flex-row md:items-center md:justify-between">
         <p className="text-label text-ink-3">© {new Date().getFullYear()} Amit Kumar Tiwari · Bengaluru, India · <Link to="/design-system" className="hover:text-white transition-colors underline-offset-4 hover:underline">Design Leader</Link></p>
 
