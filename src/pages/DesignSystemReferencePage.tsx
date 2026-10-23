@@ -33,7 +33,7 @@ import Illustration, { type IllustrationName } from '../components/illustrations
 import { SCENES } from '../components/illustrations/scenes'
 import CaseThumb from '../components/ds/CaseThumb'
 import { MentoringPictogram, ResourcesPictogram, CommunityPictogram, ReflectionsPictogram, PracticePictogram, PortfolioPictogram } from './grow/GrowPictograms'
-import { shortStories } from '../data/shortStories'
+import { allShortStories as shortStories } from '../data/shortStories'
 
 /* The full reference for the design system behind this site. Everything on the page is rendered with the real
    tokens, components and marks, so it can never drift from the site. Noindex, linked from /design-system. */

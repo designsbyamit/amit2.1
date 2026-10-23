@@ -10,15 +10,19 @@ export interface ShortStory {
   nav: string
   /** Where it happened, if the design says. */
   meta?: string[]
+  /** Unpublished stories are kept here but not shown, linked, routed or put in the sitemap. */
+  published: boolean
   /** Flat field colour behind the cover pictogram. */
   tone: FieldTone
   sections: { label: string; items: { lead?: string; text: string }[] }[]
   link?: { label: string; href: string }
 }
 
-export const shortStories: ShortStory[] = [
+/** Every short story, published or not. */
+export const allShortStories: ShortStory[] = [
   {
     slug: 'file18',
+    published: false,
     nav: 'File18 for Network18 journalists',
     title: 'Resolving adoption barriers of the File18 app for Network18 journalists',
     tone: 'cobalt',
@@ -39,6 +43,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'greenux',
+    published: false,
     nav: 'GreenUX design system',
     title: 'A living design system with sustainability and greener UX as a foundational pillar',
     tone: 'teal',
@@ -56,6 +61,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'generative-experience-design',
+    published: false,
     nav: 'Generative Experience Design',
     title: 'Exploring possibilities for Gen AI and making business sense in design',
     meta: ['Feb 2023 - present', 'Design Lead', 'Design strategy · Data viz'],
@@ -80,6 +86,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'conversational-ai-design-toolkit',
+    published: false,
     nav: 'Conversational AI Design Toolkit',
     title: 'Conversational AI Design Toolkit',
     tone: 'graphite',
@@ -104,6 +111,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'ai-assistant-persona-builder',
+    published: false,
     nav: 'AI Assistant Persona Builder',
     title: 'AI Assistant Persona Builder',
     tone: 'plum',
@@ -134,6 +142,7 @@ export const shortStories: ShortStory[] = [
   },
   {
     slug: 'generative-experience-design-portal',
+    published: false,
     nav: 'Gen-AI design portal',
     title: 'A home for Gen-AI design tools, toolkits and resources',
     tone: 'cobalt',
@@ -181,5 +190,8 @@ export const shortStories: ShortStory[] = [
     link: { label: 'Walk through the portal concepts', href: 'https://www.figma.com/proto/bY0ZxBe8wHHBSggRWqfSjh/GXD-Portal-Concepts?page-id=946%3A5615&node-id=953-6567&viewport=8118%2C2078%2C0.53&t=pT33zOZSE3uAnbkr-8&scaling=contain&starting-point-node-id=953%3A6567&hide-ui=1' },
   },
 ]
+
+/** Only published stories are shown anywhere on the site. */
+export const shortStories = allShortStories.filter(x => x.published)
 
 export const storyBySlug = (s: string) => shortStories.find(x => x.slug === s)

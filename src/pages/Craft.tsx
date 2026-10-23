@@ -42,8 +42,8 @@ export default function Craft() {
 
       <WorksBento />
 
-      {/* Short stories: one page each */}
-      <section id="short-stories" className="hairline-top section-y scroll-mt-24" aria-labelledby="ss-h">
+      {/* Short stories: one page each. Hidden while none are published. */}
+      {shortStories.length > 0 && <section id="short-stories" className="hairline-top section-y scroll-mt-24" aria-labelledby="ss-h">
         <div className="container-site">
           <div className="grid-site gap-y-4 mb-10 md:mb-12">
             <h2 id="ss-h" className="col-span-4 md:col-span-3 text-overline text-ink-3">Short stories</h2>
@@ -64,7 +64,7 @@ export default function Craft() {
             ))}
           </ul>
         </div>
-      </section>
+      </section>}
 
       {/* Research: on the way */}
       <section id="research" className="hairline-top section-y scroll-mt-24" aria-labelledby="rs-h">
