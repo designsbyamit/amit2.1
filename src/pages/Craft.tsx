@@ -106,7 +106,7 @@ export default function Craft() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              The work here is not a portfolio of deliverables. It is a record of how complex problems were approached, what tradeoffs were made, and why.
+              This work goes beyond the solutions delivered. It reflects how I approach complexity, bring business and user needs together, and help teams make thoughtful decisions when the answers aren’t obvious.
             </motion.p>
             <motion.p
               className="text-body text-ink-3 mb-4"
@@ -115,7 +115,7 @@ export default function Craft() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              Each project is less about the screens that shipped and more about the systems they are part of: the business constraints that shaped decisions, the principles that held when the pressure mounted, and the moments where design changed how an organisation thought about a problem.
+              Each project sits within a larger context: the constraints of the business, the needs of users, the realities of technology, and the organisational dynamics that shape what is possible. My role is to make sense of these forces, build alignment around what matters, and help turn ambiguity into direction.
             </motion.p>
             <motion.p
               className="text-body text-ink-3"
@@ -124,7 +124,7 @@ export default function Craft() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             >
-              At this level of maturity, the prototype is the argument. The decision is the artefact.
+              The real measure of value of design isn’t just what we put into production. It’s the quality of the decisions we make, the thinking we leave behind, and the way those decisions influence products, teams and the organisation itself.
             </motion.p>
           </div>
         </div>
