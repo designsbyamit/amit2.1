@@ -23,9 +23,10 @@ export default function ShortStoryPage() {
           <div className="mb-8"><Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Short stories', to: '/craft#short-stories' }, { label: 'Short story' }]} /></div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-5">
             <p className="text-label text-ink-3">Short story</p>
-            <ShortStoryTag />
+            <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>
           <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{s.title}</h1>
+          <div className="relative hidden md:block h-0"><div className="absolute right-[3%] top-[1.25rem]"><ShortStoryTag /></div></div>
           {s.meta && <p className="text-label text-ink-3 mt-6">{s.meta.join(' · ')}</p>}
           <StoryField slug={s.slug} tone={s.tone} size={150} aspect="1800 / 700" className="mt-10 rounded-3" />
         </div>

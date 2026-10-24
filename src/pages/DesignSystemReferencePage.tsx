@@ -573,7 +573,7 @@ export default function DesignSystemReferencePage() {
       <Block id="patterns" n="08" title="Patterns and page sections." intro="Reusable compositions built from the components above. Each is used in more than one place, and each is shown here as it appears on the site.">
         <Spec name="Short story note" note="A handwritten marker, only on short story pages.">
           <ShortStoryTag />
-          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">Set in Caveat in signal colour with a hand-drawn underline. It says "this is the short version" and links the story to its detailed case study.</p>
+          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">Set in Caveat in signal colour, circled with an uneven pen loop and an arrow that curls up to the headline (a small underlined version on phones). It says "this is the short version" and links the story to its detailed case study.</p>
         </Spec>
         <Spec name="Headline word" note="Types, holds, deletes, moves on. Home hero only.">
           <p className="text-display-l text-ink"><TypedWord words={['Design', 'Strategy', 'Craft']} className="typed-word" /></p>

@@ -46,10 +46,13 @@ export default function PlaybackPage() {
             <p className="text-label text-ink-3">
               <span className="text-signal-ink">{cs.number}</span> / {cs.category.split(' · ').slice(0, 2).join(' · ')}
             </p>
-            <ShortStoryTag />
+            <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>
           <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{pb.headline}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-2xl">{pb.dek}</p>
+          <div className="relative">
+            <p className="text-body-lg text-ink-2 mt-6 max-w-2xl">{pb.dek}</p>
+            <div className="hidden md:block absolute right-[3%] top-[1.25rem]"><ShortStoryTag /></div>
+          </div>
           <div className="mt-10"><CaseThumb id={cs.id} ratio="1800 / 1000" live /></div>
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
             <p className="text-label text-ink-3">{meta.join(' · ')}</p>
@@ -90,8 +93,8 @@ export default function PlaybackPage() {
         <div className="container-site py-3 md:py-4 flex items-center justify-between gap-4">
           <p className="hidden md:block text-body text-ink-2 min-w-0">Want to get inside the messy process, explore the screens, and understand the design decisions?</p>
           <div className="flex items-center gap-3 w-full md:w-auto md:shrink-0">
-            {film && <button type="button" onClick={() => setWatching(true)} className="btn btn-secondary !py-2 whitespace-nowrap flex-1 md:flex-none justify-center">Watch the video</button>}
-            <Link to={detail} className="btn btn-primary !py-2 whitespace-nowrap flex-1 md:flex-none justify-center"><span className="md:hidden">Detailed case study</span><span className="hidden md:inline">View Detailed Case Study</span><Arrow /></Link>
+            {film && <button type="button" onClick={() => setWatching(true)} className="btn btn-secondary !py-2 !px-4 md:!px-6 whitespace-nowrap flex-1 md:flex-none justify-center min-w-0">Watch the video</button>}
+            <Link to={detail} className="btn btn-primary !py-2 !px-4 md:!px-6 whitespace-nowrap flex-1 md:flex-none justify-center min-w-0"><span className="md:hidden">Full case study</span><span className="hidden md:inline">View Detailed Case Study</span><Arrow /></Link>
           </div>
         </div>
       </div>
