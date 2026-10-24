@@ -38,7 +38,7 @@ const base: RouteMeta[] = [
   { path: '/leadership', title: T('Journey'), description: 'The career arc, the philosophy and what I have learned about making design matter inside large organisations, where influence is earned, not assigned.' },
   { path: '/leadership/stories', title: T('Experience'), description: 'Moments that shaped how I lead: the conflicts, the first team, the community and the culture work. Each story ends with what I learned.' },
   { path: '/about', title: T('About'), description: 'A design leader in Bengaluru who started out writing code, took on leadership roles as early as college, and has spent 16+ years turning complicated ideas into products people can use.', type: 'profile' },
-  { path: '/mentoring', title: T('Mentoring'), description: 'Mentoring for designers who are growing: how I coach, what we work on, and how to start.' },
+  { path: '/mentoring', title: T('Mentoring'), description: 'Mentoring for designers who are growing: ways to book a session, templates to prepare with, and what mentees say.' },
   { path: '/community', title: T('Collective'), description: 'The community initiatives, events and collaborations that extend design practice beyond organisational walls.' },
   { path: '/reflections', title: T('Reflections'), description: 'Essays and observations on where design, AI and the systems we are building go next.' },
   { path: '/resources', title: T('Resources'), description: 'Frameworks, templates, reading lists and thinking tools built from years of workshops, mentoring conversations and enterprise design challenges.' },

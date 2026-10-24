@@ -3,18 +3,17 @@ import Testimonials from '../components/sections/Testimonials'
 import Button from '../components/ds/Button'
 import Card from '../components/ds/Card'
 import SectionHeader from '../components/ds/SectionHeader'
-import { menteeTestimonials, quoteExcerpts } from '../data/testimonials'
+import { menteeTestimonials } from '../data/testimonials'
 import ResourceCover from '../components/ds/ResourceCover'
 
 const ADPLIST = 'https://adplist.org/mentors/amit-kumar-tiwari'
 const TOPMATE = 'https://topmate.io/amitkrt'
 
-// Add the real figures from ADPList / Topmate here. Shown as placeholders until then.
+// From the ADPList "Impact at a glance" dashboard: 5,175 minutes (86 hours), 106 bookings, 4 countries.
 const stats = [
-  { value: '000', unit: 'hrs', label: 'Total mentoring time' },
-  { value: '000', unit: '', label: 'Sessions this year' },
-  { value: '000', unit: '', label: 'Designers mentored' },
-  { value: '0.0', unit: '/ 5', label: 'Average rating on ADPList' },
+  { value: '86', unit: 'hrs', label: 'Total mentoring time' },
+  { value: '106', unit: '', label: 'Sessions so far' },
+  { value: '4', unit: '', label: 'Countries' },
 ]
 
 const sessions = [
@@ -55,13 +54,6 @@ const templates: { id: string; title: string; motif: 'checklist' | 'loop' | 'pha
 ]
 
 
-const principles = [
-  ['I read your work first', 'Before the call, I go through what you send. The time together goes to feedback and decisions, not to catching up.'],
-  ['Clear, actionable feedback', 'You leave with specific next steps in order of importance, not a list of everything that could be better.'],
-  ['Goals before tactics', 'We start with where you want to be in a year, then work backwards to what to change in your work and how you present it.'],
-  ['A growth mindset', 'Early-career designers need clarity more than they need answers. The aim is to help you learn how to learn.'],
-]
-
 export default function MentoringPage() {
   const { open } = useContact()
   return (
@@ -69,7 +61,7 @@ export default function MentoringPage() {
       <section className="relative" style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-14 md:pt-20 pb-14 md:pb-20">
           <p className="text-overline text-ink-3 mb-8">Mentoring &amp; coaching</p>
-          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 hairline-top pt-8">
+          <dl className="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6 hairline-top pt-8">
             {stats.map(st => (
               <div key={st.label} className="flex flex-col gap-2">
                 <dd className="text-display-l text-ink font-extralight tracking-[-0.04em] leading-none">{st.value}{st.unit && <span className="text-title text-ink-3 ml-2">{st.unit}</span>}</dd>
@@ -77,12 +69,6 @@ export default function MentoringPage() {
               </div>
             ))}
           </dl>
-          <div className="mt-14 md:mt-20 ">
-          <figure className="max-w-3xl">
-            <blockquote className="text-heading text-ink" style={{ fontWeight: 300, lineHeight: 1.35 }}>“{quoteExcerpts.mahesh.quote}”</blockquote>
-            <figcaption className="mt-5 text-caption text-ink-3">{quoteExcerpts.mahesh.name} · {quoteExcerpts.mahesh.role} · <a className="link" href={ADPLIST} target="_blank" rel="noopener noreferrer">ADPList</a></figcaption>
-          </figure>
-          </div>
         </div>
       </section>
 
@@ -111,20 +97,6 @@ export default function MentoringPage() {
               <div><Button variant="secondary" href={TOPMATE} arrow>Book on Topmate</Button></div>
             </div>
           </Card>
-        </div>
-      </section>
-
-      <section className="section-y hairline-top">
-        <div className="container-site">
-          <SectionHeader label="How I mentor" title="Prepared and specific." />
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
-            {principles.map(([t, d]) => (
-              <div key={t}>
-                <h3 className="text-title text-ink mb-2">{t}</h3>
-                <p className="text-body text-ink-2">{d}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
