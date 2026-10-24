@@ -3,6 +3,7 @@ declare const __SITE_URL__: string
 // The runtime hook (useRouteSeo) and the build-time page generator (tools/seo/build.ts) both read this.
 import { playbacks } from '../data/playbacks'
 import { shortStories } from '../data/shortStories'
+import { gatedCases } from '../data/nda'
 import { caseStudies } from '../data/work'
 import { publishedStories, storySlug } from '../data/leadership'
 
@@ -59,7 +60,7 @@ const base: RouteMeta[] = [
 const projects: RouteMeta[] = playbacks.flatMap(p => {
   const cs = caseStudies.find(c => c.id === p.id)
   const out: RouteMeta[] = [{ path: `/craft/${p.id}`, title: T(p.headline), description: p.dek, image: `/og/${p.id}.jpg`, type: 'article' }]
-  if (cs) out.push({ path: `/craft/${p.id}/details`, title: T(`${cs.shortTitle}: the detailed case study`), description: cs.tagline, image: `/og/${p.id}.jpg`, type: 'article' })
+  if (cs && !gatedCases.includes(p.id)) out.push({ path: `/craft/${p.id}/details`, title: T(`${cs.shortTitle}: the detailed case study`), description: cs.tagline, image: `/og/${p.id}.jpg`, type: 'article' })
   return out
 })
 

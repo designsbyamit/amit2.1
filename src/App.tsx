@@ -3,6 +3,9 @@ import { Suspense, lazy, useEffect } from 'react'
 import useRouteSeo from './seo/useRouteSeo'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
+import NdaGate from './components/case/NdaGate'
+import { gatedCases } from './data/nda'
+import { caseStudies } from './data/work'
 import Footer from './components/layout/Footer'
 import { BackToShort, NextCase } from './components/case/StoryLinks'
 import ScrollToTop from './components/ui/ScrollToTop'
@@ -92,11 +95,32 @@ function CaseDetail() {
   const { id } = useParams<{ id: string }>()
   const Page = ({ 'airline-app': AirlineStoryPage, engaze: EngazeStoryPage, 'sap-search': SAPSearchStoryPage, 'sap-agentic': SAPAgenticStoryPage } as Record<string, React.ComponentType>)[id ?? ''] ?? CaseStudyPage
   const own = Page === CaseStudyPage
-  return (
+  const body = (
     <div className="relative">
       <BackToShort id={id ?? ''} />
-      <Page />
+      <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}><Page /></Suspense>
       {!own && <NextCase id={id ?? ''} />}
+    </div>
+  )
+  // Case studies under NDA ask for an access code first.
+  const cs = caseStudies.find(c => c.id === id)
+  if (id && gatedCases.includes(id) && cs) return <NdaGate id={id} title={cs.title}>{body}</NdaGate>
+  return body
+}
+
+/** The page frame. A film opened in the case-study modal (?embed=1) has no site header, footer or progress line. */
+function Shell() {
+  const embed = new URLSearchParams(useLocation().search).get('embed') === '1'
+  return (
+    <div className="bg-bg text-ink min-h-screen">
+      {!embed && <ScrollProgressLine />}
+      <ScrollToTop />
+      <LegacyHashRedirect />
+      {!embed && <Nav />}
+      <main id="main" tabIndex={-1} className="outline-none">
+        <AnimatedRoutes />
+      </main>
+      {!embed && <Footer />}
     </div>
   )
 }
@@ -160,16 +184,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ContactProvider>
-      <div className="bg-bg text-ink min-h-screen">
-        <ScrollProgressLine />
-        <ScrollToTop />
-        <LegacyHashRedirect />
-        <Nav />
-        <main id="main" tabIndex={-1} className="outline-none">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
+      <Shell />
       </ContactProvider>
     </BrowserRouter>
   )
