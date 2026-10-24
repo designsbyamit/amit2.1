@@ -17,6 +17,9 @@ const steady = [
 ]
 
 
+/** Colleagues, clients and a mentee, mixed. Each person appears once: the short excerpts stand in for Mayura, Stepan and Mahesh. */
+const inTheirWords = [quoteExcerpts.mayura, clientTestimonials[0], colleagueTestimonials[0], colleagueTestimonials[1], clientTestimonials[1], quoteExcerpts.mahesh, colleagueTestimonials[2], clientTestimonials[2], quoteExcerpts.stepan]
+
 export default function AboutPage() {
   return (
     <>
@@ -83,7 +86,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Testimonials rotate label="In their words" title="Colleagues, clients and mentees." items={[quoteExcerpts.mayura, clientTestimonials[0], colleagueTestimonials[0], clientTestimonials[1], clientTestimonials[2], quoteExcerpts.stepan, quoteExcerpts.mahesh]} />
+      <Testimonials rotate label="In their words" title="Colleagues, clients and mentees." items={inTheirWords} />
 
       <Contact />
     </>
