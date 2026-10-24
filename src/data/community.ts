@@ -20,7 +20,7 @@ export const initiatives: Initiative[] = [
     description: 'Full-day workshop on Dual Fluency.',
     body: 'A full-day workshop on Dual Fluency: the designer\'s ability to operate equally in design language and business language. The workshop was built around a single provocation: if your design work never makes it into a business decision, it isn\'t design leadership: it\'s decoration. Participants left with a framework, a vocabulary, and a set of tools for translating design quality into business outcomes.',
     image: '/images/Community/DesignUp.webp',
-    imageFocus: 'center top',
+    imageFocus: '50% 25%',
   },
   {
     id: 'sap-design-hub',
@@ -42,7 +42,7 @@ export const initiatives: Initiative[] = [
     description: 'Design festival at the intersection of technology, creativity, and human experience.',
     body: 'Lead Curator of Impulse India, a design event exploring the intersection of technology, creativity, and human experience. It brings together designers, engineers, artists, and thinkers from across disciplines, creating the kind of cross-pollination that rarely happens inside a single organisation.',
     image: '/images/Community/Impulse.webp',
-    imageFocus: '50% 30%',
+    imageFocus: '50% 28%',
   },
   {
     id: 'design-thinking-summit',
