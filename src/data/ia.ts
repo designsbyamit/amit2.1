@@ -3,8 +3,8 @@ import { caseStudies } from './work'
 
 /** Page names that were renamed. Change here and the nav, headers and page titles follow. */
 export const NAMES = {
-  leadership: 'How I lead',
-  diary: 'Field Notes',
+  leadership: 'Journey',
+  diary: 'Reflections',
 } as const
 
 /** The five major works, in order. Each opens its short story, then the detailed case study. */
@@ -37,7 +37,8 @@ export const growItems: MenuItem[] = [
 ]
 
 export const leadershipItems: MenuItem[] = [
-  { label: NAMES.leadership, to: '/leadership', kind: 'Approach', mark: 'lead', tone: 'cobalt' },
-  { label: 'Community', to: '/community', kind: 'Community', mark: 'community', tone: 'teal' },
-  { label: NAMES.diary, to: '/reflections', kind: 'Writing', mark: 'notes', tone: 'plum' },
+  { label: NAMES.leadership, to: '/leadership', kind: 'Career', mark: 'lead', tone: 'cobalt' },
+  { label: 'Experience', to: '/leadership/stories', kind: 'Stories', mark: 'experience', tone: 'teal' },
+  { label: 'Collective', to: '/community', kind: 'Community', mark: 'community', tone: 'plum' },
+  { label: NAMES.diary, to: '/reflections', kind: 'Writing', mark: 'notes', tone: 'cobalt' },
 ]

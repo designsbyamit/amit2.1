@@ -28,7 +28,7 @@ function ld(r: (typeof routes)[number]) {
   const g: unknown[] = [person, website]
   const crumbs = [{ name: 'Home', url: abs('/') }]
   if (r.path.startsWith('/craft/')) crumbs.push({ name: 'Work', url: abs('/craft') })
-  if (r.path.startsWith('/leadership/stories/')) crumbs.push({ name: 'Leadership stories', url: abs('/leadership/stories') })
+  if (r.path.startsWith('/leadership/stories/')) crumbs.push({ name: 'Experience', url: abs('/leadership/stories') })
   if (r.path !== '/') crumbs.push({ name: r.title.split(' · ')[0], url: abs(r.path) })
   g.push({ '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })) })
   if (r.type === 'article') g.push({ '@type': 'CreativeWork', name: r.title.split(' · ')[0], description: r.description, url: abs(r.path), image: abs(r.image ?? SITE.ogDefault), author: { '@id': `${SITE.url}/#person` }, creator: { '@id': `${SITE.url}/#person` } })

@@ -169,7 +169,7 @@ export default function HiringExperiencePage() {
       <section className="hairline-top py-12">
         <div className="container-site flex flex-wrap items-center justify-between gap-4">
           <Button to="/resources" variant="tertiary">Back to Practice</Button>
-          <Button to="/leadership" variant="tertiary" arrow>How I lead</Button>
+          <Button to="/leadership" variant="tertiary" arrow>Journey</Button>
         </div>
       </section>
     </>

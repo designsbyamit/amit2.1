@@ -24,14 +24,14 @@ export const initiatives: Initiative[] = [
   },
   {
     id: 'sap-design-hub',
-    name: 'SAP Design Hub India',
+    name: 'Design Hub India',
     role: 'Lead',
     year: 'Feb 2025–present',
     type: 'Community',
     description: '250+ member community of SAP designers across India.',
-    body: 'A community where SAP designers across India share work, critique each other, and build something beyond their immediate pod. 250+ members. Led by Amit since February 2025.',
+    body: 'A community where SAP designers across India share work, learn from each other, and build something beyond their immediate pod. 250+ members. Led by Amit since February 2025.',
     image: '/images/Community/SAPDesignHub.webp',
-    imageFocus: 'center center',
+    imageFocus: 'center 35%',
   },
   {
     id: 'impulse-festival',
@@ -42,7 +42,7 @@ export const initiatives: Initiative[] = [
     description: 'Design festival at the intersection of technology, creativity, and human experience.',
     body: 'Lead Curator of Impulse India, a design event exploring the intersection of technology, creativity, and human experience. It brings together designers, engineers, artists, and thinkers from across disciplines, creating the kind of cross-pollination that rarely happens inside a single organisation.',
     image: '/images/Community/Impulse.webp',
-    imageFocus: '50% 15%',
+    imageFocus: '50% 30%',
   },
   {
     id: 'design-thinking-summit',

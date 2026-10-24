@@ -5,7 +5,7 @@ import type { ReactNode } from 'react'
    Used sparingly: one per page header or card, never as decoration between sections. */
 
 export type MarkName =
-  | 'lead' | 'community' | 'notes' | 'mentor' | 'toolkit' | 'portfolio'
+  | 'lead' | 'experience' | 'community' | 'notes' | 'mentor' | 'toolkit' | 'portfolio'
   | 'agentic' | 'search' | 'engaze' | 'airline' | 'data' | 'network'
   | 'file18' | 'greenux' | 'gxd' | 'convai' | 'persona' | 'portal'
 
@@ -24,6 +24,8 @@ const N = (cx: number, cy: number, r = 3.5, k?: string | number) => <circle key=
 const marks: Record<MarkName, ReactNode> = {
   // Leadership: a line of people set at different distances, one node out in front.
   lead: <>{L({ d: 'M8 46 H26' }, 1)}{L({ d: 'M8 36 H38' }, 2)}{L({ d: 'M8 26 H50' }, 3)}{L({ cx: 56, cy: 26, r: 7, o: 0.45 }, 4)}{N(56, 26)}</>,
+  // Experience: stories stacked, each one a moment, the top one still open.
+  experience: <>{L({ x: 12, y: 40, w: 40, h: 14, rx: 3, o: 0.45 }, 1)}{L({ x: 8, y: 26, w: 44, h: 14, rx: 3, o: 0.7 }, 2)}{L({ x: 4, y: 12, w: 48, h: 14, rx: 3 }, 3)}{N(44, 19, 3)}</>,
   // Community: three overlapping circles, one shared centre.
   community: <>{L({ cx: 24, cy: 26, r: 14 }, 1)}{L({ cx: 40, cy: 26, r: 14 }, 2)}{L({ cx: 32, cy: 40, r: 14 }, 3)}{N(32, 31)}</>,
   // Field Notes: lines of thought getting shorter, the last one still being written.

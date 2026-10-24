@@ -18,7 +18,7 @@ export default function LeadershipStoryPage() {
     <article>
       <header style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-10 md:pt-14 pb-12">
-          <div className="mb-10"><Breadcrumb items={[{ label: 'Leadership', to: '/leadership' }, { label: 'Stories', to: '/leadership/stories' }, { label: `Story ${n}` }]} /></div>
+          <div className="mb-10"><Breadcrumb items={[{ label: 'Journey', to: '/leadership' }, { label: 'Experience', to: '/leadership/stories' }, { label: `Story ${n}` }]} /></div>
           <div className="grid-site gap-y-10 items-end">
             <div className="col-span-4 md:col-span-7">
               <p className="text-label text-ink-3 mb-5"><span className="text-signal-ink">Story {n}</span>{s.context && <> / {s.context}</>}</p>

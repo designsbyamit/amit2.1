@@ -793,7 +793,7 @@ export default function DesignSystemReferencePage() {
             ['/craft/stories/:slug', 'Short story: note, serif headline, colour field with pictogram, sections of short points'],
             ['/craft/*/film', 'Animated films for three projects, built in the page'],
             ['/labs/*', 'Interactive prototypes with their own interface kit and Instrument Sans'],
-            ['/leadership, /leadership/stories, /leadership/cases/:slug', 'How I lead, story hub and story or case pages'],
+            ['/leadership, /leadership/stories, /leadership/cases/:slug', 'Journey, Experience (story hub) and story or case pages'],
             ['/community, /reflections', 'Header with pictogram, then the list of initiatives or notes'],
             ['/resources and /resources/*', 'Practice hub with resource covers, and frameworks and playbooks'],
             ['/learn, /learn/practice, /learn/portfolio, /learn/curious, /mentoring', 'Grow: four cards, practice toolkits, portfolio guide, mentoring'],
