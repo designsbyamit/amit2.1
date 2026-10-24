@@ -7,13 +7,10 @@ const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
 )
 
-/** One clean frame around the cover: a window with three quiet dots, nothing else. */
+/** One clean frame around the cover: the image runs full bleed, nothing else. */
 export function WindowFrame({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`overflow-hidden rounded-3 border bg-surface-1 ${className}`} style={{ borderColor: 'var(--line-2)' }}>
-      <div className="flex items-center gap-1.5 px-4 h-8 border-b" style={{ borderColor: 'var(--line-1)' }} aria-hidden="true">
-        {[0, 1, 2].map(i => <span key={i} className="block w-2 h-2 rounded-full" style={{ background: 'var(--line-control, var(--line-2))' }} />)}
-      </div>
       {children}
     </div>
   )
