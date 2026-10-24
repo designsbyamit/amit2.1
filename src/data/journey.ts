@@ -25,7 +25,7 @@ export const phases: Phase[] = [
     title: 'Enterprise Scale',
     company: 'Hewlett Packard Enterprise · Staff Product Designer',
     narrative:
-      'Led UX for the GreenLake cloud suite. Built the GreenUX design system from scratch and set up global Communities of Practice.',
+      'Led UX initiatives for the GreenLake cloud platform. Contributed to the Grommet design system, set up DesignOps and Design Hiring and Local Communities of Practice.',
   },
   {
     years: '2018–2024',
