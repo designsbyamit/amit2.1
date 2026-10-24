@@ -28,12 +28,13 @@ import type { FieldTone } from '../components/ds/MediaFrame'
 /** A page listed in a main-nav menu. The first three show a cover; the rest are listed on the right. */
 export interface MenuItem { label: string; to: string; kind: string; mark?: MarkName; tone?: FieldTone; soon?: boolean; note?: string }
 
-/** The Grow section: four places, the last still to come. */
+/** The Grow section: three places, and two still to come. */
 export const growItems: MenuItem[] = [
   { label: 'Mentoring', to: '/mentoring', kind: 'Mentoring', mark: 'mentor', tone: 'cobalt' },
   { label: 'Toolkits', to: '/learn/practice', kind: 'Toolkits', mark: 'toolkit', tone: 'teal' },
   { label: 'Portfolio Guide', to: '/learn/portfolio', kind: 'Guide', mark: 'portfolio', tone: 'plum' },
-  { label: 'WingSpan', to: '', kind: 'Coming soon', soon: true, note: 'Wings for your design career' },
+  { label: 'WingSpan', to: '', kind: 'Coming soon', soon: true },
+  { label: 'Questions from AMA', to: '', kind: 'Coming soon', soon: true },
 ]
 
 export const leadershipItems: MenuItem[] = [
