@@ -1,3 +1,8 @@
+import type { PictogramKind } from '../components/ds/StoryPictogram'
+
+/** An animated pictogram shown after paragraph `after` (0-based) of the narrative. */
+export interface StoryFigure { after: number; kind: PictogramKind; caption: string }
+
 export interface LeadershipStory {
   id: string
   year: string
@@ -12,12 +17,19 @@ export interface LeadershipStory {
   /** Visual on the story card and page */
   motif?: 'seat' | 'team' | 'influence' | 'hub' | 'culture'
   tone?: 'cobalt' | 'teal' | 'plum'
+  figures?: StoryFigure[]
 }
 
 export const stories: LeadershipStory[] = [
   {
     id: 'story-business-seat',
     motif: 'seat',
+    figures: [
+      { after: 3, kind: 'conflict', caption: 'Two solutions, and a seat at the table at stake.' },
+      { after: 5, kind: 'understand', caption: 'Before designing anything: understand the why.' },
+      { after: 7, kind: 'converge', caption: 'One workshop. Design, engineering and product on the same page.' },
+      { after: 10, kind: 'seat', caption: 'Not a seat you ask for. A seat you earn.' },
+    ],
     tone: 'cobalt',
     year: '',
     context: 'DevOps plugin marketplace · design, engineering and product',
@@ -57,6 +69,11 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-first-team',
     motif: 'team',
+    figures: [
+      { after: 5, kind: 'blueprint', caption: 'A team designed for what it needs to become.' },
+      { after: 10, kind: 'enable', caption: 'Leading is building the conditions for others to do their best work.' },
+      { after: 12, kind: 'zoom', caption: 'Zoom out for the business. Zoom in for the craft.' },
+    ],
     tone: 'plum',
     year: '',
     context: 'From first hire to leading designers',
@@ -99,6 +116,11 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-influence',
     motif: 'influence',
+    figures: [
+      { after: 2, kind: 'mindset', caption: 'A designer\'s mindset does not need a design title.' },
+      { after: 11, kind: 'pillars', caption: 'Relationships, safety, fairness, consistency, reliability.' },
+      { after: 13, kind: 'spread', caption: 'Design carried by people across the organisation.' },
+    ],
     tone: 'teal',
     year: '',
     context: 'Design maturity and trust in large organisations',
@@ -142,6 +164,12 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-sap-community',
     motif: 'hub',
+    figures: [
+      { after: 1, kind: 'custodian', caption: 'A custodian of something that belongs to many people.' },
+      { after: 3, kind: 'expand', caption: 'Expanding the circle while keeping the grassroots energy.' },
+      { after: 5, kind: 'between', caption: 'What happens between the events matters just as much.' },
+      { after: 10, kind: 'languages', caption: 'Fluent in the languages of business, technology, product and people.' },
+    ],
     tone: 'cobalt',
     year: '',
     context: 'SAP Design Hub India',
@@ -188,6 +216,12 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-design-culture',
     motif: 'culture',
+    figures: [
+      { after: 3, kind: 'status', caption: 'The visible work is only a fraction of the real work.' },
+      { after: 5, kind: 'disagree', caption: 'Disagreement worked through, never made personal.' },
+      { after: 7, kind: 'memory', caption: 'Archive the why, not just the what.' },
+      { after: 9, kind: 'purpose', caption: 'A shared purpose gives everything direction.' },
+    ],
     tone: 'plum',
     year: '',
     context: 'Inside a large enterprise',

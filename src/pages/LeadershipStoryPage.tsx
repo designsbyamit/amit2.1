@@ -1,8 +1,10 @@
+import { Fragment } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { publishedStories, storySlug } from '../data/leadership'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import StoryCover from '../components/ds/StoryCover'
+import StoryPictogram from '../components/ds/StoryPictogram'
 import RevealText from '../components/ui/RevealText'
 
 export default function LeadershipStoryPage() {
@@ -35,7 +37,20 @@ export default function LeadershipStoryPage() {
         <div className="grid-site">
           <div className="col-span-4 md:col-span-8 md:col-start-3 lg:col-span-7 lg:col-start-3">
             <div className="flex flex-col gap-6 hairline-top pt-12">
-              {s.narrative.map((p, i) => <p key={i} className="text-body-editorial text-ink-2">{p}</p>)}
+              {s.narrative.map((p, i) => {
+                const fig = s.figures?.find(f => f.after === i)
+                return (
+                  <Fragment key={i}>
+                    <p className="text-body-editorial text-ink-2">{p}</p>
+                    {fig && (
+                      <figure className="card card-flat flex flex-col sm:flex-row items-center gap-6 sm:gap-10 !py-6 !px-6 md:!px-10">
+                        <StoryPictogram kind={fig.kind} className="w-full max-w-[260px] flex-none" />
+                        <figcaption className="text-title text-ink">{fig.caption}</figcaption>
+                      </figure>
+                    )}
+                  </Fragment>
+                )
+              })}
             </div>
 
             {s.learnings && s.learnings.length > 0 && (
