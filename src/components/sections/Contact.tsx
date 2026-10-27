@@ -90,6 +90,7 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
 
         <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10 hairline-top pt-8">
           <div className="flex items-center gap-6">
+            <a href="/downloads/Amit-Kumar-Tiwari-CV.pdf" download className="text-label text-ink-3 hover:text-white transition-colors tap-target">CV</a>
             <a href="https://linkedin.com/in/amitkrt" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-white transition-colors tap-target">LinkedIn</a>
             <a href="https://medium.com/@amitkrt" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-white transition-colors tap-target">Medium</a>
             <a href="https://adplist.org/mentors/amit-kumar-tiwari" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-white transition-colors tap-target">ADPList</a>

@@ -59,6 +59,7 @@ export default function PlaybackPage() {
             {cs.tags && <TagList items={cs.tags.slice(0, 3)} label="Topics" />}
           </div>
           <p className="text-body-lg text-ink mt-6 max-w-2xl">{pb.roleNote}</p>
+          <p className="text-body text-ink-2 mt-3 max-w-2xl"><span className="text-label text-ink-3 mr-2">How I led it</span>{pb.led}</p>
         </div>
       </header>
 
@@ -68,7 +69,7 @@ export default function PlaybackPage() {
             <div className="container-site grid-site gap-y-6 items-start">
               <h2 id={`beat-${i}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{label}</h2>
               <div className="col-span-4 md:col-span-8">
-                {label === 'The impact' && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /></div>}
+                {label === 'The impact' && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /><p className="text-label text-ink-3 mt-3">Figures come from data shared by the project stakeholders.</p></div>}
                 {label === 'Who it is for' && pb.beats.personas && (
                   <ul className="flex flex-wrap gap-2 mb-5" aria-label="Personas">{pb.beats.personas.map(x => <li key={x} className="tag">{x}</li>)}</ul>
                 )}

@@ -11,6 +11,6 @@ export const metrics: Metric[] = [
   { value: '200+', label: 'Designers hired across teams and organisations', count: true },
   { value: '16+',  label: 'Years dedicated to design', count: true },
   { value: '61+',  label: 'Products and platforms designed end-to-end', count: true },
-  { value: '252+', label: 'Design community', count: true },
-  { value: '4+',   label: 'Founding designer, startup consulting', count: true },
+  { value: '252+', label: 'Members in the SAP Design Hub India community', count: true },
+  { value: '4+',   label: 'Startups supported as founding designer', count: true },
 ]

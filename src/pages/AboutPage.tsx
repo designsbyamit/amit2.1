@@ -71,7 +71,7 @@ export default function AboutPage() {
 
       <section className="section-y hairline-top">
         <div className="container-site">
-          <SectionHeader label="Career" title="Where I’ve worked." action={<Button to="/leadership#journey" variant="secondary" arrow>The leadership journey</Button>} />
+          <SectionHeader label="Career" title="Where I’ve worked." action={<div className="flex flex-wrap gap-3"><a className="btn btn-secondary" href="/downloads/Amit-Kumar-Tiwari-CV.pdf" download>Download CV</a><Button to="/leadership#journey" variant="secondary" arrow>The leadership journey</Button></div>} />
           <ol>
             {timeline.map(item => (
               <li key={item.year} className="hairline-top py-7 grid md:grid-cols-[12rem_1fr] gap-3 md:gap-8">
@@ -79,6 +79,7 @@ export default function AboutPage() {
                 <div>
                   <p className="text-title text-ink">{item.role} · {item.org}</p>
                   <p className="text-body-sm text-ink-2 mt-2 max-w-2xl">{item.detail}</p>
+                  {item.highlights.length > 0 && <ul className="mt-3 flex flex-col gap-1.5 max-w-2xl">{item.highlights.map(h => <li key={h} className="text-body-sm text-ink-3">{h}</li>)}</ul>}
                 </div>
               </li>
             ))}
