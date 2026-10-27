@@ -71,16 +71,8 @@ export default function Craft() {
         <div className="container-site">
           <div className="grid-site gap-y-4 mb-10 md:mb-12">
             <h2 id="rs-h" className="col-span-4 md:col-span-3 text-overline text-ink-3">Research</h2>
-            <p className="col-span-4 md:col-span-8 text-body-lg text-ink-2 max-w-2xl">Four pieces of research, coming soon.</p>
+            <p className="col-span-4 md:col-span-8 text-body-lg text-ink-2 max-w-2xl">In progress: {research.join(', ')}. Coming soon.</p>
           </div>
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {research.map(r => (
-              <li key={r} className="card flex flex-col gap-3">
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink-3">Coming soon</span>
-                <h3 className="text-title text-ink">{r}</h3>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

@@ -20,7 +20,7 @@ export default function FeaturedWork() {
         <ul className="divide-y" style={{ borderColor: 'var(--line-1)' }}>
           {items.map(({ pb, cs }) => (
             <li key={cs.id} className="list-none" style={{ borderColor: 'var(--line-1)' }}>
-              <ProjectCard cs={cs} pb={pb} variant="row" />
+              <ProjectCard cs={cs} pb={pb} variant="row" showNumber={false} />
             </li>
           ))}
         </ul>

@@ -54,6 +54,9 @@ export default function Hero() {
           <motion.p className="text-body-lg text-ink-2 max-w-[34rem]" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7, ease }}>
             Advancing the convergence of human behaviour, business systems, and artificial intelligence to shape how people work, how products evolve, and how businesses create lasting value.
           </motion.p>
+          <motion.p className="text-label text-ink-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.7 }}>
+            Design Leader, Core Design, SAP Labs · 16+ years · Led teams of up to 30 designers
+          </motion.p>
           <motion.div className="flex flex-wrap items-center gap-3" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.7, ease }}>
             <Button to="/leadership" arrow>See how I lead</Button>
             <Button to="/craft" variant="secondary">See the work</Button>

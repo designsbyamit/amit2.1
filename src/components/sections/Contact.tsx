@@ -9,6 +9,13 @@ import type { ContactOptions } from '../../lib/contact'
 
 const paths: readonly ({ id: string; label: string; body: string; cta: string } & ({ to: string } | { open: ContactOptions }))[] = [
   {
+    id: 'hire',
+    label: 'Hiring for design leadership',
+    body: 'A Design Director or Head of Design role at a product company. Send the role and I will reply with how I would approach it.',
+    cta: 'Write about a role',
+    open: { topic: 'work', message: 'Role and organisation:\n\nScope of the design team:\n\nWhat success looks like in the first year:\n' },
+  },
+  {
     id: 'work',
     label: 'Work together',
     body: 'Design leadership, AI-native product strategy, or enterprise UX challenges you want a second mind on.',
@@ -55,7 +62,7 @@ export default function Contact({ headingLevel = 'h2' }: { headingLevel?: 'h1' |
           <p className="text-body-lg text-ink-2 mt-6">Tell me what you're after and I'll point you to the quickest way in.</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-14">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
           {paths.map((p, i) => (
             <motion.div
               key={p.id}
