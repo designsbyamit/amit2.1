@@ -198,7 +198,7 @@ export default function Nav() {
                       <ul className="pb-4">{leadershipItems.map(x => <li key={x.to}><Link to={x.to} className="flex py-2 text-body-sm text-ink-2">{x.label}</Link></li>)}</ul>
                     )}
                     {item.menu === 'Grow' && (
-                      <ul className="pb-4">{growItems.map(x => <li key={x.label}>{x.soon ? <p className="py-2 text-body-sm text-ink-3">{x.label}{soonTag}</p> : <Link to={x.to} className="flex py-2 text-body-sm text-ink-2">{x.label}</Link>}</li>)}</ul>
+                      <ul className="pb-4">{growItems.map(x => <li key={x.label}>{x.soon ? <p className="py-2 text-body-sm text-ink-3">{x.label}{soonTag}</p> : <Link to={x.to} className="flex py-2 text-body-sm text-ink-2">{x.kind === 'All Grow' ? 'All Grow' : x.label}</Link>}</li>)}</ul>
                     )}
                   </li>
                 ))}

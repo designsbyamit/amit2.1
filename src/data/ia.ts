@@ -30,6 +30,7 @@ export interface MenuItem { label: string; to: string; kind: string; mark?: Mark
 
 /** The Grow section: three places, and two still to come. */
 export const growItems: MenuItem[] = [
+  { label: 'Grow', to: '/learn', kind: 'All Grow', mark: 'lead', tone: 'cobalt' },
   { label: 'Mentoring', to: '/mentoring', kind: 'Mentoring', mark: 'mentor', tone: 'cobalt' },
   { label: 'Toolkits', to: '/learn/practice', kind: 'Toolkits', mark: 'toolkit', tone: 'teal' },
   { label: 'Portfolio Guide', to: '/learn/portfolio', kind: 'Guide', mark: 'portfolio', tone: 'plum' },

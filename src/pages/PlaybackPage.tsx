@@ -74,7 +74,7 @@ export default function PlaybackPage() {
             <div className="container-site grid-site gap-y-6 items-start">
               <h2 id={`beat-${i}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{label}</h2>
               <div className="col-span-4 md:col-span-8">
-                {label === 'The impact' && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /><p className="text-label text-ink-3 mt-3">Figures come from data shared by the project stakeholders.</p></div>}
+                {label === 'The impact' && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /></div>}
                 {label === 'Who it is for' && pb.beats.personas && (
                   <ul className="flex flex-wrap gap-2 mb-5" aria-label="Personas">{pb.beats.personas.map(x => <li key={x} className="tag">{x}</li>)}</ul>
                 )}
@@ -93,6 +93,8 @@ export default function PlaybackPage() {
           {label === 'The solution' && pb.flow && <ProcessFlow stages={pb.flow} />}
         </Fragment>
       ))}
+
+      <div className="container-site pb-6"><p className="text-label text-ink-3">Figures come from data shared by the project stakeholders.</p></div>
 
       {/* One component with the footer: it stays at the bottom of the screen while scrolling, then settles into the footer. */}
       <div className="sticky bottom-0 z-30 border-t bg-bg" style={{ borderColor: 'var(--line-1)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
