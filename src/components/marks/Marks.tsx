@@ -7,6 +7,7 @@ import type { ReactNode } from 'react'
 export type MarkName =
   | 'lead' | 'experience' | 'community' | 'notes' | 'mentor' | 'toolkit' | 'portfolio'
   | 'agentic' | 'search' | 'engaze' | 'airline' | 'data' | 'network'
+  | 'grow' | 'wingspan' | 'ama'
   | 'file18' | 'greenux' | 'gxd' | 'convai' | 'persona' | 'portal'
 
 const A = 'var(--mk-accent, var(--signal))'
@@ -37,6 +38,13 @@ const marks: Record<MarkName, ReactNode> = {
   toolkit: <>{L({ x: 8, y: 22, w: 48, h: 32, rx: 4 }, 1)}{L({ d: 'M24 22 V15 H40 V22' }, 2)}{L({ d: 'M8 36 H56', o: 0.5 }, 3)}{N(32, 36, 3.4)}</>,
   // Portfolio guide: a page of work, one piece picked out.
   portfolio: <>{L({ x: 8, y: 10, w: 48, h: 30, rx: 3 }, 1)}{L({ d: 'M8 50 H34' }, 2)}{L({ d: 'M8 58 H22', o: 0.5 }, 3)}{N(40, 25, 3.4)}</>,
+
+  // Grow: steps rising, the next one just lit.
+  grow: <>{L({ d: 'M6 54 H20 V42 H34 V30 H48 V18 H58' }, 1)}{D('M6 54 L50 12', 2)}{N(52, 11, 3.4)}</>,
+  // WingSpan: two wings open from one centre, the reach of a community.
+  wingspan: <>{L({ d: 'M32 42 C26 22 14 16 5 20 C12 28 20 38 32 42' }, 1)}{L({ d: 'M32 42 C38 22 50 16 59 20 C52 28 44 38 32 42' }, 2)}{N(32, 48, 3.4)}</>,
+  // Questions from AMA: a question put to one person, a single answer waiting.
+  ama: <>{L({ d: 'M10 10 H54 V40 H34 L24 52 V40 H10 Z' }, 1)}{L({ d: 'M26 22 C26 15 38 15 38 22 C38 27 32 27 32 31' }, 2)}{N(32, 36, 2.6)}</>,
 
   // Agentic order confirmation: a document, an agent, a person who decides.
   agentic: <>{L({ x: 6, y: 22, w: 18, h: 20, rx: 3 }, 1)}{L({ d: 'M24 32 H33' }, 2)}{N(37, 32, 3.5)}{L({ d: 'M41 32 H47' }, 3)}{L({ cx: 55, cy: 32, r: 8 }, 4)}</>,

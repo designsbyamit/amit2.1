@@ -35,7 +35,7 @@ function MobileNav({ pathname }: { pathname: string }) {
     const here = isHere(to)
     const inner = (
       <>
-        <div className="w-[5.5rem] shrink-0 overflow-hidden rounded-2" style={{ opacity: soon ? 0.55 : 1 }}>{cover}</div>
+        <div className="w-[5.5rem] shrink-0 overflow-hidden rounded-2" style={{ opacity: soon ? 0.8 : 1 }}>{cover}</div>
         <div className="min-w-0 flex-1">
           {sub && <p className="text-label text-signal-ink">{sub}</p>}
           <p style={{ lineHeight: 1.3 }} className={`text-body ${soon ? 'text-ink-3' : 'text-ink'}`}>{title}</p>
@@ -53,7 +53,7 @@ function MobileNav({ pathname }: { pathname: string }) {
   const content: Record<MenuKey, React.ReactNode> = {
     Works: <>{menuWorks.map(cs => row(cs.id, <CaseThumb id={cs.id} compact />, cs.shortTitle, cs.number, `/craft/${cs.id}`))}{allBtn('All work', '/craft')}</>,
     Leadership: <>{leadershipItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.kind, x.to))}{allBtn('All leadership', '/leadership')}</>,
-    Grow: <>{growItems.map(x => row(x.label, x.mark ? <MenuCover mark={x.mark} tone={x.tone!} size={30} /> : <MenuCover mark="notes" tone="graphite" size={30} />, x.label, x.soon ? undefined : x.kind, x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
+    Grow: <>{growItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.soon ? undefined : x.kind, x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
   }
 
   return (
