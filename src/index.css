@@ -519,3 +519,8 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
   .mk .mk-node { animation: none; opacity: 1; }
   .mk .mk-guide { animation: none; opacity: .6; }
 }
+
+/* Busy-state logo: wait a beat before showing, so fast loads never flash it. */
+.logo-loader-mark { opacity: 0; animation: logo-loader-in 0.4s ease 0.25s forwards; }
+@keyframes logo-loader-in { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .logo-loader-mark svg animate { display: none; } }

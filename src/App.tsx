@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, useParams, Navigate } from 'react-router-dom'
 import { Suspense, lazy, useEffect } from 'react'
+import LogoLoader from './components/ui/LogoLoader'
 import useRouteSeo from './seo/useRouteSeo'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
@@ -98,7 +99,7 @@ function CaseDetail() {
   const body = (
     <div className="relative">
       <BackToShort id={id ?? ''} />
-      <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}><Page /></Suspense>
+      <Suspense fallback={<LogoLoader />}><Page /></Suspense>
       {!own && <NextCase id={id ?? ''} />}
     </div>
   )
@@ -129,7 +130,7 @@ function AnimatedRoutes() {
   const location = useLocation()
   useRouteSeo()
   return (
-    <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
+    <Suspense fallback={<LogoLoader />}>
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
