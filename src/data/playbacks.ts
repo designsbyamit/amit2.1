@@ -10,8 +10,8 @@ export interface Playback {
   dek: string
   /** A second line about the role, from what the case study already says. */
   roleNote: string
-  /** How I led it: the team and the cross-disciplinary partners. */
-  led: string
+  /** How I led it. Only set where a larger design team was led; leave out for solo or small-pod work. */
+  led?: string
   beats: {
     about: string; challenge: string; users: string; solution: string; impact: string
     /** Optional: the challenge as a short list, followed by `challengeNote`. */
@@ -30,7 +30,6 @@ export const playbacks: Playback[] = [
     id: 'sap-agentic',
     headline: 'Human-led agentic AI cuts order confirmation TAT from weeks to hours',
     dek: 'An agent extracts and compares, people validate and decide. Co-created with customers as a white-labelled solution across supply chain management.',
-    led: 'I led a design team of 7 to 8, working alongside engineering, product, data science and accessibility, with customers co-creating the solution.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
       about: 'The opportunity was to design an agentic experience for procurement. The agent ingests many documents, including supplier order confirmations and RFQ responses, and compares them against purchase orders. Procurement specialists and operations teams then validate the discrepancies, approve outcomes and make the decisions.',
@@ -63,7 +62,7 @@ export const playbacks: Playback[] = [
     id: 'engaze',
     headline: 'Conversation-first HCM suite that earned 90% employee satisfaction',
     dek: 'A conversational experience built on five principles instead of flows, with one companion serving employees and managers across the HCM suite. The employee module shipped at 90% CSAT.',
-    led: 'I led a design team of 7 to 8, working alongside engineering, product, data science and accessibility.',
+    led: 'I led a design team of 5 to 6, inside a larger team where the rest of the people came from other disciplines.',
     roleNote: 'The team researched conversation design in depth, including how to build a persona that keeps one consistent conversation pattern.',
     beats: {
       about: 'An AI-native HCM suite where the conversation is the product: five design principles, shaped into one conversational application and one companion that serves employees and managers.',
@@ -79,7 +78,7 @@ export const playbacks: Playback[] = [
     id: 'airline-app',
     headline: 'Air travel booking journey redesign drove 50x in-app add-on sales',
     dek: 'A service ecosystem rather than an app: engagement up 92%, add-on sales up 50×, check-in cut from 9 steps to 2.',
-    led: 'I led experience strategy across 11+ designers in a pod model, working alongside engineering, product, data science and accessibility.',
+    led: 'I led experience strategy across 11+ designers, organised in pods that each owned a journey.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year.',
     beats: {
       about: 'A mobile experience for a leading Middle East air carrier, serving 30M+ guests annually.',
@@ -95,7 +94,7 @@ export const playbacks: Playback[] = [
     id: 'dnetworx',
     headline: 'Dynamic network management app that saved $5M',
     dek: 'A change-resistant network platform made self-serve for enterprises, with 70,000+ customers and a client-reported $5M saving.',
-    led: 'I led the design effort in one team with engineering and product partners.',
+    led: 'I led a design team of mostly 5 to 6, working as one team with engineering and product partners.',
     roleNote: 'A massive project on complex technology, where what the platform changes lands on the customer’s own infrastructure.',
     beats: {
       about: 'Self-serve network installations for an enterprise platform that modifies and upgrades network services with zero downtime.',
@@ -127,7 +126,6 @@ export const playbacks: Playback[] = [
     id: 'data-ai',
     headline: 'Marketplace for data governance apps driving 76% adoption',
     dek: 'Executive data products for a global data and AI practice. The scorecard became a reference for presenting governance health to enterprise clients.',
-    led: 'I led the design effort, working alongside engineering, product, data science and accessibility.',
     roleNote: 'I led the redesign of the Collibra data-governance experience and defined the NCPI heuristic evaluation framework.',
     beats: {
       about: 'Executive-grade data products that turn the complexity of data governance into something leaders can act on.',

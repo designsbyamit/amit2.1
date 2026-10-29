@@ -59,7 +59,12 @@ export default function PlaybackPage() {
             {cs.tags && <TagList items={cs.tags.slice(0, 3)} label="Topics" />}
           </div>
           <p className="text-body-lg text-ink mt-6 max-w-2xl">{pb.roleNote}</p>
-          <p className="text-body text-ink-2 mt-3 max-w-2xl"><span className="text-label text-ink-3 mr-2">How I led it</span>{pb.led}</p>
+          {pb.led && (
+            <div className="mt-6 max-w-2xl rounded-3 border px-5 py-4" style={{ borderColor: 'rgb(var(--signal-ink-rgb) / 0.22)', background: 'rgb(var(--signal-ink-rgb) / 0.06)' }}>
+              <p className="text-label text-ink-3">How I led it</p>
+              <p className="text-body text-ink mt-1.5">{pb.led}</p>
+            </div>
+          )}
         </div>
       </header>
 
