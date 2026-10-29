@@ -2,13 +2,6 @@ import type { Playback } from '../../data/playbacks'
 
 type Stage = NonNullable<Playback['flow']>[number]
 
-const tone = (by: Stage['by']) =>
-  by === 'People'
-    ? { color: 'var(--ink, #fff)', border: 'var(--line-2)', fill: 'transparent' }
-    : by === 'Agent'
-      ? { color: 'var(--signal-ink, #C8F55A)', border: 'var(--line-2)', fill: 'transparent' }
-      : { color: 'var(--ink-2, #aaa)', border: 'var(--line-2)', fill: 'transparent' }
-
 
 const W = 1200, LABEL = 104, CW = 164, GAP = 22
 const colX = (i: number) => LABEL + i * (CW + GAP)
@@ -77,8 +70,57 @@ function FlowChart() {
   )
 }
 
+
+/** The same flowchart for narrow screens: lanes stacked top to bottom, steps joined by arrows. */
+function MobileFlow() {
+  const Down = ({ dashed = false }: { dashed?: boolean }) => (
+    <div className="flex justify-center" aria-hidden="true">
+      <svg width="16" height="26" viewBox="0 0 16 26" fill="none" stroke="var(--color-ink-3)" strokeWidth="1.5" strokeDasharray={dashed ? '3 3' : undefined}>
+        <path d="M8 0v22" /><path d="M3 17l5 6 5-6" strokeDasharray="none" />
+      </svg>
+    </div>
+  )
+  const Lane = ({ label, children }: { label: string; children: React.ReactNode }) => (
+    <div className="rounded-3 p-3" style={{ background: 'var(--surface-2, rgb(255 255 255 / 0.04))' }}>
+      <p className="font-mono text-[0.65rem] uppercase tracking-[0.1em] text-ink-3 mb-3">{label}</p>
+      <div className="flex flex-col">{children}</div>
+    </div>
+  )
+  const Node = ({ n, title, lines, stroke }: { n: number; title: string; lines: string[]; stroke: string }) => (
+    <div className="rounded-3 border px-4 py-3" style={{ borderColor: stroke, background: 'var(--bg)' }}>
+      <p className="font-mono text-[0.7rem] text-ink-3">{String(n).padStart(2, '0')}</p>
+      <p className="text-body font-medium text-ink">{title}</p>
+      <p className="text-body-sm text-ink-2 mt-1">{lines.join(' ')}</p>
+    </div>
+  )
+  const agent = NODES.filter(n => n.lane === 'agent'), people = NODES.filter(n => n.lane === 'people')
+  return (
+    <div className="md:hidden flex flex-col" aria-label="Process flow">
+      <Lane label="Admin">
+        <div className="rounded-3 border border-dashed px-4 py-3" style={{ borderColor: 'var(--line-2)', background: 'var(--bg)' }}>
+          <p className="text-body font-medium text-ink">Set up once</p>
+          <p className="text-body-sm text-ink-2 mt-1">Connects the mailbox and ERP, manages users</p>
+        </div>
+      </Lane>
+      <Down dashed />
+      <Lane label="AI agent">
+        {agent.map((n, k) => (
+          <div key={n.title}>{k > 0 && <Down />}<Node n={n.i + 1} title={n.title} lines={n.lines} stroke="var(--signal-ink)" /></div>
+        ))}
+      </Lane>
+      <p className="text-label text-ink-3 text-center py-2">each decision goes to its owner</p>
+      <Lane label="People">
+        {people.map((n, k) => (
+          <div key={n.title}>{k > 0 && <Down />}<Node n={n.i + 1} title={n.title} lines={n.lines} stroke="var(--color-ink)" /></div>
+        ))}
+      </Lane>
+      <p className="text-label text-ink-3 mt-3">If a revision is needed: the buyer asks the supplier, and a new confirmation arrives. Every step is logged in one activity timeline.</p>
+    </div>
+  )
+}
+
 /** The end-to-end process as numbered stages, with who does each one. Three across on large screens, two or one on smaller ones. */
-export default function ProcessFlow({ stages }: { stages: Stage[] }) {
+export default function ProcessFlow(_props: { stages: Stage[] }) {
   return (
     <section className="hairline-top section-y bg-surface-1" aria-labelledby="flow-h">
       <div className="container-site">
@@ -87,21 +129,7 @@ export default function ProcessFlow({ stages }: { stages: Stage[] }) {
           <p className="col-span-4 md:col-span-8 text-body-lg text-ink-2 max-w-2xl">From a supplier’s document to a closed order, in six stages. An administrator connects the mailbox and ERP once. The agent does the reading and comparing, and people make the decisions.</p>
         </div>
         <div className="hidden md:block"><FlowChart /></div>
-        <ol className="md:hidden grid sm:grid-cols-2 gap-4">
-          {stages.map((st, i) => {
-            const t = tone(st.by)
-            return (
-              <li key={st.title} className="card flex flex-col gap-3 relative">
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-ink-3">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.08em] rounded-full border px-2 py-0.5" style={{ color: t.color, borderColor: t.border }}>{st.by}</span>
-                </div>
-                <h3 className="text-title text-ink">{st.title}</h3>
-                <p className="text-body-sm text-ink-2">{st.text}</p>
-              </li>
-            )
-          })}
-        </ol>
+        <MobileFlow />
       </div>
     </section>
   )
