@@ -21,6 +21,78 @@ const navItems: { label: string; to: string; menu?: MenuKey; quiet?: boolean }[]
 const arrowSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
 const soonTag = <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3 align-middle">Coming soon</span>
 
+const chevron = (open: boolean) => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" style={{ transition: 'transform .25s', transform: open ? 'rotate(180deg)' : 'none' }}><path d="M4 7l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+)
+const goChevron = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M6 3l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+
+/** The phone menu: sections that open and close, each page shown as a tappable card with its cover and an arrow. */
+function MobileNav({ pathname }: { pathname: string }) {
+  const [openKey, setOpenKey] = useState<MenuKey | null>(() => (pathname.startsWith('/leadership') || pathname.startsWith('/community') || pathname.startsWith('/reflections') ? 'Leadership' : pathname.startsWith('/learn') || pathname.startsWith('/mentoring') ? 'Grow' : 'Works'))
+  const isHere = (to: string) => to !== '' && (pathname === to || (to !== '/' && pathname.startsWith(to + '/')))
+
+  const row = (key: string, cover: React.ReactNode, title: string, sub: string | undefined, to: string, soon?: boolean) => {
+    const here = isHere(to)
+    const inner = (
+      <>
+        <div className="w-[5.5rem] shrink-0 overflow-hidden rounded-2" style={{ opacity: soon ? 0.55 : 1 }}>{cover}</div>
+        <div className="min-w-0 flex-1">
+          {sub && <p className="text-label text-signal-ink">{sub}</p>}
+          <p style={{ lineHeight: 1.3 }} className={`text-body ${soon ? 'text-ink-3' : 'text-ink'}`}>{title}</p>
+          {soon && <p className="mt-1 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3">Coming soon</p>}
+        </div>
+        {!soon && <span className="text-ink-3 shrink-0">{goChevron}</span>}
+      </>
+    )
+    const cls = 'flex items-center gap-3 rounded-3 border p-2.5 transition-colors'
+    const style = { borderColor: here ? 'var(--signal-ink)' : 'var(--line-1)', background: 'var(--surface-1)' }
+    return <li key={key}>{soon ? <div className={cls} style={style}>{inner}</div> : <Link to={to} className={`${cls} active:bg-surface-2`} style={style} aria-current={here ? 'page' : undefined}>{inner}</Link>}</li>
+  }
+  const allBtn = (label: string, to: string) => <li key="all"><Link to={to} className="btn btn-secondary w-full justify-center">{label}{arrowSvg}</Link></li>
+
+  const content: Record<MenuKey, React.ReactNode> = {
+    Works: <>{menuWorks.map(cs => row(cs.id, <CaseThumb id={cs.id} compact />, cs.shortTitle, cs.number, `/craft/${cs.id}`))}{allBtn('All work', '/craft')}</>,
+    Leadership: <>{leadershipItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.kind, x.to))}{allBtn('All leadership', '/leadership')}</>,
+    Grow: <>{growItems.map(x => row(x.label, x.mark ? <MenuCover mark={x.mark} tone={x.tone!} size={30} /> : <MenuCover mark="notes" tone="graphite" size={30} />, x.label, x.soon ? undefined : x.kind, x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
+  }
+
+  return (
+    <nav aria-label="Mobile" className="container-site pt-2 pb-10">
+      <ul className="flex flex-col">
+        {navItems.map(item => {
+          const key = item.menu
+          const here = isHere(item.to)
+          const rowCls = `flex w-full items-center justify-between py-4 text-heading text-left ${here || openKey === key ? 'text-ink' : 'text-ink-2'}`
+          return (
+            <li key={item.to} className="hairline-bottom">
+              {key ? (
+                <>
+                  <button type="button" className={rowCls} aria-expanded={openKey === key} onClick={() => setOpenKey(openKey === key ? null : key)}>
+                    <span>{item.label}</span><span className="text-ink-3">{chevron(openKey === key)}</span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openKey === key && (
+                      <motion.div key="c" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }} style={{ overflow: 'hidden' }}>
+                        <ul className="flex flex-col gap-2.5 pb-5">{content[key]}</ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </>
+              ) : (
+                <NavLink to={item.to} className={rowCls}><span>{item.label}</span><span className="text-ink-3">{goChevron}</span></NavLink>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+      <div className="flex items-center justify-between text-body-sm text-ink-2 pt-5">
+        <span>Appearance</span>
+        <ThemeToggle />
+      </div>
+    </nav>
+  )
+}
+
 function navCls({ isActive }: { isActive: boolean }) {
   return `relative py-2 text-[0.9375rem] transition-colors duration-150 ${isActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`
 }
@@ -177,33 +249,7 @@ export default function Nav() {
         {menuOpen && (
           <motion.div className="fixed inset-x-0 bottom-0 lg:hidden overflow-y-auto" style={{ top: 'var(--header-h)', zIndex: 'var(--z-overlay)' as unknown as number, background: 'var(--bg)' }}
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
-            <nav aria-label="Mobile" className="container-site pt-4 pb-8">
-              <div className="flex items-center justify-between text-body-sm text-ink-2 pb-2 hairline-bottom">
-                <span>Appearance</span>
-                <ThemeToggle />
-              </div>
-              <ul className="flex flex-col">
-                {navItems.map(item => (
-                  <li key={item.to} className="hairline-bottom">
-                    <NavLink to={item.to} end={item.menu === 'Leadership'} className={({ isActive }) => `flex items-center justify-between py-4 text-heading ${isActive ? 'text-ink' : 'text-ink-2'}`}>
-                      {item.label}
-                    </NavLink>
-                    {item.menu === 'Works' && (
-                      <ul className="pb-4">
-                        {menuWorks.map(cs => <li key={cs.id}><Link to={`/craft/${cs.id}`} className="flex gap-3 py-2.5 text-body-sm text-ink-2"><span className="text-label text-ink-3 pt-0.5">{cs.number}</span>{cs.title}</Link></li>)}
-                        <li><Link to="/craft" className="flex py-2 text-body-sm text-ink-2">All work</Link></li>
-                      </ul>
-                    )}
-                    {item.menu === 'Leadership' && (
-                      <ul className="pb-4">{leadershipItems.map(x => <li key={x.to}><Link to={x.to} className="flex py-2 text-body-sm text-ink-2">{x.label}</Link></li>)}</ul>
-                    )}
-                    {item.menu === 'Grow' && (
-                      <ul className="pb-4">{growItems.map(x => <li key={x.label}>{x.soon ? <p className="py-2 text-body-sm text-ink-3">{x.label}{soonTag}</p> : <Link to={x.to} className="flex py-2 text-body-sm text-ink-2">{x.kind === 'All Grow' ? 'All Grow' : x.label}</Link>}</li>)}</ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <MobileNav pathname={location.pathname} />
           </motion.div>
         )}
       </AnimatePresence>
