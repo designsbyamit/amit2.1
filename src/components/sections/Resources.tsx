@@ -211,7 +211,10 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
       <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-[260px]">
         {resource.internalUrl
           ? <Link to={resource.internalUrl} tabIndex={-1} className="block transition-transform duration-300 hover:-translate-y-1"><ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} /></Link>
-          : <ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} />}
+          : (resource.previewUrl && !resource.readingList)
+            ? <a href={resource.previewUrl} tabIndex={-1} aria-hidden="true" className="block transition-transform duration-300 hover:-translate-y-1"
+                {...(/^https?:/.test(resource.previewUrl) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}><ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} /></a>
+            : <ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} />}
       </div>
       <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
         <TagList items={resource.topics} label="Topics" />
