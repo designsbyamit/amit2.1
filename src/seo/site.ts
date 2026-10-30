@@ -47,6 +47,7 @@ const base: RouteMeta[] = [
   { path: '/resources/hiring-experience', title: T('Hiring is an experience problem'), description: 'Seven patterns in design hiring and what can be done about each, plus a case study of redefining the experience: on-site assignment, signals defined by role, candidate feedback, with worksheets and tenets.', type: 'article' },
   { path: '/resources/dual-fluency', title: T('Dual fluency'), description: 'A framework for designers working fluently with both people and AI systems.' },
   { path: '/resources/ai-native-patterns', title: T('AI-native design patterns'), description: 'Design patterns for AI-native products: how experiences change when software can reason.' },
+  { path: '/resources/ai-native-patterns/glossary', title: T('AI-native glossary'), description: 'Plain-language definitions for the terms behind AI-native and agentic experience design, each with a mental model.' },
   { path: '/resources/conversation-experience', title: T('Conversation experience'), description: 'Principles and patterns for designing conversational experiences that work in enterprise settings.' },
   { path: '/learn', title: T('Grow'), description: 'For designers who are growing: mentoring, toolkits to practise with, and a guide to presenting your work.', group: '/learn/practice/' },
   { path: '/learn/practice', title: T('Design practice'), description: 'Practice challenges and toolkits for designers who want to sharpen their craft.' },

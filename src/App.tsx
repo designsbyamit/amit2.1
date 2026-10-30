@@ -38,6 +38,7 @@ const ContactPage = lazy(() => import('./pages/ContactPage'))
 const AdminPage = lazy(() => import('./pages/AdminPage'))
 const DualFluencyPage = lazy(() => import('./pages/DualFluencyPage'))
 const AINativeFrameworksPage = lazy(() => import('./pages/AINativeFrameworksPage'))
+const AINativeGlossaryPage = lazy(() => import('./pages/AINativeGlossaryPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
 const SAPAgenticStoryPage = lazy(() => import('./pages/SAPAgenticStoryPage'))
 const AgenticFilmPage = lazy(() => import('./film/AgenticFilmPage'))
@@ -166,6 +167,7 @@ function AnimatedRoutes() {
         <Route path="/resources/hiring-experience" element={<PageTransition><HiringExperiencePage /></PageTransition>} />
         <Route path="/resources/dual-fluency" element={<PageTransition><DualFluencyPage /></PageTransition>} />
         <Route path="/resources/ai-native-patterns" element={<PageTransition><AINativeFrameworksPage /></PageTransition>} />
+        <Route path="/resources/ai-native-patterns/glossary" element={<PageTransition><AINativeGlossaryPage /></PageTransition>} />
         <Route path="/resources/conversation-experience" element={<PageTransition><ConversationExperiencePage /></PageTransition>} />
         <Route path="/design-system" element={<PageTransition><DesignSystemPage /></PageTransition>} />
         <Route path="/design-system/reference" element={<PageTransition><DesignSystemReferencePage /></PageTransition>} />
