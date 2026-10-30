@@ -250,6 +250,19 @@ const TEMPLATES: Record<string, { name: string; format: string; href: string }[]
   'prototype-validation': [{ name: 'Prototype Review Kit', format: 'Figma file', href: `${KIT}#review` }],
 }
 
+// FigJam versions of the templates. The URLs are NOT in the source: they come from VITE_FIGJAM_LINKS
+// (JSON keyed by framework id), set only on the staging Vercel project. Where it is unset (production),
+// the same slot shows a request button instead, so the links never ship in the production bundle.
+const FIGJAM_NAMES: Record<string, string> = {
+  'context-engineering': 'Context Engineering Canvas',
+  'intelligence-opportunity': 'Intelligence Opportunity Board',
+  'experience-blueprint': 'Experience Blueprint Kit',
+  'prototype-validation': 'Prototype Review Kit',
+}
+const FIGJAM_LINKS: Record<string, string> = (() => {
+  try { return JSON.parse(import.meta.env.VITE_FIGJAM_LINKS || '{}') } catch { return {} }
+})()
+
 const ON_REQUEST = [
   { name: 'AI-native Design Playbook', type: 'PDF', description: 'Complete methodology guide: all five frameworks, enterprise examples, and evaluation criteria.' },
   { name: 'Prompt Library', type: 'Notion / PDF', description: 'Curated prompt pack for each phase: research, synthesis, blueprint creation, and validation.' },
@@ -401,10 +414,13 @@ function ProcessRoadmap() {
 }
 
 function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number }) {
+  const { ask } = useContact()
   const [open, setOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('mentalModel')
   const templates = TEMPLATES[fw.id] ?? []
   const tools = TOOL_ORCHESTRATION.filter(t => t.phase === fw.id)
+  const figjamName = FIGJAM_NAMES[fw.id]
+  const figjamUrl = FIGJAM_LINKS[fw.id]
 
   const sections = [
     { id: 'mentalModel', label: 'Mental Model' },
@@ -588,6 +604,26 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                                 <span className="text-label text-ink-3 group-hover:text-ink-2 transition-colors">Open ↗</span>
                               </div>
                               <p className="text-body text-ink-3">{t.name}</p>
+                            </a>
+                          ))}
+                          {figjamName && (figjamUrl ? (
+                            <a href={figjamUrl} target="_blank" rel="noopener noreferrer"
+                              className="block border border-white border-opacity-10 p-5 hover:border-opacity-25 hover:bg-white hover:bg-opacity-[0.02] transition-all duration-200 group">
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="tag">FigJam board</span>
+                                <span className="text-label text-ink-3 group-hover:text-ink-2 transition-colors">Open ↗</span>
+                              </div>
+                              <p className="text-body text-ink-3">{figjamName}</p>
+                            </a>
+                          ) : (
+                            <a href="/contact"
+                              onClick={ask({ topic: 'resource', subject: `Request - ${figjamName} (FigJam)`, message: `I would like to request the FigJam board for the ${figjamName}.` })}
+                              className="block border border-white border-opacity-10 p-5 hover:border-opacity-25 hover:bg-white hover:bg-opacity-[0.02] transition-all duration-200 group">
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="tag">FigJam board</span>
+                                <span className="text-label text-ink-3 group-hover:text-ink-2 transition-colors">Request</span>
+                              </div>
+                              <p className="text-body text-ink-3">{figjamName}</p>
                             </a>
                           ))}
                         </div>
