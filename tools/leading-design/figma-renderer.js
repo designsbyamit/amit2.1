@@ -56,7 +56,7 @@ function sheet(d, mode, x, y) {
   figma.currentPage.appendChild(f); f.resize(d.w, 100); f.primaryAxisSizingMode = 'AUTO'; f.x = x; f.y = y;
   put(f, tx('Amit Kumar Tiwari · Leading Design · designsbyamit.com', 12, 'Medium', K.ink3, true), true);
   const hd = fr('VERTICAL', { gap: 10, name: 'Header' }); put(f, hd, true);
-  put(hd, tx((ex ? 'Worked example · ' : '') + 'Worksheet · Chapter 1 · Building a design team', 11, 'Medium', K.acc, true, true), true);
+  put(hd, tx((ex ? 'Worked example · ' : '') + DATA.kicker, 11, 'Medium', K.acc, true, true), true);
   put(hd, tx(d.title, 38, 'Medium', K.ink, true), true); put(hd, tx(d.sub, 16, 'Regular', K.ink2, true), true);
   if (ex) { const bn = fr('VERTICAL', { fill: K.ink, px: 24, py: 18, gap: 4, r: 8, name: 'Example banner' }); put(f, bn, true); put(bn, tx('Worked example · fictional company', 11, 'Medium', '#D9A66B', true, true), true); put(bn, tx(DATA.intro, 14, 'Regular', '#FBF9F4', true), true); }
   const use = fr('VERTICAL', { fill: K.accbg, px: 18, py: 14, r: 6, name: 'How to use it' }); put(f, use, true); put(use, tx('How to use it. ' + d.use, 13, 'Regular', K.ink, true), true);
@@ -74,7 +74,7 @@ function sheet(d, mode, x, y) {
 }
 const done = [], errors = []; let x = 0; const xs = {};
 for (const d of DATA.docs) { xs[d.slug] = x; x += d.w + 140; }
-figma.currentPage.name = 'Chapter 1 worksheets';
+figma.currentPage.name = DATA.pageName;
 let maxH = 0; const shots = [];
 for (const d of DATA.docs) { try { const f = sheet(d, 'tpl', xs[d.slug], 0); maxH = Math.max(maxH, f.height); done.push(['tpl', d.slug, f.id, Math.round(f.height)]); if (!shots.length) shots.push(f); } catch (e) { errors.push(['tpl', d.slug, String(e && e.message || e)]); } }
 const y2 = maxH + 260; let last = null;

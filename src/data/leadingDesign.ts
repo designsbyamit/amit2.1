@@ -11,8 +11,8 @@ export const chapters: Chapter[] = [
   { n: '01', slug: 'building-a-design-team', title: 'Building a design team', ready: true,
     summary: 'Decide what the team must become, then hire and onboard for it: team shape, a hiring experience designed for candidates and interviewers, and a first ninety days written with the new joiner. Six editable worksheets, each with a filled example.',
     topics: ['Team shape', 'Hiring', 'Onboarding'] },
-  { n: '02', slug: 'growth-and-performance-metrics', title: 'Growth and performance metrics for design teams', ready: false,
-    summary: 'Feedback and objective reviews, performance management and growing people, with measures that describe the work and the person, not only the output.',
+  { n: '02', slug: 'growth-and-performance-metrics', title: 'Growth and performance metrics for design teams', ready: true,
+    summary: 'Feedback people can use, performance managed against goals that matter to the person and the organisation, growth defined for everyone, and what takes over when leading by example runs out. Seven editable worksheets, each with a filled example.',
     topics: ['Feedback', 'Performance', 'Growth'] },
   { n: '03', slug: 'design-rituals', title: 'Design rituals', ready: false,
     summary: 'Critique, inspiration, appreciation and conversations that matter: the regular habits that make a team’s culture visible.',
@@ -31,15 +31,19 @@ export const bookParts = [
   { title: 'Worksheets, always', text: 'Every chapter has worksheets: printable pages, and editable ones with a filled example to learn from.' },
 ]
 
-/** The editable worksheets for chapter 1: the page and Figma file, and each worksheet's tab in the online kit. */
+/** Editable worksheets: where each worksheet's online version lives (a tab in the chapter's kit page). */
 export const WORKSHEET_KIT = '/templates/leading-design-chapter-1.html'
-export const worksheetTab: Record<string, string> = {
-  'team-shape-and-capability-worksheet': 'team',
-  'hiring-experience-alignment-worksheet': 'alignment',
-  'role-definition-worksheet': 'role',
-  'employer-story-and-outreach-worksheet': 'story',
-  'hr-partnership-worksheet': 'hr',
-  'candidate-journey-map-worksheet': 'journey',
+export const WORKSHEET_KIT_2 = '/templates/leading-design-chapter-2.html'
+const tab = (kit: string, ids: Record<string, string>) => Object.fromEntries(Object.entries(ids).map(([slug, id]) => [slug, `${kit}#${id}`]))
+export const worksheetLink: Record<string, string> = {
+  ...tab(WORKSHEET_KIT, {
+    'team-shape-and-capability-worksheet': 'team', 'hiring-experience-alignment-worksheet': 'alignment', 'role-definition-worksheet': 'role',
+    'employer-story-and-outreach-worksheet': 'story', 'hr-partnership-worksheet': 'hr', 'candidate-journey-map-worksheet': 'journey',
+  }),
+  ...tab(WORKSHEET_KIT_2, {
+    'feedback-preparation-worksheet': 'feedback', 'feedback-cadence-and-tenets-worksheet': 'cadence', 'team-member-one-pager': 'onepager',
+    'goal-cascade-and-metrics-worksheet': 'goals', 'next-level-recommendation-worksheet': 'nextlevel', 'growth-definition-worksheet': 'growth', 'team-dynamics-and-trust-map': 'trust',
+  }),
 }
 
 // ── Chapter 1 ────────────────────────────────────────────────────────────────

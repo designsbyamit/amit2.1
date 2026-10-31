@@ -94,7 +94,8 @@ async function pdf(html, name, d) {
   const cover = name.startsWith('cover')
   await page.pdf({ path: path.join(cover ? tmp : out, name + '.pdf'), printBackground: true, preferCSSPageSize: true, displayHeaderFooter: !cover, headerTemplate: '<span></span>', footerTemplate: footer(d ? esc(d.title) + ' · Amit Kumar Tiwari' : '') })
 }
-for (const d of (only ? leadingDocs : [...docs, ...leadingDocs])) { await pdf(docHtml(d), d.slug, d); console.log('built', d.slug) }
+const pick = process.env.SLUGS ? process.env.SLUGS.split(',') : null
+for (const d of (only ? leadingDocs : [...docs, ...leadingDocs]).filter(x => !pick || pick.includes(x.slug))) { await pdf(docHtml(d), d.slug, d); console.log('built', d.slug) }
 if (only) { await browser.close(); console.log('leading docs done'); process.exit(0) }
 const classic = docs.filter(d => !d.exp)
 await pdf(coverHtml('The hiring handbook for design teams', 'Eight worksheets, handbooks and playbooks for building a hiring experience from the first job description to a new designer\u2019s first ninety days.', classic), 'cover')

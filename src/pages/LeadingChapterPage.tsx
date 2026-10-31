@@ -4,48 +4,16 @@ import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
 import { docHref, firstMonth, hiringDocs, hiringParts } from '../data/hiring'
+import { DownloadCard, Section } from '../components/leading/ChapterParts'
+import GrowthChapter from './GrowthChapter'
 import type { HiringDoc } from '../data/hiring'
-import { chapterOne, chapterOneWorksheets, chapters, LEADING_DESIGN_PATH, teamShapeDoc, WORKSHEET_KIT, worksheetTab } from '../data/leadingDesign'
+import { chapterOne, chapterOneWorksheets, chapters, LEADING_DESIGN_PATH, teamShapeDoc, WORKSHEET_KIT } from '../data/leadingDesign'
 
 // The Figma file URL is set only on the staging project (VITE_LEADING_DESIGN_FIGMA). Where it is unset, the button asks to request the file instead.
 const FIGMA_WORKSHEETS: string = import.meta.env.VITE_LEADING_DESIGN_FIGMA || ''
 
 const ease = [0.16, 1, 0.3, 1] as const
 const REQUEST_TEAM = { topic: 'speaking', subject: 'Building a design team: Leading Design chapter 1', message: 'I would like to talk about building a design team in my organisation.\n\nTeam size:\nWhere we are today:\n' } as const
-
-function Section({ id, label, title, intro, children }: { id: string; label: string; title: string; intro?: string; children: React.ReactNode }) {
-  return (
-    <section id={id} className="section-y hairline-top scroll-mt-24" aria-labelledby={`${id}-h`}>
-      <div className="container-site">
-        <div className="grid-site gap-y-6 mb-12 md:mb-16">
-          <div className="col-span-4 md:col-span-6">
-            <p className="text-overline text-ink-3 mb-4">{label}</p>
-            <h2 id={`${id}-h`} className="text-heading text-ink">{title}</h2>
-          </div>
-          {intro && <p className="col-span-4 md:col-span-5 md:col-start-8 self-end text-body text-ink-2">{intro}</p>}
-        </div>
-        {children}
-      </div>
-    </section>
-  )
-}
-
-function DownloadCard({ d }: { d: HiringDoc }) {
-  return (
-    <li className="card flex flex-col gap-3">
-      <div className="flex items-center justify-between"><span className="text-label text-signal-ink">{d.kind}</span><span className="font-mono text-xs text-ink-3">PDF · {d.pages} pages</span></div>
-      <h4 className="text-title text-ink">{d.title}</h4>
-      <p className="text-body-sm text-ink-2">{d.summary}</p>
-      <div className="flex flex-wrap gap-2 mt-auto">
-        <a href={docHref(d.slug)} download className="btn btn-secondary btn-sm self-start" aria-label={`Download ${d.title}, PDF, ${d.pages} pages`}>
-          Download
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M8 2v8M4.5 7 8 10.5 11.5 7M3 13h10" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </a>
-        {worksheetTab[d.slug] && <a href={`${WORKSHEET_KIT}#${worksheetTab[d.slug]}`} target="_blank" rel="noopener noreferrer" className="btn btn-tertiary btn-sm self-start" aria-label={`Fill in ${d.title} online, with a filled example (opens in a new tab)`}>Fill in online</a>}
-      </div>
-    </li>
-  )
-}
 
 const find = (slugs: string[]): HiringDoc[] => slugs.map(s => s === teamShapeDoc.slug ? teamShapeDoc : hiringDocs.find(d => d.slug === s)).filter((d): d is HiringDoc => !!d)
 
@@ -198,5 +166,6 @@ export default function LeadingChapterPage() {
   const c = chapters.find(x => x.slug === chapter)
   if (!c || !c.ready) return <Navigate to={LEADING_DESIGN_PATH} replace />
   if (c.slug === 'building-a-design-team') return <BuildingADesignTeam />
+  if (c.slug === 'growth-and-performance-metrics') return <GrowthChapter />
   return <Navigate to={LEADING_DESIGN_PATH} replace />
 }
