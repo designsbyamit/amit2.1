@@ -4,7 +4,7 @@ import { NAMES } from '../data/ia'
 import PageHeader from '../components/ui/PageHeader'
 import Journey from '../components/sections/Journey'
 import LeadershipChange from '../components/sections/LeadershipChange'
-import { ExperiencePictogram, CollectivePictogram, ReflectionsFinePictogram } from '../components/ds/HubPictograms'
+import { ExperiencePictogram, CollectivePictogram, ReflectionsFinePictogram, HiringPictogram } from '../components/ds/HubPictograms'
 import ResourceCover from '../components/ds/ResourceCover'
 import Button from '../components/ds/Button'
 import type { ReactNode } from 'react'
@@ -16,6 +16,7 @@ const tiles: { to: string; title: string; text: string; tone: string; art: React
   { to: '/leadership/stories', title: 'Experience', text: 'Moments that shaped how I lead: the conflicts, the first team, the community and the culture work.', tone: 'var(--field-cobalt)', art: <ExperiencePictogram /> },
   { to: '/community', title: 'Collective', text: 'The community initiatives, events and collaborations that extend the practice beyond organisational walls.', tone: 'var(--field-teal)', art: <CollectivePictogram /> },
   { to: '/reflections', title: NAMES.diary, text: 'Essays and observations on where design, AI and the systems we are building go next.', tone: 'var(--field-plum)', art: <ReflectionsFinePictogram /> },
+  { to: '/resources/hiring-experience', title: 'Hiring', text: 'Hiring as an experience to design: the patterns that hold design hiring back, an on-site assignment case study, and worksheets for your team.', tone: 'var(--field-graphite)', art: <HiringPictogram /> },
 ]
 
 /** The pages under Leadership, as tiles: the same pattern as the Grow hub. */
@@ -23,7 +24,7 @@ function Tiles() {
   return (
     <section className="section-y hairline-top">
       <div className="container-site">
-        <ul className="grid md:grid-cols-3 gap-5 md:gap-6">
+        <ul className="grid md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
           {tiles.map((t, k) => (
             <motion.li key={t.to} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: k * 0.08 }}>
               <Link to={t.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">

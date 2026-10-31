@@ -45,3 +45,21 @@ export const ReflectionsFinePictogram = () => (
     <rect className="pg pg-blink" x="63" y="44" width="2" height="12" rx="1" fill={L} />
   </S>
 )
+
+/** Hiring: a role card above a candidate journey, the last stage complete. */
+export const HiringPictogram = () => (
+  <S>
+    <g {...dash}><path d="M60 33 V40" /></g>
+    <g className="pg pg-bob">
+      <rect x="38" y="6" width="44" height="26" rx="4" {...ring} />
+      <circle cx="49" cy="17" r="4" {...lime} />
+      <path d="M58 14 H74 M58 21 H70" {...ring} strokeOpacity=".6" strokeLinecap="round" />
+    </g>
+    <g {...dash}><path d="M18 50 H102" /></g>
+    {[18, 39, 60, 81].map((x, i) => (
+      <g key={x}><circle className="pg pg-pulse" style={d(i * 0.4)} cx={x} cy="50" r="5" {...ring} /><circle cx={x} cy="50" r="1.6" fill={I} /></g>
+    ))}
+    <circle className="pg pg-pulse" cx="102" cy="50" r="7.5" {...lime} />
+    <path d="M98.5 50.2 L101.2 53 L106 47.2" {...lime} strokeLinecap="round" strokeLinejoin="round" />
+  </S>
+)
