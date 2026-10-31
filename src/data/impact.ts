@@ -6,11 +6,11 @@ export interface Metric {
 }
 
 export const metrics: Metric[] = [
-  { value: '30+',  label: 'Designers led at peak', count: true },
-  { value: '6 → 30', label: 'Team growth' },
-  { value: '200+', label: 'Designers hired across teams and organisations', count: true },
-  { value: '16+',  label: 'Years dedicated to design', count: true },
-  { value: '61+',  label: 'Products and platforms designed end-to-end', count: true },
-  { value: '252+', label: 'Members in the SAP Design Hub India community', count: true },
+  { value: '16+',  label: 'Years in design', count: true },
+  { value: '61+',  label: 'Products and platforms designed end to end', count: true },
+  { value: '17+',  label: 'Industries and domains', count: true },
+  { value: '52+',  label: 'Brands and customers', count: true },
+  { value: '200+', label: 'Designers hired across organisations', count: true },
   { value: '4+',   label: 'Startups supported as founding designer', count: true },
+  { value: '252+', label: 'Members in the Design Hub community I drive', count: true },
 ]
