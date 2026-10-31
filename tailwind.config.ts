@@ -23,7 +23,7 @@ export default {
       },
       fontFamily: {
         sans: ['"Geist Variable"', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['"Bricolage Grotesque Variable"', '"Bricolage Grotesque"', '"Geist Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['"Bodoni 72"', '"Bodoni Moda Variable"', '"Bodoni Moda"', 'Didot', 'Georgia', 'serif'],
         mono: ['"Geist Mono Variable"', '"Geist Mono"', 'ui-monospace', 'monospace'],
       },
       letterSpacing: {
