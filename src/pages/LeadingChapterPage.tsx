@@ -6,6 +6,7 @@ import Button from '../components/ds/Button'
 import { docHref, firstMonth, hiringDocs, hiringParts } from '../data/hiring'
 import { DownloadCard, Section } from '../components/leading/ChapterParts'
 import GrowthChapter from './GrowthChapter'
+import AIMaturityChapter from './AIMaturityChapter'
 import type { HiringDoc } from '../data/hiring'
 import { chapterOne, chapterOneWorksheets, chapters, LEADING_DESIGN_PATH, teamShapeDoc, WORKSHEET_KIT } from '../data/leadingDesign'
 
@@ -167,5 +168,6 @@ export default function LeadingChapterPage() {
   if (!c || !c.ready) return <Navigate to={LEADING_DESIGN_PATH} replace />
   if (c.slug === 'building-a-design-team') return <BuildingADesignTeam />
   if (c.slug === 'growth-and-performance-metrics') return <GrowthChapter />
+  if (c.slug === 'ai-maturity-for-design-orgs') return <AIMaturityChapter />
   return <Navigate to={LEADING_DESIGN_PATH} replace />
 }
