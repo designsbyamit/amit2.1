@@ -1,200 +1,224 @@
 // Content for Leading Design, chapter 5: AI maturity for design organisations.
-// Generic on purpose: it has to travel across organisations, tools and regions, so it describes capability and judgement, never a product.
-// Framed on the idea of capability, not job grades, and on measuring the quality of judgement, never the volume of work handed to AI.
+// Structure: three questions (Where are we? What next? How do we know it is working?). Each opens in layers, so the page
+// shows the shape first and the depth only on request. Generic on purpose: it has to travel across sectors and tools.
+// Revised after an independent review by an AI-visionary design leader (see the commit message for what changed).
 import type { HiringDoc } from './hiring'
-import type { Point } from './leadingDesignGrowth'
+
+export interface Move { lens: string; title: string; text: string }
+export interface Level { n: number; name: string; line: string; looks: string; evidence: string; skills: string; moves: Move[] }
 
 export const chapterFive = {
   intro: [
-    'Most design teams now use AI. Fewer can say what they have gained, where it goes wrong, or what they should build next. The distance between using the tools and being good with them is the subject of this chapter.',
-    'It treats AI maturity as a capability to grow, not a tool to roll out. It begins with what is changing, helps you see honestly where your team stands, and then covers building skill, leading responsibly, planning six months and measuring without fooling yourself. It ends with a rule worth keeping: never judge a team by how much work it hands to AI. Judge it by the quality of its judgement.',
-  ],
-  outcomes: [
-    'An honest reading of where your team stands, scored from real work',
-    'A capability map for each person, and a learning track to match',
-    'A usage charter: what is safe, what needs a check, what is off limits',
-    'One redesigned workflow, tested on live work',
-    'A six-month plan with owners and signs that it is working',
-    'A scorecard that puts quality beside speed',
+    'Most design teams now use AI. Far fewer can say what it has changed for their work, where it fails, or what to build next. Using the tools is easy to see. Being good with them, safely, as a team, is harder to see and harder to build.',
+    'This chapter gives you a way to see where your team stands, a short list of what to do next at your level, and a way to tell whether it is working. It is deliberately plain. Open only as much as you need.',
   ],
 
-  // ── Part 1: What is changing ───────────────────────────────────────────────
-  ground: {
-    lead: 'Access to AI is no longer the difference between teams. What people do with it is. Five shifts explain most of what managers meet.',
-    points: [
-      { title: 'From access to capability', text: 'Having the tools is the easy part. Skill is knowing when to use them, how to direct them and when to put them down. Two teams with the same tools can be a year apart.', ask: 'List the tools your team uses, then beside each, who is genuinely good at it.' },
-      { title: 'From individual to team intelligence', text: 'When each person builds a private routine, the gains stay private. A team gets stronger when what one person learns becomes how everyone works.', ask: 'Ask each person for one routine worth sharing, and share one this week.' },
-      { title: 'From generation to judgement', text: 'Making something is now cheap. Knowing whether it is good, true and right for the person using it is scarce. This is where designers add the most.', ask: 'Write down how your team decides that an AI output is good enough. If you cannot, that is your first task.' },
-      { title: 'From interface to intelligence', text: 'Designing for AI is more than screens. It is behaviour, trust, explanation and what happens when the system is wrong. Few teams have practised this.', ask: 'Pick one AI feature you know and list what a user sees when it fails.' },
-      { title: 'From experiment to measured impact', text: 'Trying things was right at first. Now people ask what changed. A team that can show better work, not only faster work, earns trust and room to grow.', ask: 'Choose one measure of quality to track beside speed.' },
-    ] as Point[],
-    evidenceLead: 'A few findings help explain the moment. They come from surveys and usage studies, much of it self-reported, so treat them as signals and check them against your own team.',
-    evidence: [
-      { figure: '78% / 32%', text: 'In Figma’s 2025 survey, 78% said AI improves their efficiency, while only 32% said they could rely on its output.', source: 'Figma 2025 AI report', url: 'https://www.figma.com/blog/figma-2025-ai-report-perspectives/' },
-      { figure: '41%', text: 'Designers taking part in development doubled to 41% in a year, and developers doing design work rose from 44% to 60%. Roles are blending.', source: 'Figma 2026 AI report', url: 'https://www.figma.com/blog/2026-ai-report/' },
-      { figure: '62% / 39%', text: 'McKinsey found 62% of organisations experimenting with AI agents, but only 39% reporting any enterprise-level financial impact. Redesigning workflows was among the strongest factors for real impact.', source: 'McKinsey, The state of AI in 2025', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai' },
-      { figure: '57% / 43%', text: 'In a study of real conversations with an AI assistant, 57% of use was augmentation (working with the person) and 43% was automation.', source: 'Anthropic Economic Index, 2025', url: 'https://www.anthropic.com/research/the-anthropic-economic-index' },
+  questions: [
+    { id: 'where', n: '1', title: 'Where are we?', text: 'What AI maturity means, five levels with evidence you can check, what “integrated” really means, and how your sector changes the route.', cta: 'Find your level' },
+    { id: 'next', n: '2', title: 'What should we do next?', text: 'Pick your level and see the three moves that matter most, the partners you need around the team, and the newer risks to watch.', cta: 'See your three moves' },
+    { id: 'proof', n: '3', title: 'How do we know it is working?', text: 'A few honest measures for progress, quality and safety, and how to grow people and talk to a worried team.', cta: 'Measure progress' },
+  ],
+
+  reality: {
+    lead: 'A grounded start. Wide use is not the same as real gain.',
+    items: [
+      { figure: '78% / 32%', text: 'Figma’s 2025 survey: 78% said AI improves their efficiency, yet only 32% said they could rely on its output.', source: 'Figma 2025 AI report', url: 'https://www.figma.com/blog/figma-2025-ai-report-perspectives/' },
+      { figure: '41%', text: 'Figma’s 2026 report: designers taking part in development doubled to 41% in a year, and developers doing design work rose from 44% to 60%. The edges of the role are moving.', source: 'Figma 2026 AI report', url: 'https://www.figma.com/blog/2026-ai-report/' },
+      { figure: '62% / 39%', text: 'McKinsey (2025): 62% of organisations are at least experimenting with AI agents, and 39% report any enterprise-level financial effect. Redesigning workflows was among the strongest factors for real impact.', source: 'McKinsey, The state of AI in 2025', url: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai' },
+    ],
+    note: 'These are surveys, much of it self-reported. Read them as signals and check against your own team. Many teams will find they sit at level 1 or 2. That is a normal place to start.',
+  },
+
+  // ── 1 · Where are we? ──────────────────────────────────────────────────────
+  model: {
+    title: 'What we mean by AI maturity',
+    definition: 'AI maturity is how reliably a design organisation turns AI into better design outcomes, safely, as a team and not as a handful of enthusiasts.',
+    how: 'The model has two parts. Four lenses describe what the team does. A few enablers describe what it needs around it. Your level is your lowest lens score, because a team that is strong in tools and weak in trust is not strong. Trust is one of the four lenses, so it counts in that lowest score.',
+    lenses: [
+      { name: 'People and skills', asks: 'Can people use AI, direct it and judge what it makes?' },
+      { name: 'Ways of working', asks: 'Is AI part of shared workflows, with a person deciding where it matters?' },
+      { name: 'Product', asks: 'Does the team design how AI behaves in what it ships, and test it?' },
+      { name: 'Trust', asks: 'Are data, security, fairness and accountability handled to the standard your sector expects?' },
+    ],
+    enablers: [
+      { name: 'Partners on day one', text: 'Security, data protection and legal. Needed before any AI is used on real work, in every sector.' },
+      { name: 'Evaluation skill', text: 'Someone who can build and run a test of whether AI output is good. Borrowed is fine. Needed by level 3.' },
+      { name: 'Engineering and prototyping', text: 'AI or machine-learning engineers, and design technologists who can prototype with models. Needed where you design AI features.' },
+      { name: 'Approved tools and safe data', text: 'What you may use, and data you may use it on.' },
+      { name: 'A sponsor', text: 'A leader who protects time and takes the risk of trying.' },
+    ],
+    cap: 'Enablers cap the lenses. The Product lens rarely rises above level 3 without a working link to engineering and evaluation skills.',
+    controls: 'One rule holds at every level: any work that touches personal, client or regulated data needs its Trust controls in place before AI is used on it, whatever the team’s level.',
+    gridTitle: 'What each score looks like',
+    gridLead: 'Score from what you can show. Each cell is something observable. If you cannot point to it, score the level below.',
+    grid: [
+      { lens: 'People and skills', cells: ['A few people try tools on their own', 'Individuals use AI well in their craft and can name where it fails', 'Everyone can use, direct and judge AI output, and new joiners are taught', 'People can explain how AI features behave and fail, to users and partners', 'The team teaches others and shapes how the organisation learns'] },
+      { lens: 'Ways of working', cells: ['No shared practice', 'Personal routines with real gains, not shared', 'One or more written workflows with human checkpoints, used by several people and reviewed monthly', 'AI is built into standards, reviews and handovers across the team', 'Other teams adopt your workflows'] },
+      { lens: 'Product', cells: ['No AI in what you ship', 'You critique AI features others build', 'You design one AI feature with engineering, including how it explains and fails', 'You help decide behaviour, test with data partners and monitor after launch', 'Your patterns and review method are used across products'] },
+      { lens: 'Trust', cells: ['Unwritten, and unofficial use may be happening', 'A one-page rule of safe and unsafe use, and a list of approved tools', 'A charter reviewed with security and legal, a tool register, and disclosure of AI use', 'Controls for AI features: data, human oversight with real authority to say no, and a record of decisions', 'Controls run automatically, are reviewed quarterly and are shared with others'] },
     ],
   },
 
-  // ── Part 2: Where you stand ────────────────────────────────────────────────
-  stand: {
-    lead: 'You cannot plan the climb without knowing where the foot of it is. This part gives you five levels, eight dimensions to score and a rule that keeps the result honest.',
-    points: [
-      { title: 'Levels describe capability, not grades', text: 'A person at a high level of AI capability is not necessarily senior, and a senior person may be at the start. Keep the two scales apart, or the conversation will turn into a ranking.', ask: 'Say this out loud before any assessment.' },
-      { title: 'Score the evidence, not the confidence', text: 'People overrate and underrate themselves in equal measure. Look at the files, the reviews and what shipped. Where there is no evidence, score the lower number.', ask: 'For each score, name the piece of work that earns it.' },
-      { title: 'The lowest score sets the level', text: 'A team strong in tools and weak in evaluation is not strong. The weakest dimension holds up or holds back all the rest, so do not average it away.', ask: 'Find your lowest dimension before you plan anything else.' },
-    ] as Point[],
-    levelsLead: 'Five levels, from first steps to a team that has changed how its organisation designs. Each describes what you would see, the evidence that proves it, and the move that takes you up.',
-    levels: [
-      { n: 1, name: 'Aware and experimenting', sees: 'People try tools on their own. Use is occasional and uneven. Output is checked by instinct.', evidence: 'A few examples of use. No shared practice or rules.', up: 'Learn the basics together, agree what is safe, and use AI on real work with a second pair of eyes.' },
-      { n: 2, name: 'Augmented practitioner', sees: 'Individuals use AI well inside their own craft, for research, ideas, prototypes and writing, and they know where it fails.', evidence: 'Visible gains in speed or range on named pieces of work, and a record of what went wrong.', up: 'Turn personal routines into shared workflows, and judge output against a common standard.' },
-      { n: 3, name: 'Orchestrator', sees: 'The team designs workflows that mix people, tools and agents, with checkpoints where a person decides.', evidence: 'One or more redesigned workflows with measures before and after.', up: 'Take what you know about AI into the products you design, not only the way you work.' },
-      { n: 4, name: 'Product and experience innovator', sees: 'The team shapes AI-powered products: behaviour, trust, explanation, recovery. Evaluation is part of the design process.', evidence: 'Shipped AI features with evaluation, user evidence and a record of decisions.', up: 'Change how the wider organisation designs, and carry responsibility into every stage.' },
-      { n: 5, name: 'AI-native and transformational', sees: 'The team has changed how its organisation designs, decides and learns. Responsible practice is routine. Others look to it.', evidence: 'Sustained, measured impact across several dimensions, on real work, over time.', up: 'Keep the bar rising and share what you know.' },
-    ],
-    dimensionsLead: 'Score each of these from 1 to 5: Awareness, Application, Integration, Expertise, Transformation.',
-    dimensions: [
-      { name: 'AI literacy', text: 'Understanding what AI can and cannot do, and why it fails.' },
-      { name: 'Tools and ecosystem', text: 'Choosing and combining tools on purpose, and knowing what each is for.' },
-      { name: 'AI-enabled design practice', text: 'Using AI inside research, ideas, prototypes and craft without losing the craft.' },
-      { name: 'Workflow intelligence', text: 'Designing how people, tools and agents work together, with checkpoints.' },
-      { name: 'AI product expertise', text: 'Designing AI behaviour: trust, explanation, feedback and recovery.' },
-      { name: 'Data and evaluation', text: 'Judging whether an output is good, and showing how you know.' },
-      { name: 'Responsible AI', text: 'Fairness, privacy, transparency and accountability, built into the work.' },
-      { name: 'Culture and leadership', text: 'Whether people feel safe to try, to say it went wrong and to ask for help.' },
-    ],
-    topRules: ['Every dimension scores 4 or higher', 'At least four dimensions show top-level evidence', 'The impact has lasted over time', 'Responsible AI scores 4 or higher', 'The scores rest on real work, not self-report'],
-    topLead: 'A team is AI-native only when all of these hold.',
-  },
-
-  // ── Part 3: Building capability ────────────────────────────────────────────
-  build: {
-    lead: 'Capability grows from practice on real work, guided by someone who knows what good looks like. Choose learning by what people need to be able to do, not by which tool is in fashion.',
-    points: [
-      { title: 'Teach capability, not tools', text: 'Tools change every few months. The ability to frame a problem, direct a system, judge an output and explain a decision does not. Teach that, and the tools take care of themselves.', ask: 'Rewrite one training idea as a capability, with no tool named.' },
-      { title: 'Protect the human edge', text: 'Judgement, intuition, systems thinking, making meaning and deciding ethically are what AI leaves to people. Give them as much practice as the tools.', ask: 'Name one practice that builds judgement in each person, such as reasoning aloud in critique.' },
-      { title: 'Learn on live work', text: 'A workshop that nobody applies is theatre. Every month should end with something used in real work and a record of what was learned.', ask: 'Attach each learning goal to a live project.' },
-    ] as Point[],
-    tracksLead: 'Six tracks cover the ground. Most people need two or three, in the order that fits where they are.',
-    tracks: [
-      { id: 'A', name: 'Foundations', text: 'How AI works, where it fails and how to talk about it plainly.' },
-      { id: 'B', name: 'AI in the craft', text: 'Research, ideation, prototyping and writing with AI, keeping the craft.' },
-      { id: 'C', name: 'Workflows and agents', text: 'Designing how people and AI work together, with checkpoints.' },
-      { id: 'D', name: 'Designing AI products', text: 'Behaviour, trust, explanation, feedback and error states.' },
-      { id: 'E', name: 'Data and evaluation', text: 'Judging output, building rubrics and reading evidence.' },
-      { id: 'F', name: 'Responsible AI and leadership', text: 'Risk, fairness, change and bringing others with you.' },
-    ],
-    journeysLead: 'Three journeys run side by side, and a mature team does all of them.',
-    journeys: [
-      { name: 'AI for design', text: 'Using AI to do design work better: research, concepts, prototypes, writing.' },
-      { name: 'Design for AI', text: 'Designing products where AI is part of what the user meets.' },
-      { name: 'Design with AI', text: 'Designing how people and AI work together, as colleagues in a workflow.' },
+  integration: {
+    title: 'What “integrated” means',
+    definition: 'Integrated means AI no longer depends on individual enthusiasm. It lives in the team’s workflows, standards and reviews, and you can show it.',
+    test: 'The test: choose three recent pieces of work at random. For each, can you show whether AI was used, which rule applied and who checked it? Then ask: if your best AI user left tomorrow, would the practice survive?',
+    degrees: [
+      { name: 'Personal', text: 'One person’s habit. Gains stay with them.' },
+      { name: 'Shared', text: 'The team’s workflow, written down, used by several people and reviewed.' },
+      { name: 'Built in', text: 'Part of standards, reviews, handovers and the products you ship.' },
     ],
   },
 
-  // ── Part 4: Leading responsibly ────────────────────────────────────────────
-  responsible: {
-    lead: 'Responsibility is not a final review. It is part of every stage of the work, and it is the dimension most teams score lowest. Writing it down is the start.',
-    points: [
-      { title: 'A person is always accountable', text: 'Whoever or whatever made an output, a named person stands behind it. Say this early. It settles most arguments before they begin.', ask: 'Add this line to your team’s working agreement.' },
-      { title: 'Say when AI shaped the work', text: 'Disclosure builds trust with colleagues and users. It also makes it easier to find the cause when something goes wrong.', ask: 'Decide where disclosure appears: in the file, the review or the release note.' },
-      { title: 'Keep a person at every high-stakes step', text: 'The higher the cost of being wrong, the closer a person should sit to the decision. Name those steps in advance.', ask: 'List your three highest-stakes decisions and who makes each.' },
-      { title: 'Protect the data and the people behind it', text: 'Know what is shared with a tool and who can see it. Check output for bias and for who it leaves out, before it ships.', ask: 'Ask your security and data partners what must never be put into a public tool.' },
-    ] as Point[],
-    zonesLead: 'A green, amber and red list is the simplest policy that works. It tells people what they may do without asking.',
-    zones: [
-      { zone: 'Green', name: 'Use freely', text: 'Low risk, no sensitive data. For example research summaries, naming ideas, early layouts. Say it was used, and review before sharing.' },
-      { zone: 'Amber', name: 'Use with a check', text: 'Involves customer or company data, or reaches users. Use approved tools, have a second person check and keep a record.' },
-      { zone: 'Red', name: 'Do not use', text: 'Personal data in public tools, generated users in place of real research, or shipping output nobody has reviewed.' },
+  levels: [
+    { n: 1, name: 'Exploring', line: 'People try AI on their own, officially or not.',
+      looks: 'Use is occasional and uneven. Tools are personal, and some may be unapproved. Output is checked by instinct. There are no shared rules.',
+      evidence: 'A few examples of use. Nothing written down.',
+      skills: 'Security, data protection and legal as partners from the start. One or two people who want to go deeper.',
+      moves: [
+        { lens: 'Trust', title: 'Ask what people already use, without blame', text: 'People often use personal accounts when nothing is approved, and bans without an alternative drive use underground. Find out, then agree an approved route. Ask security which data may never go into a tool.' },
+        { lens: 'Ways of working', title: 'Use AI on one real piece of work', text: 'Pick live work, not a demo. Have a second person check the result and record what went wrong.' },
+        { lens: 'People and skills', title: 'Start a weekly show-and-tell', text: 'One example a week, good or bad. This is how private habits become shared knowledge.' },
+      ] },
+    { n: 2, name: 'Practising', line: 'Individuals use AI well inside their craft.',
+      looks: 'People use AI for research, ideas, prototypes and writing, and know where it fails. Gains are real but private.',
+      evidence: 'Named pieces of work with measured gains, and a record of failures.',
+      skills: 'A few champions. Security and legal have seen a one-page rule. No engineering partner needed yet.',
+      moves: [
+        { lens: 'Ways of working', title: 'Redesign one team workflow', text: 'Choose the workflow that costs most time or causes most rework. Map today, design tomorrow, add a human checkpoint where a mistake would matter.' },
+        { lens: 'People and skills', title: 'Agree how to judge output', text: 'A short rubric: accurate, useful, fair, on brand. Use it in reviews so “looks fine” stops being the standard.' },
+        { lens: 'Trust', title: 'Write the charter and a tool register', text: 'Green, amber and red uses. A list of tools with an owner, the data each may touch, and the cost. Take it to security and legal.' },
+      ] },
+    { n: 3, name: 'Integrated', line: 'AI is part of how the team works, and survives people leaving.',
+      looks: 'Shared workflows with checkpoints. A rubric in reviews. A charter people follow. A register of tools. The three-pieces test passes.',
+      evidence: 'Before and after measures on one or two workflows. A new joiner picks it up from the team.',
+      skills: 'Someone who can build and run an evaluation, even if borrowed. A named contact in engineering or data.',
+      moves: [
+        { lens: 'Product', title: 'Take AI into one feature you ship', text: 'Design how it explains itself, how it fails and how people recover. Work with engineering from the start.' },
+        { lens: 'People and skills', title: 'Build a small test set', text: 'With a data person, collect good and bad cases and check the feature against them. Run it again whenever the model or tool version changes.' },
+        { lens: 'Trust', title: 'Set controls for AI features', text: 'What the feature may do alone, who can say no and has the time and information to do it, and what is recorded. Treat connections to company data as data paths.' },
+      ] },
+    { n: 4, name: 'Designing AI', line: 'The team shapes how AI behaves in products.',
+      looks: 'Designers help decide behaviour, not only the interface. Evaluation is part of the design process. Responsible practice is routine.',
+      evidence: 'Shipped AI features with evaluation, user evidence, monitoring after launch and a record of decisions.',
+      skills: 'A standing partnership with AI engineers and evaluation specialists, paired with the team where you design AI features, and a design technologist.',
+      moves: [
+        { lens: 'Product', title: 'Get a seat at the table on behaviour', text: 'Join decisions about thresholds, prompts, data and what the system may do alone. In some organisations model-risk or data teams own these. Aim for a voice, not control.' },
+        { lens: 'Ways of working', title: 'Share your patterns and reviews', text: 'Publish explanation and recovery patterns and offer your review method to other teams.' },
+        { lens: 'Trust', title: 'Make safety routine', text: 'Checks at each gate, monitoring after launch, an audit trail where your sector needs one, and a way to learn from every incident or near miss.' },
+      ] },
+    { n: 5, name: 'Leading', line: 'The team changes how the organisation designs and decides.',
+      looks: 'Others adopt your patterns and review methods. Design has a voice in AI strategy. The team renews its own standards. This level depends on your organisation as much as your team.',
+      evidence: 'Sustained, measured impact across products and over time, on real work.',
+      skills: 'Shared ownership across design, engineering and data, with evaluation and design technology close to the team.',
+      moves: [
+        { lens: 'Trust', title: 'Review tools and the charter every quarter', text: 'Models, tools and rules change quickly. Retire what no longer fits, and write down what you learned.' },
+        { lens: 'People and skills', title: 'Grow other teams', text: 'Run clinics, lend people and coach. Your level is only secure if others rise too.' },
+        { lens: 'Product', title: 'Keep looking ahead', text: 'Give part of the team’s time to what is not yet obvious, so you are not only improving today’s practice.' },
+      ] },
+  ] as Level[],
+
+  rules: [
+    'Score the evidence, not the confidence. Where there is no evidence, score the lower number.',
+    'Your level is your lowest lens. Do not average it away.',
+    'Level reflects practice, not the tools you are allowed to use. A team limited to one approved tool can still be at level 3.',
+    'Move up a level only when the evidence has held for a full quarter.',
+    'Levels describe the team’s capability, not anyone’s job grade.',
+  ],
+
+  sector: {
+    title: 'Your sector changes the route, not the destination',
+    lead: 'A bank, a ministry and a consumer app can all reach level 4. They get there by different paths, at different speeds, and with different things to prove. Risk also sits in the use, not only the sector: a bank’s mood boards are not its credit-decision screens.',
+    rule: 'So treat Trust in two ways. It is a lens, and it counts in your lowest score. And controls come before data: where work touches personal, client or regulated data, the controls must exist first, at any level.',
+    rows: [
+      { name: 'Banking and financial services', worry: 'Security, customer data, fairness and explanations for decisions, and answering to audit.', changes: 'Approved tools only. No customer data in prompts. Everything AI-assisted can be traced. Model risk teams may own the decisions you want to influence.', design: 'Design explanations and ways to appeal a decision. Prototype with synthetic data. Keep an evidence log for reviews.' },
+      { name: 'Government and public sector', worry: 'Data privacy and sovereignty, accessibility, public accountability and procurement rules.', changes: 'Tools may need approval or hosting in your own environment, so the tool path is slower. Plain language and inclusion are expected.', design: 'Plain-language explanation, a visible human override, accessibility checks, notices and consent. Build the safe sandbox first.' },
+      { name: 'Healthcare and life sciences', worry: 'Patient safety, privacy and clinical oversight.', changes: 'A person stays in the loop. No identifiable data. The limits of AI advice must be clear.', design: 'Safe defaults, clear error states and honest statements of what the system cannot do.' },
+      { name: 'Enterprise and industrial', worry: 'Confidentiality of company and customer data, fit with existing systems, and how people feel about their roles.', changes: 'Clear data classification. Integration with enterprise data. Open conversation with employee representatives.', design: 'Explanation of each agent action, review and undo, and workflows that show who decided what.' },
+      { name: 'Consumer and start-up', worry: 'Speed, brand trust, privacy of individuals, content rights and younger users.', changes: 'Fewer approvals, so faster experiments, and a greater risk of skipping the basics.', design: 'Disclosure, easy correction, and checks on content and bias before launch.' },
     ],
-    stagesLead: 'Then decide where in the work someone looks. One question for each stage is enough to begin.',
-    stages: [
-      { name: 'Discover', q: 'Is AI the right tool for this problem?' },
-      { name: 'Define', q: 'Whose data are we using, and may we?' },
-      { name: 'Design', q: 'Did we choose this, or did the tool?' },
-      { name: 'Build', q: 'Does it work for people with different needs?' },
-      { name: 'Test', q: 'How do we know it is good, against what?' },
-      { name: 'Launch', q: 'Is use disclosed, and can users correct it?' },
-      { name: 'Learn', q: 'What went wrong, and what do we change?' },
-    ],
-    legal: 'Rules differ by region and sector, and they change. For example, the EU AI Act has applied its AI literacy duty since February 2025 and its main transparency rules from August 2026 (some parts later), and India’s AI Governance Guidelines of November 2025 are voluntary. Treat this as a prompt to ask, not as advice: confirm what applies to you with your legal and security partners, and note the date you checked.',
+    note: 'Not legal advice. Confirm what applies to you with your legal, security and data-protection partners, and note the date you checked.',
   },
 
-  // ── Part 5: Six months and the operating model ─────────────────────────────
-  plan: {
-    lead: 'A plan turns intent into a habit. This one runs six months, each month ending in something used in real work. It is a steady climb, not a leap.',
-    points: [
-      { title: 'One level in six months is a strong result', text: 'A team that moves up one level, on evidence, has done well. Promising two invites shortcuts, and the shortcuts show up later as rework and doubt.', ask: 'Write the level you are aiming for and the evidence that would prove it.' },
-      { title: 'Redesign workflows, do not bolt on tools', text: 'The strongest gains come from changing how work flows, with people deciding where it matters. A tool added to an unchanged process gives a small gain.', ask: 'Choose one workflow that costs the team the most time or causes the most rework.' },
-      { title: 'Name an owner for every month', text: 'Plans without owners become wishes. Give each month to a person, and make it easy for them to say it slipped.', ask: 'Put a name beside each month.' },
-    ] as Point[],
-    monthsLead: 'A shape to adapt. Move months around, but keep the order: foundations, habit, workflow, product, embedding, review.',
-    months: [
-      { m: 'Month 1', name: 'Foundations', text: 'Score the team from evidence. Agree the usage charter. Choose the one workflow to redesign.', out: 'Assessment and charter' },
-      { m: 'Month 2', name: 'Habit', text: 'Start a weekly show-and-tell. Draft a rubric for judging output. List the tools and what each is for.', out: 'Rubric v1 and tool list' },
-      { m: 'Month 3', name: 'Workflow', text: 'Redesign the chosen workflow with checkpoints and run it on live work.', out: 'Workflow map and first measures' },
-      { m: 'Month 4', name: 'Product', text: 'Design patterns for explanation, trust and recovery in one AI feature.', out: 'A pattern set for the feature' },
-      { m: 'Month 5', name: 'Embed', text: 'Use the rubric in every review. Redesign a second workflow.', out: 'Two workflows live' },
-      { m: 'Month 6', name: 'Review', text: 'Score again, on evidence. Share what you learned. Plan the next six months.', out: 'Maturity review' },
-    ],
-    opsLead: 'A few roles and rituals keep it alive when attention moves elsewhere. Keep them small.',
+  // ── 2 · What next? ─────────────────────────────────────────────────────────
+  next: {
+    lead: 'Choose your level. You will see three moves, each tagged with the lens it lifts. First find your lowest lens, then do that lens’s move first. Three moves, not thirty.',
+    skillsTitle: 'Partners around the team',
+    skillsLead: 'Design teams rarely have every skill AI needs, and you do not have to hire to fill the gap. Start with the partners who keep you safe, add evaluation by level 3, and add engineering where you design AI features. Never hire to fix a maturity score.',
     roles: [
-      { name: 'An owner of the capability plan', text: 'Usually you, or someone you trust. Keeps the plan moving and reports on it.' },
-      { name: 'Practice champions', text: 'People who share what works, and run the show-and-tell.' },
-      { name: 'An evaluation reviewer', text: 'Keeps the rubric alive and checks that it is used.' },
-      { name: 'A responsible AI partner', text: 'From legal, security or data, working with you on the charter.' },
+      { name: 'Security, data protection and legal', text: 'From day one. They tell you what data may go where, and what you must be able to show.' },
+      { name: 'Evaluation: a data scientist or similar', text: 'Knows how to test whether output is good. Builds test sets with you. By level 3, even if borrowed.' },
+      { name: 'AI or machine-learning engineer', text: 'Knows what the system can really do and how it fails. Needed where you design AI features, and most from level 4.' },
+      { name: 'Design technologist', text: 'A designer who can prototype with models, to show what could work.' },
     ],
-    rituals: [
-      { name: 'Weekly show-and-tell', text: 'One example of AI done well or badly.' },
-      { name: 'Monthly rubric review', text: 'Add examples, retire what no longer fits.' },
-      { name: 'Quarterly charter review', text: 'Change the rules when the work has changed.' },
-      { name: 'Six-monthly maturity review', text: 'Score again and plan the next stretch.' },
+    ways: [
+      { name: 'Borrow', text: 'A fixed monthly slot with someone from engineering, data or security. The cheapest way to start.' },
+      { name: 'Grow', text: 'Train a curious designer into the design-technologist role, with time protected.' },
+      { name: 'Embed', text: 'Pair an engineer or data scientist with the team. Worth it where you design AI features.' },
     ],
-    rhythmNote: 'Avoid learning theatre: workshops, badges and slide decks that nobody applies. If a ritual produces nothing used in real work, change it.',
-    pace: [
-      { from: '1 to 2', time: 'One to two months' },
-      { from: '2 to 3', time: 'Two to three months' },
-      { from: '3 to 4', time: 'Two to four months' },
-      { from: '4 to 5', time: 'Three to six months' },
+    pace: 'Plan for a quarter or two per level. One level in six months is a strong result. Claiming two invites shortcuts that show up later as rework and doubt.',
+    watchTitle: 'Newer risks to watch',
+    watch: [
+      { name: 'Unofficial use', text: 'People using personal accounts when nothing is approved. Ask, do not punish, and offer a safe route.' },
+      { name: 'Agents with too much freedom', text: 'Systems that take several steps alone. Limit what they may do without a person, and treat each connection to company data as a data path.' },
+      { name: 'Tools that add AI quietly', text: 'Existing tools gaining AI features. Check what they send, keep and train on, and where the data lives.' },
+      { name: 'Models that change under you', text: 'A provider updates a model and behaviour shifts. Re-run your test set when versions change.' },
+      { name: 'Rubber-stamping', text: 'A person “in the loop” who has no time, no information or no authority to say no is not oversight. Make it real.' },
+      { name: 'Cost that hides in review', text: 'Seats and usage are visible. Review time is not. Track both, and agree when to stop a workflow that is not paying back.' },
     ],
-    paceNote: 'Planning estimates for a focused team, not benchmarks. Moving from the first level to the last in six months is unlikely, and promising it will cost you trust.',
   },
 
-  // ── Part 6: Measuring ──────────────────────────────────────────────────────
-  measure: {
-    lead: 'What you measure becomes what the team does. Measure only speed, and you will get fast, average work. Put quality, expertise and responsibility beside it.',
-    points: [
-      { title: 'Outcomes, not volume', text: 'Never measure maturity by how much work is handed to AI. A team can delegate a great deal and understand very little.', ask: 'Delete any measure that counts the amount of AI used.' },
-      { title: 'Quality beside speed, always', text: 'If time falls and quality falls with it, the team has not matured. Show the two together, every time.', ask: 'Pair every speed measure with a quality measure.' },
-      { title: 'Targets from your own baseline', text: 'Industry numbers rarely match your team. Set a baseline, set a target you believe and review it each month.', ask: 'Capture a baseline before you change anything.' },
-    ] as Point[],
-    groupsLead: 'Five groups give a balanced view. Choose one or two measures in each.',
+  // ── 3 · How do we know? ────────────────────────────────────────────────────
+  proof: {
+    lead: 'What you measure becomes what the team does. Count how much AI is used and you will get more AI. Measure better work, safer work and more capable people, and you will get those.',
+    rules: [
+      { title: 'Quality beside speed', text: 'If time falls and quality falls with it, you have not matured. You have become faster at average work. Always show both.' },
+      { title: 'Evidence moving up', text: 'Re-score each quarter. Progress is a lens moving up on evidence, not a number that feels better.' },
+      { title: 'No surveillance', text: 'Team scorecards never include any one person’s AI use. Individual growth conversations never use team scores.' },
+    ],
+    groupsLead: 'Four groups give a balanced view. Use no more than six measures in total.',
     groups: [
-      { name: 'Adoption', text: 'Are people using AI on real work, and confident in it?', eg: 'People using AI weekly; confidence in AI-assisted work' },
-      { name: 'Productivity', text: 'Is the work faster or lighter, for a reason you can name?', eg: 'Time for one workflow, before and after' },
-      { name: 'Quality', text: 'Is the work better, by a standard you can show?', eg: 'Output passing the rubric at first review; corrections after release' },
-      { name: 'AI product expertise', text: 'Can people design and judge AI behaviour?', eg: 'People who can explain a system’s failure cases' },
-      { name: 'Responsible AI', text: 'Are the checks real?', eg: 'Work with disclosure and checks recorded' },
+      { name: 'Use', text: 'Is AI used on real work, in shared ways?', eg: 'Share of work using a shared workflow' },
+      { name: 'Outcomes', text: 'Is the work faster and better?', eg: 'Time for one workflow, beside rework and review time; a monthly blind sample of ten recent pieces scored by two reviewers' },
+      { name: 'Capability', text: 'Does the team know what AI does and where it fails?', eg: 'A list of known failure cases for each AI feature, reviewed this quarter' },
+      { name: 'Trust and partners', text: 'Is it safe, and do we have what we need?', eg: 'Work with checks recorded; incidents and near misses; regular sessions with the evaluation or engineering partner' },
     ],
-    checklistLead: 'A last check for managers, in six groups. Answer yes, not yet or no, and let the “not yet” answers set your next move.',
-    checklist: [
-      { name: 'Understand', items: ['I can explain what AI does well and badly in plain words', 'I know what each tool my team uses is for', 'I have tried the tools myself on real work', 'I know where my team’s knowledge is thin'] },
-      { name: 'Practise', items: ['Everyone on the team has used AI on live work this month', 'We share what works and what fails, every week', 'We have a way of judging output', 'Our best practice is written down'] },
-      { name: 'Organise', items: ['We have redesigned at least one workflow, not only added a tool', 'Every workflow has a named person at the high-stakes steps', 'Someone owns the capability plan', 'The plan has dates and owners'] },
-      { name: 'Protect', items: ['We have a usage charter in plain language', 'Everyone knows what must never go into a public tool', 'We say when AI shaped the work', 'Legal and security have seen our charter'] },
-      { name: 'Measure', items: ['We have a baseline for quality and for speed', 'We measure outcomes, not how much AI is used', 'We review the scorecard every month', 'We have changed something because of it'] },
-      { name: 'Lead', items: ['People feel safe to say that AI got it wrong', 'I have talked openly about worries over roles', 'People can see how their own growth fits the plan', 'I can show leaders the evidence, not only the story'] },
+    peopleTitle: 'Growing people as the team grows',
+    people: [
+      'Use the capability matrix with each person: where they are, what is next and which learning track fits. It is for development conversations. Levels describe capability, not grades, and are not a target for everyone.',
+      'People grow when they practise one level above their own on live work, with feedback, not from courses alone.',
+      'Protect early-career designers’ judgement. If AI takes the routine work, give them tasks to do by hand first and compare, so they learn what good looks like.',
+      'Not every designer needs to become an engineer. Aim for a team with a few deeper specialists and many confident practitioners.',
+      'Recognise AI capability as one strand of growth, with evidence, beside craft, influence and leadership.',
     ],
-    close: 'Never measure the maturity of a design team by how much work it delegates to AI. Measure the quality of its judgement, the work it ships and the people it grows.',
+    fearTitle: 'Talking to a worried team',
+    fear: [
+      { name: 'What changes', text: 'Some tasks get faster, some roles broaden, and the way we judge work gets more important.' },
+      { name: 'What does not', text: 'People remain accountable for the work, and craft and judgement are what we are growing.' },
+      { name: 'What I will not do', text: 'Use AI usage numbers to judge individuals or make decisions about jobs. Say this in public, and keep to it.' },
+    ],
+    close: 'Never measure the maturity of a design team by how much work it hands to AI. Measure the quality of its judgement, the work it ships and the people it grows.',
   },
+
+  glossary: [
+    { term: 'Agent', def: 'A system that takes several steps towards a goal, often using other tools, with less direction at each step.' },
+    { term: 'Evaluation', def: 'A planned way to judge whether AI output is good, using agreed criteria.' },
+    { term: 'Test set', def: 'A collection of good and bad cases you check a feature against, again and again.' },
+    { term: 'Model version', def: 'The particular release of an AI model. Behaviour can change when it changes.' },
+    { term: 'Hallucination', def: 'Output that sounds sure but is wrong or invented.' },
+    { term: 'Threshold', def: 'The point at which a system acts, or asks a person, such as a confidence level.' },
+    { term: 'Human in the loop', def: 'A person who reviews or decides. Only real if they have time, information and authority.' },
+    { term: 'Data path', def: 'Any route by which company or personal data reaches a tool, including connections and plug-ins.' },
+    { term: 'Audit trail', def: 'A record of what was done, by whom or what, and when, that can be checked later.' },
+    { term: 'Synthetic data', def: 'Made-up data that resembles the real thing, used so real data is not exposed.' },
+  ],
 }
 
 export const chapterFiveDocs: HiringDoc[] = [
-  { slug: 'ai-maturity-assessment-worksheet', kind: 'Worksheet', part: 1, pages: 2, title: 'AI Maturity Assessment Worksheet', summary: 'Score your team on eight dimensions from real work, and find the one dimension that holds the rest back.' },
-  { slug: 'ai-capability-matrix-worksheet', kind: 'Worksheet', part: 1, pages: 1, title: 'AI Capability Matrix Worksheet', summary: 'A role-based view of who is where, what each person needs next and which learning track gets them there.' },
-  { slug: 'ai-usage-charter-worksheet', kind: 'Worksheet', part: 2, pages: 2, title: 'AI Usage Charter Worksheet', summary: 'Write down what is safe, what needs a check and what is off limits, and where in the work someone looks.' },
-  { slug: 'ai-workflow-redesign-worksheet', kind: 'Worksheet', part: 2, pages: 2, title: 'AI Workflow Redesign Worksheet', summary: 'Redesign one workflow so that people and AI each do what they do best, with a human checkpoint where it matters.' },
-  { slug: 'ai-six-month-roadmap-tracker', kind: 'Worksheet', part: 3, pages: 2, title: 'Six-Month AI Roadmap Tracker', summary: 'Plan six months of capability building, month by month, with owners and signs that it is working.' },
-  { slug: 'ai-scorecard-worksheet', kind: 'Worksheet', part: 3, pages: 1, title: 'AI Scorecard Worksheet', summary: 'A balanced view of adoption, productivity, quality, expertise and responsibility, so speed never hides a drop in quality.' },
+  { slug: 'ai-maturity-assessment-worksheet', kind: 'Worksheet', part: 1, pages: 2, title: 'AI Maturity Assessment Worksheet', summary: 'Score four lenses from real work, check the enablers, test whether AI is integrated and check the trust gate for your sector.' },
+  { slug: 'ai-capability-matrix-worksheet', kind: 'Worksheet', part: 1, pages: 2, title: 'AI Capability Matrix Worksheet', summary: 'Who is where, what each person needs next, and which skills you must borrow, grow or embed.' },
+  { slug: 'ai-usage-charter-worksheet', kind: 'Worksheet', part: 2, pages: 2, title: 'AI Usage Charter Worksheet', summary: 'What is safe, what needs a check and what is off limits, shaped by your sector, with a register of tools.' },
+  { slug: 'ai-workflow-redesign-worksheet', kind: 'Worksheet', part: 2, pages: 2, title: 'AI Workflow Redesign Worksheet', summary: 'Redesign one workflow so people and AI each do what they do best, with a human checkpoint where it matters.' },
+  { slug: 'ai-six-month-roadmap-tracker', kind: 'Worksheet', part: 3, pages: 2, title: 'Six-Month AI Roadmap Tracker', summary: 'Plan six months month by month, with owners and signs that it is working.' },
+  { slug: 'ai-scorecard-worksheet', kind: 'Worksheet', part: 3, pages: 1, title: 'AI Scorecard Worksheet', summary: 'A balanced view of use, outcomes, capability and trust, so speed never hides a drop in quality.' },
 ]
