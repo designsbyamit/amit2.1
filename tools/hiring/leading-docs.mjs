@@ -1,6 +1,7 @@
 // Worksheets for the Leading Design book. Rendered by tools/hiring/build.mjs with:  ONLY=leading NODE_PATH=$(npm root -g) node tools/hiring/build.mjs
 // They are separate from the hiring handbooks and are not bundled into them.
 import { chapterTwoDocs } from '../leading-design/ch2-docs.mjs'
+import { chapterFourDocs } from '../leading-design/ch4-docs.mjs'
 import { chapterFiveDocs } from '../leading-design/ch5-docs.mjs'
 const chapterOneDocs = [
   {
@@ -43,4 +44,4 @@ const chapterOneDocs = [
   },
 ]
 
-export const leadingDocs = [...chapterOneDocs, ...chapterTwoDocs, ...chapterFiveDocs]
+export const leadingDocs = [...chapterOneDocs, ...chapterTwoDocs, ...chapterFourDocs, ...chapterFiveDocs]

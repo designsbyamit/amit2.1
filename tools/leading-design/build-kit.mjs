@@ -8,6 +8,7 @@ import { leadingDocs } from '../hiring/leading-docs.mjs'
 import * as ex1 from './examples.mjs'
 import * as ex2 from './examples2.mjs'
 import * as ex3 from './examples3.mjs'
+import * as ex4 from './examples4.mjs'
 
 // One entry per chapter. `order` is [tab id, worksheet slug]. Output: the editable kit page and the single Figma script.
 const chapterCfg = [
@@ -15,6 +16,8 @@ const chapterCfg = [
     order: [['team', 'team-shape-and-capability-worksheet'], ['alignment', 'hiring-experience-alignment-worksheet'], ['role', 'role-definition-worksheet'], ['story', 'employer-story-and-outreach-worksheet'], ['hr', 'hr-partnership-worksheet'], ['journey', 'candidate-journey-map-worksheet']] },
   { n: 2, name: 'Growth and performance metrics', slug: 'growth-and-performance-metrics', ex: ex2, html: 'public/templates/leading-design-chapter-2.html', figma: '/tmp/figma-call-2.js', widths: {},
     order: [['feedback', 'feedback-preparation-worksheet'], ['cadence', 'feedback-cadence-and-tenets-worksheet'], ['onepager', 'team-member-one-pager'], ['goals', 'goal-cascade-and-metrics-worksheet'], ['nextlevel', 'next-level-recommendation-worksheet'], ['growth', 'growth-definition-worksheet'], ['trust', 'team-dynamics-and-trust-map']] },
+  { n: 4, name: 'Elevating design quality', slug: 'elevating-design-quality', ex: ex4, html: 'public/templates/leading-design-chapter-4.html', figma: '/tmp/figma-call-4.js', widths: {},
+    order: [['quality', 'design-quality-assessment-worksheet'], ['harmonise', 'harmonisation-audit-worksheet'], ['health', 'design-excellence-health-check'], ['review', 'feature-excellence-review-worksheet'], ['signals', 'future-signals-radar-worksheet'], ['canvas', 'north-star-experience-canvas'], ['experiment', 'experimentation-canvas'], ['scale', 'experiment-to-scale-assessment']] },
   { n: 5, name: 'AI maturity for design organisations', slug: 'ai-maturity-for-design-orgs', ex: ex3, html: 'public/templates/leading-design-chapter-5.html', figma: '/tmp/figma-call-5.js', widths: {},
     order: [['assess', 'ai-maturity-assessment-worksheet'], ['matrix', 'ai-capability-matrix-worksheet'], ['charter', 'ai-usage-charter-worksheet'], ['workflow', 'ai-workflow-redesign-worksheet'], ['roadmap', 'ai-six-month-roadmap-tracker'], ['scorecard', 'ai-scorecard-worksheet']] },
 ]

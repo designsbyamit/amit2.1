@@ -17,9 +17,9 @@ export const chapters: Chapter[] = [
   { n: '03', slug: 'design-rituals', title: 'Design rituals', ready: false,
     summary: 'Critique, inspiration, appreciation and conversations that matter: the regular habits that make a team’s culture visible.',
     topics: ['Critique', 'Inspiration', 'Appreciation'] },
-  { n: '04', slug: 'elevating-design-quality', title: 'Elevating design quality at the organisation', ready: false,
-    summary: 'Quality at scale, harmonisation across teams, a north-star vision and the craft upskilling that keeps the bar rising.',
-    topics: ['Quality', 'Harmonisation', 'Vision'] },
+  { n: '04', slug: 'elevating-design-quality', title: 'Elevating design quality at the organisation', ready: true,
+    summary: 'Hold one standard across teams and keep raising it: quality and consistency, excellence reviews before release, and a protected future-forward practice that turns ideas into products. Eight editable worksheets, each with a filled example.',
+    topics: ['Excellence reviews', 'Harmonisation', 'Future forward'] },
   { n: '05', slug: 'ai-maturity-for-design-orgs', title: 'AI maturity for design organisations', ready: true,
     summary: 'Where your design organisation stands with AI, scored from real work, and how to build capability, lead responsibly, plan six months and measure without fooling yourself. Six editable worksheets, each with a filled example.',
     topics: ['AI maturity', 'Capability', 'Responsible AI'] },
@@ -34,6 +34,7 @@ export const bookParts = [
 /** Editable worksheets: where each worksheet's online version lives (a tab in the chapter's kit page). */
 export const WORKSHEET_KIT = '/templates/leading-design-chapter-1.html'
 export const WORKSHEET_KIT_2 = '/templates/leading-design-chapter-2.html'
+export const WORKSHEET_KIT_4 = '/templates/leading-design-chapter-4.html'
 export const WORKSHEET_KIT_5 = '/templates/leading-design-chapter-5.html'
 const tab = (kit: string, ids: Record<string, string>) => Object.fromEntries(Object.entries(ids).map(([slug, id]) => [slug, `${kit}#${id}`]))
 export const worksheetLink: Record<string, string> = {
@@ -44,6 +45,11 @@ export const worksheetLink: Record<string, string> = {
   ...tab(WORKSHEET_KIT_2, {
     'feedback-preparation-worksheet': 'feedback', 'feedback-cadence-and-tenets-worksheet': 'cadence', 'team-member-one-pager': 'onepager',
     'goal-cascade-and-metrics-worksheet': 'goals', 'next-level-recommendation-worksheet': 'nextlevel', 'growth-definition-worksheet': 'growth', 'team-dynamics-and-trust-map': 'trust',
+  }),
+  ...tab(WORKSHEET_KIT_4, {
+    'design-quality-assessment-worksheet': 'quality', 'harmonisation-audit-worksheet': 'harmonise', 'design-excellence-health-check': 'health',
+    'feature-excellence-review-worksheet': 'review', 'future-signals-radar-worksheet': 'signals', 'north-star-experience-canvas': 'canvas',
+    'experimentation-canvas': 'experiment', 'experiment-to-scale-assessment': 'scale',
   }),
   ...tab(WORKSHEET_KIT_5, {
     'ai-maturity-assessment-worksheet': 'assess', 'ai-capability-matrix-worksheet': 'matrix', 'ai-usage-charter-worksheet': 'charter',
