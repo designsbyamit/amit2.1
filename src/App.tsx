@@ -8,6 +8,7 @@ import NdaGate from './components/case/NdaGate'
 import { gatedCases } from './data/nda'
 import { caseStudies } from './data/work'
 import Footer from './components/layout/Footer'
+import LicenseNote from './components/ui/LicenseNote'
 import { BackToShort, NextCase } from './components/case/StoryLinks'
 import ScrollToTop from './components/ui/ScrollToTop'
 import ScrollProgressLine from './components/ui/ScrollProgressLine'
@@ -124,6 +125,7 @@ function Shell() {
       <main id="main" tabIndex={-1} className="outline-none">
         <AnimatedRoutes />
       </main>
+      {!embed && <LicenseNote />}
       {!embed && <Footer />}
     </div>
   )

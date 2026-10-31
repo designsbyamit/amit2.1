@@ -3,6 +3,7 @@
 //  2. /tmp/figma-call.js  (the single use_figma script that builds the editable Figma worksheets)
 // Run:  node tools/leading-design/build-kit.mjs
 import fs from 'node:fs'
+import { licenseBlock } from '../license/cc.mjs'
 import { docs } from '../hiring/docs.mjs'
 import { leadingDocs } from '../hiring/leading-docs.mjs'
 import * as ex1 from './examples.mjs'
@@ -85,6 +86,7 @@ const html = `<!doctype html>
 <p class="note">Type straight into the Template. Your notes stay in this browser only. The same worksheets are available as printable PDFs on the <a href="/resources/leading-design/${cfg.slug}#worksheets">chapter page</a>.</p>
 ${panels}
 </div>
+${licenseBlock('template')}
 <script>${script}</script>
 </body>
 </html>
