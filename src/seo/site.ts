@@ -48,6 +48,8 @@ const base: RouteMeta[] = [
   { path: '/resources/dual-fluency', title: T('Dual fluency'), description: 'A framework for designers working fluently with both people and AI systems.' },
   { path: '/resources/ai-native-patterns', title: T('AI-native design patterns'), description: 'Design patterns for AI-native products: how experiences change when software can reason.' },
   { path: '/resources/ai-native-patterns/glossary', title: T('AI-native glossary'), description: 'Plain-language definitions for the terms behind AI-native and agentic experience design, each with a mental model.' },
+  { path: '/resources/leading-design', title: T('Leading Design: a guide for design managers'), description: 'Principles, frameworks and worksheets for new and mid-level design managers, in five chapters: building the team, growth and performance, rituals, design quality and AI maturity.' },
+  { path: '/resources/leading-design/building-a-design-team', title: T('Building a design team'), description: 'Decide what the design team must become, then hire and onboard for it: team shape, a hiring experience designed for candidates and interviewers, and the first ninety days, with worksheets.', type: 'article' },
   { path: '/resources/conversation-experience', title: T('Conversation experience'), description: 'Principles and patterns for designing conversational experiences that work in enterprise settings.' },
   { path: '/learn', title: T('Grow'), description: 'For designers who are growing: mentoring, toolkits to practise with, and a guide to presenting your work.', group: '/learn/practice/' },
   { path: '/learn/practice', title: T('Design practice'), description: 'Practice challenges and toolkits for designers who want to sharpen their craft.' },

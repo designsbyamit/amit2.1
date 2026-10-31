@@ -4,6 +4,8 @@ import path from 'node:path'
 import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import { docs } from './docs.mjs'
+import { leadingDocs } from './leading-docs.mjs'
+const only = process.env.ONLY === 'leading'
 
 const require = createRequire(import.meta.url)
 const { chromium } = require('playwright')
@@ -76,7 +78,7 @@ function render(block) {
 }
 
 const docHtml = d => `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(d.title)}</title><style>${css}@page{size:A4${d.landscape ? ' landscape' : ''};margin:16mm 16mm 18mm}</style></head><body><div class="page">
-<div class="head"><p class="kind">${d.kind} · ${esc(partName[d.part])}</p><h1>${esc(d.title)}</h1><p class="sub">${esc(d.sub)}</p><div class="use"><b>How to use it.</b> ${esc(d.use)}</div></div>
+<div class="head"><p class="kind">${d.kind} · ${esc(d.partLabel || partName[d.part])}</p><h1>${esc(d.title)}</h1><p class="sub">${esc(d.sub)}</p><div class="use"><b>How to use it.</b> ${esc(d.use)}</div></div>
 ${d.blocks.map(render).join('\n')}</div></body></html>`
 
 const coverHtml = (title, blurb, list) => `<!doctype html><html><head><meta charset="utf-8"><style>${css}@page{size:A4;margin:0}</style></head><body>
@@ -92,7 +94,8 @@ async function pdf(html, name, d) {
   const cover = name.startsWith('cover')
   await page.pdf({ path: path.join(cover ? tmp : out, name + '.pdf'), printBackground: true, preferCSSPageSize: true, displayHeaderFooter: !cover, headerTemplate: '<span></span>', footerTemplate: footer(d ? esc(d.title) + ' · Amit Kumar Tiwari' : '') })
 }
-for (const d of docs) { await pdf(docHtml(d), d.slug, d); console.log('built', d.slug) }
+for (const d of (only ? leadingDocs : [...docs, ...leadingDocs])) { await pdf(docHtml(d), d.slug, d); console.log('built', d.slug) }
+if (only) { await browser.close(); console.log('leading docs done'); process.exit(0) }
 const classic = docs.filter(d => !d.exp)
 await pdf(coverHtml('The hiring handbook for design teams', 'Eight worksheets, handbooks and playbooks for building a hiring experience from the first job description to a new designer\u2019s first ninety days.', classic), 'cover')
 execFileSync('pdfunite', [path.join(tmp, 'cover.pdf'), ...classic.map(d => path.join(out, d.slug + '.pdf')), path.join(out, 'hiring-handbook-complete.pdf')])

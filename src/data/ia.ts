@@ -43,4 +43,5 @@ export const leadershipItems: MenuItem[] = [
   { label: 'Experience', to: '/leadership/stories', kind: 'Stories', mark: 'experience', tone: 'teal' },
   { label: 'Collective', to: '/community', kind: 'Community', mark: 'community', tone: 'plum' },
   { label: NAMES.diary, to: '/reflections', kind: 'Writing', mark: 'notes', tone: 'cobalt' },
+  { label: 'Leading Design', to: '/resources/leading-design', kind: 'Guide', mark: 'toolkit', tone: 'plum' },
 ]
