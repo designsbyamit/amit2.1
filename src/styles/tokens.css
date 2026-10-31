@@ -125,7 +125,7 @@ html[data-theme='light'] {
 
   /* Type */
   --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
-  --font-serif: 'Bodoni 72', 'Bodoni Moda Variable', 'Bodoni Moda', Didot, 'Bodoni MT', Georgia, serif;
+  --font-serif: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SFMono-Regular', monospace;
 
   /* Space (4px base, 8px rhythm) */

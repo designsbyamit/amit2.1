@@ -128,7 +128,7 @@ const types: { cls: string; name: string; spec: string; sample: string }[] = [
   { cls: 'text-overline text-ink-3', name: 'overline', spec: 'Geist Mono · 12px · +0.08em · caps', sample: 'Section overline' },
   { cls: 'text-label text-ink-3', name: 'label', spec: 'Geist Mono · 12px · +0.06em · caps', sample: 'Metadata label' },
 ]
-const serif = 'Case study and story headlines use the serif face (Bodoni) at 1.8 to 3.1rem, tight leading, balanced wrapping.'
+const serif = 'Case study and story headlines use the display face (Bricolage Grotesque) at 1.8 to 3.1rem, tight leading, balanced wrapping.'
 const spaceScale = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128]
 
 const iconSet: { name: string; box: number; render: ReactNode; use: string }[] = [
@@ -309,7 +309,7 @@ export default function DesignSystemReferencePage() {
         <Spec name="Typefaces" note="Four faces, each with one job. Loaded from the Fontsource variable fonts.">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              ['Bodoni Moda', 'Headings', 'Every h1 to h6 is set in Bodoni by one global rule. It is the voice of the site.', 'var(--font-serif)', 'Design leadership'],
+              ['Bricolage Grotesque', 'Headings', 'Every h1 to h6 is set in Bricolage Grotesque by one global rule. It is the voice of the site.', 'var(--font-serif)', 'Design leadership'],
               ['Geist', 'Body and interface', 'Text, buttons, navigation, forms. 200 and 300 only at 20px and up.', 'var(--font-sans)', 'Readable and calm'],
               ['Geist Mono', 'Labels and data', 'Overlines, metadata, numbers in tables, keyboard keys. Uppercase with tracking.', 'var(--font-mono)', 'LABEL 02 / DATA'],
               ['Caveat', 'Handwritten note', 'One place only: the "the short story" note on short story pages.', "'Caveat Variable', cursive", 'the short story'],
@@ -328,7 +328,7 @@ export default function DesignSystemReferencePage() {
               </div>
             ))}
             <div className="grid md:grid-cols-[12rem_1fr] gap-2 md:gap-8 py-5 hairline-top items-baseline">
-              <div><p className="font-mono text-label text-ink">serif headline</p><p className="text-caption text-ink-3">Bodoni · 400</p></div>
+              <div><p className="font-mono text-label text-ink">serif headline</p><p className="text-caption text-ink-3">Bricolage Grotesque · 400</p></div>
               <div><p className="font-serif text-ink" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>Human-led agentic AI cuts order confirmation TAT from weeks to hours</p><p className="text-body-sm text-ink-3 mt-3 max-w-[62ch]">{serif}</p></div>
             </div>
           </div>
