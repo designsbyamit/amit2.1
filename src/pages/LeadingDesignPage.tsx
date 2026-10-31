@@ -22,9 +22,9 @@ export default function LeadingDesignPage() {
               <p className="text-overline text-ink-3 mb-5">Guide · Managing design teams</p>
               <motion.h1 className="text-display-xl text-ink" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease }}>Leading Design</motion.h1>
               <motion.p className="text-body-lg text-ink-2 mt-6 max-w-2xl" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15, ease }}>
-                Principles, frameworks and worksheets for new and mid-level design managers, in five chapters.
+                Stories, points and worksheets for new and mid-level design managers, in five chapters. Frameworks where they help.
               </motion.p>
-              <p className="text-body text-ink-2 mt-4 max-w-2xl">Each chapter takes one part of managing a design team and gives you the beliefs to lead by, the ways of working to run with your team, and the pages to write on.</p>
+              <p className="text-body text-ink-2 mt-4 max-w-2xl">Each chapter takes one part of managing a design team and gives you the story behind it, the points to carry into your own team, and worksheets to write on. Where a chapter has a framework, it is there too.</p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <Button to={chapterPath(first.slug)} arrow>Start with chapter 1</Button>
                 <Button variant="secondary" onClick={() => open(REQUEST_TEAM)}>Bring this to your managers</Button>
@@ -42,9 +42,9 @@ export default function LeadingDesignPage() {
           <div className="grid-site gap-y-6 mb-12 md:mb-16">
             <div className="col-span-4 md:col-span-6">
               <p className="text-overline text-ink-3 mb-4">How each chapter works</p>
-              <h2 id="inside-h" className="text-heading text-ink">Three parts, the same in every chapter.</h2>
+              <h2 id="inside-h" className="text-heading text-ink">What every chapter gives you.</h2>
             </div>
-            <p className="col-span-4 md:col-span-5 md:col-start-8 self-end text-body text-ink-2">Read a chapter straight through, or go to the worksheets when you need them. Each chapter stands on its own.</p>
+            <p className="col-span-4 md:col-span-5 md:col-start-8 self-end text-body text-ink-2">Worksheets are in every chapter. A framework appears only where it earns its place. Each chapter stands on its own.</p>
           </div>
           <ol className="grid md:grid-cols-3 gap-4">
             {bookParts.map((p, i) => (

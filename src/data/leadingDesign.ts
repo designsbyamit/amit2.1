@@ -1,5 +1,5 @@
 // Content for Leading Design: a manager's guide to leading design teams, in five chapters.
-// Each chapter has principles, frameworks and worksheets for new and mid-level design managers.
+// Every chapter has a story, notes or points, and worksheets. A framework is optional.
 // Chapter 1 is written. The others are listed on the landing page and open once they are written (ready: true).
 
 export interface Chapter { n: string; slug: string; title: string; summary: string; topics: string[]; ready: boolean }
@@ -9,7 +9,7 @@ export const chapterPath = (slug: string) => `${LEADING_DESIGN_PATH}/${slug}`
 
 export const chapters: Chapter[] = [
   { n: '01', slug: 'building-a-design-team', title: 'Building a design team', ready: true,
-    summary: 'Decide what the team must become, then hire and onboard for it: team shape, a hiring experience designed for candidates and interviewers, and a first ninety days written with the new joiner.',
+    summary: 'Decide what the team must become, then hire and onboard for it: team shape, a hiring experience designed for candidates and interviewers, and a first ninety days written with the new joiner. Six editable worksheets, each with a filled example.',
     topics: ['Team shape', 'Hiring', 'Onboarding'] },
   { n: '02', slug: 'growth-and-performance-metrics', title: 'Growth and performance metrics for design teams', ready: false,
     summary: 'Feedback and objective reviews, performance management and growing people, with measures that describe the work and the person, not only the output.',
@@ -26,10 +26,21 @@ export const chapters: Chapter[] = [
 ]
 
 export const bookParts = [
-  { title: 'Principles', text: 'A few beliefs to lead by, each with what it asks of you on Monday morning.' },
-  { title: 'Frameworks', text: 'Step-by-step ways of working that you can run with your team, with what to watch for.' },
-  { title: 'Worksheets', text: 'Printable pages to write on, built to be filled in with your partners and adapted to your organisation.' },
+  { title: 'Story, notes and points', text: 'What happened, what I learned, and the points to carry into your own team.' },
+  { title: 'A framework, where it helps', text: 'Some chapters have a step-by-step way of working to run with your team. Others do not need one.' },
+  { title: 'Worksheets, always', text: 'Every chapter has worksheets: printable pages, and editable ones with a filled example to learn from.' },
 ]
+
+/** The editable worksheets for chapter 1: the page and Figma file, and each worksheet's tab in the online kit. */
+export const WORKSHEET_KIT = '/templates/leading-design-chapter-1.html'
+export const worksheetTab: Record<string, string> = {
+  'team-shape-and-capability-worksheet': 'team',
+  'hiring-experience-alignment-worksheet': 'alignment',
+  'role-definition-worksheet': 'role',
+  'employer-story-and-outreach-worksheet': 'story',
+  'hr-partnership-worksheet': 'hr',
+  'candidate-journey-map-worksheet': 'journey',
+}
 
 // ── Chapter 1 ────────────────────────────────────────────────────────────────
 

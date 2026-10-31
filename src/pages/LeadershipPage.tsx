@@ -57,7 +57,7 @@ function LeadingDesignBand() {
         <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
           <p className="text-overline text-ink-3">Guide for design managers</p>
           <h2 id="leading-design-h" className="text-heading text-ink max-w-[24ch]">Leading Design</h2>
-          <p className="text-body text-ink-2 max-w-[62ch]">Principles, frameworks and worksheets for new and mid-level design managers, in five chapters: building the team, growing people, the rituals that shape culture, design quality, and AI maturity.</p>
+          <p className="text-body text-ink-2 max-w-[62ch]">Stories, points and worksheets for new and mid-level design managers, in five chapters: building the team, growing people, the rituals that shape culture, design quality, and AI maturity.</p>
           <div className="flex flex-wrap gap-3 pt-2"><Button to="/resources/leading-design" arrow>Read the guide</Button></div>
         </div>
       </div>
