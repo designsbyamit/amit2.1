@@ -86,7 +86,7 @@ ${d.blocks.map(render).join('\n')}
 </div></div></body></html>`
 
 const coverHtml = (title, blurb, list) => `<!doctype html><html><head><meta charset="utf-8"><style>${css}@page{size:A4;margin:0}</style></head><body>
-<div class="cover"><div class="in"><p class="kind">Hiring playbook</p><h1>The hiring handbook for design teams</h1><p>Eight worksheets, handbooks and playbooks for building a hiring experience from the first job description to a new designer’s first ninety days.</p></div>
+<div class="cover"><div class="in"><p class="kind">Hiring playbook</p><h1>${title}</h1><p>${blurb}</p></div>
 <div class="in" style="padding-top:0;padding-bottom:12mm"><div class="toc">${list.map((d, i) => `<div><span>${String(i + 1).padStart(2, '0')} · ${d.kind}</span><b style="font-weight:500">${esc(d.title)}</b></div>`).join('')}</div><p style="margin-top:8mm;font-size:9.5pt">Amit Kumar Tiwari · Design leadership</p><div style="display:flex;align-items:center;gap:9pt;margin-top:8mm;font-size:8.4pt;color:#B9BED0;color:#B9BED0"><a href="${LICENSE_URL}" style="color:#ECEDF3">${ccIcons(15)}</a><p style="margin:0;font-size:8.4pt">Content in this document is licensed under a <a href="${LICENSE_URL}" style="color:#B9BED0">${LICENSE_NAME}</a>.</p></div></div></div></body></html>`
 
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--no-sandbox', '--allow-file-access-from-files'] })
