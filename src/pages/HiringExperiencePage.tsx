@@ -94,7 +94,7 @@ export default function HiringExperiencePage() {
               <span className="text-label text-signal-ink">Pattern {p.n}</span>
               <h3 className="text-title text-ink">{p.title}</h3>
               <p className="text-body-sm text-ink-2">{p.problem}</p>
-              <p className="text-body-sm text-ink-3">{p.evidence} <a href={p.source.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">{p.source.label}</a></p>
+              <p className="text-body-sm text-ink-3">{p.evidence}</p>
               <div className="pt-4 hairline-top">
                 <span className="text-label text-ink-3 block mb-2">What can be done</span>
                 <ul className="flex flex-col gap-2">{p.doThis.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
@@ -160,11 +160,15 @@ export default function HiringExperiencePage() {
         </div>
       </Section>
 
-      <Section id="sources" label="Where the evidence comes from" title="Sources." intro={sourceNote}>
-        <ul className="flex flex-col gap-3">
-          {sources.map(s => <li key={s.url}><a href={s.url} target="_blank" rel="noopener noreferrer" className="text-body text-ink-2 underline underline-offset-4">{s.label}</a></li>)}
-        </ul>
-      </Section>
+      <section id="sources" className="hairline-top py-8">
+        <div className="container-site">
+          <h2 className="text-[11px] uppercase tracking-wider text-ink-3 mb-2">Sources</h2>
+          <p className="text-[11px] leading-snug text-ink-3 max-w-3xl mb-2">{sourceNote}</p>
+          <ul className="flex flex-col gap-1">
+            {sources.map(s => <li key={s.url} className="text-[11px] leading-snug"><a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink-3 underline underline-offset-2 hover:text-ink">{s.label}</a></li>)}
+          </ul>
+        </div>
+      </section>
 
       <section className="hairline-top py-12">
         <div className="container-site flex flex-wrap items-center justify-between gap-4">
