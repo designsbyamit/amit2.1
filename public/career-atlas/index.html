@@ -140,6 +140,9 @@ footer{padding:48px 0 64px;margin-top:64px;border-top:1px solid var(--line);colo
 .rt{display:flex;flex-direction:column;gap:4px}.rr{display:flex;align-items:center;gap:8px}.rr svg.st{width:64px;height:12px;fill:var(--ink);flex:none}.rr b{height:8px;border-radius:4px;background:var(--ink);display:block}.rr em{font:11px var(--mono);color:var(--ink3);font-style:normal}
 
 .dyn{font-size:13.5px;color:var(--ink2);margin:12px 0 0;max-width:52rem}
+.dbmodal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;display:grid;place-items:center;padding:16px}
+.dbcard{background:var(--s1);border:1px solid var(--line2);border-radius:14px;box-shadow:var(--shadow);padding:20px;width:min(860px,100%);max-height:92vh;overflow:auto}
+.dbcard h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:12px}
 
 .top{border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:12px max(16px,env(safe-area-inset-left,0px));font-size:14px}.top .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--ink3)}.top a{color:var(--ink2);text-decoration:none}.top a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 </style>
@@ -157,7 +160,7 @@ const ROLES=['UX / UI Designer','Researcher & Designer','Design Lead','Design Ma
 const RC={'UX / UI Designer':'var(--c-des)','Researcher & Designer':'var(--c-res)','Design Lead':'var(--c-lead)','Design Manager':'var(--c-mgr)'};
 const PH=[{id:'A',name:'Practitioner',from:2011,to:2013,c:'var(--c-des)'},{id:'B',name:'Researcher-Lead',from:2014,to:2015,c:'var(--c-res)'},{id:'C',name:'Platform Lead',from:2017,to:2019,c:'var(--c-lead)'},{id:'D',name:'Lead to Manager',from:2020,to:2022,c:'var(--c-p4)'},{id:'E',name:'Manager at scale',from:2023,to:2024,c:'var(--c-mgr)'}];
 const phOf=y=>y==null?null:PH.find(p=>y>=p.from&&y<=p.to)||null;
-D.forEach(p=>p.ph=phOf(p.year).id);
+D.forEach(p=>p.ph=(phOf(p.year)||{}).id||null);
 const ACTS=['Research','Stakeholders','Journeys','Persona','Heuristic eval','IA','Wireframes','Data viz','Visual design','Usability testing','Design system','Hand-off'];
 // content strategy excluded: only 12 projects recorded
 const YEARS=[];for(let y=2011;y<=2024;y++)YEARS.push(y);
@@ -361,18 +364,27 @@ A.cooc=function(box){
     const r=s('rect',{x:up?cx:cx-w,y:y+5,width:Math.max(2,w),height:rh-14,rx:4,fill:up?'var(--c-mgr)':'var(--c-res)',opacity:.85});hov(r,o.a+' + '+o.b,['Together in '+o.both+' of '+o.n+' recorded projects','Lift '+f2(o.l)]);svg.append(r);
     svg.append(s('text',{x:up?cx+w+8:cx-w-8,'text-anchor':up?'start':'end',y:y+rh/2+2,class:'mono t-ink'},f2(o.l)+'  ·  '+o.both+'/'+o.n))});
   box.replaceChildren(h('div',{class:'scroll'},svg))};
-const AX=[['Research depth','Share of projects with primary research'],['Craft execution','Wireframes and visual design'],['Systems thinking','IA and design systems'],['Validation','Usability testing and heuristic evaluation'],['Collaboration','Stakeholder collaboration and hand-off'],['Data visualisation','Share of projects with data visualisation work']];
-A.radarData=function(ps){const x=phStats(ps);const m=(...v)=>{v=v.filter(z=>z!=null);return v.length?mean(v):null};return[x.primAny,m(x.wf,x.vd),m(x.ia,x.ds),m(x.ut,x.he),m(x.stake,x.hand),x.dv]};
+const TECHI=['Cloud, Networking & DevOps','Data & AI','CMT','EUS','IT Services'];
+const STRAT=['DesignOps','Design Systems','Design Thinking','Brand Strategy & Identity Design'];
+const AX=[
+ ['Research and Insights','Research, Persona and Usability testing done','Research, Empathy, Behavioural insights','Empathy and behavioural insight are not recorded as such; persona work stands in for empathy and usability testing for behaviour.'],
+ ['Systems Thinking','Design system work and strategy-led themes (DesignOps, Design Systems, Design Thinking, Brand strategy)','Critical thinking, Problem framing, Systems thinking, Strategy, Analysis, Prioritisation','Only two proxies exist. Critical thinking, problem framing, analysis and prioritisation are not recorded, so this axis is the least evidenced.'],
+ ['Interaction Design','IA, Journeys and Heuristic evaluation done','IA, Journey mapping, Interaction design','Interaction design itself is not a column; heuristic evaluation stands in for it.'],
+ ['Craft Excellence','Visual design, Wireframes and Content strategy done','Visual design, Prototyping, Design systems, Content design','Wireframes stand in for prototyping. Content strategy is recorded for only 12 projects. Design systems are counted under Systems Thinking.'],
+ ['Technical and Product Fluency','Inferred: data visualisation, B2B product, and technical industries (cloud, data and AI, telecom, utilities, IT services)','Business acumen, Product thinking, Data literacy, Technical fluency','Inferred, not recorded. Business acumen and product thinking are not captured anywhere in the workbook.'],
+ ['Cross Collaboration','Stakeholder collaboration and Hand-off done','Dev hand-off, PM collaboration, Communication, Stakeholder facilitation, Influence','Communication, influence and PM collaboration are not recorded; stakeholders and hand-off are the closest evidence.']];
+A.radarData=function(ps){const sh=a=>{const q=rec(ps,a);return q.length?yes(ps,a).length/q.length:null};const m=(...v)=>{v=v.filter(z=>z!=null);return v.length?mean(v):null};const frac=(f)=>ps.length?ps.filter(f).length/ps.length:null;
+  return[m(sh('Research'),sh('Persona'),sh('Usability testing')),m(sh('Design system'),frac(p=>STRAT.includes(p.theme))),m(sh('IA'),sh('Journeys'),sh('Heuristic eval')),m(sh('Visual design'),sh('Wireframes'),sh('Content strategy')),m(sh('Data viz'),frac(p=>p.product&&/B2B/.test(p.product)),frac(p=>TECHI.includes(p.industry))),m(sh('Stakeholders'),sh('Hand-off'))]};
 A.radar=function(box){
-  const ps=F('phase');const W=560,H=400,cx=280,cy=200,R=135;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Career fingerprint radar by phase'});
+  const ps=F('phase');const W=760,H=430,cx=380,cy=215,R=140;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Career fingerprint radar by phase'});
   const pt=(i,v)=>{const a=-Math.PI/2+i*2*Math.PI/6;return[cx+Math.cos(a)*R*v,cy+Math.sin(a)*R*v]};
   [.25,.5,.75,1].forEach(l=>svg.append(s('polygon',{points:AX.map((_,i)=>pt(i,l).join(',')).join(' '),fill:'none',class:'grid-line',stroke:'var(--line2)'})));
   AX.forEach((a,i)=>{const p=pt(i,1);svg.append(s('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],class:'grid-line'}));const q=pt(i,1.17);svg.append(s('text',{x:q[0],y:q[1]+4,'text-anchor':q[0]<cx-10?'end':q[0]>cx+10?'start':'middle',class:'t-ink2',style:'font-size:12px'},a[0]))});
   PH.filter(p=>st.radar.includes(p.id)).forEach(p=>{const d=A.radarData(ps.filter(x=>x.ph===p.id));const pts=d.map((v,i)=>pt(i,v==null?0:v));
     svg.append(s('polygon',{points:pts.map(z=>z.join(',')).join(' '),fill:p.c,'fill-opacity':.12,stroke:p.c,'stroke-width':2}));
-    d.forEach((v,i)=>{if(v==null)return;const c=s('circle',{cx:pts[i][0],cy:pts[i][1],r:4,fill:p.c});hov(c,p.name+' · '+AX[i][0],[AX[i][1],Math.round(v*100)+'%']);svg.append(c)})});
+    d.forEach((v,i)=>{if(v==null)return;const c=s('circle',{cx:pts[i][0],cy:pts[i][1],r:4,fill:p.c});hov(c,p.name+' · '+AX[i][0],['Based on: '+AX[i][1],Math.round(v*100)+'%']);svg.append(c)})});
   const chips=h('div',{class:'legend'},PH.map(p=>{const n=ps.filter(x=>x.ph===p.id);const nb=phStats(n);return h('button',{class:'chip','aria-pressed':st.radar.includes(p.id),onclick:()=>{st.radar=st.radar.includes(p.id)?st.radar.filter(z=>z!==p.id):st.radar.concat(p.id);A.render()}},h('i',{style:`background:${p.c};display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px`}),p.name+' · '+n.length+' projects, '+n.filter(x=>x.breadth!=null).length+' fully recorded')}));
-  box.replaceChildren(chips,svg,h('table',{style:'margin-top:8px'},h('tbody',{},AX.map(a=>h('tr',{},h('td',{class:'lab'},a[0]),h('td',{},a[1]))))))};
+  box.replaceChildren(chips,svg,h('div',{class:'scroll'},h('table',{style:'margin-top:8px'},h('thead',{},h('tr',{},['Dimension','Your skills in it','Measured here by','What is not recorded'].map(x=>h('th',{style:'cursor:default'},x)))),h('tbody',{},AX.map(a=>h('tr',{},h('td',{class:'lab'},a[0]),h('td',{},a[2]),h('td',{},a[1]),h('td',{},a[3])))))))};
 A.phaseMulti=function(box){
   const ps=F('phase');const stt=PH.map(p=>phStats(ps.filter(x=>x.ph===p.id)));
   const M=[['Projects',x=>x.n,v=>String(v)],['Median team size',x=>x.team,v=>f1(v)],['Stakeholder collaboration',x=>x.stake!=null?x.stake*100:null,v=>Math.round(v)+'%'],['Design system',x=>x.ds!=null?x.ds*100:null,v=>Math.round(v)+'%'],['Usability testing',x=>x.ut!=null?x.ut*100:null,v=>Math.round(v)+'%'],['Primary research share',x=>x.primAny!=null?x.primAny*100:null,v=>Math.round(v)+'%'],['Mean breadth (of 12)',x=>x.breadth,v=>f1(v)],['Projects with a rating',x=>x.rs!=null?x.rs*100:null,v=>Math.round(v)+'%'],['Mean rating, rated projects',x=>x.mr,v=>f1(v)]];
@@ -995,7 +1007,7 @@ const c4=chapter('c4','Chapter 4','The professional DNA',[
    fig('coo','Which activities appear together','The pairs that go together most and least often, compared with chance (lift 1.0 = as expected). Most pairs sit near chance; only a few stand out.','Needs at least 15 projects with both activities recorded. Descriptive only.',A.cooc),
    fig('ups','Signature working patterns (UpSet plot)','Each column is one exact combination of eight core activities; the bar is how many projects share it. A better view than a Venn diagram when sets overlap this much.','Only projects with all eight activities recorded are included.',A.upset),
    fig('chd','Chord diagram: what connects to what','Ribbons link industries, roles or product types to the activities and themes they share. Wider means more projects.','Industries with only one project are left out of the first view.',A.chord),
-   h('div',{},fig('rad','Career fingerprint','Six proxy axes per phase. Toggle phases to compare.','Proxies built from recorded activities, not measured skill. Phase E rests on very few fully recorded projects.',A.radar),
+   h('div',{},fig('rad','Career fingerprint','Six skill dimensions per phase. Toggle phases to compare. Hover a point for what it is based on.','The workbook records activities, not skills, so each dimension is a proxy built from the closest recorded activities; the table lists what is not recorded. Phase E rests on very few fully recorded projects.',A.radar),
      fig('gal','Professional galaxy','Roles, industries, activities and projects as one network. Size shows betweenness centrality, a measure of how much a node connects otherwise separate parts, not how often it appears.','Positions come from a force layout and carry no meaning on their own; the table below ranks the real metrics.',A.galaxy))],
   `The signature is research-led full-stack UX with stakeholders at the table, to which validation and design systems are added later in the career.`);
 const c5=chapter('c5','Chapter 5','The hidden stories',[`These are the findings that a project count would never show. Each card says what the evidence is and what would change the conclusion. Filter by how certain a finding is or by how surprising it feels.`],
