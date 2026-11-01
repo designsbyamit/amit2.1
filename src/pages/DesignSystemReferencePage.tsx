@@ -260,7 +260,7 @@ export default function DesignSystemReferencePage() {
   return (
     <>
       <section style={{ paddingTop: 'var(--header-h)' }}>
-        <div className="container-site relative pt-12 md:pt-20 pb-16">
+        <div className="container-site relative pt-10 md:pt-14 pb-16">
           <div className="mb-10"><Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Design system', to: '/design-system' }, { label: 'Full reference' }]} /></div>
           <SectionHeader as="h1" label="Signal · Design system, full reference" title={<>One system, <span className="accent-signal">kept small.</span></>}
             intro="How this site is designed and why: the principles, tokens, icons, illustration, pictograms, imagery, components, interaction and motion. Everything below is rendered with the real code, in the mode you are viewing."

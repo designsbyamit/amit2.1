@@ -46,7 +46,7 @@ export default function HiringPlaybookPage() {
     <>
       <section style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-10 md:pt-14 pb-16 md:pb-20">
-          <div className="mb-10"><Breadcrumb items={[{ label: 'Practice', to: '/resources' }, { label: 'How I hire' }]} /></div>
+          <div className="mb-10"><Breadcrumb items={[{ label: 'Resources', to: '/resources' }, { label: 'How I hire' }]} /></div>
           <div className="grid-site gap-y-10 items-end">
             <div className="col-span-4 md:col-span-8">
               <p className="text-overline text-ink-3 mb-5">Playbook · Hiring design teams</p>

@@ -689,7 +689,7 @@ export default function AINativeFrameworksPage() {
       <DotsNav sections={NAV_SECTIONS} active={activeSection} />
 
       {/* ── Hero ── */}
-      <section id="hero" className="relative min-h-screen flex flex-col justify-end pb-20 pt-40 px-6 md:px-12 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex flex-col justify-end pb-20 overflow-hidden" style={{ paddingTop: 'calc(var(--header-h) + 3.5rem)' }}>
         <GrainOverlay opacity={0.05} />
 
         {/* Technical grid background */}
@@ -705,11 +705,11 @@ export default function AINativeFrameworksPage() {
         </div>
 
         {/* Back link */}
-        <div className="relative z-10 mb-12">
+        <div className="relative z-10 container-site w-full mb-auto pb-10">
           <Breadcrumb items={[{ label: 'Resources', to: '/resources' }, { label: 'AI-Native Frameworks' }]} />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
+        <div className="relative z-10 container-site w-full">
           <motion.p className="text-overline text-ink-3 mb-6"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
             Interactive Playbook · AI-native Experience Design
@@ -768,9 +768,9 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Why AI-native ── */}
-      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section className="relative bg-black section-y border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 container-site">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
               <p className="text-overline text-ink-3 mb-4">AI-native Mindset</p>
@@ -834,9 +834,9 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Methodology ── */}
-      <section id="methodology" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section id="methodology" className="relative bg-black section-y border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 container-site">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
               <p className="text-overline text-ink-3 mb-4">The Process</p>
@@ -851,9 +851,9 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Frameworks ── */}
-      <section id="frameworks" className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section id="frameworks" className="relative bg-black section-y border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 container-site">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-8">
             <div>
               <p className="text-overline text-ink-3 mb-4">Frameworks &amp; Toolkit</p>
@@ -891,8 +891,8 @@ export default function AINativeFrameworksPage() {
       </section>
 
       {/* ── Footer CTA ── */}
-      <section className="relative bg-black py-20 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+      <section className="relative bg-black py-20 border-t border-white border-opacity-[0.08]">
+        <div className="container-site flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
           <div>
             <p className="text-overline text-ink-3 mb-3">Bring this to your team</p>
             <h2 className="text-heading text-white mb-4">Workshop. Certification. Enterprise course.</h2>

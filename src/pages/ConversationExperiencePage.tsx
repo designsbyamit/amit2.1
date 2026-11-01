@@ -89,12 +89,12 @@ export default function ConversationExperiencePage() {
   return (
     <div className="bg-black min-h-screen">
       {/* Hero */}
-      <section className="relative min-h-[70vh] flex flex-col justify-end pb-20 px-6 md:px-12 overflow-hidden pt-28 md:pt-32">
+      <section className="relative min-h-[70vh] flex flex-col justify-end pb-20 overflow-hidden" style={{ paddingTop: 'calc(var(--header-h) + 3.5rem)' }}>
         <GrainOverlay opacity={0.05} />
-        <div className="relative z-10 mb-12">
+        <div className="relative z-10 container-site w-full mb-auto pb-10">
           <Breadcrumb items={[{ label: 'Resources', to: '/resources' }, { label: 'Conversation Experience' }]} />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
+        <div className="relative z-10 container-site w-full">
           <motion.p className="text-overline text-ink-3 mb-6"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
             Playbook · Conversational AI · Interaction Design
@@ -125,9 +125,9 @@ export default function ConversationExperiencePage() {
       </section>
 
       {/* Chapters */}
-      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section className="relative bg-black section-y border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 container-site">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
               <p className="text-overline text-ink-3 mb-4">The Playbook</p>
@@ -207,9 +207,9 @@ export default function ConversationExperiencePage() {
       </section>
 
       {/* Metrics */}
-      <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.07]">
+      <section className="relative bg-black section-y border-t border-white border-opacity-[0.07]">
         <GrainOverlay opacity={0.03} />
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 container-site">
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
             <div>
               <p className="text-overline text-ink-3 mb-4">Measuring CX</p>
@@ -252,8 +252,8 @@ export default function ConversationExperiencePage() {
       </section>
 
       {/* Request */}
-      <section className="relative bg-black py-20 px-6 md:px-12 border-t border-white border-opacity-[0.08]">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-[2fr_1fr] gap-12 items-end">
+      <section className="relative bg-black py-20 border-t border-white border-opacity-[0.08]">
+        <div className="container-site grid md:grid-cols-[2fr_1fr] gap-12 items-end">
           <div>
             <p className="text-overline text-ink-3 mb-4">Full Playbook</p>
             <h2 className="text-heading text-white mb-4">The complete guide: including templates, measurement frameworks, and case study breakdowns.</h2>

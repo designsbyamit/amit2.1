@@ -75,8 +75,8 @@ export default function HiringExperiencePage() {
   return (
     <>
       <section style={{ paddingTop: 'var(--header-h)' }}>
-        <div className="container-site pt-8 md:pt-12 pb-12 md:pb-14">
-          <div className="mb-10"><Breadcrumb items={[{ label: 'Practice', to: '/resources' }, { label: 'Hiring is an experience problem' }]} /></div>
+        <div className="container-site pt-10 md:pt-14 pb-12 md:pb-14">
+          <div className="mb-10"><Breadcrumb items={[{ label: 'Resources', to: '/resources' }, { label: 'Hiring is an experience problem' }]} /></div>
           <div className="grid-site gap-y-10 items-end">
             <div className="col-span-4 md:col-span-8">
               <p className="text-overline text-ink-3 mb-5">Case study · Hiring design teams</p>

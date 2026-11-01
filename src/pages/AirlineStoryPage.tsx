@@ -30,8 +30,8 @@ const Stat = ({ v, k }: { v: string; k: string }) => (
 export default function AirlineStoryPage() {
   return (
     <div className="bg-surface-0 min-h-screen">
-      <header className="pt-32 md:pt-40 pb-16 md:pb-24">
-        <div className="container-site relative">
+      <header style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Airline App' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>

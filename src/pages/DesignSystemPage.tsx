@@ -139,7 +139,7 @@ export default function DesignSystemPage() {
   return (
     <>
       <section style={{ paddingTop: 'var(--header-h)' }}>
-        <div className="container-site relative pt-12 md:pt-20 pb-16">
+        <div className="container-site relative pt-10 md:pt-14 pb-16">
           <div className="mb-10"><Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Design system' }]} /></div>
           <SectionHeader as="h1" label="Signal · Design system v2" title={<>Premium, minimal, <span className="accent-signal">clear.</span></>}
             intro="The tokens, type, layout, components and rules behind this website, in dark and light. Every page is built from what is on this page, so the experience stays consistent and meets WCAG 2.2 AA."

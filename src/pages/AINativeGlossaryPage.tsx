@@ -57,10 +57,10 @@ export default function AINativeGlossaryPage() {
 
   return (
     <div className="bg-black min-h-screen">
-      <section className="relative px-6 md:px-12 pt-40 pb-24 overflow-hidden">
+      <section className="relative pb-24 overflow-hidden" style={{ paddingTop: 'calc(var(--header-h) + 3.5rem)' }}>
         <GrainOverlay opacity={0.04} />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="mb-12">
+        <div className="relative z-10 container-site">
+          <div className="mb-10">
             <Breadcrumb items={[
               { label: 'Resources', to: '/resources' },
               { label: 'AI-Native Frameworks', to: '/resources/ai-native-patterns' },

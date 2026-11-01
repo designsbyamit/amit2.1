@@ -37,7 +37,7 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt, im
           <div className="container-site flex justify-end"><Mark name={mark} size={176} className="text-ink-3" /></div>
         </div>
       )}
-      <div className={`relative container-site ${image ? 'pt-[34vh] md:pt-24' : 'pt-12 md:pt-20'} pb-14 md:pb-20`}>
+      <div className={`relative container-site ${image ? 'pt-[34vh] md:pt-24' : 'pt-10 md:pt-14'} pb-14 md:pb-20`}>
         {breadcrumb && <div className="mb-10"><Breadcrumb items={breadcrumb} /></div>}
         <motion.p className="text-overline text-ink-3 mb-6 flex items-center gap-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
           {mark && <Mark name={mark} size={image ? 34 : 28} className={`text-ink-2 ${image ? '' : 'md:hidden'}`} />}
