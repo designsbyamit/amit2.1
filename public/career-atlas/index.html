@@ -123,6 +123,22 @@ footer{padding:48px 0 64px;margin-top:64px;border-top:1px solid var(--line);colo
 @media (max-width:640px){.drawer dl{grid-template-columns:100px 1fr}.fig{padding:14px 12px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
+.card .ch-top{display:flex;gap:10px;align-items:flex-start}
+.card .ib{flex:none;width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--lime,#C8F55A) 16%,var(--s1));display:grid;place-items:center;border:1px solid var(--line2)}
+.card .ico{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card .qq{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink2)}
+.card .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.card .big b{font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--ink);font-weight:500}
+.card .big span{font-size:13px;color:var(--ink3);flex:1;min-width:120px}
+.card.hero{border-color:var(--line2)}
+.viz{display:flex;flex-direction:column;gap:6px}
+.viz .vl{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.viz svg.vb{width:100%;max-width:240px;height:48px}.viz svg.vb2{width:100%;max-width:300px}
+.viz .on{fill:var(--ink)}.viz .off{fill:var(--line2)}
+.viz .bt{font:9px var(--mono);fill:var(--ink3)}
+.dg{display:flex;flex-wrap:wrap;gap:4px}.dg i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.dg i.on{background:var(--ink)}
+.rt{display:flex;flex-direction:column;gap:4px}.rr{display:flex;align-items:center;gap:8px}.rr svg.st{width:64px;height:12px;fill:var(--ink);flex:none}.rr b{height:8px;border-radius:4px;background:var(--ink);display:block}.rr em{font:11px var(--mono);color:var(--ink3);font-style:normal}
+
 .top{border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:12px max(16px,env(safe-area-inset-left,0px));font-size:14px}.top .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--ink3)}.top a{color:var(--ink2);text-decoration:none}.top a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 </style>
 </head><body>
@@ -173,6 +189,9 @@ const rec=(ps,a)=>ps.filter(p=>p.act[a]!=null);
 const yes=(ps,a)=>rec(ps,a).filter(p=>p.act[a]);
 const breadthOf=p=>{const v=ACTS.map(a=>p.act[a]);return v.some(x=>x==null)?null:v.filter(Boolean).length};
 D.forEach(p=>p.breadth=breadthOf(p));
+// Years a project is in flight, at minimum: assumes it started in January of its recorded year (start dates are not in the workbook).
+D.forEach(p=>{const n=Math.max(1,Math.ceil((p.dur||1)/12));p.active=[];for(let i=0;i<n;i++)p.active.push(p.year+i)});
+const flight=(ps,y)=>ps.filter(p=>p.active.includes(y));
 // tooltip
 const tip=$('#tip');
 function showTip(e,title,lines){tip.innerHTML='<b>'+esc(title)+'<\/b>'+lines.map(l=>'<span>'+esc(l)+'<\/span>').join('');tip.style.opacity=1;const x=Math.min(e.clientX+14,innerWidth-270),y=Math.min(e.clientY+14,innerHeight-100);tip.style.left=x+'px';tip.style.top=y+'px'}
@@ -202,8 +221,8 @@ function phStats(ps){
   const pr=a=>{const q=rec(ps,a);return q.length?yes(ps,a).length/q.length:null};
   const prim=ps.filter(p=>p.research&&p.research!=='N/A');
   return{n:r,team:med(T),dur:med(ps.map(p=>p.dur)),stake:pr('Stakeholders'),ds:pr('Design system'),ut:pr('Usability testing'),ia:pr('IA'),wf:pr('Wireframes'),vd:pr('Visual design'),he:pr('Heuristic eval'),hand:pr('Hand-off'),dv:pr('Data viz'),res:pr('Research'),
-    primOnly:prim.length?prim.filter(p=>p.research==='Primary User Research').length/prim.length:null,primAny:prim.length?prim.filter(p=>/Primary/.test(p.research)).length/prim.length:null,breadth:mean(ps.map(p=>p.breadth)),nb:ps.filter(p=>p.breadth!=null).length}}
-window.__A={ALL,D,F,FA,PH,ROLES,RC,ACTS,YEARS,st,$,$$,h,s,esc,med,mean,sum,f1,f2,pct,mo,spear,rec,yes,hov,showTip,hideTip,openProj,projLines,phStats,phOf};
+    primOnly:prim.length?prim.filter(p=>p.research==='Primary User Research').length/prim.length:null,primAny:prim.length?prim.filter(p=>/Primary/.test(p.research)).length/prim.length:null,breadth:mean(ps.map(p=>p.breadth)),nb:ps.filter(p=>p.breadth!=null).length,rs:r?ps.filter(p=>p.rating).length/r:null,mr:mean(ps.filter(p=>p.rating).map(p=>p.rating)),nr:ps.filter(p=>p.rating).length}}
+window.__A={flight,ALL,D,F,FA,PH,ROLES,RC,ACTS,YEARS,st,$,$$,h,s,esc,med,mean,sum,f1,f2,pct,mo,spear,rec,yes,hov,showTip,hideTip,openProj,projLines,phStats,phOf};
 })();
 
 (function(){
@@ -278,28 +297,38 @@ A.bubble=function(box){
     c.addEventListener('click',()=>openProj(p));c.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});hov(c,p.name,()=>projLines(p).concat([p.breadth!=null?'Breadth: '+p.breadth+' of 12 activities':'Breadth: activities not fully recorded']));svg.append(c)}));
   box.replaceChildren(svg)};
 A.velocity=function(box){
-  const ps=F();const mini=(title,vals,fmt,note)=>{const W=520,H=170,L=10,R=10,T=32,B=26;const mx=Math.max(...vals.filter(v=>v!=null),1);const bw=(W-L-R)/14;
+  const ps=F();const W=520,H=170,L=10,R=10,T=32,B=26,bw=(W-L-R)/14;
+  const fl=y=>A.flight(ps,y);
+  const stack=()=>{const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Projects in flight per year'});svg.append(s('text',{x:L,y:16,class:'t-ink2',style:'font-size:13px'},'Projects in flight'));
+    const tot=YEARS.map(y=>fl(y).length);const mx=Math.max(1,...tot);
+    YEARS.forEach((y,i)=>{const nw=ps.filter(p=>p.year===y).length,co=tot[i]-nw;const ph=phOf(y);const x0=L+i*bw+3;const sc=(H-T-B)/mx;
+      const r1=s('rect',{x:x0,y:H-B-nw*sc,width:bw-6,height:nw*sc,rx:3,fill:ph?ph.c:'var(--faint)',opacity:.9}),r2=s('rect',{x:x0,y:H-B-(nw+co)*sc,width:bw-6,height:co*sc,rx:3,fill:ph?ph.c:'var(--faint)',opacity:.38});
+      [r1,r2].forEach(r=>hov(r,y+' · '+tot[i]+' in flight',[nw+' started this year',co+' continuing from an earlier year']));if(nw)svg.append(r1);if(co)svg.append(r2);
+      if(tot[i])svg.append(s('text',{x:x0+(bw-6)/2,y:H-B-tot[i]*sc-4,'text-anchor':'middle',class:'mono'},String(tot[i])));
+      svg.append(s('text',{x:x0+(bw-6)/2,y:H-8,'text-anchor':'middle',class:'mono'},"'"+String(y).slice(2)))});
+    return h('div',{},svg,h('div',{class:'foot',style:'margin-top:0'},'Solid: started that year. Faded: continuing from an earlier year (minimum, assuming a January start).'))};
+  const mini=(title,vals,fmt,note)=>{const mx=Math.max(...vals.filter(v=>v!=null),1);
     const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':title});svg.append(s('text',{x:L,y:16,class:'t-ink2',style:'font-size:13px'},title));
     YEARS.forEach((y,i)=>{const v=vals[i];const x0=L+i*bw+3;const ph=phOf(y);
-      if(v==null){svg.append(s('line',{x1:x0+2,x2:x0+bw-8,y1:H-B-1,y2:H-B-1,stroke:'var(--faint)','stroke-dasharray':'2 3'}));}
-      else{const hh=Math.max(2,v/mx*(H-T-B));const r=s('rect',{x:x0,y:H-B-hh,width:bw-6,height:hh,rx:3,fill:ph?ph.c:'var(--faint)',opacity:.85});hov(r,y+' · '+title,[fmt(v)]);svg.append(r);svg.append(s('text',{x:x0+(bw-6)/2,y:H-B-hh-4,'text-anchor':'middle',class:'mono'},fmt(v)))}
+      if(v!=null){const hh=Math.max(2,v/mx*(H-T-B));const r=s('rect',{x:x0,y:H-B-hh,width:bw-6,height:hh,rx:3,fill:ph?ph.c:'var(--faint)',opacity:.85});hov(r,y+' · '+title,[fmt(v),fl(y).length+' projects in flight']);svg.append(r,s('text',{x:x0+(bw-6)/2,y:H-B-hh-4,'text-anchor':'middle',class:'mono'},fmt(v)))}
       svg.append(s('text',{x:x0+(bw-6)/2,y:H-8,'text-anchor':'middle',class:'mono'},"'"+String(y).slice(2)))});
     return h('div',{},svg,h('div',{class:'foot',style:'margin-top:0'},note))};
-  const by=f=>YEARS.map(y=>{const q=ps.filter(p=>p.year===y);return q.length?f(q):null});
+  const by=f=>YEARS.map(y=>{const q=fl(y);return q.length?f(q):null});
   box.replaceChildren(h('div',{class:'grid2'},
-    mini('Projects recorded',by(q=>q.length),v=>String(v),'Count of records. Not a measure of productivity.'),
-    mini('Median duration (months)',by(q=>med(q.map(p=>p.dur))),v=>f1(v),'Middle value of recorded durations.'),
-    mini('Median team size',by(q=>med(q.map(p=>p.team))),v=>f1(v),'Teams recorded for the project, not the whole organisation.'),
-    mini('Share of projects rated',by(q=>q.filter(p=>p.rating).length/q.length*100),v=>Math.round(v)+'%','Rating coverage falls sharply after 2022.')))};
+    stack(),
+    mini('Median length of projects in flight (months)',by(q=>med(q.map(p=>p.dur))),v=>f1(v),'Recorded duration of each project in flight that year.'),
+    mini('Median team size, projects in flight',by(q=>med(q.map(p=>p.team))),v=>f1(v),'Team recorded for the project, not the whole organisation.'),
+    mini('Share of projects in flight that are rated',by(q=>q.filter(p=>p.rating).length/q.length*100),v=>Math.round(v)+'%','Rating coverage falls sharply after 2022.')))};
 A.strip=function(box){
-  const ps=F();const W=1000,H=60+ROLES.length*64,L=170,R=24;const X=d=>logx(d,.25,24,L,W-R);
+  const ps=F();const rowH=112,W=1000,H=50+ROLES.length*rowH,L=170,R=24;const X=d=>logx(d,.25,24,L,W-R);const r=4.6;
   const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Distribution of project durations by role'});
   [[.25,'1 wk'],[1,'1'],[3,'3'],[6,'6'],[12,'12'],[21,'21 mo']].forEach(([v,l])=>svg.append(s('line',{x1:X(v),x2:X(v),y1:14,y2:H-26,class:'grid-line'}),s('text',{x:X(v),y:H-8,'text-anchor':'middle',class:'mono'},l)));
-  ROLES.forEach((r,i)=>{const y0=40+i*64;const q=ps.filter(p=>p.role===r&&p.dur!=null);
-    svg.append(s('text',{x:L-12,y:y0+4,'text-anchor':'end',class:'t-ink2',style:'font-size:12px'},r),s('text',{x:L-12,y:y0+18,'text-anchor':'end',class:'mono'},q.length+' projects'));
-    const g={};q.forEach(p=>(g[p.dur]=g[p.dur]||[]).push(p));
-    Object.values(g).forEach(a=>a.forEach((p,j)=>{const c=s('circle',{cx:X(p.dur),cy:y0+(j-(a.length-1)/2)*8,r:5,fill:RC[r],'fill-opacity':.75,class:'hit'});c.addEventListener('click',()=>openProj(p));hov(c,p.name,projLines(p));svg.append(c)}));
-    const m=med(q.map(p=>p.dur));if(m!=null){svg.append(s('line',{x1:X(m),x2:X(m),y1:y0-24,y2:y0+24,stroke:'var(--ink)','stroke-width':2}),s('text',{x:X(m)+5,y:y0-26,class:'mono t-ink'},'MEDIAN '+mo(m).toUpperCase()))}});
+  ROLES.forEach((role,i)=>{const y0=30+rowH/2+i*rowH;const q=ps.filter(p=>p.role===role&&p.dur!=null).sort((a,b)=>a.dur-b.dur);
+    svg.append(s('text',{x:L-12,y:y0+4,'text-anchor':'end',class:'t-ink2',style:'font-size:12px'},role),s('text',{x:L-12,y:y0+18,'text-anchor':'end',class:'mono'},q.length+' projects, one dot each'));
+    const placed=[];q.forEach(p=>{const x=X(p.dur);let off=0,k=0;const cand=()=>{const m=Math.ceil(k/2)*(2*r+1.5);return k%2?m:-m};
+      while(true){const y=y0+(k===0?0:cand());if(!placed.some(o=>Math.hypot(o.x-x,o.y-y)<2*r+1))break;k++;if(k>40)break}
+      const y=y0+(k===0?0:cand());placed.push({x,y});const c=s('circle',{cx:x,cy:y,r,fill:RC[role],'fill-opacity':.8,class:'hit',tabindex:0,role:'button','aria-label':p.name});c.addEventListener('click',()=>openProj(p));c.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});hov(c,p.name,projLines(p));svg.append(c)});
+    const m=med(q.map(p=>p.dur));if(m!=null){svg.append(s('line',{x1:X(m),x2:X(m),y1:y0-rowH/2+10,y2:y0+rowH/2-6,stroke:'var(--ink)','stroke-width':1.5,'stroke-dasharray':'4 3'}),s('text',{x:X(m)+6,y:y0-rowH/2+20,class:'mono t-ink'},'MEDIAN '+mo(m).toUpperCase()))}});
   box.replaceChildren(svg)};
 })();
 
@@ -319,18 +348,19 @@ A.capab=function(box){
     const fy=ps.filter(x=>x.act[a]).map(x=>x.year);svg.append(s('text',{x:L+5*cw+10,y:T+r*ch+ch/2+4,class:'mono t-ink2'},fy.length?Math.min(...fy):'—'))});
   box.replaceChildren(h('div',{class:'scroll'},svg))};
 A.cooc=function(box){
-  const ps=F();const n=ACTS.length,cs=40,L=130,T=120,W=L+cs*n+10,H=T+cs*n+10;
-  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,style:'min-width:640px;width:100%',role:'img','aria-label':'Skill co-occurrence matrix'});
-  // labels: rows left, columns rotated on top
-  ACTS.forEach((a,i)=>{svg.append(s('text',{x:L-8,y:T+i*cs+cs/2+4,'text-anchor':'end',class:'t-ink2',style:'font-size:11.5px'},a));svg.append(s('text',{x:L+i*cs+cs/2,y:T-10,transform:`rotate(-50 ${L+i*cs+cs/2} ${T-10})`,class:'t-ink2',style:'font-size:11.5px'},a))});
-  ACTS.forEach((a,i)=>ACTS.forEach((b,j)=>{if(j>=i)return;const q=ps.filter(p=>p.act[a]!=null&&p.act[b]!=null);if(q.length<15){svg.append(s('rect',{x:L+j*cs+2,y:T+i*cs+2,width:cs-4,height:cs-4,rx:4,fill:'none',stroke:'var(--faint)','stroke-dasharray':'2 3'}));return}
-    const pa=q.filter(p=>p.act[a]).length/q.length,pb=q.filter(p=>p.act[b]).length/q.length,both=q.filter(p=>p.act[a]&&p.act[b]).length;const exp=pa*pb*q.length;const lift=pa*pb?both/q.length/(pa*pb):null;
-    const up=lift>=1;const g=s('rect',{x:L+j*cs+2,y:T+i*cs+2-0,width:cs-4,height:cs-4,rx:4,fill:up?'var(--c-mgr)':'var(--c-res)',opacity:lift==null?0:Math.min(.95,.12+Math.abs(lift-1)*(up?.8:1.4))});
-    hov(g,a+' + '+b,['Together in '+both+' of '+q.length+' recorded projects','Expected by chance: '+f1(exp),'Lift '+f2(lift)+(up?' (more often than chance)':' (less often than chance)')]);svg.append(g);
-    svg.append(s('text',{x:L+j*cs+cs/2,y:T+i*cs+cs/2+4,'text-anchor':'middle',class:'mono',style:'pointer-events:none;'+(up&&Math.abs(lift-1)>.4?'fill:var(--on-signal)':'fill:var(--ink)')},f1(lift)))}));
+  const ps=F();const out=[];
+  ACTS.forEach((a,i)=>ACTS.forEach((b,j)=>{if(j>=i)return;const q=ps.filter(p=>p.act[a]!=null&&p.act[b]!=null);if(q.length<15)return;
+    const pa=q.filter(p=>p.act[a]).length/q.length,pb=q.filter(p=>p.act[b]).length/q.length,both=q.filter(p=>p.act[a]&&p.act[b]).length;if(!(pa*pb))return;out.push({a,b,l:both/q.length/(pa*pb),both,n:q.length})}));
+  const above=out.filter(o=>o.l>=1).sort((x,y)=>y.l-x.l).slice(0,6),below=out.filter(o=>o.l<1).sort((x,y)=>x.l-y.l).slice(0,3);const rows=above.concat(below);
+  const W=900,rh=34,L=300,H=rows.length*rh+30,cx=L+210,sc=190;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Activity pairs that occur together more or less than chance'});
+  svg.append(s('line',{x1:cx,x2:cx,y1:6,y2:H-18,stroke:'var(--ink3)','stroke-dasharray':'3 4'}),s('text',{x:cx,y:H-4,'text-anchor':'middle',class:'mono'},'AS EXPECTED BY CHANCE (1.0)'));
+  rows.forEach((o,i)=>{const y=10+i*rh;const w=Math.min(1,Math.abs(o.l-1)/1.1)*sc;const up=o.l>=1;
+    svg.append(s('text',{x:L-12,y:y+rh/2+2,'text-anchor':'end',class:'t-ink2',style:'font-size:12.5px'},o.a+' + '+o.b));
+    const r=s('rect',{x:up?cx:cx-w,y:y+5,width:Math.max(2,w),height:rh-14,rx:4,fill:up?'var(--c-mgr)':'var(--c-res)',opacity:.85});hov(r,o.a+' + '+o.b,['Together in '+o.both+' of '+o.n+' recorded projects','Lift '+f2(o.l)]);svg.append(r);
+    svg.append(s('text',{x:up?cx+w+8:cx-w-8,'text-anchor':up?'start':'end',y:y+rh/2+2,class:'mono t-ink'},f2(o.l)+'  ·  '+o.both+'/'+o.n))});
   box.replaceChildren(h('div',{class:'scroll'},svg))};
-const AX=[['Research depth','Share of projects with primary research'],['Craft execution','Wireframes and visual design'],['Systems thinking','IA and design systems'],['Validation','Usability testing and heuristic evaluation'],['Collaboration','Stakeholder collaboration and hand-off'],['Team scale','Median team size, capped at 15']];
-A.radarData=function(ps){const x=phStats(ps);const m=(...v)=>{v=v.filter(z=>z!=null);return v.length?mean(v):null};return[x.primAny,m(x.wf,x.vd),m(x.ia,x.ds),m(x.ut,x.he),m(x.stake,x.hand),x.team==null?null:Math.min(1,x.team/15)]};
+const AX=[['Research depth','Share of projects with primary research'],['Craft execution','Wireframes and visual design'],['Systems thinking','IA and design systems'],['Validation','Usability testing and heuristic evaluation'],['Collaboration','Stakeholder collaboration and hand-off'],['Data visualisation','Share of projects with data visualisation work']];
+A.radarData=function(ps){const x=phStats(ps);const m=(...v)=>{v=v.filter(z=>z!=null);return v.length?mean(v):null};return[x.primAny,m(x.wf,x.vd),m(x.ia,x.ds),m(x.ut,x.he),m(x.stake,x.hand),x.dv]};
 A.radar=function(box){
   const ps=F('phase');const W=560,H=400,cx=280,cy=200,R=135;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Career fingerprint radar by phase'});
   const pt=(i,v)=>{const a=-Math.PI/2+i*2*Math.PI/6;return[cx+Math.cos(a)*R*v,cy+Math.sin(a)*R*v]};
@@ -343,9 +373,9 @@ A.radar=function(box){
   box.replaceChildren(chips,svg,h('table',{style:'margin-top:8px'},h('tbody',{},AX.map(a=>h('tr',{},h('td',{class:'lab'},a[0]),h('td',{},a[1]))))))};
 A.phaseMulti=function(box){
   const ps=F('phase');const stt=PH.map(p=>phStats(ps.filter(x=>x.ph===p.id)));
-  const M=[['Projects',x=>x.n,v=>String(v)],['Median team size',x=>x.team,v=>f1(v)],['Stakeholder collaboration',x=>x.stake!=null?x.stake*100:null,v=>Math.round(v)+'%'],['Design system',x=>x.ds!=null?x.ds*100:null,v=>Math.round(v)+'%'],['Usability testing',x=>x.ut!=null?x.ut*100:null,v=>Math.round(v)+'%'],['Primary research share',x=>x.primAny!=null?x.primAny*100:null,v=>Math.round(v)+'%'],['Mean breadth (of 12)',x=>x.breadth,v=>f1(v)]];
+  const M=[['Projects',x=>x.n,v=>String(v)],['Median team size',x=>x.team,v=>f1(v)],['Stakeholder collaboration',x=>x.stake!=null?x.stake*100:null,v=>Math.round(v)+'%'],['Design system',x=>x.ds!=null?x.ds*100:null,v=>Math.round(v)+'%'],['Usability testing',x=>x.ut!=null?x.ut*100:null,v=>Math.round(v)+'%'],['Primary research share',x=>x.primAny!=null?x.primAny*100:null,v=>Math.round(v)+'%'],['Mean breadth (of 12)',x=>x.breadth,v=>f1(v)],['Projects with a rating',x=>x.rs!=null?x.rs*100:null,v=>Math.round(v)+'%'],['Mean rating, rated projects',x=>x.mr,v=>f1(v)]];
   box.replaceChildren(h('div',{class:'grid2',style:'grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))'},M.map(([t,f,fm])=>{const vals=stt.map(f);const mx=Math.max(...vals.filter(v=>v!=null),1);const W=260,H=150,B=26;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':t});svg.append(s('text',{x:4,y:14,class:'t-ink2',style:'font-size:12.5px'},t));
-    PH.forEach((p,i)=>{const v=vals[i];const x=8+i*50;if(v==null){svg.append(s('text',{x:x+19,y:H-B-6,'text-anchor':'middle',class:'mono'},'n/a'))}else{const hh=Math.max(2,v/mx*(H-B-34));const r=s('rect',{x,y:H-B-hh,width:38,height:hh,rx:3,fill:p.c,opacity:.85});hov(r,p.name+' · '+t,[fm(v),'n = '+stt[i].n+' projects'+(t==='Mean breadth (of 12)'?', '+stt[i].nb+' fully recorded':'')]);svg.append(r,s('text',{x:x+19,y:H-B-hh-4,'text-anchor':'middle',class:'mono t-ink'},fm(v)))}
+    PH.forEach((p,i)=>{const v=vals[i];const x=8+i*50;if(v==null){svg.append(s('text',{x:x+19,y:H-B-6,'text-anchor':'middle',class:'mono'},'n/a'))}else{const hh=Math.max(2,v/mx*(H-B-34));const r=s('rect',{x,y:H-B-hh,width:38,height:hh,rx:3,fill:p.c,opacity:.85});hov(r,p.name+' · '+t,[fm(v),'n = '+stt[i].n+' projects'+(t==='Mean breadth (of 12)'?', '+stt[i].nb+' fully recorded':t==='Mean rating, rated projects'?', '+stt[i].nr+' rated':'')]);svg.append(r,s('text',{x:x+19,y:H-B-hh-4,'text-anchor':'middle',class:'mono t-ink'},fm(v)))}
       svg.append(s('text',{x:x+19,y:H-8,'text-anchor':'middle',class:'mono'},p.id))});return svg})))};
 const TG=t=>!t||t==='NA'?'Not specified':t==='Full Stack UX'?'Full-stack UX':t==='Brand Strategy & Identity Design'?'Brand & identity':/^(IxD|Interaction|UI Design)/.test(t)?'Interaction, UI and data viz':/^(DesignOps|Design Systems|Design Thinking)$/.test(t)?'DesignOps, systems and thinking':t==='HE'?'HE (as recorded)':t;
 A.TG=TG;
@@ -450,66 +480,103 @@ S.units=D.filter(p=>p.dur<=0.5).length;
 S.sol=D.filter(p=>p.team===1).length;
 S.d2324=D.filter(p=>p.year>=2023);S.rec2324=S.d2324.filter(p=>p.breadth!=null).length;
 S.firstOf=a=>Math.min(...D.filter(p=>p.act[a]).map(p=>p.year));
+S.inYear=y=>D.filter(p=>p.year===y);
+S.maxOtherInd=Math.max(...[...new Set(D.map(p=>p.year))].filter(y=>y!==2023).map(y=>S.indCount(y)));
+S.big=D.filter(p=>p.team>=10).sort((a,b)=>b.team-a.team);
+S.longN=D.filter(p=>p.dur>=10).sort((a,b)=>b.dur-a.dur);
+S.fast=D.filter(p=>p.dur<=0.5);
+S.stake=[yes(D,'Stakeholders').length,rec(D,'Stakeholders').length];
+S.stakeM=[yes(byR('Design Manager'),'Stakeholders').length,rec(byR('Design Manager'),'Stakeholders').length];
+S.dsAll=[yes(D,'Design system').length,rec(D,'Design system').length];
+S.hand=[yes(D,'Hand-off').length,rec(D,'Hand-off').length];
+S.rated5=S.rated.filter(p=>p.rating===5).length;
+S.yearsCount=[...new Set(D.map(p=>p.year))].sort().map(y=>[y,S.inYear(y).length]);
 A.S=S;
 const L=ns=>ns.map(p=>p.name+(p.year?' ('+p.year+')':'')).join(', ');
 A.insights=function(){
-  const p1=S.phs[0],pB=S.phs[1],pE=S.phs[4];
+  const pE=S.phs[4];const nInd=new Set(D.map(p=>p.industry)).size;
+  const sizes=S.big.map(p=>p.team);
   return[
-  {id:'roles',cat:'Career milestones',kind:'fact',fl:'obvious',t:'Two role changes mark the whole record',
+  {id:'multi',cat:'Highlights for hiring leaders',q:'Can you juggle several projects at once?',icon:'layers',big:['2.6','projects\u2019 worth of work in flight, on average, in 2023'],viz:{t:'years',data:S.yearsCount,hi:2023},
+   kind:'inf',fl:'inferred',t:'Running a portfolio, not a single project',
+   f:`In 2023, ${S.t23.length} projects started across ${S.t23ind} industries, adding up to ${f1(S.months(2023))} recorded project-months of work. Over 12 months that is about ${f1(S.months(2023)/12)} projects in flight at any time on average, alongside teams of ${Math.min(...S.t23.map(p=>p.team))} to ${Math.max(...S.t23.map(p=>p.team))} people.`,
+   w:'It answers a typical hiring question about multitasking: the record shows sustained parallel work across unrelated domains, not one engagement at a time.',e:`${S.t23.length} projects, ${f1(S.months(2023))} months, ${S.t23ind} industries, 2023`,
+   c:'There are no start or end dates, so the true peak (for example, four or more at once) cannot be measured. This is an average, and some 2023 work continues into 2024.',names:S.t23.map(p=>p.name)},
+  {id:'domains',cat:'Highlights for hiring leaders',q:'How quickly do you get up to speed in a new domain?',icon:'compass',big:[String(S.maxInd[1]),'industries touched in a single year (2023)'],viz:{t:'dots',n:nInd,of:nInd,label:nInd+' industries recorded'},
+   kind:'calc',fl:'surprising',t:'A new industry almost every project',
+   f:`${nInd} industries are recorded. 2023 alone touches ${S.maxInd[1]} of them; no other year touches more than ${S.maxOtherInd}. Over the record, work moves from BFSI and social innovation to cloud, communications, healthcare, aerospace, CPG and sustainability.`,
+   w:'Moving between domains is a repeated pattern, not a one-off, and the ratings stay high while doing it.',e:'Industry and Year columns',c:'Depth varies: many of these engagements were short. "CMT" and "EUS" are not expanded in the sheet.',names:[]},
+  {id:'scale',cat:'Highlights for hiring leaders',q:'Can you lead a large team?',icon:'users',big:[String(sizes[1]||sizes[0]),'largest exact design team; one programme at 15+'],viz:{t:'bars',data:S.big.map(p=>[p.team,p.year]),label:'Teams of 10 or more'},
+   kind:'calc',fl:'obvious',t:'From solo designer to teams of 10 to 15',
+   f:`${S.big.length} projects had teams of 10 or more (${S.big.map(p=>p.year).sort().join(', ')}), led as ${[...new Set(S.big.map(p=>p.role))].join(' and ')}. The median team grows from ${f1(S.phs[0].team)} in 2011 to 2013 to ${f1(S.phs[4].team)} in 2023 to 2024.`,
+   w:'Leading at scale appears in several years and in different kinds of work, including a DesignOps programme and design-system work.',e:'Team size column, rank correlation with year 0.65',c:'Team size counts people recorded on the project, not direct reports.',names:S.big.map(p=>p.name)},
+  {id:'quality',cat:'Highlights for hiring leaders',q:'Do clients rate your work well?',icon:'star',big:[pct(S.rated5,S.rated.length),'of rated projects scored 5 stars'],viz:{t:'ratings',five:S.rated5,four:S.rated.filter(p=>p.rating===4).length,three:S.rated.filter(p=>p.rating===3).length,un:S.n-S.rated.length},
+   kind:'calc',fl:'obvious',t:'Consistently well-rated, never below 3 stars',
+   f:`${S.rated.length} of ${S.n} dated projects carry a rating; ${S.rated5} are 5 stars and none is below 3. The average is ${f1(S.rBy('Design Lead').m)} in the lead years and ${f1(S.rBy('Design Manager').m)} in the manager years.`,
+   w:'Satisfaction holds as responsibility grows from designer to manager.',e:`Rating column; designer ${f1(S.rBy('UX / UI Designer').m)} (n=${S.rBy('UX / UI Designer').n})`,
+   c:`The source and scale of the rating are not recorded, and ${S.n-S.rated.length} projects are unrated (${S.d2324.length-S.d2324.filter(p=>p.rating).length} of ${S.d2324.length} from 2023 to 2024), so the latest years are under-evidenced.`,names:[]},
+  {id:'depth',cat:'Highlights for hiring leaders',q:'Can you stay with complex, long-running work?',icon:'clock',big:[String(S.longN.length),'engagements of 10 months or longer'],viz:{t:'bars',data:S.longN.map(p=>[p.dur,p.year]),label:'Months, longest engagements',unit:'mo'},
+   kind:'calc',fl:'inferred',t:'Long builds sit beside the sprints',
+   f:`${S.longN.length} projects ran 10 months or more, the longest ${S.longest.dur} months (${S.longest.year}). Cloud, Networking & DevOps stands out: ${S.cloud.length} projects from ${Math.min(...S.cloud.map(p=>p.year))} to ${Math.max(...S.cloud.map(p=>p.year))} averaging ${f1(mean(S.cloud.map(p=>p.dur)))} months, against ${f1(S.all)} overall.`,
+   w:'The record holds both patience for multi-year product work and the ability to switch to short engagements.',e:'Duration column, industry averages',c:'Few projects per industry; the cloud average rests on two builds of 20 to 21 months.',names:S.longN.map(p=>p.name)},
+  {id:'growth',cat:'Highlights for hiring leaders',q:'Have you kept growing your craft?',icon:'trend',big:[f1(S.phs[0].breadth)+' \u2192 '+f1(S.phs[2].breadth),'activities per project, first phase to third'],viz:{t:'phases',data:S.phs.map(x=>x.breadth),label:'Mean activities per fully recorded project'},
+   kind:'calc',fl:'inferred',t:'The toolkit widened and stayed wide',
+   f:`Among projects with all 12 activities recorded, the average rises from ${f1(S.phs[0].breadth)} in 2011 to 2013 to ${f1(S.phs[2].breadth)} in 2017 to 2019 and holds near ${f1(S.phs[3].breadth)} after. Usability testing is recorded in ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects and ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects.`,
+   w:'New capabilities were added rather than swapped: validation, systems and operations joined research and craft.',e:'Breadth by phase (n = 4, 9, 4, 11, 2 fully recorded)',c:'Breadth counts activities done, not how well. The latest phase has only 2 fully recorded projects.',names:[]},
+  {id:'systems',cat:'Highlights for hiring leaders',q:'Do you build things that outlast a project?',icon:'blocks',big:[String(S.dsAll[0]),'projects with design-system work'],viz:{t:'dots',n:S.dsAll[0],of:S.dsAll[1],label:S.dsAll[0]+' of '+S.dsAll[1]+' projects with the field recorded'},
+   kind:'calc',fl:'inferred',t:'Systems and operations, not just screens',
+   f:`Design-system work is recorded in ${S.dsAll[0]} of ${S.dsAll[1]} projects, including ${S.dsBy('Design Manager')[0]} of ${S.dsBy('Design Manager')[1]} manager-era projects. DesignOps appears as its own programme in ${S.dops.map(p=>p.year).filter(Boolean).join(' and ')}, and a design-system programme in 2023 had a team of 12.`,
+   w:'It shows thinking about how a design function works, not only what it ships.',e:'Design system column, themes, names',c:'"Yes*" (2 projects) is treated as yes; the asterisk is not explained.',names:S.dops.map(p=>p.name).concat(['Design system programme'])},
+  {id:'collab',cat:'Highlights for hiring leaders',q:'How do you work with stakeholders?',icon:'handshake',big:[pct(S.stake[0],S.stake[1]),'of recorded projects involved stakeholder collaboration'],viz:{t:'dots',n:S.stake[0],of:S.stake[1],label:S.stake[0]+' of '+S.stake[1]},
+   kind:'calc',fl:'obvious',t:'Stakeholders are part of almost every project',
+   f:`${S.stake[0]} of ${S.stake[1]} projects with the field recorded involved stakeholder collaboration, and ${S.stakeM[0]} of ${S.stakeM[1]} in the manager years. Hand-off to delivery is recorded in ${S.hand[0]} of ${S.hand[1]}.`,
+   w:'Collaboration and hand-off are part of the routine, which matters for senior roles that depend on influence.',e:'Stakeholders and Hand-off columns',c:'The record says collaboration happened, not how well or how senior the stakeholders were.',names:[]},
+  {id:'fast',cat:'Highlights for hiring leaders',q:'Can you deliver fast when things are ambiguous?',icon:'bolt',big:[String(S.fast.length),'engagements of two weeks or less'],viz:{t:'dots',n:S.fast.length,of:S.n,label:S.fast.length+' of '+S.n+' dated projects'},
+   kind:'fact',fl:'surprising',t:'Quick turns, early and late',
+   f:`${S.fast.length} projects ran two weeks or less: four solo research-and-design sprints in 2014, and three manager-led engagements in 2023 to 2024 with teams of ${Math.min(...S.fast.filter(p=>p.year>2020).map(p=>p.team))} to ${Math.max(...S.fast.filter(p=>p.year>2020).map(p=>p.team))}.`,
+   w:'The same speed shows up at both ends of the career, first as a solo practitioner, later through a team.',e:'Duration \u2264 0.5 months',c:'Short can mean a scoped assessment rather than a full delivery.',names:S.fast.map(p=>p.name)},
+  {id:'roles',cat:'Career milestones',q:'What changed in your role?',icon:'flag',big:[String(S.firstLead)+' \u2192 '+String(S.firstMgr),'first Design Lead, first Design Manager'],
+   kind:'fact',fl:'obvious',t:'Two role changes mark the whole record',
    f:`The first Design Lead role is recorded in ${S.firstLead} and the first Design Manager role in ${S.firstMgr}. Design Manager is ${S.mgrN} of ${S.n} dated records (${pct(S.mgrN,S.n)}), and every dated record from 2021 on (${S.lateMgr} of ${S.late.length}).`,
    w:'Half of the dated repository sits in the manager role, so the workbook mostly documents the manager years.',e:`Role column, ${S.n} dated rows`,c:'Roles are as recorded; the workbook does not say how much hands-on work each manager project involved.',names:[]},
-  {id:'gap',cat:'Hidden patterns',kind:'inf',fl:'surprising',t:'The empty year, 2016, was probably not empty',
-   f:`No project is recorded for 2016, yet ${S.y(2015).find(p=>p.name==='Cloud, Networking & DevOps project 1').name} (2015) lasts 21 months. If Year is the start year, that project must run through part of 2016.`,
-   w:'A gap that looks like a pause in a year-count chart may be one long engagement.',e:'Cloud, Networking & DevOps project 1: year 2015, 21 months',c:'Assumes Year means start year, which the workbook does not state. Other 2016 work may also be unrecorded.',names:['Cloud, Networking & DevOps project 1']},
-  {id:'long',cat:'Career milestones',kind:'fact',fl:'obvious',t:'Longest engagement and biggest teams',
-   f:`Longest recorded engagement: ${S.longest.name} (${S.longest.year}), ${S.longest.dur} months. Biggest team: DesignOps programme 2017 (2017), recorded as 15+. The largest exact team sizes are ${S.bigExact.slice(0,3).map(p=>p.name+' ('+p.team+')').join(', ')}.`,
-   w:'The two ends of the scale come from different parts of the career: a 21-month product build early on, a 15-person DesignOps effort later.',e:'Duration and Team size columns',c:'"15+" is a lower bound, so it is shown as 15 in calculations.',names:[S.longest.name,'DesignOps programme 2017']},
-  {id:'y23',cat:'Career curiosities',kind:'calc',fl:'surprising',t:'2023 was the widest year, not the deepest',
-   f:`2023 has the most projects (${S.t23.length}), the most industries (${S.maxInd[0]===2023?S.maxInd[1]:S.t23ind}), and the most recorded months (${f1(S.months(2023))}), but a median project length of only ${mo(S.t23med)}.`,
-   w:'Volume and variety peaked together while individual engagements got shorter.',e:`${S.t23.length} projects in 2023; durations ${mo(Math.min(...S.t23.map(p=>p.dur)))} to ${mo(Math.max(...S.t23.map(p=>p.dur)))}`,
-   c:'More records can mean more work, but it can also mean the repository was kept more completely from 2023. Recorded months are not workload: projects overlap and dates are missing.',names:S.t23.map(p=>p.name)},
-  {id:'y23h',cat:'Career curiosities',kind:'hyp',fl:'inferred',t:'Hypothesis: manager-era work became a portfolio',
-   f:`Alongside the 2023 pattern, team sizes rise (median ${f1(S.phs[4].team)} in 2023 to 2024 against ${f1(S.phs[0].team)} in 2011 to 2013) and ${S.d2324.filter(p=>Object.values(p.act).filter(v=>v==null).length>=10).length} of ${S.d2324.length} projects have no activity flags beyond research and data viz.`,
+  {id:'y23h',cat:'What makes me different',q:'What does the manager era look like?',icon:'layers',kind:'hyp',fl:'inferred',t:'Hypothesis: manager-era work became a portfolio',
+   f:`Team sizes rise (median ${f1(S.phs[4].team)} in 2023 to 2024 against ${f1(S.phs[0].team)} in 2011 to 2013) while ${S.d2324.filter(p=>Object.values(p.act).filter(v=>v==null).length>=10).length} of ${S.d2324.length} of those projects have most activity columns unrecorded.`,
    w:'It would fit a shift from doing each project to overseeing several at once, through teams.',e:'Team size by phase; unrecorded activity cells',c:'Alternative: the activity columns were simply not filled in for recent rows. Needs a start date, end date and personal-contribution field to test.',names:[]},
-  {id:'team',cat:'Unexpected correlations',kind:'calc',fl:'surprising',t:'Bigger teams do not clearly mean longer projects',
+  {id:'team',cat:'Unexpected correlations',q:'Does scale mean longer projects?',icon:'scatter',big:[f2(S.rTeamDur.r),'rank correlation, team size and duration'],kind:'calc',fl:'surprising',t:'Bigger teams do not clearly mean longer projects',
    f:`Across ${S.rTeamDur.n} projects the rank correlation between team size and duration is ${f2(S.rTeamDur.r)}, which is weak. A 10-person team ran ${mo(D.find(p=>p.name==='CPG project 1').dur)} (CPG project 1); a 14-person team ran 14 months (Data & AI project 3).`,
-   w:'Scale and length are separate dials in this record.',e:`Spearman ρ = ${f2(S.rTeamDur.r)}, n = ${S.rTeamDur.n}`,c:'Descriptive only. Small n and ties; no causal claim.',names:['CPG project 1','Data & AI project 3']},
-  {id:'ytm',cat:'Unexpected correlations',kind:'calc',fl:'obvious',t:'Team size grows with time; duration does not',
-   f:`Year and team size: ρ = ${f2(S.rYearTeam.r)} (n = ${S.rYearTeam.n}). Year and duration: ρ = ${f2(S.rYearDur.r)} (n = ${S.rYearDur.n}).`,
+   w:'Scale and length are separate dials in this record.',e:`Spearman \u03c1 = ${f2(S.rTeamDur.r)}, n = ${S.rTeamDur.n}`,c:'Descriptive only. Small n and ties; no causal claim.',names:['CPG project 1','Data & AI project 3']},
+  {id:'ytm',cat:'Unexpected correlations',q:'Did responsibility grow in people or in months?',icon:'trend',kind:'calc',fl:'obvious',t:'Team size grows with time; duration does not',
+   f:`Year and team size: \u03c1 = ${f2(S.rYearTeam.r)} (n = ${S.rYearTeam.n}). Year and duration: \u03c1 = ${f2(S.rYearDur.r)} (n = ${S.rYearDur.n}).`,
    w:'Responsibility grew in people, not in months. The work did not become systematically longer.',e:'Spearman rank correlations',c:'Moderate for team size, negligible for duration. Year is not the same as seniority.',names:[]},
-  {id:'breadth',cat:'Unexpected correlations',kind:'calc',fl:'obvious',t:'Projects with more activities last longer',
-   f:`Among the ${S.nBreadth} projects where all 12 activities are recorded, breadth and duration correlate at ρ = ${f2(S.rBreadthDur.r)}.`,
-   w:'It is the strongest relationship in the data, and the least surprising.',e:`Spearman ρ = ${f2(S.rBreadthDur.r)}, n = ${S.nBreadth}`,c:'Direction unknown: longer projects have room for more activities, or broad projects take longer. Excludes the 13 projects with unrecorded activities.',names:[]},
-  {id:'utds',cat:'Hidden patterns',kind:'calc',fl:'surprising',t:'Usability testing and design systems travel together',
-   f:`They appear together in ${S.utds.both} of ${S.utds.n} recorded projects, ${f2(S.utds.l)} times what chance would give. Usability testing is recorded in ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects, ${S.utBy('Design Lead')[0]} of ${S.utBy('Design Lead')[1]} lead projects and ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects. Design systems: ${S.dsBy('UX / UI Designer')[0]}/${S.dsBy('UX / UI Designer')[1]}, ${S.dsBy('Design Lead')[0]}/${S.dsBy('Design Lead')[1]}, ${S.dsBy('Design Manager')[0]}/${S.dsBy('Design Manager')[1]}.`,
+  {id:'breadth',cat:'Unexpected correlations',q:'Do broader projects take longer?',icon:'scatter',big:[f2(S.rBreadthDur.r),'rank correlation, breadth and duration'],kind:'calc',fl:'obvious',t:'Projects with more activities last longer',
+   f:`Among the ${S.nBreadth} projects where all 12 activities are recorded, breadth and duration correlate at \u03c1 = ${f2(S.rBreadthDur.r)}.`,
+   w:'It is the strongest relationship in the data, and the least surprising.',e:`Spearman \u03c1 = ${f2(S.rBreadthDur.r)}, n = ${S.nBreadth}`,c:'Direction unknown: longer projects have room for more activities, or broad projects take longer. Excludes the 13 projects with unrecorded activities.',names:[]},
+  {id:'utds',cat:'Hidden patterns',q:'Which skills come as a package?',icon:'link',big:[f1(S.utds.l)+'\u00d7','usability testing and design systems together, vs chance'],kind:'calc',fl:'surprising',t:'Usability testing and design systems travel together',
+   f:`They appear together in ${S.utds.both} of ${S.utds.n} recorded projects, ${f2(S.utds.l)} times what chance would give. Usability testing is recorded in ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects, ${S.utBy('Design Lead')[0]} of ${S.utBy('Design Lead')[1]} lead projects and ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects.`,
    w:'Validation and systems thinking arrive as a pair, and mostly in the manager era.',e:`Lift ${f2(S.utds.l)}; first seen: usability testing ${S.firstOf('Usability testing')}, design system ${S.firstOf('Design system')}`,
    c:'Manager-era percentages rest on the 14 manager projects with activities recorded. Alternative: these were done by team members and are logged more carefully on larger projects.',names:[]},
-  {id:'cloud',cat:'Hidden patterns',kind:'calc',fl:'surprising',t:'One domain got depth, another got breadth',
-   f:`Cloud, Networking & DevOps has ${S.cloud.length} projects from ${Math.min(...S.cloud.map(p=>p.year))} to ${Math.max(...S.cloud.map(p=>p.year))} averaging ${f1(mean(S.cloud.map(p=>p.dur)))} months. BFSI has the most projects (${S.bfsi.length}) but averages ${f1(mean(S.bfsi.map(p=>p.dur)))} months. The overall average is ${f1(S.all)}.`,
-   w:'BFSI is where the record is widest; cloud is where it is deepest.',e:`Mean duration by industry`,c:'Few projects per industry; the cloud average is driven by two 20 to 21 month builds.',names:S.cloud.map(p=>p.name)},
-  {id:'hc',cat:'Hidden patterns',kind:'fact',fl:'surprising',t:'Healthcare came as one burst',
+  {id:'cloud',cat:'Hidden patterns',q:'Where is your depth, and where your breadth?',icon:'compass',kind:'calc',fl:'surprising',t:'One domain got depth, another got breadth',
+   f:`BFSI has the most projects (${S.bfsi.length}) but averages ${f1(mean(S.bfsi.map(p=>p.dur)))} months. Cloud, Networking & DevOps has ${S.cloud.length} projects averaging ${f1(mean(S.cloud.map(p=>p.dur)))} months. The overall average is ${f1(S.all)}.`,
+   w:'BFSI is where the record is widest; cloud is where it is deepest.',e:'Mean duration by industry',c:'Few projects per industry.',names:S.cloud.map(p=>p.name)},
+  {id:'hc',cat:'Hidden patterns',q:'How did a new domain enter your work?',icon:'pulse',kind:'fact',fl:'surprising',t:'Healthcare came as one burst',
    f:`All ${S.hc.length} Healthcare & Telehealth projects are from ${[...new Set(S.hc.map(p=>p.year))].join(', ')}: ${L(S.hc)}.`,
    w:'A new domain can appear as a single-year cluster rather than a slow build.',e:'Industry and Year columns',c:'Three projects only.',names:S.hc.map(p=>p.name)},
-  {id:'brand',cat:'What makes me different',kind:'calc',fl:'inferred',t:'Brand work keeps returning alongside product work',
+  {id:'brand',cat:'What makes me different',q:'Do you cover brand as well as product?',icon:'pen',kind:'calc',fl:'inferred',t:'Brand work keeps returning alongside product work',
    f:`${S.brand.length} projects carry the Brand Strategy & Identity theme, across ${Math.min(...S.brand.map(p=>p.year))} to ${Math.max(...S.brand.map(p=>p.year))}: ${L(S.brand)}.`,
    w:'Identity and product design appear together across more than a decade of the record.',e:'Core theme column',c:'The record does not show how large the brand component was within each engagement.',names:S.brand.map(p=>p.name)},
-  {id:'dops',cat:'Career curiosities',kind:'fact',fl:'inferred',t:'DesignOps appears twice, seven years apart',
+  {id:'dops',cat:'Career curiosities',q:'When did operating the function enter the record?',icon:'blocks',kind:'fact',fl:'inferred',t:'DesignOps appears twice, seven years apart',
    f:`${L(S.dops)}. The 2017 effort has a team of 15+; the Design Systems theme also appears in 2023 (Design system programme, team of 12).`,
    w:'Operating the design function shows up in the record well before the manager title does.',e:'Names, themes and Team size',c:'Two records. The 2024 row has almost no fields filled.',names:S.dops.map(p=>p.name).concat(['Design system programme'])},
-  {id:'rate',cat:'Unexpected correlations',kind:'calc',fl:'inferred',t:'Ratings never dip below 3 stars, and mostly go unrecorded late',
-   f:`${S.rated.length} of ${S.n} dated projects have a rating; ${S.five} are 5 stars. Mean rating: designer ${f1(S.rBy('UX / UI Designer').m)} (${S.rBy('UX / UI Designer').n} rated), lead ${f1(S.rBy('Design Lead').m)} (${S.rBy('Design Lead').n} of ${S.rBy('Design Lead').of}), manager ${f1(S.rBy('Design Manager').m)} (${S.rBy('Design Manager').n} of ${S.rBy('Design Manager').of}). Only ${S.d2324.filter(p=>p.rating).length} of ${S.d2324.length} projects from 2023 to 2024 are rated.`,
-   w:'The numbers rise with role, but the manager average rests on fewer than half of the projects.',e:`Rating column; research "No": ${f1(mean(S.noRes.map(p=>p.rating)))} (n=${S.noRes.length}) against primary research ${f1(mean(S.priRes.map(p=>p.rating)))} (n=${S.priRes.length})`,
-   c:'The source and scale of the rating are not recorded, and unrated projects may differ from rated ones. The research comparison is too small to read anything into.',names:[]},
-  {id:'b2b',cat:'What makes me different',kind:'calc',fl:'obvious',t:'This is enterprise work',
+  {id:'b2b',cat:'What makes me different',q:'Where is your core experience?',icon:'globe',big:[pct(S.b2b,S.n),'of dated projects are B2B'],kind:'calc',fl:'obvious',t:'This is enterprise work',
    f:`${S.b2b} of ${S.n} dated projects (${pct(S.b2b,S.n)}) are B2B. In the lead years it is ${S.leadB2B} of ${byR('Design Lead').length}.`,
    w:'The record leans heavily to enterprise products; consumer work is the minority.',e:'Product type column',c:'"CSH" projects, which carry much of the consumer work, are not defined in the sheet.',names:[]},
-  {id:'sol',cat:'Career curiosities',kind:'calc',fl:'surprising',t:'The longest solo engagement',
+  {id:'sol',cat:'Career curiosities',q:'What is the longest you owned something alone?',icon:'user',big:[String(S.scholastic.dur),'months as a solo designer'],kind:'calc',fl:'surprising',t:'The longest solo engagement',
    f:`${S.scholastic.name} (${S.scholastic.year}) ran ${S.scholastic.dur} months with a team of 1. ${S.sol} projects have a team of 1; the next-longest solo one is ${mo(D.filter(p=>p.team===1&&p.name!=='Education project 2').sort((a,b)=>b.dur-a.dur)[0].dur)}.`,
    w:'It is the clearest example of individual ownership over a long period in the record.',e:'Team size = 1, sorted by duration',c:'Team size may count only the design team.',names:['Education project 2']},
-  {id:'res',cat:'What makes me different',kind:'calc',fl:'inferred',t:'Research stayed; hands-on primary research thinned out',
+  {id:'res',cat:'What makes me different',q:'How does your research practice show up?',icon:'search',kind:'calc',fl:'inferred',t:'Research stayed; hands-on primary research thinned out',
    f:`Primary research (alone or with secondary) is recorded in ${pct(Math.round(S.phs[0].primAny*S.phs[0].n),S.phs[0].n)} of 2011 to 2013 projects against ${pct(Math.round(S.phs[4].primAny*S.phs[4].n),S.phs[4].n)} of 2023 to 2024 projects, where secondary and combined research are common.`,
    w:'Research remains in almost every project, but its form changes.',e:'Research column by phase',c:'Could reflect a different mix of engagements (short advisory work) rather than a change in method.',names:[]},
-  {id:'ai',cat:'What makes me different',kind:'hyp',fl:'inferred',t:'Hypothesis: the experience that fits the AI era',
+  {id:'ai',cat:'What makes me different',q:'What fits the AI and agentic era?',icon:'spark',kind:'hyp',fl:'inferred',t:'Hypothesis: the experience that fits the AI era',
    f:`Records tied to data or AI, by industry or by name: ${S.ai.map(p=>p.name+(p.year?' ('+p.year+')':'')).join(', ')}. Add enterprise B2B depth, design systems, DesignOps and teams of 12 to 14, and the combination is uncommon in the record.`,
    w:'It suggests a next chapter in directing design for AI-assisted and agentic enterprise products at team and system level.',e:'Industry, Name, Team size, Design system, Core theme',c:'The workbook has no impact, challenge or outcome data and no field for AI-specific work. Treat this as a direction to test, not a finding.',names:S.ai.map(p=>p.name)}
   ]};
@@ -549,21 +616,20 @@ const c2=chapter('c2','Chapter 2','Beyond the interface',[
   `2014 breaks the pattern: ${S.y(2014).length} projects, four of them one- to two-week research-and-design sprints, and the first Design Lead role. Then the scale changes. Cloud, Networking & DevOps project 1 (2015, 21 months) and Cloud, Networking & DevOps project 2 (2017, 20 months) are the longest builds in the record, with teams of 4 and 6, both in cloud and infrastructure software.`,
   `By 2017 a DesignOps effort for a team of 15+ appears, and design systems and usability testing both enter the record in ${S.firstOf('Design system')}. The work stops being about screens and starts being about how design is done.`],
   [fig('bub','Duration, team size and breadth','Each bubble is a project. Position: duration and team size. Size: how many of the 12 activities were done (dashed rings: activities not fully recorded). Colour: role.','Log scales. Click a bubble to open the project.',A.bubble),
-   fig('vel','Work cadence by year','Projects recorded, median duration, median team size and rating coverage per year. Bars are coloured by phase.','Duration-based indicators only. There are no start or end dates, so churn, parallel workload and throughput are not computed. More projects is not more productivity.',A.velocity),
-   fig('strip','How long engagements last, by role','Every project as a dot on a log time axis. The line marks the median.','',A.strip)],
+   fig('vel','Work cadence by year','Projects in flight each year: solid for projects that started that year, faded for earlier projects still running (estimated from duration, assuming a January start). Three small charts show median duration, median team size and rating coverage.','There are no start or end dates, so "in flight" is a minimum estimate from duration, and the true overlap is unknown. More projects is not more productivity.',A.velocity),
+   fig('strip','How long engagements last, by role','Every project as a dot on a log time axis, spread vertically so none hide behind another. The line marks the median.','Many projects share the same duration, so dots are spread vertically to stay visible. Counts per role are shown at the left.',A.strip)],
   `Length of engagement did not trend upward (rank correlation of year and duration ${f2(S.rYearDur.r)}). What changed was the mix: a few very long platform builds sit beside many short engagements.`);
 const c3=chapter('c3','Chapter 3','From designer to design leader',[
   `Median team size by phase runs ${S.phs.map(x=>f1(x.team)).join(', ')} (2011 to 2013, 2014 to 2015, 2017 to 2019, 2020 to 2022, 2023 to 2024); the 2017 to 2019 figure is lifted by the 15+ DesignOps team, and 2023 to 2024 is the highest. Year and team size correlate at ${f2(S.rYearTeam.r)}. In the manager years design-system work and usability testing become routine: usability testing is recorded in ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects against ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects.`,
   `That is evidence for a move from designing individual experiences to shaping practice and systems. The alternative explanation is that larger teams simply log more activities. The data cannot separate the two; it would take a field for personal contribution.`],
   [fig('pm','Phase small multiples','The same seven measures for each phase (A to E, left to right). Hover for the denominator.','Percentages use only projects where the activity was recorded. Phase E has few fully recorded projects; check n in the tooltip.',A.phaseMulti),
-   fig('sank','What each role worked on','Flow from role to type of work to product type. Hover a band to see the projects.','Type of work groups the "Core theme" values; "HE" and "CSH" are shown as recorded because the workbook does not expand them.',A.sankey),
-   fig('rat','Customer ratings by phase','Ratings for rated projects, with unrated projects kept visible.','Ratings only run from 3 to 5 stars. Most late-career projects are unrated, so the rise in the average is not safe to read as a trend.',A.ratings)],
-  `The leadership shift is visible in team scale and in validation and systems work. Whether it also shows in customer ratings is unknown, because most recent projects are unrated.`);
+   fig('sank','What each role worked on','Flow from role to type of work to product type. Hover a band to see the projects.','Type of work groups the "Core theme" values; "HE" and "CSH" are shown as recorded because the workbook does not expand them.',A.sankey)],
+  `The leadership shift is visible in team scale and in validation and systems work. Ratings are shown within each phase panel above; they only run from 3 to 5 stars and most recent projects are unrated, so they are not safe to read as a trend.`);
 const c4=chapter('c4','Chapter 4','The professional DNA',[
   `Five activities appear in more than three-quarters of recorded projects: research, stakeholder collaboration, journeys and flows, wireframes and visual design. That is the signature core. What differs by phase is what gets added on top.`,
   `Frequency is not proficiency. This chapter shows what was done, not how well, and the Skills sheet holds only one scored entry.`],
   [fig('cap','Capability evolution matrix','Share of recorded projects in each phase where an activity was done. Dashed cells: not recorded for any project in that phase.','n is the number of projects with that activity recorded. Content strategy is left out (recorded for only 12 projects).',A.capab),
-   fig('coo','Which activities appear together','Lift: how much more (lime) or less (violet) often two activities co-occur than chance would give. 1.0 = as expected.','Needs at least 15 projects with both activities recorded. Descriptive only.',A.cooc),
+   fig('coo','Which activities appear together','The pairs that go together most and least often, compared with chance (lift 1.0 = as expected). Most pairs sit near chance; only a few stand out.','Needs at least 15 projects with both activities recorded. Descriptive only.',A.cooc),
    h('div',{},fig('rad','Career fingerprint','Six proxy axes per phase. Toggle phases to compare.','Proxies built from recorded activities, not measured skill. Phase E rests on very few fully recorded projects.',A.radar),
      fig('con','Project constellation','Projects linked when they share an industry or have a near-identical activity profile. Positions are computed, not hand-placed.','Hover a project to light up its links; click to open it. Filters dim the rest.',A.constellation))],
   `The signature is research-led full-stack UX with stakeholders at the table, to which validation and design systems are added later in the career.`);
@@ -574,7 +640,19 @@ const c6=chapter('c6','Chapter 6','The next frontier',[
   [h('div',{class:'ins',id:'next'})],`If the AI era needs designers who can direct teams, systems and research together in complex enterprise products, the record is consistent with that direction. It cannot show outcomes, so the case still needs the impact stories the workbook leaves empty.`);
 // ---------- insights explorer
 const flt={kind:null,fl:null,cat:null};
-function insCard(i){return h('article',{class:'card'},h('div',{class:'meta'},tagEl(i.kind),h('span',{class:'tag'},i.fl),h('span',{class:'tag'},i.cat)),h('h4',{},i.t),h('p',{},i.f),h('p',{class:'why'},h('b',{},'Why it matters: '),i.w),h('div',{class:'ev'},'Evidence: '+i.e),h('p',{class:'cav'},h('b',{},'Limits: '),i.c),i.names&&i.names.length?h('button',{class:'go',onclick:()=>{st.q='';$('#q').value='';$('#repo').scrollIntoView();document.querySelector('#repoq').value=i.names[0];A.repoQ=i.names;A.render();}},'Show in repository'):'')}
+const ICO={layers:'<path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/><path d="m3 17 9 5 9-5" opacity=".5"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>',users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14c2.5 0 4 2 4 5"/>',star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',trend:'<path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/>',blocks:'<rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke-dasharray="2 2"/>',handshake:'<path d="M3 12l4-4 4 2 3-2 4 3 3-1"/><path d="m7 8 3 8 3 1 4-5"/>',bolt:'<path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/>',flag:'<path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/>',scatter:'<circle cx="6" cy="17" r="1.6"/><circle cx="10" cy="12" r="1.6"/><circle cx="15" cy="14" r="1.6"/><circle cx="18" cy="7" r="1.6"/><path d="M3 3v18h18"/>',link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',pulse:'<path d="M3 12h4l2-6 4 12 2-6h6"/>',pen:'<path d="m4 20 1-4L16 5l3 3L8 19l-4 1Z"/><path d="m14 7 3 3"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/>',spark:'<path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/>'};
+const svgEl=(inner,vb,cls)=>{const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);if(cls)s.setAttribute('class',cls);s.innerHTML=inner;return s};
+const icon=n=>svgEl(ICO[n]||ICO.spark,'0 0 24 24','ico');
+function viz(v){if(!v)return null;
+  if(v.t==='years'){const mx=Math.max(...v.data.map(d=>d[1]));return h('div',{class:'viz'},svgEl(v.data.map((d,k)=>{const x=k*20+2,hh=Math.max(2,d[1]/mx*40);return `<rect x="${x}" y="${46-hh}" width="14" height="${hh}" rx="2" class="${d[0]===v.hi?'on':'off'}"/>`}).join(''),'0 0 '+(v.data.length*20+2)+' 48','vb'),h('span',{class:'vl'},'Projects started per year; 2023 highlighted'))}
+  if(v.t==='dots'){const n=Math.min(v.of,60);return h('div',{class:'viz'},h('div',{class:'dg'},Array.from({length:n},(_,k)=>h('i',{class:k<v.n?'on':''}))),h('span',{class:'vl'},v.label))}
+  if(v.t==='bars'){const mx=Math.max(...v.data.map(d=>d[0]));return h('div',{class:'viz'},svgEl(v.data.slice(0,8).map((d,k)=>`<rect x="0" y="${k*9}" width="${Math.max(3,d[0]/mx*100)}" height="6" rx="3" class="on"/><text x="${Math.max(3,d[0]/mx*100)+3}" y="${k*9+6}" class="bt">${d[0]}${v.unit||''} \u00b7 ${d[1]}<\/text>`).join(''),'0 0 150 '+Math.min(8,v.data.length)*9,'vb2'),h('span',{class:'vl'},v.label))}
+  if(v.t==='ratings'){const tot=v.five+v.four+v.three;const row=(n,c,l)=>`<g>${Array.from({length:n},(_,k)=>`<path transform="translate(${k*13},0) scale(.5)" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z" class="on"/>`).join('')}<\/g>`;
+    return h('div',{class:'viz'},h('div',{class:'rt'},[[5,v.five],[4,v.four],[3,v.three]].map(([n,c])=>h('div',{class:'rr'},svgEl(Array.from({length:n},(_,k)=>`<path transform="translate(${k*12},0) scale(.5)" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/>`).join(''),'0 0 64 12','st'),h('b',{style:'width:'+Math.max(4,c/tot*100)+'%'}),h('em',{},c)))),h('span',{class:'vl'},tot+' rated; '+v.un+' unrated'))}
+  if(v.t==='phases'){const mx=Math.max(...v.data.filter(x=>x!=null));return h('div',{class:'viz'},svgEl(v.data.map((d,k)=>d==null?'':`<rect x="${k*20+2}" y="${46-d/mx*40}" width="14" height="${d/mx*40}" rx="2" class="on"/>`).join(''),'0 0 102 48','vb'),h('span',{class:'vl'},v.label+' (phases A to E)'))}
+  return null}
+function insCard(i){const big=i.big?h('div',{class:'big'},h('b',{},i.big[0]),h('span',{},i.big[1])):null;
+  return h('article',{class:'card'+(i.big?' hero':'')},h('div',{class:'ch-top'},i.icon?h('div',{class:'ib'},icon(i.icon)):null,h('div',{class:'meta'},tagEl(i.kind),h('span',{class:'tag'},i.fl),h('span',{class:'tag'},i.cat))),i.q?h('div',{class:'qq'},'\u201c'+i.q+'\u201d'):null,h('h4',{},i.t),big,viz(i.viz),h('p',{},i.f),h('p',{class:'why'},h('b',{},'Why it matters: '),i.w),h('div',{class:'ev'},'Evidence: '+i.e),h('p',{class:'cav'},h('b',{},'Limits: '),i.c),i.names&&i.names.length?h('button',{class:'go',onclick:()=>{st.q='';$('#q').value='';$('#repo').scrollIntoView();document.querySelector('#repoq').value=i.names[0];A.repoQ=i.names;A.render();}},'Show in repository'):'')}
 function renderInsights(){const all=A.insights();const box=$('#insx');if(!box)return;
   const ck=(k,v,l)=>h('button',{class:'chip','aria-pressed':flt[k]===v,onclick:()=>{flt[k]=flt[k]===v?null:v;renderInsights()}},l);
   const list=all.filter(i=>(!flt.kind||i.kind===flt.kind)&&(!flt.fl||i.fl===flt.fl)&&(!flt.cat||i.cat===flt.cat));
