@@ -18,6 +18,10 @@ const navItems: { label: string; to: string; menu?: MenuKey; quiet?: boolean }[]
   { label: 'Grow (For Designers)', to: '/learn', menu: 'Grow', quiet: true },
 ]
 
+// Resource pages that belong to Leadership in the menu, so they highlight Leadership and not Practice.
+const LEADERSHIP_RESOURCES = ['/resources/leading-design', '/resources/hiring']
+const inLeadershipResources = (path: string) => LEADERSHIP_RESOURCES.some(x => path === x || path.startsWith(x))
+
 const arrowSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
 const soonTag = <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3 align-middle">Coming soon</span>
 
@@ -28,8 +32,8 @@ const goChevron = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" st
 
 /** The phone menu: sections that open and close, each page shown as a tappable card with its cover and an arrow. */
 function MobileNav({ pathname }: { pathname: string }) {
-  const [openKey, setOpenKey] = useState<MenuKey | null>(() => (pathname.startsWith('/leadership') || pathname.startsWith('/community') || pathname.startsWith('/reflections') ? 'Leadership' : pathname.startsWith('/learn') || pathname.startsWith('/mentoring') ? 'Grow' : 'Works'))
-  const isHere = (to: string) => to !== '' && (pathname === to || (to !== '/' && pathname.startsWith(to + '/')))
+  const [openKey, setOpenKey] = useState<MenuKey | null>(() => (pathname.startsWith('/leadership') || pathname.startsWith('/community') || pathname.startsWith('/reflections') || inLeadershipResources(pathname) ? 'Leadership' : pathname.startsWith('/learn') || pathname.startsWith('/mentoring') ? 'Grow' : 'Works'))
+  const isHere = (to: string) => to !== '' && (pathname === to || (to !== '/' && pathname.startsWith(to + '/'))) && !(to === '/resources' && inLeadershipResources(pathname))
 
   const row = (key: string, cover: React.ReactNode, title: string, sub: string | undefined, to: string, soon?: boolean) => {
     const here = isHere(to)
@@ -137,7 +141,7 @@ export default function Nav() {
   const path = location.pathname
   const activeFor = (k: MenuKey) =>
     k === 'Works' ? path.startsWith('/craft')
-    : k === 'Leadership' ? ['/leadership', '/community', '/reflections'].some(x => path.startsWith(x))
+    : k === 'Leadership' ? ['/leadership', '/community', '/reflections'].some(x => path.startsWith(x)) || inLeadershipResources(path)
     : ['/learn', '/mentoring'].some(x => path.startsWith(x))
 
   const titleCls = 'text-[1.0625rem] leading-snug font-light tracking-[-0.01em] text-ink group-hover:underline underline-offset-4 decoration-1'
@@ -215,8 +219,8 @@ export default function Nav() {
                 </li>
               ) : (
                 <li key={item.to} onMouseEnter={hoverClose}>
-                  <NavLink to={item.to} className={navCls}>
-                    {({ isActive }) => <>{item.label}{isActive && <span aria-hidden="true" className="absolute left-0 right-0 -bottom-[3px] h-[2px] bg-signal" />}</>}
+                  <NavLink to={item.to} className={({ isActive }) => navCls({ isActive: isActive && !(item.to === '/resources' && inLeadershipResources(location.pathname)) })}>
+                    {({ isActive }) => <>{item.label}{isActive && !(item.to === '/resources' && inLeadershipResources(location.pathname)) && <span aria-hidden="true" className="absolute left-0 right-0 -bottom-[3px] h-[2px] bg-signal" />}</>}
                   </NavLink>
                 </li>
               ))}
