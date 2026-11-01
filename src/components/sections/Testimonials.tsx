@@ -11,7 +11,7 @@ const Caption = ({ t }: { t: Testimonial }) => (
 )
 
 /** A continuous, looping row of tall quote cards. Pauses on hover, focus or the pause button. */
-function Rotator({ label, title, items }: { label: string; title: string; items: Testimonial[] }) {
+function Rotator({ label, title, intro, items }: { label: string; title: string; intro?: string[]; items: Testimonial[] }) {
   const [paused, setPaused] = useState(false)
   const group = (copy: number) => (
     <ul className="flex gap-6 pr-6 shrink-0" aria-hidden={copy === 1 ? true : undefined}>
@@ -29,6 +29,7 @@ function Rotator({ label, title, items }: { label: string; title: string; items:
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>
           <h2 className="text-display-l text-white mt-4">{title}</h2>
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
         </header>
       </div>
       <div className="marquee" data-paused={paused} style={{ ['--dur' as string]: `${items.length * 11}s` }} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
@@ -41,8 +42,8 @@ function Rotator({ label, title, items }: { label: string; title: string; items:
   )
 }
 
-export default function Testimonials({ label, title, items, rotate }: { label: string; title: string; items: Testimonial[]; rotate?: boolean }) {
-  if (rotate && items.length > 1) return <Rotator label={label} title={title} items={items} />
+export default function Testimonials({ label, title, intro, items, rotate }: { label: string; title: string; intro?: string[]; items: Testimonial[]; rotate?: boolean }) {
+  if (rotate && items.length > 1) return <Rotator label={label} title={title} intro={intro} items={items} />
   // A quote is only set large if it is short enough to read as a statement.
   const shortest = [...items].sort((a, b) => a.quote.length - b.quote.length)[0]
   const lead = shortest.quote.length <= 160 ? shortest : null
@@ -53,6 +54,7 @@ export default function Testimonials({ label, title, items, rotate }: { label: s
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>
           <h2 className="text-display-l text-white mt-4">{title}</h2>
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
         </header>
 
         {lead && (

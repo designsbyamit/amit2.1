@@ -57,12 +57,12 @@ const Community = () => (
   </svg>
 )
 
-const items: { n: string; art: ReactNode; tone: string; text: string; wide?: boolean }[] = [
-  { n: '01', art: <Suite />, tone: 'var(--field-cobalt)', text: 'Driving suite-first design by crafting harmonised experiences across SAP products into scalable, connected ecosystems.' },
-  { n: '02', art: <AINative />, tone: 'var(--field-plum)', text: 'Shaping AI-native and multi-modal experiences through experimentation, systems thinking, and value-centred innovation.' },
-  { n: '03', art: <Craft />, tone: 'var(--field-teal)', text: 'Championing design excellence through strategic execution, customer co-creation, critiques, and high-quality delivery standards.' },
-  { n: '04', art: <Talent />, tone: 'var(--field-graphite)', wide: true, text: 'Building and nurturing resilient design talent through mentoring, AI-led upskilling, and future-ready capability development.' },
-  { n: '05', art: <Community />, tone: 'var(--field-cobalt)', wide: true, text: 'Leading and growing design communities through partnerships, initiatives, and events that expand the impact of design beyond designers.' },
+const items: { n: string; art: ReactNode; tone: string; title: string; lead: string; body: string[]; wide?: boolean }[] = [
+  { n: '01', art: <Suite />, tone: 'var(--field-cobalt)', title: 'Designing connected experiences', lead: 'Making an entire product ecosystem feel like one coherent experience.', body: ['Enterprise products are rarely designed in isolation. They are part of larger ecosystems, with different users, workflows, technologies and expectations.', 'I’m particularly interested in how we bring these experiences together without losing the depth and flexibility each product needs.', 'At SAP, this translates into contributing to the Suite-first direction: helping harmonise experiences across products and making complex enterprise journeys feel more connected and intuitive.'] },
+  { n: '02', art: <AINative />, tone: 'var(--field-plum)', title: 'Exploring what’s next in AI', lead: 'Moving beyond intelligent features towards experiences that think, adapt and act.', body: ['AI is changing more than how products are built. It’s changing how people interact with technology, make decisions and get things done.', 'I’m exploring AI-native and agentic experiences, multimodal interactions and the evolving relationship between humans and intelligent systems.', 'My interest goes beyond adding AI to existing interfaces. It’s about understanding what fundamentally needs to change when software can anticipate, reason and act.'] },
+  { n: '03', art: <Craft />, tone: 'var(--field-teal)', title: 'Raising the bar for design excellence', lead: 'Making great experiences a consistent outcome, not an occasional achievement.', body: ['Good design should not depend on which team builds a feature or which designer happens to work on it.', 'I’m interested in building the practices, principles and quality standards that help design organisations deliver experiences that are thoughtful, consistent and customer-centred at scale.', 'That includes design reviews, experience governance, design systems, cross-functional collaboration and a culture where quality is everyone’s responsibility.'] },
+  { n: '04', art: <Talent />, tone: 'var(--field-graphite)', wide: true, title: 'Growing people and design talent', lead: 'Helping people discover what they’re capable of becoming.', body: ['I’ve always believed that the growth of a design organisation depends on the growth of its people.', 'I care about creating opportunities for designers to strengthen their craft, develop business fluency, build confidence and expand their influence.', 'Through mentoring, capability development and collaborative learning, I enjoy helping designers navigate the often-unwritten parts of their professional journey.'] },
+  { n: '05', art: <Community />, tone: 'var(--field-cobalt)', wide: true, title: 'Building communities that move design forward', lead: 'Creating spaces where designers can learn from one another, challenge ideas and grow together.', body: ['Some of the most meaningful learning happens outside formal projects and organisational boundaries.', 'I’m passionate about bringing designers together through communities, events, academia partnerships and shared initiatives.', 'At SAP, I’ve had the opportunity to lead SAP Design Hub India, a community of 250+ designers, and help create platforms such as Impulse India that bring together diverse perspectives and encourage conversations about the future of design.', 'I see community building as more than organising events. It’s about creating a sense of belonging and making collective knowledge more accessible.'] },
 ]
 
 export default function DriveGrid() {
@@ -83,7 +83,11 @@ export default function DriveGrid() {
             </div>
           </div>
           <span className="block w-14 h-px" style={{ background: i === 1 ? 'var(--signal)' : 'rgb(var(--ink-rgb) / 0.6)' }} />
-          <p className="text-body text-ink-2 max-w-[44ch]">{d.text}</p>
+          <div className="flex flex-col gap-4 max-w-[52ch]">
+            <h3 className="text-title text-ink">{d.title}</h3>
+            <p className="text-body text-ink font-medium">{d.lead}</p>
+            {d.body.map(t => <p key={t} className="text-body-sm text-ink-2">{t}</p>)}
+          </div>
         </motion.li>
       ))}
     </ol>

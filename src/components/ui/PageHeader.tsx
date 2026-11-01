@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import type { ReactNode } from 'react'
 import RevealText from './RevealText'
 import Breadcrumb from '../ds/Breadcrumb'
 import Mark, { type MarkName } from '../marks/Marks'
@@ -6,7 +7,9 @@ import Mark, { type MarkName } from '../marks/Marks'
 interface PageHeaderProps {
   label: string
   title: string
-  subtitle?: string
+  subtitle?: ReactNode
+  /** Extra content under the subtitle, such as buttons. */
+  children?: ReactNode
   image?: string
   imageAlt?: string
   /** CSS object-position for the portrait, e.g. '50% 0%' */
@@ -22,7 +25,7 @@ interface PageHeaderProps {
 const ease = [0.16, 1, 0.3, 1] as const
 
 /** Top of every page: optional breadcrumb, mono overline, thin display title, intro. */
-export default function PageHeader({ label, title, subtitle, image, imageAlt, imagePosition, mono, breadcrumb, mark }: PageHeaderProps) {
+export default function PageHeader({ label, title, subtitle, image, imageAlt, imagePosition, mono, breadcrumb, mark, children }: PageHeaderProps) {
   return (
     <section className={`relative overflow-hidden ${image ? 'md:min-h-[72vh] flex flex-col justify-end' : ''}`} style={{ paddingTop: 'var(--header-h)' }}>
       {image && (
@@ -50,6 +53,7 @@ export default function PageHeader({ label, title, subtitle, image, imageAlt, im
               {subtitle}
             </motion.p>
           )}
+          {children && <div className="mt-8">{children}</div>}
         </div>
       </div>
     </section>
