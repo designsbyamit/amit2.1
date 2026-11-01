@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { colleagueTestimonials } from '../../data/testimonials'
 
 /** One voice on the home page, and a way to the rest. */
@@ -14,6 +15,7 @@ export default function HomeTestimonial() {
             <p className="text-caption text-ink-3">{t.role}</p>
           </figcaption>
         </figure>
+        <div className="mt-8"><Link to="/about#testimonials" className="btn btn-ghost">View all</Link></div>
       </div>
     </section>
   )
