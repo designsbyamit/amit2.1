@@ -13,7 +13,7 @@ export interface Playback {
   /** How I led it. Only set where a larger design team was led; leave out for solo or small-pod work. */
   led?: string
   beats: {
-    about: string; challenge: string; users: string; solution: string; impact: string
+    about: string; challenge: string; users: string; solution: string; impact?: string
     /** Optional: the challenge as a short list, followed by `challengeNote`. */
     challengePoints?: string[]; challengeNote?: string
     /** Optional: the personas, shown as chips above the sentence in `users`. */
@@ -21,7 +21,8 @@ export interface Playback {
   }
   /** Optional: the end-to-end process, shown as a flow between the solution and the impact. */
   flow?: { title: string; text: string; by: 'Agent' | 'People' | 'Agent + people' }[]
-  metric: { value: string; label: string }
+  /** Optional: leave out where the figure is scale, not impact. */
+  metric?: { value: string; label: string }
   featured: boolean
 }
 
@@ -108,19 +109,17 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'Designing AI-Search experience scaling across 15000+ products',
+    headline: 'Designing AI search experiences, scaled across products',
     dek: 'AI search built into the design system so each improvement reaches every product that adopts it, designed to earn the trust of sceptical enterprise users.',
-    led: 'I led a design team of 7 to 8, working alongside engineering, product, data science and accessibility.',
+    led: 'I led a design team of 28, working alongside engineering, product, data science and accessibility.',
     roleNote: 'A design-system component case: the craft of interaction and behaviour, the anatomy of the component, and the specification product teams build from.',
     beats: {
       about: 'One unified AI-powered search experience across the product suite.',
       challenge: 'Each product had its own legacy search, vocabulary and assumptions, and enterprise users were sceptical of AI-surfaced results.',
       users: 'Enterprise users across the suite who already distrust automation and need to see why a result appeared.',
       solution: 'Intent over query, relevance over completeness, and reasoning shown instead of magic, including surfacing the AI’s confidence.',
-      impact: 'Owned by the design team as part of the design system. Every improvement reaches each product that adopts it.',
     },
-    metric: { value: '15,000+', label: 'Products it is designed to scale across' },
-    featured: false,
+    featured: true,
   },
   {
     id: 'data-ai',

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { caseStudies } from '../../data/work'
 import { playbacks } from '../../data/playbacks'
 import ProjectCard from '../playback/ProjectCard'
+import Latest from './Latest'
 
 /** Latest Works: the selected projects, one clean frame each, stacked. No sideways scrolling. */
 export default function FeaturedWork() {
@@ -24,6 +25,7 @@ export default function FeaturedWork() {
             </li>
           ))}
         </ul>
+        <Latest />
       </div>
     </section>
   )

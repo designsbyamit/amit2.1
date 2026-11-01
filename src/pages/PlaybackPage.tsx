@@ -32,7 +32,7 @@ export default function PlaybackPage() {
     ['The challenge', pb.beats.challenge],
     ['Who it is for', pb.beats.users],
     ['The solution', pb.beats.solution],
-    ['The impact', pb.beats.impact],
+    ...(pb.beats.impact ? [['The impact', pb.beats.impact] as [string, string]] : []),
   ]
   const meta = [cs.role, cs.timeline, cs.domain].filter(Boolean)
 
@@ -74,7 +74,7 @@ export default function PlaybackPage() {
             <div className="container-site grid-site gap-y-6 items-start">
               <h2 id={`beat-${i}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{label}</h2>
               <div className="col-span-4 md:col-span-8">
-                {label === 'The impact' && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /></div>}
+                {label === 'The impact' && pb.metric && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /></div>}
                 {label === 'Who it is for' && pb.beats.personas && (
                   <ul className="flex flex-wrap gap-2 mb-5" aria-label="Personas">{pb.beats.personas.map(x => <li key={x} className="tag">{x}</li>)}</ul>
                 )}

@@ -26,15 +26,14 @@ function Item({ to, kind, title, text, cta, visual, delay }: { to: string; kind:
   )
 }
 
-/** Latest: a leadership practice, a workshop and a piece of writing, each at full width. Projects live in Selected work above. */
+/** A leadership practice, a workshop and a piece of writing. Shown inside Latest Works, below the projects, with its own separation. */
 export default function Latest() {
   const practice = cases.find(c => c.slug === 'ai-experimentation-to-capability') ?? cases[0]
   const piece = reflections.find(r => r.id === 'vedic-design-series') ?? reflections[0]
   const img = (src?: string, pos?: string) => src ? <img src={src} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: pos }} /> : <div className="w-full h-full bg-surface-1" />
   return (
-    <section className="section-y hairline-top" id="latest">
-      <div className="container-site">
-        <h2 className="text-display-l text-ink mb-12 md:mb-16">Latest</h2>
+    <div className="mt-16 md:mt-24 pt-10 md:pt-14 border-t" style={{ borderColor: 'var(--line-2)' }} id="latest">
+      <h3 className="text-label text-ink-3 mb-8 md:mb-10">Practice, workshop and writing</h3>
         <ul className="grid md:grid-cols-3 gap-4 md:gap-6">
           <Item to={`/leadership/cases/${practice.slug}`} kind="Practice" title={practice.title} text={practice.subtitle} cta="Read the case" delay={0.06}
             visual={<StoryCover motif="culture" tone="teal" className="!rounded-none w-full h-full" ratio="16 / 10" />} />
@@ -43,7 +42,6 @@ export default function Latest() {
           <Item to="/reflections" kind="Writing" title={piece.title} text={piece.excerpt} cta="Read the series" delay={0.18}
             visual={img(piece.image)} />
         </ul>
-      </div>
-    </section>
+    </div>
   )
 }
