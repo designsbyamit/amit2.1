@@ -9,7 +9,7 @@
 <style>:root{
   --bg:#0F1013;--s1:#181A1F;--s2:#22252B;--s3:#2C3038;
   --ink:#ECEDEF;--ink2:#C4C7CD;--ink3:#A3A7B0;--faint:#5D626C;
-  --signal:#C8F55A;--on-signal:#0F1013;--signal-ink:#C8F55A;--link:#7D98FF;
+  --signal:#C8F55A;--on-seg:#0F1013;--on-signal:#0F1013;--signal-ink:#C8F55A;--link:#7D98FF;
   --line:rgba(236,237,239,.10);--line2:rgba(236,237,239,.18);--ctl:rgba(236,237,239,.42);
   --c-des:#FFB86B;--c-res:#C79BE8;--c-lead:#4FD1BC;--c-mgr:#C8F55A;--c-p4:#7D98FF;
   --field-teal:#0F3B3A;--field-cobalt:#1B2350;--field-plum:#33203F;
@@ -18,11 +18,11 @@
 }
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
   --bg:#F5F6F7;--s1:#FFFFFF;--s2:#EEF0F2;--s3:#E4E7EB;--ink:#0F1013;--ink2:#3A3E46;--ink3:#4D525C;--faint:#9AA0A9;
-  --signal-ink:#3F6B00;--link:#3654E0;--line:rgba(15,16,19,.10);--line2:rgba(15,16,19,.16);--ctl:rgba(15,16,19,.45);
+  --signal-ink:#3F6B00;--on-seg:#FFFFFF;--link:#3654E0;--line:rgba(15,16,19,.10);--line2:rgba(15,16,19,.16);--ctl:rgba(15,16,19,.45);
   --c-des:#B8650A;--c-res:#8A4DB5;--c-lead:#0C8A78;--c-mgr:#5E9A00;--c-p4:#3654E0;--shadow:0 24px 48px rgba(15,16,19,.12);color-scheme:light}}
 :root[data-theme="light"]{
   --bg:#F5F6F7;--s1:#FFFFFF;--s2:#EEF0F2;--s3:#E4E7EB;--ink:#0F1013;--ink2:#3A3E46;--ink3:#4D525C;--faint:#9AA0A9;
-  --signal-ink:#3F6B00;--link:#3654E0;--line:rgba(15,16,19,.10);--line2:rgba(15,16,19,.16);--ctl:rgba(15,16,19,.45);
+  --signal-ink:#3F6B00;--on-seg:#FFFFFF;--link:#3654E0;--line:rgba(15,16,19,.10);--line2:rgba(15,16,19,.16);--ctl:rgba(15,16,19,.45);
   --c-des:#B8650A;--c-res:#8A4DB5;--c-lead:#0C8A78;--c-mgr:#5E9A00;--c-p4:#3654E0;--shadow:0 24px 48px rgba(15,16,19,.12);color-scheme:light}
 :root{color-scheme:dark}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){color-scheme:light}}
@@ -138,6 +138,8 @@ footer{padding:48px 0 64px;margin-top:64px;border-top:1px solid var(--line);colo
 .viz .bt{font:9px var(--mono);fill:var(--ink3)}
 .dg{display:flex;flex-wrap:wrap;gap:4px}.dg i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.dg i.on{background:var(--ink)}
 .rt{display:flex;flex-direction:column;gap:4px}.rr{display:flex;align-items:center;gap:8px}.rr svg.st{width:64px;height:12px;fill:var(--ink);flex:none}.rr b{height:8px;border-radius:4px;background:var(--ink);display:block}.rr em{font:11px var(--mono);color:var(--ink3);font-style:normal}
+
+.dyn{font-size:13.5px;color:var(--ink2);margin:12px 0 0;max-width:52rem}
 
 .top{border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:12px max(16px,env(safe-area-inset-left,0px));font-size:14px}.top .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--ink3)}.top a{color:var(--ink2);text-decoration:none}.top a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 </style>
@@ -582,6 +584,363 @@ A.insights=function(){
   ]};
 })();
 
+// power-diagram Voronoi treemap helpers
+const VOR=(function(){
+function clip(poly,a,b,c){ // keep a*x+b*y<=c
+  const out=[];for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length];const fp=a*p[0]+b*p[1]-c,fq=a*q[0]+b*q[1]-c;
+    if(fp<=0)out.push(p);if((fp<0&&fq>0)||(fp>0&&fq<0)){const t=fp/(fp-fq);out.push([p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t])}}
+  return out}
+function area(poly){let a=0;for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length];a+=p[0]*q[1]-q[0]*p[1]}return a/2}
+function centroid(poly){const A=area(poly);if(Math.abs(A)<1e-6){const n=poly.length||1;return[poly.reduce((s,p)=>s+p[0],0)/n,poly.reduce((s,p)=>s+p[1],0)/n]}
+  let cx=0,cy=0;for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length];const f=p[0]*q[1]-q[0]*p[1];cx+=(p[0]+q[0])*f;cy+=(p[1]+q[1])*f}return[cx/(6*A),cy/(6*A)]}
+function cells(sites,bound,iters){const n=sites.length;const total=Math.abs(area(bound));const tsum=sites.reduce((s,x)=>s+x.v,0);
+  sites.forEach(s=>{s.t=s.v/tsum*total;s.w=s.w||0});
+  let polys=[];
+  for(let it=0;it<iters;it++){
+    polys=sites.map((si,i)=>{let P=bound;for(let j=0;j<n&&P.length;j++){if(j===i)continue;const sj=sites[j];
+      const a=sj.x-si.x,b=sj.y-si.y;const c=(sj.x*sj.x+sj.y*sj.y-si.x*si.x-si.y*si.y+si.w-sj.w)/2;P=clip(P,a,b,c)}return P});
+    const mean=total/n;
+    polys.forEach((P,i)=>{const s=sites[i];const A=P.length>2?Math.abs(area(P)):0;
+      if(P.length>2){const c=centroid(P);s.x+=(c[0]-s.x)*.55;s.y+=(c[1]-s.y)*.55}
+      s.w+=(s.t-A)*.6;});
+    const mw=Math.min(...sites.map(s=>s.w));sites.forEach(s=>s.w-=mw)}
+  polys=sites.map((si,i)=>{let P=bound;for(let j=0;j<n&&P.length;j++){if(j===i)continue;const sj=sites[j];const a=sj.x-si.x,b=sj.y-si.y;const c=(sj.x*sj.x+sj.y*sj.y-si.x*si.x-si.y*si.y+si.w-sj.w)/2;P=clip(P,a,b,c)}return P});
+  return polys}
+return{cells,area,centroid}})();
+if(typeof module!=='undefined')module.exports=VOR;else window.__A.VOR=VOR;
+
+(function(){
+const A=window.__A;const {F,D,ALL,PH,ROLES,RC,ACTS,YEARS,st,h,s,med,mean,f1,mo,hov,openProj,projLines,showTip,hideTip}=A;
+const TG=A.TG;
+const PAL=['#FFB86B','#C79BE8','#4FD1BC','#C8F55A','#7D98FF','#FF8FA3','#6FC7F2','#E6D36B','#8EDB98','#D79BE0','#F29B6B','#A9B4C2'];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const short=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t;
+const legend=()=>h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)));
+const note=t=>h('p',{class:'dyn'},t);
+function arcPath(cx,cy,r0,r1,a0,a1){const full=a1-a0>=Math.PI*2-1e-4;if(full)a1=a0+Math.PI*2-1e-4;const p=(r,a)=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];const l=a1-a0>Math.PI?1:0;
+  const A0=p(r1,a0),A1=p(r1,a1),B1=p(r0,a1),B0=p(r0,a0);return `M${A0}A${r1},${r1} 0 ${l} 1 ${A1}L${B1}A${r0},${r0} 0 ${l} 0 ${B0}Z`}
+
+/* ================= 1. SUNBURST ================= */
+let sbPath=[];
+A.sunburst=function(box){
+  const ps=F();
+  const root={name:'Career',depth:0,children:[],kind:'root'};
+  ROLES.forEach(r=>{const rp=ps.filter(p=>p.role===r);if(!rp.length)return;const rn={name:r,depth:1,role:r,kind:'role',children:[],parent:root};root.children.push(rn);
+    const inds=[...new Set(rp.map(p=>p.industry))].sort((a,b)=>rp.filter(p=>p.industry===b).length-rp.filter(p=>p.industry===a).length);
+    inds.forEach(i=>{const ip=rp.filter(p=>p.industry===i);const inn={name:i||'Industry not recorded',depth:2,role:r,kind:'industry',children:[],parent:rn};rn.children.push(inn);
+      ip.sort((a,b)=>a.year-b.year).forEach(p=>{const pn={name:p.name,depth:3,role:r,kind:'project',p,children:[],parent:inn};inn.children.push(pn);
+        const done=ACTS.filter(a=>p.act[a]===true);done.forEach(a=>pn.children.push({name:a,depth:4,role:r,kind:'act',v:1/done.length,children:[],parent:pn,p}))})})});
+  let x=0;(function lay(n){if(!n.children.length){n.v=n.v||1;n.x0=x;x+=n.v;n.x1=x;return}const x0=x;n.children.forEach(lay);n.x0=x0;n.x1=x;n.v=x1v(n)})(root);
+  function x1v(n){return n.x1-n.x0}
+  const all=[];(function walk(n){all.push(n);n.children.forEach(walk)})(root);
+  // find focus by path
+  let focus=root;for(const nm of sbPath){const c=focus.children.find(z=>z.name===nm);if(!c)break;focus=c}
+  sbPath=[];{let f=focus;while(f.parent){sbPath.unshift(f.name);f=f.parent}}
+  const W=680,Hh=680,cx=W/2,cy=Hh/2,R=W/2-6,R0=84,rings=3,dr=(R-R0)/rings;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,style:'max-width:700px;margin:0 auto',role:'img','aria-label':'Sunburst of roles, industries, projects and activities'});
+  const span=focus.x1-focus.x0||1;const TAU=Math.PI*2;
+  const col=n=>RC[n.role]||'var(--ink3)';
+  all.forEach(n=>{if(n===root)return;const d=n.depth-focus.depth;if(d<1||d>rings)return;if(n.x0<focus.x0-1e-9||n.x1>focus.x1+1e-9)return;
+    const a0=(n.x0-focus.x0)/span*TAU-Math.PI/2,a1=(n.x1-focus.x0)/span*TAU-Math.PI/2;const r0=R0+(d-1)*dr,r1=R0+d*dr;
+    const can=n.children.length>0||n.kind==='project';
+    const pth=s('path',{d:arcPath(cx,cy,r0+1,r1-1,a0,a1),style:`fill:${col(n)};stroke:var(--bg);stroke-width:1.6;cursor:pointer`,tabindex:0,role:'button','aria-label':n.name});
+    pth.addEventListener('click',()=>{if(n.kind==='act')return;sbPath=[];let f=n;while(f.parent){sbPath.unshift(f.name);f=f.parent}A.render()});
+    const cnt=n.kind==='act'?null:(function c(z){return z.kind==='project'?1:z.children.reduce((a,b)=>a+c(b),0)})(n);
+    hov(pth,n.name,()=>n.kind==='project'?projLines(n.p).concat(['Click to see its activities']):n.kind==='act'?['Done in '+n.parent.name]:[cnt+' project'+(cnt===1?'':'s'),n.kind==='role'?'Click to zoom into this role':'Click to zoom in']);
+    svg.append(pth);
+    const mid=(a0+a1)/2,rm=(r0+r1)/2,arcLen=(a1-a0)*rm;
+    if(arcLen>(d===3?46:26)&&(r1-r0)>20){const deg=mid*180/Math.PI;const flip=Math.cos(mid)<0&&Math.abs(Math.sin(mid))<.999&&false;
+      const tx=cx+rm*Math.cos(mid),ty=cy+rm*Math.sin(mid);let rot=deg;if(Math.cos(mid)<0)rot+=180;
+      const maxc=Math.floor((r1-r0-6)/5.6);const lab=short(n.name,Math.max(4,maxc));
+      svg.append(s('text',{x:tx,y:ty,transform:`rotate(${rot} ${tx} ${ty})`,'text-anchor':'middle','dominant-baseline':'central',style:'fill:var(--on-seg);font-size:10.5px;font-weight:600;pointer-events:none'},lab))}
+  });
+  const up=s('circle',{cx,cy,r:R0-4,style:'fill:var(--s2);stroke:var(--line2);cursor:'+(focus.parent?'pointer':'default')});
+  if(focus.parent)up.addEventListener('click',()=>{sbPath=sbPath.slice(0,-1);A.render()});
+  svg.append(up);
+  const pr=(function c(z){return z.kind==='project'?1:z.children.reduce((a,b)=>a+c(b),0)})(focus);
+  const t1=focus.kind==='act'?'':short(focus.name,16);
+  svg.append(s('text',{x:cx,y:cy-8,'text-anchor':'middle',class:'t-ink',style:'font-size:14px;font-weight:600;pointer-events:none;font-family:var(--serif)'},t1),
+    s('text',{x:cx,y:cy+10,'text-anchor':'middle',class:'mono',style:'pointer-events:none'},focus.kind==='project'?'activities done':pr+' projects'),
+    s('text',{x:cx,y:cy+26,'text-anchor':'middle',class:'mono',style:'pointer-events:none'},focus.parent?'click to go up':'click a segment'));
+  const crumbs=[];{let f=focus;while(f){crumbs.unshift(f);f=f.parent}}
+  const bc=h('div',{class:'legend'},...crumbs.map((c,i)=>h('button',{class:'chip','aria-pressed':c===focus,onclick:()=>{sbPath=crumbs.slice(1,i+1).map(z=>z.name);A.render()}},c.name)),focus.kind==='project'?h('button',{class:'chip',onclick:()=>openProj(focus.p)},'Open project record'):'');
+  box.replaceChildren(bc,svg,h('div',{class:'legend',style:'justify-content:center;margin-top:8px'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),h('span',{class:'und'},'Rings, from the centre: role, industry, project, activities done')))};
+
+/* ================= 2. CHORD ================= */
+const CM={ind:'Industries and activities',rt:'Roles and project themes',pa:'Product type and activities'};
+A.chord=function(box){
+  const ps=F();const mode=st.chordM||'ind';const thr=st.chordT==null?2:st.chordT;
+  let left,right,val,lt,rt;
+  const grp=ps.reduce((o,p)=>(o[p.industry]=(o[p.industry]||0)+1,o),{});
+  if(mode==='rt'){left=ROLES.filter(r=>ps.some(p=>p.role===r));const th={};ps.forEach(p=>th[TG(p.theme)]=(th[TG(p.theme)]||0)+1);right=Object.keys(th).sort((a,b)=>th[b]-th[a]);
+    val=(a,b)=>ps.filter(p=>p.role===a&&TG(p.theme)===b).length;lt='Role';rt='Project theme'}
+  else{const actSet=ACTS;
+    if(mode==='ind'){left=Object.keys(grp).filter(k=>grp[k]>=2).sort((a,b)=>grp[b]-grp[a]);lt='Industry'}else{left=['B2B','B2C & B2B','B2C'].filter(k=>ps.some(p=>p.product===k));lt='Product type'}
+    right=actSet;rt='Activity done';
+    const keyOf=p=>mode==='ind'?(grp[p.industry]>=2?p.industry:null):p.product;
+    val=(a,b)=>ps.filter(p=>keyOf(p)===a&&p.act[b]===true).length}
+  let rows=left.map(a=>right.map(b=>{const v=val(a,b);return v>=thr?v:0}));
+  { const keepL=left.map((_,i)=>rows[i].some(v=>v>0));const keepR=right.map((_,j)=>rows.some(r=>r[j]>0));rows=rows.filter((_,i)=>keepL[i]).map(r=>r.filter((_,j)=>keepR[j]));left=left.filter((_,i)=>keepL[i]);right=right.filter((_,j)=>keepR[j]) }
+  const ltot=rows.map(r=>r.reduce((x,y)=>x+y,0)),rtot=right.map((b,j)=>rows.reduce((x,r)=>x+r[j],0));
+  const T=ltot.reduce((x,y)=>x+y,0)||1;
+  const W=1000,Hh=580,cx=W/2,cy=Hh/2+6,R=225,rI=R-14;const gap=.05,span=Math.PI-gap*2;
+  // left on left half (angles pi/2 .. 3pi/2 going clockwise from bottom?) use: left: from  PI*1.5-gap to PI*0.5+gap going down
+  const lcol=left.map((_,i)=>PAL[i%PAL.length]);
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Chord diagram: '+CM[mode]});
+  const ng=left.length+right.length;const padL=.025;
+  const lw=left.length?(span-padL*(left.length-1))/T:0;const rw=(span-padL*(right.length-1))/T;
+  // angle assignment: left side from top (-90deg+gap) counterclockwise going down on left: angles from 270+... use param
+  const la=[];let a=-Math.PI/2-gap;left.forEach((_,i)=>{const w=ltot[i]*lw;la.push([a-w,a]);a-=w+padL});
+  const ra=[];a=-Math.PI/2+gap;right.forEach((_,j)=>{const w=rtot[j]*rw;ra.push([a,a+w]);a+=w+padL});
+  const pt=(r,an)=>[cx+r*Math.cos(an),cy+r*Math.sin(an)];
+  // ribbons
+  const lcur=la.map(x=>x[1]),rcur=ra.map(x=>x[0]);const ribs=[];
+  left.forEach((_,i)=>right.forEach((__,j)=>{const v=rows[i][j];if(!v)return;const w1=v*lw,w2=v*rw;const l0=lcur[i],l1=l0-w1;lcur[i]=l1;const r0=rcur[j],r1=r0+w2;rcur[j]=r1;ribs.push({i,j,v,l0,l1,r0,r1})}));
+  const rg=s('g',{});svg.append(rg);
+  const paths=ribs.map(r=>{const p0=pt(rI,r.l0),p1=pt(rI,r.l1),q0=pt(rI,r.r0),q1=pt(rI,r.r1);
+    const d=`M${p0}A${rI},${rI} 0 0 0 ${p1}Q${cx},${cy} ${q0}A${rI},${rI} 0 0 1 ${q1}Q${cx},${cy} ${p0}Z`;
+    const el=s('path',{d,style:`fill:${lcol[r.i]};opacity:.78;stroke:var(--bg);stroke-width:.6`,class:'hit'});
+    hov(el,left[r.i]+' ↔ '+right[r.j],[r.v+' project'+(r.v===1?'':'s')]);rg.append(el);return el});
+  const hi=(side,idx)=>{paths.forEach((el,k)=>{const r=ribs[k];const on=idx==null||(side==='l'?r.i===idx:r.j===idx);el.style.opacity=on?(idx==null?.78:.95):.07})};
+  const labelFor=(an,txt,sub,anchorSide,r)=>{const [x,y]=pt(R+10,an);const right=Math.cos(an)>=0;svg.append(s('text',{x:right?x+2:x-2,y:y,'text-anchor':right?'start':'end','dominant-baseline':'central',class:'t-ink2',style:'font-size:11.5px'},txt))};
+  let lastLy=-99;left.forEach((n,i)=>{const [a0,a1]=la[i];const el=s('path',{d:arcPath(cx,cy,rI,R,a0,a1),style:`fill:${lcol[i]};cursor:pointer;stroke:var(--bg);stroke-width:1`,class:'hit',tabindex:0});
+    hov(el,n,[ltot[i]+' links to '+rt.toLowerCase()+'s']);el.addEventListener('mouseenter',()=>hi('l',i));el.addEventListener('mouseleave',()=>hi());svg.append(el);
+    const m=(a0+a1)/2;const [x,y]=pt(R+10,m);if(Math.abs(y-lastLy)<13)return;lastLy=y;svg.append(s('text',{x:x-3,y,'text-anchor':'end','dominant-baseline':'central',class:'t-ink2',style:'font-size:11.5px'},short(n,28)))});
+  let lastRy=-99;right.forEach((n,j)=>{const [a0,a1]=ra[j];const el=s('path',{d:arcPath(cx,cy,rI,R,a0,a1),style:'fill:var(--ink2);cursor:pointer;stroke:var(--bg);stroke-width:1',class:'hit',tabindex:0});
+    hov(el,n,[rtot[j]+' links to '+lt.toLowerCase()+'s']);el.addEventListener('mouseenter',()=>hi('r',j));el.addEventListener('mouseleave',()=>hi());svg.append(el);
+    const m=(a0+a1)/2;const [x,y]=pt(R+10,m);if(Math.abs(y-lastRy)<13)return;lastRy=y;svg.append(s('text',{x:x+3,y,'text-anchor':'start','dominant-baseline':'central',class:'t-ink2',style:'font-size:11.5px'},short(n,28)))});
+  svg.append(s('text',{x:cx-R-40,y:24,'text-anchor':'end',class:'mono'},lt.toUpperCase()),s('text',{x:cx+R+40,y:24,'text-anchor':'start',class:'mono'},rt.toUpperCase()));
+  const modes=h('div',{class:'legend'},...Object.entries(CM).map(([k,l])=>h('button',{class:'chip','aria-pressed':mode===k,onclick:()=>{st.chordM=k;A.render()}},l)),h('span',{class:'und'},'|'),h('button',{class:'chip','aria-pressed':thr===2,onclick:()=>{st.chordT=2;A.render()}},'Links of 2+ projects'),h('button',{class:'chip','aria-pressed':thr===1,onclick:()=>{st.chordT=1;A.render()}},'All links'),h('span',{class:'und'},'Ribbon width = number of projects. Hover an arc to isolate its links.'));
+  let txt='';
+  if(mode==='ind'){const n=left.length;const rows2=right.map((b,j)=>[b,rows.filter(r=>r[j]>0).length]).sort((a,b)=>b[1]-a[1]);
+    const all=rows2.filter(x=>x[1]===n).map(x=>x[0]);const top=rows2.slice(0,3).map(x=>x[0]+' ('+x[1]+' of '+n+')');
+    txt=`Across the ${n} industries shown, ${all.length?all.join(', ')+' appear'+(all.length===1?'s':'')+' in every one':'no activity appears in every one'}. Most widely travelled: ${top.join(', ')}. ${rows2[rows2.length-1][0]} travels least (${rows2[rows2.length-1][1]} industries).`}
+  box.replaceChildren(modes,svg,txt?note(txt):'')};
+
+/* ================= 3. UPSET ================= */
+const USEL=['Research','Journeys','IA','Wireframes','Visual design','Usability testing','Design system','Stakeholders'];
+A.upset=function(box){
+  const ps=F().filter(p=>USEL.every(a=>p.act[a]!=null));
+  const combos=new Map();ps.forEach(p=>{const k=USEL.filter(a=>p.act[a]).join('|');(combos.get(k)||combos.set(k,[]).get(k)).push(p)});
+  const list=[...combos.entries()].map(([k,v])=>({k,sets:k?k.split('|'):[],v})).sort((a,b)=>b.v.length-a.v.length||b.sets.length-a.sets.length);
+  const N=14,top=list.slice(0,N);const W=1000,L=270,cw=(W-L-20)/N,rowH=26,barH=170,T=26,Hh=T+barH+USEL.length*rowH+36;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'UpSet plot of activity combinations'});
+  const mx=Math.max(1,...top.map(c=>c.v.length));
+  USEL.forEach((a,i)=>{const y=T+barH+14+i*rowH;
+    if(i%2===0)svg.append(s('rect',{x:0,y:y-rowH/2,width:W,height:rowH,style:'fill:var(--s2)'}));
+    const n=ps.filter(p=>p.act[a]).length;svg.append(s('text',{x:L-110,y:y+4,'text-anchor':'end',class:'t-ink2',style:'font-size:12px'},a),
+      s('rect',{x:L-104,y:y-6,width:n/ps.length*70,height:12,rx:2,style:'fill:var(--ink3)'}),s('text',{x:L-8,y:y+4,'text-anchor':'end',class:'mono'},String(n)))});
+  top.forEach((c,j)=>{const x=L+j*cw+cw/2;const bh=c.v.length/mx*(barH-30);const sig=j===0;
+    const bar=s('rect',{x:x-cw*.3,y:T+barH-bh,width:cw*.6,height:bh,rx:3,style:`fill:${sig?'var(--signal-ink)':'var(--ink3)'};cursor:pointer`,class:'hit'});
+    svg.append(bar,s('text',{x,y:T+barH-bh-6,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},String(c.v.length)));
+    const ys=USEL.map((a,i)=>c.sets.includes(a)?T+barH+14+i*rowH:null).filter(v=>v!=null);
+    if(ys.length>1)svg.append(s('line',{x1:x,x2:x,y1:Math.min(...ys),y2:Math.max(...ys),style:`stroke:${sig?'var(--signal-ink)':'var(--ink)'};stroke-width:3`}));
+    USEL.forEach((a,i)=>{const on=c.sets.includes(a);svg.append(s('circle',{cx:x,cy:T+barH+14+i*rowH,r:6.5,style:on?`fill:${sig?'var(--signal-ink)':'var(--ink)'}`:'fill:var(--s3)'}))});
+    const hit=s('rect',{x:x-cw/2,y:T,width:cw,height:Hh-T-30,fill:'transparent',class:'hit'});svg.append(hit);
+    hov(hit,c.v.length+' project'+(c.v.length===1?'':'s'),[c.sets.length+' of '+USEL.length+' activities: '+(c.sets.join(', ')||'none'),'Projects: '+c.v.slice(0,6).map(p=>p.name).join(', ')+(c.v.length>6?'…':'')]);
+    hit.addEventListener('click',()=>{A.repoQ=c.v.map(p=>p.name);document.querySelector('#repoq').value=c.v[0].name;document.querySelector('#repo').scrollIntoView();A.render()})});
+  svg.append(s('text',{x:L,y:14,class:'mono'},'PROJECTS WITH EXACTLY THIS COMBINATION'),s('text',{x:L-62,y:T+barH+4,'text-anchor':'end',class:'mono'},'ACTIVITY · PROJECTS'));
+  const single=list.filter(c=>c.v.length===1).length;const four=ps.filter(p=>['Research','Journeys','IA','Usability testing'].every(a=>p.act[a])).length;
+  const full=list.find(c=>c.sets.length===USEL.length);
+  box.replaceChildren(svg,note(`${ps.length} projects have all ${USEL.length} of these activities recorded. They form ${list.length} different combinations; ${single} of them occur only once. ${full?`The most common single pattern is the full toolkit, done together in ${full.v.length} projects. `:''}${four} projects combine research, journeys, information architecture and usability testing. Click a column to see its projects in the repository.`))};
+
+/* ================= 4. VORONOI TREEMAP ================= */
+const VM={dur:['Duration','√months'],team:['Team size','√people'],eq:['Equal','one project, one cell']};
+A.voronoi=function(box){
+  const ps=F('industry');const mode=st.vorM||'dur';
+  const val=p=>mode==='eq'?1:mode==='team'?Math.sqrt(Math.max(p.team||1,1)):Math.sqrt(Math.max(p.dur||.25,.25));
+  const W=1000,Hh=600;const bound=[];for(let i=0;i<120;i++){const a=i/120*2*Math.PI;bound.push([W/2+W/2*Math.cos(a)*.99,Hh/2+Hh/2*Math.sin(a)*.99])}
+  const by={};ps.forEach(p=>(by[p.industry]=by[p.industry]||[]).push(p));
+  const inds=Object.entries(by).map(([k,v],i)=>({k,ps:v,v:v.reduce((a,p)=>a+val(p),0),x:70+(mean(v.map(p=>p.year))-2011)/13*860,y:Hh/2+(((i*37)%11)-5)*38,w:0}));
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Voronoi treemap of projects grouped by industry'});
+  if(!inds.length){box.replaceChildren(h('p',{class:'und'},'No projects match the filters.'));return}
+  const P1=inds.length>1?A.VOR.cells(inds,bound,130):[bound];
+  const cells=[];
+  inds.forEach((ind,i)=>{const poly=P1[i];if(!poly||poly.length<3)return;const c=A.VOR.centroid(poly);
+    let sub;if(ind.ps.length===1)sub=[{p:ind.ps[0],poly}];
+    else{const sites=ind.ps.map((p,j)=>({p,v:val(p),x:c[0]+Math.cos(j*2.4)*18*(1+j%3),y:c[1]+Math.sin(j*2.4)*18*(1+j%3),w:0}));const PP=A.VOR.cells(sites,poly,90);sub=sites.map((z,j)=>({p:z.p,poly:PP[j]}))}
+    cells.push({ind,poly,sub})});
+  const f=pts=>pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  cells.forEach(c=>c.sub.forEach(z=>{if(!z.poly||z.poly.length<3)return;const ar=Math.abs(A.VOR.area(z.poly));const el=s('polygon',{points:f(z.poly),style:`fill:${RC[z.p.role]};stroke:var(--bg);stroke-width:1.6;cursor:pointer`,class:'hit'});
+    hov(el,z.p.name,()=>projLines(z.p));el.addEventListener('click',()=>openProj(z.p));svg.append(el);z.ar=ar}));
+  cells.forEach(c=>{const el=s('polygon',{points:f(c.poly),style:'fill:none;stroke:var(--ink);stroke-width:2.2;pointer-events:none'});svg.append(el)});
+  cells.forEach(c=>c.sub.forEach(z=>{if(!z.poly||z.poly.length<3||z.ar<4200)return;const cc=A.VOR.centroid(z.poly);const nm=z.p.name;const mc=Math.floor(Math.sqrt(z.ar)/6.2);
+    svg.append(s('text',{x:cc[0],y:cc[1],'text-anchor':'middle','dominant-baseline':'central',style:'fill:var(--on-seg);font-size:11px;font-weight:600;pointer-events:none'},short(nm,Math.max(5,mc))),
+      s('text',{x:cc[0],y:cc[1]+13,'text-anchor':'middle',style:'fill:var(--on-seg);font-size:9.5px;pointer-events:none'},String(z.p.year)))}));
+  const modes=h('div',{class:'legend'},...Object.entries(VM).map(([k,[l]])=>h('button',{class:'chip','aria-pressed':mode===k,onclick:()=>{st.vorM=k;A.render()}},'Cell size: '+l)),h('span',{class:'und'},'Heavy outlines are industries; left to right follows each industry’s average year. Area is '+VM[mode][1]+'.'));
+  box.replaceChildren(modes,legend(),svg)};
+
+/* ================= 5. GALAXY ================= */
+let GX=null,GXK='';
+function buildGalaxy(ps){
+  const nodes=[],idx={};const add=(id,o)=>{if(idx[id]!=null)return idx[id];idx[id]=nodes.length;nodes.push({id,adj:[],...o});return idx[id]};
+  const link=(a,b)=>{nodes[a].adj.push(b);nodes[b].adj.push(a)};
+  ps.forEach(p=>{const n=add('p:'+p.name,{type:'project',label:p.name,p,role:p.role});
+    if(p.role)link(n,add('r:'+p.role,{type:'role',label:p.role,role:p.role}));
+    if(p.industry)link(n,add('i:'+p.industry,{type:'industry',label:p.industry}));
+    ACTS.forEach(a=>{if(p.act[a]===true)link(n,add('a:'+a,{type:'act',label:a}))})});
+  const N=nodes.length;
+  // betweenness (Brandes, unweighted)
+  const bc=new Array(N).fill(0);
+  for(let sv=0;sv<N;sv++){const S=[],Pd=nodes.map(()=>[]),sg=new Array(N).fill(0),d=new Array(N).fill(-1);sg[sv]=1;d[sv]=0;const Q=[sv];
+    for(let qi=0;qi<Q.length;qi++){const v=Q[qi];S.push(v);for(const w of nodes[v].adj){if(d[w]<0){d[w]=d[v]+1;Q.push(w)}if(d[w]===d[v]+1){sg[w]+=sg[v];Pd[w].push(v)}}}
+    const dl=new Array(N).fill(0);while(S.length){const w=S.pop();for(const v of Pd[w])dl[v]+=sg[v]/sg[w]*(1+dl[w]);if(w!==sv)bc[w]+=dl[w]}}
+  nodes.forEach((n,i)=>{n.bc=bc[i]/2;n.deg=n.adj.length});
+  // layout
+  let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+  nodes.forEach(n=>{n.x=(rnd()-.5)*400;n.y=(rnd()-.5)*300;n.vx=0;n.vy=0});
+  const E=[];nodes.forEach((n,i)=>n.adj.forEach(j=>{if(j>i)E.push([i,j])}));
+  for(let it=0;it<260;it++){const k=1-it/260;
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const a=nodes[i],b=nodes[j];let dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+.01,d=Math.sqrt(d2);const f=(a.type==='project'&&b.type==='project'?500:a.type!=='project'&&b.type!=='project'?16000:3000)/d2;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f}
+    E.forEach(([i,j])=>{const a=nodes[i],b=nodes[j];const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1;const f=(d-70)*.02;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f});
+    nodes.forEach(n=>{n.vx-=n.x*.004;n.vy-=n.y*.007;const m=Math.hypot(n.vx,n.vy),cap=14;if(m>cap){n.vx*=cap/m;n.vy*=cap/m}n.x+=n.vx*.5*(.2+k);n.y+=n.vy*.5*(.2+k);n.vx*=.55;n.vy*=.55})}
+  return nodes}
+A.galaxy=function(box){
+  const ps=F();const key=ps.map(p=>p.name).join('|');if(key!==GXK||!GX){GX=buildGalaxy(ps);GXK=key}const nodes=GX;
+  if(!nodes.length){box.replaceChildren(h('p',{class:'und'},'No projects match the filters.'));return}
+  const W=1000,Hh=640;const xs=nodes.map(n=>n.x),ys=nodes.map(n=>n.y);const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+  const sc=Math.min((W-120)/(x1-x0||1),(Hh-80)/(y1-y0||1));const X=n=>60+(n.x-x0)*sc+((W-120)-(x1-x0)*sc)/2,Y=n=>40+(n.y-y0)*sc+((Hh-80)-(y1-y0)*sc)/2;
+  const nonP=nodes.filter(n=>n.type!=='project');const maxbc=Math.max(1,...nonP.map(n=>n.bc));const rad=n=>n.type==='project'?4:7+Math.sqrt(n.bc/maxbc)*13;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Network of roles, industries, activities and projects. Size shows betweenness centrality.'});
+  const eg=s('g',{});svg.append(eg);const edges=[];
+  nodes.forEach((n,i)=>n.adj.forEach(j=>{if(j>i){const l=s('line',{x1:X(n),y1:Y(n),x2:X(nodes[j]),y2:Y(nodes[j]),style:'stroke:var(--line2);stroke-width:.8'});eg.append(l);edges.push([i,j,l])}}));
+  const els=[];
+  const fillOf=n=>n.type==='project'?RC[n.role]:n.type==='role'?RC[n.role]:n.type==='act'?'var(--c-p4)':'var(--ink3)';
+  nodes.forEach((n,i)=>{const r=rad(n);const g=s('g',{style:'cursor:pointer'});
+    if(n.type==='role')g.append(s('circle',{cx:X(n),cy:Y(n),r:r+5,style:`fill:none;stroke:${fillOf(n)};stroke-width:1.5`}));
+    if(n.type==='industry')g.append(s('circle',{cx:X(n),cy:Y(n),r,style:'fill:var(--s2);stroke:var(--ink3);stroke-width:2'}));
+    else if(n.type==='act')g.append(s('rect',{x:X(n)-r,y:Y(n)-r,width:2*r,height:2*r,rx:4,transform:`rotate(45 ${X(n)} ${Y(n)})`,style:'fill:var(--c-p4)'}));
+    else g.append(s('circle',{cx:X(n),cy:Y(n),r,style:`fill:${fillOf(n)};stroke:var(--bg);stroke-width:1`}));
+    svg.append(g);els.push(g);
+    hov(g,n.label,()=>n.type==='project'?projLines(n.p):[{role:'Role',industry:'Industry',act:'Activity'}[n.type]+' · '+n.deg+' projects',' betweenness '+f1(n.bc)]);
+    g.addEventListener('mouseenter',()=>{const nb=new Set([i,...n.adj]);els.forEach((e,k)=>e.style.opacity=nb.has(k)?1:.25);edges.forEach(([a,b,l])=>{l.style.opacity=(a===i||b===i)?1:.08;l.style.stroke=(a===i||b===i)?'var(--ink2)':''})});
+    g.addEventListener('mouseleave',()=>{els.forEach(e=>e.style.opacity=1);edges.forEach(([a,b,l])=>{l.style.opacity=1;l.style.stroke=''})});
+    if(n.type==='project')g.addEventListener('click',()=>openProj(n.p))});
+  const rank=[...nonP].sort((a,b)=>b.bc-a.bc);const degR=[...nonP].sort((a,b)=>b.deg-a.deg);
+  const placed=[];rank.slice(0,10).forEach(n=>{const lx=X(n),ly=Y(n)+rad(n)+(n.type==='role'?15:12);if(placed.some(q=>Math.abs(q[0]-lx)<70&&Math.abs(q[1]-ly)<14))return;placed.push([lx,ly]);svg.append(s('text',{x:lx,y:ly,'text-anchor':'middle',class:'t-ink',style:'font-size:11px;font-weight:600;paint-order:stroke;stroke:var(--bg);stroke-width:3px;pointer-events:none'},short(n.label,22)))});
+  const lg=h('div',{class:'legend'},h('span',{},h('i',{style:'background:var(--c-des)'}),'Project (coloured by role)'),h('span',{},h('i',{style:'background:transparent;border:2px solid var(--ink3)'}),'Industry'),h('span',{},h('i',{style:'background:var(--c-p4);border-radius:2px'}),'Activity'),h('span',{},h('i',{style:'background:transparent;border:2px solid var(--c-lead)'}),'Role'),h('span',{class:'und'},'Size of a non-project node = betweenness centrality. Hover to light up a node’s links; click a project to open it.'));
+  const tbl=h('div',{class:'scroll'},h('table',{style:'max-width:620px'},h('thead',{},h('tr',{},['Most central','Type','Betweenness','Projects linked','Rank by links'].map(x=>h('th',{style:'cursor:default'},x)))),
+    h('tbody',{},rank.slice(0,8).map(n=>h('tr',{},h('td',{},n.label),h('td',{},{role:'Role',industry:'Industry',act:'Activity'}[n.type]),h('td',{},f1(n.bc)),h('td',{},String(n.deg)),h('td',{},'#'+(degR.indexOf(n)+1)))))));
+  const bridge=rank.filter(n=>n.type==='act'||n.type==='industry').find(n=>degR.indexOf(n)-rank.indexOf(n)>=3);
+  const txt=`Betweenness counts how often a node lies on the shortest path between two others, so it finds the connectors, not just the busiest nodes. ${bridge?bridge.label+' ranks #'+(rank.indexOf(bridge)+1)+' on betweenness but #'+(degR.indexOf(bridge)+1)+' on number of links: it connects more than it appears to.':''}`;
+  box.replaceChildren(lg,svg,note(txt),tbl)};
+
+/* ================= 6. PARALLEL COORDINATES ================= */
+const PCB={};
+A.parallel=function(box){
+  const ps=F();const W=1000,Hh=480,T=60,B=40,L=175,R=150;
+  const inds=[...new Set(D.map(p=>p.industry))].sort((a,b)=>D.filter(p=>p.industry===b).length-D.filter(p=>p.industry===a).length);
+  const lg=v=>Math.log(v);
+  const AX=[
+    {k:'role',l:'Role',cat:ROLES.slice().reverse(),get:p=>p.role},
+    {k:'industry',l:'Industry',cat:inds,get:p=>p.industry},
+    {k:'dur',l:'Duration (months)',min:.25,max:22,log:true,ticks:[.25,1,3,6,12,21],fmt:v=>v===.25?'1 wk':String(v),get:p=>p.dur},
+    {k:'team',l:'Team size',min:1,max:15,ticks:[1,3,6,10,15],get:p=>p.team},
+    {k:'breadth',l:'Activities done',min:0,max:12,ticks:[0,4,8,12],get:p=>p.breadth},
+    {k:'rating',l:'Customer rating',min:3,max:5,ticks:[3,4,5],get:p=>p.rating}];
+  const xs=AX.map((_,i)=>L+i*(W-L-R)/(AX.length-1));const H0=T,H1=Hh-B;
+  const yOf=(a,v)=>{if(v==null)return null;if(a.cat){const i=a.cat.indexOf(v);if(i<0)return null;return H0+(i+.5)/a.cat.length*(H1-H0)}
+    const t=a.log?(lg(v)-lg(a.min))/(lg(a.max)-lg(a.min)):(v-a.min)/(a.max-a.min);return H1-clamp(t,0,1)*(H1-H0)};
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,style:'touch-action:none;user-select:none',role:'img','aria-label':'Parallel coordinates of projects across six measures'});
+  const br=PCB;const matches=p=>AX.every((a,i)=>{const r=br[a.k];if(!r)return true;const y=yOf(a,a.get(p));return y!=null&&y>=r[0]&&y<=r[1]});
+  const lines=ps.map((p,pi)=>{const pts=AX.map((a,i)=>{const y=yOf(a,a.get(p));return y==null?null:[xs[i],y+(a.cat?((pi*7)%9-4)*.9:0)]});
+    let d='';pts.forEach((q,i)=>{if(!q)return;if(i>0&&pts[i-1])d+=`L${q[0]},${q[1]}`;else d+=`M${q[0]},${q[1]}`});
+    const el=s('path',{d,style:`fill:none;stroke:${RC[p.role]};stroke-width:1.8;stroke-linejoin:round`,class:'hit'});
+    hov(el,p.name,()=>projLines(p));el.addEventListener('click',()=>openProj(p));return{p,el}});
+  AX.forEach((a,i)=>{svg.append(s('line',{x1:xs[i],x2:xs[i],y1:H0,y2:H1,style:'stroke:var(--ctl);stroke-width:1.5'}),s('text',{x:xs[i],y:T-24,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},a.l));
+    if(a.cat)a.cat.forEach((c,j)=>{const y=yOf(a,c);const lab=short(c,i===1?20:22);const n=D.filter(p=>p[a.k]===c).length;if(a.k==='industry'&&n<2&&false)return;svg.append(s('text',{x:xs[i]+(i===0?-8:8),y:y+3,'text-anchor':i===0?'end':'start',style:'font-size:'+(a.k==='industry'?'9':'11.5')+'px;paint-order:stroke;stroke:var(--bg);stroke-width:2.5px',class:'t-ink2'},lab))});
+    else{(a.ticks||[]).forEach(t=>{const y=yOf(a,t);svg.append(s('line',{x1:xs[i]-4,x2:xs[i],y1:y,y2:y,style:'stroke:var(--ctl)'}),s('text',{x:xs[i]-8,y:y+3,'text-anchor':'end',class:'mono'},a.fmt?a.fmt(t):String(t)))})}});
+  lines.forEach(l=>svg.append(l.el));
+  // brush layer
+  const sel={};AX.forEach((a,i)=>{const rect=s('rect',{x:xs[i]-14,y:H0,width:28,height:H1-H0,fill:'transparent',style:'cursor:crosshair'});svg.append(rect);
+    const vis=s('rect',{x:xs[i]-7,width:14,rx:3,style:'fill:var(--signal-ink);opacity:.3;pointer-events:none',y:0,height:0});svg.append(vis);sel[a.k]=vis;
+    const upd=()=>{const r=br[a.k];if(r){vis.setAttribute('y',r[0]);vis.setAttribute('height',r[1]-r[0])}else{vis.setAttribute('height',0)}};upd();
+    let start=null;const py=e=>{const b=svg.getBoundingClientRect();return (e.clientY-b.top)/b.height*Hh};
+    rect.addEventListener('pointerdown',e=>{start=clamp(py(e),H0,H1);rect.setPointerCapture(e.pointerId);br[a.k]=[start,start];upd();});
+    rect.addEventListener('pointermove',e=>{if(start==null)return;const y=clamp(py(e),H0,H1);br[a.k]=[Math.min(start,y),Math.max(start,y)];upd();refresh()});
+    rect.addEventListener('pointerup',e=>{if(start==null)return;start=null;const r=br[a.k];if(r&&r[1]-r[0]<4)delete br[a.k];upd();refresh(true)})});
+  const sum=h('div',{class:'dyn'});
+  function refresh(final){const act=Object.keys(br).length>0;let m=0;lines.forEach(l=>{const ok=!act||matches(l.p);if(ok)m++;l.el.style.opacity=ok?(act?1:.62):.06;l.el.style.strokeWidth=ok&&act?2.4:1.8});
+    if(!act){sum.textContent='Drag on any axis to select a range. Selected projects stay bright and are compared with the rest below.';return}
+    const a=lines.filter(l=>matches(l.p)).map(l=>l.p),b=lines.filter(l=>!matches(l.p)).map(l=>l.p);
+    const row=(l,f,fmt)=>`${l}: ${fmt(f(a))} vs ${fmt(f(b))}`;const M=(k)=>x=>med(x.map(p=>p[k]));const fm=v=>v==null?'n/a':f1(v);
+    sum.textContent=`${a.length} of ${ps.length} selected. Median (selected vs rest): `+[row('duration',M('dur'),fm)+' mo',row('team',M('team'),fm),row('activities',M('breadth'),fm),row('rating',M('rating'),fm)].join(' · ')+'.'}
+  refresh();
+  const reset=h('button',{class:'chip',onclick:()=>{for(const k in br)delete br[k];A.render()}},'Clear selection');
+  box.replaceChildren(h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),reset),svg,sum,h('p',{class:'foot'},'A line breaks where a value was not recorded. Dragging on the Role axis over Design Manager, for example, shows how those projects differ from the rest.'))};
+
+/* ================= 7. BUMP ================= */
+const BM={act:'Activities',th:'Project themes',ind:'Industries'};
+A.bump=function(box){
+  const ps=F();const mode=st.bumpM||'act';const phs=PH.filter(p=>ps.some(q=>q.ph===p.id));
+  const sets=PH.map(p=>ps.filter(q=>q.ph===p.id));
+  let items,score;
+  if(mode==='act'){items=ACTS.slice();score=(it,ph)=>{const q=sets[ph].filter(p=>p.act[it]!=null);return q.length?q.filter(p=>p.act[it]).length/q.length:null}}
+  else{const key=mode==='ind'?(p=>p.industry):(p=>TG(p.theme));const tot={};ps.forEach(p=>tot[key(p)]=(tot[key(p)]||0)+1);items=Object.keys(tot).sort((a,b)=>tot[b]-tot[a]).slice(0,8);score=(it,ph)=>sets[ph].length?sets[ph].filter(p=>key(p)===it).length:null}
+  const totalScore=it=>PH.reduce((s2,_,i)=>s2+(score(it,i)||0),0);
+  const rk=PH.map((_,ph)=>{const o=items.map(it=>({it,sc:score(it,ph)})).filter(z=>z.sc!=null&&(z.sc>0||mode==='act')).sort((a,b)=>b.sc-a.sc||totalScore(b.it)-totalScore(a.it));const r={};o.forEach((z,i)=>r[z.it]=i+1);return r});
+  const nR=items.length;const W=1000,L=170,Rr=190,T=64,rowH=mode==='act'?30:46,Hh=T+nR*rowH+40;
+  const x=i=>L+i*(W-L-Rr)/(PH.length-1),y=r=>T+(r-.5)*rowH;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Bump chart of rank over the five phases'});
+  PH.forEach((p,i)=>svg.append(s('text',{x:x(i),y:20,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},p.id+' · '+p.name),s('text',{x:x(i),y:36,'text-anchor':'middle',class:'mono'},(p.from===p.to?p.from:p.from+'–'+String(p.to).slice(2))+' · n='+sets[i].length)));
+  for(let r=1;r<=nR;r++)svg.append(s('text',{x:6,y:y(r)+4,class:'mono'},'#'+r));
+  const els=[];
+  items.forEach((it,k)=>{const c=PAL[k%PAL.length];const g=s('g',{});let d='';let run=false;
+    PH.forEach((_,i)=>{const r=rk[i][it];if(r==null){run=false;return}d+=(run?'L':'M')+x(i)+','+y(r);run=true});
+    g.append(s('path',{d,style:`fill:none;stroke:${c};stroke-width:5;stroke-linecap:round;stroke-linejoin:round`}));
+    PH.forEach((_,i)=>{const r=rk[i][it];if(r==null)return;const sc=score(it,i);const dot=s('circle',{cx:x(i),cy:y(r),r:11,style:`fill:${c};stroke:var(--bg);stroke-width:2`});g.append(dot);
+      g.append(s('text',{x:x(i),y:y(r)+3.5,'text-anchor':'middle',style:'fill:#0F1013;font-size:10px;font-weight:700;pointer-events:none'},String(r)));
+      hov(dot,it,[PH[i].name+' phase: rank '+r,mode==='act'?Math.round(sc*100)+'% of recorded projects':sc+' project'+(sc===1?'':'s')])});
+    const first=PH.findIndex((_,i)=>rk[i][it]!=null),last=PH.length-1-[...PH].reverse().findIndex((_,i)=>rk[PH.length-1-i][it]!=null);
+    if(first>=0){svg.append(s('text',{x:x(first)-18,y:y(rk[first][it])+4,'text-anchor':'end',style:'font-size:11.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3px',class:'t-ink2'},short(it,24)));}
+    if(last>=0&&last!==first)svg.append(s('text',{x:x(last)+18,y:y(rk[last][it])+4,style:'font-size:11.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3px',class:'t-ink2'},short(it,26)));
+    g.style.cursor='pointer';g.addEventListener('mouseenter',()=>els.forEach(([e,j])=>e.style.opacity=j===k?1:.15));g.addEventListener('mouseleave',()=>els.forEach(([e])=>e.style.opacity=1));
+    svg.append(g);els.push([g,k])});
+  const movers=items.map(it=>{const rs=PH.map((_,i)=>rk[i][it]).filter(v=>v!=null);return[it,rs[0]-rs[rs.length-1],rs.length]}).filter(z=>z[2]>=3).sort((a,b)=>b[1]-a[1]);
+  const txt=movers.length?`Biggest climber: ${movers[0][0]} (${movers[0][1]>0?'up '+movers[0][1]+' places':'no net move'}). Biggest fall: ${movers[movers.length-1][0]} (${movers[movers.length-1][1]<0?'down '+(-movers[movers.length-1][1])+' places':'no net move'}).`:'';
+  box.replaceChildren(h('div',{class:'legend'},...Object.entries(BM).map(([k,l])=>h('button',{class:'chip','aria-pressed':mode===k,onclick:()=>{st.bumpM=k;A.render()}},l)),h('span',{class:'und'},mode==='act'?'Rank by share of recorded projects with the activity.':'Rank by number of projects in the phase; top eight overall. Ties are broken by overall count.')),svg,txt?note(txt):'')};
+
+/* ================= 8. ANNOTATED STORY ================= */
+A.story=function(box){
+  const ps=F();const S=A.S;const W=1100,Hh=560,L=54,R=24,pT=230,pB=Hh-90;const x=y=>L+(y-2010.5)/14*(W-L-R);
+  const tmax=16;const ty=t=>pB-Math.sqrt(Math.max(t,.5)/tmax)*(pB-pT);
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Annotated career timeline: team size by project, with discoveries called out'});
+  [1,4,9,16].forEach(t=>svg.append(s('line',{x1:L,x2:W-R,y1:ty(t),y2:ty(t),class:'grid-line'}),s('text',{x:4,y:ty(t)+4,class:'mono'},t+(t===1?' person':''))));
+  YEARS.forEach(y=>svg.append(s('text',{x:x(y),y:pB+22,'text-anchor':'middle',class:'mono'},String(y))));
+  PH.forEach(p=>{svg.append(s('line',{x1:x(p.from)-20,x2:x(p.to)+20,y1:pB+36,y2:pB+36,style:`stroke:${p.c};stroke-width:4;stroke-linecap:round`}),s('text',{x:(x(p.from)+x(p.to))/2,y:pB+54,'text-anchor':'middle',class:'mono'},p.name.toUpperCase()))});
+  // dots with horizontal spreading
+  const pos=new Map();const grp={};ps.forEach(p=>{const k=p.year+'|'+(p.team||1);(grp[k]=grp[k]||[]).push(p)});
+  Object.values(grp).forEach(g=>g.forEach((p,i)=>{const n=g.length;pos.set(p,[x(p.year)+(i-(n-1)/2)*Math.min(20,52/Math.max(n,1)),ty(p.team||1)])}));
+  const rr=p=>3.5+Math.sqrt(p.dur||.25)*1.7;
+  ps.forEach(p=>{const [px,py]=pos.get(p);const c=s('circle',{cx:px,cy:py,r:rr(p),style:`fill:${RC[p.role]};stroke:var(--bg);stroke-width:1.2;cursor:pointer`,class:'hit'});hov(c,p.name,()=>projLines(p));c.addEventListener('click',()=>openProj(p));svg.append(c)});
+  // events
+  const ev=[];const by=r=>ps.filter(p=>p.role===r).sort((a,b)=>a.year-b.year);
+  const lead=by('Design Lead')[0],mgr=by('Design Manager')[0];
+  if(lead)ev.push({y:lead.year,p:lead,t:`First Design Lead role (${lead.year}).`});
+  const dops=ps.find(p=>/design\s?ops/i.test(p.name));
+  if(dops)ev.push({y:dops.year,p:dops,t:`DesignOps programme with a team of 15+, the largest team in the record${mgr&&mgr.year>dops.year?', '+(mgr.year-dops.year)+' years before the first manager role':''}.`});
+  if(mgr)ev.push({y:mgr.year,p:mgr,t:`First Design Manager role (${mgr.year}). From 2021 on, every dated project is a manager project.`});
+  const sprints=ps.filter(p=>p.dur<=.5&&p.year<2020);if(sprints.length>1){const yy=sprints[0].year;ev.push({y:yy,p:sprints[0],t:`${sprints.length} engagements of two weeks or less in ${yy}, ${sprints.every(p=>p.team===1)?'done solo, ':''}the fastest turns in the record.`})}
+  const solo=ps.filter(p=>p.team===1).sort((a,b)=>b.dur-a.dur)[0];if(solo&&solo.dur>=8)ev.push({y:solo.year,p:solo,t:`Longest solo engagement: ${solo.dur} months as a team of one.`});
+  const fu=a=>{const q=ps.filter(p=>p.act[a]).sort((x1,x2)=>x1.year-x2.year)[0];return q};
+  const ut=fu('Usability testing'),ds=fu('Design system');
+  if(ut)ev.push({y:ut.year,p:ut,t:`Usability testing first recorded (${ut.year}).`});
+  if(ds&&(!ut||ds.year!==ut.year))ev.push({y:ds.year,p:ds,t:`Design-system work first recorded (${ds.year}).`});
+  const hc=ps.filter(p=>p.industry==='Healthcare & Telehealth');if(hc.length>=2&&new Set(hc.map(p=>p.year)).size===1)ev.push({y:hc[0].year,p:hc[0],t:`Healthcare arrives as one burst: ${hc.length} projects in ${hc[0].year}, none before.`});
+  const pk=YEARS.map(y=>[y,ps.filter(p=>p.year===y)]).sort((a,b)=>b[1].length-a[1].length)[0];if(pk&&pk[1].length>3){const ni=new Set(pk[1].map(p=>p.industry)).size;ev.push({y:pk[0],p:pk[1].sort((a,b)=>b.team-a.team)[0],t:`Busiest year: ${pk[1].length} projects across ${ni} industries (${pk[0]}), with teams of ${Math.min(...pk[1].map(p=>p.team))} to ${Math.max(...pk[1].map(p=>p.team))}.`})}
+  ev.sort((a,b)=>a.y-b.y);
+  const nC=Math.ceil(ev.length/2),bw=Math.min(250,(W-8-(nC-1)*10)/nC),boxH=80,rows=[{y:8,items:[]},{y:98,items:[]}];
+  const wrap=(t,n)=>{const w=t.split(' ');const out=[];let c='';w.forEach(z=>{if((c+' '+z).trim().length>n){out.push(c);c=z}else c=(c+' '+z).trim()});if(c)out.push(c);return out};
+  ev.forEach((e,i)=>{e.n=i+1;e.row=i%2;e.bx=4+Math.floor(i/2)*(bw+10);rows[e.row].items.push(e)});
+  rows.forEach(r=>r.items.forEach(e=>{const [px,py]=pos.get(e.p);e.lx=e.bx+bw/2;e.ly=r.y+boxH}));
+  ev.forEach(e=>{const [px,py]=pos.get(e.p);svg.append(s('path',{d:`M${e.lx},${e.ly}L${px},${py-rr(e.p)-4}`,style:'stroke:var(--ink3);stroke-width:1.2;fill:none;stroke-dasharray:3 3'}),
+    s('circle',{cx:px,cy:py,r:rr(e.p)+3.5,style:'fill:none;stroke:var(--ink);stroke-width:1.6;pointer-events:none'}))});
+  rows.forEach(r=>r.items.forEach(e=>{const g=s('g',{});g.append(s('rect',{x:e.bx,y:r.y,width:bw,height:boxH,rx:8,style:'fill:var(--s2);stroke:var(--line2)'}),
+    s('circle',{cx:e.bx+16,cy:r.y+17,r:10,style:'fill:var(--ink)'}),s('text',{x:e.bx+16,y:r.y+21,'text-anchor':'middle',style:'fill:var(--bg);font-size:11px;font-weight:700'},String(e.n)));
+    wrap(e.t,Math.floor((bw-40)/6.1)).slice(0,5).forEach((ln,i)=>g.append(s('text',{x:e.bx+32,y:r.y+20+i*13.5,style:'font-size:11.5px',class:'t-ink'},ln)));svg.append(g)}));
+  box.replaceChildren(legend(),svg,h('p',{class:'foot'},'Each dot is a project: height is team size (square-root scale), size is duration, colour is role. Circled dots are the projects behind each numbered call-out. Call-outs are computed from the data and update with the filters.'))};
+})();
+
 (function(){
 const A=window.__A;const {ALL,D,PH,ROLES,RC,ACTS,st,h,s,$,$$,med,mean,f1,f2,pct,mo,F,FA,openProj,S,phStats}=A;
 const ctr={};
@@ -593,7 +952,7 @@ const ph=i=>S.phs[i],pn=i=>S.ph[i].ps.length;
 const hero=h('header',{class:'hero'},h('div',{class:'wrap'},h('div',{class:'over'},'Career intelligence atlas · Amit Kumar Tiwari'),
   h('h1',{},'The story hidden inside the projects.'),
   h('p',{class:'lead'},`${ALL.length} projects, ${D.length} of them dated, from ${D[0].year} to ${D[D.length-1].year}. Read as an investigation: what changed, what stayed, what the record cannot say.`),
-  h('div',{class:'kpis'},[[ALL.length,'project records'],[D.length,'with a year'],[new Set(D.map(p=>p.industry)).size,'industries'],[new Set(D.map(p=>p.role)).size,'roles, after cleaning'],[S.rated.length,'with a customer rating'],[S.star.length,'starred in the workbook']].map(([n,l])=>h('div',{class:'kpi'},h('b',{},n),h('span',{},l)))),
+  h('div',{class:'kpis'},[[ALL.length,'project records'],[D.length,'with a year'],[new Set(D.map(p=>p.industry)).size,'industries'],[new Set(D.map(p=>p.role)).size,'roles'],[S.rated.length,'with a customer rating'],[S.star.length,'starred in the workbook']].map(([n,l])=>h('div',{class:'kpi'},h('b',{},n),h('span',{},l)))),
   h('div',{class:'note'},h('b',{},'How to read this. '),'Every finding is tagged: ',tagEl('fact'),tagEl('calc'),tagEl('inf'),tagEl('hyp'),' Blank cells are treated as not recorded, never as zero. The workbook has years and durations but no start or end dates, so project churn and parallel workload cannot be measured. Impact, challenges and aha moments are empty in every row.'),
   h('nav',{class:'nav','aria-label':'Chapters'},[['shape','The shape'],['c1','1 · Making of a designer'],['c2','2 · Beyond the interface'],['c3','3 · Designer to leader'],['c4','4 · Professional DNA'],['c5','5 · Hidden stories'],['c6','6 · Next frontier'],['repo','Repository'],['method','Data and method']].map(([id,l])=>h('a',{class:'chip',href:'#'+id,style:'text-decoration:none'},l)))));
 // ---------- filter bar
@@ -606,7 +965,9 @@ const bar=h('div',{class:'bar'},h('div',{class:'wrap'},
 // ---------- chapters
 const ov=h('section',{class:'ch',id:'shape',style:'border-top:0;margin-top:20px;padding-top:36px'},h('div',{class:'wrap'},h('div',{class:'over'},'The shape of a career'),h('h2',{},'A river that changes colour.'),
   h('div',{class:'story'},h('p',{},`Each band is a role; width is the number of projects recorded that year. Amber is the UX / UI designer, violet the researcher-designer, teal the design lead and lime the design manager. The first lead role appears in ${S.firstLead} and the first manager role in ${S.firstMgr}.`)),
-  fig('river','Career evolution river','Projects per year by role, with the five derived phases shaded behind. Hover a year for the detail.','Phases are my grouping of years by the role mix and scale of work; the workbook does not define them. 2016 has no records.',A.river)));
+  fig('river','Career evolution river','Projects per year by role, with the five derived phases shaded behind. Hover a year for the detail.','Phases are my grouping of years by the role mix and scale of work; the workbook does not define them. 2016 has no records.',A.river),
+  fig('story','The career, annotated','The same career as a timeline of team size, with the discoveries called out where they happen.','',A.story),
+  fig('sun','Career sunburst','Career, then role, industry, project and the activities done. Click a segment to zoom in; click the centre to go back.','Segments are sized by number of projects; the activity ring splits a project equally among the activities recorded as done.',A.sunburst)));
 const c1=chapter('c1','Chapter 1',`The making of a designer`,[
   `From ${PH[0].from} to ${PH[0].to} the record holds ${pn(0)} projects, all as a UX or UI designer, in ${new Set(S.ph[0].ps.map(p=>p.industry)).size} industries (BFSI, social innovation, education, manufacturing and more). Median team: ${f1(ph(0).team)}. Median length: ${mo(ph(0).dur)}.`,
   `The craft core is already here: wireframes in ${pct(Math.round(ph(0).wf*A.rec(S.ph[0].ps,'Wireframes').length),A.rec(S.ph[0].ps,'Wireframes').length)} of projects, visual design in ${pct(Math.round(ph(0).vd*A.rec(S.ph[0].ps,'Visual design').length),A.rec(S.ph[0].ps,'Visual design').length)}, research in ${pct(Math.round(ph(0).res*A.rec(S.ph[0].ps,'Research').length),A.rec(S.ph[0].ps,'Research').length)}. Usability testing and design systems are not recorded yet; their first appearance is ${S.firstOf('Usability testing')}.`],
@@ -623,18 +984,22 @@ const c3=chapter('c3','Chapter 3','From designer to design leader',[
   `Median team size by phase runs ${S.phs.map(x=>f1(x.team)).join(', ')} (2011 to 2013, 2014 to 2015, 2017 to 2019, 2020 to 2022, 2023 to 2024); the 2017 to 2019 figure is lifted by the 15+ DesignOps team, and 2023 to 2024 is the highest. Year and team size correlate at ${f2(S.rYearTeam.r)}. In the manager years design-system work and usability testing become routine: usability testing is recorded in ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects against ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects.`,
   `That is evidence for a move from designing individual experiences to shaping practice and systems. The alternative explanation is that larger teams simply log more activities. The data cannot separate the two; it would take a field for personal contribution.`],
   [fig('pm','Phase small multiples','The same seven measures for each phase (A to E, left to right). Hover for the denominator.','Percentages use only projects where the activity was recorded. Phase E has few fully recorded projects; check n in the tooltip.',A.phaseMulti),
+   fig('pc','What sets leadership projects apart','Each line is a project across six measures. Drag on any axis to select a range, for example Design Manager on the Role axis, and compare the selection with the rest.','Lines break where a value was not recorded.',A.parallel),
    fig('sank','What each role worked on','Flow from role to type of work to product type. Hover a band to see the projects.','Type of work groups the "Core theme" values; "HE" and "CSH" are shown as recorded because the workbook does not expand them.',A.sankey)],
   `The leadership shift is visible in team scale and in validation and systems work. Ratings are shown within each phase panel above; they only run from 3 to 5 stars and most recent projects are unrated, so they are not safe to read as a trend.`);
 const c4=chapter('c4','Chapter 4','The professional DNA',[
   `Five activities appear in more than three-quarters of recorded projects: research, stakeholder collaboration, journeys and flows, wireframes and visual design. That is the signature core. What differs by phase is what gets added on top.`,
   `Frequency is not proficiency. This chapter shows what was done, not how well, and the Skills sheet holds only one scored entry.`],
   [fig('cap','Capability evolution matrix','Share of recorded projects in each phase where an activity was done. Dashed cells: not recorded for any project in that phase.','n is the number of projects with that activity recorded. Content strategy is left out (recorded for only 12 projects).',A.capab),
+   fig('bump','How the mix changed: rankings by phase','Rank of industries, activities or themes in each phase. Lines that climb are growing in prominence; lines that fall are fading.','Ranks rest on small counts per phase; read direction, not exact positions.',A.bump),
    fig('coo','Which activities appear together','The pairs that go together most and least often, compared with chance (lift 1.0 = as expected). Most pairs sit near chance; only a few stand out.','Needs at least 15 projects with both activities recorded. Descriptive only.',A.cooc),
+   fig('ups','Signature working patterns (UpSet plot)','Each column is one exact combination of eight core activities; the bar is how many projects share it. A better view than a Venn diagram when sets overlap this much.','Only projects with all eight activities recorded are included.',A.upset),
+   fig('chd','Chord diagram: what connects to what','Ribbons link industries, roles or product types to the activities and themes they share. Wider means more projects.','Industries with only one project are left out of the first view.',A.chord),
    h('div',{},fig('rad','Career fingerprint','Six proxy axes per phase. Toggle phases to compare.','Proxies built from recorded activities, not measured skill. Phase E rests on very few fully recorded projects.',A.radar),
-     fig('con','Project constellation','Projects linked when they share an industry or have a near-identical activity profile. Positions are computed, not hand-placed.','Hover a project to light up its links; click to open it. Filters dim the rest.',A.constellation))],
+     fig('gal','Professional galaxy','Roles, industries, activities and projects as one network. Size shows betweenness centrality, a measure of how much a node connects otherwise separate parts, not how often it appears.','Positions come from a force layout and carry no meaning on their own; the table below ranks the real metrics.',A.galaxy))],
   `The signature is research-led full-stack UX with stakeholders at the table, to which validation and design systems are added later in the career.`);
 const c5=chapter('c5','Chapter 5','The hidden stories',[`These are the findings that a project count would never show. Each card says what the evidence is and what would change the conclusion. Filter by how certain a finding is or by how surprising it feels.`],
-  [fig('tm','Industry composition','Area is projects (or recorded months); colour is the role used most often. Click to isolate an industry.','',A.treemap),h('div',{id:'insx'})],null);
+  [fig('vor','Career landscape (Voronoi treemap)','Every project is a cell, grouped by industry. Size follows duration, team size or equal weight; colour is role. Industries run left to right by their average year.','Cells are computed by a weighted Voronoi layout, so sizes are approximate (within a few per cent).',A.voronoi),h('div',{id:'insx'})],null);
 const c6=chapter('c6','Chapter 6','The next frontier',[
   `Everything here is a hypothesis. It reads the record forward: where the accumulated mix looks unusual, and what the workbook would need to confirm it.`],
   [h('div',{class:'ins',id:'next'})],`If the AI era needs designers who can direct teams, systems and research together in complex enterprise products, the record is consistent with that direction. It cannot show outcomes, so the case still needs the impact stories the workbook leaves empty.`);
@@ -677,10 +1042,9 @@ function renderRepo(){let ps=FA();if(A.repoQ){const q=A.repoQ.map(x=>x.toLowerCa
       h('td',{},p.year||h('span',{class:'und'},'undated')),h('td',{},p.role||h('span',{class:'und'},'—')),h('td',{},p.industry||h('span',{class:'und'},'—')),h('td',{},p.product||'—'),h('td',{},p.dur!=null?p.dur:'—'),h('td',{},p.team!=null?(p.name==='DesignOps programme 2017'?'15+':p.team):'—'),h('td',{},p.rating?'★'.repeat(p.rating):'—'),h('td',{},p.breadth!=null?p.breadth+'/12':'—')))));
   $$('.chip[data-v]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===st.view))}
 // ---------- method
-const method=h('section',{class:'ch',id:'method'},h('div',{class:'wrap'},h('div',{class:'over'},'Data and method'),h('h2',{},'What was cleaned, and what is missing.'),
+const method=h('section',{class:'ch',id:'method'},h('div',{class:'wrap'},h('div',{class:'over'},'Data and method'),h('h2',{},'Sources, definitions and gaps.'),
   h('div',{class:'story'},h('p',{},'Source: the "Projects Repo" sheet of Preparation_1.xlsx. Other sheets were read for supporting evidence.')),
   h('div',{class:'fig'},h('h3',{},'Field profile'),h('div',{class:'scroll'},h('table',{},h('thead',{},h('tr',{},['Field','Filled of 60','Note'].map(x=>h('th',{style:'cursor:default'},x)))),h('tbody',{},window.__DATA__.profile.map(r=>h('tr',{},h('td',{},r[0]),h('td',{},r[1]+' ('+Math.round(r[1]/60*100)+'%)'),h('td',{},r[2]))))))),
-  h('div',{class:'fig'},h('h3',{},'Cleaning log'),h('ul',{style:'margin:10px 0 0;padding-left:20px;color:var(--ink2);font-size:14.5px'},window.__DATA__.clean.map(c=>h('li',{style:'margin-bottom:8px'},c)))),
   h('div',{class:'fig'},h('h3',{},'Definitions'),h('ul',{style:'margin:10px 0 0;padding-left:20px;color:var(--ink2);font-size:14.5px'},
     [['Phases','Derived: 2011 to 2013, 2014 to 2015, 2017 to 2019, 2020 to 2022, 2023 to 2024, grouped by role mix and scale. 2016 has no records.'],['Breadth','How many of the 12 charted activities are marked done, only where all 12 are recorded (content strategy excluded).'],['Lift','Share of projects with both activities, divided by the share expected if they were independent.'],['Rank correlation','Spearman ρ, with n shown. Descriptive; no causal claims.'],['Radar proxies','Research depth: primary research share. Craft: wireframes and visual design. Systems: IA and design system. Validation: usability testing and heuristic evaluation. Collaboration: stakeholders and hand-off. Team scale: median team size over 15.']].map(([a,b])=>h('li',{style:'margin-bottom:8px'},h('b',{},a+': '),b)))),
   h('footer',{},'Built from a personal project workbook only; nothing was added from outside it. On this public version, client and project names are replaced by industry labels.')));
