@@ -114,7 +114,7 @@ function SwatchTable({ rows }: { rows: Swatch[] }) {
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.dark }} />{r.dark}</span></td>
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.light }} />{r.light}</span></td>
               <td>{r.role}</td>
-              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, '#0F1013').toFixed(1)} · ${grade(ratio(r.dark, '#0F1013'))} / ${ratio(r.light, '#F5F6F7').toFixed(1)} · ${grade(ratio(r.light, '#F5F6F7'))}` : '—'}</td>
+              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, '#0F1013').toFixed(1)} · ${grade(ratio(r.dark, '#0F1013'))} / ${ratio(r.light, '#F5F6F7').toFixed(1)} · ${grade(ratio(r.light, '#F5F6F7'))}` : '-'}</td>
             </tr>
           ))}
         </tbody>
@@ -139,11 +139,12 @@ export default function DesignSystemPage() {
   return (
     <>
       <section style={{ paddingTop: 'var(--header-h)' }}>
-        <div className="container-site pt-12 md:pt-20 pb-16">
+        <div className="container-site relative pt-10 md:pt-14 pb-16">
           <div className="mb-10"><Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Design system' }]} /></div>
           <SectionHeader as="h1" label="Signal · Design system v2" title={<>Premium, minimal, <span className="accent-signal">clear.</span></>}
             intro="The tokens, type, layout, components and rules behind this website, in dark and light. Every page is built from what is on this page, so the experience stays consistent and meets WCAG 2.2 AA."
             action={<div className="flex items-center gap-3"><span className="text-label text-ink-3">Now: {theme}</span><ThemeToggle /></div>} />
+          <p className="text-body-sm text-ink-3 mb-6 max-w-[62ch]">Want everything, including icons, illustration, pictograms, imagery, interaction and motion? See <Link to="/design-system/reference" className="link">the full reference</Link>.</p>
           <nav aria-label="On this page" className="flex flex-wrap gap-2">
             {sections.map(([id, label]) => <a key={id} href={`#${id}`} className="chip">{label}</a>)}
           </nav>
@@ -239,7 +240,7 @@ export default function DesignSystemPage() {
             <Button to="/craft" arrow>See the work</Button>
             <Button variant="secondary" to="/contact">Get in touch</Button>
             <Button variant="tertiary" to="/about" arrow>About me</Button>
-            <Button small variant="secondary" href="mailto:uxbyamit@gmail.com">Small</Button>
+            <Button small variant="secondary">Small</Button>
             <Button href="https://adplist.org" variant="secondary" arrow>External</Button>
             <Button disabled>Disabled</Button>
           </div>
@@ -293,7 +294,7 @@ export default function DesignSystemPage() {
           <Quote by="Mentee" role="Product designer">The session changed how I present design decisions to my leadership.</Quote>
         </Spec>
         <Spec name="Stat">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8"><Stat value="300M+" label="Users reached" /><Stat value="$5M" label="Documented savings" /><Stat value="16+" label="Years in design" /></div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8"><Stat value="3" label="Products piloting search" /><Stat value="$5M" label="Documented savings" /><Stat value="16+" label="Years in design" /></div>
         </Spec>
         <Spec name="Keyboard key and table">
           <p className="text-body-sm text-ink-2 mb-6">Press <kbd className="kbd">↓</kbd> then <kbd className="kbd">Enter</kbd>.</p>

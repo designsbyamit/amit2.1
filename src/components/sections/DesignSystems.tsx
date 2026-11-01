@@ -15,9 +15,9 @@ const systems = [
     scale: 'Enterprise · Portfolio-wide',
   },
   {
-    name: 'Saudia Design Language',
+    name: 'Airline Design Language',
     org: 'Accenture',
-    description: 'Unified design system for a national airline — covering web, app, kiosk, and in-flight surfaces. Delivered in 100 days.',
+    description: 'Unified design system for a national airline: covering web, app, kiosk, and in-flight surfaces. Delivered in 100 days.',
     scale: 'Consumer · Multi-surface',
   },
 ]

@@ -1,3 +1,4 @@
+import Distinct from '../components/case/Distinct'
 import { useState } from 'react'
 import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
@@ -30,14 +31,14 @@ export default function EngazeStoryPage() {
 
   return (
     <div className="bg-surface-0 min-h-screen">
-      <header className="pt-32 md:pt-40 pb-16 md:pb-24">
-        <div className="container-site">
-          <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'Engaze HCM' }]} />
+      <header style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
+          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Engaze HCM' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{E.title}</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{E.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[62ch]">{cs.tagline}</p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <Button to="/craft/engaze/film" arrow>Watch the employee-experience teaser · 1 min 6 s</Button>
+            <Button to="/craft/engaze/film" arrow className="!whitespace-normal text-left max-w-full">Watch the employee-experience teaser · 1 min 6 s</Button>
           </div>
           <div className="flex flex-wrap gap-2 mt-8"><span className="tag">{E.kicker}</span>{(cs.tags ?? []).map(t => <span key={t} className="tag">{t}</span>)}</div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-4xl">
@@ -45,6 +46,7 @@ export default function EngazeStoryPage() {
               <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
             ))}
           </dl>
+          {cs.distinct && <div className="mt-12"><Distinct title={cs.distinct.title} body={cs.distinct.body} /></div>}
           <div className="mt-14"><Fig src={E.hero} alt="Engaze: one companion for every role" /></div>
         </div>
       </header>
@@ -102,7 +104,7 @@ export default function EngazeStoryPage() {
       </Section>
 
       <Section id="employee-experience">
-        <SectionHeader label="07 · Deep dive" title={E.ex.title} intro={E.ex.intro} action={<Button to="/craft/engaze/film" arrow>{E.ex.teaserLabel}</Button>} />
+        <SectionHeader label="07 · Deep dive" title={E.ex.title} intro={E.ex.intro} action={<Button to="/craft/engaze/film" arrow className="!whitespace-normal text-left max-w-full">{E.ex.teaserLabel}</Button>} />
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {E.ex.stats.map(([v, k]) => <div key={k} className="card"><dd className="text-display-l text-white">{v}</dd><dt className="text-body-sm text-ink-3 mt-2">{k}</dt></div>)}
         </dl>
@@ -116,18 +118,25 @@ export default function EngazeStoryPage() {
         </div>
       </Section>
 
-      <Section id="language" tone="raised">
-        <SectionHeader label="08 · Design language, extended" title="Dark by default. Human in tone. Explainable in every pixel." intro="The employee-experience language, formalised so every role in the suite shares it." />
+      <Section id="persona-template" tone="raised">
+        <SectionHeader label="08 · Tool · Persona template" title={E.personaTemplate.title} intro={E.personaTemplate.intro} />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {E.personaTemplate.parts.map(([t, d], i) => <div key={t} className="card"><p className="text-overline text-ink-3">{String(i + 1).padStart(2, '0')}</p><p className="text-title text-white mt-3">{t}</p><p className="text-body-sm text-ink-2 mt-3">{d}</p></div>)}
+        </div>
+      </Section>
+
+      <Section id="language">
+        <SectionHeader label="09 · Design language, extended" title="Dark by default. Human in tone. Explainable in every pixel." intro="The employee-experience language, formalised so every role in the suite shares it." />
         <Fig src={E.language.image} alt={E.language.alt} />
       </Section>
 
-      <Section id="outcome">
-        <SectionHeader label="09 · Outcome" title="Measured where it shipped. Designed where it did not." />
+      <Section id="outcome" tone="raised">
+        <SectionHeader label="10 · Outcome" title="Measured where it shipped. Designed where it did not." />
         <div className="grid md:grid-cols-2 gap-4">
           <div className="card"><p className="text-overline text-ink-3">Measured · employee experience</p>
             <ul className="mt-5 space-y-5">{E.outcomes.measured.map(([t, d]) => <li key={t}><p className="text-title text-white">{t}</p><p className="text-body-sm text-ink-2 mt-1">{d}</p></li>)}</ul></div>
           <div className="card"><p className="text-overline text-ink-3">Design vision · wider suite</p>
-            <ul className="mt-5 space-y-3">{E.outcomes.vision.map(t => <li key={t} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">—</span>{t}</li>)}</ul></div>
+            <ul className="mt-5 space-y-3">{E.outcomes.vision.map(t => <li key={t} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{t}</li>)}</ul></div>
         </div>
         {cs.testimonial && (
           <blockquote className="mt-16 max-w-3xl"><p className="text-title text-white">“{cs.testimonial.quote}”</p>

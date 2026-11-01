@@ -2,27 +2,32 @@ import { motion } from 'framer-motion'
 import PageHeader from '../components/ui/PageHeader'
 import WorksBento from '../components/sections/WorksBento'
 import GrainOverlay from '../components/ui/GrainOverlay'
+import WorksCTA from '../components/sections/WorksCTA'
+import { Link } from 'react-router-dom'
+import { research } from '../data/ia'
+import StoryField from '../components/ds/StoryField'
+import { shortStories } from '../data/shortStories'
 
 const microStories = [
   {
     label: 'Conversational AI · Engaze',
     heading: 'Why we stopped designing flows and started designing principles',
-    body: 'In conversational AI, dialog flows only cover the happy path. The generative layer handles everything else. We recognised early that writing more flows was the wrong answer — instead, we defined five principles (trust, guidance, discoverability, cognitive simplicity, continuity) that taught the system how to behave in any situation. Those five principles outlasted every screen we designed.',
+    body: 'In conversational AI, dialog flows only cover the happy path. The generative layer handles everything else. We recognised early that writing more flows was the wrong answer: instead, we defined five principles (trust, guidance, discoverability, cognitive simplicity, continuity) that taught the system how to behave in any situation. Those five principles outlasted every screen we designed.',
   },
   {
-    label: 'Service Design · Saudia',
+    label: 'Service Design · Airline',
     heading: 'The booking app was not the product. The passenger journey was.',
     body: 'When a business wants to grow digital revenue 50-fold, every stakeholder sees a booking flow problem. Reframing it as a service ecosystem problem changed what we built. The pod structure that delivered the work was itself a design decision: when designers own journeys instead of features, they design for coherence rather than correctness.',
   },
   {
-    label: 'Enterprise UX · dNetWorX',
+    label: 'Enterprise UX',
     heading: 'Introducing progressive disclosure into a system that resisted simplification',
-    body: 'Enterprise engineers had spent years learning to navigate complexity — removing it felt like a regression. Progressive disclosure was the solution: show less by default without removing anything. Expert users still had full control on demand. First-time users saw only what they needed. Nobody lost anything. Adoption followed.',
+    body: 'Enterprise engineers had spent years learning to navigate complexity: removing it felt like a regression. Progressive disclosure was the solution: show less by default without removing anything. Expert users still had full control on demand. First-time users saw only what they needed. Nobody lost anything. Adoption followed.',
   },
   {
     label: 'Agentic AI',
     heading: 'In autonomous systems, what the agent doesn\'t show matters as much as what it does',
-    body: 'The instinct in agentic AI design is to surface everything — every step, every inference, every confidence score. But information overload defeats the purpose of automation. The principle we settled on: show the outcome, surface the reasoning only when it matters, and always preserve the human\'s ability to intervene. Trust is designed, not assumed.',
+    body: 'The instinct in agentic AI design is to surface everything: every step, every inference, every confidence score. But information overload defeats the purpose of automation. The principle we settled on: show the outcome, surface the reasoning only when it matters, and always preserve the human\'s ability to intervene. Trust is designed, not assumed.',
   },
 ]
 
@@ -30,12 +35,46 @@ export default function Craft() {
   return (
     <>
       <PageHeader
-        label="Craft"
+        label="Works"
         title="Work that matters at scale."
-        subtitle="Case studies across AI experiences, conversational design, enterprise UX, and large-scale design systems."
+        subtitle="Case studies across AI experiences, conversational design, enterprise UX, and large-scale design systems. Every project here is live in market today."
       />
 
       <WorksBento />
+
+      {/* Short stories: one page each. Hidden while none are published. */}
+      {shortStories.length > 0 && <section id="short-stories" className="hairline-top section-y scroll-mt-24" aria-labelledby="ss-h">
+        <div className="container-site">
+          <div className="grid-site gap-y-4 mb-10 md:mb-12">
+            <h2 id="ss-h" className="col-span-4 md:col-span-3 text-overline text-ink-3">Short stories</h2>
+            <p className="col-span-4 md:col-span-8 text-body-lg text-ink-2 max-w-2xl">Smaller projects, told on one page each.</p>
+          </div>
+          <ul className="grid md:grid-cols-3 gap-4">
+            {shortStories.map(s => (
+              <li key={s.slug}>
+                <Link to={`/craft/stories/${s.slug}`} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
+                  <StoryField slug={s.slug} tone={s.tone} />
+                  <div className="p-6 flex flex-col gap-3 flex-1">
+                    <h3 className="text-title text-ink">{s.title}</h3>
+                    {s.meta && <p className="text-label text-ink-3">{s.meta.join(' · ')}</p>}
+                    <p className="text-label text-ink-3 group-hover:text-ink mt-auto pt-2">Read &rarr;</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>}
+
+      {/* Research: on the way */}
+      <section id="research" className="hairline-top section-y scroll-mt-24" aria-labelledby="rs-h">
+        <div className="container-site">
+          <div className="grid-site gap-y-4 mb-10 md:mb-12">
+            <h2 id="rs-h" className="col-span-4 md:col-span-3 text-overline text-ink-3">Research</h2>
+            <p className="col-span-4 md:col-span-8 text-body-lg text-ink-2 max-w-2xl">In progress: {research.join(', ')}. Coming soon.</p>
+          </div>
+        </div>
+      </section>
 
       {/* Philosophy */}
       <section className="relative bg-black section-y px-6 md:px-12 border-t border-white border-opacity-[0.06]">
@@ -59,7 +98,7 @@ export default function Craft() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              The work here is not a portfolio of deliverables. It is a record of how complex problems were approached, what tradeoffs were made, and why.
+              This work goes beyond the solutions delivered. It reflects how I approach complexity, bring business and user needs together, and help teams make thoughtful decisions when the answers aren’t obvious.
             </motion.p>
             <motion.p
               className="text-body text-ink-3 mb-4"
@@ -68,7 +107,7 @@ export default function Craft() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              Each project is less about the screens that shipped and more about the systems they are part of — the business constraints that shaped decisions, the principles that held when the pressure mounted, and the moments where design changed how an organisation thought about a problem.
+              Each project sits within a larger context: the constraints of the business, the needs of users, the realities of technology, and the organisational dynamics that shape what is possible. My role is to make sense of these forces, build alignment around what matters, and help turn ambiguity into direction.
             </motion.p>
             <motion.p
               className="text-body text-ink-3"
@@ -77,13 +116,13 @@ export default function Craft() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
             >
-              At this level of maturity, the prototype is the argument. The decision is the artefact.
+              The real measure of value of design isn’t just what we put into production. It’s the quality of the decisions we make, the thinking we leave behind, and the way those decisions influence products, teams and the organisation itself.
             </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Design Decisions — Micro-Stories */}
+      {/* Design Decisions - Micro-Stories */}
       <section className="relative bg-black section-y px-6 md:px-12">
         <GrainOverlay opacity={0.02} />
         <div className="relative z-10 mx-auto max-w-7xl">
@@ -125,6 +164,8 @@ export default function Craft() {
           </div>
         </div>
       </section>
+
+      <WorksCTA />
     </>
   )
 }

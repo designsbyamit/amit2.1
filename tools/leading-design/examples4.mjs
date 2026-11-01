@@ -1,0 +1,120 @@
+// Filled examples for the chapter 4 worksheets. Same fictional company (NorthStar GmbH). Arrays line up, in order, with the fillable fields in ch4-docs.mjs.
+const row = (...c) => c
+
+export const intro = 'NorthStar GmbH · Three product teams (procurement, the supplier portal and analytics) ship every month. You lead design across them, and want one standard for what ships and a protected space for what comes next.'
+
+export const examples = {
+  'design-quality-assessment-worksheet': { checked: [[0, 1, 3]], slots: [
+    'Supplier portal: the bulk RFQ upload flow.',
+    'End of design, before development starts. Three weeks before the release.',
+    ...row('4', 'Five buyers completed the task unaided. Two stumbled on column mapping.', 'Add a preview step before mapping'),
+    ...row('3', 'Keyboard order breaks in the review table. Contrast fails on two labels.', 'Fix order and contrast, retest with a screen reader'),
+    ...row('4', 'Clear hierarchy and consistent spacing. One custom control feels out of place.', 'Replace the custom control with the shared one'),
+    ...row('3', 'Error messages say “Invalid file”. They do not say what to change.', 'Rewrite the six messages with a fix in each'),
+    ...row('2', 'Empty, partial and failed uploads are not designed.', 'Design the three states before handover'),
+    ...row('4', 'Uses shared components throughout, apart from the one control.', 'See visual and interaction craft'),
+    'Task flow is clear and buyers like the preview. The design reads as part of the product.',
+    '1. Design the empty, partial and failed upload states. 2. Rewrite error messages. 3. Fix keyboard order and contrast.',
+  ] },
+
+  'harmonisation-audit-worksheet': { checked: [], slots: [
+    'The buyer journey from raising a purchase request in procurement to approving a supplier quote in the supplier portal.',
+    'The NorthStar design system and the terminology guide.',
+    ...row('The same thing is called “quote”, “offer” and “bid” across the three products.', 'Procurement, supplier portal, analytics', 'Buyers search for the wrong word and ask support', 'Use “quote” everywhere. Terminology owner'),
+    ...row('Three different date pickers and two table patterns.', 'All three', 'People relearn basic controls', 'Move to the shared picker and table. Design system lead'),
+    ...row('Approving works in one click in procurement and in three steps in the portal.', 'Procurement, supplier portal', 'People make mistakes when they switch', 'Agree one flow. Product leads'),
+    ...row('Errors in the portal block the user. In procurement they allow a retry.', 'Supplier portal', 'Suppliers lose work', 'Add retry and save. Portal designer'),
+    ...row('Two shades of the brand colour in buttons.', 'Analytics, portal', 'Small, but it looks careless', 'Fix in the next design-system release. System lead'),
+    '1. Terminology. 2. The approval flow. 3. Errors that lose work. These cost people the most.',
+    'Analytics may keep a denser table because analysts compare many rows. We will document it as a deliberate variant.',
+  ] },
+
+  'design-excellence-health-check': { checked: [[0, 4]], slots: [
+    ...row('3', 'Quality is good where a senior designer is involved and uneven elsewhere.', 'Run quality assessments at milestones for all new flows'),
+    ...row('2', 'Terminology and approval flows differ between products.', 'Start a monthly audit with product owners'),
+    ...row('2', 'Reviews happen when someone asks. No shared rubric, no record.', 'Introduce three review levels and a rubric'),
+    ...row('1', 'Nobody has time set aside. Ideas arrive in hallway chats.', 'Protect two days a month and name a lead'),
+    ...row('3', 'People help each other willingly, but across products it is rare.', 'Pair designers across products on each review'),
+    'Releases mostly ship well but we learn about gaps late. Shared standards exist, but are not used the same way everywhere.',
+    'We have no one looking ahead. The agent work is the first step, and it is being done inside the delivery team.',
+    '1. Adopt the three review levels. 2. Set aside a small future team of two people, part time. 3. Run the first harmonisation audit.',
+  ] },
+
+  'feature-excellence-review-worksheet': { checked: [[1], [1]], slots: [
+    'Bulk RFQ upload',
+    'Supplier portal',
+    'Jonas',
+    'Release in six weeks',
+    // 12 criteria x (score, observation)
+    ...row('4', 'Clear problem. Suppliers asked for it.'),
+    ...row('4', 'Flow is clear. Mapping step needs a preview.'),
+    ...row('4', 'Good feedback while a file uploads.'),
+    ...row('4', 'Consistent and tidy.'),
+    ...row('3', 'Errors do not say what to change.'),
+    ...row('3', 'Keyboard order breaks in the review table.'),
+    ...row('2', 'Empty, partial and failed uploads are missing.'),
+    ...row('4', 'Uses shared components apart from one control.'),
+    ...row('3', 'Approval differs from procurement.'),
+    ...row('4', 'Engineering confirmed it is feasible.'),
+    ...row('3', 'Not yet seen in a build.'),
+    ...row('4', 'Five suppliers tested it.'),
+    'Missing states for partial and failed uploads would leave suppliers without a way back.',
+    'Design and add the three states. Rewrite error messages. Fix keyboard order.',
+    'The approval flow differs from procurement. Accepted for this release, to align in the next. Accepted by the product lead.',
+    'Priya. Re-review the build in two weeks. Clearance after the three states are in.',
+  ] },
+
+  'future-signals-radar-worksheet': { checked: [], slots: [
+    ...row('Agents that act on a buyer’s behalf', 'Software now drafts and sends routine requests', 'Buyers may stop doing routine requests by hand', 'A proactive RFQ assistant', 'One to two years'),
+    ...row('Speech input in noisy places', 'Voice is reliable enough for short tasks', 'Plant staff could approve requests hands free', 'Voice approvals on the shop floor', 'Two to three years'),
+    ...row('Suppliers expect to work in one place', 'Suppliers deal with many buyers and many portals', 'Less patience for another login', 'One shared supplier workspace', 'One year'),
+    ...row('Buyers trust but verify AI output', 'People ask to see the reasoning', 'Hidden decisions will lose trust', 'Explanations built into every agent action', 'Now'),
+    ...row('Rules on automated decisions', 'New guidance on disclosure and oversight', 'People will ask to see and change decisions', 'Review and undo as a core pattern', 'One to two years'),
+    'Reliable speech input, and agents that can complete a request without a person doing each step.',
+    'Re-entering the same information in each product, and chasing quotes by email.',
+    'That people must open an application to get things done.',
+    'A single place where agents do the routine work and people only decide.',
+    '1. The proactive RFQ assistant, because buyers lose the most time there. 2. Explanations for every agent action, because trust decides adoption.',
+  ] },
+
+  'north-star-experience-canvas': { checked: [[0, 1, 2, 3]], slots: [
+    'Cut the time buyers spend on routine requests for quotes.',
+    'Buyers in procurement who raise more than ten requests a week.',
+    'Buyers fill a form for each request, send it, and chase replies by email.',
+    'The assistant notices a need, drafts the request, and asks the buyer to approve it in one step.',
+    'People decide. Software prepares.',
+    'Reading of purchase history, a drafting agent, and a clear explanation of each suggestion.',
+    'Buyer sees a suggestion. Reads the reason. Approves, edits or declines. Replies arrive in one place.',
+    'Hours saved each week, fewer missed orders, and more time for supplier relationships.',
+    'Buyers will trust suggestions if they can see the reason. History data is good enough to predict needs.',
+  ] },
+
+  'experimentation-canvas': { checked: [[1]], slots: [
+    'Buyers will approve a drafted request faster than they write one, if they can see the reason.',
+    'Whether buyers trust a suggestion enough to approve it without checking everything.',
+    'Show eight buyers a clickable prototype with three suggestions, and watch what they do.',
+    'A prototype of the suggestion and approval screens, with real purchase history from a pilot plant.',
+    'Eight buyers from two plants, at least four who raise more than ten requests a week.',
+    'Six of eight approve at least two suggestions without opening the history, and say they would use it.',
+    'Two weeks.',
+    'One designer, one prototyper, one researcher, and access to anonymised purchase history.',
+    'Seven of eight approved quickly when a reason was shown. Two wanted to see the price history first.',
+    'Iterate. Add the price history to the reason, then test again with a live pilot.',
+  ] },
+
+  'experiment-to-scale-assessment': { checked: [[2]], slots: [
+    'Proactive RFQ suggestions, ended on 24 October.',
+    ...row('4', 'Seven of eight buyers approved quickly and asked when they could use it.'),
+    ...row('4', 'Targets the time-to-send goal for this year.'),
+    ...row('3', 'Needs reliable access to purchase history, which two plants do not yet have.'),
+    ...row('4', 'Nobody else in our market does this yet.'),
+    ...row('4', 'Fits the plan for agent-assisted procurement.'),
+    ...row('3', 'The explanation pattern can be reused. The suggestion logic is specific to RFQs.'),
+    'Eight buyer sessions, a clear pattern in the approval behaviour, and an engineer’s view that it is feasible.',
+    'Price history may be needed to earn trust. Two plants lack clean data.',
+    'Access to purchase history, and a place in the procurement roadmap.',
+    'The procurement team, where the agent pilot already runs.',
+    'About two engineers for a quarter, and data clean-up in two plants.',
+    'Incubate with the procurement team in the next quarter, and reuse the explanation pattern in the design system.',
+  ] },
+}

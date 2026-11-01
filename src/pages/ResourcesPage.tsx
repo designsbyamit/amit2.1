@@ -6,7 +6,7 @@ export default function ResourcesPage() {
     <>
       <PageHeader
         label="Resources"
-        title="A mentor's toolkit. A knowledge vault."
+        title="A practitioner's toolkit. A knowledge vault."
         subtitle="Frameworks, templates, reading lists, and thinking tools built from years of experimentation, failures, workshops, mentoring conversations, and enterprise design challenges."
       />
       <Resources />

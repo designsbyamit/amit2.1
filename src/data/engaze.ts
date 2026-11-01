@@ -43,7 +43,7 @@ export const engaze = {
   },
   ex: {
     title: 'Deep dive: employee experience',
-    intro: 'The module that shipped. A conversational companion for leave balances, approvals, benefits and pay, designed principle-first rather than flow-first, and measured against enterprise HR bots that typically score below 60% CSAT.',
+    intro: 'The module that shipped. A conversational companion for leave balances, approvals, benefits and pay, designed principle-first rather than flow-first, with the assistant\u2019s persona researched and written before any dialog, and measured against enterprise HR bots that typically score below 60% CSAT.',
     teaserLabel: 'Watch the teaser · 1 min 6 s',
     stats: [['90%', 'CSAT'], ['<60%', 'typical enterprise HR bot'], ['45+', 'conversational products evaluated'], ['5', 'design principles']] as [string, string][],
     steps: [
@@ -54,11 +54,25 @@ export const engaze = {
       { label: 'Queries', heading: 'Five kinds of question', body: 'Generative ("write a feedback"), visualisation ("show my CTC breakup"), informational ("my leave balance"), transactional ("apply for leave") and complex ("evaluate old versus new tax regime for me"). Each needed its own response pattern.', image: O('engaze-04.png'), alt: 'Five query types with examples, and a design workshop photo' },
       { label: 'Capabilities', heading: 'What the companion can do', body: 'Large language models for intent analysis and response generation, multi-modal outputs (text, images, charts, formatted views), answers to generative, transactional and informational queries, and a contextualised, personalised copilot.', image: O('engaze-07.png'), alt: 'Engaze capability map: LLMs, multi-modal outputs, query types, copilot' },
       { label: 'Philosophy', heading: 'A three-layer strategy', body: 'Interface layer (familiar layout, clear hierarchy, one primary function, subtle micro-animation), content layer (brief, turn-taking, menus and buttons, validate by testing) and experience layer (achieve goals, personalise, adapt, emotional intelligence, consistency).', image: O('engaze-06.png'), alt: 'Interface, content and experience layer guidelines', tall: true },
-      { label: 'Dialogs', heading: 'Dialog flows for real transactions', body: 'Applying for sick leave and updating an address, written turn by turn: confirmation before action, a form handed back for review, and a clear close. Each flow answers a failure mode of the previous generation of HR bots.', image: O('engaze-08.png'), alt: 'Dialog flows for applying sick leave and updating address' },
+      { label: 'Dialogs', heading: 'Dialog flows for real transactions', body: 'Written from the assistant\u2019s persona (the template further down), so every turn keeps one conversation pattern. Applying for sick leave and updating an address, written turn by turn: confirmation before action, a form handed back for review, and a clear close. Each flow answers a failure mode of the previous generation of HR bots.', image: O('engaze-08.png'), alt: 'Dialog flows for applying sick leave and updating address' },
       { label: 'Visual language', heading: 'Type, components, mood and colour', body: 'Graphik for type, a violet palette, a dark generative-AI moodboard, chat layout specs and reusable patterns. Bold, minimal and consumer-grade rather than compliance-grade.', image: O('engaze-09.png'), alt: 'Typography, components, moodboard, layout, patterns and colours', tall: true },
       { label: 'Interface', heading: 'The conversational interface', body: 'Greeting and suggested prompts, to-dos, trainings, benefits, a drafted leave email with send or discard, and a reimbursement from an uploaded ticket, all in one thread with sources and feedback controls.', image: O('engaze-10.png'), alt: 'Engaze conversational screens', tall: true },
       { label: 'In context', heading: 'Inside the workplace portal', body: 'The companion sits beside the employee\'s existing portal: apps, benefits, productivity, and Ask Engaze one tap away.', image: O('engaze-11.png'), alt: 'Engaze companion inside the workplace portal on a tablet' },
     ] as { label: string; heading: string; body: string; image: string; alt: string; tall?: boolean }[],
+  },
+  personaTemplate: {
+    title: 'A persona template for a conversational assistant.',
+    intro: 'A persona is what keeps an assistant consistent from the first turn to the thousandth. Fill in each part before writing any dialog, and test the sample turns against it.',
+    parts: [
+      ['Identity', 'Name, role and one-line purpose. Who it serves, and in which situations they reach for it.'],
+      ['Personality', 'Three traits, each with what it is and what it is not. Example format: warm, not chatty.'],
+      ['Voice', 'Tone for each moment: greeting, answering, bad news, error. Sentence length, how it addresses the person, rules for punctuation and emoji.'],
+      ['Vocabulary', 'Words it uses and words it never uses. The terms the organisation uses for its own things.'],
+      ['Conversation pattern', 'How it opens, how it asks a clarifying question, how it confirms before acting, how it closes.'],
+      ['Knowledge and limits', 'What it knows, what it never does, and what it says when it does not know.'],
+      ['Failure and handover', 'How it apologises, when it hands over to a person, and what it passes along so nobody repeats themselves.'],
+      ['Sample turns', 'Three short exchanges in its voice: a simple answer, an action with confirmation, and a refusal. The test for every later turn.'],
+    ] as [string, string][],
   },
   language: { image: I('hcm-system'), alt: 'Engaze design language: colour, type, components, principles' },
   outcomes: {

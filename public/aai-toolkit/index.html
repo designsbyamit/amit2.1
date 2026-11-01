@@ -45,14 +45,14 @@
 body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--f-body); padding-inline: 16px; padding-block: 0 40px; -webkit-font-smoothing: antialiased; }
 button { font: inherit; color: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
-.wrap { max-width: 1240px; margin-inline: auto; }
+.wrap { max-width: 1280px; margin-inline: auto; }
 h1, h2, h3 { font-weight: 300; letter-spacing: -.025em; line-height: 1.05; margin: 0; text-wrap: balance; }
 p { margin: 0; }
 .mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
 
 /* header */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; margin-inline: -16px; padding-inline: 16px; background: var(--surface); border-bottom: 1px solid var(--line); }
-.top-in { max-width: 1240px; margin-inline: auto; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.top-in { max-width: 1280px; margin-inline: auto; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .brand { color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 12px; font-weight: 500; font-size: 15px; white-space: nowrap; }
 .back-site { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 500; white-space: nowrap; }
 .back-site:hover { background: var(--bg); }
@@ -376,8 +376,8 @@ p { margin: 0; }
 .drop a small { grid-column: 1; font-size: 12.5px; color: var(--ink-3); }
 .drop a i { font: 400 12px var(--f-mono); font-style: normal; color: var(--ink-3); grid-row: 1; grid-column: 2; }
 #menuBtn { display: none; }
-.crumb { padding-top: 22px; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 6px 10px; }
-.crumb a { color: var(--ink-2); text-decoration: none; }
+.crumb { padding-top: 28px; font-size: 14px; line-height: 1.5; color: var(--ink-3); display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.crumb a { color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: .25em; }
 .crumb a:hover { color: var(--ink); text-decoration: underline; }
 .crumb span::before { content: "/"; margin-right: 10px; color: var(--line-2); }
 .view { padding-block: 40px 72px; }
@@ -552,7 +552,7 @@ p { margin: 0; }
     </a>
     <nav class="nav" id="nav" aria-label="Main"></nav>
     <div class="tools">
-      <a class="back-site" href="/" aria-label="Back to portfolio">&larr; <span>Portfolio</span></a>
+      <a class="back-site" href="/resources" aria-label="Back to Resources">&larr; <span>Resources</span></a>
       <button class="sq" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg></button>
       <span class="count" id="count" title="Guidelines you marked as applied. Saved in this browser only."></span>
       <button class="sq" id="themeBtn" type="button" aria-label="Switch between light and dark"></button>
@@ -561,12 +561,11 @@ p { margin: 0; }
 </header>
 
 <div class="wrap">
-  <p class="crumb mono" id="crumb" hidden></p>
+  <p class="crumb" id="crumb" hidden></p>
   <main>
     <section class="view" id="v-home">
       <div class="hero">
         <div>
-          <div class="tags eyebrow"><span>resources</span><span>toolkit</span><span>agent-agent interaction</span></div>
           <h1>Agent&ndash;Agent Interaction Toolkit</h1>
           <p class="lede">Everything you need to design, check and improve how AI agents work with other agents, whether the other agent belongs to another company or sits in the same system. Tested against a power-supply case study and seven other complex scenarios.</p>
           <div class="hero-btns">
@@ -664,6 +663,14 @@ p { margin: 0; }
     </section>
   </main>
   <footer class="foot-nav" id="footNav"></footer>
+<style data-cc-license>
+.cc-license{display:flex;align-items:center;gap:12px;margin:28px auto 0;padding:14px 0 0;max-width:1100px;font:400 12.5px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:inherit;border-top:1px solid rgba(128,128,128,.28);opacity:.82}
+.cc-license p{margin:0}
+.cc-license a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+.cc-license .cc-icons{flex:none;display:block}
+@media print{.cc-license{opacity:1}}
+</style><div class="cc-license" data-cc-license><a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank" aria-label="Creative Commons Attribution 4.0"><svg class="cc-icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 64" width="47" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor"><g stroke-width="3.4"><circle cx="32" cy="32" r="28.5"/><circle cx="104" cy="32" r="28.5"/></g><g stroke-width="4.6" stroke-linecap="round"><path d="M28.6 25.6A9.8 9.8 0 1 0 28.6 38.4"/><path d="M46.6 25.6A9.8 9.8 0 1 0 46.6 38.4" transform="translate(-4 0)"/></g><g fill="currentColor" stroke="none"><circle cx="104" cy="17.5" r="4.4"/><path d="M95.5 24.5h17v15h-4.4v11.5h-8.2V39.5h-4.4z"/></g></svg></a><p>Content in this toolkit is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">Creative Commons Attribution 4.0 International license</a>.</p></div>
+
 </div>
 
 <div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sTitle">
@@ -3345,10 +3352,10 @@ window.AAIPB = function (env) {
       if (rt === cur) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
     var cr = $('crumb');
-    if (v === 'home') cr.hidden = true;
+    cr.hidden = false;
+    if (v === 'home') cr.innerHTML = '<a href="/resources">Resources</a><span>Toolkit</span>';
     else {
-      cr.hidden = false;
-      cr.innerHTML = '<a href="#/home" data-route="home">Toolkit</a><span><a href="#/' + v + '" data-route="' + v + '">' + label + '</a></span>' + crumb.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('');
+      cr.innerHTML = '<a href="/resources">Resources</a><span><a href="#/home" data-route="home">Toolkit</a></span><span><a href="#/' + v + '" data-route="' + v + '">' + label + '</a></span>' + crumb.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('');
     }
     closeMenus();
     if (!initial) {

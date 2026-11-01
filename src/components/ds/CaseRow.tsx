@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import type { CaseStudy } from '../../data/work'
-import MediaFrame from './MediaFrame'
-import CaseCover from '../ui/CaseCover'
+import CaseThumb from './CaseThumb'
 
 /** Case study list item: number + category, title, tagline, "Read" action, screenshot on a coloured field.
  *  The whole row is one link; the inner "Read" label is visual only. */
@@ -22,9 +21,7 @@ export default function CaseRow({ cs, index = 0, headingLevel = 'h3' }: { cs: Ca
           </span>
         </div>
         <div className="col-span-4 md:col-span-7 order-1 md:order-2">
-          {cs.image
-            ? <MediaFrame src={cs.image} alt="" tone={cs.tone} className="transition-transform duration-500 group-hover:scale-[1.01]" />
-            : <CaseCover cs={cs} className="w-full rounded-2" minHeight={320} />}
+          <CaseThumb id={cs.id} className="transition-transform duration-500 group-hover:scale-[1.012]" />
         </div>
       </Link>
     </motion.li>

@@ -11,7 +11,7 @@ export default function LeadershipStories({ asPage }: { asPage?: boolean }) {
   return (
     <section className={`relative ${asPage ? 'pb-24 md:pb-32' : 'section-y hairline-top'}`} id="stories">
       <div className="container-site">
-        {!asPage && <SectionHeader label="Leadership stories" title="Real lessons, honestly told." intro="Moments that shaped how I lead. Each one is a short read." action={<Button to="/leadership/stories" variant="secondary" arrow>All stories</Button>} />}
+        {!asPage && <SectionHeader label="Leadership stories" title="Lessons from the work." intro="Moments that shaped how I lead. Each one is a short read." action={<Button to="/leadership/stories" variant="secondary" arrow>All stories</Button>} />}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.6 }}>
           <StoryCard story={first} index={0} featured />
         </motion.div>

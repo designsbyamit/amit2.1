@@ -1,19 +1,19 @@
+import { useContact } from '../components/contact/ContactProvider'
 import Testimonials from '../components/sections/Testimonials'
 import Button from '../components/ds/Button'
 import Card from '../components/ds/Card'
 import SectionHeader from '../components/ds/SectionHeader'
-import { menteeTestimonials, quoteExcerpts } from '../data/testimonials'
+import { menteeTestimonials } from '../data/testimonials'
 import ResourceCover from '../components/ds/ResourceCover'
 
 const ADPLIST = 'https://adplist.org/mentors/amit-kumar-tiwari'
 const TOPMATE = 'https://topmate.io/amitkrt'
 
-// Add the real figures from ADPList / Topmate here. Shown as placeholders until then.
+// From the ADPList "Impact at a glance" dashboard: 5,175 minutes (86 hours), 106 bookings, 4 countries.
 const stats = [
-  { value: '000', unit: 'hrs', label: 'Total mentoring time' },
-  { value: '000', unit: '', label: 'Sessions this year' },
-  { value: '000', unit: '', label: 'Designers mentored' },
-  { value: '0.0', unit: '/ 5', label: 'Average rating on ADPList' },
+  { value: '86', unit: 'hrs', label: 'Total mentoring time' },
+  { value: '106', unit: '', label: 'Sessions so far' },
+  { value: '4', unit: '', label: 'Countries' },
 ]
 
 const sessions = [
@@ -53,22 +53,15 @@ const templates: { id: string; title: string; motif: 'checklist' | 'loop' | 'pha
   },
 ]
 
-const requestTemplate = (title: string) => `mailto:uxbyamit@gmail.com?subject=${encodeURIComponent(`Template request - ${title}`)}&body=${encodeURIComponent(`Hello Amit,\n\nCould you send me the "${title}" template?\n\nName:\nRole:\n\nThank you.`)}`
-
-const principles = [
-  ['I read your work first', 'Before the call, I go through what you send. The time together goes to feedback and decisions, not to catching up.'],
-  ['Clear, actionable feedback', 'You leave with specific next steps in order of importance, not a list of everything that could be better.'],
-  ['Goals before tactics', 'We start with where you want to be in a year, then work backwards to what to change in your work and how you present it.'],
-  ['A growth mindset', 'Early-career designers need clarity more than they need answers. The aim is to help you learn how to learn.'],
-]
 
 export default function MentoringPage() {
+  const { open } = useContact()
   return (
     <>
       <section className="relative" style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-14 md:pt-20 pb-14 md:pb-20">
           <p className="text-overline text-ink-3 mb-8">Mentoring &amp; coaching</p>
-          <dl className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 hairline-top pt-8">
+          <dl className="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6 hairline-top pt-8">
             {stats.map(st => (
               <div key={st.label} className="flex flex-col gap-2">
                 <dd className="text-display-l text-ink font-extralight tracking-[-0.04em] leading-none">{st.value}{st.unit && <span className="text-title text-ink-3 ml-2">{st.unit}</span>}</dd>
@@ -76,10 +69,6 @@ export default function MentoringPage() {
               </div>
             ))}
           </dl>
-          <figure className="mt-14 md:mt-20 max-w-3xl">
-            <blockquote className="text-heading text-ink" style={{ fontWeight: 300, lineHeight: 1.35 }}>“{quoteExcerpts.mahesh.quote}”</blockquote>
-            <figcaption className="mt-5 text-caption text-ink-3">{quoteExcerpts.mahesh.name} · {quoteExcerpts.mahesh.role} · <a className="link" href={ADPLIST} target="_blank" rel="noopener noreferrer">ADPList</a></figcaption>
-          </figure>
         </div>
       </section>
 
@@ -113,20 +102,6 @@ export default function MentoringPage() {
 
       <section className="section-y hairline-top">
         <div className="container-site">
-          <SectionHeader label="How I mentor" title="Prepared, specific, honest." />
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
-            {principles.map(([t, d]) => (
-              <div key={t}>
-                <h3 className="text-title text-ink mb-2">{t}</h3>
-                <p className="text-body text-ink-2">{d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-y hairline-top">
-        <div className="container-site">
           <SectionHeader label="Templates" title="Come prepared, leave with a plan." intro="Four templates I use with mentees. Preview the prompts here and ask for the editable version by email." />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {templates.map((tpl, i) => (
@@ -141,7 +116,7 @@ export default function MentoringPage() {
                       {tpl.prompts.map((p, j) => <li key={j} className="flex gap-3 text-body-sm text-ink-2"><span className="text-label text-signal-ink pt-0.5">{String(j + 1).padStart(2, '0')}</span>{p}</li>)}
                     </ol>
                   </details>
-                  <div className="mt-auto pt-2"><Button small variant="secondary" href={requestTemplate(tpl.title)}>Request the template</Button></div>
+                  <div className="mt-auto pt-2"><Button small variant="secondary" onClick={() => open({ topic: 'mentoring', subject: `Template request - ${tpl.title}`, message: `Could you send me the “${tpl.title}” template?` })}>Request the template</Button></div>
                 </div>
               </article>
             ))}

@@ -1,5 +1,6 @@
 import Breadcrumb from '../components/ds/Breadcrumb'
-import MediaFrame from '../components/ds/MediaFrame'
+import Distinct from '../components/case/Distinct'
+import CaseThumb from '../components/ds/CaseThumb'
 import { TagList } from '../components/ds/Tag'
 import ZoomImage from '../components/ui/ZoomImage'
 import { useParams, Link } from 'react-router-dom'
@@ -21,7 +22,7 @@ export default function CaseStudyPage() {
         <div className="text-center">
           <p className="text-body text-ink-3 mb-6">Case study not found.</p>
           <Link to="/craft" className="text-label text-ink-3 hover:text-white transition-colors">
-            ← Back to Craft
+            ← Back to Works
           </Link>
         </div>
       </div>
@@ -33,7 +34,7 @@ export default function CaseStudyPage() {
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-10 md:pt-14 pb-16 md:pb-20">
-          <div className="mb-10"><Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: cs.shortTitle }]} /></div>
+          <div className="mb-10"><Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: cs.shortTitle }]} /></div>
           <div className="grid-site gap-y-10 items-end">
             <div className={cs.image ? 'col-span-4 md:col-span-6' : 'col-span-4 md:col-span-9'}>
               <motion.p className="text-label text-ink-3 mb-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.1 }}>
@@ -57,12 +58,14 @@ export default function CaseStudyPage() {
             </div>
             {cs.image && (
               <motion.div className="col-span-4 md:col-span-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}>
-                <MediaFrame src={cs.image} alt={`${cs.shortTitle}: cover`} tone={cs.tone} loading="eager" />
+                <CaseThumb id={cs.id} />
               </motion.div>
             )}
           </div>
         </div>
       </section>
+
+      {cs.distinct && <section className="container-site pb-16 md:pb-20"><Distinct title={cs.distinct.title} body={cs.distinct.body} /></section>}
 
       {/* Challenge / Approach / Outcome */}
       <section className="relative bg-black py-24 px-6 md:px-12">

@@ -16,6 +16,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
   })
   clockRef.current = clock
   const { t, playing, play, pause, seek } = clock
+  const embed = new URLSearchParams(window.location.search).get('embed') === '1'
   const [muted, setMuted] = useState(false)
   const [started, setStarted] = useState(false)
   const wrap = useRef<HTMLDivElement>(null)
@@ -51,9 +52,9 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
   const full = () => { const el = wrap.current?.parentElement; if (!el) return; if (document.fullscreenElement) void document.exitFullscreen(); else void el.requestFullscreen() }
 
   return (
-    <main id="main" className="min-h-screen" style={{ paddingTop: 'var(--header-h)' }}>
-      <div className="container-site pt-8 pb-16">
-        <div className="flex items-end justify-between gap-6 mb-6 flex-wrap">
+    <main id="main" className={embed ? '' : 'min-h-screen'} style={embed ? undefined : { paddingTop: 'var(--header-h)' }}>
+      <div className={embed ? '' : 'container-site pt-8 pb-16'}>
+        <div className={`flex items-end justify-between gap-6 mb-6 flex-wrap${embed ? ' hidden' : ''}`}>
           <div>
             <p className="text-overline text-ink-3 mb-2">Film · {length}</p>
             <h1 className="text-display-l text-ink">{title}</h1>
@@ -62,7 +63,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
           <Link to={backTo} className="link text-body-sm">{backLabel}</Link>
         </div>
 
-        <div className="relative rounded-3 overflow-hidden" style={{ background: C.bg, border: `1px solid ${C.line}` }}>
+        <div className={`relative overflow-hidden${embed ? '' : ' rounded-3'}`} style={{ background: C.bg, border: embed ? 0 : `1px solid ${C.line}` }}>
           <div ref={wrap} className="relative w-full" style={{ aspectRatio: '16 / 9', overflow: 'hidden', fontFamily: "'Geist Variable','Geist',system-ui,sans-serif", color: C.ink }}>
             <div style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transformOrigin: '0 0', transform: `scale(${scale})`, background: C.bg }}>
               {render(t)}
@@ -95,7 +96,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
             <button onClick={full} aria-label="Fullscreen" className="btn-reset" style={{ color: C.ink, fontSize: 13, fontFamily: mono }}>FULL</button>
           </div>
         </div>
-        <ol className="grid grid-cols-2 md:[grid-template-columns:repeat(var(--n),minmax(0,1fr))] gap-2 mt-4" style={{ ['--n' as string]: chapters.length }}>
+        <ol hidden={embed} className="grid grid-cols-2 md:[grid-template-columns:repeat(var(--n),minmax(0,1fr))] gap-2 mt-4" style={{ ['--n' as string]: chapters.length }}>
           {chapters.map(c => (
             <li key={c.at}><button onClick={() => { if (!started) setStarted(true); seek(c.at); if (!playing) play() }} className="w-full text-left rounded-2 px-3 py-2 text-caption" style={{ background: chapter.at === c.at ? 'rgb(var(--ink-rgb) / 0.08)' : 'transparent', border: '1px solid var(--line-1)', color: 'var(--ink-2)' }}>
               <span style={{ fontFamily: mono, fontSize: 11, color: 'var(--ink-3)' }}>{fmtT(c.at)}</span><br />{c.label}

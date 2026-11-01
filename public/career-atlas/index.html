@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Career Intelligence Atlas · Amit Kumar Tiwari</title>
+<meta name="description" content="An interactive atlas of 60 design projects from 2011 to 2024: how roles, industries, team scale and capabilities changed, with every finding tagged as fact, calculation, inference or hypothesis.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-theme","dark")}</script>
+<style>:root{
+  --bg:#0F1013;--s1:#181A1F;--s2:#22252B;--s3:#2C3038;
+  --ink:#ECEDEF;--ink2:#C4C7CD;--ink3:#A3A7B0;--faint:#5D626C;
+  --signal:#C8F55A;--on-seg:#0F1013;--on-signal:#0F1013;--signal-ink:#C8F55A;--link:#7D98FF;
+  --line:rgba(236,237,239,.10);--line2:rgba(236,237,239,.18);--ctl:rgba(236,237,239,.42);
+  --c-des:#FFB86B;--c-res:#C79BE8;--c-lead:#4FD1BC;--c-mgr:#C8F55A;--c-p4:#7D98FF;
+  --field-teal:#0F3B3A;--field-cobalt:#1B2350;--field-plum:#33203F;
+  --shadow:0 24px 48px rgba(0,0,0,.45);
+  --serif:"Bodoni Moda","Bodoni 72",Didot,Georgia,serif;--sans:"Geist",ui-sans-serif,system-ui,sans-serif;--mono:"Geist Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#F5F6F7;--s1:#FFFFFF;--s2:#EEF0F2;--s3:#E4E7EB;--ink:#0F1013;--ink2:#3A3E46;--ink3:#4D525C;--faint:#9AA0A9;
+  --signal-ink:#3F6B00;--on-seg:#FFFFFF;--link:#3654E0;--line:rgba(15,16,19,.10);--line2:rgba(15,16,19,.16);--ctl:rgba(15,16,19,.45);
+  --c-des:#B8650A;--c-res:#8A4DB5;--c-lead:#0C8A78;--c-mgr:#5E9A00;--c-p4:#3654E0;--shadow:0 24px 48px rgba(15,16,19,.12);color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#F5F6F7;--s1:#FFFFFF;--s2:#EEF0F2;--s3:#E4E7EB;--ink:#0F1013;--ink2:#3A3E46;--ink3:#4D525C;--faint:#9AA0A9;
+  --signal-ink:#3F6B00;--on-seg:#FFFFFF;--link:#3654E0;--line:rgba(15,16,19,.10);--line2:rgba(15,16,19,.16);--ctl:rgba(15,16,19,.45);
+  --c-des:#B8650A;--c-res:#8A4DB5;--c-lead:#0C8A78;--c-mgr:#5E9A00;--c-p4:#3654E0;--shadow:0 24px 48px rgba(15,16,19,.12);color-scheme:light}
+:root{color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){color-scheme:light}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html{padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));margin:0}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+.over{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.lab{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+a{color:var(--link)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--link);outline-offset:2px}
+/* hero */
+.hero{padding:56px 0 40px}
+.hero h1{font-family:var(--serif);font-size:clamp(2.6rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.02em;margin:18px 0 22px;max-width:15ch}
+.hero p.lead{font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--ink2);max-width:46rem;font-weight:300}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;margin-top:40px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.kpi{padding:20px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.kpi b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4vw,3.2rem);line-height:1}
+.kpi span{display:block;margin-top:8px;font-size:13px;color:var(--ink3)}
+.note{margin-top:22px;padding:14px 16px;border:1px solid var(--line2);border-radius:10px;background:var(--s1);color:var(--ink2);font-size:14px;max-width:52rem}
+/* filter bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(15,16,19,.94);background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px))}
+.bar .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.bar select,.bar input{background:var(--s2);color:var(--ink);border:1px solid var(--line2);border-radius:8px;padding:7px 10px;font:inherit;font-size:14px;min-width:0;max-width:100%}
+.bar input{flex:1 1 150px}
+.chip{border:1px solid var(--line2);background:transparent;border-radius:999px;padding:5px 12px;font-size:13px;color:var(--ink2)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:hover{border-color:var(--ctl)}
+.count{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-left:auto}
+.nav{display:flex;gap:6px;flex-wrap:wrap;padding:14px 0 0}
+/* chapters */
+.ch{padding:72px 0 8px;border-top:1px solid var(--line);margin-top:56px;scroll-margin-top:90px}
+.ch h2{font-family:var(--serif);font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:1.08;letter-spacing:-.015em;margin:12px 0 16px;max-width:20ch}
+.ch .story{max-width:44rem;color:var(--ink2);font-size:1.05rem;font-weight:300}
+.ch .story p{margin:0 0 12px}
+.take{margin:26px 0 0;padding:16px 18px;border-left:3px solid var(--signal);background:var(--s1);border-radius:0 10px 10px 0;max-width:46rem}
+.take b{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-ink);display:block;margin-bottom:4px}
+.fig{margin:36px 0 0;background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:20px 18px 16px;min-width:0}
+.fig h3{font-size:1.15rem;font-weight:500;margin-bottom:4px}
+.fig .sub{font-size:14px;color:var(--ink3);margin:0 0 14px;max-width:46rem}
+.fig .foot{font-size:12.5px;color:var(--ink3);margin-top:12px;max-width:50rem}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:var(--sans);fill:var(--ink3);font-size:11px}
+svg .t-ink{fill:var(--ink)} svg .t-ink2{fill:var(--ink2)}
+svg .mono{font-family:var(--mono);font-size:10px}
+.grid-line{stroke:var(--line);stroke-width:1}
+.hit{cursor:pointer}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:0 0 12px;font-size:13px;color:var(--ink2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:baseline}
+.tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--ink2);margin-right:6px}
+.tag.fact{border-color:var(--ink3)} .tag.calc{border-color:var(--c-lead);color:var(--c-lead)} .tag.inf{border-color:var(--c-des);color:var(--c-des)} .tag.hyp{border-color:var(--c-res);color:var(--c-res)}
+/* insights */
+.ins{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:16px;margin-top:18px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h4{font-family:var(--serif);font-size:1.3rem;line-height:1.2}
+.card p{margin:0;font-size:14.5px;color:var(--ink2)}
+.card .why{color:var(--ink3);font-size:13.5px}
+.card .ev{font-family:var(--mono);font-size:11.5px;color:var(--ink3);border-top:1px solid var(--line);padding-top:10px}
+.card .cav{font-size:13px;color:var(--ink3)}
+.card button.go{align-self:flex-start;background:transparent;border:1px solid var(--line2);border-radius:999px;padding:4px 12px;font-size:12.5px;color:var(--ink2)}
+.card button.go:hover{border-color:var(--ctl)}
+.card .meta{display:flex;flex-wrap:wrap;gap:4px}
+/* table */
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line2);white-space:nowrap;cursor:pointer;position:sticky;top:0;background:var(--s1)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.row{cursor:pointer} tr.row:hover td{background:var(--s2)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.und{color:var(--ink3);font-style:italic}
+/* drawer */
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--s1);border-left:1px solid var(--line2);box-shadow:var(--shadow);z-index:50;transform:translateX(105%);transition:transform .25s ease;overflow:auto;padding:22px 20px max(28px,env(safe-area-inset-bottom,0px))}
+.drawer.open{transform:none}
+.drawer h3{font-family:var(--serif);font-size:1.9rem;line-height:1.1;margin:8px 0 14px}
+.drawer dl{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;margin:0;font-size:14px}
+.drawer dt{color:var(--ink3)} .drawer dd{margin:0;color:var(--ink)}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 16px}
+.acts span{font-size:12.5px;padding:3px 10px;border-radius:999px;border:1px solid var(--line2)}
+.acts .y{background:var(--signal);color:var(--on-signal);border-color:var(--signal)}
+.acts .n{color:var(--ink3)} .acts .u{color:var(--ink3);border-style:dashed}
+.x{position:absolute;top:14px;right:14px;background:var(--s2);border:1px solid var(--line2);border-radius:8px;width:34px;height:34px}
+#tip{position:fixed;z-index:60;pointer-events:none;background:var(--s2);border:1px solid var(--line2);border-radius:10px;padding:8px 11px;font-size:12.5px;color:var(--ink);max-width:260px;box-shadow:var(--shadow);opacity:0;transition:opacity .1s}
+#tip b{display:block;font-weight:500;margin-bottom:2px}
+#tip span{color:var(--ink3);display:block}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;display:none}
+.scrim.on{display:block}
+.btn{background:var(--signal);color:var(--on-signal);border:0;border-radius:8px;padding:8px 14px;font-weight:500}
+.btn.sec{background:transparent;color:var(--ink);border:1px solid var(--ctl)}
+details{border-top:1px solid var(--line);padding:12px 0}
+details summary{cursor:pointer;color:var(--ink2)}
+footer{padding:48px 0 64px;margin-top:64px;border-top:1px solid var(--line);color:var(--ink3);font-size:13px}
+@media (max-width:640px){.drawer dl{grid-template-columns:100px 1fr}.fig{padding:14px 12px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+.card .ch-top{display:flex;gap:10px;align-items:flex-start}
+.card .ib{flex:none;width:40px;height:40px;border-radius:12px;background:color-mix(in srgb,var(--lime,#C8F55A) 16%,var(--s1));display:grid;place-items:center;border:1px solid var(--line2)}
+.card .ico{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card .qq{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink2)}
+.card .big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.card .big b{font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--ink);font-weight:500}
+.card .big span{font-size:13px;color:var(--ink3);flex:1;min-width:120px}
+.card.hero{border-color:var(--line2)}
+.viz{display:flex;flex-direction:column;gap:6px}
+.viz .vl{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.viz svg.vb{width:100%;max-width:240px;height:48px}.viz svg.vb2{width:100%;max-width:300px}
+.viz .on{fill:var(--ink)}.viz .off{fill:var(--line2)}
+.viz .bt{font:9px var(--mono);fill:var(--ink3)}
+.dg{display:flex;flex-wrap:wrap;gap:4px}.dg i{width:10px;height:10px;border-radius:50%;background:var(--line2)}.dg i.on{background:var(--ink)}
+.rt{display:flex;flex-direction:column;gap:4px}.rr{display:flex;align-items:center;gap:8px}.rr svg.st{width:64px;height:12px;fill:var(--ink);flex:none}.rr b{height:8px;border-radius:4px;background:var(--ink);display:block}.rr em{font:11px var(--mono);color:var(--ink3);font-style:normal}
+
+.dyn{font-size:13.5px;color:var(--ink2);margin:12px 0 0;max-width:52rem}
+.dbmodal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;display:grid;place-items:center;padding:16px}
+.dbcard{background:var(--s1);border:1px solid var(--line2);border-radius:14px;box-shadow:var(--shadow);padding:20px;width:min(860px,100%);max-height:92vh;overflow:auto}
+.dbcard h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:12px}
+
+.top{border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:12px max(16px,env(safe-area-inset-left,0px));font-size:14px}.top .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--ink3)}.top a{color:var(--ink2);text-decoration:none}.top a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+</style>
+</head><body>
+<div class="top"><div class="wrap"><a href="/">Amit Kumar Tiwari</a><span aria-hidden="true">/</span><a href="/#impact">Scale &amp; Reach</a><span aria-hidden="true">/</span><span>Career atlas</span></div></div>
+<div id="root"></div>
+<aside class="drawer" id="drawer" aria-label="Project detail"></aside><div class="scrim" id="scrim"></div><div id="tip" role="status"></div>
+<noscript>This atlas needs JavaScript to draw its charts.</noscript>
+<script>window.__DATA__={"projects": [{"name": "BFSI project 1", "pno": null, "star": false, "product": "B2C", "ptype": "Major Project", "industry": "BFSI", "theme": "Full Stack UX", "year": 2011, "dur": 1.0, "role_raw": "UX Designer", "role": "UX / UI Designer", "rating": 3, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": false, "Journeys": true, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": null}, "dated": true, "sheet_row": 2}, {"name": "Social Innovation project 1", "pno": null, "star": false, "product": "B2B", "ptype": "Major Project", "industry": "Social Innovation", "theme": "Full Stack UX", "year": 2012, "dur": 1.0, "role_raw": "UX Designer", "role": "UX / UI Designer", "rating": 4, "url": null, "notes": [], "team": 2.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": false, "Journeys": true, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": null}, "dated": true, "sheet_row": 3}, {"name": "Social Innovation project 2", "pno": null, "star": false, "product": "B2C & B2B", "ptype": "Major Project", "industry": "Social Innovation", "theme": "Full Stack UX", "year": 2012, "dur": 2.0, "role_raw": "UX Designer", "role": "UX / UI Designer", "rating": 5, "url": null, "notes": [], "team": 4.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": null}, "dated": true, "sheet_row": 4}, {"name": "Education project 1", "pno": null, "star": false, "product": "B2C", "ptype": "Work", "industry": "Education", "theme": "UI Design", "year": 2013, "dur": 2.0, "role_raw": "UI Designer", "role": "UX / UI Designer", "rating": 3, "url": null, "notes": [], "team": 1.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": true, "Journeys": false, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": true, "Hand-off": true}, "dated": true, "sheet_row": 5}, {"name": "BFSI project 2", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "BFSI", "theme": "IxD+Data Viz.", "year": 2013, "dur": 2.0, "role_raw": "UX Designer", "role": "UX / UI Designer", "rating": 3, "url": null, "notes": [], "team": 1.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": true, "Journeys": false, "Persona": false, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": false, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": false}, "dated": true, "sheet_row": 6}, {"name": "Manufacturing project 1", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Manufacturing", "theme": "IxD+Data Viz.+Form Design", "year": 2013, "dur": 3.0, "role_raw": "UI Designer", "role": "UX / UI Designer", "rating": 5, "url": null, "notes": [], "team": 2.0, "research": "No", "act": {"Research": false, "Stakeholders": true, "Journeys": false, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": false}, "dated": true, "sheet_row": 7}, {"name": "Manufacturing project 2", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Manufacturing", "theme": "IxD+Data Viz.+Form Design", "year": 2013, "dur": 4.0, "role_raw": "UX Designer", "role": "UX / UI Designer", "rating": 5, "url": null, "notes": [], "team": 2.0, "research": "No", "act": {"Research": false, "Stakeholders": true, "Journeys": false, "Persona": false, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": true, "Hand-off": true}, "dated": true, "sheet_row": 8}, {"name": "BFSI project 3", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "BFSI", "theme": "IxD+Data Viz.+VD", "year": 2014, "dur": 2.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": [], "team": 1.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": true, "Journeys": false, "Persona": false, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": false}, "dated": true, "sheet_row": 9}, {"name": "BFSI project 4", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "BFSI", "theme": "HE", "year": 2014, "dur": 0.5, "role_raw": "Researcher & Designer", "role": "Researcher & Designer", "rating": 4, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": false, "Persona": false, "Heuristic eval": true, "IA": false, "Wireframes": false, "Data viz": false, "Visual design": false, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": false}, "dated": true, "sheet_row": 10}, {"name": "Air, Travel & Hospitality project 1", "pno": null, "star": false, "product": "B2C", "ptype": "Practice", "industry": "Air, Travel & Hospitality", "theme": "HE", "year": 2014, "dur": 0.25, "role_raw": "Researcher & Designer", "role": "Researcher & Designer", "rating": null, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": false, "Journeys": true, "Persona": false, "Heuristic eval": true, "IA": false, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": false}, "dated": true, "sheet_row": 11}, {"name": "Air, Travel & Hospitality project 2", "pno": null, "star": false, "product": "B2C", "ptype": "Practice", "industry": "Air, Travel & Hospitality", "theme": "HE", "year": 2014, "dur": 0.25, "role_raw": "Researcher & Designer", "role": "Researcher & Designer", "rating": null, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": false, "Journeys": true, "Persona": false, "Heuristic eval": true, "IA": false, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": false, "Hand-off": false}, "dated": true, "sheet_row": 12}, {"name": "Entertainment project 1", "pno": null, "star": false, "product": "B2C", "ptype": "Practice", "industry": "Entertainment", "theme": "HE", "year": 2014, "dur": 0.25, "role_raw": "Researcher & Designer", "role": "Researcher & Designer", "rating": null, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": false, "Persona": false, "Heuristic eval": true, "IA": false, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": false}, "dated": true, "sheet_row": 13}, {"name": "BFSI project 5", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "BFSI", "theme": "IxD+Data Viz.", "year": 2014, "dur": 1.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": [], "team": 2.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 14}, {"name": "Education project 2", "pno": null, "star": false, "product": "B2C & B2B", "ptype": "Work", "industry": "Education", "theme": "Full Stack UX", "year": 2014, "dur": 14.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 15}, {"name": "Data & AI project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Data & AI", "theme": "Full Stack UX", "year": 2015, "dur": 2.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 4, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 16}, {"name": "HR brand project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "HR", "theme": "Brand Strategy & Identity Design", "year": 2015, "dur": 1.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": [], "team": 1.0, "research": "No", "act": {"Research": false, "Stakeholders": true, "Journeys": null, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": false, "Data viz": false, "Visual design": false, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": false}, "dated": true, "sheet_row": 17}, {"name": "Data & AI project 2", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Data & AI", "theme": "Full Stack UX", "year": 2015, "dur": 3.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 3, "url": null, "notes": [], "team": 1.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 18}, {"name": "Data & AI brand project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Data & AI", "theme": "Brand Strategy & Identity Design", "year": 2015, "dur": 1.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": [], "team": 1.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": true, "Journeys": null, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": false, "Data viz": false, "Visual design": false, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": false}, "dated": true, "sheet_row": 19}, {"name": "Cloud, Networking & DevOps project 1", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cloud, Networking & DevOps", "theme": "Interaction Design", "year": 2015, "dur": 21.0, "role_raw": "UX Designer", "role": "UX / UI Designer", "rating": 4, "url": null, "notes": [], "team": 4.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": null, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 20}, {"name": "Cloud, Networking & DevOps project 2", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cloud, Networking & DevOps", "theme": "Interaction Design", "year": 2017, "dur": 20.0, "role_raw": "UX Designer", "role": "UX / UI Designer", "rating": 5, "url": null, "notes": [], "team": 6.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 21}, {"name": "Catalog Marketplace", "pno": 5.0, "star": true, "product": "B2B", "ptype": "Work", "industry": "Cloud, Networking & DevOps", "theme": "Full Stack UX", "year": 2018, "dur": 5.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": "https://drive.google.com/file/d/1CvW806oZj8DVUSdugoTEjrfK04HtiGbI/view", "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 22}, {"name": "DesignOps programme 2017", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cross-Industry", "theme": "DesignOps", "year": 2017, "dur": 6.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": null, "url": null, "notes": ["Team size recorded as '15+' (15 used as a lower bound)"], "team": 15, "research": "N/A", "act": {"Research": false, "Stakeholders": true, "Journeys": null, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 23}, {"name": "BFSI project 6", "pno": 4.0, "star": true, "product": "B2C", "ptype": "Work", "industry": "BFSI", "theme": "Full Stack UX", "year": 2018, "dur": 4.0, "role_raw": "Design Co-Lead", "role": "Design Lead", "rating": 5, "url": "https://www.uxbyamit.com/portfolio/insureme", "notes": [], "team": 5.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": false, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 24}, {"name": "Cloud, Networking & DevOps project 3", "pno": 6.2, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cloud, Networking & DevOps", "theme": "Full Stack UX", "year": 2019, "dur": 14.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 4, "url": null, "notes": ["Design system recorded as 'Yes*' (asterisk not explained in sheet)"], "team": 3.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 25}, {"name": "Cross-Industry project 1", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cross-Industry", "theme": "Full Stack UX", "year": 2020, "dur": 3.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": ["Design system recorded as 'Yes*' (asterisk not explained in sheet)"], "team": 3.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": false, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 26}, {"name": "BlockChain - Global Trade", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "BFSI", "theme": "Full Stack UX", "year": 2020, "dur": 1.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": [], "team": 1.0, "research": "No", "act": {"Research": false, "Stakeholders": true, "Journeys": true, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 27}, {"name": "CMT project 1", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "CMT", "theme": "Full Stack UX", "year": 2020, "dur": 6.0, "role_raw": "Design Lead", "role": "Design Lead", "rating": 5, "url": null, "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 28}, {"name": "CMT project 2", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "CMT", "theme": "Interaction Design", "year": 2021, "dur": 10.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 4, "url": null, "notes": [], "team": 2.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": false, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": false, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 29}, {"name": "CMT project 3", "pno": 2.0, "star": true, "product": "B2B", "ptype": "Work", "industry": "CMT", "theme": "Full Stack UX", "year": 2022, "dur": 8.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": "Available", "notes": [], "team": 5.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 30}, {"name": "Real Estate & Fire project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Real Estate & Fire", "theme": "Full Stack UX", "year": 2021, "dur": 3.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": null, "notes": [], "team": 2.0, "research": "No", "act": {"Research": false, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 31}, {"name": "IT Services brand project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "IT Services", "theme": "Brand Strategy & Identity Design", "year": 2020, "dur": 3.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": null, "notes": [], "team": 3.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": null, "Persona": true, "Heuristic eval": false, "IA": false, "Wireframes": false, "Data viz": false, "Visual design": false, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": false}, "dated": true, "sheet_row": 32}, {"name": "Real Estate & Fire project 2", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Real Estate & Fire", "theme": "Full Stack UX", "year": 2022, "dur": 3.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 4, "url": null, "notes": [], "team": 3.0, "research": "No", "act": {"Research": false, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 33}, {"name": "IT Services project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "IT Services", "theme": "Full Stack UX", "year": 2020, "dur": 4.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": null, "notes": [], "team": 3.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": null, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 34}, {"name": "Healthcare & Telehealth project 1", "pno": 3.0, "star": true, "product": "B2C", "ptype": "CSH", "industry": "Healthcare & Telehealth", "theme": "Full Stack UX", "year": 2022, "dur": 4.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": "https://www.uxbyamit.com/portfolio/cognicuyr", "notes": [], "team": 2.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 35}, {"name": "Real Estate project 1", "pno": 5.2, "star": true, "product": "B2C", "ptype": "CSH", "industry": "Real Estate", "theme": "Design Thinking", "year": 2021, "dur": 2.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": "https://www.uxbyamit.com/portfolio/homesworld", "notes": [], "team": 1.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": false}, "dated": true, "sheet_row": 36}, {"name": "Healthcare & Telehealth brand project 1", "pno": null, "star": false, "product": "B2C & B2B", "ptype": "CSH", "industry": "Healthcare & Telehealth", "theme": "Brand Strategy & Identity Design", "year": 2022, "dur": 3.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 2.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": null, "Persona": false, "Heuristic eval": false, "IA": false, "Wireframes": false, "Data viz": false, "Visual design": false, "Usability testing": false, "Design system": false, "Content strategy": null, "Hand-off": false}, "dated": true, "sheet_row": 37}, {"name": "Aerospace & Mobility project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Aerospace & Mobility", "theme": "Full Stack UX", "year": 2021, "dur": 3.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": null, "notes": [], "team": 2.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 38}, {"name": "Healthcare & Telehealth project 2", "pno": 6.1, "star": true, "product": "B2C & B2B", "ptype": "CSH", "industry": "Healthcare & Telehealth", "theme": "Full Stack UX", "year": 2022, "dur": 4.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 3.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 39}, {"name": "Air, Travel & Hospitality project 3", "pno": 1.0, "star": true, "product": "B2C", "ptype": "Work", "industry": "Air, Travel & Hospitality", "theme": "Full Stack UX", "year": 2023, "dur": 6.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": null, "notes": [], "team": 12.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": true, "IA": true, "Wireframes": true, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 40}, {"name": "EUS project 1", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "EUS", "theme": "Full Stack UX", "year": 2023, "dur": 1.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 6.0, "research": "No", "act": {"Research": false, "Stakeholders": false, "Journeys": null, "Persona": true, "Heuristic eval": false, "IA": false, "Wireframes": true, "Data viz": true, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": null, "Hand-off": true}, "dated": true, "sheet_row": 41}, {"name": "Aerospace & Mobility brand project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Aerospace & Mobility", "theme": "Brand Strategy & Identity Design", "year": 2023, "dur": 4.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 4.0, "research": "Primary User Research", "act": {"Research": true, "Stakeholders": true, "Journeys": true, "Persona": true, "Heuristic eval": false, "IA": false, "Wireframes": false, "Data viz": false, "Visual design": true, "Usability testing": true, "Design system": true, "Content strategy": true, "Hand-off": true}, "dated": true, "sheet_row": 42}, {"name": "CMT project 4", "pno": null, "star": false, "product": "B2C", "ptype": "Work", "industry": "CMT", "theme": "Full Stack UX", "year": 2023, "dur": 0.5, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 8.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": true, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 43}, {"name": "CPG project 1", "pno": null, "star": false, "product": "B2C", "ptype": "Work", "industry": "CPG", "theme": "Full Stack UX", "year": 2023, "dur": 0.5, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 10.0, "research": "Primary & Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 44}, {"name": "CPG project 2", "pno": null, "star": false, "product": "B2C", "ptype": "Work", "industry": "CPG", "theme": "Full Stack UX", "year": 2023, "dur": 1.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 6.0, "research": "Primary & Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 45}, {"name": "Education brand project 1", "pno": null, "star": false, "product": "B2B", "ptype": "CSH", "industry": "Education", "theme": "Brand Strategy & Identity Design", "year": 2023, "dur": 1.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 2.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 46}, {"name": "Data & AI project 3", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Data & AI", "theme": "Full Stack UX", "year": 2023, "dur": 14.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 14.0, "research": "Primary & Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": true, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 47}, {"name": "Design system programme", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Sustainability", "theme": "Design Systems", "year": 2023, "dur": 1.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 12.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 48}, {"name": "Personal Sustainability", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Sustainability", "theme": "Full Stack UX", "year": 2023, "dur": 1.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 4.0, "research": "Primary & Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 49}, {"name": "DesignOps programme 2024", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cross-Industry", "theme": "NA", "year": 2024, "dur": 6.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": null, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 50}, {"name": "EUS project 3", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "EUS", "theme": "Full Stack UX", "year": 2024, "dur": 0.5, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 5.0, "research": "No", "act": {"Research": false, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 51}, {"name": "EUS project 2", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "EUS", "theme": "Full Stack UX", "year": 2023, "dur": 1.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 7.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": true, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 52}, {"name": "Gen AI Capability", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cross-Industry", "theme": "Full Stack UX", "year": 2024, "dur": 6.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 14.0, "research": "Primary & Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 53}, {"name": "HR project 1", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "HR", "theme": "Full Stack UX", "year": 2024, "dur": 6.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": 5, "url": null, "notes": [], "team": 4.0, "research": "Primary & Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 54}, {"name": "Agent Assist", "pno": null, "star": false, "product": "B2B", "ptype": "Work", "industry": "Cross-Industry", "theme": "Full Stack UX", "year": 2024, "dur": 2.0, "role_raw": "Design Manager", "role": "Design Manager", "rating": null, "url": null, "notes": [], "team": 4.0, "research": "Secondary Research", "act": {"Research": true, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": false, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": true, "sheet_row": 55}, {"name": "AI-Powered Search", "pno": null, "star": false, "product": null, "ptype": null, "industry": null, "theme": null, "year": null, "dur": null, "role_raw": null, "role": null, "rating": null, "url": null, "notes": [], "team": null, "research": null, "act": {"Research": null, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": null, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": false, "sheet_row": 56}, {"name": "Search project (undated)", "pno": null, "star": false, "product": null, "ptype": null, "industry": null, "theme": null, "year": null, "dur": null, "role_raw": null, "role": null, "rating": null, "url": null, "notes": [], "team": null, "research": null, "act": {"Research": null, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": null, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": false, "sheet_row": 57}, {"name": "Sign-in", "pno": null, "star": false, "product": null, "ptype": null, "industry": null, "theme": null, "year": null, "dur": null, "role_raw": null, "role": null, "rating": null, "url": null, "notes": [], "team": null, "research": null, "act": {"Research": null, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": null, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": false, "sheet_row": 58}, {"name": "Bug Bash", "pno": null, "star": false, "product": null, "ptype": null, "industry": null, "theme": null, "year": null, "dur": null, "role_raw": null, "role": null, "rating": null, "url": null, "notes": [], "team": null, "research": null, "act": {"Research": null, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": null, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": false, "sheet_row": 59}, {"name": "Comp DS", "pno": null, "star": false, "product": null, "ptype": null, "industry": null, "theme": null, "year": null, "dur": null, "role_raw": null, "role": null, "rating": null, "url": null, "notes": [], "team": null, "research": null, "act": {"Research": null, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": null, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": false, "sheet_row": 60}, {"name": "Design Hub", "pno": null, "star": false, "product": null, "ptype": null, "industry": null, "theme": null, "year": null, "dur": null, "role_raw": null, "role": null, "rating": null, "url": null, "notes": [], "team": null, "research": null, "act": {"Research": null, "Stakeholders": null, "Journeys": null, "Persona": null, "Heuristic eval": null, "IA": null, "Wireframes": null, "Data viz": null, "Visual design": null, "Usability testing": null, "Design system": null, "Content strategy": null, "Hand-off": null}, "dated": false, "sheet_row": 61}], "profile": [["Project name", 60, "All present, no duplicates"], ["Year", 54, "6 name-only records have no year"], ["Duration (months)", 54, "0.25 to 21 months"], ["Product type", 54, "B2B / B2C / both"], ["Project type", 54, "Work, CSH, Major Project, Practice. 'CSH' is not expanded in the sheet"], ["Industry", 54, "19 labels; 'CMT' and 'EUS' not expanded in the sheet"], ["Core theme", 54, "12 labels; 'HE' not expanded, one 'NA'"], ["Role", 54, "7 raw labels, 4 after cleaning"], ["Team size", 53, "One '15+' used as 15 (a lower bound); one blank"], ["Customer rating", 34, "3 to 5 stars only; 20 dated projects unrated"], ["Research", 54, "Type recorded for all dated projects"], ["Data viz", 54, "Recorded for all dated projects"], ["Stakeholder collaboration", 41, "13 projects unrecorded"], ["Personas, IA, wireframes, visual design", 41, "13 projects unrecorded, all from 2023 to 2024"], ["Heuristic evaluation, usability testing, design system", 41, "13 unrecorded"], ["Journeys / flows", 33, "21 unrecorded"], ["Hand-off", 38, "16 unrecorded"], ["Content strategy", 12, "Too sparse to analyse"], ["Star status", 7, "Meaning not defined; shown as 'starred'"], ["URL", 5, "One reads 'Available', not a link"], ["Impact", 0, "Empty"], ["Challenges", 0, "Empty"], ["Aha moments", 0, "Empty"]], "clean": ["60 records: 54 dated and 6 name-only (for example Sign-in, Bug Bash, Comp DS and Design Hub). The 6 stay in the repository, are excluded from every time-based chart, and are never counted as zero.", "No duplicate project names. Related programmes (for example a brand project and an app project for the same organisation) are kept as separate records, as recorded.", "Roles normalised: trailing spaces trimmed; 'Design Co-Lead' (one 2018 project) grouped with Design Lead; 'UX Designer' and 'UI Designer' grouped as UX / UI Designer. The raw label shows in each project's detail.", "Industry: trailing space trimmed on 'Real Estate'. 'Real Estate' and 'Real Estate & Fire' are kept separate because the sheet does not say they are the same.", "'Yes*' on design system (2 projects) is treated as Yes. The asterisk is not explained in the sheet.", "Blank is not 'No'. 13 projects from 2023 to 2024 have no activity flags beyond research and data viz; they are shown as 'not recorded' and left out of those percentages.", "The workbook has no start or end dates. Year is assumed to be the start year. Churn, concurrent workload and throughput cannot be calculated, so velocity here uses duration and project counts only.", "No records exist for 2016. See the Hidden Stories chapter for what that gap may and may not mean.", "Year order is not monotonic in the sheet; everything is sorted by Year.", "Impact, Challenges and Aha moments are empty in every row, so no impact analysis is possible from this workbook.", "Other sheets: Skills has one scored entry (Design Research, 50), Processes & Guides lists templates under nine stage headings, and Questions and Behavioral hold interview-prep stories. None of them gives project-level evidence of mentoring or proficiency, so leadership signals come from roles, team size and activities."]};</script>
+<script>(function(){
+const RAW=window.__DATA__;
+const ALL=RAW.projects;
+const D=ALL.filter(p=>p.dated);
+const ROLES=['UX / UI Designer','Researcher & Designer','Design Lead','Design Manager'];
+const RC={'UX / UI Designer':'var(--c-des)','Researcher & Designer':'var(--c-res)','Design Lead':'var(--c-lead)','Design Manager':'var(--c-mgr)'};
+const PH=[{id:'A',name:'Practitioner',from:2011,to:2013,c:'var(--c-des)'},{id:'B',name:'Researcher-Lead',from:2014,to:2015,c:'var(--c-res)'},{id:'C',name:'Platform Lead',from:2017,to:2019,c:'var(--c-lead)'},{id:'D',name:'Lead to Manager',from:2020,to:2022,c:'var(--c-p4)'},{id:'E',name:'Manager at scale',from:2023,to:2024,c:'var(--c-mgr)'}];
+const phOf=y=>y==null?null:PH.find(p=>y>=p.from&&y<=p.to)||null;
+D.forEach(p=>p.ph=(phOf(p.year)||{}).id||null);
+const ACTS=['Research','Stakeholders','Journeys','Persona','Heuristic eval','IA','Wireframes','Data viz','Visual design','Usability testing','Design system','Hand-off'];
+// content strategy excluded: only 12 projects recorded
+const YEARS=[];for(let y=2011;y<=2024;y++)YEARS.push(y);
+const st={phase:null,role:null,industry:null,product:null,q:'',view:'all',sort:'year',dir:1,sel:null,radar:['A','B','C','D','E']};
+const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg';
+function h(tag,a,...kids){const e=document.createElement(tag);for(const k in a||{}){if(k==='class')e.className=a[k];else if(k.startsWith('on'))e.addEventListener(k.slice(2),a[k]);else if(k==='html')e.innerHTML=a[k];else e.setAttribute(k,a[k])}kids.flat().forEach(c=>c!=null&&e.append(c.nodeType?c:document.createTextNode(c)));return e}
+function s(tag,a,...kids){const e=document.createElementNS(NS,tag);for(const k in a||{}){if(k==='class')e.setAttribute('class',a[k]);else if(k.startsWith('on'))e.addEventListener(k.slice(2),a[k]);else e.setAttribute(k,a[k])}kids.flat().forEach(c=>c!=null&&e.append(c.nodeType?c:document.createTextNode(c)));return e}
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const med=a=>{a=a.filter(x=>x!=null).sort((x,y)=>x-y);if(!a.length)return null;const m=a.length>>1;return a.length%2?a[m]:(a[m-1]+a[m])/2};
+const mean=a=>{a=a.filter(x=>x!=null);return a.length?a.reduce((x,y)=>x+y,0)/a.length:null};
+const sum=a=>a.reduce((x,y)=>x+y,0);
+const f1=n=>n==null?'n/a':(Math.round(n*10)/10).toString();
+const f2=n=>n==null?'n/a':(Math.round(n*100)/100).toString();
+const pct=(n,d)=>d?Math.round(100*n/d)+'%':'n/a';
+const mo=n=>n==null?'n/a':(n<1?(n===.25?'1 week':n===.5?'2 weeks':f2(n)+' mo'):f1(n)+' mo');
+function rank(x){const o=x.map((v,i)=>i).sort((a,b)=>x[a]-x[b]);const r=Array(x.length);let i=0;while(i<o.length){let j=i;while(j+1<o.length&&x[o[j+1]]===x[o[i]])j++;for(let k=i;k<=j;k++)r[o[k]]=(i+j)/2+1;i=j+1}return r}
+function spear(pairs){const q=pairs.filter(p=>p[0]!=null&&p[1]!=null);if(q.length<5)return{r:null,n:q.length};const a=rank(q.map(p=>p[0])),b=rank(q.map(p=>p[1]));const ma=mean(a),mb=mean(b);let n=0,da=0,db=0;for(let i=0;i<a.length;i++){n+=(a[i]-ma)*(b[i]-mb);da+=(a[i]-ma)**2;db+=(b[i]-mb)**2}return{r:n/Math.sqrt(da*db),n:q.length}}
+function match(p,ignore){
+  if(!p.dated&&(st.phase||st.role||st.industry||st.product||st.view==='dated'))return false;
+  if(st.view==='undated'&&p.dated)return false;
+  if(st.phase&&ignore!=='phase'&&p.ph!==st.phase)return false;
+  if(st.role&&ignore!=='role'&&p.role!==st.role)return false;
+  if(st.industry&&ignore!=='industry'&&p.industry!==st.industry)return false;
+  if(st.product&&ignore!=='product'&&p.product!==st.product)return false;
+  if(st.q){const t=(p.name+' '+(p.industry||'')+' '+(p.theme||'')+' '+(p.role||'')+' '+(p.year||'')).toLowerCase();if(!t.includes(st.q.toLowerCase()))return false}
+  return true}
+const F=ig=>D.filter(p=>match(p,ig));
+const FA=()=>ALL.filter(p=>match(p));
+const rec=(ps,a)=>ps.filter(p=>p.act[a]!=null);
+const yes=(ps,a)=>rec(ps,a).filter(p=>p.act[a]);
+const breadthOf=p=>{const v=ACTS.map(a=>p.act[a]);return v.some(x=>x==null)?null:v.filter(Boolean).length};
+D.forEach(p=>p.breadth=breadthOf(p));
+// Years a project is in flight, at minimum: assumes it started in January of its recorded year (start dates are not in the workbook).
+D.forEach(p=>{const n=Math.max(1,Math.ceil((p.dur||1)/12));p.active=[];for(let i=0;i<n;i++)p.active.push(p.year+i)});
+const flight=(ps,y)=>ps.filter(p=>p.active.includes(y));
+// tooltip
+const tip=$('#tip');
+function showTip(e,title,lines){tip.innerHTML='<b>'+esc(title)+'<\/b>'+lines.map(l=>'<span>'+esc(l)+'<\/span>').join('');tip.style.opacity=1;const x=Math.min(e.clientX+14,innerWidth-270),y=Math.min(e.clientY+14,innerHeight-100);tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.style.opacity=0}
+function hov(el,title,lines){el.addEventListener('mousemove',e=>showTip(e,title,typeof lines==='function'?lines():lines));el.addEventListener('mouseleave',hideTip)}
+const projLines=p=>[(p.year||'undated')+' · '+(p.role||'role not recorded')+' · '+(p.industry||'industry not recorded'),(p.dur!=null?mo(p.dur):'duration not recorded')+' · team '+(p.team!=null?p.team+(p.name==='DesignOps programme 2017'?'+':''):'not recorded')+(p.rating?' · '+'★'.repeat(p.rating):'')];
+// ---- drawer
+const drawer=$('#drawer'),scrim=$('#scrim');
+function openProj(p){
+  st.sel=p.name;
+  const acts=ACTS.concat(['Content strategy']).map(a=>{const v=p.act[a];return h('span',{class:v==null?'u':v?'y':'n'},a+(v==null?' · not recorded':v?'':' · no'))});
+  const row=(k,v)=>[h('dt',{},k),h('dd',{},v==null||v===''?h('span',{class:'und'},'not recorded'):v)];
+  drawer.innerHTML='';
+  const rel=ALL.filter(q=>q!==p&&q.industry&&q.industry===p.industry);
+  drawer.append(h('button',{class:'x','aria-label':'Close',onclick:closeProj},'×'),
+    h('div',{class:'lab'},p.dated?'Project · '+p.year:'Project · undated'),h('h3',{},p.name+(p.star?' ⭐':'')),
+    h('div',{class:'lab',style:'margin-bottom:6px'},'Activities'),h('div',{class:'acts'},acts),
+    h('dl',{},...row('Role',p.role_raw&&p.role_raw!==p.role?p.role+' (recorded as "'+p.role_raw+'")':p.role),...row('Industry',p.industry),...row('Product type',p.product),...row('Project type',p.ptype),...row('Core theme',p.theme),...row('Duration',p.dur!=null?mo(p.dur):null),...row('Team size',p.team!=null?(p.name==='DesignOps programme 2017'?'15+ (lower bound)':p.team):null),...row('Research',p.research),...row('Customer rating',p.rating?'★'.repeat(p.rating):null),...row('Phase',p.ph?PH.find(x=>x.id===p.ph).name+' ('+PH.find(x=>x.id===p.ph).from+' to '+PH.find(x=>x.id===p.ph).to+')':null),...row('Breadth',p.breadth!=null?p.breadth+' of '+ACTS.length+' activities':'not enough recorded'),...row('Link',p.url&&p.url.startsWith('http')?h('a',{href:p.url,target:'_blank',rel:'noopener'},'Open'):p.url)),
+    p.notes.length?h('p',{class:'lab',style:'margin-top:14px'},p.notes.join(' · ')):'',
+    rel.length?h('div',{style:'margin-top:18px'},h('div',{class:'lab',style:'margin-bottom:6px'},'Same industry'),h('div',{class:'acts'},rel.map(q=>h('button',{class:'chip',onclick:()=>openProj(q)},q.name)))):'');
+  drawer.classList.add('open');scrim.classList.add('on');drawer.scrollTop=0;hideTip()}
+function closeProj(){drawer.classList.remove('open');scrim.classList.remove('on');st.sel=null;window.__A.render&&window.__A.render()}
+scrim.addEventListener('click',closeProj);addEventListener('keydown',e=>{if(e.key==='Escape')closeProj()});
+// phase stat bundle
+function phStats(ps){
+  const r=ps.length;const T=ps.map(p=>p.team);
+  const pr=a=>{const q=rec(ps,a);return q.length?yes(ps,a).length/q.length:null};
+  const prim=ps.filter(p=>p.research&&p.research!=='N/A');
+  return{n:r,team:med(T),dur:med(ps.map(p=>p.dur)),stake:pr('Stakeholders'),ds:pr('Design system'),ut:pr('Usability testing'),ia:pr('IA'),wf:pr('Wireframes'),vd:pr('Visual design'),he:pr('Heuristic eval'),hand:pr('Hand-off'),dv:pr('Data viz'),res:pr('Research'),
+    primOnly:prim.length?prim.filter(p=>p.research==='Primary User Research').length/prim.length:null,primAny:prim.length?prim.filter(p=>/Primary/.test(p.research)).length/prim.length:null,breadth:mean(ps.map(p=>p.breadth)),nb:ps.filter(p=>p.breadth!=null).length,rs:r?ps.filter(p=>p.rating).length/r:null,mr:mean(ps.filter(p=>p.rating).map(p=>p.rating)),nr:ps.filter(p=>p.rating).length}}
+window.__A={flight,ALL,D,F,FA,PH,ROLES,RC,ACTS,YEARS,st,$,$$,h,s,esc,med,mean,sum,f1,f2,pct,mo,spear,rec,yes,hov,showTip,hideTip,openProj,projLines,phStats,phOf};
+})();
+
+(function(){
+const A=window.__A;const {F,D,PH,ROLES,RC,YEARS,st,h,s,med,mean,f1,mo,hov,openProj,projLines,phOf,showTip,hideTip}=A;
+function curve(p){if(p.length<2)return '';let d='M'+p[0][0]+','+p[0][1];for(let i=0;i<p.length-1;i++){const a=p[i-1]||p[i],b=p[i],c=p[i+1],e=p[i+2]||c;const t=.18;d+=' C'+(b[0]+(c[0]-a[0])*t)+','+(b[1]+(c[1]-a[1])*t)+' '+(c[0]-(e[0]-b[0])*t)+','+(c[1]-(e[1]-b[1])*t)+' '+c[0]+','+c[1]}return d}
+function setInd(i){st.industry=st.industry===i?null:i;A.render()}
+A.river=function(box){
+  const ps=F();const W=1100,H=360,L=30,R=20,T=44,B=34;const cx=T+(H-T-B)/2;
+  const x=y=>L+(y-2011)/13*(W-L-R);
+  const cnt=YEARS.map(y=>{const o={};ROLES.forEach(r=>o[r]=ps.filter(p=>p.year===y&&p.role===r).length);o.t=ROLES.reduce((a,r)=>a+o[r],0);return o});
+  const mx=Math.max(1,...cnt.map(c=>c.t));const k=(H-T-B)/2.1/mx*1.0;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Streamgraph of project counts per year, split by role'});
+  PH.forEach((p,i)=>{svg.append(s('rect',{x:x(p.from)-14,y:T-10,width:x(p.to)-x(p.from)+28,height:H-T-B+20,fill:p.c,opacity:.07,rx:6}),s('text',{x:x(p.from)-10,y:T-16,class:'mono'},p.name.toUpperCase()))});
+  YEARS.forEach(y=>svg.append(s('text',{x:x(y),y:H-12,'text-anchor':'middle',class:'mono'},String(y))));
+  let base=cnt.map(c=>-c.t/2);
+  ROLES.forEach(r=>{const top=[],bot=[];YEARS.forEach((y,i)=>{const c=cnt[i][r];top.push([x(y),cx+(base[i]+c)*k]);bot.push([x(y),cx+base[i]*k]);base[i]+=c});
+    const d=curve(top)+' L'+bot[bot.length-1][0]+','+bot[bot.length-1][1]+' '+curve(bot.slice().reverse()).replace(/^M[^ ]+/,'')
+    svg.append(s('path',{d:curve(top)+' L'+bot[bot.length-1][0]+','+bot[bot.length-1][1]+' '+curve(bot.slice().reverse()).replace(/^M[^ ]+ /,''),fill:RC[r],opacity:.82}))});
+  const ann=[[2014,'First Design Lead role'],[2017,'DesignOps, team of 15+'],[2020,'First Design Manager role'],[2023,'Most projects: 11']];
+  ann.forEach(([y,t],i)=>{svg.append(s('line',{x1:x(y),x2:x(y),y1:T+4,y2:H-B,stroke:'var(--ink3)','stroke-dasharray':'3 4','stroke-width':1}),s('text',{x:y>=2023?x(y)-5:x(y)+5,'text-anchor':y>=2023?'end':'start',y:T+16+(i%2)*12,class:'t-ink2',style:'font-size:11px'},t))});
+  svg.append(s('text',{x:x(2016),y:cx-8,'text-anchor':'middle',class:'mono'},'NO RECORDS'));
+  YEARS.forEach((y,i)=>{const c=cnt[i];const r=s('rect',{x:x(y)-W/28,y:T,width:W/14,height:H-T-B,fill:'transparent',class:'hit'});
+    hov(r,y+' · '+c.t+' project'+(c.t===1?'':'s'),()=>{const q=ps.filter(p=>p.year===y);return ROLES.filter(r=>c[r]).map(r=>r+': '+c[r]).concat(q.length?['Industries: '+new Set(q.map(p=>p.industry)).size,'Median duration: '+mo(med(q.map(p=>p.dur)))]:['Nothing recorded for this year'])});svg.append(r)});
+  box.replaceChildren(svg)};
+A.indyear=function(box){
+  const ps=F('industry');const all=A.ALL;const inds=[...new Set(D.map(p=>p.industry))];
+  const first=i=>Math.min(...D.filter(p=>p.industry===i).map(p=>p.year));const n=i=>D.filter(p=>p.industry===i).length;
+  inds.sort((a,b)=>first(a)-first(b)||n(b)-n(a));
+  const L=190,cw=56,ch=28,T=58,R=60,sq=15,W=L+cw*14+R,H=T+ch*inds.length+44;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,style:`min-width:${W*0.85}px;width:100%`,role:'img','aria-label':'Projects by industry and year, one square per project coloured by role'});
+  const tot=YEARS.map(y=>ps.filter(p=>p.year===y).length);const mx=Math.max(1,...tot);
+  YEARS.forEach((y,i)=>{const x=L+i*cw;svg.append(s('text',{x:x+cw/2,y:18,'text-anchor':'middle',class:'mono'},String(y)));
+    const bh=tot[i]/mx*16;svg.append(s('rect',{x:x+cw/2-9,y:44-bh,width:18,height:Math.max(tot[i]?1.5:0,bh),rx:2,fill:'var(--ink3)',opacity:.55}));if(tot[i])svg.append(s('text',{x:x+cw/2+13,y:43,class:'mono t-ink2'},String(tot[i])))});
+  svg.append(s('text',{x:L+14*cw+8,y:18,class:'mono'},'TOTAL'));
+  inds.forEach((ind,r)=>{const y0=T+r*ch;const sel=st.industry===ind;
+    if(r%2===0)svg.append(s('rect',{x:0,y:y0,width:W,height:ch,fill:'var(--s2)',opacity:.35}));
+    const lab=s('text',{x:L-10,y:y0+ch/2+4,'text-anchor':'end',class:'hit '+(sel?'t-ink':'t-ink2'),style:'font-size:12px;'+(sel?'font-weight:600':'')},ind);lab.addEventListener('click',()=>setInd(ind));svg.append(lab);
+    YEARS.forEach((y,c)=>{const q=ps.filter(p=>p.industry===ind&&p.year===y);q.forEach((p,k)=>{const r2=s('rect',{x:L+c*cw+(cw-(q.length*(sq+3)-3))/2+k*(sq+3),y:y0+(ch-sq)/2,width:sq,height:sq,rx:4,fill:RC[p.role],opacity:.9,stroke:p.star?'var(--ink)':'none','stroke-width':2,class:'hit',tabindex:0,role:'button','aria-label':p.name});
+      r2.addEventListener('click',()=>openProj(p));r2.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});hov(r2,p.name,projLines(p));svg.append(r2)})});
+    svg.append(s('text',{x:L+14*cw+8,y:y0+ch/2+4,class:'mono t-ink2'},String(ps.filter(p=>p.industry===ind).length)))});
+  const und=all.filter(p=>!p.dated&&match0(p));const yu=T+inds.length*ch+14;
+  svg.append(s('text',{x:L-10,y:yu+ch/2+4,'text-anchor':'end',class:'t-ink3',style:'font-size:12px'},'Undated (name only)'));
+  und.forEach((p,k)=>{const r2=s('rect',{x:L+k*(sq+4),y:yu+(ch-sq)/2,width:sq,height:sq,rx:4,fill:'none',stroke:'var(--ink3)','stroke-dasharray':'3 3',class:'hit',tabindex:0,role:'button','aria-label':p.name});r2.addEventListener('click',()=>openProj(p));hov(r2,p.name,['Undated: only the name is recorded']);svg.append(r2)});
+  box.replaceChildren(h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),h('span',{},'Outlined = starred in the workbook')),h('div',{class:'scroll'},svg))};
+const match0=p=>!st.phase&&!st.role&&!st.industry&&!st.product&&st.view!=='dated'&&(!st.q||p.name.toLowerCase().includes(st.q.toLowerCase()));
+A.heat=function(box){
+  const ps=F('industry');const inds=[...new Set(D.map(p=>p.industry))];
+  const first=i=>Math.min(...D.filter(p=>p.industry===i).map(p=>p.year));const n=i=>D.filter(p=>p.industry===i).length;
+  inds.sort((a,b)=>first(a)-first(b)||n(b)-n(a));
+  const L=190,cw=54,ch=26,T=34,W=L+cw*14+10,H=T+ch*inds.length+8;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,style:`min-width:${W*0.8}px;width:100%`,role:'img','aria-label':'Heatmap of projects by industry and year'});
+  YEARS.forEach((y,i)=>svg.append(s('text',{x:L+i*cw+cw/2,y:20,'text-anchor':'middle',class:'mono'},String(y))));
+  inds.forEach((ind,r)=>{const sel=st.industry===ind;const lab=s('text',{x:L-10,y:T+r*ch+ch/2+4,'text-anchor':'end',class:'hit '+(sel?'t-ink':'t-ink2'),style:'font-size:12px;'+(sel?'font-weight:600':'')},ind);lab.addEventListener('click',()=>setInd(ind));svg.append(lab);
+    YEARS.forEach((y,c)=>{const q=ps.filter(p=>p.industry===ind&&p.year===y);const o=q.length?Math.min(1,.25+q.length*.2):0;
+      const g=s('rect',{x:L+c*cw+2,y:T+r*ch+2,width:cw-4,height:ch-4,rx:5,fill:q.length?'var(--c-mgr)':'var(--s2)',opacity:q.length?o:.5,class:'hit'});
+      g.addEventListener('click',()=>q.length?(q.length===1?openProj(q[0]):setInd(ind)):setInd(ind));
+      hov(g,ind+' · '+y,q.length?q.map(p=>p.name+' ('+mo(p.dur)+')'):['No project recorded']);svg.append(g);
+      if(q.length)svg.append(s('text',{x:L+c*cw+cw/2,y:T+r*ch+ch/2+4,'text-anchor':'middle',style:'fill:var(--on-signal);font-size:11px;pointer-events:none',class:'mono'},String(q.length)))})});
+  box.replaceChildren(h('div',{class:'scroll'},svg))};
+const logx=(v,a,b,L,R)=>L+(Math.log2(v)-Math.log2(a))/(Math.log2(b)-Math.log2(a))*(R-L);
+A.bubble=function(box){
+  const ps=F();const W=1000,H=430,L=56,R=24,T=20,B=52;
+  const X=d=>logx(d,.25,24,L,W-R),Y=t=>H-B-(Math.log2(t)/Math.log2(16))*(H-T-B);
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Bubble chart of project duration against team size'});
+  [[.25,'1 wk'],[1,'1'],[3,'3'],[6,'6'],[12,'12'],[21,'21 mo']].forEach(([v,l])=>{svg.append(s('line',{x1:X(v),x2:X(v),y1:T,y2:H-B,class:'grid-line'}),s('text',{x:X(v),y:H-B+18,'text-anchor':'middle',class:'mono'},l))});
+  [[1,'1'],[2,'2'],[4,'4'],[8,'8'],[15,'15+']].forEach(([v,l])=>{svg.append(s('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),class:'grid-line'}),s('text',{x:L-10,y:Y(v)+4,'text-anchor':'end',class:'mono'},l))});
+  svg.append(s('text',{x:(L+W-R)/2,y:H-8,'text-anchor':'middle',class:'mono'},'DURATION IN MONTHS (LOG SCALE)'),s('text',{x:14,y:(T+H-B)/2,transform:`rotate(-90 14 ${(T+H-B)/2})`,'text-anchor':'middle',class:'mono'},'TEAM SIZE (LOG SCALE)'));
+  const grp={};ps.filter(p=>p.dur!=null&&p.team!=null).forEach(p=>{const k=p.dur+'|'+p.team;(grp[k]=grp[k]||[]).push(p)});
+  Object.values(grp).forEach(g=>g.forEach((p,i)=>{const n=g.length;const ang=i*2.4;const rad=n>1?9+Math.sqrt(i)*9:0;
+    const cx=X(p.dur)+Math.cos(ang)*rad,cy=Y(p.team)+Math.sin(ang)*rad;const r=p.breadth!=null?5+p.breadth*.9:6;
+    const c=s('circle',{cx,cy,r,fill:p.breadth!=null?RC[p.role]:'none',stroke:RC[p.role],'stroke-width':p.breadth!=null?1:1.8,'stroke-dasharray':p.breadth!=null?'':'3 2','fill-opacity':.7,class:'hit',tabindex:0,role:'button','aria-label':p.name});
+    c.addEventListener('click',()=>openProj(p));c.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});hov(c,p.name,()=>projLines(p).concat([p.breadth!=null?'Breadth: '+p.breadth+' of 12 activities':'Breadth: activities not fully recorded']));svg.append(c)}));
+  box.replaceChildren(svg)};
+A.velocity=function(box){
+  const ps=F();const W=520,H=170,L=10,R=10,T=32,B=26,bw=(W-L-R)/14;
+  const fl=y=>A.flight(ps,y);
+  const stack=()=>{const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Projects in flight per year'});svg.append(s('text',{x:L,y:16,class:'t-ink2',style:'font-size:13px'},'Projects in flight'));
+    const tot=YEARS.map(y=>fl(y).length);const mx=Math.max(1,...tot);
+    YEARS.forEach((y,i)=>{const nw=ps.filter(p=>p.year===y).length,co=tot[i]-nw;const ph=phOf(y);const x0=L+i*bw+3;const sc=(H-T-B)/mx;
+      const r1=s('rect',{x:x0,y:H-B-nw*sc,width:bw-6,height:nw*sc,rx:3,fill:ph?ph.c:'var(--faint)',opacity:.9}),r2=s('rect',{x:x0,y:H-B-(nw+co)*sc,width:bw-6,height:co*sc,rx:3,fill:ph?ph.c:'var(--faint)',opacity:.38});
+      [r1,r2].forEach(r=>hov(r,y+' · '+tot[i]+' in flight',[nw+' started this year',co+' continuing from an earlier year']));if(nw)svg.append(r1);if(co)svg.append(r2);
+      if(tot[i])svg.append(s('text',{x:x0+(bw-6)/2,y:H-B-tot[i]*sc-4,'text-anchor':'middle',class:'mono'},String(tot[i])));
+      svg.append(s('text',{x:x0+(bw-6)/2,y:H-8,'text-anchor':'middle',class:'mono'},"'"+String(y).slice(2)))});
+    return h('div',{},svg,h('div',{class:'foot',style:'margin-top:0'},'Solid: started that year. Faded: continuing from an earlier year (minimum, assuming a January start).'))};
+  const mini=(title,vals,fmt,note)=>{const mx=Math.max(...vals.filter(v=>v!=null),1);
+    const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':title});svg.append(s('text',{x:L,y:16,class:'t-ink2',style:'font-size:13px'},title));
+    YEARS.forEach((y,i)=>{const v=vals[i];const x0=L+i*bw+3;const ph=phOf(y);
+      if(v!=null){const hh=Math.max(2,v/mx*(H-T-B));const r=s('rect',{x:x0,y:H-B-hh,width:bw-6,height:hh,rx:3,fill:ph?ph.c:'var(--faint)',opacity:.85});hov(r,y+' · '+title,[fmt(v),fl(y).length+' projects in flight']);svg.append(r,s('text',{x:x0+(bw-6)/2,y:H-B-hh-4,'text-anchor':'middle',class:'mono'},fmt(v)))}
+      svg.append(s('text',{x:x0+(bw-6)/2,y:H-8,'text-anchor':'middle',class:'mono'},"'"+String(y).slice(2)))});
+    return h('div',{},svg,h('div',{class:'foot',style:'margin-top:0'},note))};
+  const by=f=>YEARS.map(y=>{const q=fl(y);return q.length?f(q):null});
+  box.replaceChildren(h('div',{class:'grid2'},
+    stack(),
+    mini('Median length of projects in flight (months)',by(q=>med(q.map(p=>p.dur))),v=>f1(v),'Recorded duration of each project in flight that year.'),
+    mini('Median team size, projects in flight',by(q=>med(q.map(p=>p.team))),v=>f1(v),'Team recorded for the project, not the whole organisation.'),
+    mini('Share of projects in flight that are rated',by(q=>q.filter(p=>p.rating).length/q.length*100),v=>Math.round(v)+'%','Rating coverage falls sharply after 2022.')))};
+A.strip=function(box){
+  const ps=F();const rowH=112,W=1000,H=50+ROLES.length*rowH,L=170,R=24;const X=d=>logx(d,.25,24,L,W-R);const r=4.6;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Distribution of project durations by role'});
+  [[.25,'1 wk'],[1,'1'],[3,'3'],[6,'6'],[12,'12'],[21,'21 mo']].forEach(([v,l])=>svg.append(s('line',{x1:X(v),x2:X(v),y1:14,y2:H-26,class:'grid-line'}),s('text',{x:X(v),y:H-8,'text-anchor':'middle',class:'mono'},l)));
+  ROLES.forEach((role,i)=>{const y0=30+rowH/2+i*rowH;const q=ps.filter(p=>p.role===role&&p.dur!=null).sort((a,b)=>a.dur-b.dur);
+    svg.append(s('text',{x:L-12,y:y0+4,'text-anchor':'end',class:'t-ink2',style:'font-size:12px'},role),s('text',{x:L-12,y:y0+18,'text-anchor':'end',class:'mono'},q.length+' projects, one dot each'));
+    const placed=[];q.forEach(p=>{const x=X(p.dur);let off=0,k=0;const cand=()=>{const m=Math.ceil(k/2)*(2*r+1.5);return k%2?m:-m};
+      while(true){const y=y0+(k===0?0:cand());if(!placed.some(o=>Math.hypot(o.x-x,o.y-y)<2*r+1))break;k++;if(k>40)break}
+      const y=y0+(k===0?0:cand());placed.push({x,y});const c=s('circle',{cx:x,cy:y,r,fill:RC[role],'fill-opacity':.8,class:'hit',tabindex:0,role:'button','aria-label':p.name});c.addEventListener('click',()=>openProj(p));c.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});hov(c,p.name,projLines(p));svg.append(c)});
+    const m=med(q.map(p=>p.dur));if(m!=null){svg.append(s('line',{x1:X(m),x2:X(m),y1:y0-rowH/2+10,y2:y0+rowH/2-6,stroke:'var(--ink)','stroke-width':1.5,'stroke-dasharray':'4 3'}),s('text',{x:X(m)+6,y:y0-rowH/2+20,class:'mono t-ink'},'MEDIAN '+mo(m).toUpperCase()))}});
+  box.replaceChildren(svg)};
+})();
+
+(function(){
+const A=window.__A;const {F,D,PH,ROLES,RC,ACTS,YEARS,st,h,s,med,mean,f1,f2,pct,mo,hov,openProj,projLines,phStats,rec,yes}=A;
+const shade=(v,c='var(--c-mgr)')=>({fill:c,opacity:v==null?0:.18+v*.8});
+A.capab=function(box){
+  const ps=F('phase');const W=860,L=170,cw=118,ch=30,T=58,H=T+ch*ACTS.length+10;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,style:'min-width:640px;width:100%',role:'img','aria-label':'Capability matrix by career phase'});
+  PH.forEach((p,i)=>{svg.append(s('text',{x:L+i*cw+cw/2,y:20,'text-anchor':'middle',class:'t-ink2',style:'font-size:12px'},p.name),s('text',{x:L+i*cw+cw/2,y:36,'text-anchor':'middle',class:'mono'},p.from+(p.to>p.from?'–'+p.to:'')))});
+  svg.append(s('text',{x:L+5*cw+10,y:36,class:'mono'},'FIRST SEEN'));
+  ACTS.forEach((a,r)=>{svg.append(s('text',{x:L-12,y:T+r*ch+ch/2+4,'text-anchor':'end',class:'t-ink2',style:'font-size:12px'},a));
+    PH.forEach((p,i)=>{const q=ps.filter(x=>x.ph===p.id);const rc=rec(q,a),y=yes(q,a);const v=rc.length?y.length/rc.length:null;
+      const g=s('rect',{x:L+i*cw+3,y:T+r*ch+3,width:cw-6,height:ch-6,rx:5,fill:v==null?'none':'var(--c-mgr)',opacity:v==null?1:.12+v*.85,stroke:v==null?'var(--faint)':'none','stroke-dasharray':'3 3'});
+      hov(g,a+' · '+p.name,[v==null?'Not recorded for any project in this phase':y.length+' of '+rc.length+' recorded projects ('+Math.round(v*100)+'%)',q.length-rc.length+' of '+q.length+' projects not recorded']);svg.append(g);
+      svg.append(s('text',{x:L+i*cw+cw/2,y:T+r*ch+ch/2+4,'text-anchor':'middle',class:'mono',style:'pointer-events:none;'+(v!=null&&v>.45?'fill:var(--on-signal)':'')},v==null?'not recorded':Math.round(v*100)+'%  n='+rc.length))});
+    const fy=ps.filter(x=>x.act[a]).map(x=>x.year);svg.append(s('text',{x:L+5*cw+10,y:T+r*ch+ch/2+4,class:'mono t-ink2'},fy.length?Math.min(...fy):'—'))});
+  box.replaceChildren(h('div',{class:'scroll'},svg))};
+A.cooc=function(box){
+  const ps=F();const out=[];
+  ACTS.forEach((a,i)=>ACTS.forEach((b,j)=>{if(j>=i)return;const q=ps.filter(p=>p.act[a]!=null&&p.act[b]!=null);if(q.length<15)return;
+    const pa=q.filter(p=>p.act[a]).length/q.length,pb=q.filter(p=>p.act[b]).length/q.length,both=q.filter(p=>p.act[a]&&p.act[b]).length;if(!(pa*pb))return;out.push({a,b,l:both/q.length/(pa*pb),both,n:q.length})}));
+  const above=out.filter(o=>o.l>=1).sort((x,y)=>y.l-x.l).slice(0,6),below=out.filter(o=>o.l<1).sort((x,y)=>x.l-y.l).slice(0,3);const rows=above.concat(below);
+  const W=900,rh=34,L=300,H=rows.length*rh+30,cx=L+210,sc=190;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Activity pairs that occur together more or less than chance'});
+  svg.append(s('line',{x1:cx,x2:cx,y1:6,y2:H-18,stroke:'var(--ink3)','stroke-dasharray':'3 4'}),s('text',{x:cx,y:H-4,'text-anchor':'middle',class:'mono'},'AS EXPECTED BY CHANCE (1.0)'));
+  rows.forEach((o,i)=>{const y=10+i*rh;const w=Math.min(1,Math.abs(o.l-1)/1.1)*sc;const up=o.l>=1;
+    svg.append(s('text',{x:L-12,y:y+rh/2+2,'text-anchor':'end',class:'t-ink2',style:'font-size:12.5px'},o.a+' + '+o.b));
+    const r=s('rect',{x:up?cx:cx-w,y:y+5,width:Math.max(2,w),height:rh-14,rx:4,fill:up?'var(--c-mgr)':'var(--c-res)',opacity:.85});hov(r,o.a+' + '+o.b,['Together in '+o.both+' of '+o.n+' recorded projects','Lift '+f2(o.l)]);svg.append(r);
+    svg.append(s('text',{x:up?cx+w+8:cx-w-8,'text-anchor':up?'start':'end',y:y+rh/2+2,class:'mono t-ink'},f2(o.l)+'  ·  '+o.both+'/'+o.n))});
+  box.replaceChildren(h('div',{class:'scroll'},svg))};
+const TECHI=['Cloud, Networking & DevOps','Data & AI','CMT','EUS','IT Services'];
+const STRAT=['DesignOps','Design Systems','Design Thinking','Brand Strategy & Identity Design'];
+const AX=[
+ ['Research and Insights','Research, Persona and Usability testing done','Research, Empathy, Behavioural insights','Empathy and behavioural insight are not recorded as such; persona work stands in for empathy and usability testing for behaviour.'],
+ ['Systems Thinking','Design system work and strategy-led themes (DesignOps, Design Systems, Design Thinking, Brand strategy)','Critical thinking, Problem framing, Systems thinking, Strategy, Analysis, Prioritisation','Only two proxies exist. Critical thinking, problem framing, analysis and prioritisation are not recorded, so this axis is the least evidenced.'],
+ ['Interaction Design','IA, Journeys and Heuristic evaluation done','IA, Journey mapping, Interaction design','Interaction design itself is not a column; heuristic evaluation stands in for it.'],
+ ['Craft Excellence','Visual design, Wireframes and Content strategy done','Visual design, Prototyping, Design systems, Content design','Wireframes stand in for prototyping. Content strategy is recorded for only 12 projects. Design systems are counted under Systems Thinking.'],
+ ['Technical and Product Fluency','Inferred: data visualisation, B2B product, and technical industries (cloud, data and AI, telecom, utilities, IT services)','Business acumen, Product thinking, Data literacy, Technical fluency','Inferred, not recorded. Business acumen and product thinking are not captured anywhere in the workbook.'],
+ ['Cross Collaboration','Stakeholder collaboration and Hand-off done','Dev hand-off, PM collaboration, Communication, Stakeholder facilitation, Influence','Communication, influence and PM collaboration are not recorded; stakeholders and hand-off are the closest evidence.']];
+A.radarData=function(ps){const sh=a=>{const q=rec(ps,a);return q.length?yes(ps,a).length/q.length:null};const m=(...v)=>{v=v.filter(z=>z!=null);return v.length?mean(v):null};const frac=(f)=>ps.length?ps.filter(f).length/ps.length:null;
+  return[m(sh('Research'),sh('Persona'),sh('Usability testing')),m(sh('Design system'),frac(p=>STRAT.includes(p.theme))),m(sh('IA'),sh('Journeys'),sh('Heuristic eval')),m(sh('Visual design'),sh('Wireframes'),sh('Content strategy')),m(sh('Data viz'),frac(p=>p.product&&/B2B/.test(p.product)),frac(p=>TECHI.includes(p.industry))),m(sh('Stakeholders'),sh('Hand-off'))]};
+A.radar=function(box){
+  const ps=F('phase');const W=760,H=430,cx=380,cy=215,R=140;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Career fingerprint radar by phase'});
+  const pt=(i,v)=>{const a=-Math.PI/2+i*2*Math.PI/6;return[cx+Math.cos(a)*R*v,cy+Math.sin(a)*R*v]};
+  [.25,.5,.75,1].forEach(l=>svg.append(s('polygon',{points:AX.map((_,i)=>pt(i,l).join(',')).join(' '),fill:'none',class:'grid-line',stroke:'var(--line2)'})));
+  AX.forEach((a,i)=>{const p=pt(i,1);svg.append(s('line',{x1:cx,y1:cy,x2:p[0],y2:p[1],class:'grid-line'}));const q=pt(i,1.17);svg.append(s('text',{x:q[0],y:q[1]+4,'text-anchor':q[0]<cx-10?'end':q[0]>cx+10?'start':'middle',class:'t-ink2',style:'font-size:12px'},a[0]))});
+  PH.filter(p=>st.radar.includes(p.id)).forEach(p=>{const d=A.radarData(ps.filter(x=>x.ph===p.id));const pts=d.map((v,i)=>pt(i,v==null?0:v));
+    svg.append(s('polygon',{points:pts.map(z=>z.join(',')).join(' '),fill:p.c,'fill-opacity':.12,stroke:p.c,'stroke-width':2}));
+    d.forEach((v,i)=>{if(v==null)return;const c=s('circle',{cx:pts[i][0],cy:pts[i][1],r:4,fill:p.c});hov(c,p.name+' · '+AX[i][0],['Based on: '+AX[i][1],Math.round(v*100)+'%']);svg.append(c)})});
+  const chips=h('div',{class:'legend'},PH.map(p=>{const n=ps.filter(x=>x.ph===p.id);const nb=phStats(n);return h('button',{class:'chip','aria-pressed':st.radar.includes(p.id),onclick:()=>{st.radar=st.radar.includes(p.id)?st.radar.filter(z=>z!==p.id):st.radar.concat(p.id);A.render()}},h('i',{style:`background:${p.c};display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px`}),p.name+' · '+n.length+' projects, '+n.filter(x=>x.breadth!=null).length+' fully recorded')}));
+  box.replaceChildren(chips,svg,h('div',{class:'scroll'},h('table',{style:'margin-top:8px'},h('thead',{},h('tr',{},['Dimension','Your skills in it','Measured here by','What is not recorded'].map(x=>h('th',{style:'cursor:default'},x)))),h('tbody',{},AX.map(a=>h('tr',{},h('td',{class:'lab'},a[0]),h('td',{},a[2]),h('td',{},a[1]),h('td',{},a[3])))))))};
+A.phaseMulti=function(box){
+  const ps=F('phase');const stt=PH.map(p=>phStats(ps.filter(x=>x.ph===p.id)));
+  const M=[['Projects',x=>x.n,v=>String(v)],['Median team size',x=>x.team,v=>f1(v)],['Stakeholder collaboration',x=>x.stake!=null?x.stake*100:null,v=>Math.round(v)+'%'],['Design system',x=>x.ds!=null?x.ds*100:null,v=>Math.round(v)+'%'],['Usability testing',x=>x.ut!=null?x.ut*100:null,v=>Math.round(v)+'%'],['Primary research share',x=>x.primAny!=null?x.primAny*100:null,v=>Math.round(v)+'%'],['Mean breadth (of 12)',x=>x.breadth,v=>f1(v)],['Projects with a rating',x=>x.rs!=null?x.rs*100:null,v=>Math.round(v)+'%'],['Mean rating, rated projects',x=>x.mr,v=>f1(v)]];
+  box.replaceChildren(h('div',{class:'grid2',style:'grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))'},M.map(([t,f,fm])=>{const vals=stt.map(f);const mx=Math.max(...vals.filter(v=>v!=null),1);const W=260,H=150,B=26;const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':t});svg.append(s('text',{x:4,y:14,class:'t-ink2',style:'font-size:12.5px'},t));
+    PH.forEach((p,i)=>{const v=vals[i];const x=8+i*50;if(v==null){svg.append(s('text',{x:x+19,y:H-B-6,'text-anchor':'middle',class:'mono'},'n/a'))}else{const hh=Math.max(2,v/mx*(H-B-34));const r=s('rect',{x,y:H-B-hh,width:38,height:hh,rx:3,fill:p.c,opacity:.85});hov(r,p.name+' · '+t,[fm(v),'n = '+stt[i].n+' projects'+(t==='Mean breadth (of 12)'?', '+stt[i].nb+' fully recorded':t==='Mean rating, rated projects'?', '+stt[i].nr+' rated':'')]);svg.append(r,s('text',{x:x+19,y:H-B-hh-4,'text-anchor':'middle',class:'mono t-ink'},fm(v)))}
+      svg.append(s('text',{x:x+19,y:H-8,'text-anchor':'middle',class:'mono'},p.id))});return svg})))};
+const TG=t=>!t||t==='NA'?'Not specified':t==='Full Stack UX'?'Full-stack UX':t==='Brand Strategy & Identity Design'?'Brand & identity':/^(IxD|Interaction|UI Design)/.test(t)?'Interaction, UI and data viz':/^(DesignOps|Design Systems|Design Thinking)$/.test(t)?'DesignOps, systems and thinking':t==='HE'?'HE (as recorded)':t;
+A.TG=TG;
+A.sankey=function(box){
+  const ps=F();const W=1000,H=420,T=10,gap=10;
+  const cols=[ROLES,[],['B2B','B2C & B2B','B2C']];const th={};ps.forEach(p=>th[TG(p.theme)]=(th[TG(p.theme)]||0)+1);cols[1]=Object.keys(th).sort((a,b)=>th[b]-th[a]);
+  const key=p=>[p.role,TG(p.theme),p.product||'Not recorded'];
+  const cnt=[{},{},{}];ps.forEach(p=>key(p).forEach((k,i)=>cnt[i][k]=(cnt[i][k]||0)+1));
+  cols[2]=cols[2].concat(Object.keys(cnt[2]).filter(k=>!cols[2].includes(k)));
+  const tot=ps.length||1;const sc=(H-T*2-gap*Math.max(...cols.map(c=>c.filter(n=>cnt[cols.indexOf(c)][n]).length)))/tot;
+  const X=[190,W/2+20,W-170],nw=14;const pos=[];
+  cols.forEach((c,ci)=>{let y=T;pos[ci]={};c.filter(n=>cnt[ci][n]).forEach(n=>{const hh=cnt[ci][n]*sc;pos[ci][n]={y,h:hh,so:0,to:0};y+=hh+gap})});
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Flow from role to type of work to product type'});
+  const links={};ps.forEach(p=>{const k=key(p);for(let i=0;i<2;i++){const id=i+'|'+k[i]+'|'+k[i+1];(links[id]=links[id]||{i,a:k[i],b:k[i+1],n:0,ps:[]});links[id].n++;links[id].ps.push(p)}});
+  Object.values(links).sort((a,b)=>pos[a.i][a.a].y-pos[b.i][b.a].y||pos[a.i+1][a.b].y-pos[b.i+1][b.b].y).forEach(l=>{const A1=pos[l.i][l.a],B1=pos[l.i+1][l.b];const w=l.n*sc;const y1=A1.y+A1.so+w/2,y2=B1.y+B1.to+w/2;A1.so+=w;B1.to+=w;const x1=X[l.i]+nw,x2=X[l.i+1];const mx=(x1+x2)/2;
+    const p=s('path',{d:`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`,fill:'none',stroke:l.i===0?RC[l.a]:'var(--ink3)','stroke-width':Math.max(1.5,w),opacity:.4});hov(p,l.a+' → '+l.b,[l.n+' project'+(l.n===1?'':'s')+': '+l.ps.slice(0,6).map(p=>p.name).join(', ')+(l.n>6?'…':'')]);p.addEventListener('mouseenter',()=>p.setAttribute('opacity',.8));p.addEventListener('mouseleave',()=>p.setAttribute('opacity',.4));svg.append(p)});
+  cols.forEach((c,ci)=>c.filter(n=>cnt[ci][n]).forEach(n=>{const q=pos[ci][n];svg.append(s('rect',{x:X[ci],y:q.y,width:nw,height:Math.max(2,q.h),rx:3,fill:ci===0?RC[n]:'var(--ink2)'}));const lx=ci===0?X[ci]-8:X[ci]+nw+8;svg.append(s('text',{x:lx,'text-anchor':ci===0?'end':'start',y:q.y+Math.max(2,q.h)/2+4,class:'t-ink2',style:'font-size:12px'},n+' · '+cnt[ci][n]))}));
+  [['ROLE',0],['TYPE OF WORK',1],['PRODUCT',2]].forEach(([t,i])=>svg.append(s('text',{x:X[i],y:H-2,class:'mono'},t)));
+  box.replaceChildren(svg)};
+A.treemap=function(box){
+  const ps=F('industry');const W=1000,H=420;const by={};ps.forEach(p=>(by[p.industry]=by[p.industry]||[]).push(p));
+  const useMo=st.tmMo;const items=Object.entries(by).map(([k,v])=>({k,v,val:useMo?A.sum_(v.map(p=>p.dur)):v.length})).sort((a,b)=>b.val-a.val);
+  const tot=items.reduce((a,b)=>a+b.val,0)||1;
+  function sq(items,x,y,w,hh,out){if(!items.length)return;const area=w*hh;const tv=items.reduce((a,b)=>a+b.val,0);let row=[],best=Infinity;const horiz=w>=hh;const side=horiz?hh:w;
+    let i=0;const worst=(r)=>{const sv=r.reduce((a,b)=>a+b.val,0);const rs=sv/tv*area/side;return Math.max(...r.map(z=>{const l=z.val/tv*area/rs;return Math.max(l/rs,rs/l)}))};
+    while(i<items.length){const t=row.concat(items[i]);const wv=worst(t);if(row.length&&wv>best)break;row=t;best=wv;i++}
+    const sv=row.reduce((a,b)=>a+b.val,0);const rs=sv/tv*area/side;let o=0;row.forEach(z=>{const l=z.val/sv*side;out.push(horiz?{...z,x,y:y+o,w:rs,h:l}:{...z,x:x+o,y,w:l,h:rs});o+=l});
+    const rest=items.slice(i);if(horiz)sq(rest,x+rs,y,w-rs,hh,out);else sq(rest,x,y+rs,w,hh-rs,out)}
+  const out=[];sq(items,0,0,W,H,out);const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Treemap of industries'});
+  out.forEach(z=>{const dom=ROLES.map(r=>[r,z.v.filter(p=>p.role===r).length]).sort((a,b)=>b[1]-a[1])[0][0];const sel=st.industry===z.k;
+    const r=s('rect',{x:z.x+1.5,y:z.y+1.5,width:Math.max(0,z.w-3),height:Math.max(0,z.h-3),rx:6,fill:RC[dom],opacity:sel?1:.62,stroke:sel?'var(--ink)':'none','stroke-width':2,class:'hit'});r.addEventListener('click',()=>{st.industry=st.industry===z.k?null:z.k;A.render()});hov(r,z.k,[z.v.length+' projects · '+f1(A.sum_(z.v.map(p=>p.dur)))+' months recorded','Most often as '+dom,'Years: '+[...new Set(z.v.map(p=>p.year))].sort().join(', ')]);svg.append(r);
+    if(z.w>70&&z.h>34)svg.append(s('text',{x:z.x+10,y:z.y+22,style:'fill:var(--on-signal);font-size:'+(z.w>150?13:11)+'px;font-weight:600;pointer-events:none'},z.k.length*7>z.w?z.k.slice(0,Math.floor(z.w/7))+'…':z.k),s('text',{x:z.x+10,y:z.y+38,class:'mono',style:'fill:var(--on-signal);pointer-events:none'},z.val===Math.round(z.val)?String(z.val):f1(z.val)))});
+  box.replaceChildren(h('div',{class:'legend'},h('button',{class:'chip','aria-pressed':!useMo,onclick:()=>{st.tmMo=false;A.render()}},'By number of projects'),h('button',{class:'chip','aria-pressed':!!useMo,onclick:()=>{st.tmMo=true;A.render()}},'By recorded months'),...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r))),svg)};
+A.sum_=a=>a.reduce((x,y)=>x+(y||0),0);
+A.calendar=function(box){
+  const ps=A.FA();const cell=26,W=60+15*52+90,col=y=>40+(y-2011)*52;const maxN=Math.max(1,...YEARS.map(y=>ps.filter(p=>p.year===y).length));const H=70+maxN*(cell+4)+30;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,style:'min-width:760px;width:100%',role:'img','aria-label':'Calendar-style activity map'});
+  YEARS.forEach(y=>{svg.append(s('text',{x:col(y)+cell/2,y:H-8,'text-anchor':'middle',class:'mono'},String(y)));
+    ps.filter(p=>p.year===y).sort((a,b)=>b.dur-a.dur).forEach((p,i)=>{const r=s('rect',{x:col(y),y:H-34-(i+1)*(cell+4),width:cell,height:cell,rx:5,fill:RC[p.role],opacity:.85,stroke:p.star?'var(--ink)':'none','stroke-width':2,class:'hit',tabindex:0,role:'button','aria-label':p.name});r.addEventListener('click',()=>openProj(p));r.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});hov(r,p.name,projLines(p));svg.append(r)})});
+  const und=ps.filter(p=>!p.dated);const ux=col(2024)+70;svg.append(s('text',{x:ux,y:H-8,class:'mono'},'UNDATED'));und.forEach((p,i)=>{const r=s('rect',{x:ux,y:H-34-(i+1)*(cell+4),width:cell,height:cell,rx:5,fill:'none',stroke:'var(--ink3)','stroke-dasharray':'3 3',class:'hit'});r.addEventListener('click',()=>openProj(p));hov(r,p.name,['Undated: only the name is recorded']);svg.append(r)});
+  box.replaceChildren(h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),h('span',{},'Outlined = starred in the workbook · dashed = undated')),h('div',{class:'scroll'},svg))};
+let POS=null;
+function layout(){const N=D.map((p,i)=>({p,x:Math.cos(i*2.399)*(120+i*5),y:Math.sin(i*2.399)*(120+i*5)}));
+  const E=[];D.forEach((a,i)=>{const sims=[];D.forEach((b,j)=>{if(j<=i)return;let sh=0,m=0;A.ACTS.forEach(k=>{if(a.act[k]!=null&&b.act[k]!=null){sh++;if(a.act[k]===b.act[k])m++}});const sim=sh>=8?m/sh:0;const same=a.industry===b.industry;if(same||sim>=.92)E.push([i,j,(same?1:0)+(sim>=.92?.5:0),same])})});
+  for(let it=0;it<320;it++){const k=.9*(1-it/320)+.05;N.forEach(a=>{a.fx=0;a.fy=0});
+    for(let i=0;i<N.length;i++)for(let j=i+1;j<N.length;j++){let dx=N[i].x-N[j].x,dy=N[i].y-N[j].y,d=Math.hypot(dx,dy)||1;const f=2600/(d*d);N[i].fx+=dx/d*f;N[i].fy+=dy/d*f;N[j].fx-=dx/d*f;N[j].fy-=dy/d*f}
+    E.forEach(([i,j,w])=>{let dx=N[j].x-N[i].x,dy=N[j].y-N[i].y,d=Math.hypot(dx,dy)||1;const f=(d-60)*.012*w;N[i].fx+=dx/d*f;N[i].fy+=dy/d*f;N[j].fx-=dx/d*f;N[j].fy-=dy/d*f});
+    N.forEach(a=>{a.fx-=a.x*.012;a.fy-=a.y*.012;a.x+=Math.max(-12,Math.min(12,a.fx))*k;a.y+=Math.max(-12,Math.min(12,a.fy))*k})}
+  const xs=N.map(n=>n.x),ys=N.map(n=>n.y);POS={N,E,x0:Math.min(...xs),x1:Math.max(...xs),y0:Math.min(...ys),y1:Math.max(...ys)}}
+A.constellation=function(box){
+  if(!POS)layout();const W=1000,H=520,pad=40;const{N,E,x0,x1,y0,y1}=POS;const sx=v=>pad+(v-x0)/(x1-x0)*(W-pad*2),sy=v=>pad+(v-y0)/(y1-y0)*(H-pad*2);
+  const keep=new Set(F().map(p=>p.name));const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Project constellation network'});
+  const nl=[];E.forEach(([i,j,w,same])=>{const on=keep.has(N[i].p.name)&&keep.has(N[j].p.name);const l=s('line',{x1:sx(N[i].x),y1:sy(N[i].y),x2:sx(N[j].x),y2:sy(N[j].y),stroke:same?'var(--ink3)':'var(--ink3)','stroke-dasharray':same?'':'2 4','stroke-width':same?1.2:1,opacity:on?.35:.05});svg.append(l);nl.push([i,j,l,on])});
+  N.forEach((n,i)=>{const p=n.p;const on=keep.has(p.name);const c=s('circle',{cx:sx(n.x),cy:sy(n.y),r:4+Math.sqrt(p.dur||1)*1.7,fill:RC[p.role],'fill-opacity':on?.85:.12,stroke:p.star?'var(--ink)':'none','stroke-width':2,class:'hit',tabindex:0,role:'button','aria-label':p.name});
+    c.addEventListener('click',()=>openProj(p));c.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});
+    c.addEventListener('mouseenter',()=>nl.forEach(([a,b,l,o])=>{if(a===i||b===i){l.setAttribute('opacity',.9);l.setAttribute('stroke','var(--ink)')}}));c.addEventListener('mouseleave',()=>nl.forEach(([a,b,l,o])=>{l.setAttribute('opacity',o?.35:.05);l.setAttribute('stroke','var(--ink3)')}));hov(c,p.name,projLines(p));svg.append(c);
+    if(on&&(p.dur||0)>=10)svg.append(s('text',{x:sx(n.x)+10,y:sy(n.y)+4,class:'t-ink2',style:'font-size:11px;pointer-events:none'},p.name))});
+  box.replaceChildren(h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),h('span',{},'Size = duration · solid link = same industry · dashed = near-identical activity profile')),svg)};
+A.ratings=function(box){
+  const ps=F('phase');const W=700,H=300,L=40,T=20,B=44;const cats=[[5,'5 stars','var(--c-mgr)'],[4,'4 stars','var(--c-lead)'],[3,'3 stars','var(--c-des)'],[0,'Not rated','var(--faint)']];
+  const mx=Math.max(1,...PH.map(p=>ps.filter(x=>x.ph===p.id).length));const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Customer ratings by phase, including unrated projects'});const bw=(W-L-10)/5;
+  PH.forEach((p,i)=>{const q=ps.filter(x=>x.ph===p.id);let y=H-B;const x=L+i*bw+bw*.18;cats.forEach(([v,l,c])=>{const n=q.filter(z=>v?z.rating===v:!z.rating).length;if(!n)return;const hh=n/mx*(H-T-B);y-=hh;const r=s('rect',{x,y,width:bw*.64,height:hh-1.5,rx:3,fill:c,opacity:v?.9:.35});hov(r,p.name+' · '+l,[n+' of '+q.length+' projects']);svg.append(r);if(hh>14)svg.append(s('text',{x:x+bw*.32,y:y+hh/2+3,'text-anchor':'middle',class:'mono',style:'pointer-events:none;fill:'+(v?'var(--on-signal)':'var(--ink)')},String(n)))});
+    const rated=q.filter(z=>z.rating);svg.append(s('text',{x:x+bw*.32,y:H-26,'text-anchor':'middle',class:'t-ink2',style:'font-size:11.5px'},p.name),s('text',{x:x+bw*.32,y:H-12,'text-anchor':'middle',class:'mono'},rated.length?'mean '+f1(mean(rated.map(z=>z.rating)))+' (n='+rated.length+')':'no ratings'))});
+  box.replaceChildren(h('div',{class:'legend'},cats.map(c=>h('span',{},h('i',{style:`background:${c[2]}`}),c[1]))),h('div',{class:'scroll'},svg))};
+})();
+
+(function(){
+const A=window.__A;const {D,ALL,PH,ROLES,ACTS,h,med,mean,f1,f2,pct,mo,spear,rec,yes,phStats}=A;
+const S={};
+const byR=r=>D.filter(p=>p.role===r);
+S.firstLead=Math.min(...byR('Design Lead').map(p=>p.year));S.firstMgr=Math.min(...byR('Design Manager').map(p=>p.year));
+S.mgrN=byR('Design Manager').length;S.n=D.length;
+S.late=D.filter(p=>p.year>=2021);S.lateMgr=S.late.filter(p=>p.role==='Design Manager').length;
+S.longest=D.slice().sort((a,b)=>b.dur-a.dur)[0];
+S.bigExact=D.filter(p=>p.name!=='DesignOps programme 2017'&&p.team!=null).sort((a,b)=>b.team-a.team);
+S.y=y=>D.filter(p=>p.year===y);
+S.t23=S.y(2023);S.t23ind=new Set(S.t23.map(p=>p.industry)).size;S.t23med=med(S.t23.map(p=>p.dur));
+S.months=y=>A.sum_(S.y(y).map(p=>p.dur));
+S.peakMonths=PH&&[...new Set(D.map(p=>p.year))].map(y=>[y,S.months(y)]).sort((a,b)=>b[1]-a[1])[0];
+S.indCount=y=>new Set(S.y(y).map(p=>p.industry)).size;
+S.maxInd=[...new Set(D.map(p=>p.year))].map(y=>[y,S.indCount(y)]).sort((a,b)=>b[1]-a[1])[0];
+S.rTeamDur=spear(D.map(p=>[p.team,p.dur]));S.rYearTeam=spear(D.map(p=>[p.year,p.team]));S.rYearDur=spear(D.map(p=>[p.year,p.dur]));
+S.rBreadthDur=spear(D.map(p=>[p.breadth,p.dur]));S.nBreadth=D.filter(p=>p.breadth!=null).length;
+function lift(a,b){const q=D.filter(p=>p.act[a]!=null&&p.act[b]!=null);const pa=q.filter(p=>p.act[a]).length/q.length,pb=q.filter(p=>p.act[b]).length/q.length,both=q.filter(p=>p.act[a]&&p.act[b]).length;return{l:both/q.length/(pa*pb),both,n:q.length}}
+S.utds=lift('Usability testing','Design system');
+S.utBy=r=>{const q=rec(byR(r),'Usability testing');return[yes(byR(r),'Usability testing').length,q.length]};
+S.dsBy=r=>{const q=rec(byR(r),'Design system');return[yes(byR(r),'Design system').length,q.length]};
+const ind=i=>D.filter(p=>p.industry===i);
+S.cloud=ind('Cloud, Networking & DevOps');S.bfsi=ind('BFSI');S.hc=ind('Healthcare & Telehealth');S.all=mean(D.map(p=>p.dur));
+S.brand=D.filter(p=>p.theme==='Brand Strategy & Identity Design');
+S.dops=ALL.filter(p=>/design\s?ops/i.test(p.name)||p.theme==='DesignOps');
+S.rated=D.filter(p=>p.rating);S.five=S.rated.filter(p=>p.rating===5).length;
+S.rBy=r=>{const q=byR(r);const t=q.filter(p=>p.rating);return{n:t.length,of:q.length,m:mean(t.map(p=>p.rating))}};
+S.noRes=D.filter(p=>p.rating&&p.research==='No');S.priRes=D.filter(p=>p.rating&&p.research==='Primary User Research');
+S.b2b=D.filter(p=>p.product==='B2B').length;
+S.leadB2B=byR('Design Lead').filter(p=>p.product==='B2B').length;
+S.ph=PH.map(p=>({p,ps:D.filter(x=>x.ph===p.id)}));S.phs=S.ph.map(x=>phStats(x.ps));
+S.ai=ALL.filter(p=>p.industry==='Data & AI'||/\bAI\b|Gen AI|Agent/i.test(p.name));
+S.scholastic=D.find(p=>p.name==='Education project 2');
+S.star=D.filter(p=>p.star);
+S.units=D.filter(p=>p.dur<=0.5).length;
+S.sol=D.filter(p=>p.team===1).length;
+S.d2324=D.filter(p=>p.year>=2023);S.rec2324=S.d2324.filter(p=>p.breadth!=null).length;
+S.firstOf=a=>Math.min(...D.filter(p=>p.act[a]).map(p=>p.year));
+S.inYear=y=>D.filter(p=>p.year===y);
+S.maxOtherInd=Math.max(...[...new Set(D.map(p=>p.year))].filter(y=>y!==2023).map(y=>S.indCount(y)));
+S.big=D.filter(p=>p.team>=10).sort((a,b)=>b.team-a.team);
+S.longN=D.filter(p=>p.dur>=10).sort((a,b)=>b.dur-a.dur);
+S.fast=D.filter(p=>p.dur<=0.5);
+S.stake=[yes(D,'Stakeholders').length,rec(D,'Stakeholders').length];
+S.stakeM=[yes(byR('Design Manager'),'Stakeholders').length,rec(byR('Design Manager'),'Stakeholders').length];
+S.dsAll=[yes(D,'Design system').length,rec(D,'Design system').length];
+S.hand=[yes(D,'Hand-off').length,rec(D,'Hand-off').length];
+S.rated5=S.rated.filter(p=>p.rating===5).length;
+S.yearsCount=[...new Set(D.map(p=>p.year))].sort().map(y=>[y,S.inYear(y).length]);
+A.S=S;
+const L=ns=>ns.map(p=>p.name+(p.year?' ('+p.year+')':'')).join(', ');
+A.insights=function(){
+  const pE=S.phs[4];const nInd=new Set(D.map(p=>p.industry)).size;
+  const sizes=S.big.map(p=>p.team);
+  return[
+  {id:'multi',cat:'Highlights for hiring leaders',q:'Can you juggle several projects at once?',icon:'layers',big:['2.6','projects\u2019 worth of work in flight, on average, in 2023'],viz:{t:'years',data:S.yearsCount,hi:2023},
+   kind:'inf',fl:'inferred',t:'Running a portfolio, not a single project',
+   f:`In 2023, ${S.t23.length} projects started across ${S.t23ind} industries, adding up to ${f1(S.months(2023))} recorded project-months of work. Over 12 months that is about ${f1(S.months(2023)/12)} projects in flight at any time on average, alongside teams of ${Math.min(...S.t23.map(p=>p.team))} to ${Math.max(...S.t23.map(p=>p.team))} people.`,
+   w:'It answers a typical hiring question about multitasking: the record shows sustained parallel work across unrelated domains, not one engagement at a time.',e:`${S.t23.length} projects, ${f1(S.months(2023))} months, ${S.t23ind} industries, 2023`,
+   c:'There are no start or end dates, so the true peak (for example, four or more at once) cannot be measured. This is an average, and some 2023 work continues into 2024.',names:S.t23.map(p=>p.name)},
+  {id:'domains',cat:'Highlights for hiring leaders',q:'How quickly do you get up to speed in a new domain?',icon:'compass',big:[String(S.maxInd[1]),'industries touched in a single year (2023)'],viz:{t:'dots',n:nInd,of:nInd,label:nInd+' industries recorded'},
+   kind:'calc',fl:'surprising',t:'A new industry almost every project',
+   f:`${nInd} industries are recorded. 2023 alone touches ${S.maxInd[1]} of them; no other year touches more than ${S.maxOtherInd}. Over the record, work moves from BFSI and social innovation to cloud, communications, healthcare, aerospace, CPG and sustainability.`,
+   w:'Moving between domains is a repeated pattern, not a one-off, and the ratings stay high while doing it.',e:'Industry and Year columns',c:'Depth varies: many of these engagements were short. "CMT" and "EUS" are not expanded in the sheet.',names:[]},
+  {id:'scale',cat:'Highlights for hiring leaders',q:'Can you lead a large team?',icon:'users',big:[String(sizes[1]||sizes[0]),'largest exact design team; one programme at 15+'],viz:{t:'bars',data:S.big.map(p=>[p.team,p.year]),label:'Teams of 10 or more'},
+   kind:'calc',fl:'obvious',t:'From solo designer to teams of 10 to 15',
+   f:`${S.big.length} projects had teams of 10 or more (${S.big.map(p=>p.year).sort().join(', ')}), led as ${[...new Set(S.big.map(p=>p.role))].join(' and ')}. The median team grows from ${f1(S.phs[0].team)} in 2011 to 2013 to ${f1(S.phs[4].team)} in 2023 to 2024.`,
+   w:'Leading at scale appears in several years and in different kinds of work, including a DesignOps programme and design-system work.',e:'Team size column, rank correlation with year 0.65',c:'Team size counts people recorded on the project, not direct reports.',names:S.big.map(p=>p.name)},
+  {id:'quality',cat:'Highlights for hiring leaders',q:'Do clients rate your work well?',icon:'star',big:[pct(S.rated5,S.rated.length),'of rated projects scored 5 stars'],viz:{t:'ratings',five:S.rated5,four:S.rated.filter(p=>p.rating===4).length,three:S.rated.filter(p=>p.rating===3).length,un:S.n-S.rated.length},
+   kind:'calc',fl:'obvious',t:'Consistently well-rated, never below 3 stars',
+   f:`${S.rated.length} of ${S.n} dated projects carry a rating; ${S.rated5} are 5 stars and none is below 3. The average is ${f1(S.rBy('Design Lead').m)} in the lead years and ${f1(S.rBy('Design Manager').m)} in the manager years.`,
+   w:'Satisfaction holds as responsibility grows from designer to manager.',e:`Rating column; designer ${f1(S.rBy('UX / UI Designer').m)} (n=${S.rBy('UX / UI Designer').n})`,
+   c:`The source and scale of the rating are not recorded, and ${S.n-S.rated.length} projects are unrated (${S.d2324.length-S.d2324.filter(p=>p.rating).length} of ${S.d2324.length} from 2023 to 2024), so the latest years are under-evidenced.`,names:[]},
+  {id:'depth',cat:'Highlights for hiring leaders',q:'Can you stay with complex, long-running work?',icon:'clock',big:[String(S.longN.length),'engagements of 10 months or longer'],viz:{t:'bars',data:S.longN.map(p=>[p.dur,p.year]),label:'Months, longest engagements',unit:'mo'},
+   kind:'calc',fl:'inferred',t:'Long builds sit beside the sprints',
+   f:`${S.longN.length} projects ran 10 months or more, the longest ${S.longest.dur} months (${S.longest.year}). Cloud, Networking & DevOps stands out: ${S.cloud.length} projects from ${Math.min(...S.cloud.map(p=>p.year))} to ${Math.max(...S.cloud.map(p=>p.year))} averaging ${f1(mean(S.cloud.map(p=>p.dur)))} months, against ${f1(S.all)} overall.`,
+   w:'The record holds both patience for multi-year product work and the ability to switch to short engagements.',e:'Duration column, industry averages',c:'Few projects per industry; the cloud average rests on two builds of 20 to 21 months.',names:S.longN.map(p=>p.name)},
+  {id:'growth',cat:'Highlights for hiring leaders',q:'Have you kept growing your craft?',icon:'trend',big:[f1(S.phs[0].breadth)+' \u2192 '+f1(S.phs[2].breadth),'activities per project, first phase to third'],viz:{t:'phases',data:S.phs.map(x=>x.breadth),label:'Mean activities per fully recorded project'},
+   kind:'calc',fl:'inferred',t:'The toolkit widened and stayed wide',
+   f:`Among projects with all 12 activities recorded, the average rises from ${f1(S.phs[0].breadth)} in 2011 to 2013 to ${f1(S.phs[2].breadth)} in 2017 to 2019 and holds near ${f1(S.phs[3].breadth)} after. Usability testing is recorded in ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects and ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects.`,
+   w:'New capabilities were added rather than swapped: validation, systems and operations joined research and craft.',e:'Breadth by phase (n = 4, 9, 4, 11, 2 fully recorded)',c:'Breadth counts activities done, not how well. The latest phase has only 2 fully recorded projects.',names:[]},
+  {id:'systems',cat:'Highlights for hiring leaders',q:'Do you build things that outlast a project?',icon:'blocks',big:[String(S.dsAll[0]),'projects with design-system work'],viz:{t:'dots',n:S.dsAll[0],of:S.dsAll[1],label:S.dsAll[0]+' of '+S.dsAll[1]+' projects with the field recorded'},
+   kind:'calc',fl:'inferred',t:'Systems and operations, not just screens',
+   f:`Design-system work is recorded in ${S.dsAll[0]} of ${S.dsAll[1]} projects, including ${S.dsBy('Design Manager')[0]} of ${S.dsBy('Design Manager')[1]} manager-era projects. DesignOps appears as its own programme in ${S.dops.map(p=>p.year).filter(Boolean).join(' and ')}, and a design-system programme in 2023 had a team of 12.`,
+   w:'It shows thinking about how a design function works, not only what it ships.',e:'Design system column, themes, names',c:'"Yes*" (2 projects) is treated as yes; the asterisk is not explained.',names:S.dops.map(p=>p.name).concat(['Design system programme'])},
+  {id:'collab',cat:'Highlights for hiring leaders',q:'How do you work with stakeholders?',icon:'handshake',big:[pct(S.stake[0],S.stake[1]),'of recorded projects involved stakeholder collaboration'],viz:{t:'dots',n:S.stake[0],of:S.stake[1],label:S.stake[0]+' of '+S.stake[1]},
+   kind:'calc',fl:'obvious',t:'Stakeholders are part of almost every project',
+   f:`${S.stake[0]} of ${S.stake[1]} projects with the field recorded involved stakeholder collaboration, and ${S.stakeM[0]} of ${S.stakeM[1]} in the manager years. Hand-off to delivery is recorded in ${S.hand[0]} of ${S.hand[1]}.`,
+   w:'Collaboration and hand-off are part of the routine, which matters for senior roles that depend on influence.',e:'Stakeholders and Hand-off columns',c:'The record says collaboration happened, not how well or how senior the stakeholders were.',names:[]},
+  {id:'fast',cat:'Highlights for hiring leaders',q:'Can you deliver fast when things are ambiguous?',icon:'bolt',big:[String(S.fast.length),'engagements of two weeks or less'],viz:{t:'dots',n:S.fast.length,of:S.n,label:S.fast.length+' of '+S.n+' dated projects'},
+   kind:'fact',fl:'surprising',t:'Quick turns, early and late',
+   f:`${S.fast.length} projects ran two weeks or less: four solo research-and-design sprints in 2014, and three manager-led engagements in 2023 to 2024 with teams of ${Math.min(...S.fast.filter(p=>p.year>2020).map(p=>p.team))} to ${Math.max(...S.fast.filter(p=>p.year>2020).map(p=>p.team))}.`,
+   w:'The same speed shows up at both ends of the career, first as a solo practitioner, later through a team.',e:'Duration \u2264 0.5 months',c:'Short can mean a scoped assessment rather than a full delivery.',names:S.fast.map(p=>p.name)},
+  {id:'roles',cat:'Career milestones',q:'What changed in your role?',icon:'flag',big:[String(S.firstLead)+' \u2192 '+String(S.firstMgr),'first Design Lead, first Design Manager'],
+   kind:'fact',fl:'obvious',t:'Two role changes mark the whole record',
+   f:`The first Design Lead role is recorded in ${S.firstLead} and the first Design Manager role in ${S.firstMgr}. Design Manager is ${S.mgrN} of ${S.n} dated records (${pct(S.mgrN,S.n)}), and every dated record from 2021 on (${S.lateMgr} of ${S.late.length}).`,
+   w:'Half of the dated repository sits in the manager role, so the workbook mostly documents the manager years.',e:`Role column, ${S.n} dated rows`,c:'Roles are as recorded; the workbook does not say how much hands-on work each manager project involved.',names:[]},
+  {id:'y23h',cat:'What makes me different',q:'What does the manager era look like?',icon:'layers',kind:'hyp',fl:'inferred',t:'Hypothesis: manager-era work became a portfolio',
+   f:`Team sizes rise (median ${f1(S.phs[4].team)} in 2023 to 2024 against ${f1(S.phs[0].team)} in 2011 to 2013) while ${S.d2324.filter(p=>Object.values(p.act).filter(v=>v==null).length>=10).length} of ${S.d2324.length} of those projects have most activity columns unrecorded.`,
+   w:'It would fit a shift from doing each project to overseeing several at once, through teams.',e:'Team size by phase; unrecorded activity cells',c:'Alternative: the activity columns were simply not filled in for recent rows. Needs a start date, end date and personal-contribution field to test.',names:[]},
+  {id:'team',cat:'Unexpected correlations',q:'Does scale mean longer projects?',icon:'scatter',big:[f2(S.rTeamDur.r),'rank correlation, team size and duration'],kind:'calc',fl:'surprising',t:'Bigger teams do not clearly mean longer projects',
+   f:`Across ${S.rTeamDur.n} projects the rank correlation between team size and duration is ${f2(S.rTeamDur.r)}, which is weak. A 10-person team ran ${mo(D.find(p=>p.name==='CPG project 1').dur)} (CPG project 1); a 14-person team ran 14 months (Data & AI project 3).`,
+   w:'Scale and length are separate dials in this record.',e:`Spearman \u03c1 = ${f2(S.rTeamDur.r)}, n = ${S.rTeamDur.n}`,c:'Descriptive only. Small n and ties; no causal claim.',names:['CPG project 1','Data & AI project 3']},
+  {id:'ytm',cat:'Unexpected correlations',q:'Did responsibility grow in people or in months?',icon:'trend',kind:'calc',fl:'obvious',t:'Team size grows with time; duration does not',
+   f:`Year and team size: \u03c1 = ${f2(S.rYearTeam.r)} (n = ${S.rYearTeam.n}). Year and duration: \u03c1 = ${f2(S.rYearDur.r)} (n = ${S.rYearDur.n}).`,
+   w:'Responsibility grew in people, not in months. The work did not become systematically longer.',e:'Spearman rank correlations',c:'Moderate for team size, negligible for duration. Year is not the same as seniority.',names:[]},
+  {id:'breadth',cat:'Unexpected correlations',q:'Do broader projects take longer?',icon:'scatter',big:[f2(S.rBreadthDur.r),'rank correlation, breadth and duration'],kind:'calc',fl:'obvious',t:'Projects with more activities last longer',
+   f:`Among the ${S.nBreadth} projects where all 12 activities are recorded, breadth and duration correlate at \u03c1 = ${f2(S.rBreadthDur.r)}.`,
+   w:'It is the strongest relationship in the data, and the least surprising.',e:`Spearman \u03c1 = ${f2(S.rBreadthDur.r)}, n = ${S.nBreadth}`,c:'Direction unknown: longer projects have room for more activities, or broad projects take longer. Excludes the 13 projects with unrecorded activities.',names:[]},
+  {id:'utds',cat:'Hidden patterns',q:'Which skills come as a package?',icon:'link',big:[f1(S.utds.l)+'\u00d7','usability testing and design systems together, vs chance'],kind:'calc',fl:'surprising',t:'Usability testing and design systems travel together',
+   f:`They appear together in ${S.utds.both} of ${S.utds.n} recorded projects, ${f2(S.utds.l)} times what chance would give. Usability testing is recorded in ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects, ${S.utBy('Design Lead')[0]} of ${S.utBy('Design Lead')[1]} lead projects and ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects.`,
+   w:'Validation and systems thinking arrive as a pair, and mostly in the manager era.',e:`Lift ${f2(S.utds.l)}; first seen: usability testing ${S.firstOf('Usability testing')}, design system ${S.firstOf('Design system')}`,
+   c:'Manager-era percentages rest on the 14 manager projects with activities recorded. Alternative: these were done by team members and are logged more carefully on larger projects.',names:[]},
+  {id:'cloud',cat:'Hidden patterns',q:'Where is your depth, and where your breadth?',icon:'compass',kind:'calc',fl:'surprising',t:'One domain got depth, another got breadth',
+   f:`BFSI has the most projects (${S.bfsi.length}) but averages ${f1(mean(S.bfsi.map(p=>p.dur)))} months. Cloud, Networking & DevOps has ${S.cloud.length} projects averaging ${f1(mean(S.cloud.map(p=>p.dur)))} months. The overall average is ${f1(S.all)}.`,
+   w:'BFSI is where the record is widest; cloud is where it is deepest.',e:'Mean duration by industry',c:'Few projects per industry.',names:S.cloud.map(p=>p.name)},
+  {id:'hc',cat:'Hidden patterns',q:'How did a new domain enter your work?',icon:'pulse',kind:'fact',fl:'surprising',t:'Healthcare came as one burst',
+   f:`All ${S.hc.length} Healthcare & Telehealth projects are from ${[...new Set(S.hc.map(p=>p.year))].join(', ')}: ${L(S.hc)}.`,
+   w:'A new domain can appear as a single-year cluster rather than a slow build.',e:'Industry and Year columns',c:'Three projects only.',names:S.hc.map(p=>p.name)},
+  {id:'brand',cat:'What makes me different',q:'Do you cover brand as well as product?',icon:'pen',kind:'calc',fl:'inferred',t:'Brand work keeps returning alongside product work',
+   f:`${S.brand.length} projects carry the Brand Strategy & Identity theme, across ${Math.min(...S.brand.map(p=>p.year))} to ${Math.max(...S.brand.map(p=>p.year))}: ${L(S.brand)}.`,
+   w:'Identity and product design appear together across more than a decade of the record.',e:'Core theme column',c:'The record does not show how large the brand component was within each engagement.',names:S.brand.map(p=>p.name)},
+  {id:'dops',cat:'Career curiosities',q:'When did operating the function enter the record?',icon:'blocks',kind:'fact',fl:'inferred',t:'DesignOps appears twice, seven years apart',
+   f:`${L(S.dops)}. The 2017 effort has a team of 15+; the Design Systems theme also appears in 2023 (Design system programme, team of 12).`,
+   w:'Operating the design function shows up in the record well before the manager title does.',e:'Names, themes and Team size',c:'Two records. The 2024 row has almost no fields filled.',names:S.dops.map(p=>p.name).concat(['Design system programme'])},
+  {id:'b2b',cat:'What makes me different',q:'Where is your core experience?',icon:'globe',big:[pct(S.b2b,S.n),'of dated projects are B2B'],kind:'calc',fl:'obvious',t:'This is enterprise work',
+   f:`${S.b2b} of ${S.n} dated projects (${pct(S.b2b,S.n)}) are B2B. In the lead years it is ${S.leadB2B} of ${byR('Design Lead').length}.`,
+   w:'The record leans heavily to enterprise products; consumer work is the minority.',e:'Product type column',c:'"CSH" projects, which carry much of the consumer work, are not defined in the sheet.',names:[]},
+  {id:'sol',cat:'Career curiosities',q:'What is the longest you owned something alone?',icon:'user',big:[String(S.scholastic.dur),'months as a solo designer'],kind:'calc',fl:'surprising',t:'The longest solo engagement',
+   f:`${S.scholastic.name} (${S.scholastic.year}) ran ${S.scholastic.dur} months with a team of 1. ${S.sol} projects have a team of 1; the next-longest solo one is ${mo(D.filter(p=>p.team===1&&p.name!=='Education project 2').sort((a,b)=>b.dur-a.dur)[0].dur)}.`,
+   w:'It is the clearest example of individual ownership over a long period in the record.',e:'Team size = 1, sorted by duration',c:'Team size may count only the design team.',names:['Education project 2']},
+  {id:'res',cat:'What makes me different',q:'How does your research practice show up?',icon:'search',kind:'calc',fl:'inferred',t:'Research stayed; hands-on primary research thinned out',
+   f:`Primary research (alone or with secondary) is recorded in ${pct(Math.round(S.phs[0].primAny*S.phs[0].n),S.phs[0].n)} of 2011 to 2013 projects against ${pct(Math.round(S.phs[4].primAny*S.phs[4].n),S.phs[4].n)} of 2023 to 2024 projects, where secondary and combined research are common.`,
+   w:'Research remains in almost every project, but its form changes.',e:'Research column by phase',c:'Could reflect a different mix of engagements (short advisory work) rather than a change in method.',names:[]},
+  {id:'ai',cat:'What makes me different',q:'What fits the AI and agentic era?',icon:'spark',kind:'hyp',fl:'inferred',t:'Hypothesis: the experience that fits the AI era',
+   f:`Records tied to data or AI, by industry or by name: ${S.ai.map(p=>p.name+(p.year?' ('+p.year+')':'')).join(', ')}. Add enterprise B2B depth, design systems, DesignOps and teams of 12 to 14, and the combination is uncommon in the record.`,
+   w:'It suggests a next chapter in directing design for AI-assisted and agentic enterprise products at team and system level.',e:'Industry, Name, Team size, Design system, Core theme',c:'The workbook has no impact, challenge or outcome data and no field for AI-specific work. Treat this as a direction to test, not a finding.',names:S.ai.map(p=>p.name)}
+  ]};
+})();
+
+// power-diagram Voronoi treemap helpers
+const VOR=(function(){
+function clip(poly,a,b,c){ // keep a*x+b*y<=c
+  const out=[];for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length];const fp=a*p[0]+b*p[1]-c,fq=a*q[0]+b*q[1]-c;
+    if(fp<=0)out.push(p);if((fp<0&&fq>0)||(fp>0&&fq<0)){const t=fp/(fp-fq);out.push([p[0]+(q[0]-p[0])*t,p[1]+(q[1]-p[1])*t])}}
+  return out}
+function area(poly){let a=0;for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length];a+=p[0]*q[1]-q[0]*p[1]}return a/2}
+function centroid(poly){const A=area(poly);if(Math.abs(A)<1e-6){const n=poly.length||1;return[poly.reduce((s,p)=>s+p[0],0)/n,poly.reduce((s,p)=>s+p[1],0)/n]}
+  let cx=0,cy=0;for(let i=0;i<poly.length;i++){const p=poly[i],q=poly[(i+1)%poly.length];const f=p[0]*q[1]-q[0]*p[1];cx+=(p[0]+q[0])*f;cy+=(p[1]+q[1])*f}return[cx/(6*A),cy/(6*A)]}
+function cells(sites,bound,iters){const n=sites.length;const total=Math.abs(area(bound));const tsum=sites.reduce((s,x)=>s+x.v,0);
+  sites.forEach(s=>{s.t=s.v/tsum*total;s.w=s.w||0});
+  let polys=[];
+  for(let it=0;it<iters;it++){
+    polys=sites.map((si,i)=>{let P=bound;for(let j=0;j<n&&P.length;j++){if(j===i)continue;const sj=sites[j];
+      const a=sj.x-si.x,b=sj.y-si.y;const c=(sj.x*sj.x+sj.y*sj.y-si.x*si.x-si.y*si.y+si.w-sj.w)/2;P=clip(P,a,b,c)}return P});
+    const mean=total/n;
+    polys.forEach((P,i)=>{const s=sites[i];const A=P.length>2?Math.abs(area(P)):0;
+      if(P.length>2){const c=centroid(P);s.x+=(c[0]-s.x)*.55;s.y+=(c[1]-s.y)*.55}
+      s.w+=(s.t-A)*.6;});
+    const mw=Math.min(...sites.map(s=>s.w));sites.forEach(s=>s.w-=mw)}
+  polys=sites.map((si,i)=>{let P=bound;for(let j=0;j<n&&P.length;j++){if(j===i)continue;const sj=sites[j];const a=sj.x-si.x,b=sj.y-si.y;const c=(sj.x*sj.x+sj.y*sj.y-si.x*si.x-si.y*si.y+si.w-sj.w)/2;P=clip(P,a,b,c)}return P});
+  return polys}
+return{cells,area,centroid}})();
+if(typeof module!=='undefined')module.exports=VOR;else window.__A.VOR=VOR;
+
+(function(){
+const A=window.__A;const {F,D,ALL,PH,ROLES,RC,ACTS,YEARS,st,h,s,med,mean,f1,mo,hov,openProj,projLines,showTip,hideTip}=A;
+const TG=A.TG;
+const PAL=['#FFB86B','#C79BE8','#4FD1BC','#C8F55A','#7D98FF','#FF8FA3','#6FC7F2','#E6D36B','#8EDB98','#D79BE0','#F29B6B','#A9B4C2'];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const short=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t;
+const legend=()=>h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)));
+const note=t=>h('p',{class:'dyn'},t);
+function arcPath(cx,cy,r0,r1,a0,a1){const full=a1-a0>=Math.PI*2-1e-4;if(full)a1=a0+Math.PI*2-1e-4;const p=(r,a)=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];const l=a1-a0>Math.PI?1:0;
+  const A0=p(r1,a0),A1=p(r1,a1),B1=p(r0,a1),B0=p(r0,a0);return `M${A0}A${r1},${r1} 0 ${l} 1 ${A1}L${B1}A${r0},${r0} 0 ${l} 0 ${B0}Z`}
+
+/* ================= 1. SUNBURST ================= */
+let sbPath=[];
+A.sunburst=function(box){
+  const ps=F();
+  const root={name:'Career',depth:0,children:[],kind:'root'};
+  ROLES.forEach(r=>{const rp=ps.filter(p=>p.role===r);if(!rp.length)return;const rn={name:r,depth:1,role:r,kind:'role',children:[],parent:root};root.children.push(rn);
+    const inds=[...new Set(rp.map(p=>p.industry))].sort((a,b)=>rp.filter(p=>p.industry===b).length-rp.filter(p=>p.industry===a).length);
+    inds.forEach(i=>{const ip=rp.filter(p=>p.industry===i);const inn={name:i||'Industry not recorded',depth:2,role:r,kind:'industry',children:[],parent:rn};rn.children.push(inn);
+      ip.sort((a,b)=>a.year-b.year).forEach(p=>{const pn={name:p.name,depth:3,role:r,kind:'project',p,children:[],parent:inn};inn.children.push(pn);
+        const done=ACTS.filter(a=>p.act[a]===true);done.forEach(a=>pn.children.push({name:a,depth:4,role:r,kind:'act',v:1/done.length,children:[],parent:pn,p}))})})});
+  let x=0;(function lay(n){if(!n.children.length){n.v=n.v||1;n.x0=x;x+=n.v;n.x1=x;return}const x0=x;n.children.forEach(lay);n.x0=x0;n.x1=x;n.v=x1v(n)})(root);
+  function x1v(n){return n.x1-n.x0}
+  const all=[];(function walk(n){all.push(n);n.children.forEach(walk)})(root);
+  // find focus by path
+  let focus=root;for(const nm of sbPath){const c=focus.children.find(z=>z.name===nm);if(!c)break;focus=c}
+  sbPath=[];{let f=focus;while(f.parent){sbPath.unshift(f.name);f=f.parent}}
+  const W=680,Hh=680,cx=W/2,cy=Hh/2,R=W/2-6,R0=84,rings=3,dr=(R-R0)/rings;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,style:'max-width:700px;margin:0 auto',role:'img','aria-label':'Sunburst of roles, industries, projects and activities'});
+  const span=focus.x1-focus.x0||1;const TAU=Math.PI*2;
+  const col=n=>RC[n.role]||'var(--ink3)';
+  all.forEach(n=>{if(n===root)return;const d=n.depth-focus.depth;if(d<1||d>rings)return;if(n.x0<focus.x0-1e-9||n.x1>focus.x1+1e-9)return;
+    const a0=(n.x0-focus.x0)/span*TAU-Math.PI/2,a1=(n.x1-focus.x0)/span*TAU-Math.PI/2;const r0=R0+(d-1)*dr,r1=R0+d*dr;
+    const can=n.children.length>0||n.kind==='project';
+    const pth=s('path',{d:arcPath(cx,cy,r0+1,r1-1,a0,a1),style:`fill:${col(n)};stroke:var(--bg);stroke-width:1.6;cursor:pointer`,tabindex:0,role:'button','aria-label':n.name});
+    pth.addEventListener('click',()=>{if(n.kind==='act')return;sbPath=[];let f=n;while(f.parent){sbPath.unshift(f.name);f=f.parent}A.render()});
+    const cnt=n.kind==='act'?null:(function c(z){return z.kind==='project'?1:z.children.reduce((a,b)=>a+c(b),0)})(n);
+    hov(pth,n.name,()=>n.kind==='project'?projLines(n.p).concat(['Click to see its activities']):n.kind==='act'?['Done in '+n.parent.name]:[cnt+' project'+(cnt===1?'':'s'),n.kind==='role'?'Click to zoom into this role':'Click to zoom in']);
+    svg.append(pth);
+    const mid=(a0+a1)/2,rm=(r0+r1)/2,arcLen=(a1-a0)*rm;
+    if(arcLen>(d===3?46:26)&&(r1-r0)>20){const deg=mid*180/Math.PI;const flip=Math.cos(mid)<0&&Math.abs(Math.sin(mid))<.999&&false;
+      const tx=cx+rm*Math.cos(mid),ty=cy+rm*Math.sin(mid);let rot=deg;if(Math.cos(mid)<0)rot+=180;
+      const maxc=Math.floor((r1-r0-6)/5.6);const lab=short(n.name,Math.max(4,maxc));
+      svg.append(s('text',{x:tx,y:ty,transform:`rotate(${rot} ${tx} ${ty})`,'text-anchor':'middle','dominant-baseline':'central',style:'fill:var(--on-seg);font-size:10.5px;font-weight:600;pointer-events:none'},lab))}
+  });
+  const up=s('circle',{cx,cy,r:R0-4,style:'fill:var(--s2);stroke:var(--line2);cursor:'+(focus.parent?'pointer':'default')});
+  if(focus.parent)up.addEventListener('click',()=>{sbPath=sbPath.slice(0,-1);A.render()});
+  svg.append(up);
+  const pr=(function c(z){return z.kind==='project'?1:z.children.reduce((a,b)=>a+c(b),0)})(focus);
+  const t1=focus.kind==='act'?'':short(focus.name,16);
+  svg.append(s('text',{x:cx,y:cy-8,'text-anchor':'middle',class:'t-ink',style:'font-size:14px;font-weight:600;pointer-events:none;font-family:var(--serif)'},t1),
+    s('text',{x:cx,y:cy+10,'text-anchor':'middle',class:'mono',style:'pointer-events:none'},focus.kind==='project'?'activities done':pr+' projects'),
+    s('text',{x:cx,y:cy+26,'text-anchor':'middle',class:'mono',style:'pointer-events:none'},focus.parent?'click to go up':'click a segment'));
+  const crumbs=[];{let f=focus;while(f){crumbs.unshift(f);f=f.parent}}
+  const bc=h('div',{class:'legend'},...crumbs.map((c,i)=>h('button',{class:'chip','aria-pressed':c===focus,onclick:()=>{sbPath=crumbs.slice(1,i+1).map(z=>z.name);A.render()}},c.name)),focus.kind==='project'?h('button',{class:'chip',onclick:()=>openProj(focus.p)},'Open project record'):'');
+  box.replaceChildren(bc,svg,h('div',{class:'legend',style:'justify-content:center;margin-top:8px'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),h('span',{class:'und'},'Rings, from the centre: role, industry, project, activities done')))};
+
+/* ================= 2. CHORD ================= */
+const CM={ind:'Industries and activities',rt:'Roles and project themes',pa:'Product type and activities'};
+A.chord=function(box){
+  const ps=F();const mode=st.chordM||'ind';const thr=st.chordT==null?2:st.chordT;
+  let left,right,val,lt,rt;
+  const grp=ps.reduce((o,p)=>(o[p.industry]=(o[p.industry]||0)+1,o),{});
+  if(mode==='rt'){left=ROLES.filter(r=>ps.some(p=>p.role===r));const th={};ps.forEach(p=>th[TG(p.theme)]=(th[TG(p.theme)]||0)+1);right=Object.keys(th).sort((a,b)=>th[b]-th[a]);
+    val=(a,b)=>ps.filter(p=>p.role===a&&TG(p.theme)===b).length;lt='Role';rt='Project theme'}
+  else{const actSet=ACTS;
+    if(mode==='ind'){left=Object.keys(grp).filter(k=>grp[k]>=2).sort((a,b)=>grp[b]-grp[a]);lt='Industry'}else{left=['B2B','B2C & B2B','B2C'].filter(k=>ps.some(p=>p.product===k));lt='Product type'}
+    right=actSet;rt='Activity done';
+    const keyOf=p=>mode==='ind'?(grp[p.industry]>=2?p.industry:null):p.product;
+    val=(a,b)=>ps.filter(p=>keyOf(p)===a&&p.act[b]===true).length}
+  let rows=left.map(a=>right.map(b=>{const v=val(a,b);return v>=thr?v:0}));
+  { const keepL=left.map((_,i)=>rows[i].some(v=>v>0));const keepR=right.map((_,j)=>rows.some(r=>r[j]>0));rows=rows.filter((_,i)=>keepL[i]).map(r=>r.filter((_,j)=>keepR[j]));left=left.filter((_,i)=>keepL[i]);right=right.filter((_,j)=>keepR[j]) }
+  const ltot=rows.map(r=>r.reduce((x,y)=>x+y,0)),rtot=right.map((b,j)=>rows.reduce((x,r)=>x+r[j],0));
+  const T=ltot.reduce((x,y)=>x+y,0)||1;
+  const W=1000,Hh=580,cx=W/2,cy=Hh/2+6,R=225,rI=R-14;const gap=.05,span=Math.PI-gap*2;
+  // left on left half (angles pi/2 .. 3pi/2 going clockwise from bottom?) use: left: from  PI*1.5-gap to PI*0.5+gap going down
+  const lcol=left.map((_,i)=>PAL[i%PAL.length]);
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Chord diagram: '+CM[mode]});
+  const ng=left.length+right.length;const padL=.025;
+  const lw=left.length?(span-padL*(left.length-1))/T:0;const rw=(span-padL*(right.length-1))/T;
+  // angle assignment: left side from top (-90deg+gap) counterclockwise going down on left: angles from 270+... use param
+  const la=[];let a=-Math.PI/2-gap;left.forEach((_,i)=>{const w=ltot[i]*lw;la.push([a-w,a]);a-=w+padL});
+  const ra=[];a=-Math.PI/2+gap;right.forEach((_,j)=>{const w=rtot[j]*rw;ra.push([a,a+w]);a+=w+padL});
+  const pt=(r,an)=>[cx+r*Math.cos(an),cy+r*Math.sin(an)];
+  // ribbons
+  const lcur=la.map(x=>x[1]),rcur=ra.map(x=>x[0]);const ribs=[];
+  left.forEach((_,i)=>right.forEach((__,j)=>{const v=rows[i][j];if(!v)return;const w1=v*lw,w2=v*rw;const l0=lcur[i],l1=l0-w1;lcur[i]=l1;const r0=rcur[j],r1=r0+w2;rcur[j]=r1;ribs.push({i,j,v,l0,l1,r0,r1})}));
+  const rg=s('g',{});svg.append(rg);
+  const paths=ribs.map(r=>{const p0=pt(rI,r.l0),p1=pt(rI,r.l1),q0=pt(rI,r.r0),q1=pt(rI,r.r1);
+    const d=`M${p0}A${rI},${rI} 0 0 0 ${p1}Q${cx},${cy} ${q0}A${rI},${rI} 0 0 1 ${q1}Q${cx},${cy} ${p0}Z`;
+    const el=s('path',{d,style:`fill:${lcol[r.i]};opacity:.78;stroke:var(--bg);stroke-width:.6`,class:'hit'});
+    hov(el,left[r.i]+' ↔ '+right[r.j],[r.v+' project'+(r.v===1?'':'s')]);rg.append(el);return el});
+  const hi=(side,idx)=>{paths.forEach((el,k)=>{const r=ribs[k];const on=idx==null||(side==='l'?r.i===idx:r.j===idx);el.style.opacity=on?(idx==null?.78:.95):.07})};
+  const labelFor=(an,txt,sub,anchorSide,r)=>{const [x,y]=pt(R+10,an);const right=Math.cos(an)>=0;svg.append(s('text',{x:right?x+2:x-2,y:y,'text-anchor':right?'start':'end','dominant-baseline':'central',class:'t-ink2',style:'font-size:11.5px'},txt))};
+  let lastLy=-99;left.forEach((n,i)=>{const [a0,a1]=la[i];const el=s('path',{d:arcPath(cx,cy,rI,R,a0,a1),style:`fill:${lcol[i]};cursor:pointer;stroke:var(--bg);stroke-width:1`,class:'hit',tabindex:0});
+    hov(el,n,[ltot[i]+' links to '+rt.toLowerCase()+'s']);el.addEventListener('mouseenter',()=>hi('l',i));el.addEventListener('mouseleave',()=>hi());svg.append(el);
+    const m=(a0+a1)/2;const [x,y]=pt(R+10,m);if(Math.abs(y-lastLy)<13)return;lastLy=y;svg.append(s('text',{x:x-3,y,'text-anchor':'end','dominant-baseline':'central',class:'t-ink2',style:'font-size:11.5px'},short(n,28)))});
+  let lastRy=-99;right.forEach((n,j)=>{const [a0,a1]=ra[j];const el=s('path',{d:arcPath(cx,cy,rI,R,a0,a1),style:'fill:var(--ink2);cursor:pointer;stroke:var(--bg);stroke-width:1',class:'hit',tabindex:0});
+    hov(el,n,[rtot[j]+' links to '+lt.toLowerCase()+'s']);el.addEventListener('mouseenter',()=>hi('r',j));el.addEventListener('mouseleave',()=>hi());svg.append(el);
+    const m=(a0+a1)/2;const [x,y]=pt(R+10,m);if(Math.abs(y-lastRy)<13)return;lastRy=y;svg.append(s('text',{x:x+3,y,'text-anchor':'start','dominant-baseline':'central',class:'t-ink2',style:'font-size:11.5px'},short(n,28)))});
+  svg.append(s('text',{x:cx-R-40,y:24,'text-anchor':'end',class:'mono'},lt.toUpperCase()),s('text',{x:cx+R+40,y:24,'text-anchor':'start',class:'mono'},rt.toUpperCase()));
+  const modes=h('div',{class:'legend'},...Object.entries(CM).map(([k,l])=>h('button',{class:'chip','aria-pressed':mode===k,onclick:()=>{st.chordM=k;A.render()}},l)),h('span',{class:'und'},'|'),h('button',{class:'chip','aria-pressed':thr===2,onclick:()=>{st.chordT=2;A.render()}},'Links of 2+ projects'),h('button',{class:'chip','aria-pressed':thr===1,onclick:()=>{st.chordT=1;A.render()}},'All links'),h('span',{class:'und'},'Ribbon width = number of projects. Hover an arc to isolate its links.'));
+  let txt='';
+  if(mode==='ind'){const n=left.length;const rows2=right.map((b,j)=>[b,rows.filter(r=>r[j]>0).length]).sort((a,b)=>b[1]-a[1]);
+    const all=rows2.filter(x=>x[1]===n).map(x=>x[0]);const top=rows2.slice(0,3).map(x=>x[0]+' ('+x[1]+' of '+n+')');
+    txt=`Across the ${n} industries shown, ${all.length?all.join(', ')+' appear'+(all.length===1?'s':'')+' in every one':'no activity appears in every one'}. Most widely travelled: ${top.join(', ')}. ${rows2[rows2.length-1][0]} travels least (${rows2[rows2.length-1][1]} industries).`}
+  box.replaceChildren(modes,svg,txt?note(txt):'')};
+
+/* ================= 3. UPSET ================= */
+const USEL=['Research','Journeys','IA','Wireframes','Visual design','Usability testing','Design system','Stakeholders'];
+A.upset=function(box){
+  const ps=F().filter(p=>USEL.every(a=>p.act[a]!=null));
+  const combos=new Map();ps.forEach(p=>{const k=USEL.filter(a=>p.act[a]).join('|');(combos.get(k)||combos.set(k,[]).get(k)).push(p)});
+  const list=[...combos.entries()].map(([k,v])=>({k,sets:k?k.split('|'):[],v})).sort((a,b)=>b.v.length-a.v.length||b.sets.length-a.sets.length);
+  const N=14,top=list.slice(0,N);const W=1000,L=270,cw=(W-L-20)/N,rowH=26,barH=170,T=26,Hh=T+barH+USEL.length*rowH+36;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'UpSet plot of activity combinations'});
+  const mx=Math.max(1,...top.map(c=>c.v.length));
+  USEL.forEach((a,i)=>{const y=T+barH+14+i*rowH;
+    if(i%2===0)svg.append(s('rect',{x:0,y:y-rowH/2,width:W,height:rowH,style:'fill:var(--s2)'}));
+    const n=ps.filter(p=>p.act[a]).length;svg.append(s('text',{x:L-110,y:y+4,'text-anchor':'end',class:'t-ink2',style:'font-size:12px'},a),
+      s('rect',{x:L-104,y:y-6,width:n/ps.length*70,height:12,rx:2,style:'fill:var(--ink3)'}),s('text',{x:L-8,y:y+4,'text-anchor':'end',class:'mono'},String(n)))});
+  top.forEach((c,j)=>{const x=L+j*cw+cw/2;const bh=c.v.length/mx*(barH-30);const sig=j===0;
+    const bar=s('rect',{x:x-cw*.3,y:T+barH-bh,width:cw*.6,height:bh,rx:3,style:`fill:${sig?'var(--signal-ink)':'var(--ink3)'};cursor:pointer`,class:'hit'});
+    svg.append(bar,s('text',{x,y:T+barH-bh-6,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},String(c.v.length)));
+    const ys=USEL.map((a,i)=>c.sets.includes(a)?T+barH+14+i*rowH:null).filter(v=>v!=null);
+    if(ys.length>1)svg.append(s('line',{x1:x,x2:x,y1:Math.min(...ys),y2:Math.max(...ys),style:`stroke:${sig?'var(--signal-ink)':'var(--ink)'};stroke-width:3`}));
+    USEL.forEach((a,i)=>{const on=c.sets.includes(a);svg.append(s('circle',{cx:x,cy:T+barH+14+i*rowH,r:6.5,style:on?`fill:${sig?'var(--signal-ink)':'var(--ink)'}`:'fill:var(--s3)'}))});
+    const hit=s('rect',{x:x-cw/2,y:T,width:cw,height:Hh-T-30,fill:'transparent',class:'hit'});svg.append(hit);
+    hov(hit,c.v.length+' project'+(c.v.length===1?'':'s'),[c.sets.length+' of '+USEL.length+' activities: '+(c.sets.join(', ')||'none'),'Projects: '+c.v.slice(0,6).map(p=>p.name).join(', ')+(c.v.length>6?'…':'')]);
+    hit.addEventListener('click',()=>{A.repoQ=c.v.map(p=>p.name);document.querySelector('#repoq').value=c.v[0].name;document.querySelector('#repo').scrollIntoView();A.render()})});
+  svg.append(s('text',{x:L,y:14,class:'mono'},'PROJECTS WITH EXACTLY THIS COMBINATION'),s('text',{x:L-62,y:T+barH+4,'text-anchor':'end',class:'mono'},'ACTIVITY · PROJECTS'));
+  const single=list.filter(c=>c.v.length===1).length;const four=ps.filter(p=>['Research','Journeys','IA','Usability testing'].every(a=>p.act[a])).length;
+  const full=list.find(c=>c.sets.length===USEL.length);
+  box.replaceChildren(svg,note(`${ps.length} projects have all ${USEL.length} of these activities recorded. They form ${list.length} different combinations; ${single} of them occur only once. ${full?`The most common single pattern is the full toolkit, done together in ${full.v.length} projects. `:''}${four} projects combine research, journeys, information architecture and usability testing. Click a column to see its projects in the repository.`))};
+
+/* ================= 4. VORONOI TREEMAP ================= */
+const VM={dur:['Duration','√months'],team:['Team size','√people'],eq:['Equal','one project, one cell']};
+A.voronoi=function(box){
+  const ps=F('industry');const mode=st.vorM||'dur';
+  const val=p=>mode==='eq'?1:mode==='team'?Math.sqrt(Math.max(p.team||1,1)):Math.sqrt(Math.max(p.dur||.25,.25));
+  const W=1000,Hh=600;const bound=[];for(let i=0;i<120;i++){const a=i/120*2*Math.PI;bound.push([W/2+W/2*Math.cos(a)*.99,Hh/2+Hh/2*Math.sin(a)*.99])}
+  const by={};ps.forEach(p=>(by[p.industry]=by[p.industry]||[]).push(p));
+  const inds=Object.entries(by).map(([k,v],i)=>({k,ps:v,v:v.reduce((a,p)=>a+val(p),0),x:70+(mean(v.map(p=>p.year))-2011)/13*860,y:Hh/2+(((i*37)%11)-5)*38,w:0}));
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Voronoi treemap of projects grouped by industry'});
+  if(!inds.length){box.replaceChildren(h('p',{class:'und'},'No projects match the filters.'));return}
+  const P1=inds.length>1?A.VOR.cells(inds,bound,130):[bound];
+  const cells=[];
+  inds.forEach((ind,i)=>{const poly=P1[i];if(!poly||poly.length<3)return;const c=A.VOR.centroid(poly);
+    let sub;if(ind.ps.length===1)sub=[{p:ind.ps[0],poly}];
+    else{const sites=ind.ps.map((p,j)=>({p,v:val(p),x:c[0]+Math.cos(j*2.4)*18*(1+j%3),y:c[1]+Math.sin(j*2.4)*18*(1+j%3),w:0}));const PP=A.VOR.cells(sites,poly,90);sub=sites.map((z,j)=>({p:z.p,poly:PP[j]}))}
+    cells.push({ind,poly,sub})});
+  const f=pts=>pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  cells.forEach(c=>c.sub.forEach(z=>{if(!z.poly||z.poly.length<3)return;const ar=Math.abs(A.VOR.area(z.poly));const el=s('polygon',{points:f(z.poly),style:`fill:${RC[z.p.role]};stroke:var(--bg);stroke-width:1.6;cursor:pointer`,class:'hit'});
+    hov(el,z.p.name,()=>projLines(z.p));el.addEventListener('click',()=>openProj(z.p));svg.append(el);z.ar=ar}));
+  cells.forEach(c=>{const el=s('polygon',{points:f(c.poly),style:'fill:none;stroke:var(--ink);stroke-width:2.2;pointer-events:none'});svg.append(el)});
+  cells.forEach(c=>c.sub.forEach(z=>{if(!z.poly||z.poly.length<3||z.ar<4200)return;const cc=A.VOR.centroid(z.poly);const nm=z.p.name;const mc=Math.floor(Math.sqrt(z.ar)/6.2);
+    svg.append(s('text',{x:cc[0],y:cc[1],'text-anchor':'middle','dominant-baseline':'central',style:'fill:var(--on-seg);font-size:11px;font-weight:600;pointer-events:none'},short(nm,Math.max(5,mc))),
+      s('text',{x:cc[0],y:cc[1]+13,'text-anchor':'middle',style:'fill:var(--on-seg);font-size:9.5px;pointer-events:none'},String(z.p.year)))}));
+  const modes=h('div',{class:'legend'},...Object.entries(VM).map(([k,[l]])=>h('button',{class:'chip','aria-pressed':mode===k,onclick:()=>{st.vorM=k;A.render()}},'Cell size: '+l)),h('span',{class:'und'},'Heavy outlines are industries; left to right follows each industry’s average year. Area is '+VM[mode][1]+'.'));
+  box.replaceChildren(modes,legend(),svg)};
+
+/* ================= 5. GALAXY ================= */
+let GX=null,GXK='';
+function buildGalaxy(ps){
+  const nodes=[],idx={};const add=(id,o)=>{if(idx[id]!=null)return idx[id];idx[id]=nodes.length;nodes.push({id,adj:[],...o});return idx[id]};
+  const link=(a,b)=>{nodes[a].adj.push(b);nodes[b].adj.push(a)};
+  ps.forEach(p=>{const n=add('p:'+p.name,{type:'project',label:p.name,p,role:p.role});
+    if(p.role)link(n,add('r:'+p.role,{type:'role',label:p.role,role:p.role}));
+    if(p.industry)link(n,add('i:'+p.industry,{type:'industry',label:p.industry}));
+    ACTS.forEach(a=>{if(p.act[a]===true)link(n,add('a:'+a,{type:'act',label:a}))})});
+  const N=nodes.length;
+  // betweenness (Brandes, unweighted)
+  const bc=new Array(N).fill(0);
+  for(let sv=0;sv<N;sv++){const S=[],Pd=nodes.map(()=>[]),sg=new Array(N).fill(0),d=new Array(N).fill(-1);sg[sv]=1;d[sv]=0;const Q=[sv];
+    for(let qi=0;qi<Q.length;qi++){const v=Q[qi];S.push(v);for(const w of nodes[v].adj){if(d[w]<0){d[w]=d[v]+1;Q.push(w)}if(d[w]===d[v]+1){sg[w]+=sg[v];Pd[w].push(v)}}}
+    const dl=new Array(N).fill(0);while(S.length){const w=S.pop();for(const v of Pd[w])dl[v]+=sg[v]/sg[w]*(1+dl[w]);if(w!==sv)bc[w]+=dl[w]}}
+  nodes.forEach((n,i)=>{n.bc=bc[i]/2;n.deg=n.adj.length});
+  // layout
+  let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+  nodes.forEach(n=>{n.x=(rnd()-.5)*400;n.y=(rnd()-.5)*300;n.vx=0;n.vy=0});
+  const E=[];nodes.forEach((n,i)=>n.adj.forEach(j=>{if(j>i)E.push([i,j])}));
+  for(let it=0;it<260;it++){const k=1-it/260;
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const a=nodes[i],b=nodes[j];let dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+.01,d=Math.sqrt(d2);const f=(a.type==='project'&&b.type==='project'?500:a.type!=='project'&&b.type!=='project'?16000:3000)/d2;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f}
+    E.forEach(([i,j])=>{const a=nodes[i],b=nodes[j];const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1;const f=(d-70)*.02;a.vx+=dx/d*f;a.vy+=dy/d*f;b.vx-=dx/d*f;b.vy-=dy/d*f});
+    nodes.forEach(n=>{n.vx-=n.x*.004;n.vy-=n.y*.007;const m=Math.hypot(n.vx,n.vy),cap=14;if(m>cap){n.vx*=cap/m;n.vy*=cap/m}n.x+=n.vx*.5*(.2+k);n.y+=n.vy*.5*(.2+k);n.vx*=.55;n.vy*=.55})}
+  return nodes}
+A.galaxy=function(box){
+  const ps=F();const key=ps.map(p=>p.name).join('|');if(key!==GXK||!GX){GX=buildGalaxy(ps);GXK=key}const nodes=GX;
+  if(!nodes.length){box.replaceChildren(h('p',{class:'und'},'No projects match the filters.'));return}
+  const W=1000,Hh=640;const xs=nodes.map(n=>n.x),ys=nodes.map(n=>n.y);const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
+  const sc=Math.min((W-120)/(x1-x0||1),(Hh-80)/(y1-y0||1));const X=n=>60+(n.x-x0)*sc+((W-120)-(x1-x0)*sc)/2,Y=n=>40+(n.y-y0)*sc+((Hh-80)-(y1-y0)*sc)/2;
+  const nonP=nodes.filter(n=>n.type!=='project');const maxbc=Math.max(1,...nonP.map(n=>n.bc));const rad=n=>n.type==='project'?4:7+Math.sqrt(n.bc/maxbc)*13;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Network of roles, industries, activities and projects. Size shows betweenness centrality.'});
+  const eg=s('g',{});svg.append(eg);const edges=[];
+  nodes.forEach((n,i)=>n.adj.forEach(j=>{if(j>i){const l=s('line',{x1:X(n),y1:Y(n),x2:X(nodes[j]),y2:Y(nodes[j]),style:'stroke:var(--line2);stroke-width:.8'});eg.append(l);edges.push([i,j,l])}}));
+  const els=[];
+  const fillOf=n=>n.type==='project'?RC[n.role]:n.type==='role'?RC[n.role]:n.type==='act'?'var(--c-p4)':'var(--ink3)';
+  nodes.forEach((n,i)=>{const r=rad(n);const g=s('g',{style:'cursor:pointer'});
+    if(n.type==='role')g.append(s('circle',{cx:X(n),cy:Y(n),r:r+5,style:`fill:none;stroke:${fillOf(n)};stroke-width:1.5`}));
+    if(n.type==='industry')g.append(s('circle',{cx:X(n),cy:Y(n),r,style:'fill:var(--s2);stroke:var(--ink3);stroke-width:2'}));
+    else if(n.type==='act')g.append(s('rect',{x:X(n)-r,y:Y(n)-r,width:2*r,height:2*r,rx:4,transform:`rotate(45 ${X(n)} ${Y(n)})`,style:'fill:var(--c-p4)'}));
+    else g.append(s('circle',{cx:X(n),cy:Y(n),r,style:`fill:${fillOf(n)};stroke:var(--bg);stroke-width:1`}));
+    svg.append(g);els.push(g);
+    hov(g,n.label,()=>n.type==='project'?projLines(n.p):[{role:'Role',industry:'Industry',act:'Activity'}[n.type]+' · '+n.deg+' projects',' betweenness '+f1(n.bc)]);
+    g.addEventListener('mouseenter',()=>{const nb=new Set([i,...n.adj]);els.forEach((e,k)=>e.style.opacity=nb.has(k)?1:.25);edges.forEach(([a,b,l])=>{l.style.opacity=(a===i||b===i)?1:.08;l.style.stroke=(a===i||b===i)?'var(--ink2)':''})});
+    g.addEventListener('mouseleave',()=>{els.forEach(e=>e.style.opacity=1);edges.forEach(([a,b,l])=>{l.style.opacity=1;l.style.stroke=''})});
+    if(n.type==='project')g.addEventListener('click',()=>openProj(n.p))});
+  const rank=[...nonP].sort((a,b)=>b.bc-a.bc);const degR=[...nonP].sort((a,b)=>b.deg-a.deg);
+  const placed=[];rank.slice(0,10).forEach(n=>{const lx=X(n),ly=Y(n)+rad(n)+(n.type==='role'?15:12);if(placed.some(q=>Math.abs(q[0]-lx)<70&&Math.abs(q[1]-ly)<14))return;placed.push([lx,ly]);svg.append(s('text',{x:lx,y:ly,'text-anchor':'middle',class:'t-ink',style:'font-size:11px;font-weight:600;paint-order:stroke;stroke:var(--bg);stroke-width:3px;pointer-events:none'},short(n.label,22)))});
+  const lg=h('div',{class:'legend'},h('span',{},h('i',{style:'background:var(--c-des)'}),'Project (coloured by role)'),h('span',{},h('i',{style:'background:transparent;border:2px solid var(--ink3)'}),'Industry'),h('span',{},h('i',{style:'background:var(--c-p4);border-radius:2px'}),'Activity'),h('span',{},h('i',{style:'background:transparent;border:2px solid var(--c-lead)'}),'Role'),h('span',{class:'und'},'Size of a non-project node = betweenness centrality. Hover to light up a node’s links; click a project to open it.'));
+  const tbl=h('div',{class:'scroll'},h('table',{style:'max-width:620px'},h('thead',{},h('tr',{},['Most central','Type','Betweenness','Projects linked','Rank by links'].map(x=>h('th',{style:'cursor:default'},x)))),
+    h('tbody',{},rank.slice(0,8).map(n=>h('tr',{},h('td',{},n.label),h('td',{},{role:'Role',industry:'Industry',act:'Activity'}[n.type]),h('td',{},f1(n.bc)),h('td',{},String(n.deg)),h('td',{},'#'+(degR.indexOf(n)+1)))))));
+  const bridge=rank.filter(n=>n.type==='act'||n.type==='industry').find(n=>degR.indexOf(n)-rank.indexOf(n)>=3);
+  const txt=`Betweenness counts how often a node lies on the shortest path between two others, so it finds the connectors, not just the busiest nodes. ${bridge?bridge.label+' ranks #'+(rank.indexOf(bridge)+1)+' on betweenness but #'+(degR.indexOf(bridge)+1)+' on number of links: it connects more than it appears to.':''}`;
+  box.replaceChildren(lg,svg,note(txt),tbl)};
+
+/* ================= 6. PARALLEL COORDINATES ================= */
+const PCB={};
+A.parallel=function(box){
+  const ps=F();const W=1000,Hh=480,T=60,B=40,L=175,R=150;
+  const inds=[...new Set(D.map(p=>p.industry))].sort((a,b)=>D.filter(p=>p.industry===b).length-D.filter(p=>p.industry===a).length);
+  const lg=v=>Math.log(v);
+  const AX=[
+    {k:'role',l:'Role',cat:ROLES.slice().reverse(),get:p=>p.role},
+    {k:'industry',l:'Industry',cat:inds,get:p=>p.industry},
+    {k:'dur',l:'Duration (months)',min:.25,max:22,log:true,ticks:[.25,1,3,6,12,21],fmt:v=>v===.25?'1 wk':String(v),get:p=>p.dur},
+    {k:'team',l:'Team size',min:1,max:15,ticks:[1,3,6,10,15],get:p=>p.team},
+    {k:'breadth',l:'Activities done',min:0,max:12,ticks:[0,4,8,12],get:p=>p.breadth},
+    {k:'rating',l:'Customer rating',min:3,max:5,ticks:[3,4,5],get:p=>p.rating}];
+  const xs=AX.map((_,i)=>L+i*(W-L-R)/(AX.length-1));const H0=T,H1=Hh-B;
+  const yOf=(a,v)=>{if(v==null)return null;if(a.cat){const i=a.cat.indexOf(v);if(i<0)return null;return H0+(i+.5)/a.cat.length*(H1-H0)}
+    const t=a.log?(lg(v)-lg(a.min))/(lg(a.max)-lg(a.min)):(v-a.min)/(a.max-a.min);return H1-clamp(t,0,1)*(H1-H0)};
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,style:'touch-action:none;user-select:none',role:'img','aria-label':'Parallel coordinates of projects across six measures'});
+  const br=PCB;const matches=p=>AX.every((a,i)=>{const r=br[a.k];if(!r)return true;const y=yOf(a,a.get(p));return y!=null&&y>=r[0]&&y<=r[1]});
+  const lines=ps.map((p,pi)=>{const pts=AX.map((a,i)=>{const y=yOf(a,a.get(p));return y==null?null:[xs[i],y+(a.cat?((pi*7)%9-4)*.9:0)]});
+    let d='';pts.forEach((q,i)=>{if(!q)return;if(i>0&&pts[i-1])d+=`L${q[0]},${q[1]}`;else d+=`M${q[0]},${q[1]}`});
+    const el=s('path',{d,style:`fill:none;stroke:${RC[p.role]};stroke-width:1.8;stroke-linejoin:round`,class:'hit'});
+    hov(el,p.name,()=>projLines(p));el.addEventListener('click',()=>openProj(p));return{p,el}});
+  AX.forEach((a,i)=>{svg.append(s('line',{x1:xs[i],x2:xs[i],y1:H0,y2:H1,style:'stroke:var(--ctl);stroke-width:1.5'}),s('text',{x:xs[i],y:T-24,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},a.l));
+    if(a.cat)a.cat.forEach((c,j)=>{const y=yOf(a,c);const lab=short(c,i===1?20:22);const n=D.filter(p=>p[a.k]===c).length;if(a.k==='industry'&&n<2&&false)return;svg.append(s('text',{x:xs[i]+(i===0?-8:8),y:y+3,'text-anchor':i===0?'end':'start',style:'font-size:'+(a.k==='industry'?'9':'11.5')+'px;paint-order:stroke;stroke:var(--bg);stroke-width:2.5px',class:'t-ink2'},lab))});
+    else{(a.ticks||[]).forEach(t=>{const y=yOf(a,t);svg.append(s('line',{x1:xs[i]-4,x2:xs[i],y1:y,y2:y,style:'stroke:var(--ctl)'}),s('text',{x:xs[i]-8,y:y+3,'text-anchor':'end',class:'mono'},a.fmt?a.fmt(t):String(t)))})}});
+  lines.forEach(l=>svg.append(l.el));
+  // brush layer
+  const sel={};AX.forEach((a,i)=>{const rect=s('rect',{x:xs[i]-14,y:H0,width:28,height:H1-H0,fill:'transparent',style:'cursor:crosshair'});svg.append(rect);
+    const vis=s('rect',{x:xs[i]-7,width:14,rx:3,style:'fill:var(--signal-ink);opacity:.3;pointer-events:none',y:0,height:0});svg.append(vis);sel[a.k]=vis;
+    const upd=()=>{const r=br[a.k];if(r){vis.setAttribute('y',r[0]);vis.setAttribute('height',r[1]-r[0])}else{vis.setAttribute('height',0)}};upd();
+    let start=null;const py=e=>{const b=svg.getBoundingClientRect();return (e.clientY-b.top)/b.height*Hh};
+    rect.addEventListener('pointerdown',e=>{start=clamp(py(e),H0,H1);rect.setPointerCapture(e.pointerId);br[a.k]=[start,start];upd();});
+    rect.addEventListener('pointermove',e=>{if(start==null)return;const y=clamp(py(e),H0,H1);br[a.k]=[Math.min(start,y),Math.max(start,y)];upd();refresh()});
+    rect.addEventListener('pointerup',e=>{if(start==null)return;start=null;const r=br[a.k];if(r&&r[1]-r[0]<4)delete br[a.k];upd();refresh(true)})});
+  const sum=h('div',{class:'dyn'});
+  function refresh(final){const act=Object.keys(br).length>0;let m=0;lines.forEach(l=>{const ok=!act||matches(l.p);if(ok)m++;l.el.style.opacity=ok?(act?1:.62):.06;l.el.style.strokeWidth=ok&&act?2.4:1.8});
+    if(!act){sum.textContent='Drag on any axis to select a range. Selected projects stay bright and are compared with the rest below.';return}
+    const a=lines.filter(l=>matches(l.p)).map(l=>l.p),b=lines.filter(l=>!matches(l.p)).map(l=>l.p);
+    const row=(l,f,fmt)=>`${l}: ${fmt(f(a))} vs ${fmt(f(b))}`;const M=(k)=>x=>med(x.map(p=>p[k]));const fm=v=>v==null?'n/a':f1(v);
+    sum.textContent=`${a.length} of ${ps.length} selected. Median (selected vs rest): `+[row('duration',M('dur'),fm)+' mo',row('team',M('team'),fm),row('activities',M('breadth'),fm),row('rating',M('rating'),fm)].join(' · ')+'.'}
+  refresh();
+  const reset=h('button',{class:'chip',onclick:()=>{for(const k in br)delete br[k];A.render()}},'Clear selection');
+  box.replaceChildren(h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),reset),svg,sum,h('p',{class:'foot'},'A line breaks where a value was not recorded. Dragging on the Role axis over Design Manager, for example, shows how those projects differ from the rest.'))};
+
+/* ================= 7. BUMP ================= */
+const BM={act:'Activities',th:'Project themes',ind:'Industries'};
+A.bump=function(box){
+  const ps=F();const mode=st.bumpM||'act';const phs=PH.filter(p=>ps.some(q=>q.ph===p.id));
+  const sets=PH.map(p=>ps.filter(q=>q.ph===p.id));
+  let items,score;
+  if(mode==='act'){items=ACTS.slice();score=(it,ph)=>{const q=sets[ph].filter(p=>p.act[it]!=null);return q.length?q.filter(p=>p.act[it]).length/q.length:null}}
+  else{const key=mode==='ind'?(p=>p.industry):(p=>TG(p.theme));const tot={};ps.forEach(p=>tot[key(p)]=(tot[key(p)]||0)+1);items=Object.keys(tot).sort((a,b)=>tot[b]-tot[a]).slice(0,8);score=(it,ph)=>sets[ph].length?sets[ph].filter(p=>key(p)===it).length:null}
+  const totalScore=it=>PH.reduce((s2,_,i)=>s2+(score(it,i)||0),0);
+  const rk=PH.map((_,ph)=>{const o=items.map(it=>({it,sc:score(it,ph)})).filter(z=>z.sc!=null&&(z.sc>0||mode==='act')).sort((a,b)=>b.sc-a.sc||totalScore(b.it)-totalScore(a.it));const r={};o.forEach((z,i)=>r[z.it]=i+1);return r});
+  const nR=items.length;const W=1000,L=170,Rr=190,T=64,rowH=mode==='act'?30:46,Hh=T+nR*rowH+40;
+  const x=i=>L+i*(W-L-Rr)/(PH.length-1),y=r=>T+(r-.5)*rowH;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Bump chart of rank over the five phases'});
+  PH.forEach((p,i)=>svg.append(s('text',{x:x(i),y:20,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},p.id+' · '+p.name),s('text',{x:x(i),y:36,'text-anchor':'middle',class:'mono'},(p.from===p.to?p.from:p.from+'–'+String(p.to).slice(2))+' · n='+sets[i].length)));
+  for(let r=1;r<=nR;r++)svg.append(s('text',{x:6,y:y(r)+4,class:'mono'},'#'+r));
+  const els=[];
+  items.forEach((it,k)=>{const c=PAL[k%PAL.length];const g=s('g',{});let d='';let run=false;
+    PH.forEach((_,i)=>{const r=rk[i][it];if(r==null){run=false;return}d+=(run?'L':'M')+x(i)+','+y(r);run=true});
+    g.append(s('path',{d,style:`fill:none;stroke:${c};stroke-width:5;stroke-linecap:round;stroke-linejoin:round`}));
+    PH.forEach((_,i)=>{const r=rk[i][it];if(r==null)return;const sc=score(it,i);const dot=s('circle',{cx:x(i),cy:y(r),r:11,style:`fill:${c};stroke:var(--bg);stroke-width:2`});g.append(dot);
+      g.append(s('text',{x:x(i),y:y(r)+3.5,'text-anchor':'middle',style:'fill:#0F1013;font-size:10px;font-weight:700;pointer-events:none'},String(r)));
+      hov(dot,it,[PH[i].name+' phase: rank '+r,mode==='act'?Math.round(sc*100)+'% of recorded projects':sc+' project'+(sc===1?'':'s')])});
+    const first=PH.findIndex((_,i)=>rk[i][it]!=null),last=PH.length-1-[...PH].reverse().findIndex((_,i)=>rk[PH.length-1-i][it]!=null);
+    if(first>=0){svg.append(s('text',{x:x(first)-18,y:y(rk[first][it])+4,'text-anchor':'end',style:'font-size:11.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3px',class:'t-ink2'},short(it,24)));}
+    if(last>=0&&last!==first)svg.append(s('text',{x:x(last)+18,y:y(rk[last][it])+4,style:'font-size:11.5px;paint-order:stroke;stroke:var(--bg);stroke-width:3px',class:'t-ink2'},short(it,26)));
+    g.style.cursor='pointer';g.addEventListener('mouseenter',()=>els.forEach(([e,j])=>e.style.opacity=j===k?1:.15));g.addEventListener('mouseleave',()=>els.forEach(([e])=>e.style.opacity=1));
+    svg.append(g);els.push([g,k])});
+  const movers=items.map(it=>{const rs=PH.map((_,i)=>rk[i][it]).filter(v=>v!=null);return[it,rs[0]-rs[rs.length-1],rs.length]}).filter(z=>z[2]>=3).sort((a,b)=>b[1]-a[1]);
+  const txt=movers.length?`Biggest climber: ${movers[0][0]} (${movers[0][1]>0?'up '+movers[0][1]+' places':'no net move'}). Biggest fall: ${movers[movers.length-1][0]} (${movers[movers.length-1][1]<0?'down '+(-movers[movers.length-1][1])+' places':'no net move'}).`:'';
+  box.replaceChildren(h('div',{class:'legend'},...Object.entries(BM).map(([k,l])=>h('button',{class:'chip','aria-pressed':mode===k,onclick:()=>{st.bumpM=k;A.render()}},l)),h('span',{class:'und'},mode==='act'?'Rank by share of recorded projects with the activity.':'Rank by number of projects in the phase; top eight overall. Ties are broken by overall count.')),svg,txt?note(txt):'')};
+
+/* ================= 8. ANNOTATED STORY ================= */
+A.story=function(box){
+  const ps=F();const S=A.S;const W=1100,Hh=560,L=54,R=24,pT=230,pB=Hh-90;const x=y=>L+(y-2010.5)/14*(W-L-R);
+  const tmax=16;const ty=t=>pB-Math.sqrt(Math.max(t,.5)/tmax)*(pB-pT);
+  const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Annotated career timeline: team size by project, with discoveries called out'});
+  [1,4,9,16].forEach(t=>svg.append(s('line',{x1:L,x2:W-R,y1:ty(t),y2:ty(t),class:'grid-line'}),s('text',{x:4,y:ty(t)+4,class:'mono'},t+(t===1?' person':''))));
+  YEARS.forEach(y=>svg.append(s('text',{x:x(y),y:pB+22,'text-anchor':'middle',class:'mono'},String(y))));
+  PH.forEach(p=>{svg.append(s('line',{x1:x(p.from)-20,x2:x(p.to)+20,y1:pB+36,y2:pB+36,style:`stroke:${p.c};stroke-width:4;stroke-linecap:round`}),s('text',{x:(x(p.from)+x(p.to))/2,y:pB+54,'text-anchor':'middle',class:'mono'},p.name.toUpperCase()))});
+  // dots with horizontal spreading
+  const pos=new Map();const grp={};ps.forEach(p=>{const k=p.year+'|'+(p.team||1);(grp[k]=grp[k]||[]).push(p)});
+  Object.values(grp).forEach(g=>g.forEach((p,i)=>{const n=g.length;pos.set(p,[x(p.year)+(i-(n-1)/2)*Math.min(20,52/Math.max(n,1)),ty(p.team||1)])}));
+  const rr=p=>3.5+Math.sqrt(p.dur||.25)*1.7;
+  ps.forEach(p=>{const [px,py]=pos.get(p);const c=s('circle',{cx:px,cy:py,r:rr(p),style:`fill:${RC[p.role]};stroke:var(--bg);stroke-width:1.2;cursor:pointer`,class:'hit'});hov(c,p.name,()=>projLines(p));c.addEventListener('click',()=>openProj(p));svg.append(c)});
+  // events
+  const ev=[];const by=r=>ps.filter(p=>p.role===r).sort((a,b)=>a.year-b.year);
+  const lead=by('Design Lead')[0],mgr=by('Design Manager')[0];
+  if(lead)ev.push({y:lead.year,p:lead,t:`First Design Lead role (${lead.year}).`});
+  const dops=ps.find(p=>/design\s?ops/i.test(p.name));
+  if(dops)ev.push({y:dops.year,p:dops,t:`DesignOps programme with a team of 15+, the largest team in the record${mgr&&mgr.year>dops.year?', '+(mgr.year-dops.year)+' years before the first manager role':''}.`});
+  if(mgr)ev.push({y:mgr.year,p:mgr,t:`First Design Manager role (${mgr.year}). From 2021 on, every dated project is a manager project.`});
+  const sprints=ps.filter(p=>p.dur<=.5&&p.year<2020);if(sprints.length>1){const yy=sprints[0].year;ev.push({y:yy,p:sprints[0],t:`${sprints.length} engagements of two weeks or less in ${yy}, ${sprints.every(p=>p.team===1)?'done solo, ':''}the fastest turns in the record.`})}
+  const solo=ps.filter(p=>p.team===1).sort((a,b)=>b.dur-a.dur)[0];if(solo&&solo.dur>=8)ev.push({y:solo.year,p:solo,t:`Longest solo engagement: ${solo.dur} months as a team of one.`});
+  const fu=a=>{const q=ps.filter(p=>p.act[a]).sort((x1,x2)=>x1.year-x2.year)[0];return q};
+  const ut=fu('Usability testing'),ds=fu('Design system');
+  if(ut)ev.push({y:ut.year,p:ut,t:`Usability testing first recorded (${ut.year}).`});
+  if(ds&&(!ut||ds.year!==ut.year))ev.push({y:ds.year,p:ds,t:`Design-system work first recorded (${ds.year}).`});
+  const hc=ps.filter(p=>p.industry==='Healthcare & Telehealth');if(hc.length>=2&&new Set(hc.map(p=>p.year)).size===1)ev.push({y:hc[0].year,p:hc[0],t:`Healthcare arrives as one burst: ${hc.length} projects in ${hc[0].year}, none before.`});
+  const pk=YEARS.map(y=>[y,ps.filter(p=>p.year===y)]).sort((a,b)=>b[1].length-a[1].length)[0];if(pk&&pk[1].length>3){const ni=new Set(pk[1].map(p=>p.industry)).size;ev.push({y:pk[0],p:pk[1].sort((a,b)=>b.team-a.team)[0],t:`Busiest year: ${pk[1].length} projects across ${ni} industries (${pk[0]}), with teams of ${Math.min(...pk[1].map(p=>p.team))} to ${Math.max(...pk[1].map(p=>p.team))}.`})}
+  ev.sort((a,b)=>a.y-b.y);
+  const nC=Math.ceil(ev.length/2),bw=Math.min(250,(W-8-(nC-1)*10)/nC),boxH=80,rows=[{y:8,items:[]},{y:98,items:[]}];
+  const wrap=(t,n)=>{const w=t.split(' ');const out=[];let c='';w.forEach(z=>{if((c+' '+z).trim().length>n){out.push(c);c=z}else c=(c+' '+z).trim()});if(c)out.push(c);return out};
+  ev.forEach((e,i)=>{e.n=i+1;e.row=i%2;e.bx=4+Math.floor(i/2)*(bw+10);rows[e.row].items.push(e)});
+  rows.forEach(r=>r.items.forEach(e=>{const [px,py]=pos.get(e.p);e.lx=e.bx+bw/2;e.ly=r.y+boxH}));
+  ev.forEach(e=>{const [px,py]=pos.get(e.p);svg.append(s('path',{d:`M${e.lx},${e.ly}L${px},${py-rr(e.p)-4}`,style:'stroke:var(--ink3);stroke-width:1.2;fill:none;stroke-dasharray:3 3'}),
+    s('circle',{cx:px,cy:py,r:rr(e.p)+3.5,style:'fill:none;stroke:var(--ink);stroke-width:1.6;pointer-events:none'}))});
+  rows.forEach(r=>r.items.forEach(e=>{const g=s('g',{});g.append(s('rect',{x:e.bx,y:r.y,width:bw,height:boxH,rx:8,style:'fill:var(--s2);stroke:var(--line2)'}),
+    s('circle',{cx:e.bx+16,cy:r.y+17,r:10,style:'fill:var(--ink)'}),s('text',{x:e.bx+16,y:r.y+21,'text-anchor':'middle',style:'fill:var(--bg);font-size:11px;font-weight:700'},String(e.n)));
+    wrap(e.t,Math.floor((bw-40)/6.1)).slice(0,5).forEach((ln,i)=>g.append(s('text',{x:e.bx+32,y:r.y+20+i*13.5,style:'font-size:11.5px',class:'t-ink'},ln)));svg.append(g)}));
+  box.replaceChildren(legend(),svg,h('p',{class:'foot'},'Each dot is a project: height is team size (square-root scale), size is duration, colour is role. Circled dots are the projects behind each numbered call-out. Call-outs are computed from the data and update with the filters.'))};
+})();
+
+(function(){
+const A=window.__A;const {ALL,D,PH,ROLES,RC,ACTS,st,h,s,$,$$,med,mean,f1,f2,pct,mo,F,FA,openProj,S,phStats}=A;
+const ctr={};
+const fig=(id,title,sub,foot,fn)=>{const box=h('div',{id:'f-'+id});ctr[id]=[box,fn];return h('div',{class:'fig'},h('h3',{},title),sub?h('p',{class:'sub'},sub):'',box,foot?h('p',{class:'foot'},foot):'')};
+const chapter=(id,n,title,story,figs,take)=>h('section',{class:'ch',id},h('div',{class:'wrap'},h('div',{class:'over'},n),h('h2',{},title),h('div',{class:'story'},story.map(t=>h('p',{html:t}))),figs,take?h('div',{class:'take'},h('b',{},'Takeaway'),take):''));
+const tagEl=k=>h('span',{class:'tag '+k},{fact:'Recorded fact',calc:'Calculated',inf:'Inferred pattern',hyp:'Hypothesis'}[k]);
+const ph=i=>S.phs[i],pn=i=>S.ph[i].ps.length;
+// ---------- hero
+const hero=h('header',{class:'hero'},h('div',{class:'wrap'},h('div',{class:'over'},'Career intelligence atlas · Amit Kumar Tiwari'),
+  h('h1',{},'The story hidden inside the projects.'),
+  h('p',{class:'lead'},`${ALL.length} projects, ${D.length} of them dated, from ${D[0].year} to ${D[D.length-1].year}. Read as an investigation: what changed, what stayed, what the record cannot say.`),
+  h('div',{class:'kpis'},[[ALL.length,'project records'],[D.length,'with a year'],[new Set(D.map(p=>p.industry)).size,'industries'],[new Set(D.map(p=>p.role)).size,'roles'],[S.rated.length,'with a customer rating'],[S.star.length,'starred in the workbook']].map(([n,l])=>h('div',{class:'kpi'},h('b',{},n),h('span',{},l)))),
+  h('div',{class:'note'},h('b',{},'How to read this. '),'Every finding is tagged: ',tagEl('fact'),tagEl('calc'),tagEl('inf'),tagEl('hyp'),' Blank cells are treated as not recorded, never as zero. The workbook has years and durations but no start or end dates, so project churn and parallel workload cannot be measured. Impact, challenges and aha moments are empty in every row.'),
+  h('nav',{class:'nav','aria-label':'Chapters'},[['shape','The shape'],['c1','1 · Making of a designer'],['c2','2 · Beyond the interface'],['c3','3 · Designer to leader'],['c4','4 · Professional DNA'],['c5','5 · Hidden stories'],['c6','6 · Next frontier'],['repo','Repository'],['method','Data and method']].map(([id,l])=>h('a',{class:'chip',href:'#'+id,style:'text-decoration:none'},l)))));
+// ---------- filter bar
+const sel=(key,label,opts)=>{const e=h('select',{'aria-label':label,onchange:()=>{st[key]=e.value||null;A.render()}},h('option',{value:''},label+': all'),opts.map(o=>h('option',{value:o[0]},o[1])));e.dataset.k=key;return e};
+const industries=[...new Set(D.map(p=>p.industry))].sort();
+const bar=h('div',{class:'bar'},h('div',{class:'wrap'},
+  sel('phase','Phase',PH.map(p=>[p.id,p.name+' '+p.from+'–'+p.to])),sel('role','Role',ROLES.map(r=>[r,r])),sel('industry','Industry',industries.map(i=>[i,i])),sel('product','Product',['B2B','B2C','B2C & B2B'].map(i=>[i,i])),
+  h('input',{type:'search',placeholder:'Search projects',id:'q','aria-label':'Search projects',oninput:e=>{st.q=e.target.value;A.render()}}),
+  h('button',{class:'chip',id:'reset',onclick:()=>{st.phase=st.role=st.industry=st.product=null;st.q='';st.view='all';$('#q').value='';A.render()}},'Reset'),h('span',{class:'count',id:'cnt'})));
+// ---------- chapters
+const ov=h('section',{class:'ch',id:'shape',style:'border-top:0;margin-top:20px;padding-top:36px'},h('div',{class:'wrap'},h('div',{class:'over'},'The shape of a career'),h('h2',{},'A river that changes colour.'),
+  h('div',{class:'story'},h('p',{},`Each band is a role; width is the number of projects recorded that year. Amber is the UX / UI designer, violet the researcher-designer, teal the design lead and lime the design manager. The first lead role appears in ${S.firstLead} and the first manager role in ${S.firstMgr}.`)),
+  fig('river','Career evolution river','Projects per year by role, with the five derived phases shaded behind. Hover a year for the detail.','Phases are my grouping of years by the role mix and scale of work; the workbook does not define them. 2016 has no records.',A.river),
+  fig('story','The career, annotated','The same career as a timeline of team size, with the discoveries called out where they happen.','',A.story),
+  fig('sun','Career sunburst','Career, then role, industry, project and the activities done. Click a segment to zoom in; click the centre to go back.','Segments are sized by number of projects; the activity ring splits a project equally among the activities recorded as done.',A.sunburst)));
+const c1=chapter('c1','Chapter 1',`The making of a designer`,[
+  `From ${PH[0].from} to ${PH[0].to} the record holds ${pn(0)} projects, all as a UX or UI designer, in ${new Set(S.ph[0].ps.map(p=>p.industry)).size} industries (BFSI, social innovation, education, manufacturing and more). Median team: ${f1(ph(0).team)}. Median length: ${mo(ph(0).dur)}.`,
+  `The craft core is already here: wireframes in ${pct(Math.round(ph(0).wf*A.rec(S.ph[0].ps,'Wireframes').length),A.rec(S.ph[0].ps,'Wireframes').length)} of projects, visual design in ${pct(Math.round(ph(0).vd*A.rec(S.ph[0].ps,'Visual design').length),A.rec(S.ph[0].ps,'Visual design').length)}, research in ${pct(Math.round(ph(0).res*A.rec(S.ph[0].ps,'Research').length),A.rec(S.ph[0].ps,'Research').length)}. Usability testing and design systems are not recorded yet; their first appearance is ${S.firstOf('Usability testing')}.`],
+  [fig('iy','Industries, roles and projects across the years','One square per project, coloured by role. Rows are industries in order of first appearance; columns are years. The bars on top and the totals on the right show projects per year and per industry. Click a square to open the project, or a row label to isolate an industry.','Undated projects have no industry recorded, so they sit in their own row. Starred projects are outlined.',A.indyear)],
+  `The foundation is breadth of craft in small teams. Even in the first three years the work spans several industries rather than one.`);
+const c2=chapter('c2','Chapter 2','Beyond the interface',[
+  `2014 breaks the pattern: ${S.y(2014).length} projects, four of them one- to two-week research-and-design sprints, and the first Design Lead role. Then the scale changes. Cloud, Networking & DevOps project 1 (2015, 21 months) and Cloud, Networking & DevOps project 2 (2017, 20 months) are the longest builds in the record, with teams of 4 and 6, both in cloud and infrastructure software.`,
+  `By 2017 a DesignOps effort for a team of 15+ appears, and design systems and usability testing both enter the record in ${S.firstOf('Design system')}. The work stops being about screens and starts being about how design is done.`],
+  [fig('bub','Duration, team size and breadth','Each bubble is a project. Position: duration and team size. Size: how many of the 12 activities were done (dashed rings: activities not fully recorded). Colour: role.','Log scales. Click a bubble to open the project.',A.bubble),
+   fig('vel','Work cadence by year','Projects in flight each year: solid for projects that started that year, faded for earlier projects still running (estimated from duration, assuming a January start). Three small charts show median duration, median team size and rating coverage.','There are no start or end dates, so "in flight" is a minimum estimate from duration, and the true overlap is unknown. More projects is not more productivity.',A.velocity),
+   fig('strip','How long engagements last, by role','Every project as a dot on a log time axis, spread vertically so none hide behind another. The line marks the median.','Many projects share the same duration, so dots are spread vertically to stay visible. Counts per role are shown at the left.',A.strip)],
+  `Length of engagement did not trend upward (rank correlation of year and duration ${f2(S.rYearDur.r)}). What changed was the mix: a few very long platform builds sit beside many short engagements.`);
+const c3=chapter('c3','Chapter 3','From designer to design leader',[
+  `Median team size by phase runs ${S.phs.map(x=>f1(x.team)).join(', ')} (2011 to 2013, 2014 to 2015, 2017 to 2019, 2020 to 2022, 2023 to 2024); the 2017 to 2019 figure is lifted by the 15+ DesignOps team, and 2023 to 2024 is the highest. Year and team size correlate at ${f2(S.rYearTeam.r)}. In the manager years design-system work and usability testing become routine: usability testing is recorded in ${S.utBy('Design Manager')[0]} of ${S.utBy('Design Manager')[1]} manager projects against ${S.utBy('UX / UI Designer')[0]} of ${S.utBy('UX / UI Designer')[1]} designer projects.`,
+  `That is evidence for a move from designing individual experiences to shaping practice and systems. The alternative explanation is that larger teams simply log more activities. The data cannot separate the two; it would take a field for personal contribution.`],
+  [fig('pm','Phase small multiples','The same seven measures for each phase (A to E, left to right). Hover for the denominator.','Percentages use only projects where the activity was recorded. Phase E has few fully recorded projects; check n in the tooltip.',A.phaseMulti),
+   fig('pc','What sets leadership projects apart','Each line is a project across six measures. Drag on any axis to select a range, for example Design Manager on the Role axis, and compare the selection with the rest.','Lines break where a value was not recorded.',A.parallel),
+   fig('sank','What each role worked on','Flow from role to type of work to product type. Hover a band to see the projects.','Type of work groups the "Core theme" values; "HE" and "CSH" are shown as recorded because the workbook does not expand them.',A.sankey)],
+  `The leadership shift is visible in team scale and in validation and systems work. Ratings are shown within each phase panel above; they only run from 3 to 5 stars and most recent projects are unrated, so they are not safe to read as a trend.`);
+const c4=chapter('c4','Chapter 4','The professional DNA',[
+  `Five activities appear in more than three-quarters of recorded projects: research, stakeholder collaboration, journeys and flows, wireframes and visual design. That is the signature core. What differs by phase is what gets added on top.`,
+  `Frequency is not proficiency. This chapter shows what was done, not how well, and the Skills sheet holds only one scored entry.`],
+  [fig('cap','Capability evolution matrix','Share of recorded projects in each phase where an activity was done. Dashed cells: not recorded for any project in that phase.','n is the number of projects with that activity recorded. Content strategy is left out (recorded for only 12 projects).',A.capab),
+   fig('bump','How the mix changed: rankings by phase','Rank of industries, activities or themes in each phase. Lines that climb are growing in prominence; lines that fall are fading.','Ranks rest on small counts per phase; read direction, not exact positions.',A.bump),
+   fig('coo','Which activities appear together','The pairs that go together most and least often, compared with chance (lift 1.0 = as expected). Most pairs sit near chance; only a few stand out.','Needs at least 15 projects with both activities recorded. Descriptive only.',A.cooc),
+   fig('ups','Signature working patterns (UpSet plot)','Each column is one exact combination of eight core activities; the bar is how many projects share it. A better view than a Venn diagram when sets overlap this much.','Only projects with all eight activities recorded are included.',A.upset),
+   fig('chd','Chord diagram: what connects to what','Ribbons link industries, roles or product types to the activities and themes they share. Wider means more projects.','Industries with only one project are left out of the first view.',A.chord),
+   h('div',{},fig('rad','Career fingerprint','Six skill dimensions per phase. Toggle phases to compare. Hover a point for what it is based on.','The workbook records activities, not skills, so each dimension is a proxy built from the closest recorded activities; the table lists what is not recorded. Phase E rests on very few fully recorded projects.',A.radar),
+     fig('gal','Professional galaxy','Roles, industries, activities and projects as one network. Size shows betweenness centrality, a measure of how much a node connects otherwise separate parts, not how often it appears.','Positions come from a force layout and carry no meaning on their own; the table below ranks the real metrics.',A.galaxy))],
+  `The signature is research-led full-stack UX with stakeholders at the table, to which validation and design systems are added later in the career.`);
+const c5=chapter('c5','Chapter 5','The hidden stories',[`These are the findings that a project count would never show. Each card says what the evidence is and what would change the conclusion. Filter by how certain a finding is or by how surprising it feels.`],
+  [fig('vor','Career landscape (Voronoi treemap)','Every project is a cell, grouped by industry. Size follows duration, team size or equal weight; colour is role. Industries run left to right by their average year.','Cells are computed by a weighted Voronoi layout, so sizes are approximate (within a few per cent).',A.voronoi),h('div',{id:'insx'})],null);
+const c6=chapter('c6','Chapter 6','The next frontier',[
+  `Everything here is a hypothesis. It reads the record forward: where the accumulated mix looks unusual, and what the workbook would need to confirm it.`],
+  [h('div',{class:'ins',id:'next'})],`If the AI era needs designers who can direct teams, systems and research together in complex enterprise products, the record is consistent with that direction. It cannot show outcomes, so the case still needs the impact stories the workbook leaves empty.`);
+// ---------- insights explorer
+const flt={kind:null,fl:null,cat:null};
+const ICO={layers:'<path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/><path d="m3 17 9 5 9-5" opacity=".5"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>',users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M17 14c2.5 0 4 2 4 5"/>',star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',trend:'<path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/>',blocks:'<rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5" stroke-dasharray="2 2"/>',handshake:'<path d="M3 12l4-4 4 2 3-2 4 3 3-1"/><path d="m7 8 3 8 3 1 4-5"/>',bolt:'<path d="M13 3 5 14h6l-1 7 8-11h-6l1-7Z"/>',flag:'<path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/>',scatter:'<circle cx="6" cy="17" r="1.6"/><circle cx="10" cy="12" r="1.6"/><circle cx="15" cy="14" r="1.6"/><circle cx="18" cy="7" r="1.6"/><path d="M3 3v18h18"/>',link:'<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',pulse:'<path d="M3 12h4l2-6 4 12 2-6h6"/>',pen:'<path d="m4 20 1-4L16 5l3 3L8 19l-4 1Z"/><path d="m14 7 3 3"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/>',search:'<circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/>',spark:'<path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/>'};
+const svgEl=(inner,vb,cls)=>{const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox',vb);if(cls)s.setAttribute('class',cls);s.innerHTML=inner;return s};
+const icon=n=>svgEl(ICO[n]||ICO.spark,'0 0 24 24','ico');
+function viz(v){if(!v)return null;
+  if(v.t==='years'){const mx=Math.max(...v.data.map(d=>d[1]));return h('div',{class:'viz'},svgEl(v.data.map((d,k)=>{const x=k*20+2,hh=Math.max(2,d[1]/mx*40);return `<rect x="${x}" y="${46-hh}" width="14" height="${hh}" rx="2" class="${d[0]===v.hi?'on':'off'}"/>`}).join(''),'0 0 '+(v.data.length*20+2)+' 48','vb'),h('span',{class:'vl'},'Projects started per year; 2023 highlighted'))}
+  if(v.t==='dots'){const n=Math.min(v.of,60);return h('div',{class:'viz'},h('div',{class:'dg'},Array.from({length:n},(_,k)=>h('i',{class:k<v.n?'on':''}))),h('span',{class:'vl'},v.label))}
+  if(v.t==='bars'){const mx=Math.max(...v.data.map(d=>d[0]));return h('div',{class:'viz'},svgEl(v.data.slice(0,8).map((d,k)=>`<rect x="0" y="${k*9}" width="${Math.max(3,d[0]/mx*100)}" height="6" rx="3" class="on"/><text x="${Math.max(3,d[0]/mx*100)+3}" y="${k*9+6}" class="bt">${d[0]}${v.unit||''} \u00b7 ${d[1]}<\/text>`).join(''),'0 0 150 '+Math.min(8,v.data.length)*9,'vb2'),h('span',{class:'vl'},v.label))}
+  if(v.t==='ratings'){const tot=v.five+v.four+v.three;const row=(n,c,l)=>`<g>${Array.from({length:n},(_,k)=>`<path transform="translate(${k*13},0) scale(.5)" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z" class="on"/>`).join('')}<\/g>`;
+    return h('div',{class:'viz'},h('div',{class:'rt'},[[5,v.five],[4,v.four],[3,v.three]].map(([n,c])=>h('div',{class:'rr'},svgEl(Array.from({length:n},(_,k)=>`<path transform="translate(${k*12},0) scale(.5)" d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z"/>`).join(''),'0 0 64 12','st'),h('b',{style:'width:'+Math.max(4,c/tot*100)+'%'}),h('em',{},c)))),h('span',{class:'vl'},tot+' rated; '+v.un+' unrated'))}
+  if(v.t==='phases'){const mx=Math.max(...v.data.filter(x=>x!=null));return h('div',{class:'viz'},svgEl(v.data.map((d,k)=>d==null?'':`<rect x="${k*20+2}" y="${46-d/mx*40}" width="14" height="${d/mx*40}" rx="2" class="on"/>`).join(''),'0 0 102 48','vb'),h('span',{class:'vl'},v.label+' (phases A to E)'))}
+  return null}
+function insCard(i){const big=i.big?h('div',{class:'big'},h('b',{},i.big[0]),h('span',{},i.big[1])):null;
+  return h('article',{class:'card'+(i.big?' hero':'')},h('div',{class:'ch-top'},i.icon?h('div',{class:'ib'},icon(i.icon)):null,h('div',{class:'meta'},tagEl(i.kind),h('span',{class:'tag'},i.fl),h('span',{class:'tag'},i.cat))),i.q?h('div',{class:'qq'},'\u201c'+i.q+'\u201d'):null,h('h4',{},i.t),big,viz(i.viz),h('p',{},i.f),h('p',{class:'why'},h('b',{},'Why it matters: '),i.w),h('div',{class:'ev'},'Evidence: '+i.e),h('p',{class:'cav'},h('b',{},'Limits: '),i.c),i.names&&i.names.length?h('button',{class:'go',onclick:()=>{st.q='';$('#q').value='';$('#repo').scrollIntoView();document.querySelector('#repoq').value=i.names[0];A.repoQ=i.names;A.render();}},'Show in repository'):'')}
+function renderInsights(){const all=A.insights();const box=$('#insx');if(!box)return;
+  const ck=(k,v,l)=>h('button',{class:'chip','aria-pressed':flt[k]===v,onclick:()=>{flt[k]=flt[k]===v?null:v;renderInsights()}},l);
+  const list=all.filter(i=>(!flt.kind||i.kind===flt.kind)&&(!flt.fl||i.fl===flt.fl)&&(!flt.cat||i.cat===flt.cat));
+  const cats=[...new Set(all.map(i=>i.cat))];
+  box.replaceChildren(h('div',{class:'fig'},h('h3',{},'Insight explorer'),h('p',{class:'sub'},all.length+' findings. '+list.length+' shown.'),
+    h('div',{class:'legend'},ck('kind','fact','Recorded fact'),ck('kind','calc','Calculated'),ck('kind','inf','Inferred'),ck('kind','hyp','Hypothesis')),
+    h('div',{class:'legend'},ck('fl','obvious','Obvious'),ck('fl','inferred','Inferred'),ck('fl','surprising','Surprising')),
+    h('div',{class:'legend'},cats.map(c=>ck('cat',c,c))),h('div',{class:'ins'},list.map(insCard))))}
+function renderNext(){const box=$('#next');if(!box)return;box.replaceChildren(...A.insights().filter(i=>['y23h','ai','brand','dops','b2b'].includes(i.id)).map(insCard))}
+// ---------- repository
+const repo=h('section',{class:'ch',id:'repo'},h('div',{class:'wrap'},h('div',{class:'over'},'The complete repository'),h('h2',{},'Every project, searchable.'),
+  h('div',{class:'story'},h('p',{},'All '+ALL.length+' records, including undated ones. Filters at the top apply here. Click a row for the full record.')),
+  h('div',{class:'fig'},h('div',{class:'legend'},h('input',{id:'repoq',type:'search',placeholder:'Find a project by name',style:'background:var(--s2);color:var(--ink);border:1px solid var(--line2);border-radius:8px;padding:7px 10px;font:inherit;font-size:14px',oninput:e=>{A.repoQ=e.target.value?[e.target.value]:null;A.render()}}),
+    ['all','dated','undated'].map(v=>h('button',{class:'chip','aria-pressed':st.view===v,'data-v':v,onclick:()=>{st.view=v;A.render()}},{all:'All records',dated:'Dated only',undated:'Undated only'}[v]))),
+    h('div',{class:'scroll',style:'max-height:640px;overflow:auto'},h('table',{id:'tbl'})))));
+const COLS=[['name','Project'],['year','Year'],['role','Role'],['industry','Industry'],['product','Product'],['dur','Months'],['team','Team'],['rating','Rating'],['breadth','Breadth']];
+function renderRepo(){let ps=FA();if(A.repoQ){const q=A.repoQ.map(x=>x.toLowerCase());ps=ps.filter(p=>q.some(z=>p.name.toLowerCase().includes(z)))}
+  const k=st.sort,d=st.dir;ps=ps.slice().sort((a,b)=>{const x=a[k],y=b[k];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return -1;return(typeof x==='string'?x.localeCompare(y):x-y)*d});
+  const t=$('#tbl');t.replaceChildren(h('thead',{},h('tr',{},COLS.map(([k2,l])=>h('th',{onclick:()=>{st.dir=st.sort===k2?-st.dir:1;st.sort=k2;renderRepo()},'aria-sort':st.sort===k2?(st.dir>0?'ascending':'descending'):'none'},l+(st.sort===k2?(st.dir>0?' ↑':' ↓'):''))))),
+    h('tbody',{},ps.map(p=>h('tr',{class:'row',tabindex:0,onclick:()=>openProj(p),onkeydown:e=>{if(e.key==='Enter')openProj(p)}},
+      h('td',{},h('span',{class:'dot',style:`background:${p.role?RC[p.role]:'var(--faint)'}`}),p.name+(p.star?' ⭐':'')),
+      h('td',{},p.year||h('span',{class:'und'},'undated')),h('td',{},p.role||h('span',{class:'und'},'—')),h('td',{},p.industry||h('span',{class:'und'},'—')),h('td',{},p.product||'—'),h('td',{},p.dur!=null?p.dur:'—'),h('td',{},p.team!=null?(p.name==='DesignOps programme 2017'?'15+':p.team):'—'),h('td',{},p.rating?'★'.repeat(p.rating):'—'),h('td',{},p.breadth!=null?p.breadth+'/12':'—')))));
+  $$('.chip[data-v]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===st.view))}
+// ---------- method
+const method=h('section',{class:'ch',id:'method'},h('div',{class:'wrap'},h('div',{class:'over'},'Data and method'),h('h2',{},'Sources, definitions and gaps.'),
+  h('div',{class:'story'},h('p',{},'Source: the "Projects Repo" sheet of Preparation_1.xlsx. Other sheets were read for supporting evidence.')),
+  h('div',{class:'fig'},h('h3',{},'Field profile'),h('div',{class:'scroll'},h('table',{},h('thead',{},h('tr',{},['Field','Filled of 60','Note'].map(x=>h('th',{style:'cursor:default'},x)))),h('tbody',{},window.__DATA__.profile.map(r=>h('tr',{},h('td',{},r[0]),h('td',{},r[1]+' ('+Math.round(r[1]/60*100)+'%)'),h('td',{},r[2]))))))),
+  h('div',{class:'fig'},h('h3',{},'Definitions'),h('ul',{style:'margin:10px 0 0;padding-left:20px;color:var(--ink2);font-size:14.5px'},
+    [['Phases','Derived: 2011 to 2013, 2014 to 2015, 2017 to 2019, 2020 to 2022, 2023 to 2024, grouped by role mix and scale. 2016 has no records.'],['Breadth','How many of the 12 charted activities are marked done, only where all 12 are recorded (content strategy excluded).'],['Lift','Share of projects with both activities, divided by the share expected if they were independent.'],['Rank correlation','Spearman ρ, with n shown. Descriptive; no causal claims.'],['Radar proxies','Research depth: primary research share. Craft: wireframes and visual design. Systems: IA and design system. Validation: usability testing and heuristic evaluation. Collaboration: stakeholders and hand-off. Team scale: median team size over 15.']].map(([a,b])=>h('li',{style:'margin-bottom:8px'},h('b',{},a+': '),b)))),
+  h('footer',{},'Built from a personal project workbook only; nothing was added from outside it. On this public version, client and project names are replaced by industry labels.')));
+// ---------- mount
+const root=$('#root');root.append(hero,bar,ov,c1,c2,c3,c4,c5,c6,repo,method);
+A.render=function(){
+  $$('select[data-k]').forEach(e=>e.value=st[e.dataset.k]||'');
+  const n=FA().length;$('#cnt').textContent=n+' of '+ALL.length+' records';
+  for(const id in ctr){const[box,fn]=ctr[id];try{fn(box)}catch(e){box.replaceChildren(h('p',{class:'und'},'This chart could not be drawn ('+e.message+').'));console.error(id,e)}}
+  renderInsights();renderNext();renderRepo()};
+A.render();
+if(location.hash){const t=document.querySelector(location.hash);t&&t.scrollIntoView()}
+})();
+</script>
+
+</body></html>

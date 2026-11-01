@@ -8,7 +8,7 @@ export default function Philosophy() {
       <PageHeader
         label="Design Philosophy"
         title="First principles for an AI-native world."
-        subtitle="What changes when software can reason? What stays the same? The principles that guide my work when the design problem isn't just the interface — it's the intelligence behind it."
+        subtitle="What changes when software can reason? What stays the same? The principles that guide my work when the design problem isn't just the interface: it's the intelligence behind it."
       />
       <AINativeDesign />
       <Vision />

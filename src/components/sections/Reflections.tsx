@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { reflections, categories } from '../../data/reflections'
-import GrainOverlay from '../ui/GrainOverlay'
+import Chip from '../ds/Chip'
+import { Tag } from '../ds/Tag'
 
 export default function Reflections() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
@@ -12,35 +13,16 @@ export default function Reflections() {
 
   return (
     <section className="relative bg-black section-y px-6 md:px-12 overflow-hidden" id="reflections">
-      <GrainOverlay opacity={0.04} />
       <div className="relative z-10 mx-auto max-w-7xl">
 
-        {/* Category filter */}
-        <div className="flex flex-wrap gap-3 mb-16">
-          <button
-            className={`text-label px-4 py-2 border transition-all duration-200 ${
-              activeCategory === null
-                ? 'border-white text-white'
-                : 'border-white border-opacity-20 text-ink-3 hover:text-white'
-            }`}
-            onClick={() => setActiveCategory(null)}
-          >
-            All
-          </button>
+        {/* Category filter: same chips as Practice */}
+        <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="Filter reflections">
+          <Chip pressed={activeCategory === null} onClick={() => setActiveCategory(null)}>All <span className="opacity-60">{reflections.length}</span></Chip>
           {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`text-label px-4 py-2 border transition-all duration-200 ${
-                activeCategory === cat
-                  ? 'border-white text-white'
-                  : 'border-white border-opacity-20 text-ink-3 hover:text-white'
-              }`}
-              onClick={() => setActiveCategory(cat === activeCategory ? null : cat)}
-            >
-              {cat}
-            </button>
+            <Chip key={cat} pressed={activeCategory === cat} onClick={() => setActiveCategory(cat === activeCategory ? null : cat)}>{cat} <span className="opacity-60">{reflections.filter(r => r.category === cat).length}</span></Chip>
           ))}
         </div>
+        <p className="text-label text-ink-3 mb-8" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'piece' : 'pieces'}{activeCategory ? ` in ${activeCategory}` : ''}</p>
 
         <div className="grid md:grid-cols-3 gap-px grid-hairline">
           {filtered.map((r, i) => (
@@ -88,7 +70,7 @@ export default function Reflections() {
 
               {/* Text */}
               <div className="p-8 md:p-10 flex flex-col flex-1">
-                <p className="text-overline text-ink-3 mb-4">{r.category}</p>
+                <div className="mb-4"><Tag>{r.category}</Tag></div>
                 <h3 className="text-white mb-4 group-hover:opacity-80 transition-opacity"
                   style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.35 }}>
                   {r.title}

@@ -1,3 +1,4 @@
+import Distinct from '../components/case/Distinct'
 import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
@@ -39,11 +40,11 @@ export default function SAPSearchStoryPage() {
   return (
     <div className="bg-surface-0 min-h-screen">
       {/* Hero */}
-      <header className="pt-32 md:pt-40 pb-16 md:pb-24">
-        <div className="container-site">
-          <Breadcrumb items={[{ label: 'Craft', to: '/craft' }, { label: 'AI-Powered Search' }]} />
+      <header style={{ paddingTop: 'var(--header-h)' }}>
+        <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
+          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'AI-Powered Search' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
           <div className="mt-8"><Button to="/craft/sap-search/film" arrow>Watch the film · 2 min 46 s</Button></div>
           <div className="flex flex-wrap gap-2 mt-8">
@@ -55,17 +56,32 @@ export default function SAPSearchStoryPage() {
               <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
             ))}
           </dl>
+          {cs.distinct && <div className="mt-12"><Distinct title={cs.distinct.title} body={cs.distinct.body} /></div>}
         </div>
       </header>
 
+      <Section id="vision">
+        <SectionHeader label="01 · Vision and impact" title={S.vision.title} intro={S.vision.intro} />
+        <div className="grid md:grid-cols-3 gap-4">
+          {S.vision.cards.map(c => (
+            <div key={c.title} className="card">
+              <p className="text-overline text-ink-3">{c.label}</p>
+              <p className="text-title text-white mt-3">{c.title}</p>
+              <p className="text-body text-ink-2 mt-4">{c.body}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-body-lg text-ink-2 mt-12 max-w-[62ch]">{S.vision.why}</p>
+      </Section>
+
       {/* Problem */}
       <Section id="problem">
-        <SectionHeader label="01 · The problem" title="What needed to be fixed?" intro={cs.challenge} />
+        <SectionHeader label="02 · The problem" title="What needed to be fixed?" intro={cs.challenge} />
         <div className="grid md:grid-cols-3 gap-4">
           {S.challenges.map(c => (
             <div key={c.area} className="card">
               <p className="text-overline text-ink-3">{c.area}</p>
-              <ul className="mt-5 space-y-3">{c.items.map(i => <li key={i} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">—</span>{i}</li>)}</ul>
+              <ul className="mt-5 space-y-3">{c.items.map(i => <li key={i} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{i}</li>)}</ul>
             </div>
           ))}
         </div>
@@ -73,7 +89,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Exploration */}
       <Section id="explore" tone="raised">
-        <SectionHeader label="02 · Exploration" title="Where search capability meets AI and real user problems." intro="Every idea was tested against three inputs at once: what search can do, what AI can offer, and the problems users actually have." />
+        <SectionHeader label="03 · Exploration" title="Where search capability meets AI and real user problems." intro="Every idea was tested against three inputs at once: what search can do, what AI can offer, and the problems users actually have." />
         <div className="grid md:grid-cols-3 gap-4 mb-14">
           {S.ideas.inputs.map(i => <div key={i} className="card text-center"><p className="text-title text-white">{i}</p></div>)}
         </div>
@@ -97,7 +113,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Recommendations */}
       <Section id="recommendations">
-        <SectionHeader label="03 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
+        <SectionHeader label="04 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
         <ol className="grid sm:grid-cols-2 gap-x-10">
           {S.recommendations.map((r, i) => (
             <li key={r} className="flex gap-5 py-4 hairline-top"><span className="text-label text-ink-3 w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span><span className="text-body text-white">{r}</span></li>
@@ -107,7 +123,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Patterns */}
       <Section id="patterns" tone="raised">
-        <SectionHeader label="04 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined so every product team applies them the same way." />
+        <SectionHeader label="05 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined by how each behaves, so every product team applies them the same way." />
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
           {S.patternGroups.map((g, i) => (
             <div key={g.title} className="card">
@@ -127,7 +143,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Experience */}
       <Section id="experience">
-        <SectionHeader label="05 · The experience" title="One search, six journeys." intro="Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
+        <SectionHeader label="06 · The experience" title="One search, specified down to the state." intro="The component is specified, not sketched: anatomy and spacing, states, and behaviour from the first focus to Enter. Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.flows.map(f => (
             <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" aria-pressed={f.id === active} onClick={() => setActive(f.id)}>
@@ -145,7 +161,7 @@ export default function SAPSearchStoryPage() {
                 <button type="button" onClick={() => setZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen ${s.id.replace('-', '.')} ${s.name}`}>
                   <img src={s.img} alt={`${flow.title}: ${s.name}`} width={1440} height={900} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
                 </button>
-                <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} — {s.name}</figcaption>
+                <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} - {s.name}</figcaption>
               </figure>
             ))}
           </div>}
@@ -156,7 +172,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Outcome */}
       <Section id="outcome" tone="raised">
-        <SectionHeader label="06 · Outcome" title="From fragmented search to a suite-wide standard." intro={cs.outcome} />
+        <SectionHeader label="07 · Outcome" title="From fragmented search to one shared component." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>
@@ -182,7 +198,7 @@ function Lightbox({ screen, onClose }: { screen: Screen; onClose: () => void }) 
       <div className="min-h-full flex flex-col items-center justify-center p-4 md:p-10 gap-4">
         <img src={screen.img} alt={screen.name} className="max-w-full max-h-[calc(100vh-7rem)] w-auto h-auto bg-white rounded-md" onClick={e => e.stopPropagation()} />
         <div className="flex items-center gap-4">
-          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} — {screen.name}</span>
+          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} - {screen.name}</span>
           <a href={screen.img} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white underline" onClick={e => e.stopPropagation()}>Open at full resolution ↗</a>
           <button type="button" className="btn btn-secondary btn-sm" onClick={onClose} autoFocus>Close</button>
         </div>

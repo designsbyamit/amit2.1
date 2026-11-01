@@ -1,8 +1,8 @@
-// AI-Powered Global Search — content taken from the Figma file "S-Projects › AI-Powered Search"
+// AI-Powered Global Search: content taken from the Figma file "S-Projects › AI-Powered Search"
 // (presentation frames: Cover, Intro, Challenges, Ideas to Explore, Search/AI Functionalities,
 // Solution Ideas, Common Patterns; screen frames 1.1–5.4).
 // Screens are the original SVG exports from Figma (text outlined), stored unmodified in
-// public/images/case-studies/sap-search/<id>.svg.
+// public/images/case-studies/sap-search/<id>.webp.
 
 export interface Screen { id: string; name: string; img?: string }
 export interface Flow { id: string; label: string; title: string; summary: string; hash: string; screens: Screen[] }
@@ -15,6 +15,17 @@ export const sapSearch = {
   pillars: ['Consistent', 'User friendly', 'Contextual'],
   intro: 'Experience seamless efficiency with new search across all applications.',
   prototype: `${B}prototypes/sap-search/index.html`,
+
+  vision: {
+    title: 'Search as a design-system capability, defined once for every product.',
+    intro: 'Every product had grown its own search. Rather than improve them one at a time, I treated search as a shared piece of the design system: one AI search component, one results layout and a common set of patterns, so what is learned and fixed in one place is felt across every product.',
+    cards: [
+      { label: 'Defined once', title: 'Inherited everywhere', body: 'The component, the results layout and the patterns are the same wherever a person searches, whether the question is about travel, procurement, goals or contingent workforce.' },
+      { label: 'A standard', title: 'Adopted, not rebuilt', body: 'Product teams take the search experience from the design system instead of designing their own, so design standards govern AI-surfaced discovery across the suite.' },
+      { label: 'Trust', title: 'Transparent by design', body: 'Every AI answer shows its reasoning and its confidence, because enterprise users already sceptical of AI punish evasion faster than uncertainty.' },
+    ],
+    why: 'Because it lives in the design system, the impact compounds. Every product that adopts the component inherits the interaction and the trust patterns, and every improvement made once reaches all of them. That reach, not any single screen, is what the work delivers.',
+  },
 
   challenges: [
     { area: 'Search queries', items: ['Inadequate autocomplete suggestions', 'Search history limitations', 'Lack of NLP integration', "Lack of 'search – alternate modes'"] },
@@ -86,5 +97,5 @@ export const sapSearch = {
       screens: [{ id: '5-1', name: 'Search home' }, { id: '5-2', name: 'SF type-ahead' }, { id: '5-3', name: 'Team member goals' }, { id: '5-4', name: 'Goal draft' }] },
     { id: 'sow', label: '06', title: 'Use case: Fieldglass SOW status', hash: 'sow', summary: 'A plain-language question ("current status and end date of SOW IDs for CyberSecure Ltd?") returns an AI overview of every SOW, then the records themselves, already sorted into at-risk and expiring, with staffing actions on each row.',
       screens: [] },
-  ].map(f => ({ ...f, screens: f.screens.map(sc => ({ ...sc, img: `${B}images/case-studies/sap-search/${sc.id}.svg` })) })) as Flow[],
+  ].map(f => ({ ...f, screens: f.screens.map(sc => ({ ...sc, img: `${B}images/case-studies/sap-search/${sc.id}.webp` })) })) as Flow[],
 }

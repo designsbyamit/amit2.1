@@ -1,22 +1,25 @@
+import { useEffect } from 'react'
 import Player from './Player'
-import { Hook, Setup, Problem, Process, Architecture, Peak, Denouement } from './scenesAgentic'
+import { Frame, Hook, Setup, People, Problem, Concept, Solution, Impact, Next, IMAGES, at } from './scenesAgentic'
 import type { Chapter } from './engine'
 
 const chapters: Chapter[] = [
-  { at: 0, label: 'The hook' }, { at: 10, label: 'The setup' }, { at: 28, label: 'The problem' }, { at: 55, label: 'Process & craft' },
-  { at: 75, label: 'Architecture' }, { at: 95, label: 'The peak' }, { at: 108, label: 'The outcome' },
+  { at: 0, label: 'The hook' }, { at: at(4), label: 'The setup' }, { at: at(8), label: 'The people' }, { at: at(12), label: 'The problem' },
+  { at: at(24), label: 'The concept' }, { at: at(32), label: 'The solution' }, { at: at(45), label: 'The impact' }, { at: at(52), label: 'What’s next' },
 ]
 
 export default function AgenticFilmPage() {
+  useEffect(() => { IMAGES.forEach(src => { const im = new Image(); im.src = src }) }, [])
   return (
     <Player
-      audioSrc="/audio/agentic-film-score.mp3"
+      audioSrc="/audio/agentic-film-unfolding-path.mp3"
       title="Agentic Order Confirmation"
-      subtitle="A two-minute film. NorthStar Chemicals & Pharma sends one RFQ to 14 suppliers. What happens when the answers come back?"
+      subtitle="A two-minute story for anyone new to procurement: a pharma company, three people, one problem, and how it was solved."
       chapters={chapters}
       backTo="/craft/sap-agentic"
       backLabel="← Read the case study"
-      render={t => <><Hook t={t} /><Setup t={t} /><Problem t={t} /><Process t={t} /><Architecture t={t} /><Peak t={t} /><Denouement t={t} /></>}
+      duration={116}
+      render={t => <><Hook t={t} /><Setup t={t} /><People t={t} /><Problem t={t} /><Concept t={t} /><Solution t={t} /><Impact t={t} /><Next t={t} /><Frame t={t} /></>}
     />
   )
 }

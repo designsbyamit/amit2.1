@@ -1,8 +1,49 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { Testimonial } from '../../data/testimonials'
 
 /** A set of quotes. First quote is set large; the rest sit in a grid. */
-export default function Testimonials({ label, title, items }: { label: string; title: string; items: Testimonial[] }) {
+const Caption = ({ t }: { t: Testimonial }) => (
+  <figcaption className="mt-6">
+    <p className="text-body-sm text-white">{t.name}</p>
+    <p className="text-caption text-ink-3">{t.role}{t.source === 'ADPList' && t.url ? <> · <a href={t.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-white">via ADPList</a></> : null}</p>
+  </figcaption>
+)
+
+/** A continuous, looping row of tall quote cards. Pauses on hover, focus or the pause button. */
+function Rotator({ label, title, intro, items }: { label: string; title: string; intro?: string[]; items: Testimonial[] }) {
+  const [paused, setPaused] = useState(false)
+  const group = (copy: number) => (
+    <ul className="flex gap-6 pr-6 shrink-0" aria-hidden={copy === 1 ? true : undefined}>
+      {items.map(t => (
+        <li key={t.name} className="card !p-7 md:!p-8 flex flex-col justify-between w-[300px] sm:w-[360px] lg:w-[400px] min-h-[380px] md:min-h-[420px]">
+          <blockquote className="text-body-lg text-ink-2" style={{ lineHeight: 1.5 }}>“{t.quote}”</blockquote>
+          <Caption t={t} />
+        </li>
+      ))}
+    </ul>
+  )
+  return (
+    <section id="testimonials" className="section-y hairline-top overflow-hidden scroll-mt-24" aria-label={title}>
+      <div className="container-site">
+        <header className="mb-12 md:mb-16 max-w-3xl">
+          <p className="text-overline text-ink-3">{label}</p>
+          <h2 className="text-display-l text-white mt-4">{title}</h2>
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
+        </header>
+      </div>
+      <div className="marquee" data-paused={paused} style={{ ['--dur' as string]: `${items.length * 11}s` }} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
+        <div className="marquee-track">{group(0)}{group(1)}</div>
+      </div>
+      <div className="container-site mt-8 flex justify-end">
+        <button type="button" onClick={() => setPaused(v => !v)} aria-pressed={paused} className="text-label text-ink-3 hover:text-white">{paused ? 'Play' : 'Pause'}</button>
+      </div>
+    </section>
+  )
+}
+
+export default function Testimonials({ label, title, intro, items, rotate }: { label: string; title: string; intro?: string[]; items: Testimonial[]; rotate?: boolean }) {
+  if (rotate && items.length > 1) return <Rotator label={label} title={title} intro={intro} items={items} />
   // A quote is only set large if it is short enough to read as a statement.
   const shortest = [...items].sort((a, b) => a.quote.length - b.quote.length)[0]
   const lead = shortest.quote.length <= 160 ? shortest : null
@@ -13,6 +54,7 @@ export default function Testimonials({ label, title, items }: { label: string; t
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>
           <h2 className="text-display-l text-white mt-4">{title}</h2>
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
         </header>
 
         {lead && (

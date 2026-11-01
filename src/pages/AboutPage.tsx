@@ -1,118 +1,155 @@
+import { motion } from 'framer-motion'
 import PageHeader from '../components/ui/PageHeader'
-import Contact from '../components/sections/Contact'
 // Temporary: swap for the new About portrait when supplied
-const aboutImg = '/images/Community/DesignUp.webp'
+const aboutImg = '/images/about/amit-hero-bw.webp'
 import SectionHeader from '../components/ds/SectionHeader'
 import Button from '../components/ds/Button'
+import { useContact } from '../components/contact/ContactProvider'
+import type { ContactOptions } from '../lib/contact'
 import Testimonials from '../components/sections/Testimonials'
-import { colleagueTestimonials, menteeTestimonials, quoteExcerpts } from '../data/testimonials'
-import { motion } from 'framer-motion'
+import { colleagueTestimonials, clientTestimonials, quoteExcerpts } from '../data/testimonials'
+import DriveGrid from '../components/sections/DriveGrid'
 
-const timeline = [
-  { year: 'Aug 2024–Now', role: 'Design Leader (User Experience Manager)', org: 'SAP Labs', detail: 'Harmonising enterprise product experience across SAP products. Evangelising the value and power of design while unifying experiences coherently across products.' },
-  { year: 'Dec 2018–Jul 2024', role: 'User Experience Manager', org: 'Accenture Song', detail: 'Design leader and UX consultant across strategy, research and interaction design. Founding member of the Generative AI and Conversational AI design capabilities at the studio.' },
-  { year: 'Dec 2015–Dec 2018', role: 'Staff Product Designer', org: 'Hewlett Packard Enterprise', detail: 'Drove design for a suite of cloud offerings: user-friendly interfaces for cloud platforms, coordination across internal and external teams, and guidance for new designers.' },
-  { year: 'Jul 2014–Dec 2015', role: 'Creative UX Lead (Founding UX Lead)', org: 'Photon Interactive', detail: 'Designed for e-commerce clients, including research and analytics, while fostering design culture.' },
-  { year: 'Jan 2011–Jul 2014', role: 'Senior UX Designer', org: 'Infosys Limited', detail: '20+ client engagements delivering simple UIs and research artefacts, across the full UX cycle.' },
-]
 
 const steady = [
-  { t: 'Morning runs', d: 'I’m a morning runner.', icon: 'M4 18c3-1 5-4 6-8l3 2 3-5M14 5a1.5 1.5 0 1 0 0-.01' , tone: 'cobalt', image: undefined as string | undefined, photo: 'A photo of me on a morning run' },
-  { t: 'Old melodies and Indian classical music', d: 'Old melodies and Indian classical music are what I listen to.', icon: 'M9 18V6l10-2v12M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm10-2a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z' , tone: 'teal', image: undefined as string | undefined, photo: 'A photo of me with an instrument' },
-  { t: 'Meditation', d: 'I meditate.', icon: 'M12 4a2 2 0 1 0 0 .01M5 19c2-3 4-4 7-4s5 1 7 4M8 12l4 2 4-2' , tone: 'plum', image: undefined as string | undefined, photo: 'A photo of me meditating' },
-  { t: 'The science behind spirituality', d: 'I read about the science behind spirituality.', icon: 'M4 6h7v13H4zM13 6h7v13h-7M11 8h2' , tone: 'graphite', image: undefined as string | undefined, photo: 'A photo of me with a book' },
+  { t: 'Morning runs', image: '/images/about/running.svg', alt: 'Line illustration of a morning runner', text: 'My favourite way to clear the head and occasionally outrun a few thoughts.' },
+  { t: 'Indian classical music', image: '/images/about/playing.svg', alt: 'Line illustration of a musician playing an instrument', text: 'A fascination with rhythm, improvisation and the beauty of structure.' },
+  { t: 'Science meets spirituality', image: '/images/about/science-behind-spirituality.svg', alt: 'Line illustration for the science behind spirituality', text: 'Curious about consciousness, philosophy and the questions that don’t always have straightforward answers.' },
 ]
 
-const drives = [
-  'Driving suite-first design by crafting harmonised experiences across SAP products into scalable, connected ecosystems.',
-  'Shaping AI-native and multi-modal experiences through experimentation, systems thinking, and value-centred innovation.',
-  'Championing design excellence through strategic execution, customer co-creation, critiques, and high-quality delivery standards.',
-  'Building and nurturing resilient design talent through mentoring, AI-led upskilling, and future-ready capability development.',
-  'Leading and growing design communities through partnerships, initiatives, and events that expand the impact of design beyond designers.',
+type Chapter = { when: string; role: string; org: string; intro: string; highlights?: string[] }
+const chapters: Chapter[] = [
+  { when: 'August 2024 - Present', role: 'Design Leader | User Experience Manager', org: 'SAP Labs', intro: 'Shaping connected enterprise experiences, exploring AI and agentic interactions, and contributing to SAP’s Suite-first direction.', highlights: ['Leading SAP Design Hub India, a community of 250+ designers.', 'Driving design initiatives across enterprise products.', 'Exploring AI-powered search and agentic experiences.', 'Curating Impulse India.'] },
+  { when: 'December 2018 - July 2024', role: 'User Experience Manager', org: 'Accenture Song', intro: 'Scaling UX capabilities, leading multidisciplinary teams and shaping complex B2B and B2C experiences.', highlights: ['Led teams of 6-30 designers.', 'Built Generative AI and Conversational AI design capabilities.', 'Worked across experience strategy and product delivery.'] },
+  { when: 'December 2015 - December 2018', role: 'Staff Product Designer', org: 'Hewlett Packard Enterprise', intro: 'Designing enterprise cloud experiences and strengthening design practices.', highlights: ['UX initiatives for GreenLake.', 'Contributions to Grommet Design System.', 'DesignOps and design community initiatives.'] },
+  { when: 'July 2014 - December 2015', role: 'Creative UX Lead | Founding UX Lead', org: 'Photon Interactive', intro: 'Building UX capabilities and creating digital experiences for e-commerce and other industries.' },
+  { when: 'January 2011 - July 2014', role: 'Senior UX Designer', org: 'Infosys Limited', intro: 'Building my foundations in UX across 20+ client engagements, research and interaction design.' },
 ]
+
+/** Colleagues, clients and a mentee, mixed. Each person appears once: the short excerpts stand in for Mayura, Stepan and Mahesh. */
+const inTheirWords = [quoteExcerpts.mayura, clientTestimonials[0], colleagueTestimonials[0], colleagueTestimonials[1], clientTestimonials[1], quoteExcerpts.mahesh, colleagueTestimonials[2], clientTestimonials[2], quoteExcerpts.stepan]
+
+type Path = { label: string; body: string; cta: string } & ({ to: string } | { open: ContactOptions })
+const paths: Path[] = [
+  { label: 'Leadership opportunities', body: 'Building a product organisation or looking for design leadership?', cta: 'Let’s talk', open: { topic: 'work', message: 'Role and organisation:\n\nScope of the design team:\n\nWhat success looks like in the first year:\n' } },
+  { label: 'Collaborations', body: 'Have an interesting challenge around product design, enterprise UX or AI?', cta: 'Explore a collaboration', open: { topic: 'collaboration', message: 'Organisation and role:\n\nWhat we are trying to achieve:\n' } },
+  { label: 'Mentorship', body: 'Working through your next career move or figuring out what’s next for your design journey?', cta: 'Let’s connect', to: '/mentoring' },
+  { label: 'Speaking & workshops', body: 'Let’s exchange ideas on design leadership, AI, product thinking and the future of design.', cta: 'Invite me', open: { topic: 'speaking', message: 'Event or organisation:\n\nDate and location:\n\nAudience and format:\n' } },
+  { label: 'Just saying hello', body: 'A good question, an interesting perspective or even a healthy disagreement. Always welcome.', cta: 'Say hello', open: { topic: 'other' } },
+]
+
+function AboutContact() {
+  const { open } = useContact()
+  return (
+    <section className="section-y hairline-top" id="contact">
+      <div className="container-site">
+        <SectionHeader label="Start a conversation" title="Have something interesting in mind? Let’s talk." intro="I’m always interested in good ideas, thoughtful conversations and challenges worth solving." />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {paths.map((p, i) => (
+            <motion.div key={p.label} className="card flex flex-col" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: (i % 3) * 0.08 }}>
+              <h3 className="text-title text-ink mb-4">{p.label}</h3>
+              <p className="text-body-sm text-ink-2 mb-8 flex-1">{p.body}</p>
+              <div>{'to' in p ? <Button variant="secondary" to={p.to}>{p.cta}</Button> : <Button variant="secondary" onClick={() => open(p.open)}>{p.cta}</Button>}</div>
+            </motion.div>
+          ))}
+        </div>
+        <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10 hairline-top pt-8 mt-14">
+          <div className="flex flex-wrap items-center gap-6">
+            <a href="https://linkedin.com/in/amitkrt" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-ink transition-colors tap-target">LinkedIn</a>
+            <a href="https://medium.com/@amitkrt" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-ink transition-colors tap-target">Medium</a>
+            <a href="https://adplist.org/mentors/amit-kumar-tiwari" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-ink transition-colors tap-target">ADPList</a>
+            <a href="https://topmate.io/amitkrt" target="_blank" rel="noopener noreferrer" className="text-label text-ink-3 hover:text-ink transition-colors tap-target">Topmate</a>
+          </div>
+          <p className="text-label text-ink-3 md:ml-auto">Bengaluru, India · Open to global conversations</p>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function AboutPage() {
   return (
     <>
       <PageHeader
-        label="About"
-        title="Hi, I’m Amit."
-        subtitle="A design leader in Bengaluru who started out writing code, took on leadership roles as early as college, and has spent 16+ years turning complicated ideas into products people can use."
-        image={aboutImg} imagePosition="50% 22%"
-        imageAlt="Amit Kumar Tiwari at a design conference"
-      />
+        label="A little about me"
+        title="I make complex things feel simple. And imagine what they could become."
+        subtitle="I’m Amit, a design leader, product thinker and technology enthusiast. For 16+ years, I’ve been exploring the sweet spot between people, business and technology."
+        image={aboutImg} imagePosition="50% 28%" mono
+        imageAlt="Amit Kumar Tiwari speaking at a design event"
+      >
+        <p className="text-body text-ink-2 max-w-2xl mb-8">Currently shaping enterprise experiences, exploring AI-native products and building teams that make a difference.</p>
+        <div className="flex flex-wrap gap-3">
+          <Button to="/craft" arrow>Explore my work</Button>
+          <a className="btn btn-secondary" href="#person">A little more about me</a>
+        </div>
+      </PageHeader>
 
-      {/* The person first */}
-      <section className="section-y hairline-top">
+      <section className="section-y hairline-top scroll-mt-24" id="person">
         <div className="container-site grid-site gap-y-10">
-          <div className="col-span-4 md:col-span-4"><p className="text-overline text-ink-3">The person</p></div>
+          <div className="col-span-4 md:col-span-4"><p className="text-overline text-ink-3">The person behind the pixels</p></div>
           <div className="col-span-4 md:col-span-7 md:col-start-6 flex flex-col gap-6">
-            <p className="text-heading text-ink">I started in computer science and development, which is why I’m comfortable with the technical side of design.</p>
-            <p className="text-body-editorial text-ink-2">I then spent my career turning complicated business ideas into simple, usable products, and learning how to lead the people who build them. Sixteen years in, I still believe great experiences emerge where design, business and technology intersect.</p>
-            
+            <h2 className="text-heading text-ink">From writing code to shaping how people experience technology.</h2>
+            <p className="text-body-editorial text-ink-2">Trained in computer science, drawn to design, and eventually fascinated by the bigger picture.</p>
+            <p className="text-body-editorial text-ink-2">I’ve moved from designing interfaces to shaping products, building teams and influencing how organisations think about design.</p>
+            <p className="text-body-editorial text-ink-2">I enjoy connecting dots that don’t always seem connected: design and business, creativity and technology, people and systems.</p>
+            <p className="text-body-editorial text-ink">Still curious. Still questioning. Still figuring things out.</p>
           </div>
         </div>
       </section>
 
       <section className="section-y hairline-top">
         <div className="container-site">
-          <SectionHeader label="What keeps me steady" title="Four habits outside work." intro="Quiet, unhurried habits. I think they show up in how I design and lead." />
-          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {steady.map(s => (
-              <li key={s.t} className="flex flex-col gap-4">
-                <figure className="relative rounded-2 overflow-hidden" style={{ aspectRatio: '4 / 5', background: `var(--field-${s.tone})` }}>
-                  {s.image ? (
-                    <img src={s.image} alt={s.photo} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} aria-hidden="true" />
-                      <svg className="absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#C8F55A" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={s.icon} /></svg>
-                      <span className="absolute left-4 bottom-4 right-4 font-mono text-[0.6875rem] tracking-[0.08em] uppercase" style={{ color: 'rgb(236 237 239 / 0.7)' }}>Photo placeholder</span>
-                    </>
-                  )}
+          <SectionHeader label="Outside the design bubble" title="Things that keep me grounded." />
+          <ul className="grid md:grid-cols-3 gap-10 md:gap-8">
+            {steady.map(h => (
+              <li key={h.t} className="flex flex-col gap-4">
+                <figure className="relative rounded-2 overflow-hidden bg-black w-40" style={{ aspectRatio: '1 / 1' }}>
+                  <img src={h.image} alt={h.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 </figure>
-                <h3 className="text-title text-ink">{s.t}</h3>
+                <h3 className="text-title text-ink">{h.t}</h3>
+                <p className="text-body-sm text-ink-2 max-w-[40ch]">{h.text}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* The work */}
       <section className="section-y hairline-top">
-        <div className="container-site">
-          <SectionHeader label="What I drive" title="Impact across AI, design and community." intro="Three ideas run through all of it: Dual Fluency, AI-native design and agentic experiences." />
-          <ol>
-            {drives.map((d, i) => (
-              <motion.li key={i} className="hairline-top py-6 grid grid-cols-[3rem_1fr] md:grid-cols-[5rem_1fr] gap-4" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: i * 0.05 }}>
-                <span className="text-label text-signal-ink pt-1">{String(i + 1).padStart(2, '0')}</span>
-                <p className="text-body text-ink-2">{d}</p>
-              </motion.li>
-            ))}
-          </ol>
+        <div className="container-site relative">
+          <SectionHeader label="My areas of interest" title="Different problems. One curiosity: what can we make better?" />
+        </div>
+        <div className="container-site relative">
+          <DriveGrid />
+          <p className="text-body text-ink-2 mt-10 max-w-2xl">Currently exploring these ideas through my work at SAP, Core Design, SAP Design Hub India and Impulse India.</p>
         </div>
       </section>
 
-      <section className="section-y hairline-top">
+      <section className="section-y hairline-top" id="journey">
         <div className="container-site">
-          <SectionHeader label="Career" title="Where I’ve worked." action={<Button to="/leadership#journey" variant="secondary" arrow>The leadership journey</Button>} />
+          <SectionHeader label="Places, people and experiences" title="16 years. Five organisations. Many lessons." />
           <ol>
-            {timeline.map(item => (
-              <li key={item.year} className="hairline-top py-7 grid md:grid-cols-[12rem_1fr] gap-3 md:gap-8">
-                <p className="text-label text-ink-3 pt-1">{item.year}</p>
+            {chapters.map(c => (
+              <li key={c.when} className="hairline-top py-8 grid md:grid-cols-[14rem_1fr] gap-3 md:gap-8">
+                <p className="text-label text-ink-3 pt-1">{c.when}</p>
                 <div>
-                  <p className="text-title text-ink">{item.role} · {item.org}</p>
-                  <p className="text-body-sm text-ink-2 mt-2 max-w-2xl">{item.detail}</p>
+                  <h3 className="text-title text-ink">{c.role}</h3>
+                  <p className="text-body-sm text-ink-3 mt-1">{c.org}</p>
+                  <p className="text-body-sm text-ink-2 mt-4 max-w-2xl">{c.intro}</p>
+                  {c.highlights && <ul className="mt-4 flex flex-col gap-2 max-w-2xl list-disc pl-5 marker:text-ink-3">{c.highlights.map(h => <li key={h} className="text-body-sm text-ink-2">{h}</li>)}</ul>}
                 </div>
               </li>
             ))}
           </ol>
+          <div className="flex flex-wrap gap-3 mt-10">
+            <a className="btn btn-secondary" href="/downloads/Amit-Kumar-Tiwari-CV.pdf" download>Download my CV</a>
+            <Button to="/leadership#journey" variant="secondary" arrow>Explore my leadership journey</Button>
+          </div>
         </div>
       </section>
 
-      <Testimonials label="In their words" title="Colleagues and mentees." items={[quoteExcerpts.mayura, colleagueTestimonials[0], quoteExcerpts.stepan, menteeTestimonials[1]]} />
+      <Testimonials rotate label="A little perspective from others" title="The work matters. The people matter more." intro={['Grateful for the people I’ve worked with, learned from, challenged and grown alongside.']} items={inTheirWords} />
 
-      <Contact />
+      <AboutContact />
     </>
   )
 }

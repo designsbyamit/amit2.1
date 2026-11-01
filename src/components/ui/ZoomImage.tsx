@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 /**
  * Image that opens full-size in an accessible lightbox (click / Enter / Space; Esc or click outside to close).
- * Detailed artefacts — journey maps, research boards, flows — are unreadable at column width, so they need this.
+ * Detailed artefacts, journey maps, research boards, flows, are unreadable at column width, so they need this.
  */
 export default function ZoomImage({ src, alt, className = '', style }: { src: string; alt: string; className?: string; style?: React.CSSProperties }) {
   const [open, setOpen] = useState(false)

@@ -7,7 +7,7 @@ const principles = [
   {
     number: '01',
     title: 'Intent over instruction',
-    body: 'AI systems respond to what users mean, not just what they type. Designing for intent requires understanding the full context of a task — the goals, constraints, and decision states behind each request.',
+    body: 'AI systems respond to what users mean, not just what they type. Designing for intent requires understanding the full context of a task: the goals, constraints, and decision states behind each request.',
   },
   {
     number: '02',
@@ -17,7 +17,7 @@ const principles = [
   {
     number: '03',
     title: 'Human-AI collaboration',
-    body: 'The best AI interfaces don\'t try to replace human judgment — they amplify it. Design the handoff between autonomous action and human review as a first-class interaction pattern.',
+    body: 'The best AI interfaces don\'t try to replace human judgment: they amplify it. Design the handoff between autonomous action and human review as a first-class interaction pattern.',
   },
   {
     number: '04',

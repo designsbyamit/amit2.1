@@ -1,3 +1,8 @@
+import type { PictogramKind } from '../components/ds/StoryPictogram'
+
+/** An animated pictogram shown after paragraph `after` (0-based) of the narrative. */
+export interface StoryFigure { after: number; kind: PictogramKind; caption: string }
+
 export interface LeadershipStory {
   id: string
   year: string
@@ -12,20 +17,27 @@ export interface LeadershipStory {
   /** Visual on the story card and page */
   motif?: 'seat' | 'team' | 'influence' | 'hub' | 'culture'
   tone?: 'cobalt' | 'teal' | 'plum'
+  figures?: StoryFigure[]
 }
 
 export const stories: LeadershipStory[] = [
   {
     id: 'story-business-seat',
     motif: 'seat',
+    figures: [
+      { after: 3, kind: 'conflict', caption: 'Two solutions, and a seat at the table at stake.' },
+      { after: 5, kind: 'understand', caption: 'Before designing anything: understand the why.' },
+      { after: 7, kind: 'converge', caption: 'One workshop. Design, engineering and product on the same page.' },
+      { after: 10, kind: 'seat', caption: 'Not a seat you ask for. A seat you earn.' },
+    ],
     tone: 'cobalt',
     year: '',
     context: 'DevOps plugin marketplace · design, engineering and product',
     title: 'The moment design almost lost its seat at the table',
     cues: [
-      'What was the moment you realised design was about to be removed or sidelined — and what was at stake?',
+      'What was the moment you realised design was about to be removed or sidelined, and what was at stake?',
       'How did you make the case? What did you say, and to whom?',
-      'What changed in the room — and what changed in you after that moment?',
+      'What changed in the room, and what changed in you after that moment?',
     ],
     narrative: [
       'A few years ago, I was asked to design a marketplace for DevOps professionals: a place where they could discover plugins and extensions and use them to deploy applications to the cloud.',
@@ -57,12 +69,17 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-first-team',
     motif: 'team',
+    figures: [
+      { after: 5, kind: 'blueprint', caption: 'A team designed for what it needs to become.' },
+      { after: 10, kind: 'enable', caption: 'Leading is building the conditions for others to do their best work.' },
+      { after: 12, kind: 'zoom', caption: 'Zoom out for the business. Zoom in for the craft.' },
+    ],
     tone: 'plum',
     year: '',
     context: 'From first hire to leading designers',
     title: 'What building my first design team actually taught me',
     cues: [
-      'What did you get wrong early — about hiring, onboarding, or what a team actually needs to do good work?',
+      'What did you get wrong early: about hiring, onboarding, or what a team actually needs to do good work?',
       'Was there a specific moment or conversation that made you realise the gap between leading output and leading people?',
       'What would you tell a first-time design manager today that no one told you?',
     ],
@@ -99,12 +116,17 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-influence',
     motif: 'influence',
+    figures: [
+      { after: 2, kind: 'mindset', caption: 'A designer\'s mindset does not need a design title.' },
+      { after: 11, kind: 'pillars', caption: 'Relationships, safety, fairness, consistency, reliability.' },
+      { after: 13, kind: 'spread', caption: 'Design carried by people across the organisation.' },
+    ],
     tone: 'teal',
     year: '',
     context: 'Design maturity and trust in large organisations',
     title: 'How I learned to influence without authority',
     cues: [
-      'Describe a situation where you had to change how an organisation thought about design — without having the title or the mandate.',
+      'Describe a situation where you had to change how an organisation thought about design: without having the title or the mandate.',
       'What did you try that didn\'t work? What finally did?',
       'What does "earning trust" actually look like in practice inside a large enterprise?',
     ],
@@ -142,13 +164,19 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-sap-community',
     motif: 'hub',
+    figures: [
+      { after: 1, kind: 'custodian', caption: 'A custodian of something that belongs to many people.' },
+      { after: 3, kind: 'expand', caption: 'Expanding the circle while keeping the grassroots energy.' },
+      { after: 5, kind: 'between', caption: 'What happens between the events matters just as much.' },
+      { after: 10, kind: 'languages', caption: 'Fluent in the languages of business, technology, product and people.' },
+    ],
     tone: 'cobalt',
     year: '',
     context: 'SAP Design Hub India',
     title: 'Leading SAP Design Hub India',
     cues: [
       'What did you inherit when you became Lead of SAP Design Hub India in February 2025, and what did you decide to change first?',
-      'What surprised you most about what the community revealed — about designers, or about organisations?',
+      'What surprised you most about what the community revealed: about designers, or about organisations?',
       'What does it mean to build design culture from inside a large enterprise rather than starting fresh?',
       'As Lead Curator of Impulse India, what do you want a designer to walk away with?',
     ],
@@ -188,6 +216,12 @@ export const stories: LeadershipStory[] = [
   {
     id: 'story-design-culture',
     motif: 'culture',
+    figures: [
+      { after: 3, kind: 'status', caption: 'The visible work is only a fraction of the real work.' },
+      { after: 5, kind: 'disagree', caption: 'Disagreement worked through, never made personal.' },
+      { after: 7, kind: 'memory', caption: 'Archive the why, not just the what.' },
+      { after: 9, kind: 'purpose', caption: 'A shared purpose gives everything direction.' },
+    ],
     tone: 'plum',
     year: '',
     context: 'Inside a large enterprise',

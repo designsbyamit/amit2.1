@@ -5,7 +5,7 @@ import GrainOverlay from '../ui/GrainOverlay'
 const pillars = [
   {
     title: 'Dual Fluency',
-    description: 'The capacity to operate with equal confidence in design language and business language. The rarest skill in design leadership — and the most valuable.',
+    description: 'The capacity to operate with equal confidence in design language and business language. The rarest skill in design leadership, and the most valuable.',
   },
   {
     title: 'Studio Operations',
@@ -13,7 +13,7 @@ const pillars = [
   },
   {
     title: 'Strategic Influence',
-    description: 'Shaping product direction, organizational design, and design investment decisions at the executive level — not just delivering artifacts.',
+    description: 'Shaping product direction, organizational design, and design investment decisions at the executive level, not just delivering artifacts.',
   },
   {
     title: 'Mentorship',

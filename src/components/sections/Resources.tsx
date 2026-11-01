@@ -1,3 +1,4 @@
+import { useContact } from '../contact/ContactProvider'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -18,7 +19,7 @@ interface Resource {
   outcomes: string[]
   tags: string[]
   filterTags: string[]
-  // Unsplash image ID — meaning mapped per resource
+  // Unsplash image ID: meaning mapped per resource
   imageId: string
   imageAlt: string
   internalUrl?: string
@@ -34,6 +35,26 @@ interface Resource {
 }
 
 const resources: Resource[] = [
+  {
+    id: 'ai-native-patterns',
+    motif: 'spark',
+    tone: 'teal',
+    kind: 'Playbook',
+    topics: ['AI-native', 'agentic', 'frameworks'],
+    title: 'AI-Native Frameworks',
+    type: ['Interactive Playbook', 'Framework Library'],
+    description: 'The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks, Context Engineering through Prototype & Validation, each producing a tangible artifact.',
+    outcomes: ['End-to-end AI-native methodology', 'Five reusable frameworks', 'Tool orchestration guide', 'Downloadable canvases & templates'],
+    tags: ['AI', 'UX', 'Frameworks', 'Agentic Design'],
+    filterTags: ['AI', 'UX'],
+    // Particle flows and semantic clusters - AI reasoning and retrieval
+    imageId: 'photo-1639322537504-6427a16b0a28',
+    imageAlt: 'Abstract particle network',
+    internalUrl: '/resources/ai-native-patterns',
+    previewLabel: 'Explore the playbook',
+    requestAccess: true,
+    requestLabel: 'Request PDF playbook',
+  },
   {
     id: 'aai-toolkit',
     motif: 'network',
@@ -53,24 +74,21 @@ const resources: Resource[] = [
     previewLabel: 'Open the toolkit',
   },
   {
-    id: 'ai-native-patterns',
-    motif: 'spark',
-    tone: 'teal',
-    kind: 'Playbook',
-    topics: ['AI-native', 'agentic', 'frameworks'],
-    title: 'AI-Native Frameworks',
-    type: ['Interactive Playbook', 'Framework Library'],
-    description: 'The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks — Context Engineering through Prototype & Validation — each producing a tangible artifact.',
-    outcomes: ['End-to-end AI-native methodology', 'Five reusable frameworks', 'Tool orchestration guide', 'Downloadable canvases & templates'],
-    tags: ['AI', 'UX', 'Frameworks', 'Agentic Design'],
-    filterTags: ['AI', 'UX'],
-    // Particle flows and semantic clusters — AI reasoning and retrieval
-    imageId: 'photo-1639322537504-6427a16b0a28',
-    imageAlt: 'Abstract particle network',
-    internalUrl: '/resources/ai-native-patterns',
-    previewLabel: 'Explore the playbook',
-    requestAccess: true,
-    requestLabel: 'Request PDF playbook',
+    id: 'leading-design',
+    motif: 'phases',
+    tone: 'plum',
+    kind: 'Guide',
+    topics: ['leadership', 'managing design', 'hiring'],
+    title: 'Leading Design',
+    type: ['Guide', 'Worksheets'],
+    description: 'Stories, points and worksheets for new and mid-level design managers, in five chapters, with frameworks where they help. Start with building a design team: team shape, hiring and the first ninety days.',
+    outcomes: ['A team shaped on purpose', 'A hiring experience people respect', 'Editable worksheets with filled examples', 'A guide that grows chapter by chapter'],
+    tags: ['Leadership', 'Hiring', 'Management', 'Design'],
+    filterTags: ['Leadership', 'Career Growth'],
+    imageId: 'photo-1522071820081-009f0129c71c',
+    imageAlt: 'Team working together',
+    internalUrl: '/resources/leading-design',
+    previewLabel: 'Read the guide',
   },
   {
     id: 'dual-fluency',
@@ -84,7 +102,7 @@ const resources: Resource[] = [
     outcomes: ['Business fluency', 'Strategic influence', 'Better stakeholder communication', 'Enterprise design maturity'],
     tags: ['Business', 'Strategy', 'Leadership', 'Design'],
     filterTags: ['Leadership', 'Strategy', 'Workshops'],
-    // Soft glass gradients — intelligence and explainability
+    // Soft glass gradients: intelligence and explainability
     imageId: 'photo-1518531933037-91b2f5f229cc',
     imageAlt: 'Abstract light geometry',
     internalUrl: '/resources/dual-fluency',
@@ -104,7 +122,7 @@ const resources: Resource[] = [
     outcomes: ['Conversation design', 'Prompt design', 'Interaction flows', 'Trust and transparency'],
     tags: ['Conversational UX', 'AI', 'Interaction Design'],
     filterTags: ['AI', 'UX'],
-    // Nebula of connected nodes — enterprise knowledge universe
+    // Nebula of connected nodes: enterprise knowledge universe
     imageId: 'photo-1451187580459-43490279c0fa',
     imageAlt: 'Abstract node network nebula',
     internalUrl: '/resources/conversation-experience',
@@ -124,7 +142,7 @@ const resources: Resource[] = [
     outcomes: ['Leadership growth', 'Systems thinking', 'Decision-making', 'Design maturity'],
     tags: ['Leadership', 'Books', 'Growth'],
     filterTags: ['Leadership', 'Career Growth'],
-    // Blueprint grids — investigation and systems thinking
+    // Blueprint grids: investigation and systems thinking
     imageId: 'photo-1558618666-fcd25c85cd64',
     imageAlt: 'Blueprint geometric grid',
     readingList: true,
@@ -141,7 +159,7 @@ const resources: Resource[] = [
     outcomes: ['Better project discovery', 'Faster alignment', 'Improved stakeholder conversations'],
     tags: ['Discovery', 'Research', 'Workshops', 'UX'],
     filterTags: ['Research', 'Workshops', 'UX'],
-    // Minimal dark gradient — keep focus on the content
+    // Minimal dark gradient: keep focus on the content
     imageId: 'photo-1554147090-e1221a04a025',
     imageAlt: 'Minimal dark abstract',
     previewUrl: 'https://forms.gle/FHJ1qEvRRsXzmkvu8',
@@ -154,22 +172,16 @@ const resources: Resource[] = [
 const readingItems = {
   articles: [
     { title: 'The Looking Glass: On Feedback', author: 'Julie Zhuo', publication: 'Medium', why: 'The clearest writing on how design leaders give and receive feedback without crushing the people or the work.', url: 'https://medium.com/the-year-of-the-looking-glass/how-to-give-feedback-without-being-a-dick-b9e87ee018e8' },
-    { title: 'How to Be a Design Leader (Not Just a Senior Designer)', author: 'Julie Zhuo', publication: 'Medium', why: 'The most precise articulation of the shift from individual contributor to leader — what changes, and what must change about you.', url: 'https://medium.com/the-year-of-the-looking-glass/how-to-be-a-design-leader-not-just-a-senior-designer-24db8fc278d7' },
-    { title: "The Designer's Dilemma", author: 'John Maeda', publication: 'KPCB Design in Tech Report', why: 'A systems-level view of where design sits in tech organisations — and the structural reasons it struggles for influence.', url: 'https://designintech.report' },
+    { title: 'How to Be a Design Leader (Not Just a Senior Designer)', author: 'Julie Zhuo', publication: 'Medium', why: 'The most precise articulation of the shift from individual contributor to leader: what changes, and what must change about you.', url: 'https://medium.com/the-year-of-the-looking-glass/how-to-be-a-design-leader-not-just-a-senior-designer-24db8fc278d7' },
+    { title: "The Designer's Dilemma", author: 'John Maeda', publication: 'KPCB Design in Tech Report', why: 'A systems-level view of where design sits in tech organisations, and the structural reasons it struggles for influence.', url: 'https://designintech.report' },
     { title: 'Why Design Thinking is Not Enough', author: 'Natasha Jen', publication: 'Fast Company', why: 'Design thinking without rigour and depth of craft produces mediocre outcomes. The counterargument every design leader should internalise.', url: 'https://www.fastcompany.com/90147798/why-design-thinking-is-not-enough' },
-    { title: 'Managing Design at Scale', author: 'Jean-Marc Denis', publication: 'Medium', why: 'The practical mechanics of running a design organisation — hiring bars, critique culture, and how to keep quality high as the team grows.', url: 'https://medium.com/@jmd' },
+    { title: 'Managing Design at Scale', author: 'Jean-Marc Denis', publication: 'Medium', why: 'The practical mechanics of running a design organisation: hiring bars, critique culture, and how to keep quality high as the team grows.', url: 'https://medium.com/@jmd' },
   ],
   books: [
     { title: 'The Making of a Manager', author: 'Julie Zhuo', why: 'The most honest and practical book on design management. Required reading before you manage your first designer.' },
-    { title: 'The Design of Everyday Things', author: 'Don Norman', why: 'The foundational text. Every design leader must have internalised its vocabulary — affordances, feedback, mental models.' },
+    { title: 'The Design of Everyday Things', author: 'Don Norman', why: 'The foundational text. Every design leader must have internalised its vocabulary: affordances, feedback, mental models.' },
     { title: 'Inspired: How to Create Tech Products Customers Love', author: 'Marty Cagan', why: 'The business context design leaders operate in. Understanding product discovery separates designers who advise from designers who influence.' },
   ],
-}
-
-function makeMailto(resourceTitle: string) {
-  const subject = encodeURIComponent(`Requesting Access - ${resourceTitle}`)
-  const body = encodeURIComponent(`Hello Amit,\n\nI came across your resource "${resourceTitle}" and would love to request access.\n\nA little about me:\n\nName:\nRole:\nOrganization:\n\nThank you.\n\nRegards`)
-  return `mailto:uxbyamit@gmail.com?subject=${subject}&body=${body}`
 }
 
 function ReadingListContent() {
@@ -206,6 +218,7 @@ function ReadingListContent() {
 // ── Resource item: sheet cover + summary + actions ─────────────────────────
 
 function ResourceCard({ resource, index }: { resource: Resource; index: number }) {
+  const { open } = useContact()
   const [expanded, setExpanded] = useState(false)
   const titleId = `res-${resource.id}`
   return (
@@ -215,7 +228,12 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
       <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-[260px]">
         {resource.internalUrl
           ? <Link to={resource.internalUrl} tabIndex={-1} className="block transition-transform duration-300 hover:-translate-y-1"><ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} /></Link>
-          : <ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} />}
+          : (resource.previewUrl && !resource.readingList)
+            ? <a href={resource.previewUrl} tabIndex={-1} aria-hidden="true" className="block transition-transform duration-300 hover:-translate-y-1"
+                {...(/^https?:/.test(resource.previewUrl) ? { target: '_blank', rel: 'noopener noreferrer' } : {})}><ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} /></a>
+            : resource.readingList
+              ? <button type="button" tabIndex={-1} aria-hidden="true" onClick={() => setExpanded(e => !e)} className="block w-full text-left transition-transform duration-300 hover:-translate-y-1"><ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} /></button>
+              : <ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} />}
       </div>
       <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
         <TagList items={resource.topics} label="Topics" />
@@ -228,7 +246,7 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
             <>
               {resource.internalUrl && <Button to={resource.internalUrl} arrow>{resource.previewLabel || 'Explore'}</Button>}
               {!resource.internalUrl && resource.previewUrl && <Button href={resource.previewUrl} arrow>{resource.previewLabel || 'Preview'}</Button>}
-              {resource.requestAccess && <Button variant="secondary" href={makeMailto(resource.title)}>{resource.requestLabel || 'Request access'}</Button>}
+              {resource.requestAccess && <Button variant="secondary" onClick={() => open({ topic: 'resource', subject: `Requesting Access - ${resource.title}`, message: `I would like to request access to “${resource.title}”.` })}>{resource.requestLabel || 'Request access'}</Button>}
             </>
           )}
         </div>
@@ -248,15 +266,19 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
 // ── Main component ───────────────────────────────────────────────────────────
 
 export default function Resources() {
+  const { open } = useContact()
   const [activeFilter, setActiveFilter] = useState('All')
   const filtered = activeFilter === 'All' ? resources : resources.filter(r => r.filterTags.includes(activeFilter))
   return (
     <section className="relative pb-24 md:pb-32" id="resources">
       <div className="container-site">
-        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter resources">
-          {allFilters.map(f => <Chip key={f} pressed={activeFilter === f} onClick={() => setActiveFilter(f)}>{f}</Chip>)}
+        <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="Filter resources">
+          {allFilters.filter(f => f === 'All' || resources.some(r => r.filterTags.includes(f))).map(f => {
+            const n = f === 'All' ? resources.length : resources.filter(r => r.filterTags.includes(f)).length
+            return <Chip key={f} pressed={activeFilter === f} onClick={() => setActiveFilter(f)}>{f} <span className="opacity-60">{n}</span></Chip>
+          })}
         </div>
-        <p className="sr-only" aria-live="polite">{filtered.length} resources shown</p>
+        <p className="text-label text-ink-3 mb-8" aria-live="polite">{filtered.length} {filtered.length === 1 ? 'resource' : 'resources'}{activeFilter === 'All' ? '' : ` in ${activeFilter}`}</p>
         <div>{filtered.map((r, i) => <ResourceCard key={r.id} resource={r} index={i} />)}</div>
         <div className="hairline-top pt-16 mt-4 grid md:grid-cols-[2fr_1fr] gap-10 items-end">
           <div>
@@ -264,7 +286,7 @@ export default function Resources() {
             <p className="text-heading text-ink mb-3">Many of these came from real projects, workshops, mentoring conversations and community work.</p>
             <p className="text-body text-ink-2">If you need something particular, reach out.</p>
           </div>
-          <div className="flex md:justify-end"><Button variant="secondary" href="mailto:uxbyamit@gmail.com">Get in touch</Button></div>
+          <div className="flex md:justify-end"><Button variant="secondary" onClick={() => open({ topic: 'other' })}>Get in touch</Button></div>
         </div>
       </div>
     </section>

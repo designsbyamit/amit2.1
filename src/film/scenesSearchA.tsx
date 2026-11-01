@@ -203,7 +203,7 @@ export function SProcess({ t }: { t: number }) {
         <In t={t} a={60.6} style={{ left: 1320, top: 250 }}><div style={{ fontFamily: mono, fontSize: 20, letterSpacing: '0.12em', color: C.red }}>12 PAIN POINTS</div></In>
         {['Inadequate autocomplete', 'No natural language', 'Poor indexing', 'No personalisation', 'No context', 'Limited filters'].map((x, i) => {
           const p = easeOut(seg(t, 60.8 + i * 0.15, 61.4 + i * 0.15))
-          return <div key={x} style={{ position: 'absolute', left: 1320, top: 310 + i * 60, fontSize: 27, fontWeight: 300, opacity: p, transform: `translateX(${(1 - p) * 20}px)` }}><span style={{ color: C.red }}>— </span>{x}</div>
+          return <div key={x} style={{ position: 'absolute', left: 1320, top: 310 + i * 60, fontSize: 27, fontWeight: 300, opacity: p, transform: `translateX(${(1 - p) * 20}px)` }}><span style={{ color: C.red }}>- </span>{x}</div>
         })}
         <In t={t} a={61.8} style={{ left: 1320, top: 680 }}><div style={{ fontSize: 24, color: C.mute }}>…and six more</div></In>
         <In t={t} a={61.2} y={0} style={{ left: 100, top: 640, width: 1700 }}><div style={{ height: 1, background: C.line }} /></In>
@@ -234,7 +234,7 @@ export function SProcess({ t }: { t: number }) {
               <div key={g.title} style={{ position: 'absolute', left: 100 + i * 437, top: 300, width: 410, height: 500, borderRadius: 20, background: C.panel, border: `1px solid ${C.line}`, padding: '30px 30px', opacity: p, transform: `translateY(${(1 - p) * 50}px)` }}>
                 <div style={{ fontSize: 110, fontWeight: 100, color: C.lime, lineHeight: 1, letterSpacing: '-0.05em' }}>{g.items.length}</div>
                 <div style={{ fontSize: 30, fontWeight: 400, marginTop: 14, minHeight: 112, lineHeight: 1.2 }}>{g.title}</div>
-                {g.items.slice(0, 3).map(x => <div key={x} style={{ fontSize: 21, color: C.mute, marginTop: 12 }}>— {x}</div>)}
+                {g.items.slice(0, 3).map(x => <div key={x} style={{ fontSize: 21, color: C.mute, marginTop: 12 }}>- {x}</div>)}
               </div>
             )
           })}

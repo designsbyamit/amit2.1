@@ -28,7 +28,7 @@ export default function LeadershipInitiatives() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            Leadership extends beyond the project. These are the communities, events, and platforms I've built or contributed to — places where design culture gets made.
+            Leadership extends beyond the project. These are the communities, events, and platforms I've built or contributed to: places where design culture gets made.
           </motion.p>
         </div>
 

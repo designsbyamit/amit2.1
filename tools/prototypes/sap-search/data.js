@@ -4,17 +4,17 @@ export const apps = { s4: 'S/4HANA Cloud', ariba: 'Ariba', concur: 'Concur', sf:
 export const home = {
   app: 's4', greeting: 'Good morning, Alex', sub: 'What would you like to do today?',
   cards: [['My Purchase Orders', '12 active', '14 pending POs', 'po'], ['Pending Invoices', '3 need approval', '14 pending POs', 'po'], ['Catalog', 'Browse products', '14 pending POs', 'buy'], ['Reports', 'Spend analytics', '14 pending POs', 'po']],
-  suggestions: ['Create Purchase Order', 'Approve Purchase Requisition', 'View Procurement Dashboard', 'Compare Suppliers — Q2 2026'],
+  suggestions: ['Create Purchase Order', 'Approve Purchase Requisition', 'View Procurement Dashboard', 'Compare Suppliers - Q2 2026'],
 };
 
 // Type-ahead lists exactly as in frames 1.4, 1.5, 3.2, 4.2, 5.2
 export const typeahead = {
-  sow: { route: 'sow', app: 'Fieldglass', items: ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs — CyberSecure Ltd', 'SOWs expiring in the next 30 days — CyberSecure Ltd', 'Pending items on SOW 1150 — Endpoint Protection Rollout', 'Workers assigned to SOW 1133 — Compliance Readiness'] },
-  purchase: { route: 'po', app: 'S/4HANA Cloud', items: ['PO 4500012345 — ACME Office Supplies', 'PR 7800098765 — IT Equipment Request', 'Contract CNT-2026-001 — Facilities Mgmt', 'Invoice INV-884521 — Accenture Services', 'GR 5500045321 — Electronics Delivery'] },
-  pur: { route: 'po', app: 'S/4HANA Cloud', items: ['Purchase Orders — Pending Approval (14)', 'Purchase Requisitions — New This Week (8)', 'Purchase Contract — IT Equipment 2026', 'Purchase Invoice — Due This Week (3)'] },
+  sow: { route: 'sow', app: 'Fieldglass', items: ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs, CyberSecure Ltd', 'SOWs expiring in the next 30 days, CyberSecure Ltd', 'Pending items on SOW 1150, Endpoint Protection Rollout', 'Workers assigned to SOW 1133, Compliance Readiness'] },
+  purchase: { route: 'po', app: 'S/4HANA Cloud', items: ['PO 4500012345 - ACME Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Accenture Services', 'GR 5500045321 - Electronics Delivery'] },
+  pur: { route: 'po', app: 'S/4HANA Cloud', items: ['Purchase Orders, Pending Approval (14)', 'Purchase Requisitions, New This Week (8)', 'Purchase Contract, IT Equipment 2026', 'Purchase Invoice, Due This Week (3)'] },
   flight: { route: 'travel', app: 'Concur', items: ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5–12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20–27'] },
   laptop: { route: 'buy', app: 'Ariba', items: ['Difference: iPhone 17 vs iPhone 17 Pro', 'Difference: iPhone 17 vs iPhone 17 Air', 'Difference: iPhone 17 vs iPhone 16 Pro', 'Difference: iPhone 17 Pro vs Samsung S25 Ultra', 'Difference: iPhone 17 Pro vs iPhone 17 Pro Max'] },
-  goals: { route: 'goals', app: 'SuccessFactors', items: ['Draft quarterly OKRs — Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress — Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates'] },
+  goals: { route: 'goals', app: 'SuccessFactors', items: ['Draft quarterly OKRs, Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress, Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates'] },
 };
 
 export const capsules = {
@@ -40,14 +40,14 @@ export const results = {
     ['Modified 22 Apr 2026 · Finance Dept', 'Requestor: T. Mueller · Dept: Facility Mgmt', 'PO_Details.pdf'],
     ['Modified 15 Apr 2026 · HR Dept', 'Requestor: A. Schneider · Dept: IT', 'Vendor_Quote.pdf'],
   ],
-  products: [['PO 4500012345', 'Office Supplies — Office Depot GmbH'], ['Standing Desk 180cm', 'Height-adjustable · SKU: SD-180-X'], ['Monitor 27" 4K', 'USB-C · SKU: MON-27-4K'], ['Laptop Bag 15"', 'Waterproof · SKU: LB-15-WP'], ['Keyboard & Mouse Set', 'Wireless · SKU: KMS-WL-SET'], ['USB-C Hub 7-port', 'Thunderbolt 4 · SKU: HUB-7-TB4']],
+  products: [['PO 4500012345', 'Office Supplies - Office Depot GmbH'], ['Standing Desk 180cm', 'Height-adjustable · SKU: SD-180-X'], ['Monitor 27" 4K', 'USB-C · SKU: MON-27-4K'], ['Laptop Bag 15"', 'Waterproof · SKU: LB-15-WP'], ['Keyboard & Mouse Set', 'Wireless · SKU: KMS-WL-SET'], ['USB-C Hub 7-port', 'Thunderbolt 4 · SKU: HUB-7-TB4']],
   panelList: [
     ['Created 15 May 2026 · Vendor: Staples GmbH · €2,400', 'Requestor: T. Mueller · Dept: Facility Mgmt', 'PO_Details.pdf'],
     ['Created 10 May 2026 · Vendor: Dell Technologies · €18,600', 'Requestor: A. Schneider · Dept: IT', 'Vendor_Quote.pdf'],
     ['Created 02 May 2026 · Vendor: CleanPro AG · €950', 'Requestor: D. Park · Dept: Operations', 'Service_Agreement.pdf'],
     ['Created 28 Apr 2026 · Vendor: Northwind SE · €45,000', 'Requestor: L. Kim · Dept: Finance', 'Invoice_Draft.pdf'],
   ],
-  detail: { title: 'PO 4500012345 — Office Supplies', status: 'Open', fields: [['Vendor', 'Staples GmbH'], ['Created By', 'Maria Schmidt'], ['Created On', '15 May 2026'], ['Net Amount', '€2,400.00'], ['Currency', 'EUR'], ['Company Code', '1000']] },
+  detail: { title: 'PO 4500012345 - Office Supplies', status: 'Open', fields: [['Vendor', 'Staples GmbH'], ['Created By', 'Maria Schmidt'], ['Created On', '15 May 2026'], ['Net Amount', '€2,400.00'], ['Currency', 'EUR'], ['Company Code', '1000']] },
 };
 
 export const travel = {
@@ -63,9 +63,9 @@ export const travel = {
     ['Lufthansa · Economy · €245 · 1h 15m direct · Compliant with policy', 'Economy · 1 stop · 22h 15m · Policy compliant', 'Hotel_Booking.pdf', 'Positive'],
   ],
   booking: {
-    title: 'Book Flight — Palo Alto to Bangalore', crumbs: ['Travel', 'SFO to Bangalore', 'Select Flight', 'Review'],
-    flight: 'EK237 — San Francisco (SFO) → Bangalore (BLR)',
-    details: [['Airline', 'Emirates'], ['Departure', "08:00 — San Francisco Int'l (SFO)"], ['Arrival', "23:30+1 — Kempegowda Int'l Airport (BLR)"], ['Class', 'Economy'], ['Fare', '$1,240.00']],
+    title: 'Book Flight - Palo Alto to Bangalore', crumbs: ['Travel', 'SFO to Bangalore', 'Select Flight', 'Review'],
+    flight: 'EK237 - San Francisco (SFO) → Bangalore (BLR)',
+    details: [['Airline', 'Emirates'], ['Departure', "08:00, San Francisco Int'l (SFO)"], ['Arrival', "23:30+1, Kempegowda Int'l Airport (BLR)"], ['Class', 'Economy'], ['Fare', '$1,240.00']],
     summary: [['Traveller', 'Maria Schmidt'], ['Company Code', '1000'], ['Cost Center', 'IT-0450'], ['Trip Purpose', 'Business Meeting'], ['Approval Required', 'No (< €400)']],
     total: '$1,240.00',
   },
@@ -77,16 +77,16 @@ export const procurement = {
   products: [['Apple iPhone 17 Pro', 'Apple'], ['Dell Latitude 5540', 'Dell'], ['HP EliteBook 850', 'HP']],
   rows: [['Processor', 'Intel Core i7-1365U', 'Intel Core i7-1355U', 'Intel Core i7-1355U'], ['RAM', '16 GB DDR5', '16 GB DDR4', '16 GB DDR4'], ['Storage', '512 GB NVMe SSD', '512 GB SSD', '512 GB PCIe SSD'], ['Display', '14" 2.8K OLED', '15.6" FHD IPS', '15.6" FHD IPS'], ['Weight', '1.12 kg', '1.78 kg', '1.79 kg'], ['Warranty', '3 years on-site', '3 years ProSupport', '3 years next-day']],
   ariba: {
-    title: 'Procurement — iPhone 17 Pro (Qty: 50)', crumbs: ['Catalog', 'IT Equipment', 'Mobile Devices', 'iPhone 17 Pro'],
-    product: 'Apple iPhone 17 Pro — 256GB Natural Titanium', price: '$59,950.00', unit: 1199,
-    details: [['Supplier', 'CDW Enterprise Technology Solutions'], ['SKU', 'MYPG3LL/A — Natural Titanium 256GB'], ['Lead Time', '2–3 business days'], ['Contract', 'Apple Enterprise 2026 — CDW Preferred Contract']],
+    title: 'Procurement: iPhone 17 Pro (Qty: 50)', crumbs: ['Catalog', 'IT Equipment', 'Mobile Devices', 'iPhone 17 Pro'],
+    product: 'Apple iPhone 17 Pro - 256GB Natural Titanium', price: '$59,950.00', unit: 1199,
+    details: [['Supplier', 'CDW Enterprise Technology Solutions'], ['SKU', 'MYPG3LL/A - Natural Titanium 256GB'], ['Lead Time', '2–3 business days'], ['Contract', 'Apple Enterprise 2026 - CDW Preferred Contract']],
     qty: 50,
   },
 };
 
 export const goals = {
   home: { app: 'sf', title: 'People & Performance', sub: 'Welcome back, Maria. What are you looking for today?', cards: [['My Team', '8 direct reports · 3 goals pending', '8 direct reports'], ['Goals', '3 open · 1 due this month', '8 direct reports'], ['Learning', '2 courses in progress', '8 direct reports'], ['Performance Review', 'Mid-year review: Jun 2026', '8 direct reports'], ['Time Off', '12 days remaining this year', '8 direct reports'], ['Org Chart', 'Explore company structure', '8 direct reports']] },
-  title: 'Alex Johnson — Q2 2026 Goals', meta: 'Performance Manager: Sarah Chen · Department: Engineering',
+  title: 'Alex Johnson - Q2 2026 Goals', meta: 'Performance Manager: Sarah Chen · Department: Engineering',
   items: [
     ['Deliver Q2 Product Roadmap', 'Complete all 3 milestones by end of June 2026', 75, 'On Track'],
     ['Improve Team Velocity by 20%', 'Increase sprint completion rate through process improvements', 60, 'On Track'],
@@ -123,7 +123,7 @@ export const sow = {
 // [text, source application, route]
 export const recent = [['Pending POs', 'S/4HANA Cloud', 'po'], ['Flight to Bangalore', 'Concur', 'travel'], ['Draft goals for product design team', 'SuccessFactors', 'goals']];
 export const suggested = [['SOWs expiring this month', 'Fieldglass', 'sow'], ['Invoices awaiting my approval', 'S/4HANA Cloud', 'po']];
-export const current = [['Current status & end date of SOW IDs for CyberSecure Ltd', 'Fieldglass', 'sow'], ['Current status of PO 4500012345 (ACME)', 'S/4HANA Cloud', 'po'], ['Current trip — SFO → BLR, Jun 10–17', 'Concur', 'travel'], ['Current quarter goals — Product Design team', 'SuccessFactors', 'goals']];
+export const current = [['Current status & end date of SOW IDs for CyberSecure Ltd', 'Fieldglass', 'sow'], ['Current status of PO 4500012345 (ACME)', 'S/4HANA Cloud', 'po'], ['Current trip, SFO → BLR, Jun 10–17', 'Concur', 'travel'], ['Current quarter goals, Product Design team', 'SuccessFactors', 'goals']];
 
 // ── One results layout for every product (structure of Figma 6-61420 / 6-61503) ──
 // Each row: title, id tags, reference line, description, key facts, status, level, AI note, actions.
@@ -138,11 +138,11 @@ export const resultSets = {
     more: 'which together hold up $146,000. The other orders are on schedule. Approving the Lenovo order clears the largest single amount, and the Office Depot order needs a follow-up with T. Mueller in Facility Mgmt.',
     total: 14, tabs: ['All ({n})', 'Overdue ({n})', 'Pending Approval ({n})'],
     rows: [
-      { title: 'Office Depot GmbH — Office supplies', ids: ['$42,500'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Due Date', '31-Jan-2026'], ['Approval', 'Approved']], status: ['Overdue', 'Negative'], level: lvl('High'), note: 'Overdue 8 days: follow up with the supplier', actions: [['Follow Up', 'Emphasized', 'email'], ['PO_Details.pdf', 'Default', 'pdf-attachment']], tabs: [1] },
-      { title: 'Lenovo Solutions AG — IT equipment', ids: ['$127,800'], ref: 'Requestor: A. Schneider • IT', desc: 'Purchase order with Vendor_Quote.pdf attached.', kv: [['Due Date', '03-Feb-2026'], ['Approval', 'Level 2']], status: ['Pending Approval', 'Critical'], level: lvl('Medium'), note: 'Largest pending amount', actions: [['Approve', 'Emphasized', 'accept'], ['Vendor_Quote.pdf', 'Default', 'pdf-attachment']], tabs: [2] },
-      { title: 'CleanPro Services — Facility services', ids: ['$18,200'], ref: 'Requestor: D. Park • Operations', desc: 'Service agreement with Service_Agreement.pdf attached.', kv: [['Due Date', '28-Jan-2026'], ['Approval', 'Level 1']], status: ['Pending Approval', 'Critical'], level: lvl('Medium'), note: 'Waiting on level-1 approval', actions: [['Approve', 'Emphasized', 'accept'], ['Service_Agreement.pdf', 'Default', 'pdf-attachment']], tabs: [2] },
-      { title: 'Northwind SE — Software services', ids: ['€45,000'], ref: 'Requestor: L. Kim • Finance', desc: 'Invoice draft with Invoice_Draft.pdf attached.', kv: [['Created', '28-Apr-2026'], ['Approval', 'Not required']], status: ['Open', 'Information'], level: lvl('Low'), note: 'On schedule', actions: [['Invoice_Draft.pdf', 'Default', 'pdf-attachment']], tabs: [] },
-      { title: 'Corporate Travel — Travel services', ids: ['€3,200'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Created', '20-Apr-2026'], ['Approval', 'Not required']], status: ['Open', 'Information'], level: lvl('Low'), note: 'On schedule', actions: [['PO_Details.pdf', 'Default', 'pdf-attachment']], tabs: [] },
+      { title: 'Office Depot GmbH - Office supplies', ids: ['$42,500'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Due Date', '31-Jan-2026'], ['Approval', 'Approved']], status: ['Overdue', 'Negative'], level: lvl('High'), note: 'Overdue 8 days: follow up with the supplier', actions: [['Follow Up', 'Emphasized', 'email'], ['PO_Details.pdf', 'Default', 'pdf-attachment']], tabs: [1] },
+      { title: 'Lenovo Solutions AG - IT equipment', ids: ['$127,800'], ref: 'Requestor: A. Schneider • IT', desc: 'Purchase order with Vendor_Quote.pdf attached.', kv: [['Due Date', '03-Feb-2026'], ['Approval', 'Level 2']], status: ['Pending Approval', 'Critical'], level: lvl('Medium'), note: 'Largest pending amount', actions: [['Approve', 'Emphasized', 'accept'], ['Vendor_Quote.pdf', 'Default', 'pdf-attachment']], tabs: [2] },
+      { title: 'CleanPro Services - Facility services', ids: ['$18,200'], ref: 'Requestor: D. Park • Operations', desc: 'Service agreement with Service_Agreement.pdf attached.', kv: [['Due Date', '28-Jan-2026'], ['Approval', 'Level 1']], status: ['Pending Approval', 'Critical'], level: lvl('Medium'), note: 'Waiting on level-1 approval', actions: [['Approve', 'Emphasized', 'accept'], ['Service_Agreement.pdf', 'Default', 'pdf-attachment']], tabs: [2] },
+      { title: 'Northwind SE - Software services', ids: ['€45,000'], ref: 'Requestor: L. Kim • Finance', desc: 'Invoice draft with Invoice_Draft.pdf attached.', kv: [['Created', '28-Apr-2026'], ['Approval', 'Not required']], status: ['Open', 'Information'], level: lvl('Low'), note: 'On schedule', actions: [['Invoice_Draft.pdf', 'Default', 'pdf-attachment']], tabs: [] },
+      { title: 'Corporate Travel - Travel services', ids: ['€3,200'], ref: 'Requestor: T. Mueller • Facility Mgmt', desc: 'Purchase order with PO_Details.pdf attached.', kv: [['Created', '20-Apr-2026'], ['Approval', 'Not required']], status: ['Open', 'Information'], level: lvl('Low'), note: 'On schedule', actions: [['PO_Details.pdf', 'Default', 'pdf-attachment']], tabs: [] },
     ],
   },
   travel: {
@@ -153,10 +153,10 @@ export const resultSets = {
     more: 'so it would need approval. The preferred hotel for this trip is The Leela Palace, Bangalore, 0.8 km from the office. India requires a visa, with processing taking 5–7 days, so apply before you book.',
     total: 8, tabs: ['All ({n})', 'Policy Compliant ({n})', 'Exceeds Policy ({n})'],
     rows: [
-      { title: 'Emirates EK237 — via Dubai', ids: ['$1,240', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Preferred route, with The Leela Palace as the preferred hotel.', kv: [['Duration', '21h 30m'], ['Stops', '1 (DXB)']], status: ['Policy Compliant', 'Positive'], level: ['Preferred Route', 'Positive', 'sys-enter-2'], note: 'Recommended for this trip', actions: [['Book', 'Emphasized', 'flight', 'concur']], tabs: [1] },
-      { title: 'Emirates — via Dubai', ids: ['$980', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Estimated cost: $1,247 per person.', kv: [['Duration', '23h 15m'], ['Stops', '1 (DXB)']], status: ['Policy Compliant', 'Positive'], level: null, note: 'Lowest fare', actions: [['Book', 'Emphasized', 'flight', 'concur']], tabs: [1] },
-      { title: 'United Airlines — via Frankfurt', ids: ['$1,100', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Visa required; processing takes 5–7 days.', kv: [['Duration', '22h 50m'], ['Stops', '1 (FRA)']], status: ['Policy Compliant', 'Positive'], level: null, note: 'Apply for the visa first', actions: [['Book', 'Emphasized', 'flight', 'concur']], tabs: [1] },
-      { title: 'Lufthansa — via Munich', ids: ['$1,850', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Fastest option on this route.', kv: [['Duration', '20h 15m'], ['Stops', '1 (MUC)']], status: ['Exceeds Policy', 'Negative'], level: ['Approval Needed', 'Critical', 'alert'], note: 'Over the policy limit', actions: [['Request Approval', 'Default', 'paper-plane']], tabs: [2] },
+      { title: 'Emirates EK237: via Dubai', ids: ['$1,240', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Preferred route, with The Leela Palace as the preferred hotel.', kv: [['Duration', '21h 30m'], ['Stops', '1 (DXB)']], status: ['Policy Compliant', 'Positive'], level: ['Preferred Route', 'Positive', 'sys-enter-2'], note: 'Recommended for this trip', actions: [['Book', 'Emphasized', 'flight', 'concur']], tabs: [1] },
+      { title: 'Emirates: via Dubai', ids: ['$980', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Estimated cost: $1,247 per person.', kv: [['Duration', '23h 15m'], ['Stops', '1 (DXB)']], status: ['Policy Compliant', 'Positive'], level: null, note: 'Lowest fare', actions: [['Book', 'Emphasized', 'flight', 'concur']], tabs: [1] },
+      { title: 'United Airlines: via Frankfurt', ids: ['$1,100', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Visa required; processing takes 5–7 days.', kv: [['Duration', '22h 50m'], ['Stops', '1 (FRA)']], status: ['Policy Compliant', 'Positive'], level: null, note: 'Apply for the visa first', actions: [['Book', 'Emphasized', 'flight', 'concur']], tabs: [1] },
+      { title: 'Lufthansa: via Munich', ids: ['$1,850', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Fastest option on this route.', kv: [['Duration', '20h 15m'], ['Stops', '1 (MUC)']], status: ['Exceeds Policy', 'Negative'], level: ['Approval Needed', 'Critical', 'alert'], note: 'Over the policy limit', actions: [['Request Approval', 'Default', 'paper-plane']], tabs: [2] },
     ],
   },
   buy: {
@@ -168,12 +168,12 @@ export const resultSets = {
     total: 3, tabs: ['All ({n})', 'On Contract ({n})', 'Catalog Only ({n})'],
     rows: [
       { title: 'Apple iPhone 17 Pro', ids: ['$1,199 / unit'], ref: 'Supplier: CDW • Apple Enterprise 2026', desc: 'Intel Core i7-1365U · 16 GB DDR5 · 512 GB NVMe SSD · 3 years on-site.', kv: [['Display', '14" 2.8K OLED'], ['Weight', '1.12 kg'], ['Lead Time', '2–3 days']], status: ['On Contract', 'Positive'], level: ['Preferred', 'Positive', 'sys-enter-2'], note: 'Lightest of the three', actions: [['Request in Ariba', 'Emphasized', 'cart', 'ariba']], tabs: [1] },
-      { title: 'Dell Latitude 5540', ids: ['Dell'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB SSD · 3 years ProSupport.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.78 kg'], ['Lead Time', '—']], status: ['Catalog', 'Information'], level: null, note: 'Heavier, larger display', actions: [['Request in Ariba', 'Default', 'cart', 'ariba']], tabs: [2] },
-      { title: 'HP EliteBook 850', ids: ['HP'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB PCIe SSD · 3 years next-day.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.79 kg'], ['Lead Time', '—']], status: ['Catalog', 'Information'], level: null, note: 'Next-day warranty service', actions: [['Request in Ariba', 'Default', 'cart', 'ariba']], tabs: [2] },
+      { title: 'Dell Latitude 5540', ids: ['Dell'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB SSD · 3 years ProSupport.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.78 kg'], ['Lead Time', '-']], status: ['Catalog', 'Information'], level: null, note: 'Heavier, larger display', actions: [['Request in Ariba', 'Default', 'cart', 'ariba']], tabs: [2] },
+      { title: 'HP EliteBook 850', ids: ['HP'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB PCIe SSD · 3 years next-day.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.79 kg'], ['Lead Time', '-']], status: ['Catalog', 'Information'], level: null, note: 'Next-day warranty service', actions: [['Request in Ariba', 'Default', 'cart', 'ariba']], tabs: [2] },
     ],
   },
   goals: {
-    app: 'sf', icon: 'goal', query: 'Review goal progress — Engineering team', question: 'Q2 2026 goals for Alex Johnson',
+    app: 'sf', icon: 'goal', query: 'Review goal progress - Engineering team', question: 'Q2 2026 goals for Alex Johnson',
     filters: ['All', 'On Track', 'At Risk', 'Category', 'Due Date', 'Team Member', 'Weight'],
     summaryTitle: 'Goal Summary',
     summary: 'Alex Johnson has six goals for Q2 2026 in SuccessFactors. Three are on track, two are in progress and one is at risk: Reduce Tech Debt by 30% is 20% complete. The furthest along is Deliver Q2 Product Roadmap at 75%,',
