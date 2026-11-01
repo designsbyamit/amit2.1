@@ -228,6 +228,27 @@ A.river=function(box){
   YEARS.forEach((y,i)=>{const c=cnt[i];const r=s('rect',{x:x(y)-W/28,y:T,width:W/14,height:H-T-B,fill:'transparent',class:'hit'});
     hov(r,y+' · '+c.t+' project'+(c.t===1?'':'s'),()=>{const q=ps.filter(p=>p.year===y);return ROLES.filter(r=>c[r]).map(r=>r+': '+c[r]).concat(q.length?['Industries: '+new Set(q.map(p=>p.industry)).size,'Median duration: '+mo(med(q.map(p=>p.dur)))]:['Nothing recorded for this year'])});svg.append(r)});
   box.replaceChildren(svg)};
+A.indyear=function(box){
+  const ps=F('industry');const all=A.ALL;const inds=[...new Set(D.map(p=>p.industry))];
+  const first=i=>Math.min(...D.filter(p=>p.industry===i).map(p=>p.year));const n=i=>D.filter(p=>p.industry===i).length;
+  inds.sort((a,b)=>first(a)-first(b)||n(b)-n(a));
+  const L=190,cw=56,ch=28,T=58,R=60,sq=15,W=L+cw*14+R,H=T+ch*inds.length+44;
+  const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,style:`min-width:${W*0.85}px;width:100%`,role:'img','aria-label':'Projects by industry and year, one square per project coloured by role'});
+  const tot=YEARS.map(y=>ps.filter(p=>p.year===y).length);const mx=Math.max(1,...tot);
+  YEARS.forEach((y,i)=>{const x=L+i*cw;svg.append(s('text',{x:x+cw/2,y:18,'text-anchor':'middle',class:'mono'},String(y)));
+    const bh=tot[i]/mx*16;svg.append(s('rect',{x:x+cw/2-9,y:44-bh,width:18,height:Math.max(tot[i]?1.5:0,bh),rx:2,fill:'var(--ink3)',opacity:.55}));if(tot[i])svg.append(s('text',{x:x+cw/2+13,y:43,class:'mono t-ink2'},String(tot[i])))});
+  svg.append(s('text',{x:L+14*cw+8,y:18,class:'mono'},'TOTAL'));
+  inds.forEach((ind,r)=>{const y0=T+r*ch;const sel=st.industry===ind;
+    if(r%2===0)svg.append(s('rect',{x:0,y:y0,width:W,height:ch,fill:'var(--s2)',opacity:.35}));
+    const lab=s('text',{x:L-10,y:y0+ch/2+4,'text-anchor':'end',class:'hit '+(sel?'t-ink':'t-ink2'),style:'font-size:12px;'+(sel?'font-weight:600':'')},ind);lab.addEventListener('click',()=>setInd(ind));svg.append(lab);
+    YEARS.forEach((y,c)=>{const q=ps.filter(p=>p.industry===ind&&p.year===y);q.forEach((p,k)=>{const r2=s('rect',{x:L+c*cw+(cw-(q.length*(sq+3)-3))/2+k*(sq+3),y:y0+(ch-sq)/2,width:sq,height:sq,rx:4,fill:RC[p.role],opacity:.9,stroke:p.star?'var(--ink)':'none','stroke-width':2,class:'hit',tabindex:0,role:'button','aria-label':p.name});
+      r2.addEventListener('click',()=>openProj(p));r2.addEventListener('keydown',e=>{if(e.key==='Enter')openProj(p)});hov(r2,p.name,projLines(p));svg.append(r2)})});
+    svg.append(s('text',{x:L+14*cw+8,y:y0+ch/2+4,class:'mono t-ink2'},String(ps.filter(p=>p.industry===ind).length)))});
+  const und=all.filter(p=>!p.dated&&match0(p));const yu=T+inds.length*ch+14;
+  svg.append(s('text',{x:L-10,y:yu+ch/2+4,'text-anchor':'end',class:'t-ink3',style:'font-size:12px'},'Undated (name only)'));
+  und.forEach((p,k)=>{const r2=s('rect',{x:L+k*(sq+4),y:yu+(ch-sq)/2,width:sq,height:sq,rx:4,fill:'none',stroke:'var(--ink3)','stroke-dasharray':'3 3',class:'hit',tabindex:0,role:'button','aria-label':p.name});r2.addEventListener('click',()=>openProj(p));hov(r2,p.name,['Undated: only the name is recorded']);svg.append(r2)});
+  box.replaceChildren(h('div',{class:'legend'},...ROLES.map(r=>h('span',{},h('i',{style:`background:${RC[r]}`}),r)),h('span',{},'Outlined = starred in the workbook')),h('div',{class:'scroll'},svg))};
+const match0=p=>!st.phase&&!st.role&&!st.industry&&!st.product&&st.view!=='dated'&&(!st.q||p.name.toLowerCase().includes(st.q.toLowerCase()));
 A.heat=function(box){
   const ps=F('industry');const inds=[...new Set(D.map(p=>p.industry))];
   const first=i=>Math.min(...D.filter(p=>p.industry===i).map(p=>p.year));const n=i=>D.filter(p=>p.industry===i).length;
@@ -522,8 +543,7 @@ const ov=h('section',{class:'ch',id:'shape',style:'border-top:0;margin-top:20px;
 const c1=chapter('c1','Chapter 1',`The making of a designer`,[
   `From ${PH[0].from} to ${PH[0].to} the record holds ${pn(0)} projects, all as a UX or UI designer, in ${new Set(S.ph[0].ps.map(p=>p.industry)).size} industries (BFSI, social innovation, education, manufacturing and more). Median team: ${f1(ph(0).team)}. Median length: ${mo(ph(0).dur)}.`,
   `The craft core is already here: wireframes in ${pct(Math.round(ph(0).wf*A.rec(S.ph[0].ps,'Wireframes').length),A.rec(S.ph[0].ps,'Wireframes').length)} of projects, visual design in ${pct(Math.round(ph(0).vd*A.rec(S.ph[0].ps,'Visual design').length),A.rec(S.ph[0].ps,'Visual design').length)}, research in ${pct(Math.round(ph(0).res*A.rec(S.ph[0].ps,'Research').length),A.rec(S.ph[0].ps,'Research').length)}. Usability testing and design systems are not recorded yet; their first appearance is ${S.firstOf('Usability testing')}.`],
-  [fig('cal','Every project as a square','One square per project, grouped by year and coloured by role. Starred projects are outlined. Click any square for the full record.','Undated projects sit at the right. They are in the repository but excluded from every time-based chart.',A.calendar),
-   fig('heat','Industry × year','Where each industry shows up, and when. Click a row or cell to isolate an industry across the whole page.','Count of projects. Lime = at least one project.',A.heat)],
+  [fig('iy','Industries, roles and projects across the years','One square per project, coloured by role. Rows are industries in order of first appearance; columns are years. The bars on top and the totals on the right show projects per year and per industry. Click a square to open the project, or a row label to isolate an industry.','Undated projects have no industry recorded, so they sit in their own row. Starred projects are outlined.',A.indyear)],
   `The foundation is breadth of craft in small teams. Even in the first three years the work spans several industries rather than one.`);
 const c2=chapter('c2','Chapter 2','Beyond the interface',[
   `2014 breaks the pattern: ${S.y(2014).length} projects, four of them one- to two-week research-and-design sprints, and the first Design Lead role. Then the scale changes. Cloud, Networking & DevOps project 1 (2015, 21 months) and Cloud, Networking & DevOps project 2 (2017, 20 months) are the longest builds in the record, with teams of 4 and 6, both in cloud and infrastructure software.`,
