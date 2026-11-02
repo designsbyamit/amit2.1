@@ -61,7 +61,7 @@ export default function GrowthChapter() {
             </div>
             <div className="col-span-4 md:col-span-4 md:col-start-9">
               <p className="text-label text-ink-3 mb-3">By the end you will have</p>
-              <ul className="flex flex-col gap-3">{c2.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{o}</li>)}</ul>
+              <ul className="flex flex-col gap-3">{c2.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{o}</li>)}</ul>
             </div>
           </div>
           <nav aria-label="On this page" className="flex flex-wrap gap-2 mt-12">

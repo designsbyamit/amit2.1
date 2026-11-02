@@ -74,7 +74,7 @@ export const airline = {
     label: '05 · Leading the programme',
     title: 'Five pods. Three-week sprints. One steady rhythm.',
     body: [
-      'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year.',
+      'I led experience strategy across 11+ designers, and the whole mobile experience with an 8-9 person team for almost a year.',
       'Planning, sprints, and daily work with product managers and the client, to timelines that left little slack.',
       'The pods stayed constant while people did not. Designers joined and left, and every newcomer had to be brought up to speed. Skilling people up was a challenge in its own right.',
     ],
@@ -96,7 +96,7 @@ export const airline = {
   impact: {
     label: '07 · The impact',
     title: 'Measured after the final release.',
-    intro: 'The numbers below were measured after the final release, at the end of 8–9 months of work.',
+    intro: 'The numbers below were measured after the final release, at the end of 8-9 months of work.',
     tiles: [
       ['92%', 'engagement boost'],
       ['50×', 'ancillary sales'],

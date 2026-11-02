@@ -40,7 +40,7 @@ export default function ContractWorksheet({ d }: { d: ContractData }) {
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ opacity: 0.05, backgroundImage: 'linear-gradient(rgb(var(--ink-rgb)) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--ink-rgb)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         <div className="relative">
           <p className="text-overline text-ink-3">Worksheet</p>
-          <h3 className="text-heading text-white mt-3">Agent–Human Contract</h3>
+          <h3 className="text-heading text-white mt-3">Agent-Human Contract</h3>
           <p className="text-body text-ink-2 mt-3 max-w-measure-l">A clear working agreement between people and the agent for one use case.</p>
         </div>
         <dl className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-body-sm">

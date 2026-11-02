@@ -120,7 +120,7 @@ export default function HiringExperiencePage() {
               <p className="text-body-sm text-ink-3">{p.evidence}</p>
               <div>
                 <span className="text-label text-ink-3 block mb-2">What can be done</span>
-                <ul className="flex flex-col gap-2">{p.doThis.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+                <ul className="flex flex-col gap-2">{p.doThis.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
               </div>
               <DocLink slug={p.doc} />
             </Row>
@@ -135,7 +135,7 @@ export default function HiringExperiencePage() {
           {caseSteps.map(c => (
             <Row key={c.n} id={'c' + c.n} kicker={`Step ${c.n}`} title={c.title} summary={c.text} open={cs.openIds.includes('c' + c.n)} onToggle={() => cs.toggle('c' + c.n)}>
               <p className="text-body-sm text-ink-2">{c.text}</p>
-              <ul className="flex flex-col gap-2">{c.points.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{c.points.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
               <DocLink slug={c.doc} />
             </Row>
           ))}

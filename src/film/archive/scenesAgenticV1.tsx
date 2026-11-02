@@ -10,7 +10,7 @@ export const Star = ({ size = 80, color = C.lime }: { size?: number; color?: str
   <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 C53 36 64 47 96 50 C64 53 53 64 50 96 C47 64 36 53 4 50 C36 47 47 36 50 4Z" fill={color} /></svg>
 )
 
-/* ───────────── 0 · HOOK  (0–10) ───────────── */
+/* ───────────── 0 · HOOK  (0-10) ───────────── */
 export function Hook({ t }: { t: number }) {
   const draw = easeOut(seg(t, 0.2, 4.5))
   const hex = (cx: number, cy: number, r: number) => Array.from({ length: 6 }, (_, i) => `${cx + r * Math.cos((Math.PI / 3) * i + Math.PI / 6)},${cy + r * Math.sin((Math.PI / 3) * i + Math.PI / 6)}`).join(' ')
@@ -35,7 +35,7 @@ export function Hook({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 1 · SETUP  (10–28) ───────────── */
+/* ───────────── 1 · SETUP  (10-28) ───────────── */
 export function Setup({ t }: { t: number }) {
   const cx = 960, cy = 470
   const pos = VENDORS.map((_, i) => { const a = (i / VENDORS.length) * Math.PI * 2 - Math.PI / 2; return [cx + Math.cos(a) * 760, cy + Math.sin(a) * 320] as [number, number] })
@@ -82,7 +82,7 @@ export function Setup({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 2 · PROBLEM  (28–55) ───────────── */
+/* ───────────── 2 · PROBLEM  (28-55) ───────────── */
 function Doc({ t }: { t: number }) {
   const scan = seg(t, 31, 34.2)
   const flare = (a: number) => easeOut(seg(t, a, a + 0.5))
@@ -175,7 +175,7 @@ export function Problem({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 3 · PROCESS & CRAFT  (55–75) ───────────── */
+/* ───────────── 3 · PROCESS & CRAFT  (55-75) ───────────── */
 const PERSONAS = [
   { id: 'david', name: 'David Paul', role: 'Procurement Operations', line: 'Confirms what the agent extracted.' },
   { id: 'adrian', name: 'Adrian Smith', role: 'Buyer', line: 'Weighs cost and logistics impact.' },
@@ -244,7 +244,7 @@ export function Process({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 4 · ARCHITECTURE  (75–95) ───────────── */
+/* ───────────── 4 · ARCHITECTURE  (75-95) ───────────── */
 const NODES = [
   { id: 'mail', label: 'Supplier email', sub: 'PDF arrives', x: 100, y: 400, kind: 'sys' },
   { id: 'agent', label: 'AI Agent', sub: 'Extracts & compares', x: 390, y: 400, kind: 'ai' },
@@ -304,7 +304,7 @@ export function Architecture({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 5 · THE PEAK  (95–108) ───────────── */
+/* ───────────── 5 · THE PEAK  (95-108) ───────────── */
 function Cam({ src, t, a, b, from, to, children }: { src: string; t: number; a: number; b: number; from: [number, number, number]; to: [number, number, number]; children?: React.ReactNode }) {
   const p = easeInOut(seg(t, a, b))
   const cx = lerp(from[0], to[0], p), cy = lerp(from[1], to[1], p), s = lerp(from[2], to[2], p)
@@ -374,7 +374,7 @@ export function Peak({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 6 · DENOUEMENT  (108–120) ───────────── */
+/* ───────────── 6 · DENOUEMENT  (108-120) ───────────── */
 export function Denouement({ t }: { t: number }) {
   const N = 412
   const calm = seg(t, 108.4, 112)

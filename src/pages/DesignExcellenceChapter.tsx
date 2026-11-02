@@ -76,7 +76,7 @@ export default function DesignExcellenceChapter() {
             </div>
             <div className="col-span-4 md:col-span-4 md:col-start-9">
               <p className="text-label text-ink-3 mb-3">By the end you will have</p>
-              <ul className="flex flex-col gap-3">{c4.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{o}</li>)}</ul>
+              <ul className="flex flex-col gap-3">{c4.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{o}</li>)}</ul>
             </div>
           </div>
           <nav aria-label="On this page" className="flex flex-wrap gap-2 mt-12">
@@ -136,7 +136,7 @@ export default function DesignExcellenceChapter() {
               <span className="text-label text-signal-ink">Level {l.n} · {l.cx}</span>
               <h4 className="text-title text-ink">{l.name}</h4>
               <p className="text-body-sm text-ink-2">{l.fits}</p>
-              <ul className="flex flex-col gap-2">{l.does.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{x}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{l.does.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{x}</li>)}</ul>
               <p className="text-body-sm text-ink-2 mt-auto pt-4 hairline-top"><span className="text-label text-ink-3 block mb-1">Owner</span>{l.owner}</p>
             </li>
           ))}
@@ -159,7 +159,7 @@ export default function DesignExcellenceChapter() {
         <Sub>The review panel</Sub>
         <Lead>{c4.reviews.panelLead}</Lead>
         <Rows rows={c4.reviews.panel.map(p => ({ a: p.role, b: p.does }))} />
-        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 mt-8">{c4.reviews.principles.map(p => <li key={p} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{p}</li>)}</ul>
+        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 mt-8">{c4.reviews.principles.map(p => <li key={p} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{p}</li>)}</ul>
 
         <Sub>Measuring the reviews</Sub>
         <Lead>{c4.reviews.metricsLead}</Lead>
@@ -197,8 +197,8 @@ export default function DesignExcellenceChapter() {
           {c4.future.models.map(m => (
             <div key={m.name} className="card flex flex-col gap-4">
               <h4 className="text-title text-ink">{m.name}</h4>
-              <div><span className="text-label text-ink-3 block mb-2">Strengths</span><ul className="flex flex-col gap-1.5">{m.pros.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{x}</li>)}</ul></div>
-              <div><span className="text-label text-ink-3 block mb-2">Risks</span><ul className="flex flex-col gap-1.5">{m.cons.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{x}</li>)}</ul></div>
+              <div><span className="text-label text-ink-3 block mb-2">Strengths</span><ul className="flex flex-col gap-1.5">{m.pros.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{x}</li>)}</ul></div>
+              <div><span className="text-label text-ink-3 block mb-2">Risks</span><ul className="flex flex-col gap-1.5">{m.cons.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{x}</li>)}</ul></div>
             </div>
           ))}
         </div>

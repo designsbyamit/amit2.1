@@ -153,7 +153,7 @@ function ContractMini({ t, a, o }: { t: number; a: number; o: number }) {
     <>
       <ConceptHead t={t} a={a} o={o} n={3} title="The human-agent contract." sub="Before any screen: what the agent may do, when a person decides, and how its autonomy grows." />
       <div style={{ ...panel, left: 960, top: 130, width: 860, height: 800, padding: 28, opacity: pop(t, a + 0.8) }}>
-        <div style={{ fontFamily: mono, fontSize: 19, letterSpacing: '0.14em', color: C.dim }}>WORKSHEET · AGENT–HUMAN CONTRACT</div>
+        <div style={{ fontFamily: mono, fontSize: 19, letterSpacing: '0.14em', color: C.dim }}>WORKSHEET · AGENT-HUMAN CONTRACT</div>
         <div style={{ fontSize: 38, fontWeight: 300, marginTop: 8 }}>Supplier order confirmation</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginTop: 26 }}>
           {CONTRACT.map((c, i) => {

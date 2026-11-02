@@ -171,7 +171,7 @@ export const template = `CASE STUDY TEMPLATE
 TITLE: what the project was, in plain words
 ONE-LINE SUMMARY: what changed, and for whom
 
-CONTEXT (2–3 sentences)
+CONTEXT (2-3 sentences)
 Who it was for, what the business needed, and why it was hard.
 
 MY ROLE (1 sentence)
@@ -180,7 +180,7 @@ What I was responsible for. The team, named as a team.
 THE PROBLEM, FRAMED
 The question I decided to answer. If I reframed the brief, how and why.
 
-DECISIONS (2–3)
+DECISIONS (2-3)
 For each: the options, what I judged them against, what I chose, what it cost.
 
 OUTCOME

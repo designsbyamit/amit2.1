@@ -1,6 +1,6 @@
 // AI-Powered Global Search: content taken from the Figma file "S-Projects › AI-Powered Search"
 // (presentation frames: Cover, Intro, Challenges, Ideas to Explore, Search/AI Functionalities,
-// Solution Ideas, Common Patterns; screen frames 1.1–5.4).
+// Solution Ideas, Common Patterns; screen frames 1.1-5.4).
 // Screens are the original SVG exports from Figma (text outlined), stored unmodified in
 // public/images/case-studies/sap-search/<id>.webp.
 
@@ -28,7 +28,7 @@ export const sapSearch = {
   },
 
   challenges: [
-    { area: 'Search queries', items: ['Inadequate autocomplete suggestions', 'Search history limitations', 'Lack of NLP integration', "Lack of 'search – alternate modes'"] },
+    { area: 'Search queries', items: ['Inadequate autocomplete suggestions', 'Search history limitations', 'Lack of NLP integration', "Lack of 'search - alternate modes'"] },
     { area: 'Search results', items: ['Poor indexing', 'No personalisation', 'Lack of contextual search', 'Ineffective feedback mechanisms'] },
     { area: 'UI, filters, performance & interactions', items: ['Poor user interface design', 'Limited search filters', 'Suggestive search and interactions', 'Poor integration with other tools'] },
   ],

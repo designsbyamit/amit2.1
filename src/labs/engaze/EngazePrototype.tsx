@@ -8,7 +8,7 @@ import Icon from '../Icon'
 import { MARK_D, MARK_VB } from '../../film/engazeMark'
 
 /* Illustrative data. Esha, Manoj, Genie, the tax numbers, the claim ticket and the
-   7–8 working days come from the case study; everything else is invented for the demo. */
+   7-8 working days come from the case study; everything else is invented for the demo. */
 
 type Flow = 'leave' | 'ooo' | 'tax' | 'claim' | 'carry' | 'fallback'
 type Msg =
@@ -18,7 +18,7 @@ type Msg =
 const steps: Record<Flow, string[]> = {
   leave: ['Checked your leave balance', 'Read the leave policy, section 3.2', 'Found who to tell: Manoj and the Platform team'],
   ooo: ['Looked at your calendar for today', 'Matched the tone of your last out-of-office'],
-  tax: ['Read your payroll declarations for FY 2026–27', 'Ran both regimes on your numbers', 'Checked the switch deadline'],
+  tax: ['Read your payroll declarations for FY 2026-27', 'Ran both regimes on your numbers', 'Checked the switch deadline'],
   claim: ['Read the ticket', 'Matched it to your Pune trip, project Atlas', 'Checked the travel policy'],
   carry: ['Searched the leave policy'],
   fallback: [],
@@ -63,7 +63,7 @@ export default function EngazePrototype() {
     const me: Msg = { id: idRef.current++, from: 'me', text }
     const g: Msg = { id: idRef.current++, from: 'genie', flow, stage: 'thinking' }
     setMsgs(v => [...v, me, g])
-    if (thread === 'New conversation') setThread(flow === 'leave' ? 'Sick leave today' : flow === 'tax' ? 'Tax regime for FY 2026–27' : flow === 'claim' ? 'Pune flight claim' : flow === 'carry' ? 'Carrying leave forward' : 'Getting started')
+    if (thread === 'New conversation') setThread(flow === 'leave' ? 'Sick leave today' : flow === 'tax' ? 'Tax regime for FY 2026-27' : flow === 'claim' ? 'Pune flight claim' : flow === 'carry' ? 'Carrying leave forward' : 'Getting started')
     const wait = reduced ? 200 : 700 + steps[flow].length * 650
     setTimeout(() => setMsgs(v => v.map(m => (m.id === g.id ? { ...m, stage: 'ready' } : m))), wait)
     setInput('')
@@ -349,7 +349,7 @@ function TaxTurn({ short }: { short: boolean }) {
               <div><dt>HRA claimed</dt><dd>None</dd></div>
               <div><dt>Home loan interest</dt><dd>None</dd></div>
             </dl>
-            <div className="eg-srcs"><Source>Your declarations, FY 2026–27</Source><Source>Tax rules, FY 2026–27</Source></div>
+            <div className="eg-srcs"><Source>Your declarations, FY 2026-27</Source><Source>Tax rules, FY 2026-27</Source></div>
           </div>
         </div>
         {state === 'view' && <div className="eg-actions"><button className="eg-btn" onClick={() => setState('confirm')}>Switch to the new regime</button><button className="eg-btn-ghost">See the full breakdown</button></div>}

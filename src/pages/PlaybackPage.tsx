@@ -82,7 +82,7 @@ export default function PlaybackPage() {
                 {label === 'The challenge' && pb.beats.challengePoints && (
                   <ul className="mt-5 flex flex-col gap-3 max-w-2xl">
                     {pb.beats.challengePoints.map(x => (
-                      <li key={x} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">–</span>{x}</li>
+                      <li key={x} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">-</span>{x}</li>
                     ))}
                   </ul>
                 )}
@@ -94,7 +94,6 @@ export default function PlaybackPage() {
         </Fragment>
       ))}
 
-      <div className="container-site pb-6"><p className="text-label text-ink-3">Figures come from data shared by the project stakeholders.</p></div>
 
       {/* One component with the footer: it stays at the bottom of the screen while scrolling, then settles into the footer. */}
       <div className="sticky bottom-0 z-30 border-t bg-bg" style={{ borderColor: 'var(--line-1)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>

@@ -41,7 +41,7 @@ export default function AirlineStoryPage() {
             {S.headline.map(([v, k]) => <Stat key={k} v={v} k={k} />)}
           </dl>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-8 hairline-top max-w-4xl">
-            {[['Role', cs.role], ['Timeline', 'Jan 2023, almost a year'], ['Team', '8–9 on mobile, 11+ designers in the programme'], ['Domain', cs.domain]].map(([k, v]) => (
+            {[['Role', cs.role], ['Timeline', 'Jan 2023, almost a year'], ['Team', '8-9 on mobile, 11+ designers in the programme'], ['Domain', cs.domain]].map(([k, v]) => (
               <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
             ))}
           </dl>
@@ -129,10 +129,6 @@ export default function AirlineStoryPage() {
           <p className="text-overline text-ink-3">{S.impact.today.title}</p>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5">{S.impact.today.stats.map(([v, k]) => <Stat key={k} v={v} k={k} />)}</dl>
           <p className="text-caption text-ink-3 mt-4">{S.impact.today.note}</p>
-        </div>
-        <div className="mt-16 hairline-top pt-6">
-          <p className="text-overline text-ink-3">Sources</p>
-          <ul className="mt-3 space-y-1">{S.sources.map(t => <li key={t} className="text-body-sm text-ink-2">{t}</li>)}</ul>
         </div>
         <div className="mt-16 flex flex-wrap gap-3 items-end justify-between">
           <a href="/craft" className="btn btn-secondary">All case studies</a>

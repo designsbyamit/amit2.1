@@ -58,7 +58,7 @@ const types = [
 ]
 const space = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128]
 const breakpoints = [
-  { n: 'base', px: '0–767', note: '4 columns, 24px margin, 72px section padding. Single-column reading.' },
+  { n: 'base', px: '0-767', note: '4 columns, 24px margin, 72px section padding. Single-column reading.' },
   { n: 'md', px: '768', note: '12 columns, 48px margin, 24px column gap, 96px section padding.' },
   { n: 'lg', px: '1024', note: 'Full navigation and Craft menu. 128px section padding.' },
   { n: 'xl', px: '1376+', note: 'Content stops at 1280px. At 1440 the outer margin is 80px on every page.' },

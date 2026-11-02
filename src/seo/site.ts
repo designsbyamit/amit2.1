@@ -17,7 +17,7 @@ export const SITE = {
   city: 'Bengaluru',
   country: 'IN',
   /** Accounts and sites that are verifiably the same person. Add LinkedIn and others here. */
-  sameAs: [] as string[],
+  sameAs: ['https://www.linkedin.com/in/amitkrt'] as string[],
   ogDefault: '/og/home.jpg',
 }
 

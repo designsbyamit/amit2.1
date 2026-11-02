@@ -108,7 +108,7 @@ const KPI_CHAIN = [
     label: 'Design Metrics',
     color: 'var(--color-ink-3)',
     items: [
-      { name: 'System Usability Scale', definition: 'Standardised 10-item questionnaire measuring perceived usability.', formula: 'Score 0–100 (>68 = above average)', influences: ['Task Success Rate', 'NPS'] },
+      { name: 'System Usability Scale', definition: 'Standardised 10-item questionnaire measuring perceived usability.', formula: 'Score 0-100 (>68 = above average)', influences: ['Task Success Rate', 'NPS'] },
       { name: 'Findability', definition: 'How easily users locate information or features.', formula: 'Time to find / Success rate on wayfinding tasks', influences: ['Task Success Rate', 'DAU/MAU'] },
       { name: 'Cognitive Load', definition: 'Mental effort required to use the interface.', formula: 'NASA TLX scale or eye-tracking + think-aloud', influences: ['Error Rate', 'Time on Task'] },
       { name: 'Accessibility Score', definition: 'WCAG compliance level across the experience.', formula: 'WCAG AA/AAA automated + manual audit', influences: ['Legal risk', 'Market reach'] },
@@ -254,7 +254,7 @@ export default function DualFluencyPage() {
               <details className="mt-auto pt-2">
                 <summary className="cursor-pointer list-none text-body-sm text-ink underline underline-offset-4 decoration-[var(--line-control)] hover:decoration-current">What this stage covers</summary>
                 <div className="mt-4 flex flex-col gap-4">
-                  <ul className="flex flex-col gap-2">{m.learned.map(l => <li key={l} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{l}</li>)}</ul>
+                  <ul className="flex flex-col gap-2">{m.learned.map(l => <li key={l} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{l}</li>)}</ul>
                   <p className="text-body-sm text-ink"><span className="text-label text-signal-ink block mb-1">Takeaway</span>{m.takeaway}</p>
                   <p className="text-body-sm text-ink-2"><span className="text-label text-ink-3 block mb-1">Common mistake</span>{m.mistake}</p>
                 </div>

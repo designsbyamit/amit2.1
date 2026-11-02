@@ -61,6 +61,7 @@ export default function MentoringPage() {
       <section className="relative" style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-14 md:pt-20 pb-14 md:pb-20">
           <p className="text-overline text-ink-3 mb-8">Mentoring &amp; coaching</p>
+          <h1 className="sr-only">Mentoring and coaching with Amit Kumar Tiwari</h1>
           <dl className="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6 hairline-top pt-8">
             {stats.map(st => (
               <div key={st.label} className="flex flex-col gap-2">

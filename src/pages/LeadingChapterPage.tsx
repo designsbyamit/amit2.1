@@ -44,7 +44,7 @@ function BuildingADesignTeam() {
             </div>
             <div className="col-span-4 md:col-span-4 md:col-start-9">
               <p className="text-label text-ink-3 mb-3">By the end you will have</p>
-              <ul className="flex flex-col gap-3">{chapterOne.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{o}</li>)}</ul>
+              <ul className="flex flex-col gap-3">{chapterOne.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{o}</li>)}</ul>
             </div>
           </div>
           <nav aria-label="On this page" className="flex flex-wrap gap-2 mt-12">
@@ -73,7 +73,7 @@ function BuildingADesignTeam() {
               <span className="text-label text-signal-ink">Step {String(i + 1).padStart(2, '0')}</span>
               <h3 className="text-title text-ink">{s.title}</h3>
               <p className="text-body-sm text-ink-2">{s.text}</p>
-              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
             </li>
           ))}
         </ol>
@@ -116,7 +116,7 @@ function BuildingADesignTeam() {
               <span className="text-label text-signal-ink">Step {String(i + 1).padStart(2, '0')}</span>
               <h3 className="text-title text-ink">{s.title}</h3>
               <p className="text-body-sm text-ink-2">{s.what}</p>
-              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
               <p className="text-body-sm text-ink-2 mt-auto pt-4 hairline-top"><span className="text-label text-ink-3 block mb-1">Watch for</span>{s.watch}</p>
             </li>
           ))}

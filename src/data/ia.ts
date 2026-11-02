@@ -36,7 +36,6 @@ export const growItems: MenuItem[] = [
   { label: 'Portfolio Guide', to: '/learn/portfolio', kind: 'Guide', mark: 'portfolio', tone: 'plum' },
   { label: 'Library', to: '/learn/library', kind: 'Articles', mark: 'notes', tone: 'cobalt' },
   { label: 'AlphaVector', to: '', href: 'https://alphavector.designsbyamit.com/', kind: 'Find your direction', mark: 'wingspan', tone: 'graphite' },
-  { label: 'Questions from AMA', to: '', kind: 'Coming soon', mark: 'ama', tone: 'graphite', soon: true },
 ]
 
 export const leadershipItems: MenuItem[] = [

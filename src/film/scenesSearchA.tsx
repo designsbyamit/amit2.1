@@ -5,7 +5,7 @@ import { sapSearch as S } from '../data/sapSearch'
 
 const center = { left: 0, width: 1920, textAlign: 'center' as const }
 
-/* ───────────── 0 · HOOK  (0–9) ───────────── */
+/* ───────────── 0 · HOOK  (0-9) ───────────── */
 export function SHook({ t }: { t: number }) {
   const merge = easeInOut(seg(t, 7.0, 8.3))
   const line = (a: number, o: number, text: string, color?: string) => (
@@ -37,7 +37,7 @@ export function SHook({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 1 · SETUP  (9–25) ───────────── */
+/* ───────────── 1 · SETUP  (9-25) ───────────── */
 type AppDef = { name: string; ph: string; res: string; variant: number; docs?: string[] }
 const APPS: AppDef[] = [
   { name: 'Atlas · Intranet', ph: 'Search Atlas', res: '0 results for “flight to Bangalore”', variant: 0 },
@@ -85,7 +85,7 @@ export function SSetup({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 2 · PROBLEM  (25–51) ───────────── */
+/* ───────────── 2 · PROBLEM  (25-51) ───────────── */
 export function SProblem({ t }: { t: number }) {
   const chain = ['Search fails', 'Asks a colleague', 'Books by email', '$1,850 · over policy', 'Finance reworks it']
   const sev = easeInOut(seg(t, 36.2, 42.5))
@@ -160,7 +160,7 @@ export function SProblem({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 3 · PROCESS  (51–74) ───────────── */
+/* ───────────── 3 · PROCESS  (51-74) ───────────── */
 const AI_OFFERINGS = [['Informational AI', 'answers and explains'], ['Transactional AI', 'does the task'], ['Analytical AI', 'finds the signal'], ['Generative AI', 'drafts and summarises']]
 export function SProcess({ t }: { t: number }) {
   const circ = [

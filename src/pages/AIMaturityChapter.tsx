@@ -38,7 +38,7 @@ function Layer({ title, hint, children }: { title: string; hint?: string; childr
 }
 
 function Bullets({ items }: { items: string[] }) {
-  return <ul className="flex flex-col gap-2">{items.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{x}</li>)}</ul>
+  return <ul className="flex flex-col gap-2">{items.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{x}</li>)}</ul>
 }
 
 /** Choose a level. One choice drives both the detail in question 1 and the moves in question 2. */
@@ -164,7 +164,7 @@ export default function AIMaturityChapter() {
             </div>
           ) : <p className="text-body-sm text-ink-3">Choose a level to see what it looks like, the evidence for it and the skills around it.</p>}
         </div>
-        <ul className="grid md:grid-cols-2 gap-x-8 gap-y-2 mt-6">{c5.rules.map(r => <li key={r} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{r}</li>)}</ul>
+        <ul className="grid md:grid-cols-2 gap-x-8 gap-y-2 mt-6">{c5.rules.map(r => <li key={r} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{r}</li>)}</ul>
 
         <Sub>Go deeper, only if you need to</Sub>
         <Layer title="Quick check: find your level in five minutes" hint="Four scores, one reading. Nothing is saved.">

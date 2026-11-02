@@ -91,7 +91,7 @@ export default function HiringPlaybookPage() {
                   <span className="text-label text-signal-ink">Step {String(i + 1).padStart(2, '0')}</span>
                   <h3 className="text-title text-ink">{s.title}</h3>
                   <p className="text-body-sm text-ink-2">{s.what}</p>
-                  <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+                  <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
                   <p className="text-body-sm text-ink-2 mt-auto pt-4 hairline-top"><span className="text-label text-ink-3 block mb-1">Watch for</span>{s.watch}</p>
                 </li>
               ))}
