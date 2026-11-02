@@ -49,7 +49,7 @@ export default function PlaybackPage() {
             <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>
           <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{pb.headline}</h1>
-          <div className="relative">
+          <div className="relative md:min-h-40">
             <p className="text-body-lg text-ink-2 mt-6 max-w-2xl">{pb.dek}</p>
             <div className="hidden md:block absolute right-[3%] top-[1.25rem]"><ShortStoryTag /></div>
           </div>
