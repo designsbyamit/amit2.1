@@ -40,7 +40,7 @@ function Body({ s, slug }: { s: Section; slug: string }) {
           <ol className="mt-10 grid md:grid-cols-2 gap-5">
             {s.drills.map((d, i) => (
               <li key={d.t} className="card flex flex-col gap-3">
-                <p className="text-label text-ink-3">Drill {String(i + 1).padStart(2, '0')}</p>
+                <p className="text-label text-ink-3">Set {String(i + 1).padStart(2, '0')}</p>
                 <h3 className="text-title text-ink">{d.t}</h3>
                 <p className="text-body text-ink-2">{d.d}</p>
                 <p className="text-body-sm text-ink-3 mt-auto pt-2"><span className="text-label">You leave with </span>{d.output}</p>
@@ -169,6 +169,15 @@ export default function LibraryEntryPage() {
                 <p className="text-overline text-ink-3">{s.kicker}</p>
                 <h2 className={h2} style={h2Size}>{s.title}</h2>
                 {s.lead && <p className="text-body-lg text-ink-2 mt-5 max-w-measure-xl">{s.lead}</p>}
+                {s.evidence && (
+                  <ul className="mt-6 flex flex-col gap-2 max-w-measure-xl">
+                    {s.evidence.map(x => (
+                      <li key={x.url + x.text} className="text-body-sm text-ink-3 hairline-top pt-3">
+                        {x.text} <a href={x.url} target="_blank" rel="noopener noreferrer" className="text-ink-2 underline underline-offset-4 hover:text-ink">{x.label}<span className="sr-only"> (opens in a new tab)</span></a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 <Body s={s} slug={e.slug} />
               </section>
             ))}
