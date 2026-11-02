@@ -96,8 +96,8 @@ export default function HiringPlaybookPage() {
                 </li>
               ))}
               <li className="card flex flex-col gap-3 md:col-span-2" style={{ background: 'var(--field-teal)' }}>
-                <span className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>What you will have</span>
-                <p className="text-[1.25rem] font-light" style={{ color: '#ECEDEF' }}>{part.outcome}</p>
+                <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>What you will have</span>
+                <p className="text-[1.25rem] font-light" style={{ color: 'var(--on-field)' }}>{part.outcome}</p>
               </li>
             </ol>
             <h3 className="text-label text-ink-3 mt-14 mb-5">Worksheets for this part</h3>

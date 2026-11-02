@@ -10,7 +10,7 @@ import Button from '../components/ds/Button'
 import type { ReactNode } from 'react'
 
 const heroImg = '/images/about/leadership-hero.webp'
-const grid = { backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }
+const grid = { backgroundImage: 'linear-gradient(var(--on-field-strong) 1px, transparent 1px), linear-gradient(90deg, var(--on-field-strong) 1px, transparent 1px)', backgroundSize: '20px 20px' }
 
 const tiles: { to: string; title: string; text: string; tone: string; art: ReactNode }[] = [
   { to: '/leadership/stories', title: 'Experience', text: 'Moments that shaped how I lead: the conflicts, the first team, the community and the culture work.', tone: 'var(--field-cobalt)', art: <ExperiencePictogram /> },
@@ -30,7 +30,7 @@ function Tiles() {
               <Link to={t.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
                 <div className="relative aspect-[16/9] overflow-hidden" style={{ background: t.tone }}>
                   <div className="absolute inset-0 opacity-[0.07]" style={grid} />
-                  <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(tiles.length).padStart(2, '0')}</span>
+                  <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>{String(k + 1).padStart(2, '0')} / {String(tiles.length).padStart(2, '0')}</span>
                   <div className="absolute inset-0 px-[16%] py-[9%] transition-transform duration-500 group-hover:scale-[1.04]">{t.art}</div>
                 </div>
                 <div className="p-7 md:p-8 flex flex-col gap-3 flex-1">

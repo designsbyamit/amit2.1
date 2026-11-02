@@ -4,12 +4,12 @@ import { motion } from 'framer-motion'
 /* Three visuals only, each for something text cannot show well:
    the character wheel, the anatomy of a project, and the story arc.
    Drawn like the resource covers: lime and light ink on a colour field. */
-const L = '#C8F55A'
-const I = '#ECEDEF'
+const L = 'var(--on-field-accent)'
+const I = 'var(--on-field)'
 const ring = { fill: 'none', stroke: I, strokeWidth: 2 } as const
 const lime = { fill: 'none', stroke: L, strokeWidth: 2 } as const
 const dash = { stroke: I, strokeOpacity: 0.55, strokeWidth: 1.2, strokeDasharray: '3 3', fill: 'none' } as const
-const grid = { backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '16px 16px' }
+const grid = { backgroundImage: 'linear-gradient(var(--on-field-strong) 1px, transparent 1px), linear-gradient(90deg, var(--on-field-strong) 1px, transparent 1px)', backgroundSize: '16px 16px' }
 
 type Tone = 'cobalt' | 'teal' | 'plum' | 'graphite'
 const tones: Record<Tone, string> = { cobalt: 'var(--field-cobalt)', teal: 'var(--field-teal)', plum: 'var(--field-plum)', graphite: 'var(--field-graphite)' }
@@ -31,7 +31,7 @@ export function CharacterWheel() {
         <circle cx="200" cy="130" r="92" {...dash} />
         {facets.map(([, a]) => { const [x, y] = pt(a, 92); return <line key={a} x1="200" y1="130" x2={x} y2={y} {...dash} /> })}
         <circle cx="200" cy="130" r="34" fill={L} />
-        <text x="200" y="135" textAnchor="middle" fontSize="11" fontWeight="600" fill="#0E1A33">Character</text>
+        <text x="200" y="135" textAnchor="middle" fontSize="11" fontWeight="600" fill="var(--field-deep)">Character</text>
         {facets.map(([name, a], i) => {
           const [x, y] = pt(a, 92)
           const [lx, ly] = pt(a, 114)
@@ -69,7 +69,7 @@ export function AnatomyDiagram({ points }: { points: { t: string; d: string }[] 
           {blocks.map((b, i) => (
             <button key={i} type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-label={points[i]?.t}
               className="relative text-left rounded-2 p-3 pl-10 transition-all" style={{ outline: active === i ? '2px solid var(--signal)' : '1px solid var(--line-1)', outlineOffset: active === i ? 2 : 0, background: active === i ? 'rgb(var(--ink-rgb) / .04)' : 'transparent' }}>
-              <span className="absolute left-3 top-3 w-5 h-5 rounded-full grid place-items-center text-[10px] font-medium" style={{ background: active === i ? 'var(--signal)' : 'rgb(var(--ink-rgb) / .12)', color: active === i ? '#0E1A33' : 'var(--ink-2, currentColor)' }}>{i + 1}</span>
+              <span className="absolute left-3 top-3 w-5 h-5 rounded-full grid place-items-center text-[10px] font-medium" style={{ background: active === i ? 'var(--signal)' : 'rgb(var(--ink-rgb) / .12)', color: active === i ? 'var(--field-deep)' : 'var(--ink-2, currentColor)' }}>{i + 1}</span>
               {b}
             </button>
           ))}

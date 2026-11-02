@@ -30,7 +30,7 @@ export default function Swimlane({ cols, lanes, legendA, legendG, legendH }: { c
                 <div key={ci} className="hairline-top p-2 min-h-[84px]" style={{ background: ci % 2 ? 'rgb(var(--ink-rgb) / 0.025)' : undefined }}>
                   {cell.map(c => (
                     <motion.div key={c.t} className="rounded-lg px-3 py-2.5 text-body-sm leading-snug"
-                      style={c.k === 'a' ? { background: 'rgb(var(--ink-rgb))', color: 'var(--surface-0)' } : c.k === 'g' ? { border: '2px solid var(--signal)', background: 'rgb(200 245 90 / 0.28)', color: 'rgb(var(--ink-rgb))' } : { border: '1px solid rgb(var(--ink-rgb) / 0.5)', color: 'rgb(var(--ink-rgb))' }}
+                      style={c.k === 'a' ? { background: 'rgb(var(--ink-rgb))', color: 'var(--surface-0)' } : c.k === 'g' ? { border: '2px solid var(--signal)', background: 'rgb(var(--signal-rgb) / 0.28)', color: 'rgb(var(--ink-rgb))' } : { border: '1px solid rgb(var(--ink-rgb) / 0.5)', color: 'rgb(var(--ink-rgb))' }}
                       initial={reduce ? false : { opacity: 0, scale: 0.94 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.25 + ci * 0.16, ease }}>
                       {c.k === 'g' && <span className="block text-[10px] tracking-overline uppercase opacity-70 mb-1">Gate</span>}
                       {c.t}

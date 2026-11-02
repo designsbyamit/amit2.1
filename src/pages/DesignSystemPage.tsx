@@ -7,6 +7,8 @@ import {
 import { caseStudies } from '../data/work'
 import CaseRow from '../components/ds/CaseRow'
 
+import { tokenHex, fieldHex } from '../styles/tokenValues'
+
 /* ── Contrast helpers: computed from the same hex values as tokens.css ── */
 const lum = (hex: string) => {
   const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255)
@@ -17,29 +19,30 @@ const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)]; retur
 const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : r >= 3 ? 'UI / large only' : 'Decorative only')
 
 type Swatch = { token: string; dark: string; light: string; role: string; text?: boolean }
+const sw = (token: string, role: string, text?: boolean): Swatch => ({ token, dark: tokenHex(token, 'dark'), light: tokenHex(token, 'light'), role, text })
 const surfaces: Swatch[] = [
-  { token: 'bg', dark: '#0F1013', light: '#F5F6F7', role: 'Page ground' },
-  { token: 'surface-1', dark: '#181A1F', light: '#FFFFFF', role: 'Cards, header, menus' },
-  { token: 'surface-2', dark: '#22252B', light: '#EEF0F2', role: 'Raised: inputs, callouts, hover' },
-  { token: 'surface-3', dark: '#2C3038', light: '#E4E7EB', role: 'Hover on raised' },
+  sw('bg', 'Page ground'),
+  sw('surface-1', 'Cards, header, menus'),
+  sw('surface-2', 'Raised: inputs, callouts, hover'),
+  sw('surface-3', 'Hover on raised'),
 ]
 const inks: Swatch[] = [
-  { token: 'ink', dark: '#ECEDEF', light: '#0F1013', role: 'Headings, primary text', text: true },
-  { token: 'ink-2', dark: '#C4C7CD', light: '#3A3E46', role: 'Body and secondary text', text: true },
-  { token: 'ink-3', dark: '#A3A7B0', light: '#4D525C', role: 'Labels, metadata, captions', text: true },
-  { token: 'faint', dark: '#5D626C', light: '#9AA0A9', role: 'Decorative marks only, never words' },
+  sw('ink', 'Headings, primary text', true),
+  sw('ink-2', 'Body and secondary text', true),
+  sw('ink-3', 'Labels, metadata, captions', true),
+  sw('faint', 'Decorative marks only, never words'),
 ]
 const actions: Swatch[] = [
-  { token: 'signal', dark: '#C8F55A', light: '#C8F55A', role: 'Primary button fill, live status. Text on it uses on-signal.' },
-  { token: 'signal-ink', dark: '#C8F55A', light: '#3F6B00', role: 'Signal as text (numbers, status labels)', text: true },
-  { token: 'link', dark: '#7D98FF', light: '#3654E0', role: 'Inline links and focus ring only', text: true },
-  { token: 'danger', dark: '#FF8A7A', light: '#B42818', role: 'Form errors', text: true },
+  sw('signal', 'Primary button fill, live status. Text on it uses on-signal.'),
+  sw('signal-ink', 'Signal as text (numbers, status labels)', true),
+  sw('link', 'Inline links and focus ring only', true),
+  sw('danger', 'Form errors', true),
 ]
 const fields = [
-  { token: 'field-cobalt', hex: '#1B2350' },
-  { token: 'field-teal', hex: '#0F3B3A' },
-  { token: 'field-plum', hex: '#33203F' },
-  { token: 'field-graphite', hex: '#22252B' },
+  { token: 'field-cobalt', hex: fieldHex('field-cobalt') },
+  { token: 'field-teal', hex: fieldHex('field-teal') },
+  { token: 'field-plum', hex: fieldHex('field-plum') },
+  { token: 'field-graphite', hex: fieldHex('field-graphite') },
 ]
 
 const types = [
@@ -114,7 +117,7 @@ function SwatchTable({ rows }: { rows: Swatch[] }) {
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.dark }} />{r.dark}</span></td>
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.light }} />{r.light}</span></td>
               <td>{r.role}</td>
-              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, '#0F1013').toFixed(1)} · ${grade(ratio(r.dark, '#0F1013'))} / ${ratio(r.light, '#F5F6F7').toFixed(1)} · ${grade(ratio(r.light, '#F5F6F7'))}` : '-'}</td>
+              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, tokenHex('bg', 'dark')).toFixed(1)} · ${grade(ratio(r.dark, tokenHex('bg', 'dark')))} / ${ratio(r.light, tokenHex('bg', 'light')).toFixed(1)} · ${grade(ratio(r.light, tokenHex('bg', 'light')))}` : '-'}</td>
             </tr>
           ))}
         </tbody>
@@ -174,10 +177,10 @@ export default function DesignSystemPage() {
         <h3 className="text-title text-ink mt-12 mb-4">Action and feedback</h3>
         <SwatchTable rows={actions} />
         <h3 className="text-title text-ink mt-12 mb-4">Image fields</h3>
-        <p className="text-body-sm text-ink-2 mb-6 max-w-2xl">Screenshots, covers and story visuals sit on a deep colour field. Fields are identical in both modes so the work looks the same whichever mode is on. Text on a field uses #ECEDEF (10.5:1 or better).</p>
+        <p className="text-body-sm text-ink-2 mb-6 max-w-2xl">Screenshots, covers and story visuals sit on a deep colour field. Fields are identical in both modes so the work looks the same whichever mode is on. Text on a field uses {fieldHex('on-field')} (10.5:1 or better).</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {fields.map(f => (
-            <div key={f.token}><div className="h-24 rounded-2 p-3 flex items-end" style={{ background: f.hex }}><span className="font-mono text-xs text-[#ECEDEF]">{f.hex}</span></div><p className="text-label text-ink-3 mt-2">{f.token}</p></div>
+            <div key={f.token}><div className="h-24 rounded-2 p-3 flex items-end" style={{ background: f.hex }}><span className="font-mono text-xs text-on-field">{f.hex}</span></div><p className="text-label text-ink-3 mt-2">{f.token}</p></div>
           ))}
         </div>
         <DoDont dos={['Use signal for the one primary action in a view', 'Use cobalt only for inline links and focus', 'Give every case study one field colour and keep it everywhere it appears']}

@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 interface Role { who: string; job: string }
 type Col = [string, boolean, boolean, boolean]
 
-const SEV = { High: ['rgb(217 45 32 / 0.14)', '#B42318'], Medium: ['rgb(220 104 3 / 0.16)', '#B54708'], Low: ['rgb(6 118 71 / 0.14)', '#067647'] } as const
+const SEV = { High: ['var(--risk-high-bg)', 'var(--risk-high)'], Medium: ['var(--risk-medium-bg)', 'var(--risk-medium)'], Low: ['var(--risk-low-bg)', 'var(--risk-low)'] } as const
 
 const Tile = ({ k, v, u }: { k: string; v: string; u?: string }) => (
   <div className="rounded-2 border px-3 py-2 min-w-[120px]" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-0)' }}>

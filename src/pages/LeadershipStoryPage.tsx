@@ -73,7 +73,7 @@ export default function LeadershipStoryPage() {
 
             {s.lesson && (
               <figure className="mt-16 rounded-3 p-8 md:p-10" style={{ background: 'var(--field-graphite)' }}>
-                <blockquote className="quote !text-[#ECEDEF]">“{s.lesson}”</blockquote>
+                <blockquote className="quote !text-on-field">“{s.lesson}”</blockquote>
               </figure>
             )}
           </div>

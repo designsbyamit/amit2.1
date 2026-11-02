@@ -93,7 +93,7 @@ export default function GrowthChapter() {
         <ol className="grid md:grid-cols-4 gap-4">
           {c2.feedback.objective.steps.map((s, i) => <StepCard key={s.title} label={`Move ${i + 1}`} title={s.title} text={s.text} />)}
         </ol>
-        <p className="card mt-4 text-body text-ink" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c2.feedback.objective.test}</p>
+        <p className="card mt-4 text-body text-ink" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c2.feedback.objective.test}</p>
 
         <Sub>Setting the cadence, and the tenets</Sub>
         <Lead>{c2.feedback.cadenceLead}</Lead>
@@ -130,7 +130,7 @@ export default function GrowthChapter() {
         <ol className="grid md:grid-cols-3 gap-4">
           {c2.performance.recommend.steps.map((s, i) => <StepCard key={s.title} label={`Step ${String(i + 1).padStart(2, '0')}`} title={s.title} text={s.text} />)}
         </ol>
-        <p className="card mt-4 text-[1.25rem] font-light" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c2.performance.recommend.close}</p>
+        <p className="card mt-4 text-[1.25rem] font-light" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c2.performance.recommend.close}</p>
 
         <Sub>{c2.performance.shortfall.title}</Sub>
         <Lead>{c2.performance.shortfall.lead}</Lead>
@@ -193,8 +193,8 @@ export default function GrowthChapter() {
 
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, or fill them in on the page, with a filled example beside each. Your notes stay in your browser.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
-          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
+          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Editable worksheets</span>
+          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT_2} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA

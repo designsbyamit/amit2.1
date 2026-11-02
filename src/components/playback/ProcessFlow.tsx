@@ -81,7 +81,7 @@ function MobileFlow() {
     </div>
   )
   const Lane = ({ label, children }: { label: string; children: React.ReactNode }) => (
-    <div className="rounded-3 p-3" style={{ background: 'var(--surface-2, rgb(255 255 255 / 0.04))' }}>
+    <div className="rounded-3 p-3" style={{ background: 'var(--surface-2, rgb(var(--on-field-strong-rgb) / 0.04))' }}>
       <p className="font-mono text-[0.65rem] uppercase tracking-overline text-ink-3 mb-3">{label}</p>
       <div className="flex flex-col">{children}</div>
     </div>

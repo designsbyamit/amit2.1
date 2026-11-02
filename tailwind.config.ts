@@ -35,7 +35,8 @@ export default {
         signal: { DEFAULT: c('signal'), ink: c('signal-ink'), on: c('on-signal') },
         link: { DEFAULT: c('link'), hover: c('link-hover') },
         danger: c('danger'),
-        field: { cobalt: 'var(--field-cobalt)', teal: 'var(--field-teal)', plum: 'var(--field-plum)', graphite: 'var(--field-graphite)' },
+        'on-field': { DEFAULT: 'var(--on-field)', strong: 'var(--on-field-strong)', accent: 'var(--on-field-accent)', muted: 'var(--on-field-muted)' },
+        field: { cobalt: 'var(--field-cobalt)', teal: 'var(--field-teal)', plum: 'var(--field-plum)', graphite: 'var(--field-graphite)', ink: 'var(--field-ink)' },
       },
       fontFamily: {
         sans: ['"Geist Variable"', 'Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],

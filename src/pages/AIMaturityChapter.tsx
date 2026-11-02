@@ -198,7 +198,7 @@ export default function AIMaturityChapter() {
         <Layer title="Your sector changes the route" hint="Banking, government, health, enterprise, consumer: what each asks of design.">
           <p className="text-body text-ink-2 max-w-measure-xl">{c5.sector.lead}</p>
           <p className="text-body text-ink max-w-measure-xl mt-4">{c5.sector.rule}</p>
-          <p className="card mt-4 text-body-sm" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c5.model.controls}</p>
+          <p className="card mt-4 text-body-sm" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c5.model.controls}</p>
           <ul className="flex flex-col mt-8">
             {c5.sector.rows.map(r => (
               <li key={r.name} className="hairline-top py-6 grid md:grid-cols-12 gap-x-6 gap-y-3">
@@ -266,14 +266,14 @@ export default function AIMaturityChapter() {
         <Layer title="Plain words for the jargon" hint="Ten terms managers keep meeting.">
           <dl className="grid md:grid-cols-2 gap-x-10 gap-y-4">{c5.glossary.map(g => <div key={g.term}><dt className="text-body-sm text-ink font-medium">{g.term}</dt><dd className="text-body-sm text-ink-2">{g.def}</dd></div>)}</dl>
         </Layer>
-        <p className="card mt-6 text-[1.25rem] font-light" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c5.proof.close}</p>
+        <p className="card mt-6 text-[1.25rem] font-light" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c5.proof.close}</p>
         <Worksheets items={W.proof} />
       </Section>
 
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, or fill them in on the page, with a filled example beside each. Your notes stay in your browser.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
-          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
+          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Editable worksheets</span>
+          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT_5} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA

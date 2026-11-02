@@ -145,10 +145,10 @@ export default function HiringExperiencePage() {
       <Section id="results" label="Results" title="How it landed.">
         <div className="grid md:grid-cols-12 gap-6">
           <div className="card md:col-span-5 flex flex-col gap-3" style={{ background: 'var(--field-teal)' }}>
-            <span className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>Candidate feedback</span>
-            <p className="font-serif" style={{ color: '#ECEDEF', fontSize: 'clamp(3rem, 6vw, 5rem)', lineHeight: 1 }}>{results.big}</p>
-            <p className="text-[1.15rem] font-light" style={{ color: '#ECEDEF' }}>{results.label}.</p>
-            <p className="text-body-sm" style={{ color: '#B9BEC6' }}>{results.note}</p>
+            <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Candidate feedback</span>
+            <p className="font-serif" style={{ color: 'var(--on-field)', fontSize: 'clamp(3rem, 6vw, 5rem)', lineHeight: 1 }}>{results.big}</p>
+            <p className="text-[1.15rem] font-light" style={{ color: 'var(--on-field)' }}>{results.label}.</p>
+            <p className="text-body-sm" style={{ color: 'var(--on-field-muted)' }}>{results.note}</p>
           </div>
           <ul className="md:col-span-7 grid sm:grid-cols-2 gap-4">
             {resultPoints.map(r => (

@@ -158,20 +158,20 @@ function LoopDiagram() {
     <figure className="rounded-3 p-6 md:p-10" style={{ background: 'var(--field-cobalt)' }}>
       <div className="grid md:grid-cols-[minmax(0,380px)_1fr] gap-8 md:gap-12 items-center">
         <svg viewBox="0 0 380 380" className="w-full max-w-[380px] mx-auto" role="img" aria-label="The Dual Fluency Loop: five steps in a cycle">
-          <circle cx={C} cy={C} r={R} fill="none" stroke="#ECEDEF" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="4 6" />
-          <text x={C} y={C - 6} textAnchor="middle" fill="#ECEDEF" style={{ font: '300 18px var(--font-sans)' }}>Design decision</text>
-          <text x={C} y={C + 18} textAnchor="middle" fill="#C8F55A" style={{ font: '400 11px var(--font-mono)', letterSpacing: '0.08em' }}>= A HYPOTHESIS</text>
+          <circle cx={C} cy={C} r={R} fill="none" stroke="var(--on-field)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="4 6" />
+          <text x={C} y={C - 6} textAnchor="middle" fill="var(--on-field)" style={{ font: '300 18px var(--font-sans)' }}>Design decision</text>
+          <text x={C} y={C + 18} textAnchor="middle" fill="var(--on-field-accent)" style={{ font: '400 11px var(--font-mono)', letterSpacing: '0.08em' }}>= A HYPOTHESIS</text>
           {pts.map(([x, y], i) => (
             <g key={i}>
-              <circle cx={x} cy={y} r="20" fill={i === 0 ? '#C8F55A' : '#1B2350'} stroke="#C8F55A" strokeWidth="1.5" />
-              <text x={x} y={y + 4} textAnchor="middle" fill={i === 0 ? '#0F1013' : '#ECEDEF'} style={{ font: '500 12px var(--font-mono)' }}>{String(i + 1).padStart(2, '0')}</text>
+              <circle cx={x} cy={y} r="20" fill={i === 0 ? 'var(--on-field-accent)' : 'var(--field-cobalt)'} stroke="var(--on-field-accent)" strokeWidth="1.5" />
+              <text x={x} y={y + 4} textAnchor="middle" fill={i === 0 ? 'var(--field-ink)' : 'var(--on-field)'} style={{ font: '500 12px var(--font-mono)' }}>{String(i + 1).padStart(2, '0')}</text>
             </g>
           ))}
         </svg>
         <figcaption>
-          <p className="font-mono text-xs tracking-overline uppercase mb-4" style={{ color: '#C8F55A' }}>The Dual Fluency Loop</p>
+          <p className="font-mono text-xs tracking-overline uppercase mb-4" style={{ color: 'var(--on-field-accent)' }}>The Dual Fluency Loop</p>
           <ol className="flex flex-col gap-3">
-            {LOOP.map((s, i) => <li key={s} className="flex gap-4 text-[1.0625rem] font-light" style={{ color: '#ECEDEF' }}><span className="font-mono text-xs pt-1.5" style={{ color: '#C8F55A' }}>{String(i + 1).padStart(2, '0')}</span>{s}</li>)}
+            {LOOP.map((s, i) => <li key={s} className="flex gap-4 text-[1.0625rem] font-light" style={{ color: 'var(--on-field)' }}><span className="font-mono text-xs pt-1.5" style={{ color: 'var(--on-field-accent)' }}>{String(i + 1).padStart(2, '0')}</span>{s}</li>)}
           </ol>
         </figcaption>
       </div>
@@ -187,20 +187,20 @@ function CanvasSheet() {
     <figure className="rounded-3 p-5 md:p-8 overflow-x-auto" style={{ background: 'var(--field-teal)' }}>
       <div className="min-w-[680px]">
         <div className="flex items-center justify-between mb-5">
-          <p className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>Dual Fluency Canvas</p>
-          <p className="font-mono text-xs" style={{ color: '#ECEDEF', opacity: 0.7 }}>Decision: ____________________</p>
+          <p className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Dual Fluency Canvas</p>
+          <p className="font-mono text-xs" style={{ color: 'var(--on-field)', opacity: 0.7 }}>Decision: ____________________</p>
         </div>
         <div className="grid grid-cols-4 gap-3">
           {cols.map((c, i) => (
-            <div key={c} className="rounded-2 p-4 flex flex-col gap-3 min-h-[260px]" style={{ background: 'rgb(255 255 255 / 0.06)', border: '1px solid rgb(255 255 255 / 0.14)' }}>
-              <div className="flex items-center justify-between"><span className="font-mono text-xs" style={{ color: '#C8F55A' }}>0{i + 1}</span>{i < 3 && <span aria-hidden="true" style={{ color: '#ECEDEF', opacity: 0.5 }}>←</span>}</div>
-              <p className="text-[1.0625rem] font-light" style={{ color: '#ECEDEF' }}>{c}</p>
-              <div className="rounded-1 p-3 text-sm" style={{ background: '#C8F55A', color: '#0F1013' }}>{example[i]}</div>
-              {[0, 1].map(k => <div key={k} className="h-9 rounded-1" style={{ border: '1px dashed rgb(255 255 255 / 0.25)' }} />)}
+            <div key={c} className="rounded-2 p-4 flex flex-col gap-3 min-h-[260px]" style={{ background: 'var(--field-tint)', border: '1px solid rgb(var(--on-field-strong-rgb) / 0.14)' }}>
+              <div className="flex items-center justify-between"><span className="font-mono text-xs" style={{ color: 'var(--on-field-accent)' }}>0{i + 1}</span>{i < 3 && <span aria-hidden="true" style={{ color: 'var(--on-field)', opacity: 0.5 }}>←</span>}</div>
+              <p className="text-[1.0625rem] font-light" style={{ color: 'var(--on-field)' }}>{c}</p>
+              <div className="rounded-1 p-3 text-sm" style={{ background: 'var(--on-field-accent)', color: 'var(--field-ink)' }}>{example[i]}</div>
+              {[0, 1].map(k => <div key={k} className="h-9 rounded-1" style={{ border: '1px dashed var(--field-line)' }} />)}
             </div>
           ))}
         </div>
-        <p className="mt-4 text-sm" style={{ color: '#ECEDEF', opacity: 0.8 }}>Read right to left: the intervention moves a design metric, which moves a user metric, which moves the business KPI. Measure both ends.</p>
+        <p className="mt-4 text-sm" style={{ color: 'var(--on-field)', opacity: 0.8 }}>Read right to left: the intervention moves a design metric, which moves a user metric, which moves the business KPI. Measure both ends.</p>
       </div>
       <figcaption className="sr-only">The canvas has four columns: business KPI, user metric, design metric and intervention, with an example row.</figcaption>
     </figure>

@@ -62,6 +62,8 @@ html[data-theme='dark'] {
   --shadow-3: 0 24px 48px rgb(0 0 0 / 0.45);              /* overlay: popovers, sheets */
   --shadow-4: 0 40px 100px rgb(0 0 0 / 0.55);             /* modal: lightbox, dialogs */
   --shadow-glow: 0 0 30px rgb(var(--signal-rgb) / 0.35);  /* live and active states */
+  --shadow-halo: 0 0 0 4px rgb(var(--signal-ink-rgb) / 0.18); /* status dot halo */
+  --shadow-hairline: 0 0 0 1px var(--line-1);              /* one pixel outline without a border */
 }
 
 html[data-theme='light'] {
@@ -108,6 +110,23 @@ html[data-theme='light'] {
   --field-graphite: #22252B;
   --on-field: #ECEDEF;
   --on-field-accent: #C8F55A;
+  --on-field-strong: #FFFFFF;             /* headlines and numbers on a field */
+  --on-field-muted: #B9BEC6;              /* notes on a field */
+  --field-ink: #0F1013;                   /* text and marks on lime or light surfaces */
+  --field-deep: #0E1A33;                  /* deepest cobalt, for drawn marks */
+  --on-field-strong-rgb: 255 255 255;
+  --black-rgb: 0 0 0;                     /* shadows and scrims on imagery */
+  --veil-rgb: 10 14 22;                   /* dim layer over a screen mock */
+  --field-paper: #F5F6F7;                 /* the light screen inside a mock */
+  --signal-edge: #7AA800;                 /* outline for lime marks on light screens */
+  --field-tint: rgb(255 255 255 / 0.06);  /* raised panel on a field */
+  --field-line: rgb(255 255 255 / 0.25);  /* dashed or hairline on a field */
+  --risk-high: #B42318;
+  --risk-high-bg: rgb(217 45 32 / 0.14);
+  --risk-medium: #B54708;
+  --risk-medium-bg: rgb(220 104 3 / 0.16);
+  --risk-low: #067647;
+  --risk-low-bg: rgb(6 118 71 / 0.14);
 
   /* Convenience solid values */
   --bg: rgb(var(--bg-rgb));

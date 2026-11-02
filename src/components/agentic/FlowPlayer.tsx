@@ -101,7 +101,7 @@ export default function FlowPlayer({ imgs, title, intro }: { imgs: Record<string
     setPlaying(p => !p)
   }
   const jumpChapter = (c: number) => go(STEPS.findIndex(s => s.ch === c))
-  const actorStyle = step.who === 'Agent' ? { background: 'var(--signal)', color: '#10130a' } : { border: '1px solid rgb(var(--ink-rgb) / 0.5)' }
+  const actorStyle = step.who === 'Agent' ? { background: 'var(--signal)', color: 'var(--on-signal)' } : { border: '1px solid rgb(var(--ink-rgb) / 0.5)' }
   const [rx, ry, rw, rh] = step.ring ?? [0, 0, 0, 0]
 
   return (
@@ -128,26 +128,26 @@ export default function FlowPlayer({ imgs, title, intro }: { imgs: Record<string
         </div>
 
         <div>
-          <div className="relative overflow-hidden rounded-xl border" style={{ borderColor: 'var(--line-2)', background: '#f5f6f7', aspectRatio: '1440 / 899' }}>
+          <div className="relative overflow-hidden rounded-xl border" style={{ borderColor: 'var(--line-2)', background: 'var(--field-paper)', aspectRatio: '1440 / 899' }}>
             <AnimatePresence initial={false}>
               <motion.img key={step.shot} src={imgs[step.shot]} alt={step.title} className="absolute inset-0 w-full h-full block bg-white" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.45 }} />
             </AnimatePresence>
             <AnimatePresence>
               {step.overlay && (
                 <motion.div key="overlay" className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                  <div className="absolute inset-0" style={{ background: 'rgb(10 14 22 / 0.5)' }} />
-                  <motion.div role="img" aria-label="Email Supplier dialog, drafted by the agent" className="absolute rounded-lg" style={{ left: '50%', top: '7%', height: '86%', aspectRatio: '0.531', x: '-50%', background: `#fff url(${imgs[step.overlay]}) no-repeat`, backgroundSize: '133.7% auto', backgroundPosition: '50% 37.5%', boxShadow: '0 24px 60px rgb(0 0 0 / 0.4)' }}
+                  <div className="absolute inset-0" style={{ background: 'rgb(var(--veil-rgb) / 0.5)' }} />
+                  <motion.div role="img" aria-label="Email Supplier dialog, drafted by the agent" className="absolute rounded-lg" style={{ left: '50%', top: '7%', height: '86%', aspectRatio: '0.531', x: '-50%', background: `var(--on-field-strong) url(${imgs[step.overlay]}) no-repeat`, backgroundSize: '133.7% auto', backgroundPosition: '50% 37.5%', boxShadow: 'var(--shadow-4)' }}
                     initial={reduce ? false : { y: 28, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6, ease, delay: 0.2 }} />
                 </motion.div>
               )}
             </AnimatePresence>
             {step.ring && (
-              <motion.div key={`ring-${i}`} className="absolute rounded-md pointer-events-none" style={{ left: `${rx * 100}%`, top: `${ry * 100}%`, width: `${rw * 100}%`, height: `${rh * 100}%`, border: '2px solid #7aa800' }}
-                initial={reduce ? false : { opacity: 0, scale: 1.03 }} animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, boxShadow: ['0 0 0 0px rgb(200 245 90 / 0.0)', '0 0 0 7px rgb(200 245 90 / 0.5)', '0 0 0 3px rgb(200 245 90 / 0.3)'] }} transition={{ delay: 0.55, duration: 0.9, ease }} />
+              <motion.div key={`ring-${i}`} className="absolute rounded-md pointer-events-none" style={{ left: `${rx * 100}%`, top: `${ry * 100}%`, width: `${rw * 100}%`, height: `${rh * 100}%`, border: '2px solid var(--signal-edge)' }}
+                initial={reduce ? false : { opacity: 0, scale: 1.03 }} animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, boxShadow: ['0 0 0 0px rgb(var(--signal-rgb) / 0.0)', '0 0 0 7px rgb(var(--signal-rgb) / 0.5)', '0 0 0 3px rgb(var(--signal-rgb) / 0.3)'] }} transition={{ delay: 0.55, duration: 0.9, ease }} />
             )}
             {!playing && (
-              <button type="button" onClick={toggle} aria-label={ended ? 'Replay the flow' : 'Play the flow'} className="absolute inset-0 grid place-items-center" style={{ background: 'rgb(10 14 22 / 0.08)' }}>
-                <span className="w-16 h-16 rounded-full grid place-items-center" style={{ background: 'var(--signal)', color: '#10130a', boxShadow: '0 10px 30px rgb(0 0 0 / 0.3)' }}>
+              <button type="button" onClick={toggle} aria-label={ended ? 'Replay the flow' : 'Play the flow'} className="absolute inset-0 grid place-items-center" style={{ background: 'rgb(var(--veil-rgb) / 0.08)' }}>
+                <span className="w-16 h-16 rounded-full grid place-items-center" style={{ background: 'var(--signal)', color: 'var(--on-signal)', boxShadow: 'var(--shadow-2)' }}>
                   {ended ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" /></svg> : <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z" /></svg>}
                 </span>
               </button>

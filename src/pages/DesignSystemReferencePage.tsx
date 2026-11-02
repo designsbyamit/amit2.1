@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button, Card, Chip, Tag, TagList, Status, Breadcrumb, Callout, Stat, SectionHeader, ThemeToggle, useTheme, Tabs, Accordion, TextField, TextArea, Quote, MediaFrame } from '../components/ds'
 import CaseRow from '../components/ds/CaseRow'
+import { tokenHex, fieldHex } from '../styles/tokenValues'
 import StoryCover from '../components/ds/StoryCover'
 import StoryField from '../components/ds/StoryField'
 import ResourceCover from '../components/ds/ResourceCover'
@@ -98,21 +99,22 @@ function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
 }
 
 /* ── data ── */
+const sw = (token: string, role: string) => ({ token, dark: tokenHex(token, 'dark'), light: tokenHex(token, 'light'), role })
 const colour: { token: string; dark: string; light: string; role: string }[] = [
-  { token: 'bg', dark: '#0F1013', light: '#F5F6F7', role: 'Page ground' },
-  { token: 'surface-1', dark: '#181A1F', light: '#FFFFFF', role: 'Cards, header, menus' },
-  { token: 'surface-2', dark: '#22252B', light: '#EEF0F2', role: 'Raised: inputs, hover, callouts' },
-  { token: 'surface-3', dark: '#2C3038', light: '#E4E7EB', role: 'Hover on raised' },
-  { token: 'ink', dark: '#ECEDEF', light: '#0F1013', role: 'Headings and primary text' },
-  { token: 'ink-2', dark: '#C4C7CD', light: '#3A3E46', role: 'Body and secondary text' },
-  { token: 'ink-3', dark: '#A3A7B0', light: '#4D525C', role: 'Labels, metadata, captions' },
-  { token: 'faint', dark: '#5D626C', light: '#9AA0A9', role: 'Decorative only, never words' },
-  { token: 'signal', dark: '#C8F55A', light: '#C8F55A', role: 'Primary fill, live status, the accent node' },
-  { token: 'signal-ink', dark: '#C8F55A', light: '#3F6B00', role: 'Signal used as text' },
-  { token: 'link', dark: '#7D98FF', light: '#3654E0', role: 'Inline links and the focus ring. Nothing else is blue' },
-  { token: 'danger', dark: '#FF8A7A', light: '#B42818', role: 'Form errors' },
+  sw('bg', 'Page ground'),
+  sw('surface-1', 'Cards, header, menus'),
+  sw('surface-2', 'Raised: inputs, hover, callouts'),
+  sw('surface-3', 'Hover on raised'),
+  sw('ink', 'Headings and primary text'),
+  sw('ink-2', 'Body and secondary text'),
+  sw('ink-3', 'Labels, metadata, captions'),
+  sw('faint', 'Decorative only, never words'),
+  sw('signal', 'Primary fill, live status, the accent node'),
+  sw('signal-ink', 'Signal used as text'),
+  sw('link', 'Inline links and the focus ring. Nothing else is blue'),
+  sw('danger', 'Form errors'),
 ]
-const fields = [['field-cobalt', '#1B2350'], ['field-teal', '#0F3B3A'], ['field-plum', '#33203F'], ['field-graphite', '#22252B']]
+const fields = ['field-cobalt', 'field-teal', 'field-plum', 'field-graphite', 'field-ink', 'field-deep', 'field-paper', 'on-field', 'on-field-strong', 'on-field-muted', 'on-field-accent', 'risk-high', 'risk-medium', 'risk-low'].map(n => [n, fieldHex(n)])
 const types: { cls: string; name: string; spec: string; sample: string }[] = [
   { cls: 'text-giant', name: 'giant', spec: 'Hero-only scale, one per page at most', sample: 'Hello' },
   { cls: 'text-display-2xl', name: 'display-2xl', spec: '52 to 128px · 200 · -0.045em', sample: 'Futures' },
@@ -234,7 +236,7 @@ function Lift() {
   return (
     <a href="#motion" onClick={e => e.preventDefault()} className="group block max-w-xs">
       <div className="rounded-3 overflow-hidden border transition-transform duration-500 group-hover:-translate-y-0.5" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}>
-        <div className="h-24" style={{ background: 'linear-gradient(135deg, #25223B 0%, #3D3669 55%, #8F80E9 100%)' }} />
+        <div className="h-24" style={{ background: 'linear-gradient(135deg, var(--field-plum) 0%, var(--field-cobalt) 55%, var(--link) 100%)' }} />
         <p className="p-4 text-body-sm text-ink-2 group-hover:text-ink transition-colors">Hover me: lifts 2px over 500ms</p>
       </div>
     </a>
@@ -299,7 +301,7 @@ export default function DesignSystemReferencePage() {
           </div>
           <p className="text-body-sm text-ink-3 mt-6 max-w-measure-xl">Signal (lime) is a fill and a light touch, never body text on the light ground. Text colour comes from the ink ramp, never from opacity.</p>
         </Spec>
-        <Spec name="Image fields" note="The same in both modes, so covers and story headers look identical either way.">
+        <Spec name="Image fields and the colours used on them" note="The same in both modes, so covers and story headers look identical either way. Values are read from tokens.css, so this list cannot drift from the site. Also on a field: field-tint, field-line, signal-edge, and the risk colours for severity.">
           <div className="flex flex-wrap gap-4">
             {fields.map(([n, h]) => <div key={n} className="w-36"><div className="h-16 rounded-3" style={{ background: h }} /><p className="font-mono text-label text-ink mt-2">{n}</p><p className="text-caption text-ink-3">{h}</p></div>)}
           </div>
