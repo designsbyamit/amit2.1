@@ -28,6 +28,8 @@ const HiringExperiencePage = lazy(() => import('./pages/HiringExperiencePage'))
 const PracticePage = lazy(() => import('./pages/grow/PracticePage'))
 const ChallengePage = lazy(() => import('./pages/grow/ChallengePage'))
 const PortfolioGuidePage = lazy(() => import('./pages/grow/PortfolioPage'))
+const LibraryPage = lazy(() => import('./pages/grow/LibraryPage'))
+const LibraryEntryPage = lazy(() => import('./pages/grow/LibraryEntryPage'))
 const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
 const ShortStoryPage = lazy(() => import('./pages/ShortStoryPage'))
 const CommunityPage = lazy(() => import('./pages/CommunityPage'))
@@ -158,6 +160,8 @@ function AnimatedRoutes() {
         <Route path="/learn/practice" element={<PageTransition><PracticePage /></PageTransition>} />
         <Route path="/learn/practice/:topic/:id" element={<PageTransition><ChallengePage /></PageTransition>} />
         <Route path="/learn/portfolio" element={<PageTransition><PortfolioGuidePage /></PageTransition>} />
+        <Route path="/learn/library" element={<PageTransition><LibraryPage /></PageTransition>} />
+        <Route path="/learn/library/:slug" element={<PageTransition><LibraryEntryPage /></PageTransition>} />
         {/* Curious Minds is hidden for now: its page is src/pages/grow/CuriousPage.tsx. Re-add the route and the Grow card to bring it back. */}
         <Route path="/learn/curious" element={<Navigate to="/learn" replace />} />
         <Route path="/leadership/stories" element={<PageTransition><LeadershipStoriesPage /></PageTransition>} />

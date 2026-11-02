@@ -10,13 +10,14 @@ const items: { to: string; title: string; text: string; tone: string; art: React
   { to: '/mentoring', title: 'Mentoring', text: 'How I coach designers, and templates you can use with your own mentor or team.', tone: 'var(--field-cobalt)', art: <MentoringPictogram /> },
   { to: '/learn/practice', title: 'Toolkits', text: 'Practise designing with AI, from a conversational interface to multi-agent orchestration, with exercises and reflection prompts.', tone: 'var(--field-teal)', art: <PracticePictogram /> },
   { to: '/learn/portfolio', title: 'Portfolio Guide', text: 'Give your portfolio a character, then shape each project with a clear anatomy and a story.', tone: 'var(--field-plum)', art: <PortfolioPictogram /> },
+  { to: '/learn/library', title: 'Library', text: 'Articles, frameworks and worksheets for designers who are growing, starting with what it takes to become an AI designer.', tone: 'var(--field-cobalt)', art: <ResourcesPictogram /> },
   { to: '', title: 'WingSpan', text: 'Wings for your design career.', tone: 'var(--field-graphite)', art: <ResourcesPictogram />, soon: true },
 ]
 
 export default function LearnPage() {
   return (
     <>
-      <PageHeader label="Grow" title="For designers who are growing." subtitle="Mentoring, toolkits to practise with, and a guide to presenting your work."
+      <PageHeader label="Grow" title="For designers who are growing." subtitle="Mentoring, toolkits to practise with, a guide to presenting your work and a library of articles."
         image="/images/about/grow-hero.webp" imagePosition="50% 35%" mono imageAlt="Amit speaking to a room of designers during a session" />
       <section className="section-y hairline-top">
         <div className="container-site">

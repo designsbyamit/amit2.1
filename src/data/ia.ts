@@ -34,6 +34,7 @@ export const growItems: MenuItem[] = [
   { label: 'Mentoring', to: '/mentoring', kind: 'Mentoring', mark: 'mentor', tone: 'cobalt' },
   { label: 'Toolkits', to: '/learn/practice', kind: 'Toolkits', mark: 'toolkit', tone: 'teal' },
   { label: 'Portfolio Guide', to: '/learn/portfolio', kind: 'Guide', mark: 'portfolio', tone: 'plum' },
+  { label: 'Library', to: '/learn/library', kind: 'Articles', mark: 'notes', tone: 'cobalt' },
   { label: 'WingSpan', to: '', kind: 'Coming soon', mark: 'wingspan', tone: 'graphite', soon: true },
   { label: 'Questions from AMA', to: '', kind: 'Coming soon', mark: 'ama', tone: 'graphite', soon: true },
 ]
