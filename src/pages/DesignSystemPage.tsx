@@ -108,7 +108,7 @@ function DoDont({ dos, donts }: { dos: string[]; donts: string[] }) {
 function SwatchTable({ rows }: { rows: Swatch[] }) {
   return (
     <div className="overflow-x-auto">
-      <table className="table min-w-[640px]">
+      <table className="table min-w-scroll-s">
         <thead><tr><th>Token</th><th>Dark</th><th>Light</th><th>Role</th><th>Contrast on bg (dark / light)</th></tr></thead>
         <tbody>
           {rows.map(r => (
@@ -204,7 +204,7 @@ export default function DesignSystemPage() {
         <div className="grid-site mb-10" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, i) => <div key={i} className={`h-20 rounded-1 bg-signal/15 border border-signal-ink/30 ${i >= 4 ? 'hidden md:block' : ''}`} />)}
         </div>
-        <div className="overflow-x-auto"><table className="table min-w-[560px]"><thead><tr><th>Breakpoint</th><th>Width</th><th>Behaviour</th></tr></thead>
+        <div className="overflow-x-auto"><table className="table min-w-scroll-s"><thead><tr><th>Breakpoint</th><th>Width</th><th>Behaviour</th></tr></thead>
           <tbody>{breakpoints.map(b => <tr key={b.n}><td className="font-mono text-ink">{b.n}</td><td className="font-mono">{b.px}</td><td>{b.note}</td></tr>)}</tbody></table></div>
         <h3 className="text-title text-ink mt-12 mb-6">Spacing scale (4px base)</h3>
         <div className="flex flex-wrap items-end gap-5">
@@ -221,7 +221,7 @@ export default function DesignSystemPage() {
       {/* 05 Clickable or not */}
       <Block id="clickable" n="05" title="Clickable looks clickable." intro="The one rule that fixes most confusion: you can tell what can be pressed without hovering.">
         <div className="overflow-x-auto">
-          <table className="table min-w-[720px]">
+          <table className="table min-w-scroll-s">
             <thead><tr><th>Element</th><th>Looks like</th><th>Clickable</th><th>Use for</th></tr></thead>
             <tbody>
               <tr><td><Button small>Primary</Button></td><td>Lime fill, 6px radius, sentence case</td><td>Yes</td><td>The main action of a view. One per view.</td></tr>
@@ -321,7 +321,7 @@ export default function DesignSystemPage() {
 
       {/* 08 Accessibility */}
       <Block id="accessibility" n="08" title="WCAG 2.2 AA, both modes." intro="These are requirements, not suggestions. Each is checked before a page ships.">
-        <div className="overflow-x-auto"><table className="table min-w-[640px]"><thead><tr><th>Requirement</th><th>How Signal meets it</th></tr></thead><tbody>
+        <div className="overflow-x-auto"><table className="table min-w-scroll-s"><thead><tr><th>Requirement</th><th>How Signal meets it</th></tr></thead><tbody>
           {[
             ['1.4.3 Contrast (text)', 'All text tokens are 4.5:1 or more on every surface in both modes (most are 7:1).'],
             ['1.4.11 Non-text contrast', 'Control borders use line-control (3:1+). Focus ring is cobalt, 2px, 3px offset.'],

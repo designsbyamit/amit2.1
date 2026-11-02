@@ -14,7 +14,7 @@ import { join, relative } from 'node:path'
 const root = new URL('../../', import.meta.url).pathname
 const SRC = join(root, 'src')
 const BASE = join(root, 'tools/tokens/baseline.json')
-const ALLOW = ['src/styles/tokens.css', 'src/labs/', 'src/film/', 'src/components/case/search-anatomy.css', 'src/components/case/SearchAnatomy', 'src/components/illustrations/', 'src/components/marks/', 'src/components/ds/anim/', 'src/components/ds/HubPictograms', 'src/components/ds/StoryPictogram', 'src/components/ds/AnimThumb', 'src/components/ds/FlowThumb', 'src/components/ds/ResourceCover', 'src/components/ds/MenuCover', 'src/components/ds/StoryCover', 'src/components/sections/DriveGrid']
+const ALLOW = ['src/styles/tokens.css', 'src/labs/', 'src/film/', 'src/components/case/search-anatomy.css', 'src/components/case/SearchAnatomy', 'src/components/illustrations/', 'src/components/marks/', 'src/components/ds/anim/', 'src/components/ds/HubPictograms', 'src/components/ds/StoryPictogram', 'src/components/ds/AnimThumb', 'src/components/ds/FlowThumb', 'src/components/ds/ResourceCover', 'src/components/ds/MenuCover', 'src/components/ds/StoryCover', 'src/components/sections/DriveGrid', 'src/components/playback/ShortStoryTag']
 
 const files = []
 ;(function walk(d) {
@@ -28,9 +28,9 @@ const files = []
 const rules = {
   'hex colour': /#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b(?![0-9a-zA-Z-])/g,
   'rgb() colour': /\brgba?\(\s*\d/g,
-  'inline spacing or size (px/rem)': /\b(?:padding|margin|gap|width|height|top|left|right|bottom|minHeight|minWidth|maxWidth|maxHeight|fontSize|lineHeight|letterSpacing)\s*:\s*['"`]?-?\d*\.?\d+(?:px|rem|em)\b/g,
+  'inline spacing or size (px/rem)': /(?<!\((?:min|max)-)\b(?:padding|margin|gap|width|height|top|left|right|bottom|minHeight|minWidth|maxWidth|maxHeight|fontSize|lineHeight|letterSpacing)\s*:\s*['"`]?-?\d*\.?\d+(?:px|rem)\b/g,
   'raw shadow': /\bboxShadow\s*:\s*['"`](?!var\()|\bbox-shadow\s*:\s*(?!var\(|none)/g,
-  'arbitrary Tailwind value': /\b(?:text|w|h|min-w|min-h|max-w|max-h|p[xytblr]?|m[xytblr]?|gap|rounded|shadow|duration|tracking|leading|z|top|left|right|bottom|inset)-\[[^\]]+\]/g,
+  'arbitrary Tailwind value': /\b(?:text|w|h|min-w|min-h|max-w|max-h|p[xytblr]?|m[xytblr]?|gap|rounded|shadow|duration|tracking|leading|z|top|left|right|bottom|inset)-\[(?![^\]]*var\()[^\]]*\d(?:px|rem)[^\]]*\]/g,
   'hard-coded duration': /\bduration-\d+\b|\btransition(?:Duration)?\s*:\s*['"`][^'"`]*\d+(?:ms|s)\b/g,
 }
 

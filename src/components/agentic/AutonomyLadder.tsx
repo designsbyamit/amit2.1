@@ -8,11 +8,11 @@ export default function AutonomyLadder({ levels, next }: { levels: Level[]; next
   const heights = ['38%', '64%', '90%']
   return (
     <div className="grid lg:grid-cols-[1.6fr_1fr] gap-12">
-      <div className="grid grid-cols-3 gap-3 items-end min-h-[340px]">
+      <div className="grid grid-cols-3 gap-3 items-end min-h-panel-l">
         {levels.map((l, i) => (
           <motion.div key={l.name} className="rounded-2xl p-5 flex flex-col justify-end relative" style={{ height: heights[i], minHeight: 170, border: l.state === 'next' ? '2px dashed var(--signal)' : '1px solid var(--line-2)', background: l.state === 'today' ? 'rgb(var(--ink-rgb))' : 'transparent', color: l.state === 'today' ? 'var(--surface-0)' : undefined, transformOrigin: 'bottom' }}
             initial={reduce ? false : { scaleY: 0.2, opacity: 0 }} whileInView={{ scaleY: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: i * 0.2, ease: [0.16, 1, 0.3, 1] }}>
-            <span className="absolute top-4 left-5 text-[10px] uppercase tracking-overline rounded-full px-2 py-0.5" style={l.state === 'today' ? { background: 'var(--signal)', color: 'var(--on-signal)' } : { border: '1px solid currentColor', opacity: 0.6 }}>{l.state === 'today' ? 'Today' : l.state === 'next' ? 'Next' : 'Floor'}</span>
+            <span className="absolute top-4 left-5 text-t-2xs uppercase tracking-overline rounded-full px-2 py-0.5" style={l.state === 'today' ? { background: 'var(--signal)', color: 'var(--on-signal)' } : { border: '1px solid currentColor', opacity: 0.6 }}>{l.state === 'today' ? 'Today' : l.state === 'next' ? 'Next' : 'Floor'}</span>
             <p className="text-title">{l.name}</p>
             <p className="text-body-sm mt-2 opacity-80">{l.text}</p>
           </motion.div>

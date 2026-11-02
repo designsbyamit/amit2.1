@@ -19,3 +19,16 @@ export function fieldHex(name: string): string {
   const m = css.match(new RegExp(`--${name}:\\s*(#[0-9A-Fa-f]{6})`))
   return m ? m[1].toUpperCase() : ''
 }
+
+/** Every token whose name starts with the prefix (e.g. "text-", "track-", "size-", "z-"), with its value, read from tokens.css. */
+export function tokensByPrefix(prefix: string): { name: string; value: string }[] {
+  const out: { name: string; value: string }[] = []
+  const seen = new Set<string>()
+  const re = new RegExp(`--(${prefix}[a-z0-9-]*):\\s*([^;]+);`, 'g')
+  for (const m of css.matchAll(re)) {
+    if (m[1].endsWith('-rgb') || seen.has(m[1])) continue
+    seen.add(m[1])
+    out.push({ name: m[1], value: m[2].replace(/\s+/g, ' ').trim() })
+  }
+  return out
+}

@@ -47,7 +47,7 @@ export default function ZoomImage({ src, alt, className = '', style }: { src: st
               aria-modal="true"
               aria-label={alt}
               data-lenis-prevent
-              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 overflow-auto cursor-zoom-out"
+              className="fixed inset-0 z-dialog flex items-center justify-center p-4 md:p-10 overflow-auto cursor-zoom-out"
               style={{ background: 'rgb(var(--bg-rgb) / 0.94)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

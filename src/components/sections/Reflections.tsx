@@ -55,9 +55,9 @@ export default function Reflections() {
                     <p
                       className="text-white select-none"
                       style={{
-                        fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                        fontSize: 'var(--fs-stat)',
                         fontWeight: 200,
-                        letterSpacing: '-0.05em',
+                        letterSpacing: 'var(--track-tightest)',
                         color: 'var(--color-ink-3)',
                         lineHeight: 1,
                       }}
@@ -72,7 +72,7 @@ export default function Reflections() {
               <div className="p-8 md:p-10 flex flex-col flex-1">
                 <div className="mb-4"><Tag>{r.category}</Tag></div>
                 <h3 className="text-white mb-4 group-hover:opacity-80 transition-opacity"
-                  style={{ fontSize: 'clamp(1.05rem, 1.5vw, 1.25rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.35 }}>
+                  style={{ fontSize: 'var(--fs-quote-s)', fontWeight: 300, letterSpacing: 'var(--track-title)', lineHeight: 1.35 }}>
                   {r.title}
                 </h3>
                 <p className="text-body text-ink-3 flex-1">{r.excerpt}</p>

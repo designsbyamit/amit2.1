@@ -47,7 +47,7 @@ export default function CaseStudyPage() {
                   {cs.stats.map(stat => (
                     <div key={stat.label} className="flex flex-col-reverse">
                       <dt className="text-label text-ink-3 mt-2">{stat.label}</dt>
-                      <dd className="text-ink text-[clamp(1.75rem,3vw,2.75rem)] font-extralight tracking-[-0.03em] leading-none">{stat.value}</dd>
+                      <dd className="text-ink text-f-case-title font-extralight tracking-tight leading-none">{stat.value}</dd>
                     </div>
                   ))}
                 </motion.dl>
@@ -277,7 +277,7 @@ export default function CaseStudyPage() {
           <div
             className="absolute top-8 left-6 md:left-12 select-none pointer-events-none text-white"
             style={{
-              fontSize: 'clamp(8rem, 15vw, 14rem)',
+              fontSize: 'var(--fs-ghost)',
               fontWeight: 200,
               color: 'rgb(var(--ink-rgb) / 0.04)',
               lineHeight: 0.8,
@@ -290,10 +290,10 @@ export default function CaseStudyPage() {
               <motion.p
                 className="text-ink-2"
                 style={{
-                  fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)',
+                  fontSize: 'var(--fs-lede)',
                   fontWeight: 300,
                   lineHeight: 1.7,
-                  letterSpacing: '-0.01em',
+                  letterSpacing: 'var(--track-snug)',
                 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

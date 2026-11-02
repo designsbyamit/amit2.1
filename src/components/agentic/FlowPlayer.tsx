@@ -110,7 +110,7 @@ export default function FlowPlayer({ imgs, title, intro }: { imgs: Record<string
         <div className="lg:sticky lg:top-28">
           <h3 className="text-heading text-white">{title}</h3>
           <p className="text-body text-ink-2 mt-3">{intro}</p>
-          <div className="mt-8 min-h-[230px]" aria-live="polite">
+          <div className="mt-8 min-h-panel" aria-live="polite">
             <AnimatePresence mode="wait">
               <motion.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3, ease }}>
                 <span className="inline-block rounded-full px-3 py-1 text-label" style={actorStyle}>{step.who}</span>
@@ -122,7 +122,7 @@ export default function FlowPlayer({ imgs, title, intro }: { imgs: Record<string
           </div>
           <div className="flex items-center gap-3 mt-6">
             <button type="button" className="btn btn-secondary btn-sm" onClick={() => go(i - 1)} aria-label="Previous step">&larr;</button>
-            <button type="button" className="btn btn-primary btn-sm min-w-[84px]" onClick={toggle}>{ended ? 'Replay' : playing ? 'Pause' : 'Play'}</button>
+            <button type="button" className="btn btn-primary btn-sm min-w-lane" onClick={toggle}>{ended ? 'Replay' : playing ? 'Pause' : 'Play'}</button>
             <button type="button" className="btn btn-secondary btn-sm" onClick={() => go(i + 1)} aria-label="Next step">&rarr;</button>
           </div>
         </div>

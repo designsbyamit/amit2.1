@@ -61,7 +61,7 @@ export default function ContractWorksheet({ d }: { d: ContractData }) {
           <ul>
             {d.capabilities.map(([t, on, note]) => (
               <li key={t} className="hairline-top flex gap-3 py-3">
-                <span className="mt-0.5 w-[18px] h-[18px] rounded-[5px] grid place-items-center shrink-0 border" style={{ borderColor: on ? 'var(--signal)' : 'var(--line-control)', background: on ? 'var(--signal)' : 'transparent' }} aria-hidden="true">
+                <span className="mt-0.5 w-check h-check rounded-2 grid place-items-center shrink-0 border" style={{ borderColor: on ? 'var(--signal)' : 'var(--line-control)', background: on ? 'var(--signal)' : 'transparent' }} aria-hidden="true">
                   {on && <svg width="11" height="11" viewBox="0 0 10 10" fill="none" stroke="var(--on-signal)" strokeWidth="1.8"><path d="M2 5.2l2 2L8 3" strokeLinecap="round" strokeLinejoin="round" /></svg>}
                 </span>
                 <span className="text-body-sm"><span className={on ? 'text-white' : 'text-ink-3'}>{t}</span>{note && <span className="block text-ink-3 mt-0.5">{note}</span>}</span>

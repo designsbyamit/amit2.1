@@ -122,7 +122,7 @@ function BuildingADesignTeam() {
           ))}
           <li className="card flex flex-col gap-3 md:col-span-2" style={{ background: 'var(--field-teal)' }}>
             <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>What you will have</span>
-            <p className="text-[1.25rem] font-light" style={{ color: 'var(--on-field)' }}>{onboarding.outcome}</p>
+            <p className="text-t-lg font-light" style={{ color: 'var(--on-field)' }}>{onboarding.outcome}</p>
           </li>
         </ol>
         <h3 className="text-label text-ink-3 mt-14 mb-5">Worksheet for this framework</h3>
@@ -144,7 +144,7 @@ function BuildingADesignTeam() {
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, fill them in with your leader and your HR partner, and adapt them to your organisation. Six of them are also editable, each with a filled example.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
           <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet and switch to the filled example (a fictional company, NorthStar) to see how it is used. Your notes stay in your browser.</p>
+          <p className="text-t-lg font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet and switch to the filled example (a fictional company, NorthStar) to see how it is used. Your notes stay in your browser.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA_WORKSHEETS

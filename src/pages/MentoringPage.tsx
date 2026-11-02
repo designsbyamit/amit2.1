@@ -65,7 +65,7 @@ export default function MentoringPage() {
           <dl className="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-6 hairline-top pt-8">
             {stats.map(st => (
               <div key={st.label} className="flex flex-col gap-2">
-                <dd className="text-display-l text-ink font-extralight tracking-[-0.04em] leading-none">{st.value}{st.unit && <span className="text-title text-ink-3 ml-2">{st.unit}</span>}</dd>
+                <dd className="text-display-l text-ink font-extralight tracking-tighter leading-none">{st.value}{st.unit && <span className="text-title text-ink-3 ml-2">{st.unit}</span>}</dd>
                 <dt className="text-label text-ink-3">{st.label}</dt>
               </div>
             ))}
@@ -107,7 +107,7 @@ export default function MentoringPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {templates.map((tpl, i) => (
               <article key={tpl.id} className="card !p-0 overflow-hidden flex flex-col" aria-labelledby={`tpl-${tpl.id}`}>
-                <div className="p-6 pb-0"><div className="max-w-[180px]"><ResourceCover title={tpl.title} kind="Template" motif={tpl.motif} tone={tpl.tone} index={i + 1} /></div></div>
+                <div className="p-6 pb-0"><div className="max-w-note-s"><ResourceCover title={tpl.title} kind="Template" motif={tpl.motif} tone={tpl.tone} index={i + 1} /></div></div>
                 <div className="p-6 flex flex-col gap-4 flex-1">
                   <h3 id={`tpl-${tpl.id}`} className="text-title text-ink">{tpl.title}</h3>
                   <p className="text-body-sm text-ink-2">{tpl.use}</p>

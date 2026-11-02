@@ -97,7 +97,7 @@ export default function EngazeStoryPage() {
 
       <Section id="positioning" tone="raised">
         <SectionHeader label="06 · Positioning" title="How the stance differs from typical suites." intro={E.positioning.intro} />
-        <div className="overflow-x-auto"><table className="w-full text-left min-w-[640px]">
+        <div className="overflow-x-auto"><table className="w-full text-left min-w-scroll-s">
           <thead><tr className="text-overline text-ink-3"><th className="py-3 pr-6 font-normal">Dimension</th><th className="py-3 pr-6 font-normal">Typical suite</th><th className="py-3 font-normal">Engaze</th></tr></thead>
           <tbody>{E.positioning.rows.map(([a, b, c]) => <tr key={a} className="hairline-top"><td className="py-4 pr-6 text-body text-white">{a}</td><td className="py-4 pr-6 text-body text-ink-3">{b}</td><td className="py-4 text-body text-ink">{c}</td></tr>)}</tbody>
         </table></div>
@@ -112,7 +112,7 @@ export default function EngazeStoryPage() {
           {E.ex.steps.map((s, i) => (
             <div key={s.label} className={`grid gap-10 items-center ${s.tall ? 'lg:grid-cols-[1fr_minmax(0,0.9fr)]' : 'lg:grid-cols-[1fr_1.6fr]'}`}>
               <div className={i % 2 ? 'lg:order-2' : ''}><p className="text-overline text-ink-3">{String(i + 1).padStart(2, '0')} · {s.label}</p><h3 className="text-title text-white mt-3">{s.heading}</h3><p className="text-body text-ink-2 mt-4 max-w-measure-l">{s.body}</p></div>
-              <div className="rounded-xl border p-3 md:p-5 bg-surface-1" style={{ borderColor: 'var(--line-2)' }}><img src={s.image} alt={s.alt} loading="lazy" className={`w-full rounded-lg ${s.tall ? 'max-h-[900px] object-contain' : ''}`} /></div>
+              <div className="rounded-xl border p-3 md:p-5 bg-surface-1" style={{ borderColor: 'var(--line-2)' }}><img src={s.image} alt={s.alt} loading="lazy" className={`w-full rounded-lg ${s.tall ? 'max-h-stage object-contain' : ''}`} /></div>
             </div>
           ))}
         </div>

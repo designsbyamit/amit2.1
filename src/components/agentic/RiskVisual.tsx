@@ -16,7 +16,7 @@ export default function RiskVisual({ chain, examples, orderRisk, confidence, not
         <ol className="relative">
           {chain.map((c, i) => (
             <motion.li key={c} className="flex items-center gap-4 pb-8 last:pb-0 relative" initial={reduce ? false : { opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.18, duration: 0.5 }}>
-              {i < chain.length - 1 && <span className="absolute left-[13px] top-8 bottom-0 w-px" style={{ background: 'var(--line-2)' }} aria-hidden="true" />}
+              {i < chain.length - 1 && <span className="absolute left-[var(--space-10)] top-8 bottom-0 w-px" style={{ background: 'var(--line-2)' }} aria-hidden="true" />}
               <span className="w-7 h-7 rounded-full grid place-items-center text-label shrink-0" style={{ background: i === chain.length - 1 ? 'var(--signal)' : 'transparent', border: '1px solid var(--line-2)', color: i === chain.length - 1 ? 'var(--on-signal)' : undefined }}>{i + 1}</span>
               <span className="text-title text-white">{c}</span>
             </motion.li>

@@ -14,7 +14,7 @@ export default function LogoLoader({ fullPage = true }: { fullPage?: boolean }) 
       <div
         aria-hidden="true"
         className="logo-loader-mark text-ink"
-        style={{ width: '5rem', height: '5rem' }}
+        style={{ width: 'var(--size-logo)', height: 'var(--size-logo)' }}
         dangerouslySetInnerHTML={{ __html: raw.replace(/<title>.*?<\/title>/, '').replace(/ width="96" height="96"/, ' width="100%" height="100%"') }}
       />
     </div>

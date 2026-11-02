@@ -25,8 +25,8 @@ export default function ShortStoryPage() {
             <p className="text-label text-ink-3">Short story</p>
             <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>
-          <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{s.title}</h1>
-          <div className="relative hidden md:block h-40"><div className="absolute right-[3%] top-[1.25rem]"><ShortStoryTag /></div></div>
+          <h1 className="text-ink font-serif" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)', textWrap: 'balance' }}>{s.title}</h1>
+          <div className="relative hidden md:block h-40"><div className="absolute right-[3%] top-[var(--space-20)]"><ShortStoryTag /></div></div>
           {s.meta && <p className="text-label text-ink-3 mt-6">{s.meta.join(' · ')}</p>}
           <StoryField slug={s.slug} tone={s.tone} size={150} aspect="1800 / 700" className="mt-10 rounded-3" />
         </div>

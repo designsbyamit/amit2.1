@@ -14,11 +14,11 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
       <button className="w-full text-left py-7 flex items-start justify-between gap-6 group" onClick={() => setOpen(o => !o)} aria-expanded={open}>
         <div>
           <span className="text-white group-hover:opacity-75 transition-opacity"
-            style={{ fontSize: 'clamp(1rem, 1.4vw, 1.2rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>{entry.term}</span>
+            style={{ fontSize: 'var(--fs-term)', fontWeight: 300, letterSpacing: 'var(--track-title)' }}>{entry.term}</span>
           {!open && <p className="text-label text-ink-3 mt-1.5 line-clamp-1">{entry.definition}</p>}
         </div>
         <span className="text-ink-3 flex-shrink-0 transition-transform duration-300"
-          style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: '1.1rem' }}>+</span>
+          style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: 'var(--text-md)' }}>+</span>
       </button>
       <AnimatePresence>
         {open && (
@@ -32,7 +32,7 @@ function GlossaryEntry({ entry, index }: { entry: typeof GLOSSARY[0], index: num
                 </div>
                 <div>
                   <p className="text-overline text-ink-3 mb-2">Mental model</p>
-                  <p className="text-ink-3 font-mono" style={{ fontSize: '0.82rem', lineHeight: 1.6 }}>{entry.model}</p>
+                  <p className="text-ink-3 font-mono" style={{ fontSize: 'var(--text-caption)', lineHeight: 1.6 }}>{entry.model}</p>
                 </div>
               </div>
               <div>

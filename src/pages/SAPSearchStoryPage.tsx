@@ -194,9 +194,9 @@ function Lightbox({ screen, onClose }: { screen: Screen; onClose: () => void }) 
     return () => { document.removeEventListener('keydown', k); document.body.style.overflow = '' }
   }, [onClose])
   return (
-    <div role="dialog" aria-modal="true" aria-label={screen.name} className="fixed inset-0 z-[100] bg-black/90 overflow-auto" onClick={onClose}>
+    <div role="dialog" aria-modal="true" aria-label={screen.name} className="fixed inset-0 z-dialog bg-black/90 overflow-auto" onClick={onClose}>
       <div className="min-h-full flex flex-col items-center justify-center p-4 md:p-10 gap-4">
-        <img src={screen.img} alt={screen.name} className="max-w-full max-h-[calc(100vh-7rem)] w-auto h-auto bg-white rounded-md" onClick={e => e.stopPropagation()} />
+        <img src={screen.img} alt={screen.name} className="max-w-full max-h-[calc(100vh-var(--space-120))] w-auto h-auto bg-white rounded-md" onClick={e => e.stopPropagation()} />
         <div className="flex items-center gap-4">
           <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} - {screen.name}</span>
           <a href={screen.img} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white underline" onClick={e => e.stopPropagation()}>Open at full resolution ↗</a>

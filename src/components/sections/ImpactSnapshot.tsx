@@ -37,7 +37,7 @@ export default function ImpactSnapshot() {
           {metrics.map((m, i) => (
             <div
               key={m.label}
-              className={`group min-h-[11rem] md:min-h-0 md:aspect-[5/4] transition-colors hover:bg-surface-1 ${i === last ? 'col-span-2 md:col-span-2 md:aspect-auto' : ''}`}
+              className={`group min-h-tile md:min-h-0 md:aspect-[5/4] transition-colors hover:bg-surface-1 ${i === last ? 'col-span-2 md:col-span-2 md:aspect-auto' : ''}`}
               style={{ background: 'var(--bg)' }}
             >
               <motion.div
@@ -45,7 +45,7 @@ export default function ImpactSnapshot() {
                 initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }}
                 transition={{ duration: 0.5, delay: (i % 4) * 0.06, ease: [0.16, 1, 0.3, 1] }}
               >
-                <dd className="font-serif text-ink" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)', fontWeight: 400, letterSpacing: '-0.025em', lineHeight: 1 }}>
+                <dd className="font-serif text-ink" style={{ fontSize: 'var(--fs-impact)', fontWeight: 400, letterSpacing: 'var(--track-title)', lineHeight: 1 }}>
                   <Value value={m.value} count={m.count} />
                 </dd>
                 <dt className="text-body-sm text-ink-2 max-w-[22ch]">{m.label}</dt>
@@ -56,7 +56,7 @@ export default function ImpactSnapshot() {
         <div className="mt-8 md:mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-5 rounded-3 border p-6 md:p-8" style={{ borderColor: 'var(--line-1)', background: 'rgb(var(--surface-1-rgb))' }}>
           <div className="max-w-2xl">
             <p className="text-overline text-ink-3 mb-3">Career atlas</p>
-            <p className="font-serif text-ink" style={{ fontSize: 'clamp(1.4rem, 2.6vw, 2.1rem)', lineHeight: 1.2 }}>The numbers are the headline. The story is in the 61+ projects behind them.</p>
+            <p className="font-serif text-ink" style={{ fontSize: 'var(--fs-figure)', lineHeight: 1.2 }}>The numbers are the headline. The story is in the 61+ projects behind them.</p>
             <p className="text-body-sm text-ink-2 mt-3">An interactive atlas of how my roles, industries, team scale and capabilities changed from 2011 to 2024, with every finding tagged as fact, calculation, inference or hypothesis.</p>
           </div>
           <Button href="/career-atlas/" variant="primary" arrow className="shrink-0 self-start md:self-center">Explore the career atlas</Button>

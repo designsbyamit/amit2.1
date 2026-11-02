@@ -8,7 +8,7 @@ import { copyText, useLocalState } from '../../hooks/useLocalState'
 import { findEntry, readMinutes, type Section } from '../../data/library'
 
 const h2 = 'text-display-l text-ink mt-4'
-const h2Size = { fontSize: 'clamp(2rem,4vw,2.75rem)' } as const
+const h2Size = { fontSize: 'var(--fs-h2)' } as const
 
 function Body({ s, slug }: { s: Section; slug: string }) {
   const [done, setDone] = useLocalState<number[]>(`grow.library.${slug}.${s.id}`, [])

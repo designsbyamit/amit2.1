@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button, Card, Chip, Tag, TagList, Status, Breadcrumb, Callout, Stat, SectionHeader, ThemeToggle, useTheme, Tabs, Accordion, TextField, TextArea, Quote, MediaFrame } from '../components/ds'
 import CaseRow from '../components/ds/CaseRow'
-import { tokenHex, fieldHex } from '../styles/tokenValues'
+import { tokenHex, fieldHex, tokensByPrefix } from '../styles/tokenValues'
 import StoryCover from '../components/ds/StoryCover'
 import StoryField from '../components/ds/StoryField'
 import ResourceCover from '../components/ds/ResourceCover'
@@ -90,7 +90,7 @@ function DoDont({ dos, donts }: { dos: string[]; donts: string[] }) {
 function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
   return (
     <div className="overflow-x-auto">
-      <table className="table min-w-[560px]">
+      <table className="table min-w-scroll-s">
         <thead><tr>{head.map(h => <th key={h}>{h}</th>)}</tr></thead>
         <tbody>{rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j} className={j === 0 ? 'font-mono text-ink' : ''}>{c}</td>)}</tr>)}</tbody>
       </table>
@@ -316,7 +316,7 @@ export default function DesignSystemReferencePage() {
               ['Geist Mono', 'Labels and data', 'Overlines, metadata, numbers in tables, keyboard keys. Uppercase with tracking.', 'var(--font-mono)', 'LABEL 02 / DATA'],
               ['Caveat', 'Handwritten note', 'One place only: the "the short story" note on short story pages.', "'Caveat Variable', cursive", 'the short story'],
             ].map(([n, r, d, f, sample]) => (
-              <div key={n} className="card !p-5 flex flex-col gap-3"><p className="text-ink" style={{ fontFamily: f, fontSize: '1.6rem', lineHeight: 1.1 }}>{sample}</p><div><p className="font-mono text-label text-ink">{n} · {r}</p><p className="text-caption text-ink-2 mt-2">{d}</p></div></div>
+              <div key={n} className="card !p-5 flex flex-col gap-3"><p className="text-ink" style={{ fontFamily: f, fontSize: 'var(--fs-section)', lineHeight: 1.1 }}>{sample}</p><div><p className="font-mono text-label text-ink">{n} · {r}</p><p className="text-caption text-ink-2 mt-2">{d}</p></div></div>
             ))}
           </div>
           <p className="text-body-sm text-ink-3 mt-5 max-w-measure-xl">Instrument Sans and Bricolage Grotesque are installed but belong to the interactive prototypes at /labs, which carry their own interface kit. They are not used in the site itself.</p>
@@ -331,8 +331,25 @@ export default function DesignSystemReferencePage() {
             ))}
             <div className="grid md:grid-cols-[12rem_1fr] gap-2 md:gap-8 py-5 hairline-top items-baseline">
               <div><p className="font-mono text-label text-ink">serif headline</p><p className="text-caption text-ink-3">Bodoni · 400</p></div>
-              <div><p className="font-serif text-ink" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>Human-led agentic AI cuts order confirmation TAT from weeks to hours</p><p className="text-body-sm text-ink-3 mt-3 max-w-measure-xl">{serif}</p></div>
+              <div><p className="font-serif text-ink" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)', textWrap: 'balance' }}>Human-led agentic AI cuts order confirmation TAT from weeks to hours</p><p className="text-body-sm text-ink-3 mt-3 max-w-measure-xl">{serif}</p></div>
             </div>
+          </div>
+        </Spec>
+        <Spec name="Size, tracking and layer tokens" note="Read from tokens.css, so this list always matches the site. Use these, never a raw px, rem or number.">
+          <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
+            {([['Type ladder', 'text-'], ['Fluid sizes', 'fs-'], ['Tracking', 'track-'], ['Sizes', 'size-'], ['Layers', 'z-']] as const).map(([title, prefix]) => (
+              <div key={prefix}>
+                <p className="text-label text-ink-3 mb-3">{title}</p>
+                <ul className="flex flex-col">
+                  {tokensByPrefix(prefix).map(t => (
+                    <li key={t.name} className="hairline-top py-2 grid grid-cols-[1fr_auto] gap-4 items-baseline">
+                      <span className="font-mono text-caption text-ink">--{t.name}</span>
+                      <span className="font-mono text-caption text-ink-3 text-right min-w-0 break-words">{t.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </Spec>
         <Spec name="Space and layout" note="4px base, 8px rhythm. One 12-column grid, one margin.">
@@ -464,12 +481,12 @@ export default function DesignSystemReferencePage() {
               <p className="text-label text-ink-3 mb-3">Short story card</p>
               <div className="rounded-3 overflow-hidden border" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}>
                 <StoryField slug="greenux" tone={shortStories[1].tone} />
-                <p className="p-4 font-serif text-ink" style={{ fontSize: '1.25rem', lineHeight: 1.2 }}>A living design system with sustainability as a pillar</p>
+                <p className="p-4 font-serif text-ink" style={{ fontSize: 'var(--text-lg)', lineHeight: 1.2 }}>A living design system with sustainability as a pillar</p>
               </div>
             </div>
             <div>
               <p className="text-label text-ink-3 mb-3">Case study page label</p>
-              <div className="card"><div className="flex items-center gap-4"><Mark name="search" size={36} className="text-ink-2" /><p className="text-label text-ink-3"><span className="text-signal-ink">02</span> / AI search · AI</p></div><p className="font-serif text-ink mt-4" style={{ fontSize: '1.25rem', lineHeight: 1.2 }}>Designing AI-Search experience scaling across 15000+ products</p></div>
+              <div className="card"><div className="flex items-center gap-4"><Mark name="search" size={36} className="text-ink-2" /><p className="text-label text-ink-3"><span className="text-signal-ink">02</span> / AI search · AI</p></div><p className="font-serif text-ink mt-4" style={{ fontSize: 'var(--text-lg)', lineHeight: 1.2 }}>Designing AI-Search experience scaling across 15000+ products</p></div>
             </div>
             <div>
               <p className="text-label text-ink-3 mb-3">Page header, large</p>

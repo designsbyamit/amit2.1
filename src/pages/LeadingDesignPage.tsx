@@ -32,7 +32,7 @@ export default function LeadingDesignPage() {
                 <Button variant="secondary" onClick={() => open(REQUEST_TEAM)}>Bring this to your managers</Button>
               </div>
             </div>
-            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
+            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-note">
               <ResourceCover title="Leading Design" kind="Guide" motif="phases" tone="plum" />
             </div>
           </div>

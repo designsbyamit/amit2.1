@@ -44,7 +44,7 @@ export default function LeadershipStoryPage() {
                     <p className="text-body-editorial text-ink-2">{p}</p>
                     {fig && (
                       <figure className="card card-flat flex flex-col sm:flex-row items-center gap-6 sm:gap-10 !py-6 !px-6 md:!px-10">
-                        <StoryPictogram kind={fig.kind} className="w-full max-w-[260px] flex-none" />
+                        <StoryPictogram kind={fig.kind} className="w-full max-w-note-l flex-none" />
                         <figcaption className="text-title text-ink">{fig.caption}</figcaption>
                       </figure>
                     )}

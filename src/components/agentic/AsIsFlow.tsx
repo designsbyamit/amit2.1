@@ -11,7 +11,7 @@ export default function AsIsFlow({ title, steps, nuances }: { title: string; ste
     <div>
       <p className="text-overline text-ink-3 mb-6">{title}</p>
       <div className="overflow-x-auto pb-2" tabIndex={0} aria-label="Diagram, scrolls sideways on small screens">
-        <div className="min-w-[960px]">
+        <div className="min-w-scroll-m">
           <ol className="grid grid-cols-6 gap-3">
             {steps.map((s, i) => (
               <motion.li key={s.t} className="relative" initial={reduce ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-6%' }} transition={{ duration: 0.5, delay: i * 0.12, ease }}>

@@ -157,10 +157,10 @@ function LoopDiagram() {
   return (
     <figure className="rounded-3 p-6 md:p-10" style={{ background: 'var(--field-cobalt)' }}>
       <div className="grid md:grid-cols-[minmax(0,380px)_1fr] gap-8 md:gap-12 items-center">
-        <svg viewBox="0 0 380 380" className="w-full max-w-[380px] mx-auto" role="img" aria-label="The Dual Fluency Loop: five steps in a cycle">
+        <svg viewBox="0 0 380 380" className="w-full max-w-quote mx-auto" role="img" aria-label="The Dual Fluency Loop: five steps in a cycle">
           <circle cx={C} cy={C} r={R} fill="none" stroke="var(--on-field)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="4 6" />
           <text x={C} y={C - 6} textAnchor="middle" fill="var(--on-field)" style={{ font: '300 18px var(--font-sans)' }}>Design decision</text>
-          <text x={C} y={C + 18} textAnchor="middle" fill="var(--on-field-accent)" style={{ font: '400 11px var(--font-mono)', letterSpacing: '0.08em' }}>= A HYPOTHESIS</text>
+          <text x={C} y={C + 18} textAnchor="middle" fill="var(--on-field-accent)" style={{ font: '400 11px var(--font-mono)', letterSpacing: 'var(--track-overline)' }}>= A HYPOTHESIS</text>
           {pts.map(([x, y], i) => (
             <g key={i}>
               <circle cx={x} cy={y} r="20" fill={i === 0 ? 'var(--on-field-accent)' : 'var(--field-cobalt)'} stroke="var(--on-field-accent)" strokeWidth="1.5" />
@@ -171,7 +171,7 @@ function LoopDiagram() {
         <figcaption>
           <p className="font-mono text-xs tracking-overline uppercase mb-4" style={{ color: 'var(--on-field-accent)' }}>The Dual Fluency Loop</p>
           <ol className="flex flex-col gap-3">
-            {LOOP.map((s, i) => <li key={s} className="flex gap-4 text-[1.0625rem] font-light" style={{ color: 'var(--on-field)' }}><span className="font-mono text-xs pt-1.5" style={{ color: 'var(--on-field-accent)' }}>{String(i + 1).padStart(2, '0')}</span>{s}</li>)}
+            {LOOP.map((s, i) => <li key={s} className="flex gap-4 text-t-md font-light" style={{ color: 'var(--on-field)' }}><span className="font-mono text-xs pt-1.5" style={{ color: 'var(--on-field-accent)' }}>{String(i + 1).padStart(2, '0')}</span>{s}</li>)}
           </ol>
         </figcaption>
       </div>
@@ -185,16 +185,16 @@ function CanvasSheet() {
   const example = ['Retention', 'Task success rate', 'Findability', 'Make the core task reachable in one step from the home screen']
   return (
     <figure className="rounded-3 p-5 md:p-8 overflow-x-auto" style={{ background: 'var(--field-teal)' }}>
-      <div className="min-w-[680px]">
+      <div className="min-w-scroll-s">
         <div className="flex items-center justify-between mb-5">
           <p className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Dual Fluency Canvas</p>
           <p className="font-mono text-xs" style={{ color: 'var(--on-field)', opacity: 0.7 }}>Decision: ____________________</p>
         </div>
         <div className="grid grid-cols-4 gap-3">
           {cols.map((c, i) => (
-            <div key={c} className="rounded-2 p-4 flex flex-col gap-3 min-h-[260px]" style={{ background: 'var(--field-tint)', border: '1px solid rgb(var(--on-field-strong-rgb) / 0.14)' }}>
+            <div key={c} className="rounded-2 p-4 flex flex-col gap-3 min-h-panel" style={{ background: 'var(--field-tint)', border: '1px solid rgb(var(--on-field-strong-rgb) / 0.14)' }}>
               <div className="flex items-center justify-between"><span className="font-mono text-xs" style={{ color: 'var(--on-field-accent)' }}>0{i + 1}</span>{i < 3 && <span aria-hidden="true" style={{ color: 'var(--on-field)', opacity: 0.5 }}>←</span>}</div>
-              <p className="text-[1.0625rem] font-light" style={{ color: 'var(--on-field)' }}>{c}</p>
+              <p className="text-t-md font-light" style={{ color: 'var(--on-field)' }}>{c}</p>
               <div className="rounded-1 p-3 text-sm" style={{ background: 'var(--on-field-accent)', color: 'var(--field-ink)' }}>{example[i]}</div>
               {[0, 1].map(k => <div key={k} className="h-9 rounded-1" style={{ border: '1px dashed var(--field-line)' }} />)}
             </div>
@@ -233,7 +233,7 @@ export default function DualFluencyPage() {
                 <Button variant="secondary" onClick={() => open(REQUEST_WORKSHOP)}>Bring it to your team</Button>
               </div>
             </div>
-            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
+            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-note">
               <ResourceCover title="Dual Fluency" kind="Playbook" motif="loop" tone="cobalt" />
             </div>
           </div>

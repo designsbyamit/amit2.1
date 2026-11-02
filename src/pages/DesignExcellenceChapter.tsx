@@ -53,7 +53,7 @@ function Rows({ rows }: { rows: { a: string; b: string; c?: string }[] }) {
   )
 }
 function Dark({ children, big }: { children: React.ReactNode; big?: boolean }) {
-  return <p className={`card mt-4 ${big ? 'text-[1.25rem] font-light' : 'text-body'}`} style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{children}</p>
+  return <p className={`card mt-4 ${big ? 'text-t-lg font-light' : 'text-body'}`} style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{children}</p>
 }
 
 export default function DesignExcellenceChapter() {
@@ -119,7 +119,7 @@ export default function DesignExcellenceChapter() {
 
       {/* 3 · Excellence reviews */}
       <Section id="reviews" label="Part 3" title="Excellence reviews and release assurance." intro={c4.reviews.lead}>
-        <p className="card text-[1.25rem] font-light mb-8" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c4.reviews.challenge}</p>
+        <p className="card text-t-lg font-light mb-8" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c4.reviews.challenge}</p>
         <Points items={c4.reviews.points} />
 
         <Sub>Framework: five things to evaluate</Sub>
@@ -170,7 +170,7 @@ export default function DesignExcellenceChapter() {
 
       {/* 4 · Future forward */}
       <Section id="future" label="Part 4" title="Future forward and experience innovation." intro={c4.future.lead}>
-        <p className="card text-[1.25rem] font-light mb-8" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c4.future.challenge}</p>
+        <p className="card text-t-lg font-light mb-8" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c4.future.challenge}</p>
         <Points items={c4.future.points} />
 
         <Sub>Framework: four responsibilities</Sub>
@@ -231,7 +231,7 @@ export default function DesignExcellenceChapter() {
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, or fill them in on the page, with a filled example beside each. Your notes stay in your browser.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
           <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
+          <p className="text-t-lg font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT_4} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA

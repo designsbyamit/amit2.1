@@ -30,7 +30,7 @@ function Tiles() {
               <Link to={t.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
                 <div className="relative aspect-[16/9] overflow-hidden" style={{ background: t.tone }}>
                   <div className="absolute inset-0 opacity-[0.07]" style={grid} />
-                  <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>{String(k + 1).padStart(2, '0')} / {String(tiles.length).padStart(2, '0')}</span>
+                  <span className="absolute left-5 top-4 font-mono text-t-tiny tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>{String(k + 1).padStart(2, '0')} / {String(tiles.length).padStart(2, '0')}</span>
                   <div className="absolute inset-0 px-[16%] py-[9%] transition-transform duration-500 group-hover:scale-[1.04]">{t.art}</div>
                 </div>
                 <div className="p-7 md:p-8 flex flex-col gap-3 flex-1">
@@ -53,7 +53,7 @@ function LeadingDesignBand() {
   return (
     <section className="section-y hairline-top" aria-labelledby="leading-design-h">
       <div className="container-site grid-site gap-y-8 items-center">
-        <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-[240px]"><ResourceCover title="Leading Design" kind="Guide" motif="phases" tone="plum" /></div>
+        <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-note"><ResourceCover title="Leading Design" kind="Guide" motif="phases" tone="plum" /></div>
         <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
           <p className="text-overline text-ink-3">Guide for design managers</p>
           <h2 id="leading-design-h" className="text-heading text-ink max-w-measure-s">Leading Design</h2>

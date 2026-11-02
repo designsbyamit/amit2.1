@@ -16,7 +16,7 @@ function Rotator({ label, title, intro, items }: { label: string; title: string;
   const group = (copy: number) => (
     <ul className="flex gap-6 pr-6 shrink-0" aria-hidden={copy === 1 ? true : undefined}>
       {items.map(t => (
-        <li key={t.name} className="card !p-7 md:!p-8 flex flex-col justify-between w-[300px] sm:w-[360px] lg:w-[400px] min-h-[380px] md:min-h-[420px]">
+        <li key={t.name} className="card !p-7 md:!p-8 flex flex-col justify-between w-card-s sm:w-card-m lg:w-card-l min-h-card-s md:min-h-card-l">
           <blockquote className="text-body-lg text-ink-2" style={{ lineHeight: 1.5 }}>“{t.quote}”</blockquote>
           <Caption t={t} />
         </li>

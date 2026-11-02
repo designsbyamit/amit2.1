@@ -48,10 +48,10 @@ export default function PlaybackPage() {
             </p>
             <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>
-          <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{pb.headline}</h1>
+          <h1 className="text-ink font-serif" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)', textWrap: 'balance' }}>{pb.headline}</h1>
           <div className="relative md:min-h-40">
             <p className="text-body-lg text-ink-2 mt-6 max-w-2xl">{pb.dek}</p>
-            <div className="hidden md:block absolute right-[3%] top-[1.25rem]"><ShortStoryTag /></div>
+            <div className="hidden md:block absolute right-[3%] top-[var(--space-20)]"><ShortStoryTag /></div>
           </div>
           <div className="mt-10"><CaseThumb id={cs.id} ratio="1800 / 1000" live /></div>
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">

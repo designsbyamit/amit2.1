@@ -22,7 +22,7 @@ export default function NdaGate({ id, title, children }: { id: string; title: st
     <section style={{ paddingTop: 'var(--header-h)' }}>
       <div className="container-site py-20 md:py-28 max-w-xl">
         <p className="text-overline text-ink-3 mb-5">Under NDA</p>
-        <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>{title}</h1>
+        <h1 className="text-ink font-serif" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)' }}>{title}</h1>
         <p className="text-body-lg text-ink-2 mt-5">The detailed case study is shared by access code. Enter the code you were given to read it.</p>
         <form onSubmit={submit} className="mt-8 flex flex-col gap-3" noValidate>
           <label htmlFor="nda-code" className="field-label">Access code</label>

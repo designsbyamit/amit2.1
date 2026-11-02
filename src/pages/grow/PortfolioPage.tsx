@@ -31,7 +31,7 @@ export default function PortfolioPage() {
             {guide.map(g => (
               <section key={g.id} id={g.id} className="py-16 md:py-20 border-b border-[color:var(--line-1)] scroll-mt-24">
                 <p className="text-overline text-ink-3">{g.n} · {g.kicker}</p>
-                <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>{g.title}</h2>
+                <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'var(--fs-h2)' }}>{g.title}</h2>
                 <p className="text-body-lg text-ink-2 mt-5 max-w-measure-xl">{g.lead}</p>
                 {g.id === 'character' && <CharacterWheel />}
                 {g.id === 'story' && <StoryArc />}
@@ -82,7 +82,7 @@ export default function PortfolioPage() {
 
             <section id="mistakes" className="py-16 md:py-20 border-b border-[color:var(--line-1)] scroll-mt-24">
               <p className="text-overline text-ink-3">Common mistakes</p>
-              <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>What to look for in your own work.</h2>
+              <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'var(--fs-h2)' }}>What to look for in your own work.</h2>
               <ul className="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-4">
                 {mistakes.map(m => <li key={m} className="flex gap-3 text-body text-ink-2"><span aria-hidden className="text-ink-3">-</span>{m}</li>)}
               </ul>
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
 
             <section id="checklist" className="py-16 md:py-20 border-b border-[color:var(--line-1)] scroll-mt-24">
               <p className="text-overline text-ink-3">Self-review checklist</p>
-              <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>Before you share it.</h2>
+              <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'var(--fs-h2)' }}>Before you share it.</h2>
               <p className="text-body text-ink-2 mt-5">{checked.length} of {checklist.length} checked. Saved in this browser.</p>
               <ul className="mt-8 flex flex-col">
                 {checklist.map((c, i) => (
@@ -106,7 +106,7 @@ export default function PortfolioPage() {
 
             <section id="template" className="py-16 md:py-20 scroll-mt-24">
               <p className="text-overline text-ink-3">Project template</p>
-              <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>A skeleton to start from.</h2>
+              <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'var(--fs-h2)' }}>A skeleton to start from.</h2>
               <pre className="card !p-6 mt-8 text-body-sm text-ink-2 whitespace-pre-wrap overflow-x-auto" style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)' }}>{template}</pre>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button variant="secondary" onClick={async () => { setCopied(await copyText(template)); setTimeout(() => setCopied(false), 1800) }}>{copied ? 'Copied' : 'Copy the template'}</Button>

@@ -92,7 +92,7 @@ export default function Craft() {
           <div>
             <motion.p
               className="text-ink-2 mb-5"
-              style={{ fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', fontWeight: 300, lineHeight: 1.7, letterSpacing: '-0.01em' }}
+              style={{ fontSize: 'var(--fs-lede)', fontWeight: 300, lineHeight: 1.7, letterSpacing: 'var(--track-snug)' }}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

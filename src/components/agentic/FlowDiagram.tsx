@@ -52,7 +52,7 @@ export default function FlowDiagram() {
   return (
     <div>
       <div className="overflow-x-auto pb-2" tabIndex={0} aria-label="Flow diagram, scrolls sideways on small screens">
-        <svg viewBox="0 0 1310 470" className="min-w-[1080px] w-full h-auto" role="img" aria-label="Supplier order confirmation flow: the email arrives, the agent reads, extracts and scores it, operations validates, the agent compares and routes, the buyer and goods recipient decide, the buyer sends a reply if a revision is needed, and the order closes. A revised confirmation returns as a new version.">
+        <svg viewBox="0 0 1310 470" className="min-w-scroll-l w-full h-auto" role="img" aria-label="Supplier order confirmation flow: the email arrives, the agent reads, extracts and scores it, operations validates, the agent compares and routes, the buyer and goods recipient decide, the buyer sends a reply if a revision is needed, and the order closes. A revised confirmation returns as a new version.">
           <defs>
             <marker id="fd-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke={ink} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></marker>
             <marker id="fd-arrow-soft" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke={soft} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></marker>
@@ -101,10 +101,10 @@ export default function FlowDiagram() {
         </svg>
       </div>
       <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-6 text-label text-ink-3" aria-label="Legend">
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px]" style={{ background: 'rgb(var(--ink-rgb))' }} />Agent acts</li>
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px] border-2" style={{ borderColor: 'var(--signal)', background: 'rgb(var(--signal-rgb) / 0.28)' }} />Person decides: a gate</li>
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px] border" style={{ borderColor: 'var(--line-control)' }} />Person checks</li>
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px] border border-dashed" style={{ borderColor: 'var(--line-control)' }} />Source or set-up</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1" style={{ background: 'rgb(var(--ink-rgb))' }} />Agent acts</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1 border-2" style={{ borderColor: 'var(--signal)', background: 'rgb(var(--signal-rgb) / 0.28)' }} />Person decides: a gate</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1 border" style={{ borderColor: 'var(--line-control)' }} />Person checks</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1 border border-dashed" style={{ borderColor: 'var(--line-control)' }} />Source or set-up</li>
       </ul>
     </div>
   )

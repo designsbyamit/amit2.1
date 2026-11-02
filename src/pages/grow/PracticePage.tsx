@@ -26,7 +26,7 @@ export default function PracticePage() {
             <div className="container-site grid md:grid-cols-12 gap-10">
               <div className="md:col-span-4">
                 <p className="text-overline text-ink-3">STEP {t.step} · {t.kicker}</p>
-                <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>{t.title}</h2>
+                <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'var(--fs-h2)' }}>{t.title}</h2>
                 <p className="text-body text-ink-2 mt-5 max-w-measure-m">{t.blurb}</p>
                 <p className="text-label text-ink-3 mt-6">{n} of {t.challenges.length} done</p>
                 <div className="mt-8">

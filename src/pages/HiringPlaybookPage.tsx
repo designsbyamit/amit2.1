@@ -62,7 +62,7 @@ export default function HiringPlaybookPage() {
                 <Button variant="secondary" onClick={() => open(REQUEST_TEAM)}>Talk about your team</Button>
               </div>
             </div>
-            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
+            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-note">
               <ResourceCover title="How I hire" kind="Playbook" motif="checklist" tone="teal" />
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function HiringPlaybookPage() {
             {hiringProof.map(p => (
               <div key={p.label}>
                 <dt className="sr-only">{p.label}</dt>
-                <dd className="font-serif text-ink" style={{ fontSize: 'clamp(2rem, 3.6vw, 3.2rem)', lineHeight: 1 }}>{p.value}</dd>
+                <dd className="font-serif text-ink" style={{ fontSize: 'var(--fs-title-l)', lineHeight: 1 }}>{p.value}</dd>
                 <dd className="text-body-sm text-ink-3 mt-2">{p.label}</dd>
               </div>
             ))}
@@ -97,7 +97,7 @@ export default function HiringPlaybookPage() {
               ))}
               <li className="card flex flex-col gap-3 md:col-span-2" style={{ background: 'var(--field-teal)' }}>
                 <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>What you will have</span>
-                <p className="text-[1.25rem] font-light" style={{ color: 'var(--on-field)' }}>{part.outcome}</p>
+                <p className="text-t-lg font-light" style={{ color: 'var(--on-field)' }}>{part.outcome}</p>
               </li>
             </ol>
             <h3 className="text-label text-ink-3 mt-14 mb-5">Worksheets for this part</h3>
