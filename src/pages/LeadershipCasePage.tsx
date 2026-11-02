@@ -1,9 +1,10 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { cases, caseBySlug } from '../data/cases'
+import { caseBySlug } from '../data/cases'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import RevealText from '../components/ui/RevealText'
 import NextUp from '../components/case/NextUp'
+import { nextLeadershipCase } from '../data/sequence'
 import OutcomesLedger from '../components/leadership/OutcomesLedger'
 import PracticeCard from '../components/leadership/PracticeCard'
 import CapabilityLoop from '../components/leadership/CapabilityLoop'
@@ -12,8 +13,6 @@ export default function LeadershipCasePage() {
   const { slug } = useParams()
   const c = caseBySlug(slug)
   if (!c) return <Navigate to="/leadership" replace />
-  const idx = cases.indexOf(c)
-  const next = cases[(idx + 1) % cases.length]
 
   return (
     <article>
@@ -95,7 +94,7 @@ export default function LeadershipCasePage() {
           </div>
         </div>
       </div>
-      <NextUp label="Next case" to={`/leadership/cases/${next.slug}`} title={next.title} cta="Read the case" />
+      <NextUp link={nextLeadershipCase(c.slug)} />
     </article>
   )
 }

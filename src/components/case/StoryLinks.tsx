@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../../data/work'
 import NextUp from './NextUp'
+import { nextCase } from '../../data/sequence'
 
 /** On a detailed case study: a way back to the short story, near the top of the page. */
 export function BackToShort({ id }: { id: string }) {
@@ -20,8 +21,5 @@ export function BackToShort({ id }: { id: string }) {
 
 /** At the end of a case study: the next project, so people keep exploring. */
 export function NextCase({ id }: { id: string }) {
-  const i = caseStudies.findIndex(c => c.id === id)
-  if (i < 0) return null
-  const next = caseStudies[(i + 1) % caseStudies.length]
-  return <NextUp label="Next case study" to={`/craft/${next.id}`} eyebrow={next.category.split(' · ').slice(0, 2).join(' · ')} title={next.shortTitle} cta="Read the short story" />
+  return <NextUp link={nextCase(id)} />
 }

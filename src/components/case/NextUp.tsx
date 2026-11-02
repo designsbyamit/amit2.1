@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
+import type { NextLink } from '../../data/sequence'
 
-/** The one way to move on to the next piece, at the end of a page: a label, the next title and one primary button. */
-export default function NextUp({ label, to, title, eyebrow, cta }: { label: string; to: string; title: string; eyebrow?: string; cta: string }) {
+/** The one way to move on to the next piece, at the end of a page: a label, the next title and one primary button. Content comes from src/data/sequence.ts. */
+export default function NextUp({ link }: { link: NextLink | null }) {
+  if (!link) return null
+  const { label, to, title, eyebrow, cta } = link
   return (
     <section className="hairline-top section-y bg-surface-0" aria-label={label}>
       <div className="container-site grid-site gap-y-6 items-center">

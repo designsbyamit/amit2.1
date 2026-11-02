@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import GrainOverlay from '../components/ui/GrainOverlay'
 import { GLOSSARY } from '../data/aiNativeGlossary'
@@ -95,13 +96,9 @@ export default function AINativeGlossaryPage() {
             )}
           </div>
 
-          <div className="mt-16">
-            <Link to="/resources/ai-native-patterns" className="text-label text-ink-3 hover:text-ink-2 transition-colors">
-              ← Back to AI-native Frameworks
-            </Link>
-          </div>
         </div>
       </section>
+      <NextUp link={nextResource('/resources/ai-native-patterns/glossary')} />
     </div>
   )
 }

@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
@@ -91,12 +93,7 @@ export default function LeadingDesignPage() {
         </div>
       </section>
 
-      <section className="hairline-top py-12">
-        <div className="container-site flex flex-wrap items-center justify-between gap-4">
-          <Button to="/resources" variant="tertiary">Back to Resources</Button>
-          <Button to="/leadership" variant="tertiary" arrow>Journey</Button>
-        </div>
-      </section>
+      <NextUp link={nextResource('/resources/leading-design')} />
     </>
   )
 }

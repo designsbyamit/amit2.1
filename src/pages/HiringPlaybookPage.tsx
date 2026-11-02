@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { useContact } from '../components/contact/ContactProvider'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
 import ResourceCover from '../components/ds/ResourceCover'
@@ -124,12 +126,7 @@ export default function HiringPlaybookPage() {
         </div>
       </Section>
 
-      <section className="hairline-top py-12">
-        <div className="container-site flex flex-wrap items-center justify-between gap-4">
-          <Button to="/resources" variant="tertiary">Back to Practice</Button>
-          <Button to="/leadership" variant="tertiary" arrow>Journey</Button>
-        </div>
-      </section>
+      <NextUp link={nextResource('/resources/hiring')} />
     </>
   )
 }

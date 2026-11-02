@@ -1,8 +1,9 @@
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import GrainOverlay from '../components/ui/GrainOverlay'
 
 const CHAPTERS = [
@@ -264,12 +265,10 @@ export default function ConversationExperiencePage() {
               className="btn btn-secondary">
               Request full playbook →
             </a>
-            <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors text-center py-2">
-              ← Back to Resources
-            </Link>
           </div>
         </div>
       </section>
+      <NextUp link={nextResource('/resources/conversation-experience')} />
     </div>
   )
 }

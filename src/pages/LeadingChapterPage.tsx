@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { Navigate, useParams } from 'react-router-dom'
+import NextUp from '../components/case/NextUp'
+import { nextChapter } from '../data/sequence'
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
@@ -153,12 +155,7 @@ function BuildingADesignTeam() {
         <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{[...ws.team, ...ws.hiring, ...ws.onboarding].map(d => <DownloadCard key={d.slug} d={d} />)}</ul>
       </Section>
 
-      <section className="hairline-top py-12">
-        <div className="container-site flex flex-wrap items-center justify-between gap-4">
-          <Button to={LEADING_DESIGN_PATH} variant="tertiary">Back to Leading Design</Button>
-          <Button to="/resources" variant="tertiary" arrow>Resources</Button>
-        </div>
-      </section>
+      <NextUp link={nextChapter(c.slug)} />
     </>
   )
 }

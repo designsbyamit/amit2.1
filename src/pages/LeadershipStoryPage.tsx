@@ -7,13 +7,13 @@ import StoryCover from '../components/ds/StoryCover'
 import StoryPictogram from '../components/ds/StoryPictogram'
 import RevealText from '../components/ui/RevealText'
 import NextUp from '../components/case/NextUp'
+import { nextLeadershipStory } from '../data/sequence'
 
 export default function LeadershipStoryPage() {
   const { slug } = useParams()
   const idx = publishedStories.findIndex(s => storySlug(s) === slug)
   if (idx < 0) return <Navigate to="/leadership/stories" replace />
   const s = publishedStories[idx]
-  const next = publishedStories[(idx + 1) % publishedStories.length]
   const n = String(idx + 1).padStart(2, '0')
 
   return (
@@ -79,7 +79,7 @@ export default function LeadershipStoryPage() {
           </div>
         </div>
       </div>
-      <NextUp label="Next story" to={`/leadership/stories/${storySlug(next)}`} title={next.title} cta="Read the story" />
+      <NextUp link={nextLeadershipStory(slug ?? '')} />
     </article>
   )
 }

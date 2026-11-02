@@ -1,5 +1,7 @@
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -908,12 +910,10 @@ export default function AINativeFrameworksPage() {
             <Link to="/resources/ai-native-patterns/glossary" className="text-label text-ink-3 hover:text-ink-2 transition-colors text-center py-2">
               AI-native glossary →
             </Link>
-            <Link to="/resources" className="text-label text-ink-3 hover:text-ink-2 transition-colors text-center py-2">
-              ← Back to Resources
-            </Link>
           </div>
         </div>
       </section>
+      <NextUp link={nextResource('/resources/ai-native-patterns')} />
     </div>
   )
 }

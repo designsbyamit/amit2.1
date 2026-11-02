@@ -2,8 +2,9 @@ import { Navigate, useParams } from 'react-router-dom'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import ShortStoryTag from '../components/playback/ShortStoryTag'
 import NextUp from '../components/case/NextUp'
+import { nextShortStory } from '../data/sequence'
 import StoryField from '../components/ds/StoryField'
-import { shortStories, storyBySlug } from '../data/shortStories'
+import { storyBySlug } from '../data/shortStories'
 
 const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -14,8 +15,6 @@ export default function ShortStoryPage() {
   const { slug } = useParams<{ slug: string }>()
   const s = slug ? storyBySlug(slug) : undefined
   if (!s) return <Navigate to="/craft" replace />
-  const i = shortStories.findIndex(x => x.slug === s.slug)
-  const next = shortStories[(i + 1) % shortStories.length]
 
   return (
     <article>
@@ -56,7 +55,7 @@ export default function ShortStoryPage() {
         </section>
       )}
 
-      {shortStories.length > 1 && <NextUp label="Read next" to={`/craft/stories/${next.slug}`} title={next.title} cta="Read the short story" />}
+      <NextUp link={nextShortStory(s.slug)} />
     </article>
   )
 }
