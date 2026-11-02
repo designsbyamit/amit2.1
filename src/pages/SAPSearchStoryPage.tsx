@@ -45,7 +45,7 @@ export default function SAPSearchStoryPage() {
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'AI-Powered Search' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{S.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
+          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
           <div className="mt-8"><Button to="/craft/sap-search/film" arrow>Watch the film · 2 min 46 s</Button></div>
           <div className="flex flex-wrap gap-2 mt-8">
             <span className="tag">{S.kicker}</span>
@@ -71,7 +71,7 @@ export default function SAPSearchStoryPage() {
             </div>
           ))}
         </div>
-        <p className="text-body-lg text-ink-2 mt-12 max-w-[62ch]">{S.vision.why}</p>
+        <p className="text-body-lg text-ink-2 mt-12 max-w-measure-xl">{S.vision.why}</p>
       </Section>
 
       {/* Problem */}
@@ -153,7 +153,7 @@ export default function SAPSearchStoryPage() {
         </div>
         <div role="tabpanel">
           <h3 className="text-heading text-white">{flow.title}</h3>
-          <p className="text-body-lg text-ink-2 mt-4 max-w-[65ch]">{flow.summary}</p>
+          <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{flow.summary}</p>
           {flow.id === 'component' && <SearchAnatomy />}
           {flow.screens.length > 0 && <div className="grid md:grid-cols-2 gap-6 mt-10">
             {flow.screens.map(s => (

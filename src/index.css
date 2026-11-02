@@ -101,14 +101,14 @@
   .prose-site a:not(.btn):not(.tag):hover { color: var(--link-hover); }
 
   /* ── Buttons ────────────────────────────────────────────────────────── */
-  /* Sentence case, 44px min height, 6px radius. One primary per view. */
+  /* Sentence case, 50px height, 6px radius. One primary per view. */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    min-height: var(--touch-min);
-    padding: 0 1.25rem;
+    gap: var(--space-8);
+    min-height: var(--btn-h);
+    padding: 0 var(--btn-px);
     border: 1px solid transparent;
     border-radius: var(--radius-2);
     font-family: var(--font-sans);
@@ -141,10 +141,10 @@
     text-underline-offset: 0.3em;
   }
   .btn-ghost:hover { text-decoration-color: var(--color-ink); }
-  .btn-sm { min-height: 2.25rem; padding: 0 0.875rem; font-size: 0.875rem; }
+  .btn-sm { min-height: var(--btn-h-sm); padding: 0 var(--btn-px-sm); font-size: 0.875rem; }
   @media (pointer: coarse) { .btn-sm { min-height: var(--touch-min); } }
-  .btn-icon { width: var(--touch-min); padding: 0; }
-  .btn-icon.btn-sm { width: 2.25rem; }
+  .btn-icon { width: var(--btn-h); padding: 0; }
+  .btn-icon.btn-sm { width: var(--btn-h-sm); }
 
   /* ── Tag: NOT clickable ─────────────────────────────────────────────── */
   /* Mono text, no box, no hover. Use for categories and topics. */
@@ -206,10 +206,10 @@
     background: var(--surface-1);
     border: 1px solid var(--line-1);
     border-radius: var(--radius-3);
-    padding: var(--space-6);
+    padding: var(--space-20);
     transition: border-color var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out);
   }
-  @media (min-width: 768px) { .card { padding: var(--space-8); } }
+  @media (min-width: 768px) { .card { padding: var(--space-30); } }
   /* Only cards that are links get a hover state */
   a.card:hover, .card-link:hover { border-color: var(--line-2); background: var(--surface-2); }
   .card-link { display: block; text-decoration: none; color: inherit; }

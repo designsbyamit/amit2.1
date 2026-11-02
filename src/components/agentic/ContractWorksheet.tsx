@@ -41,7 +41,7 @@ export default function ContractWorksheet({ d }: { d: ContractData }) {
         <div className="relative">
           <p className="text-overline text-ink-3">Worksheet</p>
           <h3 className="text-heading text-white mt-3">Agent–Human Contract</h3>
-          <p className="text-body text-ink-2 mt-3 max-w-[52ch]">A clear working agreement between people and the agent for one use case.</p>
+          <p className="text-body text-ink-2 mt-3 max-w-measure-l">A clear working agreement between people and the agent for one use case.</p>
         </div>
         <dl className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-body-sm">
           <dt className="text-label text-ink-3">Use case</dt><dd className="text-white">{d.useCase}</dd>

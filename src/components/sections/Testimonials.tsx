@@ -29,7 +29,7 @@ function Rotator({ label, title, intro, items }: { label: string; title: string;
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>
           <h2 className="text-display-l text-white mt-4">{title}</h2>
-          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-measure-xl">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
         </header>
       </div>
       <div className="marquee" data-paused={paused} style={{ ['--dur' as string]: `${items.length * 11}s` }} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
@@ -54,7 +54,7 @@ export default function Testimonials({ label, title, intro, items, rotate }: { l
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>
           <h2 className="text-display-l text-white mt-4">{title}</h2>
-          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-measure-xl">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
         </header>
 
         {lead && (

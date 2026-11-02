@@ -67,7 +67,7 @@ function SelfCheck({ onPick }: { onPick: (n: number) => void }) {
   const weakest = done ? c5.model.lenses.filter((_, i) => scores[i] === min).map(l => l.name) : []
   return (
     <div className="flex flex-col gap-6">
-      <p className="text-body-sm text-ink-2 max-w-[62ch]">Score each lens from what you can show, using the grid above. Nothing here is saved. The worksheet asks you to name the evidence behind every score.</p>
+      <p className="text-body-sm text-ink-2 max-w-measure-xl">Score each lens from what you can show, using the grid above. Nothing here is saved. The worksheet asks you to name the evidence behind every score.</p>
       <ul className="grid md:grid-cols-2 gap-x-8 gap-y-4">
         {c5.model.lenses.map((d, i) => (
           <li key={d.name} className="flex flex-col gap-1.5">
@@ -83,7 +83,7 @@ function SelfCheck({ onPick }: { onPick: (n: number) => void }) {
         {done ? (
           <>
             <p className="text-heading text-ink">Level {min}: {c5.levels[min - 1].name}</p>
-            <p className="text-body-sm text-ink-2 mt-2 max-w-[62ch]">Your lowest lens is {weakest.join(' and ').toLowerCase()}. That sets your level, so do that lens’s move first. Remember: controls must be in place before AI touches personal, client or regulated data, at any level.</p>
+            <p className="text-body-sm text-ink-2 mt-2 max-w-measure-xl">Your lowest lens is {weakest.join(' and ').toLowerCase()}. That sets your level, so do that lens’s move first. Remember: controls must be in place before AI touches personal, client or regulated data, at any level.</p>
             <div className="flex flex-wrap gap-3 mt-4">
               <a href="#next" className="btn btn-primary btn-sm" onClick={() => onPick(min)}>See your three moves</a>
               <button type="button" className="btn btn-tertiary btn-sm" onClick={() => setScores(c5.model.lenses.map(() => 0))}>Start again</button>
@@ -131,7 +131,7 @@ export default function AIMaturityChapter() {
           </ol>
           <details className="mt-8 [&_summary::-webkit-details-marker]:hidden">
             <summary className="cursor-pointer list-none text-label text-ink-3 hover:text-ink">A grounded start: what the research says today +</summary>
-            <p className="text-body-sm text-ink-2 max-w-[62ch] mt-4">{c5.reality.lead}</p>
+            <p className="text-body-sm text-ink-2 max-w-measure-xl mt-4">{c5.reality.lead}</p>
             <ul className="grid md:grid-cols-3 gap-4 mt-4">
               {c5.reality.items.map(e => (
                 <li key={e.source} className="card flex flex-col gap-3">
@@ -141,14 +141,14 @@ export default function AIMaturityChapter() {
                 </li>
               ))}
             </ul>
-            <p className="text-body-sm text-ink-3 max-w-[62ch] mt-4">{c5.reality.note}</p>
+            <p className="text-body-sm text-ink-3 max-w-measure-xl mt-4">{c5.reality.note}</p>
           </details>
         </div>
       </section>
 
       {/* 1 · Where are we? */}
       <Section id="where" label="Question 1" title="Where are we?" intro={c5.model.definition}>
-        <p className="text-body text-ink-2 max-w-[62ch] mb-8">{c5.model.how}</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mb-8">{c5.model.how}</p>
         <ol className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
           {c5.model.lenses.map((l, i) => <StepCard key={l.name} label={`Lens ${i + 1}`} title={l.name} text={l.asks} />)}
         </ol>
@@ -171,7 +171,7 @@ export default function AIMaturityChapter() {
           <SelfCheck onPick={setLevel} />
         </Layer>
         <Layer title="What each score looks like" hint="Observable evidence for each lens at each level, so scoring is not guesswork.">
-          <p className="text-body-sm text-ink-2 max-w-[62ch] mb-6">{c5.model.gridLead}</p>
+          <p className="text-body-sm text-ink-2 max-w-measure-xl mb-6">{c5.model.gridLead}</p>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[860px]">
               <thead><tr><th className="text-label text-ink-3 py-2 pr-4 align-bottom">Lens</th>{c5.levels.map(l => <th key={l.n} className="text-label text-signal-ink py-2 px-3 align-bottom">{l.n} · {l.name}</th>)}</tr></thead>
@@ -187,17 +187,17 @@ export default function AIMaturityChapter() {
           </div>
         </Layer>
         <Layer title="What “integrated” means" hint="The test that separates a habit from a practice.">
-          <p className="text-body text-ink max-w-[62ch]">{c5.integration.definition}</p>
-          <p className="text-body text-ink-2 max-w-[62ch] mt-4">{c5.integration.test}</p>
+          <p className="text-body text-ink max-w-measure-xl">{c5.integration.definition}</p>
+          <p className="text-body text-ink-2 max-w-measure-xl mt-4">{c5.integration.test}</p>
           <ol className="grid md:grid-cols-3 gap-4 mt-6">{c5.integration.degrees.map((d, i) => <StepCard key={d.name} label={`Degree ${i + 1}`} title={d.name} text={d.text} />)}</ol>
         </Layer>
         <Layer title="Enablers: what you need around the team" hint="Partners and skills that cap how far the lenses can rise.">
           <ol className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">{c5.model.enablers.map((e, i) => <StepCard key={e.name} label={`Enabler ${i + 1}`} title={e.name} text={e.text} />)}</ol>
-          <p className="text-body text-ink-2 max-w-[62ch] mt-6">{c5.model.cap}</p>
+          <p className="text-body text-ink-2 max-w-measure-xl mt-6">{c5.model.cap}</p>
         </Layer>
         <Layer title="Your sector changes the route" hint="Banking, government, health, enterprise, consumer: what each asks of design.">
-          <p className="text-body text-ink-2 max-w-[62ch]">{c5.sector.lead}</p>
-          <p className="text-body text-ink max-w-[62ch] mt-4">{c5.sector.rule}</p>
+          <p className="text-body text-ink-2 max-w-measure-xl">{c5.sector.lead}</p>
+          <p className="text-body text-ink max-w-measure-xl mt-4">{c5.sector.rule}</p>
           <p className="card mt-4 text-body-sm" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c5.model.controls}</p>
           <ul className="flex flex-col mt-8">
             {c5.sector.rows.map(r => (
@@ -209,7 +209,7 @@ export default function AIMaturityChapter() {
               </li>
             ))}
           </ul>
-          <p className="text-body-sm text-ink-3 max-w-[62ch] mt-4">{c5.sector.note}</p>
+          <p className="text-body-sm text-ink-3 max-w-measure-xl mt-4">{c5.sector.note}</p>
         </Layer>
         <Worksheets items={W.where} />
       </Section>
@@ -224,14 +224,14 @@ export default function AIMaturityChapter() {
               <ol className="grid md:grid-cols-3 gap-4">
                 {L.moves.map((m, i) => <StepCard key={m.title} label={`Move ${i + 1} · lifts ${m.lens}`} title={m.title} text={m.text} />)}
               </ol>
-              <p className="text-body-sm text-ink-3 mt-4 max-w-[62ch]">{c5.next.pace}</p>
+              <p className="text-body-sm text-ink-3 mt-4 max-w-measure-xl">{c5.next.pace}</p>
             </>
           ) : <p className="card text-body-sm text-ink-3">Choose a level above, or run the quick check in question 1, to see your three moves.</p>}
         </div>
 
         <Sub>Go deeper, only if you need to</Sub>
         <Layer title={c5.next.skillsTitle} hint="Who you need near the team, and three ways to get them.">
-          <p className="text-body text-ink-2 max-w-[62ch] mb-6">{c5.next.skillsLead}</p>
+          <p className="text-body text-ink-2 max-w-measure-xl mb-6">{c5.next.skillsLead}</p>
           <ol className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">{c5.next.roles.map((r, i) => <StepCard key={r.name} label={`Partner ${i + 1}`} title={r.name} text={r.text} />)}</ol>
           <ol className="grid md:grid-cols-3 gap-4 mt-4">{c5.next.ways.map(w => <StepCard key={w.name} label="Way to get it" title={w.name} text={w.text} />)}</ol>
         </Layer>
@@ -272,8 +272,8 @@ export default function AIMaturityChapter() {
 
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, or fill them in on the page, with a filled example beside each. Your notes stay in your browser.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
-          <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-[52ch]" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
+          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
+          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT_5} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA

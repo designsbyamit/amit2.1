@@ -167,7 +167,7 @@ function LoopDiagram() {
           ))}
         </svg>
         <figcaption>
-          <p className="font-mono text-xs tracking-[0.08em] uppercase mb-4" style={{ color: '#C8F55A' }}>The Dual Fluency Loop</p>
+          <p className="font-mono text-xs tracking-overline uppercase mb-4" style={{ color: '#C8F55A' }}>The Dual Fluency Loop</p>
           <ol className="flex flex-col gap-3">
             {LOOP.map((s, i) => <li key={s} className="flex gap-4 text-[1.0625rem] font-light" style={{ color: '#ECEDEF' }}><span className="font-mono text-xs pt-1.5" style={{ color: '#C8F55A' }}>{String(i + 1).padStart(2, '0')}</span>{s}</li>)}
           </ol>
@@ -185,7 +185,7 @@ function CanvasSheet() {
     <figure className="rounded-3 p-5 md:p-8 overflow-x-auto" style={{ background: 'var(--field-teal)' }}>
       <div className="min-w-[680px]">
         <div className="flex items-center justify-between mb-5">
-          <p className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Dual Fluency Canvas</p>
+          <p className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>Dual Fluency Canvas</p>
           <p className="font-mono text-xs" style={{ color: '#ECEDEF', opacity: 0.7 }}>Decision: ____________________</p>
         </div>
         <div className="grid grid-cols-4 gap-3">

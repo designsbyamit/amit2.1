@@ -237,8 +237,8 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
       </div>
       <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
         <TagList items={resource.topics} label="Topics" />
-        <h2 id={titleId} className="text-heading text-ink max-w-[28ch]">{resource.title}</h2>
-        <p className="text-body text-ink-2 max-w-[62ch]">{resource.description}</p>
+        <h2 id={titleId} className="text-heading text-ink max-w-measure-s">{resource.title}</h2>
+        <p className="text-body text-ink-2 max-w-measure-xl">{resource.description}</p>
         <div className="flex flex-wrap gap-3 pt-2">
           {resource.readingList ? (
             <Button variant="secondary" onClick={() => setExpanded(e => !e)} aria-expanded={expanded}>{expanded ? 'Hide the reading list' : 'Show the reading list'}</Button>

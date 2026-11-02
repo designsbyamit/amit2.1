@@ -30,12 +30,12 @@ function Tiles() {
               <Link to={t.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
                 <div className="relative aspect-[16/9] overflow-hidden" style={{ background: t.tone }}>
                   <div className="absolute inset-0 opacity-[0.07]" style={grid} />
-                  <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(tiles.length).padStart(2, '0')}</span>
+                  <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(tiles.length).padStart(2, '0')}</span>
                   <div className="absolute inset-0 px-[16%] py-[9%] transition-transform duration-500 group-hover:scale-[1.04]">{t.art}</div>
                 </div>
                 <div className="p-7 md:p-8 flex flex-col gap-3 flex-1">
                   <h2 className="text-heading text-ink" style={{ fontWeight: 300 }}>{t.title}</h2>
-                  <p className="text-body text-ink-2 max-w-[48ch]">{t.text}</p>
+                  <p className="text-body text-ink-2 max-w-measure-m">{t.text}</p>
                   <p className="text-label text-ink-3 group-hover:text-ink mt-auto pt-4">Open &rarr;</p>
                 </div>
               </Link>
@@ -56,8 +56,8 @@ function LeadingDesignBand() {
         <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-[240px]"><ResourceCover title="Leading Design" kind="Guide" motif="phases" tone="plum" /></div>
         <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
           <p className="text-overline text-ink-3">Guide for design managers</p>
-          <h2 id="leading-design-h" className="text-heading text-ink max-w-[24ch]">Leading Design</h2>
-          <p className="text-body text-ink-2 max-w-[62ch]">Stories, points and worksheets for new and mid-level design managers, in five chapters: building the team, growing people, the rituals that shape culture, design quality, and AI maturity.</p>
+          <h2 id="leading-design-h" className="text-heading text-ink max-w-measure-s">Leading Design</h2>
+          <p className="text-body text-ink-2 max-w-measure-xl">Stories, points and worksheets for new and mid-level design managers, in five chapters: building the team, growing people, the rituals that shape culture, design quality, and AI maturity.</p>
           <div className="flex flex-wrap gap-3 pt-2"><Button to="/resources/leading-design" arrow>Read the guide</Button></div>
         </div>
       </div>

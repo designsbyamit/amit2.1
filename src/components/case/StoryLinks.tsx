@@ -29,7 +29,7 @@ export function NextCase({ id }: { id: string }) {
           <p id="next-case-h" className="text-overline text-ink-3 mb-4">Next case study</p>
           <Link to={`/craft/${next.id}`} className="group block">
             <p className="text-label text-ink-3 mb-2">{next.category.split(' · ').slice(0, 2).join(' · ')}</p>
-            <h2 className="text-heading text-ink group-hover:opacity-75 transition-opacity max-w-[28ch]">{next.shortTitle}</h2>
+            <h2 className="text-heading text-ink group-hover:opacity-75 transition-opacity max-w-measure-s">{next.shortTitle}</h2>
           </Link>
         </div>
         <div className="col-span-4 md:col-span-4 md:justify-self-end">

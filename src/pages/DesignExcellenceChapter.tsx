@@ -35,7 +35,7 @@ function Points({ items }: { items: Point[] }) {
   )
 }
 function Sub({ children }: { children: React.ReactNode }) { return <h3 className="text-label text-ink-3 mt-16 mb-5">{children}</h3> }
-function Lead({ children }: { children: React.ReactNode }) { return <p className="text-body text-ink-2 max-w-[62ch] mb-8">{children}</p> }
+function Lead({ children }: { children: React.ReactNode }) { return <p className="text-body text-ink-2 max-w-measure-xl mb-8">{children}</p> }
 function Worksheets({ items, label = 'Worksheets for this part' }: { items: typeof chapterFourDocs; label?: string }) {
   return (<><Sub>{label}</Sub><ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">{items.map(d => <DownloadCard key={d.slug} d={d} />)}</ul></>)
 }
@@ -141,7 +141,7 @@ export default function DesignExcellenceChapter() {
             </li>
           ))}
         </ol>
-        <p className="text-body text-ink-2 max-w-[62ch] mt-6">The important part is writing down the criteria that decide which features enter each level.</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mt-6">The important part is writing down the criteria that decide which features enter each level.</p>
 
         <Sub>Framework: the five gates</Sub>
         <Lead>{c4.reviews.gatesLead}</Lead>
@@ -164,7 +164,7 @@ export default function DesignExcellenceChapter() {
         <Sub>Measuring the reviews</Sub>
         <Lead>{c4.reviews.metricsLead}</Lead>
         <Rows rows={c4.reviews.metrics.map(m => ({ a: m.name, b: m.tells }))} />
-        <p className="text-body text-ink-2 max-w-[62ch] mt-6">{c4.reviews.caution}</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mt-6">{c4.reviews.caution}</p>
         <Worksheets items={W.reviews} label="Worksheet for this part" />
       </Section>
 
@@ -204,7 +204,7 @@ export default function DesignExcellenceChapter() {
         </div>
         <Dark>{c4.future.hybrid}</Dark>
         <div className="mt-8"><Rows rows={c4.future.lab.map(l => ({ a: l.role, b: l.does }))} /></div>
-        <p className="text-body-sm text-ink-3 max-w-[62ch] mt-4">{c4.future.labNote}</p>
+        <p className="text-body-sm text-ink-3 max-w-measure-xl mt-4">{c4.future.labNote}</p>
 
         <Sub>A protected calendar</Sub>
         <Lead>{c4.future.calendarLead}</Lead>
@@ -213,7 +213,7 @@ export default function DesignExcellenceChapter() {
         <Sub>Measuring it differently</Sub>
         <Lead>{c4.future.metricsLead}</Lead>
         <Rows rows={c4.future.metrics.map(m => ({ a: m.name, b: m.tells }))} />
-        <p className="text-body text-ink-2 max-w-[62ch] mt-6">{c4.future.caution}</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mt-6">{c4.future.caution}</p>
         <Worksheets items={W.future} label="Worksheets for this part" />
       </Section>
 
@@ -230,8 +230,8 @@ export default function DesignExcellenceChapter() {
 
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, or fill them in on the page, with a filled example beside each. Your notes stay in your browser.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
-          <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-[52ch]" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
+          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
+          <p className="text-[1.25rem] font-light max-w-measure-l" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT_4} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA

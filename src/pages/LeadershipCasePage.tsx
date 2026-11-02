@@ -21,7 +21,7 @@ export default function LeadershipCasePage() {
           <div className="mb-10"><Breadcrumb items={[{ label: 'Leadership', to: '/leadership' }, { label: `Case ${c.number}` }]} /></div>
           <p className="text-label text-ink-3 mb-5"><span className="text-signal-ink">Leadership case {c.number}</span></p>
           <h1 className="text-display-l text-ink max-w-[20ch]"><RevealText text={c.title} delay={0.1} /></h1>
-          <motion.p className="text-body-lg text-ink-2 max-w-[56ch] mt-6" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}>{c.subtitle}</motion.p>
+          <motion.p className="text-body-lg text-ink-2 max-w-measure-l mt-6" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}>{c.subtitle}</motion.p>
         </div>
         <div className="container-site">
           <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px rounded-3 overflow-hidden" style={{ background: 'rgb(var(--ink-rgb) / 0.08)' }}>

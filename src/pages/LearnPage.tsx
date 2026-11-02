@@ -31,12 +31,12 @@ export default function LearnPage() {
                   <div className="card !p-0 flex flex-col h-full overflow-hidden">
                   <div className="relative aspect-[16/9] overflow-hidden" style={{ background: i.tone }}>
                     <div className="absolute inset-0 opacity-[0.07]" style={grid} />
-                    <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
+                    <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
                     <div className="absolute inset-0 px-[18%] py-[9%] transition-transform duration-500 ">{i.art}</div>
                   </div>
                   <div className="p-7 md:p-9 flex flex-col gap-3 flex-1">
                     <h2 className="text-heading text-ink" style={{ fontWeight: 300 }}>{i.title}</h2>
-                    <p className="text-body text-ink-2 max-w-[48ch]">{i.text}</p>
+                    <p className="text-body text-ink-2 max-w-measure-m">{i.text}</p>
                     <p className="text-label text-ink-3 group-hover:text-ink mt-auto pt-4">{i.soon ? 'Coming soon' : <>Open &rarr;</>}</p>
                   </div>
                 </div>
@@ -44,12 +44,12 @@ export default function LearnPage() {
                   <Link to={i.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
                   <div className="relative aspect-[16/9] overflow-hidden" style={{ background: i.tone }}>
                     <div className="absolute inset-0 opacity-[0.07]" style={grid} />
-                    <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
+                    <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
                     <div className="absolute inset-0 px-[18%] py-[9%] transition-transform duration-500 group-hover:scale-[1.04]">{i.art}</div>
                   </div>
                   <div className="p-7 md:p-9 flex flex-col gap-3 flex-1">
                     <h2 className="text-heading text-ink" style={{ fontWeight: 300 }}>{i.title}</h2>
-                    <p className="text-body text-ink-2 max-w-[48ch]">{i.text}</p>
+                    <p className="text-body text-ink-2 max-w-measure-m">{i.text}</p>
                     <p className="text-label text-ink-3 group-hover:text-ink mt-auto pt-4">{i.soon ? 'Coming soon' : <>Open &rarr;</>}</p>
                   </div>
                 </Link>

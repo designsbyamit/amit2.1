@@ -32,8 +32,8 @@ export default function ProjectCard({ cs, pb, variant = 'tile', headingLevel = '
       </div>
       <div className={row ? 'col-span-4 md:col-span-5 order-2 md:order-1 flex flex-col justify-center gap-4 md:pr-6' : 'flex flex-col gap-4 pt-6'}>
         <p className="text-label text-ink-3">{showNumber && <><span className="text-signal-ink">{cs.number}</span> / </>}{cs.category.split(' · ').slice(0, 2).join(' · ')}</p>
-        <H className={`text-heading text-ink group-hover:underline decoration-1 underline-offset-[0.18em] ${row ? '' : 'max-w-[26ch]'}`}>{pb.headline}</H>
-        <p className="text-body text-ink-2 max-w-[56ch]">{pb.dek}</p>
+        <H className={`text-heading text-ink group-hover:underline decoration-1 underline-offset-[0.18em] ${row ? '' : 'max-w-measure-s'}`}>{pb.headline}</H>
+        <p className="text-body text-ink-2 max-w-measure-l">{pb.dek}</p>
         <span className="inline-flex items-center gap-2 text-label text-ink mt-1" aria-hidden="true">View project<Arrow /></span>
       </div>
     </Link>

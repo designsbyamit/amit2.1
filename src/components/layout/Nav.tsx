@@ -23,7 +23,7 @@ const LEADERSHIP_RESOURCES = ['/resources/leading-design', '/resources/hiring']
 const inLeadershipResources = (path: string) => LEADERSHIP_RESOURCES.some(x => path === x || path.startsWith(x))
 
 const arrowSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-const soonTag = <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3 align-middle">Coming soon</span>
+const soonTag = <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-overline text-ink-3 align-middle">Coming soon</span>
 
 const chevron = (open: boolean) => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" style={{ transition: 'transform .25s', transform: open ? 'rotate(180deg)' : 'none' }}><path d="M4 7l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -43,7 +43,7 @@ function MobileNav({ pathname }: { pathname: string }) {
         <div className="min-w-0 flex-1">
           {sub && <p className="text-label text-signal-ink">{sub}</p>}
           <p style={{ lineHeight: 1.3 }} className={`text-body ${soon ? 'text-ink-3' : 'text-ink'}`}>{title}</p>
-          {soon && <p className="mt-1 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3">Coming soon</p>}
+          {soon && <p className="mt-1 font-mono text-[0.625rem] uppercase tracking-overline text-ink-3">Coming soon</p>}
         </div>
         {!soon && <span className="text-ink-3 shrink-0">{goChevron}</span>}
       </>
@@ -144,7 +144,7 @@ export default function Nav() {
     : k === 'Leadership' ? ['/leadership', '/community', '/reflections'].some(x => path.startsWith(x)) || inLeadershipResources(path)
     : ['/learn', '/mentoring'].some(x => path.startsWith(x))
 
-  const titleCls = 'text-[1.0625rem] leading-snug font-light tracking-[-0.01em] text-ink group-hover:underline underline-offset-4 decoration-1'
+  const titleCls = 'text-[1.0625rem] leading-snug font-light tracking-tight text-ink group-hover:underline underline-offset-4 decoration-1'
   const linkCls = 'py-1.5 text-[0.9375rem] leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4'
   const featured = menuWorks.slice(0, 3)
   const moreBig = menuWorks.slice(3)

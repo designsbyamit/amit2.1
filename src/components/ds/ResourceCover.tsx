@@ -41,7 +41,7 @@ export default function ResourceCover({ title, kind, motif, tone = 'cobalt', ind
   return (
     <div className={bleed ? 'relative w-full h-full p-6 md:p-8 flex flex-col justify-between overflow-hidden' : 'relative rounded-2 p-5 md:p-6 flex flex-col justify-between overflow-hidden shadow-[0_18px_40px_rgb(0_0_0/0.25)]'} style={{ ...(bleed ? {} : { aspectRatio: '3 / 4' }), background: bg[tone], color: I }} aria-hidden="true">
       <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-      <div className="relative flex justify-between font-mono text-[0.6875rem] tracking-[0.08em] uppercase" style={{ color: L }}>
+      <div className="relative flex justify-between font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: L }}>
         <span>{kind}</span>{index !== undefined && <span>{String(index).padStart(2, '0')}</span>}
       </div>
       <div className={bleed ? 'relative w-1/2 max-w-[260px] self-center' : 'relative w-3/4 self-center'}><Diagram motif={motif} /></div>

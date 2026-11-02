@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node tools/seo/run.mjs && cp dist/index.html dist/404.html",
+    "build": "node tools/tokens/check.mjs && tsc -b && vite build && node tools/seo/run.mjs && cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "tokens": "node tools/tokens/check.mjs",
+    "tokens:update": "node tools/tokens/check.mjs --update"
   },
   "dependencies": {
     "@fontsource-variable/bodoni-moda": "^5.3.0",

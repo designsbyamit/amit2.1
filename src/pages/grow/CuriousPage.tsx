@@ -43,7 +43,7 @@ export default function CuriousPage() {
                   </button>
                   {isOpen && (
                     <div id={`${q.id}-a`} className="md:pl-[10.5rem] pb-8 pr-10 flex flex-col gap-4">
-                      {q.a.map((p, i) => <p key={i} className="text-body-lg text-ink-2 max-w-[62ch]">{p}</p>)}
+                      {q.a.map((p, i) => <p key={i} className="text-body-lg text-ink-2 max-w-measure-xl">{p}</p>)}
                     </div>
                   )}
                 </li>
@@ -56,8 +56,8 @@ export default function CuriousPage() {
       <section className="section-y hairline-top">
         <div className="container-site flex flex-wrap items-center justify-between gap-6">
           <div>
-            <p className="text-heading text-ink max-w-[26ch]" style={{ fontWeight: 300 }}>Have a question of your own?</p>
-            <p className="text-body text-ink-2 mt-3 max-w-[52ch]">Send it over. The ones that help other designers may be answered here.</p>
+            <p className="text-heading text-ink max-w-measure-s" style={{ fontWeight: 300 }}>Have a question of your own?</p>
+            <p className="text-body text-ink-2 mt-3 max-w-measure-l">Send it over. The ones that help other designers may be answered here.</p>
           </div>
           <Button to="/contact" arrow>Send a question</Button>
         </div>

@@ -61,7 +61,7 @@ export default function ShortStoryPage() {
             <div className="col-span-4 md:col-span-8">
               <p id="read-next" className="text-overline text-ink-3 mb-4">Read next</p>
               <Link to={`/craft/stories/${next.slug}`} className="group block">
-                <h2 className="text-heading text-ink group-hover:opacity-75 transition-opacity max-w-[30ch]">{next.title}</h2>
+                <h2 className="text-heading text-ink group-hover:opacity-75 transition-opacity max-w-measure-s">{next.title}</h2>
               </Link>
             </div>
             <div className="col-span-4 md:col-span-4 md:justify-self-end">

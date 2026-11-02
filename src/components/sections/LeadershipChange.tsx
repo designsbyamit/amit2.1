@@ -17,8 +17,8 @@ export default function LeadershipChange() {
           <Button to="/leadership/stories" variant="tertiary" arrow>All stories</Button>
         </div>
         <Link to={`/leadership/cases/${c.slug}`} className="group card card-link !p-8 md:!p-10 flex flex-col gap-3">
-          <h3 className="text-heading text-ink max-w-[30ch] group-hover:underline decoration-1 underline-offset-[0.18em]" style={{ fontWeight: 300 }}>{c.title}</h3>
-          <p className="text-body text-ink-2 max-w-[62ch]">{c.claim}</p>
+          <h3 className="text-heading text-ink max-w-measure-s group-hover:underline decoration-1 underline-offset-[0.18em]" style={{ fontWeight: 300 }}>{c.title}</h3>
+          <p className="text-body text-ink-2 max-w-measure-xl">{c.claim}</p>
           <span className="btn btn-ghost self-start mt-2" aria-hidden="true">Read the case<Arrow /></span>
         </Link>
       </div>

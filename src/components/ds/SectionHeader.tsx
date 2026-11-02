@@ -7,7 +7,7 @@ export default function SectionHeader({ label, title, intro, as: Tag = 'h2', act
       <div className="max-w-3xl">
         <p className="text-overline text-ink-3">{label}</p>
         <Tag className="text-display-l text-ink mt-4">{title}</Tag>
-        {intro && <p className="text-body-lg text-ink-2 mt-6 max-w-[65ch]">{intro}</p>}
+        {intro && <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{intro}</p>}
       </div>
       {action && <div className="flex-none">{action}</div>}
     </header>

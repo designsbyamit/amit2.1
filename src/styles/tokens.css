@@ -57,8 +57,11 @@ html[data-theme='dark'] {
   /* Header glass */
   --header-bg: rgb(var(--bg-rgb) / 0.94);
   --scrim: rgb(0 0 0 / 0.6);
-  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.3);
-  --shadow-2: 0 24px 48px rgb(0 0 0 / 0.45);
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.3);                 /* hairline lift */
+  --shadow-2: 0 8px 20px rgb(0 0 0 / 0.35);               /* raised: hover cards, menus */
+  --shadow-3: 0 24px 48px rgb(0 0 0 / 0.45);              /* overlay: popovers, sheets */
+  --shadow-4: 0 40px 100px rgb(0 0 0 / 0.55);             /* modal: lightbox, dialogs */
+  --shadow-glow: 0 0 30px rgb(var(--signal-rgb) / 0.35);  /* live and active states */
 }
 
 html[data-theme='light'] {
@@ -91,7 +94,10 @@ html[data-theme='light'] {
   --header-bg: rgb(var(--surface-1-rgb) / 0.95);
   --scrim: rgb(15 16 19 / 0.55);
   --shadow-1: 0 1px 2px rgb(15 16 19 / 0.08);
-  --shadow-2: 0 24px 48px rgb(15 16 19 / 0.12);
+  --shadow-2: 0 8px 20px rgb(15 16 19 / 0.10);
+  --shadow-3: 0 24px 48px rgb(15 16 19 / 0.12);
+  --shadow-4: 0 40px 100px rgb(15 16 19 / 0.20);
+  --shadow-glow: 0 0 30px rgb(var(--signal-ink-rgb) / 0.25);
 }
 
 :root {
@@ -128,35 +134,45 @@ html[data-theme='light'] {
   --font-serif: 'Bodoni 72', 'Bodoni Moda Variable', 'Bodoni Moda', Didot, 'Bodoni MT', Georgia, serif;
   --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SFMono-Regular', monospace;
 
-  /* Space (4px base, 8px rhythm) */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
-  /* legacy names */
-  --space-xs: 0.5rem;
-  --space-s: 1rem;
-  --space-m: 2rem;
-  --space-l: 4rem;
-  --space-xl: 8rem;
-  --space-2xl: 14rem;
+  /* Space: a 10-point scale. Every gap, padding and margin uses one of these steps.
+     2, 4 and 8 are micro steps for icons and hairlines. Nothing else is allowed. */
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-20: 20px;
+  --space-30: 30px;
+  --space-40: 40px;
+  --space-60: 60px;
+  --space-80: 80px;
+  --space-120: 120px;
+  --space-160: 160px;
+  --space-240: 240px;
 
   /* Layout: 12-column grid. At 1440px the outer margin is 80px. */
-  --gutter: 1.5rem;            /* phone side margin 24px */
-  --col-gap: 1rem;
-  --container: 80rem;          /* 1280px content width */
-  --header-h: 4.5rem;          /* 72px */
-  --section-y: 4.5rem;
-  --touch-min: 2.75rem;        /* 44px minimum target */
-  --measure: 68ch;             /* max line length for reading */
+  --gutter: var(--space-20);   /* phone side margin */
+  --col-gap: var(--space-20);
+  --container: 1280px;         /* content width */
+  --header-h: 70px;
+  --section-y: var(--space-60);
+  --touch-min: 44px;           /* minimum target size */
+  --measure-s: 28ch;
+  --measure-m: 44ch;
+  --measure-l: 54ch;
+  --measure-xl: 62ch;          /* longest line for reading */
+  --measure: var(--measure-xl);
+
+  /* Controls */
+  --btn-h: 50px;
+  --btn-h-sm: 40px;
+  --btn-px: var(--space-20);
+  --btn-px-sm: var(--space-10);
+  --field-h: 50px;
+  --icon-s: 16px;
+  --icon-m: 20px;
+  --icon-l: 30px;
 
   /* Radius */
   --radius-0: 0;
@@ -179,14 +195,14 @@ html[data-theme='light'] {
 
 @media (min-width: 768px) {
   :root {
-    --gutter: 3rem;            /* 48px; at 1440 the margin becomes 80px */
-    --col-gap: 1.5rem;
-    --section-y: 6rem;
+    --gutter: var(--space-40);   /* at 1440 the margin becomes 80px */
+    --col-gap: var(--space-30);
+    --section-y: var(--space-80);
   }
 }
 
 @media (min-width: 1024px) {
   :root {
-    --section-y: 8rem;
+    --section-y: var(--space-120);
   }
 }

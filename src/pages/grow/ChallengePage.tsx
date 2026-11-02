@@ -77,7 +77,7 @@ export default function ChallengePage() {
               ))}
             </ul>
           ) : (
-            <p className="text-body text-ink-2 mt-6 max-w-[56ch]">Mark the challenge as done to see other approaches and what each one trades off. Comparing after you have tried it is where the learning is.</p>
+            <p className="text-body text-ink-2 mt-6 max-w-measure-l">Mark the challenge as done to see other approaches and what each one trades off. Comparing after you have tried it is where the learning is.</p>
           )}
         </div>
       </section>

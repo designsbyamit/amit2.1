@@ -35,7 +35,7 @@ export default function AirlineStoryPage() {
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Airline App' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-[62ch]">A service ecosystem, not an app. I led the mobile experience: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.</p>
+          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A service ecosystem, not an app. I led the mobile experience: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.</p>
           <div className="flex flex-wrap gap-2 mt-8">{(cs.tags ?? []).map(t => <span key={t} className="tag">{t}</span>)}</div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
             {S.headline.map(([v, k]) => <Stat key={k} v={v} k={k} />)}
@@ -75,7 +75,7 @@ export default function AirlineStoryPage() {
 
       <Section id="reframe">
         <SectionHeader label={S.reframe.label} title={S.reframe.title} />
-        <div className="max-w-[62ch] space-y-5">{S.reframe.body.map(p => <p key={p} className="text-body-lg text-ink-2">{p}</p>)}</div>
+        <div className="max-w-measure-xl space-y-5">{S.reframe.body.map(p => <p key={p} className="text-body-lg text-ink-2">{p}</p>)}</div>
         <Fig className="mt-12" src={S.reframe.process.image} alt={S.reframe.process.alt} note={S.reframe.process.note} />
       </Section>
 
@@ -95,7 +95,7 @@ export default function AirlineStoryPage() {
 
       <Section id="lead">
         <SectionHeader label={S.lead.label} title={S.lead.title} />
-        <div className="max-w-[62ch] space-y-5">{S.lead.body.map(p => <p key={p} className="text-body-lg text-ink-2">{p}</p>)}</div>
+        <div className="max-w-measure-xl space-y-5">{S.lead.body.map(p => <p key={p} className="text-body-lg text-ink-2">{p}</p>)}</div>
         <div className="grid lg:grid-cols-2 gap-8 mt-12 items-start">
           <Fig src={S.lead.pods.image} alt={S.lead.pods.alt} note={S.lead.pods.note} />
           <Fig src={S.lead.sprint.image} alt={S.lead.sprint.alt} note={S.lead.sprint.note} />
@@ -111,7 +111,7 @@ export default function AirlineStoryPage() {
             <ul className="flex flex-wrap gap-2 mt-5">{j.points.map(p => <li key={p} className="tag">{p}</li>)}</ul>
           </div>
         ))}
-        <p className="text-body-lg text-white max-w-[62ch]">{S.experience.ancillaries}</p>
+        <p className="text-body-lg text-white max-w-measure-xl">{S.experience.ancillaries}</p>
         <Fig className="mt-12 max-w-2xl" src={S.experience.lifestyle.image} alt={S.experience.lifestyle.alt} note={S.experience.lifestyle.note} />
       </Section>
 
@@ -120,7 +120,7 @@ export default function AirlineStoryPage() {
         <dl className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {S.impact.tiles.map(([v, k]) => <Stat key={k} v={v} k={k} />)}
         </dl>
-        <p className="text-body-lg text-white mt-12 max-w-[62ch]">{S.impact.leadership}</p>
+        <p className="text-body-lg text-white mt-12 max-w-measure-xl">{S.impact.leadership}</p>
         {cs.testimonial && (
           <blockquote className="mt-12 max-w-3xl"><p className="text-title text-white">“{cs.testimonial.quote}”</p>
             <footer className="text-body-sm text-ink-3 mt-4">{cs.testimonial.name}, {cs.testimonial.title}</footer></blockquote>

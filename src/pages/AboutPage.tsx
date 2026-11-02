@@ -107,7 +107,7 @@ export default function AboutPage() {
                   <img src={h.image} alt={h.alt} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 </figure>
                 <h3 className="text-title text-ink">{h.t}</h3>
-                <p className="text-body-sm text-ink-2 max-w-[40ch]">{h.text}</p>
+                <p className="text-body-sm text-ink-2 max-w-measure-m">{h.text}</p>
               </li>
             ))}
           </ul>

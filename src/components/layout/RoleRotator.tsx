@@ -13,7 +13,7 @@ export default function NameRoles() {
   }, [])
   return (
     <span className="flex items-baseline gap-2 min-w-0 whitespace-nowrap">
-      <span className="text-[0.9375rem] font-medium tracking-[-0.01em] text-ink">Amit Kumar Tiwari</span>
+      <span className="text-[0.9375rem] font-medium tracking-tight text-ink">Amit Kumar Tiwari</span>
       <span className="hidden sm:inline text-ink-3" aria-hidden="true">•</span>
       <span className="hidden sm:inline-block relative h-[1.25rem] overflow-hidden text-[0.875rem] text-ink-3" aria-hidden="true">
         <AnimatePresence mode="wait" initial={false}>

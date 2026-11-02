@@ -36,7 +36,7 @@ export default function EngazeStoryPage() {
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Engaze HCM' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{E.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-[62ch]">{cs.tagline}</p>
+          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Button to="/craft/engaze/film" arrow className="!whitespace-normal text-left max-w-full">Watch the employee-experience teaser · 1 min 6 s</Button>
           </div>
@@ -61,7 +61,7 @@ export default function EngazeStoryPage() {
         <div className="grid md:grid-cols-3 gap-4">
           {E.problem.map(([t, d]) => <div key={t} className="card"><p className="text-title text-white">{t}</p><p className="text-body text-ink-2 mt-3">{d}</p></div>)}
         </div>
-        <p className="text-body-lg text-ink mt-14 max-w-[62ch]">{E.principle}</p>
+        <p className="text-body-lg text-ink mt-14 max-w-measure-xl">{E.principle}</p>
       </Section>
 
       <Section id="roles">
@@ -111,7 +111,7 @@ export default function EngazeStoryPage() {
         <div className="space-y-24">
           {E.ex.steps.map((s, i) => (
             <div key={s.label} className={`grid gap-10 items-center ${s.tall ? 'lg:grid-cols-[1fr_minmax(0,0.9fr)]' : 'lg:grid-cols-[1fr_1.6fr]'}`}>
-              <div className={i % 2 ? 'lg:order-2' : ''}><p className="text-overline text-ink-3">{String(i + 1).padStart(2, '0')} · {s.label}</p><h3 className="text-title text-white mt-3">{s.heading}</h3><p className="text-body text-ink-2 mt-4 max-w-[52ch]">{s.body}</p></div>
+              <div className={i % 2 ? 'lg:order-2' : ''}><p className="text-overline text-ink-3">{String(i + 1).padStart(2, '0')} · {s.label}</p><h3 className="text-title text-white mt-3">{s.heading}</h3><p className="text-body text-ink-2 mt-4 max-w-measure-l">{s.body}</p></div>
               <div className="rounded-xl border p-3 md:p-5 bg-surface-1" style={{ borderColor: 'var(--line-2)' }}><img src={s.image} alt={s.alt} loading="lazy" className={`w-full rounded-lg ${s.tall ? 'max-h-[900px] object-contain' : ''}`} /></div>
             </div>
           ))}

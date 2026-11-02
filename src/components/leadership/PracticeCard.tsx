@@ -8,7 +8,7 @@ export default function PracticeCard({ practice }: { practice: Practice }) {
       <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <h2 id="practice-h" className="text-overline" style={{ color: '#C8F55A' }}>Reusable practice</h2>
       </div>
-      <p className="text-heading max-w-[26ch] mb-8" style={{ color: '#fff', fontWeight: 300 }}>{p.title}</p>
+      <p className="text-heading max-w-measure-s mb-8" style={{ color: '#fff', fontWeight: 300 }}>{p.title}</p>
       <dl className="grid md:grid-cols-2 gap-x-10 gap-y-6 mb-10">
         <div><dt className="text-label opacity-60 mb-1">For</dt><dd className="text-body">{p.forWhom}</dd></div>
         <div><dt className="text-label opacity-60 mb-1">Problem it addresses</dt><dd className="text-body">{p.problem}</dd></div>

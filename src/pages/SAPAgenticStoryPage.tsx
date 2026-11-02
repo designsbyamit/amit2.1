@@ -35,7 +35,7 @@ export default function SAPAgenticStoryPage() {
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic Order Confirmation' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{S.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-[60ch]">{cs.tagline}</p>
+          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
           <div className="mt-8"><Button to="/craft/sap-agentic/film" arrow>Watch the 2-minute film</Button></div>
           <div className="flex flex-wrap gap-2 mt-8">
             <span className="tag">{S.kicker}</span>
@@ -55,7 +55,7 @@ export default function SAPAgenticStoryPage() {
           <div className="relative overflow-hidden rounded-3 border border-[color:var(--line-1)] w-full md:w-1/2" style={{ aspectRatio: '16 / 10' }} aria-hidden="true">
             <AnimThumb id="agenticDemo" />
           </div>
-          <p className="text-body-sm text-ink-3 mt-3 max-w-[60ch]">It reads the supplier&rsquo;s PDF, compares it with the purchase order, and prepares every decision for a person.</p>
+          <p className="text-body-sm text-ink-3 mt-3 max-w-measure-xl">It reads the supplier&rsquo;s PDF, compares it with the purchase order, and prepares every decision for a person.</p>
         </div>
       </section>
 

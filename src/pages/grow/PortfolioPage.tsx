@@ -32,7 +32,7 @@ export default function PortfolioPage() {
               <section key={g.id} id={g.id} className="py-16 md:py-20 border-b border-[color:var(--line-1)] scroll-mt-24">
                 <p className="text-overline text-ink-3">{g.n} · {g.kicker}</p>
                 <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>{g.title}</h2>
-                <p className="text-body-lg text-ink-2 mt-5 max-w-[62ch]">{g.lead}</p>
+                <p className="text-body-lg text-ink-2 mt-5 max-w-measure-xl">{g.lead}</p>
                 {g.id === 'character' && <CharacterWheel />}
                 {g.id === 'story' && <StoryArc />}
                 {g.points && g.id === 'anatomy' && <AnatomyDiagram points={g.points} />}
@@ -63,7 +63,7 @@ export default function PortfolioPage() {
                   <figure className="card !p-7 md:!p-8 mt-10">
                     <p className="text-overline text-ink-3">{g.example.label}</p>
                     <blockquote className="text-heading text-ink mt-4" style={{ fontWeight: 300 }}>&ldquo;{g.example.quote}&rdquo;</blockquote>
-                    <figcaption className="text-body-sm text-ink-3 mt-4 max-w-[62ch]">{g.example.note}</figcaption>
+                    <figcaption className="text-body-sm text-ink-3 mt-4 max-w-measure-xl">{g.example.note}</figcaption>
                     {g.example.to && <p className="mt-5"><Link to={g.example.to} className="text-label text-ink-2 hover:text-ink underline underline-offset-4">Read the case study &rarr;</Link></p>}
                   </figure>
                 )}

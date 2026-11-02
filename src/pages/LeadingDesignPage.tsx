@@ -73,7 +73,7 @@ export default function LeadingDesignPage() {
                   <span className="font-mono text-sm text-ink-3 md:col-span-1">{c.n}</span>
                   <div className="md:col-span-7 flex flex-col gap-3">
                     <h3 className="text-title text-ink">{c.title}</h3>
-                    <p className="text-body text-ink-2 max-w-[62ch]">{c.summary}</p>
+                    <p className="text-body text-ink-2 max-w-measure-xl">{c.summary}</p>
                     <ul className="flex flex-wrap gap-2" aria-label="Topics">{c.topics.map(t => <li key={t} className="chip">{t}</li>)}</ul>
                   </div>
                   <p className="text-label md:col-span-3 md:text-right md:self-center text-ink-3 group-hover:text-ink">{c.ready ? 'Read the chapter →' : 'Coming soon'}</p>
