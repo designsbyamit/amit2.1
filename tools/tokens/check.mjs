@@ -29,7 +29,7 @@ const rules = {
   'hex colour': /#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b(?![0-9a-zA-Z-])/g,
   'rgb() colour': /\brgba?\(\s*\d/g,
   'inline spacing or size (px/rem)': /(?<!\((?:min|max)-)\b(?:padding|margin|gap|width|height|top|left|right|bottom|minHeight|minWidth|maxWidth|maxHeight|fontSize|lineHeight|letterSpacing)\s*:\s*['"`]?-?\d*\.?\d+(?:px|rem)\b/g,
-  'raw shadow': /\bboxShadow\s*:\s*['"`](?!var\()|\bbox-shadow\s*:\s*(?!var\(|none)/g,
+  'raw shadow': /\bboxShadow\s*:\s*['"`](?!var\()|\bbox-shadow\s*:(?!\s*(?:var\(|none))\s*\S/g,
   'arbitrary Tailwind value': /\b(?:text|w|h|min-w|min-h|max-w|max-h|p[xytblr]?|m[xytblr]?|gap|rounded|shadow|duration|tracking|leading|z|top|left|right|bottom|inset)-\[(?![^\]]*var\()[^\]]*\d(?:px|rem)[^\]]*\]/g,
   'hard-coded duration': /\bduration-\d+\b|\btransition(?:Duration)?\s*:\s*['"`][^'"`]*\d+(?:ms|s)\b/g,
 }
