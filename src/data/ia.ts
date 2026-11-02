@@ -26,7 +26,7 @@ import type { MarkName } from '../components/marks/Marks'
 import type { FieldTone } from '../components/ds/MediaFrame'
 
 /** A page listed in a main-nav menu. The first three show a cover; the rest are listed on the right. */
-export interface MenuItem { label: string; to: string; kind: string; mark?: MarkName; tone?: FieldTone; soon?: boolean; note?: string }
+export interface MenuItem { label: string; to: string; kind: string; mark?: MarkName; tone?: FieldTone; soon?: boolean; note?: string; href?: string }
 
 /** The Grow section: three places, and two still to come. */
 export const growItems: MenuItem[] = [
@@ -35,7 +35,7 @@ export const growItems: MenuItem[] = [
   { label: 'Toolkits', to: '/learn/practice', kind: 'Toolkits', mark: 'toolkit', tone: 'teal' },
   { label: 'Portfolio Guide', to: '/learn/portfolio', kind: 'Guide', mark: 'portfolio', tone: 'plum' },
   { label: 'Library', to: '/learn/library', kind: 'Articles', mark: 'notes', tone: 'cobalt' },
-  { label: 'WingSpan', to: '', kind: 'Coming soon', mark: 'wingspan', tone: 'graphite', soon: true },
+  { label: 'AlphaVector', to: '', href: 'https://alphavector.designsbyamit.com/', kind: 'Find your direction', mark: 'wingspan', tone: 'graphite' },
   { label: 'Questions from AMA', to: '', kind: 'Coming soon', mark: 'ama', tone: 'graphite', soon: true },
 ]
 

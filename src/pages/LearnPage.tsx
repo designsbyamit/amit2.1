@@ -11,8 +11,15 @@ const items: { to: string; title: string; text: string; tone: string; art: React
   { to: '/learn/practice', title: 'Toolkits', text: 'Practise designing with AI, from a conversational interface to multi-agent orchestration, with exercises and reflection prompts.', tone: 'var(--field-teal)', art: <PracticePictogram /> },
   { to: '/learn/portfolio', title: 'Portfolio Guide', text: 'Give your portfolio a character, then shape each project with a clear anatomy and a story.', tone: 'var(--field-plum)', art: <PortfolioPictogram /> },
   { to: '/learn/library', title: 'Library', text: 'Articles, frameworks and worksheets for designers who are growing, starting with what it takes to become an AI designer.', tone: 'var(--field-cobalt)', art: <ResourcesPictogram /> },
-  { to: '', title: 'WingSpan', text: 'Wings for your design career.', tone: 'var(--field-graphite)', art: <ResourcesPictogram />, soon: true },
+  { to: 'https://alphavector.designsbyamit.com/', title: 'AlphaVector', text: 'Find your direction.', tone: 'var(--field-graphite)', art: <ResourcesPictogram /> },
 ]
+
+/** A card link: opens another site in a new tab, or moves within this one. */
+function CardLink({ to, className, children }: { to: string; className: string; children: ReactNode }) {
+  return /^https?:/.test(to)
+    ? <a href={to} target="_blank" rel="noopener noreferrer" className={className}>{children}</a>
+    : <Link to={to} className={className}>{children}</Link>
+}
 
 export default function LearnPage() {
   return (
@@ -42,7 +49,7 @@ export default function LearnPage() {
                   </div>
                 </div>
                 ) : (
-                  <Link to={i.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
+                  <CardLink to={i.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
                   <div className="relative aspect-[16/9] overflow-hidden" style={{ background: i.tone }}>
                     <div className="absolute inset-0 opacity-[0.07]" style={grid} />
                     <span className="absolute left-5 top-4 font-mono text-[0.6875rem] tracking-overline uppercase" style={{ color: '#C8F55A' }}>{String(k + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
@@ -53,7 +60,7 @@ export default function LearnPage() {
                     <p className="text-body text-ink-2 max-w-measure-m">{i.text}</p>
                     <p className="text-label text-ink-3 group-hover:text-ink mt-auto pt-4">{i.soon ? 'Coming soon' : <>Open &rarr;</>}</p>
                   </div>
-                </Link>
+                </CardLink>
                 )}
               </motion.li>
             ))}

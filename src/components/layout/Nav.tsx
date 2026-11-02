@@ -37,6 +37,7 @@ function MobileNav({ pathname }: { pathname: string }) {
 
   const row = (key: string, cover: React.ReactNode, title: string, sub: string | undefined, to: string, soon?: boolean) => {
     const here = isHere(to)
+    const ext = /^https?:/.test(to)
     const inner = (
       <>
         <div className="w-[5.5rem] shrink-0 overflow-hidden rounded-2" style={{ opacity: soon ? 0.8 : 1 }}>{cover}</div>
@@ -50,14 +51,14 @@ function MobileNav({ pathname }: { pathname: string }) {
     )
     const cls = 'flex items-center gap-3 rounded-3 border p-2.5 transition-colors'
     const style = { borderColor: here ? 'var(--signal-ink)' : 'var(--line-1)', background: 'var(--surface-1)' }
-    return <li key={key}>{soon ? <div className={cls} style={style}>{inner}</div> : <Link to={to} className={`${cls} active:bg-surface-2`} style={style} aria-current={here ? 'page' : undefined}>{inner}</Link>}</li>
+    return <li key={key}>{soon ? <div className={cls} style={style}>{inner}</div> : (ext ? <a href={to} target="_blank" rel="noopener noreferrer" className={`${cls} active:bg-surface-2`} style={style}>{inner}<span className="sr-only"> (opens in a new tab)</span></a> : <Link to={to} className={`${cls} active:bg-surface-2`} style={style} aria-current={here ? 'page' : undefined}>{inner}</Link>)}</li>
   }
   const allBtn = (label: string, to: string) => <li key="all"><Link to={to} className="btn btn-secondary w-full justify-center">{label}{arrowSvg}</Link></li>
 
   const content: Record<MenuKey, React.ReactNode> = {
     Works: <>{menuWorks.map(cs => row(cs.id, <CaseThumb id={cs.id} compact />, cs.shortTitle, cs.number, `/craft/${cs.id}`))}{allBtn('All work', '/craft')}</>,
     Leadership: <>{leadershipItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.kind, x.to))}{allBtn('All leadership', '/leadership')}</>,
-    Grow: <>{growItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.soon ? undefined : x.kind, x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
+    Grow: <>{growItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.soon ? undefined : x.kind, x.href ?? x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
   }
 
   return (
@@ -187,7 +188,9 @@ export default function Nav() {
           {rest.length > 0 && <span className="text-label text-ink-3 mb-2">More</span>}
           {rest.map(it => it.soon
             ? <span key={it.label} className="py-1.5 text-[0.9375rem] leading-snug text-ink-3">{it.label}{soonTag}{it.note && <span className="block text-body-sm mt-0.5">{it.note}</span>}</span>
-            : <Link key={it.label} to={it.to} className={linkCls}>{it.label}</Link>)}
+            : it.href
+              ? <a key={it.label} href={it.href} target="_blank" rel="noopener noreferrer" className={linkCls}>{it.label}<span className="sr-only"> (opens in a new tab)</span></a>
+              : <Link key={it.label} to={it.to} className={linkCls}>{it.label}</Link>)}
           <Link to={all.to} className={`btn btn-ghost self-start ${rest.length > 0 ? 'mt-3' : ''}`}>{all.label}{arrowSvg}</Link>
         </div>
       </div>
