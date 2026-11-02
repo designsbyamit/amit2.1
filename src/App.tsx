@@ -46,6 +46,7 @@ const LeadingDesignPage = lazy(() => import('./pages/LeadingDesignPage'))
 const LeadingChapterPage = lazy(() => import('./pages/LeadingChapterPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
 const SAPAgenticStoryPage = lazy(() => import('./pages/SAPAgenticStoryPage'))
+const SAPAgenticStoryV2Page = lazy(() => import('./pages/SAPAgenticStoryV2Page'))
 const AgenticFilmPage = lazy(() => import('./film/AgenticFilmPage'))
 const AgenticFilmV1Page = lazy(() => import('./film/archive/AgenticFilmV1Page'))
 const AgenticFilmV2Page = lazy(() => import('./film/archive/AgenticFilmV2Page'))
@@ -143,6 +144,7 @@ function AnimatedRoutes() {
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
         <Route path="/craft/engaze/film" element={<PageTransition><EngazeFilmPage /></PageTransition>} />
         <Route path="/craft/sap-search/film" element={<PageTransition><SearchFilmPage /></PageTransition>} />
+        <Route path="/craft/sap-agentic/story-v2" element={<PageTransition><SAPAgenticStoryV2Page /></PageTransition>} />
         <Route path="/craft/sap-agentic/film" element={<PageTransition><AgenticFilmPage /></PageTransition>} />
         <Route path="/craft/sap-agentic/film-v1" element={<PageTransition><AgenticFilmV1Page /></PageTransition>} />
         <Route path="/craft/sap-agentic/film-v2" element={<PageTransition><AgenticFilmV2Page /></PageTransition>} />
