@@ -1,19 +1,19 @@
 import { Fragment } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { publishedStories, storySlug } from '../data/leadership'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import StoryCover from '../components/ds/StoryCover'
 import StoryPictogram from '../components/ds/StoryPictogram'
 import RevealText from '../components/ui/RevealText'
+import NextUp from '../components/case/NextUp'
 
 export default function LeadershipStoryPage() {
   const { slug } = useParams()
   const idx = publishedStories.findIndex(s => storySlug(s) === slug)
   if (idx < 0) return <Navigate to="/leadership/stories" replace />
   const s = publishedStories[idx]
-  const prev = publishedStories[idx - 1]
-  const next = publishedStories[idx + 1]
+  const next = publishedStories[(idx + 1) % publishedStories.length]
   const n = String(idx + 1).padStart(2, '0')
 
   return (
@@ -78,13 +78,8 @@ export default function LeadershipStoryPage() {
             )}
           </div>
         </div>
-
-        <nav aria-label="More stories" className="mt-20 hairline-top pt-10 grid md:grid-cols-2 gap-4">
-          {prev ? <Link to={`/leadership/stories/${storySlug(prev)}`} className="card card-link"><p className="text-label text-ink-3 mb-2">Previous story</p><p className="text-title text-ink">{prev.title}</p></Link> : <span />}
-          {next ? <Link to={`/leadership/stories/${storySlug(next)}`} className="card card-link md:text-right"><p className="text-label text-ink-3 mb-2">Next story</p><p className="text-title text-ink">{next.title}</p></Link>
-            : <Link to="/leadership/stories" className="card card-link md:text-right"><p className="text-label text-ink-3 mb-2">Back to</p><p className="text-title text-ink">All leadership stories</p></Link>}
-        </nav>
       </div>
+      <NextUp label="Next story" to={`/leadership/stories/${storySlug(next)}`} title={next.title} cta="Read the story" />
     </article>
   )
 }

@@ -12,9 +12,6 @@ import RevealText from '../components/ui/RevealText'
 export default function CaseStudyPage() {
   const { id } = useParams<{ id: string }>()
   const cs = caseStudies.find(c => c.id === id)
-  const currentIndex = caseStudies.findIndex(c => c.id === id)
-  const prevCS = currentIndex > 0 ? caseStudies[currentIndex - 1] : null
-  const nextCS = currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null
 
   if (!cs) {
     return (
@@ -326,61 +323,6 @@ export default function CaseStudyPage() {
                 </div>
               </motion.footer>
             </blockquote>
-          </div>
-        </section>
-      )}
-
-      {/* Next / Prev navigation */}
-      {(prevCS || nextCS) && (
-        <section className="relative bg-black pb-24 px-6 md:px-12">
-          <div className="relative z-10 mx-auto max-w-7xl">
-            <div className="border-t border-white border-opacity-10 pt-16">
-              <motion.p
-                className="text-overline text-ink-3 mb-10"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                More work
-              </motion.p>
-              <div className={`grid gap-px grid-hairline ${prevCS && nextCS ? 'md:grid-cols-2' : ''}`}>
-                {prevCS && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <Link
-                      to={`/craft/${prevCS.id}`}
-                      className="group bg-black p-8 md:p-10 block hover:bg-white hover:bg-opacity-[0.025] transition-colors"
-                    >
-                      <p className="text-label text-ink-3 mb-3">Previous</p>
-                      <p className="text-overline text-ink-3 mb-2">{prevCS.category}</p>
-                      <h3 className="text-heading text-white group-hover:opacity-75 transition-opacity">{prevCS.title}</h3>
-                    </Link>
-                  </motion.div>
-                )}
-                {nextCS && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <Link
-                      to={`/craft/${nextCS.id}`}
-                      className={`group bg-black p-8 md:p-10 block hover:bg-white hover:bg-opacity-[0.025] transition-colors ${!prevCS ? 'md:col-start-2' : ''}`}
-                    >
-                      <p className="text-label text-ink-3 mb-3">Next</p>
-                      <p className="text-overline text-ink-3 mb-2">{nextCS.category}</p>
-                      <h3 className="text-heading text-white group-hover:opacity-75 transition-opacity">{nextCS.title}</h3>
-                    </Link>
-                  </motion.div>
-                )}
-              </div>
-            </div>
           </div>
         </section>
       )}

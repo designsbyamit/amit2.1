@@ -101,12 +101,11 @@ function LegacyHashRedirect() {
 function CaseDetail() {
   const { id } = useParams<{ id: string }>()
   const Page = ({ 'airline-app': AirlineStoryPage, engaze: EngazeStoryPage, 'sap-search': SAPSearchStoryPage, 'sap-agentic': SAPAgenticStoryPage } as Record<string, React.ComponentType>)[id ?? ''] ?? CaseStudyPage
-  const own = Page === CaseStudyPage
   const body = (
     <div className="relative">
       <BackToShort id={id ?? ''} />
       <Suspense fallback={<LogoLoader />}><Page /></Suspense>
-      {!own && <NextCase id={id ?? ''} />}
+      <NextCase id={id ?? ''} />
     </div>
   )
   // Case studies under NDA ask for an access code first.

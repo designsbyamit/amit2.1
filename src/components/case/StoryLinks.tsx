@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../../data/work'
+import NextUp from './NextUp'
 
 /** On a detailed case study: a way back to the short story, near the top of the page. */
 export function BackToShort({ id }: { id: string }) {
@@ -17,27 +18,10 @@ export function BackToShort({ id }: { id: string }) {
   )
 }
 
-/** At the end of a detailed case study: the next project, so people keep exploring. */
+/** At the end of a case study: the next project, so people keep exploring. */
 export function NextCase({ id }: { id: string }) {
   const i = caseStudies.findIndex(c => c.id === id)
   if (i < 0) return null
   const next = caseStudies[(i + 1) % caseStudies.length]
-  return (
-    <section className="hairline-top section-y bg-surface-0" aria-labelledby="next-case-h">
-      <div className="container-site grid-site gap-y-6 items-center">
-        <div className="col-span-4 md:col-span-8">
-          <p id="next-case-h" className="text-overline text-ink-3 mb-4">Next case study</p>
-          <Link to={`/craft/${next.id}`} className="group block">
-            <p className="text-label text-ink-3 mb-2">{next.category.split(' · ').slice(0, 2).join(' · ')}</p>
-            <h2 className="text-heading text-ink group-hover:opacity-75 transition-opacity max-w-measure-s">{next.shortTitle}</h2>
-          </Link>
-        </div>
-        <div className="col-span-4 md:col-span-4 md:justify-self-end">
-          <Link to={`/craft/${next.id}`} className="btn btn-primary">Read the short story
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </Link>
-        </div>
-      </div>
-    </section>
-  )
+  return <NextUp label="Next case study" to={`/craft/${next.id}`} eyebrow={next.category.split(' · ').slice(0, 2).join(' · ')} title={next.shortTitle} cta="Read the short story" />
 }

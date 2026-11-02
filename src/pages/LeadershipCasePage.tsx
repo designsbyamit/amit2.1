@@ -1,8 +1,9 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { cases, caseBySlug } from '../data/cases'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import RevealText from '../components/ui/RevealText'
+import NextUp from '../components/case/NextUp'
 import OutcomesLedger from '../components/leadership/OutcomesLedger'
 import PracticeCard from '../components/leadership/PracticeCard'
 import CapabilityLoop from '../components/leadership/CapabilityLoop'
@@ -12,7 +13,7 @@ export default function LeadershipCasePage() {
   const c = caseBySlug(slug)
   if (!c) return <Navigate to="/leadership" replace />
   const idx = cases.indexOf(c)
-  const next = cases[idx + 1]
+  const next = cases[(idx + 1) % cases.length]
 
   return (
     <article>
@@ -91,15 +92,10 @@ export default function LeadershipCasePage() {
                 </figure>
               </div>
             </details>
-
-            <nav aria-label="More leadership" className="flex flex-wrap gap-6 hairline-top pt-8">
-              {next && <Link to={`/leadership/cases/${next.slug}`} className="text-label text-ink hover:text-signal-ink">Next case &rarr;</Link>}
-              <Link to="/leadership" className="text-label text-ink-2 hover:text-ink">All leadership &rarr;</Link>
-              <Link to="/resources" className="text-label text-ink-2 hover:text-ink">Practices &rarr;</Link>
-            </nav>
           </div>
         </div>
       </div>
+      <NextUp label="Next case" to={`/leadership/cases/${next.slug}`} title={next.title} cta="Read the case" />
     </article>
   )
 }

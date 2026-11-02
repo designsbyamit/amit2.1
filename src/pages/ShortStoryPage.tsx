@@ -1,6 +1,7 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import ShortStoryTag from '../components/playback/ShortStoryTag'
+import NextUp from '../components/case/NextUp'
 import StoryField from '../components/ds/StoryField'
 import { shortStories, storyBySlug } from '../data/shortStories'
 
@@ -55,21 +56,7 @@ export default function ShortStoryPage() {
         </section>
       )}
 
-      {shortStories.length > 1 && (
-        <section className="hairline-top section-y bg-surface-1" aria-labelledby="read-next">
-          <div className="container-site grid-site gap-y-6 items-center">
-            <div className="col-span-4 md:col-span-8">
-              <p id="read-next" className="text-overline text-ink-3 mb-4">Read next</p>
-              <Link to={`/craft/stories/${next.slug}`} className="group block">
-                <h2 className="text-heading text-ink group-hover:opacity-75 transition-opacity max-w-measure-s">{next.title}</h2>
-              </Link>
-            </div>
-            <div className="col-span-4 md:col-span-4 md:justify-self-end">
-              <Link to={`/craft/stories/${next.slug}`} className="btn btn-ghost">Read the short story<Arrow /></Link>
-            </div>
-          </div>
-        </section>
-      )}
+      {shortStories.length > 1 && <NextUp label="Read next" to={`/craft/stories/${next.slug}`} title={next.title} cta="Read the short story" />}
     </article>
   )
 }
