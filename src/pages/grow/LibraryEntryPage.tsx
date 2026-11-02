@@ -70,7 +70,7 @@ function Body({ s, slug }: { s: Section; slug: string }) {
       )
     case 'plan':
       return (
-        <ol className="mt-10 grid lg:grid-cols-3 gap-5">
+        <ol className={`mt-10 grid gap-5 ${s.phases.length > 3 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'lg:grid-cols-3'}`}>
           {s.phases.map(p => (
             <li key={p.name} className="card flex flex-col gap-4">
               <div><p className="text-label text-ink-3">{p.when}</p><h3 className="text-heading text-ink mt-1">{p.name}</h3></div>
@@ -87,6 +87,19 @@ function Body({ s, slug }: { s: Section; slug: string }) {
             <li key={q.q} className="hairline-top last:border-b last:border-[color:var(--line-1)] py-6 grid md:grid-cols-2 gap-x-10 gap-y-2">
               <p className="text-title text-ink">{q.q}</p>
               <p className="text-body text-ink-2"><span className="text-label text-signal-ink">A strong answer </span>{q.good}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    case 'links':
+      return (
+        <ul className="mt-10 flex flex-col">
+          {s.links.map(l => (
+            <li key={l.label} className="hairline-top last:border-b last:border-[color:var(--line-1)] py-5 grid md:grid-cols-2 gap-x-10 gap-y-1">
+              {l.to
+                ? <Link to={l.to} className="text-title text-ink hover:text-signal-ink">{l.label}</Link>
+                : <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-title text-ink hover:text-signal-ink">{l.label}<span className="sr-only"> (opens in a new tab)</span></a>}
+              <p className="text-body text-ink-3">{l.note}</p>
             </li>
           ))}
         </ul>
