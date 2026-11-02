@@ -31,12 +31,12 @@ function Section({ id, children, tone = 'base' }: { id?: string; children: React
 /** Chapter number, a question or claim as the title, and who shaped it: shared, then what I drove. */
 function Head({ c }: { c: Chapter }) {
   return (
-    <header className="mb-14 md:mb-16">
+    <header className="mb-s80 md:mb-s120">
       <p className="text-overline text-ink-3">Chapter {c.n}</p>
-      <h2 className="text-display-l text-white mt-4 max-w-4xl">{c.title}</h2>
-      <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{c.intro}</p>
+      <h2 className="text-display-l text-white mt-s20 max-w-4xl">{c.title}</h2>
+      <p className="text-body-lg text-ink-2 mt-s30 max-w-measure-xl">{c.intro}</p>
       {c.together && (
-        <dl className="grid sm:grid-cols-2 gap-x-10 gap-y-3 mt-8 max-w-4xl hairline-top pt-5">
+        <dl className="grid sm:grid-cols-2 gap-x-s60 gap-y-s20 mt-s60 max-w-4xl hairline-top pt-s30">
           <div><dt className="text-label text-ink-3">Together</dt><dd className="text-body-sm text-ink-2 mt-1">{c.together}</dd></div>
           <div><dt className="text-label text-signal-ink">I drove</dt><dd className="text-body-sm text-white mt-1">{c.drove}</dd></div>
         </dl>
@@ -60,7 +60,7 @@ export default function SAPAgenticStoryV2Page() {
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic Order Confirmation' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{T.hero.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{T.hero.strap}</p>
+          <p className="text-body-lg text-ink-2 mt-s30 max-w-measure-xl">{T.hero.strap}</p>
           <div className="mt-8"><Button to="/craft/sap-agentic/film" arrow>Watch the 2-minute film</Button></div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-5xl">
             {T.hero.facts.map(([k, v]) => (
@@ -72,7 +72,7 @@ export default function SAPAgenticStoryV2Page() {
 
       <Section id="context" tone="raised">
         <p className="text-overline text-ink-3">{T.context.label}</p>
-        <h2 className="text-display-l text-white mt-4 max-w-4xl">{T.context.title}</h2>
+        <h2 className="text-display-l text-white mt-s20 max-w-4xl">{T.context.title}</h2>
         <div className="mt-8 flex flex-col gap-5 max-w-measure-xl">
           {T.context.paras.map(p => <p key={p} className="text-body-lg text-ink-2">{p}</p>)}
         </div>
@@ -81,7 +81,7 @@ export default function SAPAgenticStoryV2Page() {
       <Section id={C.problem.id}>
         <Head c={C.problem} />
         <AsIsFlowV2 steps={T.asis} />
-        <h3 className="text-heading text-white mt-20">{T.stickiesTitle}</h3>
+        <h3 className="text-heading text-white mt-s160">{T.stickiesTitle}</h3>
         <StickyInsights notes={T.stickies} />
       </Section>
 

@@ -32,7 +32,7 @@
 .pin-static { position: relative; transform: none; box-shadow: none; }
 
 /* ── Sticky notes ── */
-.sticky { position: relative; padding: var(--space-30) var(--space-30) var(--space-40); color: var(--note-ink); box-shadow: var(--shadow-3); border-radius: var(--radius-1); }
+.sticky { position: relative; padding: var(--space-40) var(--space-40) var(--space-60); color: var(--note-ink); box-shadow: var(--shadow-3); border-radius: var(--radius-1); }
 .sticky .hand { font-family: var(--font-hand); font-size: var(--text-2xl); line-height: 1.15; }
 .sticky .scrawl { font-family: var(--font-hand); font-size: var(--text-lg); line-height: 1; }
 
