@@ -503,3 +503,10 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 .logo-loader-mark { opacity: 0; animation: logo-loader-in 0.4s ease 0.25s forwards; }
 @keyframes logo-loader-in { to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .logo-loader-mark svg animate { display: none; } }
+
+/* The film in its dialog: picture plus a control bar. Below 768px of frame width the bar wraps to two rows, so the frame is the 16:9 picture plus room for the bar. */
+.film-wrap { container-type: inline-size; }
+.film-frame { aspect-ratio: 16 / 10.1; }
+@container (max-width: 767px) {
+  .film-frame { aspect-ratio: auto; height: calc(100cqw * 9 / 16 + var(--space-120)); }
+}
