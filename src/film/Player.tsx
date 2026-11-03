@@ -35,6 +35,11 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
   }, [seek])
 
   useEffect(() => () => score.stop(), [score])
+  /* A phone pauses the page when it is hidden or locked: stop the clock too, so the picture does not run ahead of the score. */
+  useEffect(() => {
+    const v = () => { if (document.hidden) clockRef.current?.pause() }
+    document.addEventListener('visibilitychange', v); return () => document.removeEventListener('visibilitychange', v)
+  }, [])
   useEffect(() => { if (playing) score.drift(t) }, [t, playing, score])
   useEffect(() => { score.setMuted(muted) }, [muted, score])
 
