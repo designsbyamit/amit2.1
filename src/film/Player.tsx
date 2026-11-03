@@ -96,7 +96,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
               </div>
             </div>
             <span className="hidden md:block" style={{ fontFamily: mono, fontSize: 12, letterSpacing: '0.1em', color: C.mute, minWidth: 190 }}>{chapter.label.toUpperCase()}</span>
-            <button onClick={() => setMuted(m => !m)} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} className="btn-reset grid place-items-center" style={{ color: C.ink, width: 32, height: 32 }}>
+            <button onClick={() => setMuted(m => !m)} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} className="btn-reset grid place-items-center ml-auto md:ml-0" style={{ color: C.ink, width: 32, height: 32 }}>
               {muted
                 ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" /><path d="M16 9.5l5 5M21 9.5l-5 5" /></svg>
                 : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" /><path d="M15.5 9a4 4 0 010 6M18 6.5a8 8 0 010 11" /></svg>}
