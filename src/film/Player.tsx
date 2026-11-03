@@ -91,14 +91,19 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
             <span style={{ fontFamily: mono, fontSize: 13, color: C.mute, minWidth: 84 }}>{fmtT(t)} / {fmtT(duration)}</span>
             <div className="relative order-last md:order-none basis-full md:basis-0 flex-1" style={{ height: 28 }}>
               <input type="range" min={0} max={duration} step={0.1} value={t} onChange={e => seek(parseFloat(e.target.value))} aria-label="Seek" className="absolute inset-0 w-full opacity-0 cursor-pointer z-10" />
-              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1.5 rounded" style={{ background: C.line }}>
+              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 rounded" style={{ height: 2, background: C.line }}>
                 <div className="h-full rounded" style={{ width: `${(t / duration) * 100}%`, background: C.lime }} />
-                {chapters.map(c => <span key={c.at} title={c.label} className="absolute top-1/2 -translate-y-1/2 w-0.5 h-3" style={{ left: `${(c.at / duration) * 100}%`, background: C.mute }} />)}
               </div>
             </div>
             <span className="hidden md:block" style={{ fontFamily: mono, fontSize: 12, letterSpacing: '0.1em', color: C.mute, minWidth: 190 }}>{chapter.label.toUpperCase()}</span>
-            <button onClick={() => setMuted(m => !m)} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} className="btn-reset" style={{ color: C.ink, fontSize: 13, fontFamily: mono }}>{muted ? 'SOUND OFF' : 'SOUND ON'}</button>
-            <button onClick={full} aria-label="Fullscreen" className="btn-reset" style={{ color: C.ink, fontSize: 13, fontFamily: mono }}>FULL</button>
+            <button onClick={() => setMuted(m => !m)} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} className="btn-reset grid place-items-center" style={{ color: C.ink, width: 32, height: 32 }}>
+              {muted
+                ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" /><path d="M16 9.5l5 5M21 9.5l-5 5" /></svg>
+                : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" /><path d="M15.5 9a4 4 0 010 6M18 6.5a8 8 0 010 11" /></svg>}
+            </button>
+            <button onClick={full} aria-label="Fullscreen" className="btn-reset grid place-items-center" style={{ color: C.ink, width: 32, height: 32 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /></svg>
+            </button>
           </div>
         </div>
         <ol hidden={embed} className="grid grid-cols-2 md:[grid-template-columns:repeat(var(--n),minmax(0,1fr))] gap-2 mt-4" style={{ ['--n' as string]: chapters.length }}>
