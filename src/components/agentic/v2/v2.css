@@ -1,0 +1,52 @@
+/* Draft case study (story-v2): pictograms, shimmer wireframes and sticky notes. Tokens only. */
+
+/* ── Pictograms ── */
+.pg { width: 100%; height: auto; display: block; color: rgb(var(--ink-rgb) / 0.86); }
+.pg .acc { stroke: var(--signal-ink); }
+.pg .acc-fill { fill: var(--signal-ink); stroke: none; }
+.pg-rise { animation: pg-rise calc(var(--dur-slow) * 5) ease-in-out infinite alternate; }
+@keyframes pg-rise { from { transform: translateY(var(--space-8)); } to { transform: translateY(calc(-1 * var(--space-4))); } }
+.pg-scan { animation: pg-scan calc(var(--dur-slow) * 5) ease-in-out infinite alternate; }
+@keyframes pg-scan { from { transform: translateY(0); } to { transform: translateY(var(--space-30)); } }
+.pg-blink { animation: pg-blink calc(var(--dur-slow) * 4) steps(1) infinite; }
+@keyframes pg-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0.15; } }
+.pg-flow { stroke-dasharray: var(--space-4) var(--space-4); animation: pg-flow calc(var(--dur-slow) * 3) linear infinite; }
+@keyframes pg-flow { to { stroke-dashoffset: calc(-1 * var(--space-8)); } }
+.pg-tilt { animation: pg-tilt calc(var(--dur-slow) * 6) ease-in-out infinite alternate; transform-box: view-box; transform-origin: 60px 30px; }
+@keyframes pg-tilt { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+.pg-ping { animation: pg-ping calc(var(--dur-slow) * 6) ease-in-out infinite alternate; }
+@keyframes pg-ping { from { transform: translateX(0); } to { transform: translateX(var(--space-60)); } }
+.pg-spin { animation: pg-spin calc(var(--dur-slow) * 14) linear infinite; transform-box: view-box; transform-origin: 60px 45px; }
+@keyframes pg-spin { to { transform: rotate(360deg); } }
+
+
+/* ── Pins ── */
+
+
+/* ── Sticky notes ── */
+.sticky { position: relative; width: var(--size-sticky); padding: var(--space-20) var(--space-20) var(--space-30); color: var(--note-ink); box-shadow: var(--shadow-3); border-radius: var(--radius-1); font-family: var(--font-hand); font-size: var(--text-hand); line-height: 1.15; }
+.sticky .hand-k { opacity: 0.65; }
+.sticky .hand-t { font-weight: 700; margin-top: var(--space-4); }
+.sticky .hand { font-weight: 500; }
+.sticky .scrawl { font-weight: 400; }
+
+/* ── Connectors ── */
+.cx-flow { stroke-dasharray: var(--space-8) var(--space-8); animation: cx-flow calc(var(--dur-slow) * 2) linear infinite; }
+@keyframes cx-flow { to { stroke-dashoffset: calc(-1 * var(--space-20)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-rise, .pg-scan, .pg-blink, .pg-flow, .pg-tilt, .pg-ping, .pg-spin, .cx-flow { animation: none; }
+}
+
+/* ── Pictogram tile and item titles ── */
+.pg-tile { width: var(--size-pictogram); height: var(--size-pictogram); padding: var(--space-10); border: 1px solid var(--line-1); border-radius: var(--radius-3); background: var(--surface-0); display: flex; align-items: center; justify-content: center; }
+.v2-item { font-size: var(--text-base); font-weight: 500; line-height: 1.4; }
+
+/* ── Pattern loop ── */
+.loop-frame { position: relative; aspect-ratio: 1440 / 899; overflow: hidden; border: 1px solid var(--line-2); border-radius: var(--radius-3); background: var(--surface-1); }
+.loop-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity var(--dur-slow) ease; }
+.loop-img[data-on="true"] { opacity: 1; }
+.loop-cap { display: flex; align-items: center; justify-content: space-between; gap: var(--space-20); margin-top: var(--space-20); }
+.loop-dots { display: flex; gap: var(--space-10); }
+.loop-dot { width: var(--space-10); height: var(--space-10); padding: 0; border: 0; border-radius: var(--radius-pill); background: var(--line-2); cursor: pointer; }
+.loop-dot[data-on="true"] { background: var(--signal); }

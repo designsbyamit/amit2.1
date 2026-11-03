@@ -52,7 +52,7 @@ export default function FlowDiagram() {
   return (
     <div>
       <div className="overflow-x-auto pb-2" tabIndex={0} aria-label="Flow diagram, scrolls sideways on small screens">
-        <svg viewBox="0 0 1310 470" className="min-w-[1080px] w-full h-auto" role="img" aria-label="Supplier order confirmation flow: the email arrives, the agent reads, extracts and scores it, operations validates, the agent compares and routes, the buyer and goods recipient decide, the buyer sends a reply if a revision is needed, and the order closes. A revised confirmation returns as a new version.">
+        <svg viewBox="0 0 1310 470" className="min-w-scroll-l w-full h-auto" role="img" aria-label="Supplier order confirmation flow: the email arrives, the agent reads, extracts and scores it, operations validates, the agent compares and routes, the buyer and goods recipient decide, the buyer sends a reply if a revision is needed, and the order closes. A revised confirmation returns as a new version.">
           <defs>
             <marker id="fd-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke={ink} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></marker>
             <marker id="fd-arrow-soft" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke={soft} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></marker>
@@ -70,7 +70,7 @@ export default function FlowDiagram() {
           <text x="700" y="49" textAnchor="middle" fontSize="12" fill="rgb(var(--ink-rgb) / 0.75)" fontFamily="var(--font-sans)" style={{ paintOrder: 'stroke' }} stroke="var(--surface-1)" strokeWidth="8">A revised confirmation returns as a new version of the same order</text>
 
           {!reduce && PATHS.filter(p => p.dots).map((p, i) => (
-            <circle key={i} r="3.5" fill="var(--signal)" stroke="#7aa800" strokeWidth="1"><animateMotion dur="2.6s" begin={`${1.6 + i * 0.5}s`} repeatCount="indefinite" path={p.d} /></circle>
+            <circle key={i} r="3.5" fill="var(--signal)" stroke="var(--signal-edge)" strokeWidth="1"><animateMotion dur="2.6s" begin={`${1.6 + i * 0.5}s`} repeatCount="indefinite" path={p.d} /></circle>
           ))}
 
           {NODES.map(n => {
@@ -81,7 +81,7 @@ export default function FlowDiagram() {
             const fg = agent ? 'var(--surface-0)' : ink
             return (
               <motion.g key={n.id} initial={reduce ? false : { opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-8%' }} transition={{ duration: 0.5, delay: 0.1 + (n.c * 3 + n.r) * 0.07, ease: [0.16, 1, 0.3, 1] }}>
-                <rect x={x} y={y} width={W} height={H} rx="10" fill={agent ? ink : gate ? 'rgb(200 245 90 / 0.28)' : 'transparent'} stroke={gate ? 'var(--signal)' : agent ? 'none' : soft} strokeWidth={gate ? 2 : 1.4} strokeDasharray={src ? '5 4' : undefined} />
+                <rect x={x} y={y} width={W} height={H} rx="10" fill={agent ? ink : gate ? 'rgb(var(--signal-rgb) / 0.28)' : 'transparent'} stroke={gate ? 'var(--signal)' : agent ? 'none' : soft} strokeWidth={gate ? 2 : 1.4} strokeDasharray={src ? '5 4' : undefined} />
                 <text x={x + 12} y={y + 18} fill={agent ? 'rgb(var(--bg-rgb) / 0.62)' : 'rgb(var(--ink-rgb) / 0.62)'} fontFamily="var(--font-mono)" fontSize="9.5" letterSpacing="0.9">{n.tag.toUpperCase()}</text>
                 <foreignObject x={x + 10} y={y + 22} width={W - 18} height={H - 24}>
                   <div style={{ color: fg, fontFamily: 'var(--font-sans)', lineHeight: 1.22 }}>
@@ -101,10 +101,10 @@ export default function FlowDiagram() {
         </svg>
       </div>
       <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-6 text-label text-ink-3" aria-label="Legend">
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px]" style={{ background: 'rgb(var(--ink-rgb))' }} />Agent acts</li>
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px] border-2" style={{ borderColor: 'var(--signal)', background: 'rgb(200 245 90 / 0.28)' }} />Person decides: a gate</li>
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px] border" style={{ borderColor: 'var(--line-control)' }} />Person checks</li>
-        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-[4px] border border-dashed" style={{ borderColor: 'var(--line-control)' }} />Source or set-up</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1" style={{ background: 'rgb(var(--ink-rgb))' }} />Agent acts</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1 border-2" style={{ borderColor: 'var(--signal)', background: 'rgb(var(--signal-rgb) / 0.28)' }} />Person decides: a gate</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1 border" style={{ borderColor: 'var(--line-control)' }} />Person checks</li>
+        <li className="flex items-center gap-2"><span className="w-3.5 h-3.5 rounded-1 border border-dashed" style={{ borderColor: 'var(--line-control)' }} />Source or set-up</li>
       </ul>
     </div>
   )

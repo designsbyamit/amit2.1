@@ -13,9 +13,9 @@ export default function NameRoles() {
   }, [])
   return (
     <span className="flex items-baseline gap-2 min-w-0 whitespace-nowrap">
-      <span className="text-[0.9375rem] font-medium tracking-[-0.01em] text-ink">Amit Kumar Tiwari</span>
+      <span className="text-t-ui font-medium tracking-tight text-ink">Amit Kumar Tiwari</span>
       <span className="hidden sm:inline text-ink-3" aria-hidden="true">•</span>
-      <span className="hidden sm:inline-block relative h-[1.25rem] overflow-hidden text-[0.875rem] text-ink-3" aria-hidden="true">
+      <span className="hidden sm:inline-block relative h-icon-m overflow-hidden text-t-sm text-ink-3" aria-hidden="true">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span key={roles[i]} className="block" initial={{ opacity: 0, y: reduced ? 0 : 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: reduced ? 0 : -8 }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}>
             {roles[i]}

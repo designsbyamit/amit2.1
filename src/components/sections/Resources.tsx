@@ -225,7 +225,7 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
     <motion.article aria-labelledby={titleId} className="hairline-top py-12 md:py-16 grid-site gap-y-8"
       initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }}
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}>
-      <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-[260px]">
+      <div className="col-span-4 sm:col-span-2 md:col-span-3 max-w-note-l">
         {resource.internalUrl
           ? <Link to={resource.internalUrl} tabIndex={-1} className="block transition-transform duration-300 hover:-translate-y-1"><ResourceCover title={resource.title.split(':')[0]} kind={resource.kind} motif={resource.motif} tone={resource.tone} index={index + 1} /></Link>
           : (resource.previewUrl && !resource.readingList)
@@ -237,8 +237,8 @@ function ResourceCard({ resource, index }: { resource: Resource; index: number }
       </div>
       <div className="col-span-4 md:col-span-8 md:col-start-5 flex flex-col gap-5">
         <TagList items={resource.topics} label="Topics" />
-        <h2 id={titleId} className="text-heading text-ink max-w-[28ch]">{resource.title}</h2>
-        <p className="text-body text-ink-2 max-w-[62ch]">{resource.description}</p>
+        <h2 id={titleId} className="text-heading text-ink max-w-measure-s">{resource.title}</h2>
+        <p className="text-body text-ink-2 max-w-measure-xl">{resource.description}</p>
         <div className="flex flex-wrap gap-3 pt-2">
           {resource.readingList ? (
             <Button variant="secondary" onClick={() => setExpanded(e => !e)} aria-expanded={expanded}>{expanded ? 'Hide the reading list' : 'Show the reading list'}</Button>

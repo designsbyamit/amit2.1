@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { useContact } from '../components/contact/ContactProvider'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
 import ResourceCover from '../components/ds/ResourceCover'
@@ -60,7 +62,7 @@ export default function HiringPlaybookPage() {
                 <Button variant="secondary" onClick={() => open(REQUEST_TEAM)}>Talk about your team</Button>
               </div>
             </div>
-            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
+            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-note">
               <ResourceCover title="How I hire" kind="Playbook" motif="checklist" tone="teal" />
             </div>
           </div>
@@ -68,7 +70,7 @@ export default function HiringPlaybookPage() {
             {hiringProof.map(p => (
               <div key={p.label}>
                 <dt className="sr-only">{p.label}</dt>
-                <dd className="font-serif text-ink" style={{ fontSize: 'clamp(2rem, 3.6vw, 3.2rem)', lineHeight: 1 }}>{p.value}</dd>
+                <dd className="font-serif text-ink" style={{ fontSize: 'var(--fs-title-l)', lineHeight: 1 }}>{p.value}</dd>
                 <dd className="text-body-sm text-ink-3 mt-2">{p.label}</dd>
               </div>
             ))}
@@ -89,13 +91,13 @@ export default function HiringPlaybookPage() {
                   <span className="text-label text-signal-ink">Step {String(i + 1).padStart(2, '0')}</span>
                   <h3 className="text-title text-ink">{s.title}</h3>
                   <p className="text-body-sm text-ink-2">{s.what}</p>
-                  <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+                  <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
                   <p className="text-body-sm text-ink-2 mt-auto pt-4 hairline-top"><span className="text-label text-ink-3 block mb-1">Watch for</span>{s.watch}</p>
                 </li>
               ))}
               <li className="card flex flex-col gap-3 md:col-span-2" style={{ background: 'var(--field-teal)' }}>
-                <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>What you will have</span>
-                <p className="text-[1.25rem] font-light" style={{ color: '#ECEDEF' }}>{part.outcome}</p>
+                <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>What you will have</span>
+                <p className="text-t-lg font-light" style={{ color: 'var(--on-field)' }}>{part.outcome}</p>
               </li>
             </ol>
             <h3 className="text-label text-ink-3 mt-14 mb-5">Worksheets for this part</h3>
@@ -124,12 +126,7 @@ export default function HiringPlaybookPage() {
         </div>
       </Section>
 
-      <section className="hairline-top py-12">
-        <div className="container-site flex flex-wrap items-center justify-between gap-4">
-          <Button to="/resources" variant="tertiary">Back to Practice</Button>
-          <Button to="/leadership" variant="tertiary" arrow>Journey</Button>
-        </div>
-      </section>
+      <NextUp link={nextResource('/resources/hiring')} />
     </>
   )
 }

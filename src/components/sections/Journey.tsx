@@ -7,7 +7,7 @@ function Stop({ i, active }: { i: number; active: boolean }) {
   const p = phases[i]
   const last = i === phases.length - 1
   return (
-    <li className="relative w-[78vw] sm:w-[340px] lg:w-[380px] shrink-0 snap-start pr-6 lg:pr-10">
+    <li className="relative w-[78vw] sm:w-card-m lg:w-card-l shrink-0 snap-start pr-6 lg:pr-10">
       {/* node on the line */}
       <div className="relative h-10 flex items-center" aria-hidden="true">
         <span className={`block w-3.5 h-3.5 rounded-full border-2 transition-colors duration-300 ${active ? 'bg-signal border-signal' : 'bg-bg border-[var(--line-control)]'}`} />

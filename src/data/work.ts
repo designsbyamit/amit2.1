@@ -50,7 +50,7 @@ const allCaseStudies: CaseStudy[] = [
     tags: ['Service Design', 'OmniChannel', 'Airlines', 'Revenue Growth'],
     distinct: {
       title: 'Led end to end, on an aggressive timeline.',
-      body: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8–9 person team for almost a year. The job covered planning the work, running the sprints and working day to day with product managers and the client, to timelines that left little slack.',
+      body: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8-9 person team for almost a year. The job covered planning the work, running the sprints and working day to day with product managers and the client, to timelines that left little slack.',
     },
     challenge: 'Leading airline in the Middle East, brand value $500M in 2022, 95+ destinations across four continents. Target: 100M tourists/year by 2030. Digital team was structured around functional owners, each building independently, producing an incoherent whole. The mandate: grow digital bookings from a $2M channel to a $100M revenue stream.',
     approach: 'Reframed the engagement as a service architecture problem, not a UI problem. Led experience strategy across 11+ designers in a modular pod structure where each pod owned a journey node. Research happened in airport lounges and stakeholder sessions, because the friction that mattered most was physical before it was digital.',
@@ -120,7 +120,7 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Impact',
         heading: '92% engagement boost',
-        body: '92% engagement boost including 50× growth in ancillary sales, measured after the final release, at the end of 8–9 months of work, which had been structurally invisible in the previous architecture. Moving add-ons to the right moment in the journey, with the right framing, was a design decision that translated directly into revenue. No new features. No new capability. The same content, in the right place, at the right time.',
+        body: '92% engagement boost including 50× growth in ancillary sales, measured after the final release, at the end of 8-9 months of work, which had been structurally invisible in the previous architecture. Moving add-ons to the right moment in the journey, with the right framing, was a design decision that translated directly into revenue. No new features. No new capability. The same content, in the right place, at the right time.',
         images: [
           `${B}images/case-studies/airline-12.png`,
           `${B}images/case-studies/airline-13.png`,
@@ -391,7 +391,7 @@ const allCaseStudies: CaseStudy[] = [
     shortTitle: 'AI-Powered Search',
     tagline: 'Search as a shared design-system capability: one AI search experience, defined once and reflected across every product in the suite.',
     role: 'Design Lead',
-    timeline: '2024–Ongoing',
+    timeline: '2024-Ongoing',
     domain: 'AI · Enterprise SaaS',
     tags: ['AI', 'Search Design', 'Enterprise UX'],
     distinct: {

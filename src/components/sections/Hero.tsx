@@ -51,7 +51,7 @@ export default function Hero() {
               <Line delay={0.45}>and what’s next.</Line>
             </span>
           </h1>
-          <motion.p className="text-body-lg text-ink-2 max-w-[34rem]" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7, ease }}>
+          <motion.p className="text-body-lg text-ink-2 max-w-lede" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, duration: 0.7, ease }}>
             Advancing the convergence of human behaviour, business systems, and artificial intelligence to shape how people work, how products evolve, and how businesses create lasting value.
           </motion.p>
           <motion.p className="text-label text-ink-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.7 }}>

@@ -28,7 +28,7 @@ const Mk = ({ n, x, y, to, o = 1 }: { n: number; x: number; y: number; to: numbe
 )
 const rev = (t: number, a: number) => easeOut(seg(t, a, a + 0.5))
 
-/* ───────────── 4 · CRAFT · ANATOMY  (74–95) ───────────── */
+/* ───────────── 4 · CRAFT · ANATOMY  (74-95) ───────────── */
 const LEGEND = [
   ['Product logo', 'placeholder slot · 59 × 29 · 56 from the edge'],
   ['Product name', 'bold 16 · 10 after the logo'],
@@ -100,7 +100,7 @@ export function SAnatomy({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 5 · CRAFT · INTERACTION  (95–117) ───────────── */
+/* ───────────── 5 · CRAFT · INTERACTION  (95-117) ───────────── */
 const STATES: { k: 'default' | 'hover' | 'active' | 'typing' | 'typed'; label: string; a: number; copy: ReactNode }[] = [
   { k: 'default', label: 'Default', a: 95.8, copy: <><b style={{ color: C.lime }}>Default</b> · 1px border · radius 18 · placeholder · AI-search icon</> },
   { k: 'hover', label: 'Hover', a: 97.5, copy: <><b style={{ color: C.lime }}>Hover</b> · border turns #0064D9 with a soft inner glow</> },
@@ -116,7 +116,7 @@ const OPEN_GROUPS: [string, [string, string][]][] = [
   ['Recent searches', [['Pending POs this quarter', 'Procurement'], ['Goals for Lena Hart', 'People']]],
   ['Suggested', [['Leave balance', 'People'], ['Expense report for May', 'Finance']]],
 ]
-const MATCHES: [string, string][] = [['Flight to Bangalore · Jun 10–17', 'Travel'], ['Flight to Singapore · Jul 3–10', 'Travel'], ['Flight to Tokyo · Conference', 'Travel']]
+const MATCHES: [string, string][] = [['Flight to Bangalore · Jun 10-17', 'Travel'], ['Flight to Singapore · Jul 3-10', 'Travel'], ['Flight to Tokyo · Conference', 'Travel']]
 
 export function SInteraction({ t }: { t: number }) {
   const cur = [...STATES].reverse().find(s => t >= s.a) ?? STATES[0]

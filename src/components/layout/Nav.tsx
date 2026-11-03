@@ -23,7 +23,7 @@ const LEADERSHIP_RESOURCES = ['/resources/leading-design', '/resources/hiring']
 const inLeadershipResources = (path: string) => LEADERSHIP_RESOURCES.some(x => path === x || path.startsWith(x))
 
 const arrowSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-const soonTag = <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3 align-middle">Coming soon</span>
+const soonTag = <span className="ml-2 font-mono text-t-2xs uppercase tracking-overline text-ink-3 align-middle">Coming soon</span>
 
 const chevron = (open: boolean) => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" style={{ transition: 'transform .25s', transform: open ? 'rotate(180deg)' : 'none' }}><path d="M4 7l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -37,27 +37,28 @@ function MobileNav({ pathname }: { pathname: string }) {
 
   const row = (key: string, cover: React.ReactNode, title: string, sub: string | undefined, to: string, soon?: boolean) => {
     const here = isHere(to)
+    const ext = /^https?:/.test(to)
     const inner = (
       <>
-        <div className="w-[5.5rem] shrink-0 overflow-hidden rounded-2" style={{ opacity: soon ? 0.8 : 1 }}>{cover}</div>
+        <div className="w-label-col shrink-0 overflow-hidden rounded-2" style={{ opacity: soon ? 0.8 : 1 }}>{cover}</div>
         <div className="min-w-0 flex-1">
           {sub && <p className="text-label text-signal-ink">{sub}</p>}
           <p style={{ lineHeight: 1.3 }} className={`text-body ${soon ? 'text-ink-3' : 'text-ink'}`}>{title}</p>
-          {soon && <p className="mt-1 font-mono text-[0.625rem] uppercase tracking-[0.08em] text-ink-3">Coming soon</p>}
+          {soon && <p className="mt-1 font-mono text-t-2xs uppercase tracking-overline text-ink-3">Coming soon</p>}
         </div>
         {!soon && <span className="text-ink-3 shrink-0">{goChevron}</span>}
       </>
     )
     const cls = 'flex items-center gap-3 rounded-3 border p-2.5 transition-colors'
     const style = { borderColor: here ? 'var(--signal-ink)' : 'var(--line-1)', background: 'var(--surface-1)' }
-    return <li key={key}>{soon ? <div className={cls} style={style}>{inner}</div> : <Link to={to} className={`${cls} active:bg-surface-2`} style={style} aria-current={here ? 'page' : undefined}>{inner}</Link>}</li>
+    return <li key={key}>{soon ? <div className={cls} style={style}>{inner}</div> : (ext ? <a href={to} target="_blank" rel="noopener noreferrer" className={`${cls} active:bg-surface-2`} style={style}>{inner}<span className="sr-only"> (opens in a new tab)</span></a> : <Link to={to} className={`${cls} active:bg-surface-2`} style={style} aria-current={here ? 'page' : undefined}>{inner}</Link>)}</li>
   }
   const allBtn = (label: string, to: string) => <li key="all"><Link to={to} className="btn btn-secondary w-full justify-center">{label}{arrowSvg}</Link></li>
 
   const content: Record<MenuKey, React.ReactNode> = {
     Works: <>{menuWorks.map(cs => row(cs.id, <CaseThumb id={cs.id} compact />, cs.shortTitle, cs.number, `/craft/${cs.id}`))}{allBtn('All work', '/craft')}</>,
     Leadership: <>{leadershipItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.kind, x.to))}{allBtn('All leadership', '/leadership')}</>,
-    Grow: <>{growItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.soon ? undefined : x.kind, x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
+    Grow: <>{growItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.soon ? undefined : x.kind, x.href ?? x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
   }
 
   return (
@@ -98,7 +99,7 @@ function MobileNav({ pathname }: { pathname: string }) {
 }
 
 function navCls({ isActive }: { isActive: boolean }) {
-  return `relative py-2 text-[0.9375rem] transition-colors duration-150 ${isActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`
+  return `relative py-2 text-t-ui transition-colors duration-150 ${isActive ? 'text-ink' : 'text-ink-2 hover:text-ink'}`
 }
 
 export default function Nav() {
@@ -144,8 +145,8 @@ export default function Nav() {
     : k === 'Leadership' ? ['/leadership', '/community', '/reflections'].some(x => path.startsWith(x)) || inLeadershipResources(path)
     : ['/learn', '/mentoring'].some(x => path.startsWith(x))
 
-  const titleCls = 'text-[1.0625rem] leading-snug font-light tracking-[-0.01em] text-ink group-hover:underline underline-offset-4 decoration-1'
-  const linkCls = 'py-1.5 text-[0.9375rem] leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4'
+  const titleCls = 'text-t-md leading-snug font-light tracking-tight text-ink group-hover:underline underline-offset-4 decoration-1'
+  const linkCls = 'py-1.5 text-t-ui leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4'
   const featured = menuWorks.slice(0, 3)
   const moreBig = menuWorks.slice(3)
 
@@ -186,8 +187,10 @@ export default function Nav() {
         <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
           {rest.length > 0 && <span className="text-label text-ink-3 mb-2">More</span>}
           {rest.map(it => it.soon
-            ? <span key={it.label} className="py-1.5 text-[0.9375rem] leading-snug text-ink-3">{it.label}{soonTag}{it.note && <span className="block text-body-sm mt-0.5">{it.note}</span>}</span>
-            : <Link key={it.label} to={it.to} className={linkCls}>{it.label}</Link>)}
+            ? <span key={it.label} className="py-1.5 text-t-ui leading-snug text-ink-3">{it.label}{soonTag}{it.note && <span className="block text-body-sm mt-0.5">{it.note}</span>}</span>
+            : it.href
+              ? <a key={it.label} href={it.href} target="_blank" rel="noopener noreferrer" className={linkCls}>{it.label}<span className="sr-only"> (opens in a new tab)</span></a>
+              : <Link key={it.label} to={it.to} className={linkCls}>{it.label}</Link>)}
           <Link to={all.to} className={`btn btn-ghost self-start ${rest.length > 0 ? 'mt-3' : ''}`}>{all.label}{arrowSvg}</Link>
         </div>
       </div>
@@ -212,7 +215,7 @@ export default function Nav() {
                 <li key={item.to} onMouseEnter={() => hoverOpen(item.menu!)} className={item.quiet ? 'pl-7 ml-1 border-l' : undefined} style={item.quiet ? { borderColor: 'rgb(var(--ink-rgb) / 0.14)' } : undefined}>
                   <button ref={el => { triggers.current[item.menu!] = el }} type="button" aria-expanded={open === item.menu} aria-controls={`${panelId}-${item.menu}`}
                     onClick={() => setOpen(o => (o === item.menu ? null : item.menu!))}
-                    className={`flex items-center gap-1.5 py-2 transition-colors ${item.quiet ? 'text-[0.875rem]' : 'text-[0.9375rem]'} ${open === item.menu || activeFor(item.menu!) ? 'text-ink' : item.quiet ? 'text-ink-3 hover:text-ink' : 'text-ink-2 hover:text-ink'}`}>
+                    className={`flex items-center gap-1.5 py-2 transition-colors ${item.quiet ? 'text-t-sm' : 'text-t-ui'} ${open === item.menu || activeFor(item.menu!) ? 'text-ink' : item.quiet ? 'text-ink-3 hover:text-ink' : 'text-ink-2 hover:text-ink'}`}>
                     {item.label}
                     <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${open === item.menu ? 'rotate-180' : ''}`}><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </button>
@@ -220,7 +223,7 @@ export default function Nav() {
               ) : (
                 <li key={item.to} onMouseEnter={hoverClose}>
                   <NavLink to={item.to} className={({ isActive }) => navCls({ isActive: isActive && !(item.to === '/resources' && inLeadershipResources(location.pathname)) })}>
-                    {({ isActive }) => <>{item.label}{isActive && !(item.to === '/resources' && inLeadershipResources(location.pathname)) && <span aria-hidden="true" className="absolute left-0 right-0 -bottom-[3px] h-[2px] bg-signal" />}</>}
+                    {({ isActive }) => <>{item.label}{isActive && !(item.to === '/resources' && inLeadershipResources(location.pathname)) && <span aria-hidden="true" className="absolute left-0 right-0 -bottom-[var(--space-4)] h-rail bg-signal" />}</>}
                   </NavLink>
                 </li>
               ))}

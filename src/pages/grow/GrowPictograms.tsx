@@ -2,8 +2,8 @@ import type { ReactNode } from 'react'
 
 /* Small animated pictograms for the Grow hub, in the same family as the
    resource covers: lime and light ink line motifs on a colour field. */
-const L = '#C8F55A'
-const I = '#ECEDEF'
+const L = 'var(--on-field-accent)'
+const I = 'var(--on-field)'
 const ring = { fill: 'none', stroke: I, strokeWidth: 2 } as const
 const lime = { fill: 'none', stroke: L, strokeWidth: 2 } as const
 const dash = { stroke: I, strokeOpacity: 0.55, strokeWidth: 1.2, strokeDasharray: '3 3', fill: 'none' } as const
@@ -25,7 +25,7 @@ export const ResourcesPictogram = () => (
     <rect x="30" y="18" width="64" height="40" rx="4" {...ring} strokeOpacity=".65" />
     <g className="pg pg-bob">
       <rect x="38" y="24" width="64" height="40" rx="4" fill={L} />
-      <path d="M48 36 H90 M48 44 H78 M48 52 H66" stroke="#0E1A33" strokeWidth="2" strokeLinecap="round" />
+      <path d="M48 36 H90 M48 44 H78 M48 52 H66" stroke="var(--field-deep)" strokeWidth="2" strokeLinecap="round" />
     </g>
   </S>
 )

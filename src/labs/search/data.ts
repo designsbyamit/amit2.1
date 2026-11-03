@@ -53,14 +53,14 @@ export const suggested: Sug[] = [
 const current: Sug[] = [
   { text: 'Current status & end date of SOW IDs for CyberSecure Ltd', app: 'fieldglass', route: 'sow' },
   { text: 'Current status of PO 4500012345 (ACME)', app: 's4', route: 'po' },
-  { text: 'Current trip - SFO → BLR, Jun 10–17', app: 'concur', route: 'travel' },
+  { text: 'Current trip - SFO → BLR, Jun 10-17', app: 'concur', route: 'travel' },
   { text: 'Current quarter goals - Product Design team', app: 'sf', route: 'goals' },
 ]
 const sets = {
   sow: s('fieldglass', 'sow', ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs, CyberSecure Ltd', 'SOWs expiring in the next 30 days, CyberSecure Ltd', 'Pending items on SOW 1150, Endpoint Protection Rollout', 'Workers assigned to SOW 1133, Compliance Readiness']),
   purchase: s('s4', 'po', ['PO 4500012345 - ACME Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Accenture Services', 'GR 5500045321 - Electronics Delivery']),
   pur: s('s4', 'po', ['Purchase Orders, Pending Approval (14)', 'Purchase Requisitions, New This Week (8)', 'Purchase Contract, IT Equipment 2026', 'Purchase Invoice, Due This Week (3)']),
-  flight: s('concur', 'travel', ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5–12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20–27']),
+  flight: s('concur', 'travel', ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10-17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3-10', 'Conference · SFO → NRT · ANA NH106 · Aug 15-22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5-12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20-27']),
   laptop: s('ariba', 'buy', ['Difference: iPhone 17 vs iPhone 17 Pro', 'Difference: iPhone 17 vs iPhone 17 Air', 'Difference: iPhone 17 vs iPhone 16 Pro', 'Difference: iPhone 17 Pro vs Samsung S25 Ultra', 'Difference: iPhone 17 Pro vs iPhone 17 Pro Max']),
   goals: s('sf', 'goals', ['Draft quarterly OKRs, Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress, Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates']),
 }
@@ -124,12 +124,12 @@ const po: Result = {
 
 const book: Action = { label: 'Book', kind: 'primary', icon: 'plane', go: 'booking' }
 const travel: Result = {
-  app: 'concur', key: 'travel', icon: 'plane', query: 'Flight to Bangalore', question: 'Flights from San Francisco (SFO) to Bangalore (BLR), Jun 10–17, 2026',
+  app: 'concur', key: 'travel', icon: 'plane', query: 'Flight to Bangalore', question: 'Flights from San Francisco (SFO) to Bangalore (BLR), Jun 10-17, 2026',
   summaryTitle: 'Trip Summary',
-  summary: '8 flights match your trip from San Francisco (SFO) to Bangalore (BLR), 10–17 June 2026. Emirates EK237 is the preferred route at $1,240, with one stop in Dubai (DXB), and is within travel policy. The Lufthansa business fare at $1,850 is over the policy limit,',
-  more: 'so it would need approval. The preferred hotel for this trip is The Leela Palace, Bangalore, 0.8 km from the office. India requires a visa, with processing taking 5–7 days, so apply before you book.',
+  summary: '8 flights match your trip from San Francisco (SFO) to Bangalore (BLR), 10-17 June 2026. Emirates EK237 is the preferred route at $1,240, with one stop in Dubai (DXB), and is within travel policy. The Lufthansa business fare at $1,850 is over the policy limit,',
+  more: 'so it would need approval. The preferred hotel for this trip is The Leela Palace, Bangalore, 0.8 km from the office. India requires a visa, with processing taking 5-7 days, so apply before you book.',
   total: 8, sources: ['Concur · Travel booking', 'Company travel policy'],
-  how: ['Read “Flight to Bangalore” as your trip SFO → BLR, 10–17 June', 'Searched flights available to you in Concur', 'Checked each fare against your company travel policy', 'Put the preferred route first, then the rest by fare'],
+  how: ['Read “Flight to Bangalore” as your trip SFO → BLR, 10-17 June', 'Searched flights available to you in Concur', 'Checked each fare against your company travel policy', 'Put the preferred route first, then the rest by fare'],
   tabs: ['All', 'Policy Compliant', 'Exceeds Policy'],
   facets: [
     { label: '1 stop', test: r => r.kv.some(([k, v]) => k === 'Stops' && v.startsWith('1')) },
@@ -137,10 +137,10 @@ const travel: Result = {
     { label: 'Business', test: r => r.chips.includes('Business') },
   ],
   rows: [
-    { title: 'Emirates EK237: via Dubai', chips: ['$1,240', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Preferred route, with The Leela Palace as the preferred hotel.', kv: [['Duration', '21h 30m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, level: { label: 'Preferred Route', tone: 'pos' }, note: 'Recommended for this trip', actions: [book], tabs: [1] },
-    { title: 'Emirates: via Dubai', chips: ['$980', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Estimated cost: $1,247 per person.', kv: [['Duration', '23h 15m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Lowest fare', actions: [book], tabs: [1] },
-    { title: 'United Airlines: via Frankfurt', chips: ['$1,100', 'Economy'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Visa required; processing takes 5–7 days.', kv: [['Duration', '22h 50m'], ['Stops', '1 (FRA)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Apply for the visa first', actions: [book], tabs: [1] },
-    { title: 'Lufthansa: via Munich', chips: ['$1,850', 'Business'], ref: 'SFO → BLR • Jun 10–17, 2026', desc: 'Fastest option on this route.', kv: [['Duration', '20h 15m'], ['Stops', '1 (MUC)']], status: { label: 'Exceeds Policy', tone: 'neg' }, level: { label: 'Approval Needed', tone: 'warn' }, note: 'Over the policy limit', actions: [{ label: 'Request Approval', kind: 'ghost', icon: 'send', does: 'request' }], tabs: [2] },
+    { title: 'Emirates EK237: via Dubai', chips: ['$1,240', 'Business'], ref: 'SFO → BLR • Jun 10-17, 2026', desc: 'Preferred route, with The Leela Palace as the preferred hotel.', kv: [['Duration', '21h 30m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, level: { label: 'Preferred Route', tone: 'pos' }, note: 'Recommended for this trip', actions: [book], tabs: [1] },
+    { title: 'Emirates: via Dubai', chips: ['$980', 'Economy'], ref: 'SFO → BLR • Jun 10-17, 2026', desc: 'Estimated cost: $1,247 per person.', kv: [['Duration', '23h 15m'], ['Stops', '1 (DXB)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Lowest fare', actions: [book], tabs: [1] },
+    { title: 'United Airlines: via Frankfurt', chips: ['$1,100', 'Economy'], ref: 'SFO → BLR • Jun 10-17, 2026', desc: 'Visa required; processing takes 5-7 days.', kv: [['Duration', '22h 50m'], ['Stops', '1 (FRA)']], status: { label: 'Policy Compliant', tone: 'pos' }, note: 'Apply for the visa first', actions: [book], tabs: [1] },
+    { title: 'Lufthansa: via Munich', chips: ['$1,850', 'Business'], ref: 'SFO → BLR • Jun 10-17, 2026', desc: 'Fastest option on this route.', kv: [['Duration', '20h 15m'], ['Stops', '1 (MUC)']], status: { label: 'Exceeds Policy', tone: 'neg' }, level: { label: 'Approval Needed', tone: 'warn' }, note: 'Over the policy limit', actions: [{ label: 'Request Approval', kind: 'ghost', icon: 'send', does: 'request' }], tabs: [2] },
   ],
 }
 
@@ -149,7 +149,7 @@ const buy: Result = {
   app: 'ariba', key: 'buy', icon: 'box', query: 'laptop', question: 'Laptops in the IT equipment catalog',
   summaryTitle: 'Product Comparison',
   summary: 'Three devices match in the IT equipment catalog. All have an Intel Core i7 processor, 16 GB of RAM, a 512 GB SSD and a three-year warranty. The Apple iPhone 17 Pro is the lightest at 1.12 kg, has a 14" 2.8K OLED display and is on the preferred CDW contract,',
-  more: 'with a 2–3 business-day lead time; 50 units come to $59,950. The Dell Latitude 5540 and HP EliteBook 850 both have 15.6" FHD displays and weigh about 1.8 kg.',
+  more: 'with a 2-3 business-day lead time; 50 units come to $59,950. The Dell Latitude 5540 and HP EliteBook 850 both have 15.6" FHD displays and weigh about 1.8 kg.',
   total: 3, sources: ['Ariba · IT equipment catalog', 'Apple Enterprise 2026 contract'],
   how: ['Read “laptop” as a catalog search in IT equipment', 'Compared the three matching devices on the same specs', 'Checked which ones are on a preferred contract', 'Put the contract item first'],
   tabs: ['All', 'On Contract', 'Catalog Only'],
@@ -159,7 +159,7 @@ const buy: Result = {
     { label: 'Next-day warranty', test: r => /next-day/.test(r.desc) },
   ],
   rows: [
-    { title: 'Apple iPhone 17 Pro', chips: ['$1,199 / unit'], ref: 'Supplier: CDW • Apple Enterprise 2026', desc: 'Intel Core i7-1365U · 16 GB DDR5 · 512 GB NVMe SSD · 3 years on-site.', kv: [['Display', '14" 2.8K OLED'], ['Weight', '1.12 kg'], ['Lead Time', '2–3 days']], status: { label: 'On Contract', tone: 'pos' }, level: { label: 'Preferred', tone: 'pos' }, note: 'Lightest of the three', actions: [req(true)], tabs: [1] },
+    { title: 'Apple iPhone 17 Pro', chips: ['$1,199 / unit'], ref: 'Supplier: CDW • Apple Enterprise 2026', desc: 'Intel Core i7-1365U · 16 GB DDR5 · 512 GB NVMe SSD · 3 years on-site.', kv: [['Display', '14" 2.8K OLED'], ['Weight', '1.12 kg'], ['Lead Time', '2-3 days']], status: { label: 'On Contract', tone: 'pos' }, level: { label: 'Preferred', tone: 'pos' }, note: 'Lightest of the three', actions: [req(true)], tabs: [1] },
     { title: 'Dell Latitude 5540', chips: ['Dell'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB SSD · 3 years ProSupport.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.78 kg'], ['Lead Time', '-']], status: { label: 'Catalog', tone: 'info' }, note: 'Heavier, larger display', actions: [req(false)], tabs: [2] },
     { title: 'HP EliteBook 850', chips: ['HP'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB PCIe SSD · 3 years next-day.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.79 kg'], ['Lead Time', '-']], status: { label: 'Catalog', tone: 'info' }, note: 'Next-day warranty service', actions: [req(false)], tabs: [2] },
   ],
@@ -219,7 +219,7 @@ const sow: Result = {
     { label: 'Business Unit: Supply Chain', test: () => true },
   ],
   rows: sowRows.map(t => ({
-    title: `CyberSecure – ${t.title}`, chips: [`SOW ID ${t.id}`, `${t.progress}%`], ref: `${t.ref} • Supply Chain`, desc: t.desc, kv: [['Owner', t.owner], ['End Date', t.end]] as [string, string][],
+    title: `CyberSecure - ${t.title}`, chips: [`SOW ID ${t.id}`, `${t.progress}%`], ref: `${t.ref} • Supply Chain`, desc: t.desc, kv: [['Owner', t.owner], ['End Date', t.end]] as [string, string][],
     status: { label: t.status, tone: sowTone[t.status] }, level: lvl(t.risk as 'Low' | 'Medium' | 'High'), note: t.note, progress: t.progress,
     actions: [
       { label: `${t.employees} Employees`, kind: 'primary', icon: 'users', does: 'people' } as Action,
@@ -244,7 +244,7 @@ export const booking = {
 export const ariba = {
   title: 'Procurement: iPhone 17 Pro', crumbs: ['Catalog', 'IT Equipment', 'Mobile Devices', 'iPhone 17 Pro'],
   product: 'Apple iPhone 17 Pro - 256GB Natural Titanium', unit: 1199, qty: 50,
-  details: [['Supplier', 'CDW Enterprise Technology Solutions'], ['SKU', 'MYPG3LL/A - Natural Titanium 256GB'], ['Lead Time', '2–3 business days'], ['Contract', 'Apple Enterprise 2026 - CDW Preferred Contract']] as [string, string][],
+  details: [['Supplier', 'CDW Enterprise Technology Solutions'], ['SKU', 'MYPG3LL/A - Natural Titanium 256GB'], ['Lead Time', '2-3 business days'], ['Contract', 'Apple Enterprise 2026 - CDW Preferred Contract']] as [string, string][],
 }
 export const goalDraft = {
   name: 'Deliver Q2 Product Roadmap', description: 'Complete all 3 milestones by end of June 2026 with full stakeholder sign-off',

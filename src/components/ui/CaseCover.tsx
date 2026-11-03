@@ -14,13 +14,13 @@ export default function CaseCover({ cs, className = '', minHeight = 280 }: { cs:
     >
       <span
         className="absolute right-6 top-2 select-none leading-none text-white"
-        style={{ fontSize: 'clamp(7rem, 16vw, 13rem)', fontWeight: 200, letterSpacing: '-0.06em', opacity: 0.07 }}
+        style={{ fontSize: 'var(--fs-ghost)', fontWeight: 200, letterSpacing: 'var(--track-tightest)', opacity: 0.07 }}
       >
         {cs.number}
       </span>
       {stat && (
         <div className="relative p-8 md:p-10">
-          <p className="text-white" style={{ fontSize: 'clamp(2.2rem, 4.5vw, 4rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1 }}>
+          <p className="text-white" style={{ fontSize: 'var(--fs-cover)', fontWeight: 200, letterSpacing: 'var(--track-tighter)', lineHeight: 1 }}>
             {stat.value}
           </p>
           <p className="text-overline text-ink-3 mt-3">{stat.label}</p>

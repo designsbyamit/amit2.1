@@ -65,7 +65,7 @@ export default function ChallengePage() {
       <section className="section-y hairline-top">
         <div className="container-site">
           <p className="text-overline text-ink-3">Compare approaches</p>
-          <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>{isDone ? 'Three ways to see it.' : 'Do the work first.'}</h2>
+          <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'var(--fs-h2)' }}>{isDone ? 'Three ways to see it.' : 'Do the work first.'}</h2>
           {isDone ? (
             <ul className="grid md:grid-cols-3 gap-4 md:gap-6 mt-10">
               {c.approaches.map(a => (
@@ -77,7 +77,7 @@ export default function ChallengePage() {
               ))}
             </ul>
           ) : (
-            <p className="text-body text-ink-2 mt-6 max-w-[56ch]">Mark the challenge as done to see other approaches and what each one trades off. Comparing after you have tried it is where the learning is.</p>
+            <p className="text-body text-ink-2 mt-6 max-w-measure-l">Mark the challenge as done to see other approaches and what each one trades off. Comparing after you have tried it is where the learning is.</p>
           )}
         </div>
       </section>

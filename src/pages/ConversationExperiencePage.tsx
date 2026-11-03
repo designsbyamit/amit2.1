@@ -1,8 +1,9 @@
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import GrainOverlay from '../components/ui/GrainOverlay'
 
 const CHAPTERS = [
@@ -100,13 +101,13 @@ export default function ConversationExperiencePage() {
             Playbook · Conversational AI · Interaction Design
           </motion.p>
           <motion.h1 className="text-white mb-8"
-            style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', fontWeight: 200, letterSpacing: '-0.04em', lineHeight: 1.05 }}
+            style={{ fontSize: 'var(--fs-hero-s)', fontWeight: 200, letterSpacing: 'var(--track-tighter)', lineHeight: 1.05 }}
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
             Conversation Experience:<br />The New Frontier of UX
           </motion.h1>
           <div className="grid md:grid-cols-[2fr_1fr] gap-12 items-end">
             <motion.p className="text-ink-3"
-              style={{ fontSize: 'clamp(1.1rem, 1.8vw, 1.4rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}
+              style={{ fontSize: 'var(--fs-lede)', fontWeight: 300, lineHeight: 1.65, letterSpacing: 'var(--track-snug)' }}
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
               A practical guide for designing conversational, assistant-driven, and agentic experiences.
               Built from three years of production conversational AI work, not from conference slides.
@@ -115,7 +116,7 @@ export default function ConversationExperiencePage() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}>
               {[['5', 'Chapters'], ['6', 'Key metrics'], ['90%', 'CSAT achieved']].map(([val, label]) => (
                 <div key={label} className="flex items-baseline gap-3">
-                  <span className="text-white" style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)', fontWeight: 200, letterSpacing: '-0.03em' }}>{val}</span>
+                  <span className="text-white" style={{ fontSize: 'var(--fs-figure)', fontWeight: 200, letterSpacing: 'var(--track-tight)' }}>{val}</span>
                   <span className="text-label text-ink-3">{label}</span>
                 </div>
               ))}
@@ -158,14 +159,14 @@ export default function ConversationExperiencePage() {
                     <span className="text-label text-ink-3 flex-shrink-0 mt-1">{chapter.number}</span>
                     <div>
                       <h3 className="text-white mb-3 group-hover:opacity-80 transition-opacity"
-                        style={{ fontSize: 'clamp(1.2rem, 2vw, 1.6rem)', fontWeight: 300, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                        style={{ fontSize: 'var(--fs-section)', fontWeight: 300, letterSpacing: 'var(--track-title)', lineHeight: 1.2 }}>
                         {chapter.title}
                       </h3>
                       <p className="text-body text-ink-3 max-w-2xl">{chapter.summary}</p>
                     </div>
                   </div>
                   <span className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
-                    style={{ transform: activeChapter === chapter.id ? 'rotate(45deg)' : 'none', fontSize: '1.25rem' }}>
+                    style={{ transform: activeChapter === chapter.id ? 'rotate(45deg)' : 'none', fontSize: 'var(--text-lg)' }}>
                     +
                   </span>
                 </button>
@@ -189,7 +190,7 @@ export default function ConversationExperiencePage() {
                           <ul className="space-y-4">
                             {chapter.principles.map((p, j) => (
                               <li key={j} className="flex gap-4">
-                                <span className="text-faint flex-shrink-0 mt-0.5" style={{ fontSize: '0.5rem' }}>●</span>
+                                <span className="text-faint flex-shrink-0 mt-0.5" style={{ fontSize: 'var(--text-glyph)' }}>●</span>
                                 <p className="text-body text-ink-3">{p}</p>
                               </li>
                             ))}
@@ -231,7 +232,7 @@ export default function ConversationExperiencePage() {
                 transition={{ duration: 0.5, delay: i * 0.07 }}
               >
                 <p className="text-label text-ink-3 mb-3">{String(i + 1).padStart(2, '0')}</p>
-                <h3 className="text-white mb-3" style={{ fontSize: 'clamp(1rem, 1.3vw, 1.2rem)', fontWeight: 300, letterSpacing: '-0.02em' }}>
+                <h3 className="text-white mb-3" style={{ fontSize: 'var(--fs-term)', fontWeight: 300, letterSpacing: 'var(--track-title)' }}>
                   {metric.name}
                 </h3>
                 <p className="text-body text-ink-3 mb-5">{metric.definition}</p>
@@ -242,7 +243,7 @@ export default function ConversationExperiencePage() {
                   </div>
                   <div>
                     <p className="text-overline text-ink-3 mb-1">Formula</p>
-                    <p className="text-label text-ink-3" style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>{metric.formula}</p>
+                    <p className="text-label text-ink-3" style={{ fontFamily: 'monospace', fontSize: 'var(--text-xs)' }}>{metric.formula}</p>
                   </div>
                 </div>
               </motion.div>
@@ -264,12 +265,10 @@ export default function ConversationExperiencePage() {
               className="btn btn-secondary">
               Request full playbook →
             </a>
-            <Link to="/resources" className="text-label text-ink-3 hover:text-white transition-colors text-center py-2">
-              ← Back to Resources
-            </Link>
           </div>
         </div>
       </section>
+      <NextUp link={nextResource('/resources/conversation-experience')} />
     </div>
   )
 }

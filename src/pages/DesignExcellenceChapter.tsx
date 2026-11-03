@@ -35,7 +35,7 @@ function Points({ items }: { items: Point[] }) {
   )
 }
 function Sub({ children }: { children: React.ReactNode }) { return <h3 className="text-label text-ink-3 mt-16 mb-5">{children}</h3> }
-function Lead({ children }: { children: React.ReactNode }) { return <p className="text-body text-ink-2 max-w-[62ch] mb-8">{children}</p> }
+function Lead({ children }: { children: React.ReactNode }) { return <p className="text-body text-ink-2 max-w-measure-xl mb-8">{children}</p> }
 function Worksheets({ items, label = 'Worksheets for this part' }: { items: typeof chapterFourDocs; label?: string }) {
   return (<><Sub>{label}</Sub><ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">{items.map(d => <DownloadCard key={d.slug} d={d} />)}</ul></>)
 }
@@ -53,7 +53,7 @@ function Rows({ rows }: { rows: { a: string; b: string; c?: string }[] }) {
   )
 }
 function Dark({ children, big }: { children: React.ReactNode; big?: boolean }) {
-  return <p className={`card mt-4 ${big ? 'text-[1.25rem] font-light' : 'text-body'}`} style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{children}</p>
+  return <p className={`card mt-4 ${big ? 'text-t-lg font-light' : 'text-body'}`} style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{children}</p>
 }
 
 export default function DesignExcellenceChapter() {
@@ -76,7 +76,7 @@ export default function DesignExcellenceChapter() {
             </div>
             <div className="col-span-4 md:col-span-4 md:col-start-9">
               <p className="text-label text-ink-3 mb-3">By the end you will have</p>
-              <ul className="flex flex-col gap-3">{c4.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{o}</li>)}</ul>
+              <ul className="flex flex-col gap-3">{c4.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{o}</li>)}</ul>
             </div>
           </div>
           <nav aria-label="On this page" className="flex flex-wrap gap-2 mt-12">
@@ -119,7 +119,7 @@ export default function DesignExcellenceChapter() {
 
       {/* 3 · Excellence reviews */}
       <Section id="reviews" label="Part 3" title="Excellence reviews and release assurance." intro={c4.reviews.lead}>
-        <p className="card text-[1.25rem] font-light mb-8" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c4.reviews.challenge}</p>
+        <p className="card text-t-lg font-light mb-8" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c4.reviews.challenge}</p>
         <Points items={c4.reviews.points} />
 
         <Sub>Framework: five things to evaluate</Sub>
@@ -136,12 +136,12 @@ export default function DesignExcellenceChapter() {
               <span className="text-label text-signal-ink">Level {l.n} · {l.cx}</span>
               <h4 className="text-title text-ink">{l.name}</h4>
               <p className="text-body-sm text-ink-2">{l.fits}</p>
-              <ul className="flex flex-col gap-2">{l.does.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{x}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{l.does.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{x}</li>)}</ul>
               <p className="text-body-sm text-ink-2 mt-auto pt-4 hairline-top"><span className="text-label text-ink-3 block mb-1">Owner</span>{l.owner}</p>
             </li>
           ))}
         </ol>
-        <p className="text-body text-ink-2 max-w-[62ch] mt-6">The important part is writing down the criteria that decide which features enter each level.</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mt-6">The important part is writing down the criteria that decide which features enter each level.</p>
 
         <Sub>Framework: the five gates</Sub>
         <Lead>{c4.reviews.gatesLead}</Lead>
@@ -159,18 +159,18 @@ export default function DesignExcellenceChapter() {
         <Sub>The review panel</Sub>
         <Lead>{c4.reviews.panelLead}</Lead>
         <Rows rows={c4.reviews.panel.map(p => ({ a: p.role, b: p.does }))} />
-        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 mt-8">{c4.reviews.principles.map(p => <li key={p} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{p}</li>)}</ul>
+        <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2 mt-8">{c4.reviews.principles.map(p => <li key={p} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{p}</li>)}</ul>
 
         <Sub>Measuring the reviews</Sub>
         <Lead>{c4.reviews.metricsLead}</Lead>
         <Rows rows={c4.reviews.metrics.map(m => ({ a: m.name, b: m.tells }))} />
-        <p className="text-body text-ink-2 max-w-[62ch] mt-6">{c4.reviews.caution}</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mt-6">{c4.reviews.caution}</p>
         <Worksheets items={W.reviews} label="Worksheet for this part" />
       </Section>
 
       {/* 4 · Future forward */}
       <Section id="future" label="Part 4" title="Future forward and experience innovation." intro={c4.future.lead}>
-        <p className="card text-[1.25rem] font-light mb-8" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c4.future.challenge}</p>
+        <p className="card text-t-lg font-light mb-8" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c4.future.challenge}</p>
         <Points items={c4.future.points} />
 
         <Sub>Framework: four responsibilities</Sub>
@@ -197,14 +197,14 @@ export default function DesignExcellenceChapter() {
           {c4.future.models.map(m => (
             <div key={m.name} className="card flex flex-col gap-4">
               <h4 className="text-title text-ink">{m.name}</h4>
-              <div><span className="text-label text-ink-3 block mb-2">Strengths</span><ul className="flex flex-col gap-1.5">{m.pros.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{x}</li>)}</ul></div>
-              <div><span className="text-label text-ink-3 block mb-2">Risks</span><ul className="flex flex-col gap-1.5">{m.cons.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{x}</li>)}</ul></div>
+              <div><span className="text-label text-ink-3 block mb-2">Strengths</span><ul className="flex flex-col gap-1.5">{m.pros.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{x}</li>)}</ul></div>
+              <div><span className="text-label text-ink-3 block mb-2">Risks</span><ul className="flex flex-col gap-1.5">{m.cons.map(x => <li key={x} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{x}</li>)}</ul></div>
             </div>
           ))}
         </div>
         <Dark>{c4.future.hybrid}</Dark>
         <div className="mt-8"><Rows rows={c4.future.lab.map(l => ({ a: l.role, b: l.does }))} /></div>
-        <p className="text-body-sm text-ink-3 max-w-[62ch] mt-4">{c4.future.labNote}</p>
+        <p className="text-body-sm text-ink-3 max-w-measure-xl mt-4">{c4.future.labNote}</p>
 
         <Sub>A protected calendar</Sub>
         <Lead>{c4.future.calendarLead}</Lead>
@@ -213,7 +213,7 @@ export default function DesignExcellenceChapter() {
         <Sub>Measuring it differently</Sub>
         <Lead>{c4.future.metricsLead}</Lead>
         <Rows rows={c4.future.metrics.map(m => ({ a: m.name, b: m.tells }))} />
-        <p className="text-body text-ink-2 max-w-[62ch] mt-6">{c4.future.caution}</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mt-6">{c4.future.caution}</p>
         <Worksheets items={W.future} label="Worksheets for this part" />
       </Section>
 
@@ -230,8 +230,8 @@ export default function DesignExcellenceChapter() {
 
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, or fill them in on the page, with a filled example beside each. Your notes stay in your browser.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
-          <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-[52ch]" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
+          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Editable worksheets</span>
+          <p className="text-t-lg font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT_4} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA

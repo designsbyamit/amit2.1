@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button, Card, Chip, Tag, TagList, Status, Breadcrumb, Callout, Stat, SectionHeader, ThemeToggle, useTheme, Tabs, Accordion, TextField, TextArea, Quote, MediaFrame } from '../components/ds'
 import CaseRow from '../components/ds/CaseRow'
+import { tokenHex, fieldHex, tokensByPrefix } from '../styles/tokenValues'
 import StoryCover from '../components/ds/StoryCover'
 import StoryField from '../components/ds/StoryField'
 import ResourceCover from '../components/ds/ResourceCover'
@@ -58,7 +59,7 @@ function Block({ id, n, title, intro, children }: { id: string; n: string; title
 function Spec({ name, note, children }: { name: string; note?: ReactNode; children: ReactNode }) {
   return (
     <div className="grid md:grid-cols-[14rem_1fr] gap-4 md:gap-10 py-8 hairline-top">
-      <div><p className="text-title text-ink">{name}</p>{note && <p className="text-body-sm text-ink-3 mt-2 max-w-[28ch]">{note}</p>}</div>
+      <div><p className="text-title text-ink">{name}</p>{note && <p className="text-body-sm text-ink-3 mt-2 max-w-measure-s">{note}</p>}</div>
       <div className="min-w-0">{children}</div>
     </div>
   )
@@ -70,7 +71,7 @@ function Rules({ items }: { items: [string, string][] }) {
       {items.map(([h, b], i) => (
         <li key={h} className="flex gap-4">
           <span className="font-mono text-label text-signal-ink pt-1">{String(i + 1).padStart(2, '0')}</span>
-          <div><p className="text-title text-ink">{h}</p><p className="text-body-sm text-ink-2 mt-2 max-w-[48ch]">{b}</p></div>
+          <div><p className="text-title text-ink">{h}</p><p className="text-body-sm text-ink-2 mt-2 max-w-measure-m">{b}</p></div>
         </li>
       ))}
     </ol>
@@ -89,7 +90,7 @@ function DoDont({ dos, donts }: { dos: string[]; donts: string[] }) {
 function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
   return (
     <div className="overflow-x-auto">
-      <table className="table min-w-[560px]">
+      <table className="table min-w-scroll-s">
         <thead><tr>{head.map(h => <th key={h}>{h}</th>)}</tr></thead>
         <tbody>{rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j} className={j === 0 ? 'font-mono text-ink' : ''}>{c}</td>)}</tr>)}</tbody>
       </table>
@@ -98,21 +99,22 @@ function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
 }
 
 /* ── data ── */
+const sw = (token: string, role: string) => ({ token, dark: tokenHex(token, 'dark'), light: tokenHex(token, 'light'), role })
 const colour: { token: string; dark: string; light: string; role: string }[] = [
-  { token: 'bg', dark: '#0F1013', light: '#F5F6F7', role: 'Page ground' },
-  { token: 'surface-1', dark: '#181A1F', light: '#FFFFFF', role: 'Cards, header, menus' },
-  { token: 'surface-2', dark: '#22252B', light: '#EEF0F2', role: 'Raised: inputs, hover, callouts' },
-  { token: 'surface-3', dark: '#2C3038', light: '#E4E7EB', role: 'Hover on raised' },
-  { token: 'ink', dark: '#ECEDEF', light: '#0F1013', role: 'Headings and primary text' },
-  { token: 'ink-2', dark: '#C4C7CD', light: '#3A3E46', role: 'Body and secondary text' },
-  { token: 'ink-3', dark: '#A3A7B0', light: '#4D525C', role: 'Labels, metadata, captions' },
-  { token: 'faint', dark: '#5D626C', light: '#9AA0A9', role: 'Decorative only, never words' },
-  { token: 'signal', dark: '#C8F55A', light: '#C8F55A', role: 'Primary fill, live status, the accent node' },
-  { token: 'signal-ink', dark: '#C8F55A', light: '#3F6B00', role: 'Signal used as text' },
-  { token: 'link', dark: '#7D98FF', light: '#3654E0', role: 'Inline links and the focus ring. Nothing else is blue' },
-  { token: 'danger', dark: '#FF8A7A', light: '#B42818', role: 'Form errors' },
+  sw('bg', 'Page ground'),
+  sw('surface-1', 'Cards, header, menus'),
+  sw('surface-2', 'Raised: inputs, hover, callouts'),
+  sw('surface-3', 'Hover on raised'),
+  sw('ink', 'Headings and primary text'),
+  sw('ink-2', 'Body and secondary text'),
+  sw('ink-3', 'Labels, metadata, captions'),
+  sw('faint', 'Decorative only, never words'),
+  sw('signal', 'Primary fill, live status, the accent node'),
+  sw('signal-ink', 'Signal used as text'),
+  sw('link', 'Inline links and the focus ring. Nothing else is blue'),
+  sw('danger', 'Form errors'),
 ]
-const fields = [['field-cobalt', '#1B2350'], ['field-teal', '#0F3B3A'], ['field-plum', '#33203F'], ['field-graphite', '#22252B']]
+const fields = ['field-cobalt', 'field-teal', 'field-plum', 'field-graphite', 'field-ink', 'field-deep', 'field-paper', 'on-field', 'on-field-strong', 'on-field-muted', 'on-field-accent', 'risk-high', 'risk-medium', 'risk-low'].map(n => [n, fieldHex(n)])
 const types: { cls: string; name: string; spec: string; sample: string }[] = [
   { cls: 'text-giant', name: 'giant', spec: 'Hero-only scale, one per page at most', sample: 'Hello' },
   { cls: 'text-display-2xl', name: 'display-2xl', spec: '52 to 128px · 200 · -0.045em', sample: 'Futures' },
@@ -234,7 +236,7 @@ function Lift() {
   return (
     <a href="#motion" onClick={e => e.preventDefault()} className="group block max-w-xs">
       <div className="rounded-3 overflow-hidden border transition-transform duration-500 group-hover:-translate-y-0.5" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}>
-        <div className="h-24" style={{ background: 'linear-gradient(135deg, #25223B 0%, #3D3669 55%, #8F80E9 100%)' }} />
+        <div className="h-24" style={{ background: 'linear-gradient(135deg, var(--field-plum) 0%, var(--field-cobalt) 55%, var(--link) 100%)' }} />
         <p className="p-4 text-body-sm text-ink-2 group-hover:text-ink transition-colors">Hover me: lifts 2px over 500ms</p>
       </div>
     </a>
@@ -268,7 +270,7 @@ export default function DesignSystemReferencePage() {
           <nav aria-label="On this page" className="flex flex-wrap gap-2">
             {sections.map(([id, label]) => <a key={id} href={`#${id}`} className="chip">{label}</a>)}
           </nav>
-          <p className="text-body-sm text-ink-3 mt-8 max-w-[62ch]">Looking for the short version with contrast tables and accessibility checks? That is <Link to="/design-system" className="link">the original design system page</Link>. This page adds everything it does not cover.</p>
+          <p className="text-body-sm text-ink-3 mt-8 max-w-measure-xl">Looking for the short version with contrast tables and accessibility checks? That is <Link to="/design-system" className="link">the original design system page</Link>. This page adds everything it does not cover.</p>
         </div>
       </section>
 
@@ -297,13 +299,13 @@ export default function DesignSystemReferencePage() {
               </div>
             ))}
           </div>
-          <p className="text-body-sm text-ink-3 mt-6 max-w-[62ch]">Signal (lime) is a fill and a light touch, never body text on the light ground. Text colour comes from the ink ramp, never from opacity.</p>
+          <p className="text-body-sm text-ink-3 mt-6 max-w-measure-xl">Signal (lime) is a fill and a light touch, never body text on the light ground. Text colour comes from the ink ramp, never from opacity.</p>
         </Spec>
-        <Spec name="Image fields" note="The same in both modes, so covers and story headers look identical either way.">
+        <Spec name="Image fields and the colours used on them" note="The same in both modes, so covers and story headers look identical either way. Values are read from tokens.css, so this list cannot drift from the site. Also on a field: field-tint, field-line, signal-edge, and the risk colours for severity.">
           <div className="flex flex-wrap gap-4">
             {fields.map(([n, h]) => <div key={n} className="w-36"><div className="h-16 rounded-3" style={{ background: h }} /><p className="font-mono text-label text-ink mt-2">{n}</p><p className="text-caption text-ink-3">{h}</p></div>)}
           </div>
-          <p className="text-body-sm text-ink-3 mt-5 max-w-[62ch]">Short stories use a 135-degree gradient from a deep tone through a mid tone to a pale tone of one hue. Each story keeps its own hue.</p>
+          <p className="text-body-sm text-ink-3 mt-5 max-w-measure-xl">Short stories use a 135-degree gradient from a deep tone through a mid tone to a pale tone of one hue. Each story keeps its own hue.</p>
           <div className="flex flex-wrap gap-4 mt-4">{shortStories.map(s => <StoryField key={s.slug} slug={s.slug} tone={s.tone} size={44} aspect="16 / 8" className="w-36 rounded-3" />)}</div>
         </Spec>
         <Spec name="Typefaces" note="Four faces, each with one job. Loaded from the Fontsource variable fonts.">
@@ -314,10 +316,10 @@ export default function DesignSystemReferencePage() {
               ['Geist Mono', 'Labels and data', 'Overlines, metadata, numbers in tables, keyboard keys. Uppercase with tracking.', 'var(--font-mono)', 'LABEL 02 / DATA'],
               ['Caveat', 'Handwritten note', 'One place only: the "the short story" note on short story pages.', "'Caveat Variable', cursive", 'the short story'],
             ].map(([n, r, d, f, sample]) => (
-              <div key={n} className="card !p-5 flex flex-col gap-3"><p className="text-ink" style={{ fontFamily: f, fontSize: '1.6rem', lineHeight: 1.1 }}>{sample}</p><div><p className="font-mono text-label text-ink">{n} · {r}</p><p className="text-caption text-ink-2 mt-2">{d}</p></div></div>
+              <div key={n} className="card !p-5 flex flex-col gap-3"><p className="text-ink" style={{ fontFamily: f, fontSize: 'var(--fs-section)', lineHeight: 1.1 }}>{sample}</p><div><p className="font-mono text-label text-ink">{n} · {r}</p><p className="text-caption text-ink-2 mt-2">{d}</p></div></div>
             ))}
           </div>
-          <p className="text-body-sm text-ink-3 mt-5 max-w-[66ch]">Instrument Sans and Bricolage Grotesque are installed but belong to the interactive prototypes at /labs, which carry their own interface kit. They are not used in the site itself.</p>
+          <p className="text-body-sm text-ink-3 mt-5 max-w-measure-xl">Instrument Sans and Bricolage Grotesque are installed but belong to the interactive prototypes at /labs, which carry their own interface kit. They are not used in the site itself.</p>
         </Spec>
         <Spec name="Type scale" note="Weight 200 and 300 only at 20px and up. Sizes are fluid between the two values.">
           <div className="flex flex-col">
@@ -329,8 +331,25 @@ export default function DesignSystemReferencePage() {
             ))}
             <div className="grid md:grid-cols-[12rem_1fr] gap-2 md:gap-8 py-5 hairline-top items-baseline">
               <div><p className="font-mono text-label text-ink">serif headline</p><p className="text-caption text-ink-3">Bodoni · 400</p></div>
-              <div><p className="font-serif text-ink" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>Human-led agentic AI cuts order confirmation TAT from weeks to hours</p><p className="text-body-sm text-ink-3 mt-3 max-w-[62ch]">{serif}</p></div>
+              <div><p className="font-serif text-ink" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)', textWrap: 'balance' }}>Human-led agentic AI cuts order confirmation TAT from weeks to hours</p><p className="text-body-sm text-ink-3 mt-3 max-w-measure-xl">{serif}</p></div>
             </div>
+          </div>
+        </Spec>
+        <Spec name="Size, tracking and layer tokens" note="Read from tokens.css, so this list always matches the site. Use these, never a raw px, rem or number.">
+          <div className="grid md:grid-cols-2 gap-x-10 gap-y-10">
+            {([['Type ladder', 'text-'], ['Fluid sizes', 'fs-'], ['Tracking', 'track-'], ['Sizes', 'size-'], ['Layers', 'z-']] as const).map(([title, prefix]) => (
+              <div key={prefix}>
+                <p className="text-label text-ink-3 mb-3">{title}</p>
+                <ul className="flex flex-col">
+                  {tokensByPrefix(prefix).map(t => (
+                    <li key={t.name} className="hairline-top py-2 grid grid-cols-[1fr_auto] gap-4 items-baseline">
+                      <span className="font-mono text-caption text-ink">--{t.name}</span>
+                      <span className="font-mono text-caption text-ink-3 text-right min-w-0 break-words">{t.value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </Spec>
         <Spec name="Space and layout" note="4px base, 8px rhythm. One 12-column grid, one margin.">
@@ -343,7 +362,7 @@ export default function DesignSystemReferencePage() {
             ['lg', '1024px', 'Full header navigation and hover menus. 128px section padding.'],
             ['xl', '1376px+', 'Content stops at 1280px. At 1440px the outer margin is 80px.'],
           ]} /></div>
-          <p className="text-body-sm text-ink-3 mt-5 max-w-[62ch]">Reading text is capped at 68 characters. The header, headlines and content share one left edge. Section padding comes from <code className="font-mono">section-y</code>, never from ad hoc margins.</p>
+          <p className="text-body-sm text-ink-3 mt-5 max-w-measure-xl">Reading text is capped at 68 characters. The header, headlines and content share one left edge. Section padding comes from <code className="font-mono">section-y</code>, never from ad hoc margins.</p>
         </Spec>
         <Spec name="Shape and lines" note="Hairlines and small radii. No heavy shadows on content.">
           <div className="flex flex-wrap items-end gap-6">
@@ -374,7 +393,7 @@ export default function DesignSystemReferencePage() {
           ]} />
         </Spec>
         <Spec name="Logo" note="The monogram uses the current text colour, so it follows the mode.">
-          <div className="flex items-center gap-8"><span className="text-ink"><Logo size={48} /></span><span className="text-ink-3"><Logo size={28} /></span><p className="text-body-sm text-ink-3 max-w-[40ch]">Used in the header at 36px beside the name and role. Never recoloured, never on a busy image.</p></div>
+          <div className="flex items-center gap-8"><span className="text-ink"><Logo size={48} /></span><span className="text-ink-3"><Logo size={28} /></span><p className="text-body-sm text-ink-3 max-w-measure-m">Used in the header at 36px beside the name and role. Never recoloured, never on a busy image.</p></div>
         </Spec>
       </Block>
 
@@ -433,7 +452,7 @@ export default function DesignSystemReferencePage() {
               </svg>
               <Mark key={theme} name="agentic" size={192} className="relative text-ink" />
             </div>
-            <ul className="flex flex-col gap-4 text-body-sm text-ink-2 max-w-[52ch]">
+            <ul className="flex flex-col gap-4 text-body-sm text-ink-2 max-w-measure-l">
               <li><span className="font-mono text-label text-ink">64 grid.</span> Every mark is drawn on a 64 by 64 box with a 6px safe margin.</li>
               <li><span className="font-mono text-label text-ink">1.5px line.</span> The line weight stays 1.5px on screen at any size; the component scales the stroke to keep it.</li>
               <li><span className="font-mono text-label text-ink">Round caps.</span> Ends and corners are soft; no sharp miters.</li>
@@ -462,12 +481,12 @@ export default function DesignSystemReferencePage() {
               <p className="text-label text-ink-3 mb-3">Short story card</p>
               <div className="rounded-3 overflow-hidden border" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-1)' }}>
                 <StoryField slug="greenux" tone={shortStories[1].tone} />
-                <p className="p-4 font-serif text-ink" style={{ fontSize: '1.25rem', lineHeight: 1.2 }}>A living design system with sustainability as a pillar</p>
+                <p className="p-4 font-serif text-ink" style={{ fontSize: 'var(--text-lg)', lineHeight: 1.2 }}>A living design system with sustainability as a pillar</p>
               </div>
             </div>
             <div>
               <p className="text-label text-ink-3 mb-3">Case study page label</p>
-              <div className="card"><div className="flex items-center gap-4"><Mark name="search" size={36} className="text-ink-2" /><p className="text-label text-ink-3"><span className="text-signal-ink">02</span> / AI search · AI</p></div><p className="font-serif text-ink mt-4" style={{ fontSize: '1.25rem', lineHeight: 1.2 }}>Designing AI-Search experience scaling across 15000+ products</p></div>
+              <div className="card"><div className="flex items-center gap-4"><Mark name="search" size={36} className="text-ink-2" /><p className="text-label text-ink-3"><span className="text-signal-ink">02</span> / AI search · AI</p></div><p className="font-serif text-ink mt-4" style={{ fontSize: 'var(--text-lg)', lineHeight: 1.2 }}>Designing AI-Search experience scaling across 15000+ products</p></div>
             </div>
             <div>
               <p className="text-label text-ink-3 mb-3">Page header, large</p>
@@ -495,7 +514,7 @@ export default function DesignSystemReferencePage() {
               <CaseThumb id="sap-search" ratio="1800 / 1000" flush />
             </div>
           </a>
-          <ul className="mt-6 flex flex-col gap-2 text-body-sm text-ink-2 max-w-[62ch]">
+          <ul className="mt-6 flex flex-col gap-2 text-body-sm text-ink-2 max-w-measure-xl">
             <li>The finished still is always shown first and is what everyone sees at rest.</li>
             <li>An animated preview fades in over the still after hover or keyboard focus, and is removed 600ms after the pointer leaves.</li>
             <li>The preview shows the real interface with short interface text. It is never a looping decoration.</li>
@@ -560,7 +579,7 @@ export default function DesignSystemReferencePage() {
           <ul><CaseRow cs={caseStudies[0]} /></ul>
         </Spec>
         <Spec name="Header and menu" note="Patterns made of the parts above.">
-          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[62ch]">
+          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-measure-xl">
             <li><span className="text-ink">Header:</span> 72px, logo and name with a rotating role, five items, theme toggle. Works, Leadership and For Designers open menus.</li>
             <li><span className="text-ink">Works menu:</span> three featured covers with previews, then a column listing the rest and an "All work" button.</li>
             <li><span className="text-ink">Page header:</span> label, display title, intro, and one optional pictogram.</li>
@@ -573,15 +592,15 @@ export default function DesignSystemReferencePage() {
       <Block id="patterns" n="08" title="Patterns and page sections." intro="Reusable compositions built from the components above. Each is used in more than one place, and each is shown here as it appears on the site.">
         <Spec name="Short story note" note="A handwritten marker, only on short story pages.">
           <ShortStoryTag />
-          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">Set in Caveat in signal colour, circled with an uneven pen loop and an arrow that curls up to the headline (a small underlined version on phones). It says "this is the short version" and links the story to its detailed case study.</p>
+          <p className="text-body-sm text-ink-3 mt-4 max-w-measure-l">Set in Caveat in signal colour, circled with an uneven pen loop and an arrow that curls up to the headline (a small underlined version on phones). It says "this is the short version" and links the story to its detailed case study.</p>
         </Spec>
         <Spec name="Headline word" note="Types, holds, deletes, moves on. Home hero only.">
           <p className="text-display-l text-ink"><TypedWord words={['Design', 'Strategy', 'Craft']} className="typed-word" /></p>
-          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">A name and a rotating role sit beside the logo in the header. With reduced motion the words swap on a slow timer instead of typing.</p>
+          <p className="text-body-sm text-ink-3 mt-4 max-w-measure-l">A name and a rotating role sit beside the logo in the header. With reduced motion the words swap on a slow timer instead of typing.</p>
         </Spec>
         <Spec name="Brand strip" note="Quiet and slow. Pauses on hover or focus.">
           <div className="overflow-hidden [&>section]:!py-4 [&>section]:!pt-0"><Brands /></div>
-          <p className="text-body-sm text-ink-3 mt-4 max-w-[56ch]">One row of brand names, about seven seconds per brand. Still and scrollable with reduced motion. The same row is used for testimonials as tall quote cards.</p>
+          <p className="text-body-sm text-ink-3 mt-4 max-w-measure-l">One row of brand names, about seven seconds per brand. Still and scrollable with reduced motion. The same row is used for testimonials as tall quote cards.</p>
         </Spec>
         <Spec name="Covers" note="Abstract motifs on a field colour, identical in both modes. They carry no words of their own.">
           <p className="text-label text-ink-3 mb-3">Leadership story covers</p>
@@ -645,7 +664,7 @@ export default function DesignSystemReferencePage() {
           ] as [string, string, string, ReactNode][]).map(([title, name, note, node]) => (
             <section key={name} aria-label={title} className="hairline-top pt-8">
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 mb-6">
-                <div><p className="text-title text-ink">{title}</p><p className="text-body-sm text-ink-3 mt-2 max-w-[62ch]">{note}</p></div>
+                <div><p className="text-title text-ink">{title}</p><p className="text-body-sm text-ink-3 mt-2 max-w-measure-xl">{note}</p></div>
                 <p className="font-mono text-label text-ink-3">{name}</p>
               </div>
               <div className="rounded-3 overflow-hidden" style={{ border: '1px solid var(--line-1)', background: 'var(--bg)' }}>{node}</div>
@@ -676,14 +695,14 @@ export default function DesignSystemReferencePage() {
           ]} />
         </Spec>
         <Spec name="Previews and cursor">
-          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
+          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-measure-xl">
             <li>Covers preview on hover and keyboard focus only. Nothing animates at rest and nothing autoplays.</li>
             <li>The system pointer is used everywhere. A custom cursor dot was built and retired; the data-cursor attributes on cards remain but nothing reads them.</li>
             <li>Keyboard users see the same focus ring everywhere, and cards that link are a single focusable link.</li>
           </ul>
         </Spec>
         <Spec name="Navigation and scroll">
-          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
+          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-measure-xl">
             <li>Pages deeper than one level show a breadcrumb. Case studies link to their detailed version with one clear action.</li>
             <li>Scrolling is eased with Lenis (about 1.15 seconds, soft landing). It never blocks native scrolling, and it is off when reduced motion is on. Dialogs and lightboxes opt out so they scroll normally.</li>
             <li>Sections reveal once as they enter, then stay. The one scroll-driven moment is the pinned Journey on large screens.</li>
@@ -699,7 +718,7 @@ export default function DesignSystemReferencePage() {
           ]} />
         </Spec>
         <Spec name="Forms and touch">
-          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
+          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-measure-xl">
             <li>Every field has a visible label. Hints sit below, errors replace the hint and are linked with aria-describedby.</li>
             <li>Input text is 16px or larger, which stops iOS from zooming.</li>
             <li>Touch targets are at least 44px. Inline links in running text keep their underline.</li>
@@ -722,7 +741,7 @@ export default function DesignSystemReferencePage() {
         </Spec>
         <Spec name="Headline reveal" note="Words rise 30px and fade in, staggered 80ms. Once per page.">
           <Replay>{k => (
-            <motion.h3 key={k} className="text-heading text-ink max-w-[24ch]" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: reduce ? 0 : 0.08 } } }}>
+            <motion.h3 key={k} className="text-heading text-ink max-w-measure-s" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: reduce ? 0 : 0.08 } } }}>
               {'Design is a leadership practice.'.split(' ').map((w, i) => (
                 <motion.span key={i} className="inline-block mr-[0.25em]" variants={{ hidden: { y: reduce ? 0 : 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: E } } }}>{w}</motion.span>
               ))}
@@ -731,7 +750,7 @@ export default function DesignSystemReferencePage() {
         </Spec>
         <Spec name="Pictogram draw-in" note="Lines draw over 1.4s, guides fade in, the accent node settles last.">
           <Replay>{k => <div className="flex flex-wrap gap-8 text-ink">{(['lead', 'search', 'portal'] as MarkName[]).map(n => <Mark key={`${k}-${n}`} name={n} size={88} />)}</div>}</Replay>
-          <ol className="mt-5 flex flex-col gap-1 text-body-sm text-ink-2 max-w-[56ch]">
+          <ol className="mt-5 flex flex-col gap-1 text-body-sm text-ink-2 max-w-measure-l">
             <li><span className="font-mono text-label text-ink">0.15s</span> lines begin to draw</li><li><span className="font-mono text-label text-ink">0.5s</span> dashed guides fade in</li><li><span className="font-mono text-label text-ink">1.0s</span> accent node scales from 40% to 100%</li>
           </ol>
         </Spec>
@@ -804,7 +823,7 @@ export default function DesignSystemReferencePage() {
           ]} />
         </Spec>
         <Spec name="Before anything ships">
-          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
+          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-measure-xl">
             <li>Looked at in dark and light, at phone width and desktop width.</li>
             <li>Keyboard only: reachable, visible focus, Escape closes menus.</li>
             <li>Reduced motion on: nothing moves, nothing disappears.</li>
@@ -814,7 +833,7 @@ export default function DesignSystemReferencePage() {
           </ul>
         </Spec>
         <Spec name="Adding to the system" note="Small on purpose.">
-          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-[66ch]">
+          <ul className="flex flex-col gap-2 text-body-sm text-ink-2 max-w-measure-xl">
             <li><span className="text-ink">A new pictogram:</span> draw it on the 64 grid, one idea, one accent node, then add its name to Marks.tsx and this page.</li>
             <li><span className="text-ink">A new colour:</span> almost always no. Try an existing token first.</li>
             <li><span className="text-ink">A new component:</span> only when it will be used in three places. Otherwise compose from what exists.</li>

@@ -95,7 +95,7 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${indexable.map(r => `  <url><loc>${abs(r.path)}</loc><lastmod>${today}</lastmod></url>`).join('\n')}\n</urlset>\n`)
 
 const bots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-User', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended']
-const block = ['/admin', '/api/', '/labs/', '/design-system', '/templates/', '/craft/engaze/film', '/craft/sap-search/film', '/craft/sap-agentic/film']
+const block = ['/admin', '/api/', '/labs/', '/design-system', '/templates/', '/craft/engaze/film', '/craft/sap-search/film', '/craft/sap-agentic/film', '/craft/sap-agentic/story-v2']
 fs.writeFileSync(path.join(dist, 'robots.txt'),
   `User-agent: *\nAllow: /\n${block.map(b => `Disallow: ${b}`).join('\n')}\n\n${bots.map(b => `User-agent: ${b}\nAllow: /\n${block.map(b2 => `Disallow: ${b2}`).join('\n')}\n`).join('\n')}\nSitemap: ${SITE.url}/sitemap.xml\n`)
 

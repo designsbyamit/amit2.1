@@ -343,14 +343,14 @@ const shade=(v,c='var(--c-mgr)')=>({fill:c,opacity:v==null?0:.18+v*.8});
 A.capab=function(box){
   const ps=F('phase');const W=860,L=170,cw=118,ch=30,T=58,H=T+ch*ACTS.length+10;
   const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,style:'min-width:640px;width:100%',role:'img','aria-label':'Capability matrix by career phase'});
-  PH.forEach((p,i)=>{svg.append(s('text',{x:L+i*cw+cw/2,y:20,'text-anchor':'middle',class:'t-ink2',style:'font-size:12px'},p.name),s('text',{x:L+i*cw+cw/2,y:36,'text-anchor':'middle',class:'mono'},p.from+(p.to>p.from?'–'+p.to:'')))});
+  PH.forEach((p,i)=>{svg.append(s('text',{x:L+i*cw+cw/2,y:20,'text-anchor':'middle',class:'t-ink2',style:'font-size:12px'},p.name),s('text',{x:L+i*cw+cw/2,y:36,'text-anchor':'middle',class:'mono'},p.from+(p.to>p.from?'-'+p.to:'')))});
   svg.append(s('text',{x:L+5*cw+10,y:36,class:'mono'},'FIRST SEEN'));
   ACTS.forEach((a,r)=>{svg.append(s('text',{x:L-12,y:T+r*ch+ch/2+4,'text-anchor':'end',class:'t-ink2',style:'font-size:12px'},a));
     PH.forEach((p,i)=>{const q=ps.filter(x=>x.ph===p.id);const rc=rec(q,a),y=yes(q,a);const v=rc.length?y.length/rc.length:null;
       const g=s('rect',{x:L+i*cw+3,y:T+r*ch+3,width:cw-6,height:ch-6,rx:5,fill:v==null?'none':'var(--c-mgr)',opacity:v==null?1:.12+v*.85,stroke:v==null?'var(--faint)':'none','stroke-dasharray':'3 3'});
       hov(g,a+' · '+p.name,[v==null?'Not recorded for any project in this phase':y.length+' of '+rc.length+' recorded projects ('+Math.round(v*100)+'%)',q.length-rc.length+' of '+q.length+' projects not recorded']);svg.append(g);
       svg.append(s('text',{x:L+i*cw+cw/2,y:T+r*ch+ch/2+4,'text-anchor':'middle',class:'mono',style:'pointer-events:none;'+(v!=null&&v>.45?'fill:var(--on-signal)':'')},v==null?'not recorded':Math.round(v*100)+'%  n='+rc.length))});
-    const fy=ps.filter(x=>x.act[a]).map(x=>x.year);svg.append(s('text',{x:L+5*cw+10,y:T+r*ch+ch/2+4,class:'mono t-ink2'},fy.length?Math.min(...fy):'—'))});
+    const fy=ps.filter(x=>x.act[a]).map(x=>x.year);svg.append(s('text',{x:L+5*cw+10,y:T+r*ch+ch/2+4,class:'mono t-ink2'},fy.length?Math.min(...fy):'-'))});
   box.replaceChildren(h('div',{class:'scroll'},svg))};
 A.cooc=function(box){
   const ps=F();const out=[];
@@ -894,7 +894,7 @@ A.bump=function(box){
   const nR=items.length;const W=1000,L=170,Rr=190,T=64,rowH=mode==='act'?30:46,Hh=T+nR*rowH+40;
   const x=i=>L+i*(W-L-Rr)/(PH.length-1),y=r=>T+(r-.5)*rowH;
   const svg=s('svg',{viewBox:`0 0 ${W} ${Hh}`,role:'img','aria-label':'Bump chart of rank over the five phases'});
-  PH.forEach((p,i)=>svg.append(s('text',{x:x(i),y:20,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},p.id+' · '+p.name),s('text',{x:x(i),y:36,'text-anchor':'middle',class:'mono'},(p.from===p.to?p.from:p.from+'–'+String(p.to).slice(2))+' · n='+sets[i].length)));
+  PH.forEach((p,i)=>svg.append(s('text',{x:x(i),y:20,'text-anchor':'middle',class:'t-ink',style:'font-size:12px;font-weight:600'},p.id+' · '+p.name),s('text',{x:x(i),y:36,'text-anchor':'middle',class:'mono'},(p.from===p.to?p.from:p.from+'-'+String(p.to).slice(2))+' · n='+sets[i].length)));
   for(let r=1;r<=nR;r++)svg.append(s('text',{x:6,y:y(r)+4,class:'mono'},'#'+r));
   const els=[];
   items.forEach((it,k)=>{const c=PAL[k%PAL.length];const g=s('g',{});let d='';let run=false;
@@ -971,7 +971,7 @@ const hero=h('header',{class:'hero'},h('div',{class:'wrap'},h('div',{class:'over
 const sel=(key,label,opts)=>{const e=h('select',{'aria-label':label,onchange:()=>{st[key]=e.value||null;A.render()}},h('option',{value:''},label+': all'),opts.map(o=>h('option',{value:o[0]},o[1])));e.dataset.k=key;return e};
 const industries=[...new Set(D.map(p=>p.industry))].sort();
 const bar=h('div',{class:'bar'},h('div',{class:'wrap'},
-  sel('phase','Phase',PH.map(p=>[p.id,p.name+' '+p.from+'–'+p.to])),sel('role','Role',ROLES.map(r=>[r,r])),sel('industry','Industry',industries.map(i=>[i,i])),sel('product','Product',['B2B','B2C','B2C & B2B'].map(i=>[i,i])),
+  sel('phase','Phase',PH.map(p=>[p.id,p.name+' '+p.from+'-'+p.to])),sel('role','Role',ROLES.map(r=>[r,r])),sel('industry','Industry',industries.map(i=>[i,i])),sel('product','Product',['B2B','B2C','B2C & B2B'].map(i=>[i,i])),
   h('input',{type:'search',placeholder:'Search projects',id:'q','aria-label':'Search projects',oninput:e=>{st.q=e.target.value;A.render()}}),
   h('button',{class:'chip',id:'reset',onclick:()=>{st.phase=st.role=st.industry=st.product=null;st.q='';st.view='all';$('#q').value='';A.render()}},'Reset'),h('span',{class:'count',id:'cnt'})));
 // ---------- chapters
@@ -1051,7 +1051,7 @@ function renderRepo(){let ps=FA();if(A.repoQ){const q=A.repoQ.map(x=>x.toLowerCa
   const t=$('#tbl');t.replaceChildren(h('thead',{},h('tr',{},COLS.map(([k2,l])=>h('th',{onclick:()=>{st.dir=st.sort===k2?-st.dir:1;st.sort=k2;renderRepo()},'aria-sort':st.sort===k2?(st.dir>0?'ascending':'descending'):'none'},l+(st.sort===k2?(st.dir>0?' ↑':' ↓'):''))))),
     h('tbody',{},ps.map(p=>h('tr',{class:'row',tabindex:0,onclick:()=>openProj(p),onkeydown:e=>{if(e.key==='Enter')openProj(p)}},
       h('td',{},h('span',{class:'dot',style:`background:${p.role?RC[p.role]:'var(--faint)'}`}),p.name+(p.star?' ⭐':'')),
-      h('td',{},p.year||h('span',{class:'und'},'undated')),h('td',{},p.role||h('span',{class:'und'},'—')),h('td',{},p.industry||h('span',{class:'und'},'—')),h('td',{},p.product||'—'),h('td',{},p.dur!=null?p.dur:'—'),h('td',{},p.team!=null?(p.name==='DesignOps programme 2017'?'15+':p.team):'—'),h('td',{},p.rating?'★'.repeat(p.rating):'—'),h('td',{},p.breadth!=null?p.breadth+'/12':'—')))));
+      h('td',{},p.year||h('span',{class:'und'},'undated')),h('td',{},p.role||h('span',{class:'und'},'-')),h('td',{},p.industry||h('span',{class:'und'},'-')),h('td',{},p.product||'-'),h('td',{},p.dur!=null?p.dur:'-'),h('td',{},p.team!=null?(p.name==='DesignOps programme 2017'?'15+':p.team):'-'),h('td',{},p.rating?'★'.repeat(p.rating):'-'),h('td',{},p.breadth!=null?p.breadth+'/12':'-')))));
   $$('.chip[data-v]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===st.view))}
 // ---------- method
 const method=h('section',{class:'ch',id:'method'},h('div',{class:'wrap'},h('div',{class:'over'},'Data and method'),h('h2',{},'Sources, definitions and gaps.'),

@@ -7,6 +7,8 @@ import {
 import { caseStudies } from '../data/work'
 import CaseRow from '../components/ds/CaseRow'
 
+import { tokenHex, fieldHex } from '../styles/tokenValues'
+
 /* ── Contrast helpers: computed from the same hex values as tokens.css ── */
 const lum = (hex: string) => {
   const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255)
@@ -17,29 +19,30 @@ const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)]; retur
 const grade = (r: number) => (r >= 7 ? 'AAA' : r >= 4.5 ? 'AA' : r >= 3 ? 'UI / large only' : 'Decorative only')
 
 type Swatch = { token: string; dark: string; light: string; role: string; text?: boolean }
+const sw = (token: string, role: string, text?: boolean): Swatch => ({ token, dark: tokenHex(token, 'dark'), light: tokenHex(token, 'light'), role, text })
 const surfaces: Swatch[] = [
-  { token: 'bg', dark: '#0F1013', light: '#F5F6F7', role: 'Page ground' },
-  { token: 'surface-1', dark: '#181A1F', light: '#FFFFFF', role: 'Cards, header, menus' },
-  { token: 'surface-2', dark: '#22252B', light: '#EEF0F2', role: 'Raised: inputs, callouts, hover' },
-  { token: 'surface-3', dark: '#2C3038', light: '#E4E7EB', role: 'Hover on raised' },
+  sw('bg', 'Page ground'),
+  sw('surface-1', 'Cards, header, menus'),
+  sw('surface-2', 'Raised: inputs, callouts, hover'),
+  sw('surface-3', 'Hover on raised'),
 ]
 const inks: Swatch[] = [
-  { token: 'ink', dark: '#ECEDEF', light: '#0F1013', role: 'Headings, primary text', text: true },
-  { token: 'ink-2', dark: '#C4C7CD', light: '#3A3E46', role: 'Body and secondary text', text: true },
-  { token: 'ink-3', dark: '#A3A7B0', light: '#4D525C', role: 'Labels, metadata, captions', text: true },
-  { token: 'faint', dark: '#5D626C', light: '#9AA0A9', role: 'Decorative marks only, never words' },
+  sw('ink', 'Headings, primary text', true),
+  sw('ink-2', 'Body and secondary text', true),
+  sw('ink-3', 'Labels, metadata, captions', true),
+  sw('faint', 'Decorative marks only, never words'),
 ]
 const actions: Swatch[] = [
-  { token: 'signal', dark: '#C8F55A', light: '#C8F55A', role: 'Primary button fill, live status. Text on it uses on-signal.' },
-  { token: 'signal-ink', dark: '#C8F55A', light: '#3F6B00', role: 'Signal as text (numbers, status labels)', text: true },
-  { token: 'link', dark: '#7D98FF', light: '#3654E0', role: 'Inline links and focus ring only', text: true },
-  { token: 'danger', dark: '#FF8A7A', light: '#B42818', role: 'Form errors', text: true },
+  sw('signal', 'Primary button fill, live status. Text on it uses on-signal.'),
+  sw('signal-ink', 'Signal as text (numbers, status labels)', true),
+  sw('link', 'Inline links and focus ring only', true),
+  sw('danger', 'Form errors', true),
 ]
 const fields = [
-  { token: 'field-cobalt', hex: '#1B2350' },
-  { token: 'field-teal', hex: '#0F3B3A' },
-  { token: 'field-plum', hex: '#33203F' },
-  { token: 'field-graphite', hex: '#22252B' },
+  { token: 'field-cobalt', hex: fieldHex('field-cobalt') },
+  { token: 'field-teal', hex: fieldHex('field-teal') },
+  { token: 'field-plum', hex: fieldHex('field-plum') },
+  { token: 'field-graphite', hex: fieldHex('field-graphite') },
 ]
 
 const types = [
@@ -58,7 +61,7 @@ const types = [
 ]
 const space = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128]
 const breakpoints = [
-  { n: 'base', px: '0–767', note: '4 columns, 24px margin, 72px section padding. Single-column reading.' },
+  { n: 'base', px: '0-767', note: '4 columns, 24px margin, 72px section padding. Single-column reading.' },
   { n: 'md', px: '768', note: '12 columns, 48px margin, 24px column gap, 96px section padding.' },
   { n: 'lg', px: '1024', note: 'Full navigation and Craft menu. 128px section padding.' },
   { n: 'xl', px: '1376+', note: 'Content stops at 1280px. At 1440 the outer margin is 80px on every page.' },
@@ -105,7 +108,7 @@ function DoDont({ dos, donts }: { dos: string[]; donts: string[] }) {
 function SwatchTable({ rows }: { rows: Swatch[] }) {
   return (
     <div className="overflow-x-auto">
-      <table className="table min-w-[640px]">
+      <table className="table min-w-scroll-s">
         <thead><tr><th>Token</th><th>Dark</th><th>Light</th><th>Role</th><th>Contrast on bg (dark / light)</th></tr></thead>
         <tbody>
           {rows.map(r => (
@@ -114,7 +117,7 @@ function SwatchTable({ rows }: { rows: Swatch[] }) {
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.dark }} />{r.dark}</span></td>
               <td><span className="inline-flex items-center gap-2"><span className="w-6 h-6 rounded-1 border border-[var(--line-2)]" style={{ background: r.light }} />{r.light}</span></td>
               <td>{r.role}</td>
-              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, '#0F1013').toFixed(1)} · ${grade(ratio(r.dark, '#0F1013'))} / ${ratio(r.light, '#F5F6F7').toFixed(1)} · ${grade(ratio(r.light, '#F5F6F7'))}` : '-'}</td>
+              <td className="font-mono">{r.text || r.token === 'faint' ? `${ratio(r.dark, tokenHex('bg', 'dark')).toFixed(1)} · ${grade(ratio(r.dark, tokenHex('bg', 'dark')))} / ${ratio(r.light, tokenHex('bg', 'light')).toFixed(1)} · ${grade(ratio(r.light, tokenHex('bg', 'light')))}` : '-'}</td>
             </tr>
           ))}
         </tbody>
@@ -144,7 +147,7 @@ export default function DesignSystemPage() {
           <SectionHeader as="h1" label="Signal · Design system v2" title={<>Premium, minimal, <span className="accent-signal">clear.</span></>}
             intro="The tokens, type, layout, components and rules behind this website, in dark and light. Every page is built from what is on this page, so the experience stays consistent and meets WCAG 2.2 AA."
             action={<div className="flex items-center gap-3"><span className="text-label text-ink-3">Now: {theme}</span><ThemeToggle /></div>} />
-          <p className="text-body-sm text-ink-3 mb-6 max-w-[62ch]">Want everything, including icons, illustration, pictograms, imagery, interaction and motion? See <Link to="/design-system/reference" className="link">the full reference</Link>.</p>
+          <p className="text-body-sm text-ink-3 mb-6 max-w-measure-xl">Want everything, including icons, illustration, pictograms, imagery, interaction and motion? See <Link to="/design-system/reference" className="link">the full reference</Link>.</p>
           <nav aria-label="On this page" className="flex flex-wrap gap-2">
             {sections.map(([id, label]) => <a key={id} href={`#${id}`} className="chip">{label}</a>)}
           </nav>
@@ -174,10 +177,10 @@ export default function DesignSystemPage() {
         <h3 className="text-title text-ink mt-12 mb-4">Action and feedback</h3>
         <SwatchTable rows={actions} />
         <h3 className="text-title text-ink mt-12 mb-4">Image fields</h3>
-        <p className="text-body-sm text-ink-2 mb-6 max-w-2xl">Screenshots, covers and story visuals sit on a deep colour field. Fields are identical in both modes so the work looks the same whichever mode is on. Text on a field uses #ECEDEF (10.5:1 or better).</p>
+        <p className="text-body-sm text-ink-2 mb-6 max-w-2xl">Screenshots, covers and story visuals sit on a deep colour field. Fields are identical in both modes so the work looks the same whichever mode is on. Text on a field uses {fieldHex('on-field')} (10.5:1 or better).</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {fields.map(f => (
-            <div key={f.token}><div className="h-24 rounded-2 p-3 flex items-end" style={{ background: f.hex }}><span className="font-mono text-xs text-[#ECEDEF]">{f.hex}</span></div><p className="text-label text-ink-3 mt-2">{f.token}</p></div>
+            <div key={f.token}><div className="h-24 rounded-2 p-3 flex items-end" style={{ background: f.hex }}><span className="font-mono text-xs text-on-field">{f.hex}</span></div><p className="text-label text-ink-3 mt-2">{f.token}</p></div>
           ))}
         </div>
         <DoDont dos={['Use signal for the one primary action in a view', 'Use cobalt only for inline links and focus', 'Give every case study one field colour and keep it everywhere it appears']}
@@ -201,7 +204,7 @@ export default function DesignSystemPage() {
         <div className="grid-site mb-10" aria-hidden="true">
           {Array.from({ length: 12 }).map((_, i) => <div key={i} className={`h-20 rounded-1 bg-signal/15 border border-signal-ink/30 ${i >= 4 ? 'hidden md:block' : ''}`} />)}
         </div>
-        <div className="overflow-x-auto"><table className="table min-w-[560px]"><thead><tr><th>Breakpoint</th><th>Width</th><th>Behaviour</th></tr></thead>
+        <div className="overflow-x-auto"><table className="table min-w-scroll-s"><thead><tr><th>Breakpoint</th><th>Width</th><th>Behaviour</th></tr></thead>
           <tbody>{breakpoints.map(b => <tr key={b.n}><td className="font-mono text-ink">{b.n}</td><td className="font-mono">{b.px}</td><td>{b.note}</td></tr>)}</tbody></table></div>
         <h3 className="text-title text-ink mt-12 mb-6">Spacing scale (4px base)</h3>
         <div className="flex flex-wrap items-end gap-5">
@@ -218,7 +221,7 @@ export default function DesignSystemPage() {
       {/* 05 Clickable or not */}
       <Block id="clickable" n="05" title="Clickable looks clickable." intro="The one rule that fixes most confusion: you can tell what can be pressed without hovering.">
         <div className="overflow-x-auto">
-          <table className="table min-w-[720px]">
+          <table className="table min-w-scroll-s">
             <thead><tr><th>Element</th><th>Looks like</th><th>Clickable</th><th>Use for</th></tr></thead>
             <tbody>
               <tr><td><Button small>Primary</Button></td><td>Lime fill, 6px radius, sentence case</td><td>Yes</td><td>The main action of a view. One per view.</td></tr>
@@ -318,7 +321,7 @@ export default function DesignSystemPage() {
 
       {/* 08 Accessibility */}
       <Block id="accessibility" n="08" title="WCAG 2.2 AA, both modes." intro="These are requirements, not suggestions. Each is checked before a page ships.">
-        <div className="overflow-x-auto"><table className="table min-w-[640px]"><thead><tr><th>Requirement</th><th>How Signal meets it</th></tr></thead><tbody>
+        <div className="overflow-x-auto"><table className="table min-w-scroll-s"><thead><tr><th>Requirement</th><th>How Signal meets it</th></tr></thead><tbody>
           {[
             ['1.4.3 Contrast (text)', 'All text tokens are 4.5:1 or more on every surface in both modes (most are 7:1).'],
             ['1.4.11 Non-text contrast', 'Control borders use line-control (3:1+). Focus ring is cobalt, 2px, 3px offset.'],

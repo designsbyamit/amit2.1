@@ -26,8 +26,8 @@ export default function PracticePage() {
             <div className="container-site grid md:grid-cols-12 gap-10">
               <div className="md:col-span-4">
                 <p className="text-overline text-ink-3">STEP {t.step} · {t.kicker}</p>
-                <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'clamp(2rem,4vw,2.75rem)' }}>{t.title}</h2>
-                <p className="text-body text-ink-2 mt-5 max-w-[40ch]">{t.blurb}</p>
+                <h2 className="text-display-l text-ink mt-4" style={{ fontSize: 'var(--fs-h2)' }}>{t.title}</h2>
+                <p className="text-body text-ink-2 mt-5 max-w-measure-m">{t.blurb}</p>
                 <p className="text-label text-ink-3 mt-6">{n} of {t.challenges.length} done</p>
                 <div className="mt-8">
                   <p className="text-overline text-ink-3">PAIR WITH THE TOOLKIT</p>
@@ -37,7 +37,7 @@ export default function PracticePage() {
                         {k.external
                           ? <a href={k.to} className="text-body-sm text-ink underline underline-offset-4 decoration-[color:var(--line-1)] hover:decoration-[color:var(--signal-ink)]">{k.title} &rarr;</a>
                           : <Link to={k.to} className="text-body-sm text-ink underline underline-offset-4 decoration-[color:var(--line-1)] hover:decoration-[color:var(--signal-ink)]">{k.title} &rarr;</Link>}
-                        <span className="block text-body-sm text-ink-3 mt-1 max-w-[40ch]">{k.note}</span>
+                        <span className="block text-body-sm text-ink-3 mt-1 max-w-measure-m">{k.note}</span>
                       </li>
                     ))}
                   </ul>
@@ -52,7 +52,7 @@ export default function PracticePage() {
                         <span className="text-label text-ink-3 pt-1">{String(i + 1).padStart(2, '0')}</span>
                         <span>
                           <span className="block text-title text-ink" style={{ fontWeight: 400 }}>{c.title}</span>
-                          <span className="block text-body-sm text-ink-3 mt-2 max-w-[56ch]">{c.scenario}</span>
+                          <span className="block text-body-sm text-ink-3 mt-2 max-w-measure-l">{c.scenario}</span>
                           <span className="flex flex-wrap gap-2 mt-3"><span className="tag">{c.level}</span><span className="tag">{c.minutes} min</span></span>
                         </span>
                         <span className="text-label pt-1 flex items-center gap-2 text-ink-3 group-hover:text-ink">{ok ? <><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--signal-ink)" strokeWidth="1.8" aria-hidden><path d="M3 8.5l3.2 3.2L13 5" strokeLinecap="round" strokeLinejoin="round" /></svg>Done</> : <>Start &rarr;</>}</span>
@@ -67,7 +67,7 @@ export default function PracticePage() {
       })}
       <section className="section-y hairline-top">
         <div className="container-site flex flex-wrap items-center justify-between gap-6">
-          <p className="text-heading text-ink max-w-[28ch]" style={{ fontWeight: 300 }}>Want a second pair of eyes on your answers?</p>
+          <p className="text-heading text-ink max-w-measure-s" style={{ fontWeight: 300 }}>Want a second pair of eyes on your answers?</p>
           <Button to="/mentoring" variant="secondary" arrow>Book a mentoring session</Button>
         </div>
       </section>

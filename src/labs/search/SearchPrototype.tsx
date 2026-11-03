@@ -291,7 +291,7 @@ function ResultsView({ res, q, onGo, toast, onFeedback }: { res: Result; q: stri
     else if (a.does === 'follow') { set({ followed: true }); toast(`Follow-up to ${r.ref.replace('Requestor: ', '').split(' • ')[0]} drafted`) }
     else if (a.does === 'request') { set({ requested: true }); toast('Approval requested for this fare') }
     else if (a.does === 'file') toast(`Opening ${a.label}`)
-    else if (a.does === 'worker') toast(`Opening the worker form for ${r.title.replace('CyberSecure – ', '')}`)
+    else if (a.does === 'worker') toast(`Opening the worker form for ${r.title.replace('CyberSecure - ', '')}`)
     else if (a.does === 'people') toast(`${a.label} on ${r.chips[0]}`)
     else if (a.does === 'items') setPanel(r)
   }
@@ -547,7 +547,7 @@ export default function SearchPrototype() {
 
   const goApp = (to: 'booking' | 'ariba' | 'goaldraft', row: Row) => {
     const dest: Record<typeof to, { app: AppId; carry: string[] }> = {
-      booking: { app: 'concur', carry: ['Trip SFO → BLR', 'Jun 10–17, 2026', row.title.split(' - ')[0]] },
+      booking: { app: 'concur', carry: ['Trip SFO → BLR', 'Jun 10-17, 2026', row.title.split(' - ')[0]] },
       ariba: { app: 'ariba', carry: [row.title, row.ref.split(' • ')[0].replace('Supplier: ', 'Supplier '), 'Quantity ready for a requisition'] },
       goaldraft: { app: 'sf', carry: [row.title, 'Alex Johnson', 'Q2 2026'] },
     }

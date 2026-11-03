@@ -36,7 +36,7 @@ function Points({ items, wordFor = 'Point' }: { items: Point[]; wordFor?: string
 }
 
 function Sub({ children }: { children: React.ReactNode }) { return <h3 className="text-label text-ink-3 mt-16 mb-5">{children}</h3> }
-function Lead({ children }: { children: React.ReactNode }) { return <p className="text-body text-ink-2 max-w-[62ch] mb-8">{children}</p> }
+function Lead({ children }: { children: React.ReactNode }) { return <p className="text-body text-ink-2 max-w-measure-xl mb-8">{children}</p> }
 function Worksheets({ items, label = 'Worksheets for this part' }: { items: typeof chapterTwoDocs; label?: string }) {
   return (<><Sub>{label}</Sub><ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">{items.map(d => <DownloadCard key={d.slug} d={d} />)}</ul></>)
 }
@@ -61,7 +61,7 @@ export default function GrowthChapter() {
             </div>
             <div className="col-span-4 md:col-span-4 md:col-start-9">
               <p className="text-label text-ink-3 mb-3">By the end you will have</p>
-              <ul className="flex flex-col gap-3">{c2.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{o}</li>)}</ul>
+              <ul className="flex flex-col gap-3">{c2.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{o}</li>)}</ul>
             </div>
           </div>
           <nav aria-label="On this page" className="flex flex-wrap gap-2 mt-12">
@@ -93,7 +93,7 @@ export default function GrowthChapter() {
         <ol className="grid md:grid-cols-4 gap-4">
           {c2.feedback.objective.steps.map((s, i) => <StepCard key={s.title} label={`Move ${i + 1}`} title={s.title} text={s.text} />)}
         </ol>
-        <p className="card mt-4 text-body text-ink" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c2.feedback.objective.test}</p>
+        <p className="card mt-4 text-body text-ink" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c2.feedback.objective.test}</p>
 
         <Sub>Setting the cadence, and the tenets</Sub>
         <Lead>{c2.feedback.cadenceLead}</Lead>
@@ -102,8 +102,8 @@ export default function GrowthChapter() {
         </ol>
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 mt-10">
           <div>
-            <p className="text-body text-ink-2 max-w-[48ch]">{c2.feedback.tenetsLead}</p>
-            <p className="text-body text-ink-2 max-w-[48ch] mt-4">{c2.feedback.receive}</p>
+            <p className="text-body text-ink-2 max-w-measure-m">{c2.feedback.tenetsLead}</p>
+            <p className="text-body text-ink-2 max-w-measure-m mt-4">{c2.feedback.receive}</p>
           </div>
           <ul className="flex flex-col gap-3">{c2.feedback.tenets.map(t => <li key={t} className="card text-body-sm text-ink">{t}</li>)}</ul>
         </div>
@@ -130,7 +130,7 @@ export default function GrowthChapter() {
         <ol className="grid md:grid-cols-3 gap-4">
           {c2.performance.recommend.steps.map((s, i) => <StepCard key={s.title} label={`Step ${String(i + 1).padStart(2, '0')}`} title={s.title} text={s.text} />)}
         </ol>
-        <p className="card mt-4 text-[1.25rem] font-light" style={{ background: 'var(--field-teal)', color: '#ECEDEF' }}>{c2.performance.recommend.close}</p>
+        <p className="card mt-4 text-t-lg font-light" style={{ background: 'var(--field-teal)', color: 'var(--on-field)' }}>{c2.performance.recommend.close}</p>
 
         <Sub>{c2.performance.shortfall.title}</Sub>
         <Lead>{c2.performance.shortfall.lead}</Lead>
@@ -187,14 +187,14 @@ export default function GrowthChapter() {
         <ol className="grid md:grid-cols-4 gap-4">
           {c2.example.trust.steps.map((s, i) => <StepCard key={s.title} label={`Habit ${i + 1}`} title={s.title} text={s.text} />)}
         </ol>
-        <p className="text-body text-ink-2 max-w-[62ch] mt-6">{c2.example.trust.note}</p>
+        <p className="text-body text-ink-2 max-w-measure-xl mt-6">{c2.example.trust.note}</p>
         <Worksheets items={W.example} label="Worksheet for this part" />
       </Section>
 
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, or fill them in on the page, with a filled example beside each. Your notes stay in your browser.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
-          <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-[52ch]" style={{ color: '#ECEDEF' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
+          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Editable worksheets</span>
+          <p className="text-t-lg font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet, then switch to the filled example (a fictional company, NorthStar) to see how it is used.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT_2} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA

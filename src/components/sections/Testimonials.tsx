@@ -16,7 +16,7 @@ function Rotator({ label, title, intro, items }: { label: string; title: string;
   const group = (copy: number) => (
     <ul className="flex gap-6 pr-6 shrink-0" aria-hidden={copy === 1 ? true : undefined}>
       {items.map(t => (
-        <li key={t.name} className="card !p-7 md:!p-8 flex flex-col justify-between w-[300px] sm:w-[360px] lg:w-[400px] min-h-[380px] md:min-h-[420px]">
+        <li key={t.name} className="card !p-7 md:!p-8 flex flex-col justify-between w-card-s sm:w-card-m lg:w-card-l min-h-card-s md:min-h-card-l">
           <blockquote className="text-body-lg text-ink-2" style={{ lineHeight: 1.5 }}>“{t.quote}”</blockquote>
           <Caption t={t} />
         </li>
@@ -29,7 +29,7 @@ function Rotator({ label, title, intro, items }: { label: string; title: string;
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>
           <h2 className="text-display-l text-white mt-4">{title}</h2>
-          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-measure-xl">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
         </header>
       </div>
       <div className="marquee" data-paused={paused} style={{ ['--dur' as string]: `${items.length * 11}s` }} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
@@ -54,7 +54,7 @@ export default function Testimonials({ label, title, intro, items, rotate }: { l
         <header className="mb-12 md:mb-16 max-w-3xl">
           <p className="text-overline text-ink-3">{label}</p>
           <h2 className="text-display-l text-white mt-4">{title}</h2>
-          {intro && <div className="mt-6 flex flex-col gap-4 max-w-[65ch]">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
+          {intro && <div className="mt-6 flex flex-col gap-4 max-w-measure-xl">{intro.map(t => <p key={t} className="text-body text-ink-2">{t}</p>)}</div>}
         </header>
 
         {lead && (

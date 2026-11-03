@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
@@ -30,7 +32,7 @@ export default function LeadingDesignPage() {
                 <Button variant="secondary" onClick={() => open(REQUEST_TEAM)}>Bring this to your managers</Button>
               </div>
             </div>
-            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
+            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-note">
               <ResourceCover title="Leading Design" kind="Guide" motif="phases" tone="plum" />
             </div>
           </div>
@@ -73,7 +75,7 @@ export default function LeadingDesignPage() {
                   <span className="font-mono text-sm text-ink-3 md:col-span-1">{c.n}</span>
                   <div className="md:col-span-7 flex flex-col gap-3">
                     <h3 className="text-title text-ink">{c.title}</h3>
-                    <p className="text-body text-ink-2 max-w-[62ch]">{c.summary}</p>
+                    <p className="text-body text-ink-2 max-w-measure-xl">{c.summary}</p>
                     <ul className="flex flex-wrap gap-2" aria-label="Topics">{c.topics.map(t => <li key={t} className="chip">{t}</li>)}</ul>
                   </div>
                   <p className="text-label md:col-span-3 md:text-right md:self-center text-ink-3 group-hover:text-ink">{c.ready ? 'Read the chapter →' : 'Coming soon'}</p>
@@ -91,12 +93,7 @@ export default function LeadingDesignPage() {
         </div>
       </section>
 
-      <section className="hairline-top py-12">
-        <div className="container-site flex flex-wrap items-center justify-between gap-4">
-          <Button to="/resources" variant="tertiary">Back to Resources</Button>
-          <Button to="/leadership" variant="tertiary" arrow>Journey</Button>
-        </div>
-      </section>
+      <NextUp link={nextResource('/resources/leading-design')} />
     </>
   )
 }

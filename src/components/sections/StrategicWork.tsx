@@ -67,7 +67,7 @@ export default function StrategicWork() {
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="overflow-hidden"
                   >
-                    <div className="ml-0 md:ml-[calc(80px+1.5rem)] pb-10">
+                    <div className="ml-0 md:ml-[calc(var(--space-80)+var(--space-20))] pb-10">
                       <div className="grid md:grid-cols-3 gap-8 md:gap-12 mb-8">
                         <div>
                           <p className="text-overline text-ink-3 mb-3">Challenge</p>

@@ -4,15 +4,15 @@ import type { ReactNode } from 'react'
 interface Role { who: string; job: string }
 type Col = [string, boolean, boolean, boolean]
 
-const SEV = { High: ['rgb(217 45 32 / 0.14)', '#B42318'], Medium: ['rgb(220 104 3 / 0.16)', '#B54708'], Low: ['rgb(6 118 71 / 0.14)', '#067647'] } as const
+const SEV = { High: ['var(--risk-high-bg)', 'var(--risk-high)'], Medium: ['var(--risk-medium-bg)', 'var(--risk-medium)'], Low: ['var(--risk-low-bg)', 'var(--risk-low)'] } as const
 
 const Tile = ({ k, v, u }: { k: string; v: string; u?: string }) => (
-  <div className="rounded-2 border px-3 py-2 min-w-[120px]" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-0)' }}>
+  <div className="rounded-2 border px-3 py-2 min-w-cell" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-0)' }}>
     <p className="text-caption text-ink-3">{k}</p><p className="text-title text-white leading-tight">{v}<span className="text-body-sm text-ink-3">{u}</span></p>
   </div>
 )
 const Filter = ({ k }: { k: string }) => (
-  <div className="min-w-[120px]"><p className="text-caption text-ink-3">{k}</p>
+  <div className="min-w-cell"><p className="text-caption text-ink-3">{k}</p>
     <div className="rounded-2 border px-3 py-1.5 text-body-sm text-ink-2 flex justify-between" style={{ borderColor: 'var(--line-control)', background: 'var(--surface-0)' }}>All<span aria-hidden="true">⌄</span></div></div>
 )
 const Pill = ({ s }: { s: keyof typeof SEV }) => <span className="rounded-full px-2.5 py-0.5 text-label" style={{ background: SEV[s][0], color: SEV[s][1] }}>{s}</span>
@@ -26,7 +26,7 @@ export default function WorklistCompare({ roles, columns }: { roles: Role[]; col
     <div className="flex flex-wrap gap-1.5">
       {columns.map(c => {
         const on = c[k]; const key = c[0] === 'Discrepancies' || c[0] === 'Risk'
-        return <span key={c[0]} className="rounded-[5px] px-2 py-0.5 text-label" style={on ? (key ? { background: 'var(--signal)', color: 'var(--on-signal)' } : { background: 'rgb(var(--ink-rgb) / 0.07)', color: 'rgb(var(--ink-rgb) / 0.75)' }) : { border: '1px dashed var(--line-control)', color: 'rgb(var(--ink-rgb) / 0.4)', textDecoration: 'line-through' }}>{c[0]}</span>
+        return <span key={c[0]} className="rounded-2 px-2 py-0.5 text-label" style={on ? (key ? { background: 'var(--signal)', color: 'var(--on-signal)' } : { background: 'rgb(var(--ink-rgb) / 0.07)', color: 'rgb(var(--ink-rgb) / 0.75)' }) : { border: '1px dashed var(--line-control)', color: 'rgb(var(--ink-rgb) / 0.4)', textDecoration: 'line-through' }}>{c[0]}</span>
       })}
     </div>
   )

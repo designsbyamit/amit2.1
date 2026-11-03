@@ -5,8 +5,8 @@ export default function Brands() {
   const group = (copy: number) => (
     <ul className="flex gap-4 pr-4 shrink-0" aria-hidden={copy === 1 ? true : undefined}>
       {brands.map(b => (
-        <li key={b} style={{ borderColor: 'var(--line-2)' }} className="flex items-center justify-center rounded-3 border bg-surface-1 px-8 h-16 md:h-20 min-w-[11rem]">
-          <span className="text-ink font-semibold tracking-[-0.01em] whitespace-nowrap" style={{ fontSize: 'clamp(1.05rem, 1.6vw, 1.3rem)' }}>{b}</span>
+        <li key={b} style={{ borderColor: 'var(--line-2)' }} className="flex items-center justify-center rounded-3 border bg-surface-1 px-8 h-16 md:h-20 min-w-tile">
+          <span className="text-ink font-semibold tracking-tight whitespace-nowrap" style={{ fontSize: 'var(--fs-quote-s)' }}>{b}</span>
         </li>
       ))}
     </ul>

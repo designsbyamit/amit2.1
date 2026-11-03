@@ -281,7 +281,7 @@ const OPEN_GROUPS: [string, Sug[]][] = [
 export const TYPEAHEAD: Sug[] = [
   { t: 'Current status & end date of SOW IDs for CyberSecure Ltd', app: 'Fieldglass', icon: 'search' },
   { t: 'Current status of PO 4500012345 (ACME)', app: 'iSearch', icon: 'search' },
-  { t: 'Current trip - SFO → BLR, Jun 10–17', app: 'Concur', icon: 'search' },
+  { t: 'Current trip - SFO → BLR, Jun 10-17', app: 'Concur', icon: 'search' },
   { t: 'Current quarter goals - Product Design team', app: 'SuccessFactors', icon: 'search' },
 ]
 const SUG_SEGS: Seg[] = [
@@ -343,7 +343,7 @@ export default function SearchAnatomy() {
   return (
     <div className="space-y-16 mt-10">
       <figure className="m-0">
-        <figcaption className="mb-5"><p className="text-overline text-ink-3">Anatomy & spacing</p><p className="text-body text-ink-2 mt-2 max-w-[65ch]">The AI search lives in the shell bar of every product, so it looks and sits the same everywhere. Measurements at 1×.</p></figcaption>
+        <figcaption className="mb-5"><p className="text-overline text-ink-3">Anatomy & spacing</p><p className="text-body text-ink-2 mt-2 max-w-measure-xl">The AI search lives in the shell bar of every product, so it looks and sits the same everywhere. Measurements at 1×.</p></figcaption>
         <Anatomy />
         <Legend items={[
           ['Logo placeholder', '59×29, 56 from the left edge'],
@@ -355,11 +355,11 @@ export default function SearchAnatomy() {
         ]} />
       </figure>
       <figure className="m-0">
-        <figcaption className="mb-5"><p className="text-overline text-ink-3">States</p><p className="text-body text-ink-2 mt-2 max-w-[65ch]">Default, hover, active, typing and typed, on a loop. Pick a state to pause on it.</p></figcaption>
+        <figcaption className="mb-5"><p className="text-overline text-ink-3">States</p><p className="text-body text-ink-2 mt-2 max-w-measure-xl">Default, hover, active, typing and typed, on a loop. Pick a state to pause on it.</p></figcaption>
         <States />
       </figure>
       <figure className="m-0">
-        <figcaption className="mb-5"><p className="text-overline text-ink-3">Suggestions & type-ahead</p><p className="text-body text-ink-2 mt-2 max-w-[65ch]">One list across every application, from the first focus to Enter.</p></figcaption>
+        <figcaption className="mb-5"><p className="text-overline text-ink-3">Suggestions & type-ahead</p><p className="text-body text-ink-2 mt-2 max-w-measure-xl">One list across every application, from the first focus to Enter.</p></figcaption>
         <Suggestions />
         <Legend items={[
           ['Popover', 'opens 4px below the field on focus · 480 wide · radius 12 · Horizon shadow'],

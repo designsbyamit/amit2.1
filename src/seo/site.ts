@@ -6,6 +6,7 @@ import { shortStories } from '../data/shortStories'
 import { gatedCases } from '../data/nda'
 import { caseStudies } from '../data/work'
 import { publishedStories, storySlug } from '../data/leadership'
+import { library } from '../data/library'
 
 export const SITE = {
   /** Production is www; the staging branch (neo) is a beta that points at itself and is kept out of search. */
@@ -16,7 +17,7 @@ export const SITE = {
   city: 'Bengaluru',
   country: 'IN',
   /** Accounts and sites that are verifiably the same person. Add LinkedIn and others here. */
-  sameAs: [] as string[],
+  sameAs: ['https://www.linkedin.com/in/amitkrt'] as string[],
   ogDefault: '/og/home.jpg',
 }
 
@@ -56,6 +57,7 @@ const base: RouteMeta[] = [
   { path: '/resources/conversation-experience', title: T('Conversation experience'), description: 'Principles and patterns for designing conversational experiences that work in enterprise settings.' },
   { path: '/learn', title: T('Grow'), description: 'For designers who are growing: mentoring, toolkits to practise with, and a guide to presenting your work.', group: '/learn/practice/' },
   { path: '/learn/practice', title: T('Design practice'), description: 'Practice challenges and toolkits for designers who want to sharpen their craft.' },
+  { path: '/learn/library', title: T('Library'), description: 'Articles, frameworks and worksheets for designers who are growing, starting with the AI Designer Playbook.' },
   { path: '/learn/portfolio', title: T('Portfolio best practices'), description: 'How to present your design work so a hiring manager understands it in a minute.' },
   { path: '/contact', title: T('Contact'), description: 'Get in touch about design leadership, speaking, mentoring or collaboration.' },
   { path: '/admin', title: T('Portal'), description: 'Private.', noindex: true },
@@ -78,7 +80,9 @@ const stories: RouteMeta[] = publishedStories.map(s => ({
   path: `/leadership/stories/${storySlug(s)}`, title: T(s.title), description: s.lesson, type: 'article' as const,
 }))
 
-export const routes: RouteMeta[] = [...base, ...projects, ...shortStoryRoutes, ...stories]
+const libraryRoutes: RouteMeta[] = library.map(e => ({ path: `/learn/library/${e.slug}`, title: T(e.title), description: e.summary, type: 'article' as const }))
+
+export const routes: RouteMeta[] = [...base, ...projects, ...shortStoryRoutes, ...stories, ...libraryRoutes]
 const byPath = new Map(routes.map(r => [r.path, r]))
 const groups = [...routes.map(r => r.group).filter((g): g is string => !!g), '/leadership/cases/']
 

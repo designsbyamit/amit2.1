@@ -48,10 +48,10 @@ export default function PlaybackPage() {
             </p>
             <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>
-          <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{pb.headline}</h1>
-          <div className="relative">
+          <h1 className="text-ink font-serif" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)', textWrap: 'balance' }}>{pb.headline}</h1>
+          <div className="relative md:min-h-40">
             <p className="text-body-lg text-ink-2 mt-6 max-w-2xl">{pb.dek}</p>
-            <div className="hidden md:block absolute right-[3%] top-[1.25rem]"><ShortStoryTag /></div>
+            <div className="hidden md:block absolute right-[3%] top-[var(--space-20)]"><ShortStoryTag /></div>
           </div>
           <div className="mt-10"><CaseThumb id={cs.id} ratio="1800 / 1000" live /></div>
           <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -82,7 +82,7 @@ export default function PlaybackPage() {
                 {label === 'The challenge' && pb.beats.challengePoints && (
                   <ul className="mt-5 flex flex-col gap-3 max-w-2xl">
                     {pb.beats.challengePoints.map(x => (
-                      <li key={x} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">–</span>{x}</li>
+                      <li key={x} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">-</span>{x}</li>
                     ))}
                   </ul>
                 )}
@@ -94,7 +94,6 @@ export default function PlaybackPage() {
         </Fragment>
       ))}
 
-      <div className="container-site pb-6"><p className="text-label text-ink-3">Figures come from data shared by the project stakeholders.</p></div>
 
       {/* One component with the footer: it stays at the bottom of the screen while scrolling, then settles into the footer. */}
       <div className="sticky bottom-0 z-30 border-t bg-bg" style={{ borderColor: 'var(--line-1)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>

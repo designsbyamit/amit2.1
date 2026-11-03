@@ -6,7 +6,7 @@
 export const gatedCases: string[] = ['sap-search']
 
 export const SALT = 'amit-nda-v1'
-export const ACCESS_HASH = '054a9b471fac5a2d8beb7f0b5abb084d162dd802abf823155d0a0bdbaa24e27a'
+export const ACCESS_HASH = '9fb0bbac859269bc21e060fefbee7b53bcbf208e6dc7de20f17f2932118ce8d2'
 
 export const normaliseCode = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, '')
 

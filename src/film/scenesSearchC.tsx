@@ -13,20 +13,20 @@ const lane = (t: number, a: number, o: number, text: string, color?: string) => 
 const bold = (text: string, q: string) => (q && text.toLowerCase().startsWith(q.toLowerCase()) ? <><b>{text.slice(0, q.length)}</b>{text.slice(q.length)}</> : <>{text}</>)
 
 const TRIPS: [string, string][] = [
-  ['Business trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Travel'],
-  ['Business trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Travel'],
-  ['Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Travel'],
+  ['Business trip · SFO → BLR · Emirates EK237 · Jun 10-17', 'Travel'],
+  ['Business trip · SFO → SIN · Singapore Airlines · Jul 3-10', 'Travel'],
+  ['Conference · SFO → NRT · ANA NH106 · Aug 15-22', 'Travel'],
 ]
 const FLIGHTS = [
   { h: 'Emirates · Economy · $1,240 · 21h 30m · 1 stop DXB', s: 'Departs 08:00 · arrives 23:30 +1 · preferred carrier for this route', ok: true },
   { h: 'Emirates · Economy · $980 · 23h 15m · 1 stop DXB', s: 'Cheapest · 1h 45m longer', ok: true },
-  { h: 'United Airlines · Economy · $1,100 · 22h 50m · 1 stop FRA', s: 'Visa required · processing 5–7 days', ok: true },
+  { h: 'United Airlines · Economy · $1,100 · 22h 50m · 1 stop FRA', s: 'Visa required · processing 5-7 days', ok: true },
   { h: 'Lufthansa · Business · $1,850 · 20h 15m · 1 stop MUC', s: 'Needs manager approval', ok: false },
   { h: 'Singapore Airlines · Economy · $1,120 · 24h 05m · 1 stop SIN', s: 'Policy compliant', ok: true },
 ]
 const AI_TEXT = 'AI insight: Emirates EK237 is the preferred SFO → BLR route at $1,240. 1 stop in Dubai. Policy compliant. Preferred hotel: The Leela Palace, Bangalore.'
 
-/* ───────────── 6 · THE PROTOTYPE  (117–152) ───────────── */
+/* ───────────── 6 · THE PROTOTYPE  (117-152) ───────────── */
 export function SPrototype({ t }: { t: number }) {
   const W = 1440, H = 780
   const view = t < 123.4 ? 1 : t < 130.5 ? 2 : t < 133.5 ? 3 : 4
@@ -86,7 +86,7 @@ export function SPrototype({ t }: { t: number }) {
           {/* VIEW 2: results */}
           {view >= 2 && view <= 3 && (
             <div style={{ position: 'absolute', inset: 0, opacity: v2 }}>
-              <div style={{ position: 'absolute', left: 0, top: 52, width: W, height: 44, background: '#fff', borderBottom: `1px solid ${L.line}`, fontSize: 14, color: L.sub, padding: '14px 64px', boxSizing: 'border-box' }}>8 flights found · San Francisco (SFO) → Bangalore (BLR) · Jun 10–17, 2026</div>
+              <div style={{ position: 'absolute', left: 0, top: 52, width: W, height: 44, background: '#fff', borderBottom: `1px solid ${L.line}`, fontSize: 14, color: L.sub, padding: '14px 64px', boxSizing: 'border-box' }}>8 flights found · San Francisco (SFO) → Bangalore (BLR) · Jun 10-17, 2026</div>
               <div style={{ position: 'absolute', left: 64, top: 112, width: 1312, minHeight: 56, borderRadius: 8, background: L.violetBg, border: '1px solid #C9A9FF', padding: '18px 20px', boxSizing: 'border-box', fontSize: 15, color: L.violet }}>
                 <span style={{ marginRight: 10 }}>✦</span>{aiTyped}
               </div>
@@ -156,7 +156,7 @@ export function SPrototype({ t }: { t: number }) {
                   <div style={{ width: 520, borderRadius: 16, background: '#fff', padding: '34px 40px', textAlign: 'center', boxShadow: '0 20px 60px rgba(0,0,0,.4)', transform: `scale(${0.8 + 0.2 * clamp(booked, 0, 1.2)})`, opacity: clamp(booked) }}>
                     <div style={{ width: 76, height: 76, borderRadius: '50%', background: L.green, color: '#fff', display: 'grid', placeItems: 'center', fontSize: 42, margin: '0 auto' }}>✓</div>
                     <div style={{ fontSize: 26, fontWeight: 700, marginTop: 16 }}>Flight booked</div>
-                    <div style={{ fontSize: 15, color: L.sub, marginTop: 6 }}>EK237 · SFO → BLR · Jun 10–17 · $1,240.00</div>
+                    <div style={{ fontSize: 15, color: L.sub, marginTop: 6 }}>EK237 · SFO → BLR · Jun 10-17 · $1,240.00</div>
                     {['Itinerary sent to your inbox', 'Added to your calendar', 'Hotel suggested · The Leela Palace'].map((x, i) => {
                       const p = easeOut(seg(t, 146.4 + i * 0.4, 146.9 + i * 0.4))
                       return <div key={x} style={{ marginTop: 14, fontSize: 15, textAlign: 'left', padding: '10px 14px', background: L.bg, borderRadius: 8, opacity: p, transform: `translateX(${(1 - p) * 20}px)` }}><span style={{ color: L.green, marginRight: 10 }}>✓</span>{x}</div>
@@ -196,7 +196,7 @@ export function SPrototype({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 7 · OUTCOME  (152–166) ───────────── */
+/* ───────────── 7 · OUTCOME  (152-166) ───────────── */
 export function SOutcome({ t }: { t: number }) {
   return (
     <Scene t={t} s={152} e={166.2}>

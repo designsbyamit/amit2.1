@@ -93,6 +93,6 @@ export const firstMonth = [
 
 export const hiringProof = [
   { value: '200+', label: 'Designers hired across teams and organisations' },
-  { value: '6–30', label: 'Direct reports across teams, about 10 on average' },
+  { value: '6-30', label: 'Direct reports across teams, about 10 on average' },
   { value: 'From scratch', label: 'Hiring and onboarding set up end to end in one organisation, with HR' },
 ]

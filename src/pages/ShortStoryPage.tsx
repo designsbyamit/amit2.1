@@ -1,8 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import ShortStoryTag from '../components/playback/ShortStoryTag'
+import NextUp from '../components/case/NextUp'
+import { nextShortStory } from '../data/sequence'
 import StoryField from '../components/ds/StoryField'
-import { shortStories, storyBySlug } from '../data/shortStories'
+import { storyBySlug } from '../data/shortStories'
 
 const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -13,8 +15,6 @@ export default function ShortStoryPage() {
   const { slug } = useParams<{ slug: string }>()
   const s = slug ? storyBySlug(slug) : undefined
   if (!s) return <Navigate to="/craft" replace />
-  const i = shortStories.findIndex(x => x.slug === s.slug)
-  const next = shortStories[(i + 1) % shortStories.length]
 
   return (
     <article>
@@ -25,8 +25,8 @@ export default function ShortStoryPage() {
             <p className="text-label text-ink-3">Short story</p>
             <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>
-          <h1 className="text-ink font-serif" style={{ fontSize: 'clamp(1.8rem, 3.5vw, 3.1rem)', lineHeight: 1.1, letterSpacing: '-0.02em', textWrap: 'balance' }}>{s.title}</h1>
-          <div className="relative hidden md:block h-0"><div className="absolute right-[3%] top-[1.25rem]"><ShortStoryTag /></div></div>
+          <h1 className="text-ink font-serif" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)', textWrap: 'balance' }}>{s.title}</h1>
+          <div className="relative hidden md:block h-40"><div className="absolute right-[3%] top-[var(--space-20)]"><ShortStoryTag /></div></div>
           {s.meta && <p className="text-label text-ink-3 mt-6">{s.meta.join(' · ')}</p>}
           <StoryField slug={s.slug} tone={s.tone} size={150} aspect="1800 / 700" className="mt-10 rounded-3" />
         </div>
@@ -38,7 +38,7 @@ export default function ShortStoryPage() {
             <h2 id={`sec-${k}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{sec.label}</h2>
             <ul className="col-span-4 md:col-span-8 flex flex-col gap-5 max-w-2xl">
               {sec.items.map(it => (
-                <li key={(it.lead ?? '') + it.text} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">–</span>
+                <li key={(it.lead ?? '') + it.text} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">-</span>
                   <span>{it.lead && <strong className="text-ink font-medium">{it.lead}{it.text ? ': ' : ''}</strong>}{it.text}</span>
                 </li>
               ))}
@@ -55,21 +55,7 @@ export default function ShortStoryPage() {
         </section>
       )}
 
-      {shortStories.length > 1 && (
-        <section className="hairline-top section-y bg-surface-1" aria-labelledby="read-next">
-          <div className="container-site grid-site gap-y-6 items-center">
-            <div className="col-span-4 md:col-span-8">
-              <p id="read-next" className="text-overline text-ink-3 mb-4">Read next</p>
-              <Link to={`/craft/stories/${next.slug}`} className="group block">
-                <h2 className="text-heading text-ink group-hover:opacity-75 transition-opacity max-w-[30ch]">{next.title}</h2>
-              </Link>
-            </div>
-            <div className="col-span-4 md:col-span-4 md:justify-self-end">
-              <Link to={`/craft/stories/${next.slug}`} className="btn btn-ghost">Read the short story<Arrow /></Link>
-            </div>
-          </div>
-        </section>
-      )}
+      <NextUp link={nextShortStory(s.slug)} />
     </article>
   )
 }

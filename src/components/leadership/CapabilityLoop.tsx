@@ -8,7 +8,7 @@ export default function CapabilityLoop() {
   ]
   return (
     <figure className="rounded-3 p-5 md:p-8 bg-surface-1">
-      <div className="overflow-x-auto" tabIndex={0} aria-label="Diagram, scrolls sideways on small screens"><svg viewBox="0 0 960 290" role="img" aria-labelledby="loop-t loop-d" className="w-full h-auto min-w-[640px]" style={{ color: 'rgb(var(--ink-rgb))' }}>
+      <div className="overflow-x-auto" tabIndex={0} aria-label="Diagram, scrolls sideways on small screens"><svg viewBox="0 0 960 290" role="img" aria-labelledby="loop-t loop-d" className="w-full h-auto min-w-scroll-s" style={{ color: 'rgb(var(--ink-rgb))' }}>
         <title id="loop-t">The capability loop</title>
         <desc id="loop-d">Four stages in a loop, Learn, Experiment, Build assets and Apply, with a return arrow from Apply back to Learn. Beneath them, a bar shows people growing through real work, coaching and regular reviews across all four stages.</desc>
         <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1l8 4-8 4z" fill="currentColor" /></marker></defs>

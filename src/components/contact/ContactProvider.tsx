@@ -50,7 +50,7 @@ export default function ContactProvider({ children }: { children: React.ReactNod
     <Ctx.Provider value={value}>
       {children}
       {opts && (
-        <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6" role="presentation">
+        <div className="fixed inset-0 z-dialog flex items-end sm:items-center justify-center p-0 sm:p-6" role="presentation">
           <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={close} aria-hidden="true" />
           <div ref={panel} role="dialog" aria-modal="true" aria-labelledby="contact-title" data-lenis-prevent
             className="relative w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto rounded-t-3 sm:rounded-3 border bg-[var(--bg)] p-6 sm:p-10" style={{ borderColor: 'var(--line-1)' }}>

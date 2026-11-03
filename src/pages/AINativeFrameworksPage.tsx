@@ -1,5 +1,7 @@
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -298,7 +300,7 @@ function ProcessRoadmap() {
               >
                 <span className="text-label text-white" style={{ opacity: active === phase.id ? 1 : 0.7 }}>{phase.number}</span>
               </div>
-              <p className="text-center text-white" style={{ fontSize: '0.7rem', fontWeight: 400, opacity: active === phase.id ? 1 : 0.7, letterSpacing: '-0.01em', lineHeight: 1.3 }}>
+              <p className="text-center text-white" style={{ fontSize: 'var(--text-tiny)', fontWeight: 400, opacity: active === phase.id ? 1 : 0.7, letterSpacing: 'var(--track-snug)', lineHeight: 1.3 }}>
                 {phase.title}
               </p>
             </motion.button>
@@ -342,7 +344,7 @@ function ProcessRoadmap() {
                   <ul className="space-y-3">
                     {phase.questions.map((q, j) => (
                       <li key={j} className="flex gap-3">
-                        <span className="text-faint flex-shrink-0 mt-1.5" style={{ fontSize: '0.4rem' }}>◆</span>
+                        <span className="text-faint flex-shrink-0 mt-1.5" style={{ fontSize: 'var(--text-glyph)' }}>◆</span>
                         <p className="text-body text-ink-3">{q}</p>
                       </li>
                     ))}
@@ -353,7 +355,7 @@ function ProcessRoadmap() {
                   <ul className="space-y-2 mb-8">
                     {phase.outputs.map(o => (
                       <li key={o} className="flex gap-3">
-                        <span className="text-faint flex-shrink-0 mt-1.5" style={{ fontSize: '0.4rem' }}>◆</span>
+                        <span className="text-faint flex-shrink-0 mt-1.5" style={{ fontSize: 'var(--text-glyph)' }}>◆</span>
                         <p className="text-label text-ink-3">{o}</p>
                       </li>
                     ))}
@@ -446,21 +448,21 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
             <span className="text-label text-ink-3 flex-shrink-0 mt-1">{fw.number}</span>
             <div className="flex-1">
               <h3 className="text-white mb-2 group-hover:opacity-80 transition-opacity"
-                style={{ fontSize: 'clamp(1.3rem, 2.2vw, 1.9rem)', fontWeight: 300, letterSpacing: '-0.03em', lineHeight: 1.15 }}>
+                style={{ fontSize: 'var(--fs-section)', fontWeight: 300, letterSpacing: 'var(--track-tight)', lineHeight: 1.15 }}>
                 {fw.title}
               </h3>
               <p className="text-body text-ink-3">{fw.tagline}</p>
 
               {/* Challenge preview */}
               {!open && (
-                <p className="text-body text-ink-3 mt-4 max-w-2xl line-clamp-2" style={{ fontSize: '0.9rem' }}>
+                <p className="text-body text-ink-3 mt-4 max-w-2xl line-clamp-2" style={{ fontSize: 'var(--text-sm)' }}>
                   {fw.challenge}
                 </p>
               )}
             </div>
           </div>
           <span className="text-ink-3 flex-shrink-0 mt-1 transition-transform duration-300"
-            style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: '1.4rem' }}>+</span>
+            style={{ transform: open ? 'rotate(45deg)' : 'none', fontSize: 'var(--text-lg)' }}>+</span>
         </button>
         {templates[0] && (
           <a href={templates[0].href} target="_blank" rel="noopener noreferrer"
@@ -523,15 +525,15 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                                   animate={{ scale: 1 }}
                                   transition={{ delay: j * 0.05 }}
                                 >
-                                  <span className="text-ink-3" style={{ fontSize: '0.75rem' }}>{j + 1}</span>
+                                  <span className="text-ink-3" style={{ fontSize: 'var(--text-xs)' }}>{j + 1}</span>
                                 </motion.div>
                                 {j < fw.mentalModel.length - 1 && (
-                                  <div className="w-px flex-1 my-1" style={{ background: 'rgb(var(--ink-rgb) / 0.1)', minHeight: '24px' }} />
+                                  <div className="w-px flex-1 my-1" style={{ background: 'rgb(var(--ink-rgb) / 0.1)', minHeight: 'var(--space-20)' }} />
                                 )}
                               </div>
                               <div className="pb-4">
-                                <p className="text-ink-2 mb-1" style={{ fontSize: '0.85rem', fontWeight: 400 }}>{step.step}</p>
-                                <p className="text-body text-ink-3" style={{ fontSize: '0.8rem' }}>{step.description}</p>
+                                <p className="text-ink-2 mb-1" style={{ fontSize: 'var(--text-sm)', fontWeight: 400 }}>{step.step}</p>
+                                <p className="text-body text-ink-3" style={{ fontSize: 'var(--text-caption)' }}>{step.description}</p>
                               </div>
                             </div>
                           ))}
@@ -582,7 +584,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                       {fw.pitfalls.map((p, j) => (
                         <motion.div key={j} className="flex gap-5"
                           initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: j * 0.08 }}>
-                          <span className="text-faint flex-shrink-0 mt-1" style={{ fontSize: '0.7rem' }}>⚠</span>
+                          <span className="text-faint flex-shrink-0 mt-1" style={{ fontSize: 'var(--text-tiny)' }}>⚠</span>
                           <p className="text-body text-ink-3">{p}</p>
                         </motion.div>
                       ))}
@@ -638,7 +640,7 @@ function FrameworkCard({ fw, index }: { fw: typeof FRAMEWORKS[0], index: number 
                                 <p className="text-body text-ink-2" style={{ fontWeight: 400 }}>
                                   {t.primary} <span className="text-ink-3" style={{ fontWeight: 300 }}>· or {t.alt}</span>
                                 </p>
-                                <p className="text-body text-ink-3 mt-1" style={{ fontSize: '0.85rem' }}>{t.why}</p>
+                                <p className="text-body text-ink-3 mt-1" style={{ fontSize: 'var(--text-sm)' }}>{t.why}</p>
                                 <span className="tag mt-2 inline-block">{t.output}</span>
                               </div>
                             ))}
@@ -716,7 +718,7 @@ export default function AINativeFrameworksPage() {
           </motion.p>
 
           <motion.h1 className="text-white mb-10"
-            style={{ fontSize: 'clamp(2.75rem, 7vw, 6.5rem)', fontWeight: 200, letterSpacing: '-0.045em', lineHeight: 0.98 }}
+            style={{ fontSize: 'var(--fs-hero)', fontWeight: 200, letterSpacing: 'var(--track-tighter)', lineHeight: 0.98 }}
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
             AI-native<br />Frameworks
           </motion.h1>
@@ -724,7 +726,7 @@ export default function AINativeFrameworksPage() {
           <div className="grid md:grid-cols-[2fr_1fr] gap-12 md:gap-20 items-end">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
               <p className="text-ink-3 mb-6"
-                style={{ fontSize: 'clamp(1.1rem, 1.7vw, 1.35rem)', fontWeight: 300, lineHeight: 1.65, letterSpacing: '-0.01em' }}>
+                style={{ fontSize: 'var(--fs-lede)', fontWeight: 300, lineHeight: 1.65, letterSpacing: 'var(--track-snug)' }}>
                 The definitive visual playbook for designing intelligent, agentic enterprise experiences. Five frameworks. One connected methodology. Every framework produces a tangible artifact.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -743,7 +745,7 @@ export default function AINativeFrameworksPage() {
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}>
               {[['5', 'Frameworks in the methodology'], ['3', 'Design principles per framework'], ['4', 'Interactive templates']].map(([v, l]) => (
                 <div key={l} className="flex items-baseline gap-3">
-                  <span className="text-white" style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2rem)', fontWeight: 200, letterSpacing: '-0.03em' }}>{v}</span>
+                  <span className="text-white" style={{ fontSize: 'var(--fs-figure)', fontWeight: 200, letterSpacing: 'var(--track-tight)' }}>{v}</span>
                   <span className="text-label text-ink-3">{l}</span>
                 </div>
               ))}
@@ -758,7 +760,7 @@ export default function AINativeFrameworksPage() {
               {PROCESS_PHASES.map((p, i, arr) => (
                 <div key={p.id} className="flex items-center gap-3">
                   <span className="text-label text-ink-3">{p.number}</span>
-                  <span className="text-body text-ink-3" style={{ fontSize: '0.85rem' }}>{p.title}</span>
+                  <span className="text-body text-ink-3" style={{ fontSize: 'var(--text-sm)' }}>{p.title}</span>
                   {i < arr.length - 1 && <span className="text-faint">→</span>}
                 </div>
               ))}
@@ -881,8 +883,8 @@ export default function AINativeFrameworksPage() {
                     <span className="tag">{item.type}</span>
                     <span className="text-label text-ink-3 group-hover:text-white transition-colors">Request</span>
                   </div>
-                  <h3 className="text-white mb-2" style={{ fontSize: '1rem', fontWeight: 300, letterSpacing: '-0.01em' }}>{item.name}</h3>
-                  <p className="text-body text-ink-3" style={{ fontSize: '0.85rem' }}>{item.description}</p>
+                  <h3 className="text-white mb-2" style={{ fontSize: 'var(--text-base)', fontWeight: 300, letterSpacing: 'var(--track-snug)' }}>{item.name}</h3>
+                  <p className="text-body text-ink-3" style={{ fontSize: 'var(--text-sm)' }}>{item.description}</p>
                 </a>
               ))}
             </div>
@@ -908,12 +910,10 @@ export default function AINativeFrameworksPage() {
             <Link to="/resources/ai-native-patterns/glossary" className="text-label text-ink-3 hover:text-ink-2 transition-colors text-center py-2">
               AI-native glossary →
             </Link>
-            <Link to="/resources" className="text-label text-ink-3 hover:text-ink-2 transition-colors text-center py-2">
-              ← Back to Resources
-            </Link>
           </div>
         </div>
       </section>
+      <NextUp link={nextResource('/resources/ai-native-patterns')} />
     </div>
   )
 }

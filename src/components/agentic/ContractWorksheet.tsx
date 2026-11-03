@@ -35,13 +35,13 @@ function Field({ k, v }: { k: string; v: ReactNode }) {
 /** The Agent-Human Contract worksheet, filled in for this use case, in the site's own type and colour. */
 export default function ContractWorksheet({ d }: { d: ContractData }) {
   return (
-    <div className="rounded-3 overflow-hidden border" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-0)', boxShadow: '0 18px 40px rgb(0 0 0 / 0.10)' }}>
+    <div className="rounded-3 overflow-hidden border" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-0)', boxShadow: 'var(--shadow-3)' }}>
       <div className="relative px-6 md:px-8 py-7 md:py-9 grid md:grid-cols-[1fr_auto] gap-6 md:gap-12 items-end">
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ opacity: 0.05, backgroundImage: 'linear-gradient(rgb(var(--ink-rgb)) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--ink-rgb)) 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
         <div className="relative">
           <p className="text-overline text-ink-3">Worksheet</p>
-          <h3 className="text-heading text-white mt-3">Agent–Human Contract</h3>
-          <p className="text-body text-ink-2 mt-3 max-w-[52ch]">A clear working agreement between people and the agent for one use case.</p>
+          <h3 className="text-heading text-white mt-3">Agent-Human Contract</h3>
+          <p className="text-body text-ink-2 mt-3 max-w-measure-l">A clear working agreement between people and the agent for one use case.</p>
         </div>
         <dl className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-body-sm">
           <dt className="text-label text-ink-3">Use case</dt><dd className="text-white">{d.useCase}</dd>
@@ -61,8 +61,8 @@ export default function ContractWorksheet({ d }: { d: ContractData }) {
           <ul>
             {d.capabilities.map(([t, on, note]) => (
               <li key={t} className="hairline-top flex gap-3 py-3">
-                <span className="mt-0.5 w-[18px] h-[18px] rounded-[5px] grid place-items-center shrink-0 border" style={{ borderColor: on ? 'var(--signal)' : 'var(--line-control)', background: on ? 'var(--signal)' : 'transparent' }} aria-hidden="true">
-                  {on && <svg width="11" height="11" viewBox="0 0 10 10" fill="none" stroke="#10130a" strokeWidth="1.8"><path d="M2 5.2l2 2L8 3" strokeLinecap="round" strokeLinejoin="round" /></svg>}
+                <span className="mt-0.5 w-check h-check rounded-2 grid place-items-center shrink-0 border" style={{ borderColor: on ? 'var(--signal)' : 'var(--line-control)', background: on ? 'var(--signal)' : 'transparent' }} aria-hidden="true">
+                  {on && <svg width="11" height="11" viewBox="0 0 10 10" fill="none" stroke="var(--on-signal)" strokeWidth="1.8"><path d="M2 5.2l2 2L8 3" strokeLinecap="round" strokeLinejoin="round" /></svg>}
                 </span>
                 <span className="text-body-sm"><span className={on ? 'text-white' : 'text-ink-3'}>{t}</span>{note && <span className="block text-ink-3 mt-0.5">{note}</span>}</span>
               </li>
@@ -81,7 +81,7 @@ export default function ContractWorksheet({ d }: { d: ContractData }) {
         <Block n={4} title="Levels of autonomy" sub="How much freedom the agent has.">
           <ul className="space-y-3">
             {d.levels.map(l => (
-              <li key={l.name} className="rounded-3 p-4" style={{ border: l.today ? '2px solid var(--signal)' : '1px solid var(--line-2)', background: l.today ? 'rgb(200 245 90 / 0.14)' : 'transparent' }}>
+              <li key={l.name} className="rounded-3 p-4" style={{ border: l.today ? '2px solid var(--signal)' : '1px solid var(--line-2)', background: l.today ? 'rgb(var(--signal-rgb) / 0.14)' : 'transparent' }}>
                 <p className="text-body text-white flex items-center gap-2">{l.name}{l.today && <span className="rounded-full px-2 py-0.5 text-overline" style={{ background: 'var(--signal)', color: 'var(--on-signal)' }}>Today</span>}</p>
                 <p className="text-body-sm text-ink-2 mt-1.5">{l.text}</p>
                 <p className="text-body-sm text-ink-3 mt-2"><span className="text-ink-2">When: </span>{l.when}</p>

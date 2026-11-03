@@ -39,7 +39,7 @@ export function fromMailto(href: string): ContactOptions {
   } catch { /* an unreadable link opens an empty form */ }
   const keep = body.split(/\r?\n/).filter(l => !/^\s*(hi|hello) amit,?\s*$/i.test(l) && !/^\s*(name|role|organi[sz]ation):\s*$/i.test(l) && !/^\s*(thank you\.?|regards)\s*$/i.test(l))
   let message = keep.join('\n').replace(/\n{3,}/g, '\n\n').trim()
-  const ask = subject.match(/^(?:requesting access|template request|request)\s*[-–:]\s*(.+)$/i)
+  const ask = subject.match(/^(?:requesting access|template request|request)\s*[--:]\s*(.+)$/i)
   if (!message && ask) message = `I would like to request ${ask[1].trim()}.`
   return { topic: subject ? guessTopic(subject) : undefined, subject: subject || undefined, message: message || undefined }
 }

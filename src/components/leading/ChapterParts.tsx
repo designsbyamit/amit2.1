@@ -47,7 +47,7 @@ export function StepCard({ label, title, text, how, watch, wide }: { label: stri
       <span className="text-label text-signal-ink">{label}</span>
       <h3 className="text-title text-ink">{title}</h3>
       {text && <p className="text-body-sm text-ink-2">{text}</p>}
-      {how && <ul className="flex flex-col gap-2">{how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>}
+      {how && <ul className="flex flex-col gap-2">{how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>}
       {watch && <p className="text-body-sm text-ink-2 mt-auto pt-4 hairline-top"><span className="text-label text-ink-3 block mb-1">Watch for</span>{watch}</p>}
     </li>
   )

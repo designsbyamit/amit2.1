@@ -60,7 +60,7 @@ export default function ContactForm({ options = {}, onDone, autoFocus }: Props) 
       </div>
       <TextArea label="Message" name="message" required rows={6} value={message} onChange={e => setMessage(e.target.value)} error={errors.message} />
       {/* Honeypot: people never see or fill this. */}
-      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+      <div aria-hidden="true" className="sr-only">
         <label>Website<input tabIndex={-1} autoComplete="off" value={website} onChange={e => setWebsite(e.target.value)} /></label>
       </div>
       {fail && (

@@ -1,19 +1,19 @@
 import { Fragment } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { publishedStories, storySlug } from '../data/leadership'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import StoryCover from '../components/ds/StoryCover'
 import StoryPictogram from '../components/ds/StoryPictogram'
 import RevealText from '../components/ui/RevealText'
+import NextUp from '../components/case/NextUp'
+import { nextLeadershipStory } from '../data/sequence'
 
 export default function LeadershipStoryPage() {
   const { slug } = useParams()
   const idx = publishedStories.findIndex(s => storySlug(s) === slug)
   if (idx < 0) return <Navigate to="/leadership/stories" replace />
   const s = publishedStories[idx]
-  const prev = publishedStories[idx - 1]
-  const next = publishedStories[idx + 1]
   const n = String(idx + 1).padStart(2, '0')
 
   return (
@@ -44,7 +44,7 @@ export default function LeadershipStoryPage() {
                     <p className="text-body-editorial text-ink-2">{p}</p>
                     {fig && (
                       <figure className="card card-flat flex flex-col sm:flex-row items-center gap-6 sm:gap-10 !py-6 !px-6 md:!px-10">
-                        <StoryPictogram kind={fig.kind} className="w-full max-w-[260px] flex-none" />
+                        <StoryPictogram kind={fig.kind} className="w-full max-w-note-l flex-none" />
                         <figcaption className="text-title text-ink">{fig.caption}</figcaption>
                       </figure>
                     )}
@@ -73,18 +73,13 @@ export default function LeadershipStoryPage() {
 
             {s.lesson && (
               <figure className="mt-16 rounded-3 p-8 md:p-10" style={{ background: 'var(--field-graphite)' }}>
-                <blockquote className="quote !text-[#ECEDEF]">“{s.lesson}”</blockquote>
+                <blockquote className="quote !text-on-field">“{s.lesson}”</blockquote>
               </figure>
             )}
           </div>
         </div>
-
-        <nav aria-label="More stories" className="mt-20 hairline-top pt-10 grid md:grid-cols-2 gap-4">
-          {prev ? <Link to={`/leadership/stories/${storySlug(prev)}`} className="card card-link"><p className="text-label text-ink-3 mb-2">Previous story</p><p className="text-title text-ink">{prev.title}</p></Link> : <span />}
-          {next ? <Link to={`/leadership/stories/${storySlug(next)}`} className="card card-link md:text-right"><p className="text-label text-ink-3 mb-2">Next story</p><p className="text-title text-ink">{next.title}</p></Link>
-            : <Link to="/leadership/stories" className="card card-link md:text-right"><p className="text-label text-ink-3 mb-2">Back to</p><p className="text-title text-ink">All leadership stories</p></Link>}
-        </nav>
       </div>
+      <NextUp link={nextLeadershipStory(slug ?? '')} />
     </article>
   )
 }

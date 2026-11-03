@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import NextUp from '../components/case/NextUp'
+import { nextResource } from '../data/sequence'
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
@@ -45,7 +47,7 @@ function Row({ id, kicker, title, summary, open, onToggle, children }: { id: str
           <span className="text-ink-3 pt-1">{chev(open)}</span>
         </button>
       </h3>
-      {open && <div id={`${id}-panel`} className="pb-6 pl-[5rem] md:pl-[7.5rem] pr-8 flex flex-col gap-4">{children}</div>}
+      {open && <div id={`${id}-panel`} className="pb-6 pl-[var(--space-80)] md:pl-[var(--space-120)] pr-8 flex flex-col gap-4">{children}</div>}
     </li>
   )
 }
@@ -90,7 +92,7 @@ export default function HiringExperiencePage() {
                 <Button variant="secondary" onClick={() => open(REQUEST_TEAM)}>Talk about your team</Button>
               </div>
             </div>
-            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-[240px]">
+            <div className="col-span-4 md:col-span-3 md:col-start-10 max-w-note">
               <ResourceCover title="Hiring is an experience problem" kind="Case study" motif="conversation" tone="plum" />
             </div>
           </div>
@@ -98,7 +100,7 @@ export default function HiringExperiencePage() {
             {[{ value: results.big, label: 'positive candidate responses on the hiring and interview experience' }, ...hiringProof.slice(0, 1), { value: '7', label: 'industry patterns, each with what to do about it' }].map(p => (
               <div key={p.label}>
                 <dt className="sr-only">{p.label}</dt>
-                <dd className="font-serif text-ink" style={{ fontSize: 'clamp(2rem, 3.6vw, 3.2rem)', lineHeight: 1 }}>{p.value}</dd>
+                <dd className="font-serif text-ink" style={{ fontSize: 'var(--fs-title-l)', lineHeight: 1 }}>{p.value}</dd>
                 <dd className="text-body-sm text-ink-3 mt-2">{p.label}</dd>
               </div>
             ))}
@@ -118,7 +120,7 @@ export default function HiringExperiencePage() {
               <p className="text-body-sm text-ink-3">{p.evidence}</p>
               <div>
                 <span className="text-label text-ink-3 block mb-2">What can be done</span>
-                <ul className="flex flex-col gap-2">{p.doThis.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+                <ul className="flex flex-col gap-2">{p.doThis.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
               </div>
               <DocLink slug={p.doc} />
             </Row>
@@ -127,13 +129,13 @@ export default function HiringExperiencePage() {
       </Section>
 
       <Section id="case-study" label="The case study" title="What I did about it." intro={caseIntro.note}>
-        <blockquote className="font-serif text-ink max-w-3xl mb-8" style={{ fontSize: 'clamp(1.35rem, 2.2vw, 1.9rem)', lineHeight: 1.25 }}>&ldquo;{caseIntro.quote}&rdquo;</blockquote>
+        <blockquote className="font-serif text-ink max-w-3xl mb-8" style={{ fontSize: 'var(--fs-section)', lineHeight: 1.25 }}>&ldquo;{caseIntro.quote}&rdquo;</blockquote>
         <div className="flex justify-end mb-2"><ExpandAll ids={caseSteps.map(c => 'c' + c.n)} openIds={cs.openIds} setAll={cs.setAll} /></div>
         <ol className="border-y" style={{ borderColor: 'var(--line-1)' }}>
           {caseSteps.map(c => (
             <Row key={c.n} id={'c' + c.n} kicker={`Step ${c.n}`} title={c.title} summary={c.text} open={cs.openIds.includes('c' + c.n)} onToggle={() => cs.toggle('c' + c.n)}>
               <p className="text-body-sm text-ink-2">{c.text}</p>
-              <ul className="flex flex-col gap-2">{c.points.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{c.points.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
               <DocLink slug={c.doc} />
             </Row>
           ))}
@@ -143,10 +145,10 @@ export default function HiringExperiencePage() {
       <Section id="results" label="Results" title="How it landed.">
         <div className="grid md:grid-cols-12 gap-6">
           <div className="card md:col-span-5 flex flex-col gap-3" style={{ background: 'var(--field-teal)' }}>
-            <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Candidate feedback</span>
-            <p className="font-serif" style={{ color: '#ECEDEF', fontSize: 'clamp(3rem, 6vw, 5rem)', lineHeight: 1 }}>{results.big}</p>
-            <p className="text-[1.15rem] font-light" style={{ color: '#ECEDEF' }}>{results.label}.</p>
-            <p className="text-body-sm" style={{ color: '#B9BEC6' }}>{results.note}</p>
+            <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Candidate feedback</span>
+            <p className="font-serif" style={{ color: 'var(--on-field)', fontSize: 'var(--fs-display)', lineHeight: 1 }}>{results.big}</p>
+            <p className="text-t-lead font-light" style={{ color: 'var(--on-field)' }}>{results.label}.</p>
+            <p className="text-body-sm" style={{ color: 'var(--on-field-muted)' }}>{results.note}</p>
           </div>
           <ul className="md:col-span-7 grid sm:grid-cols-2 gap-4">
             {resultPoints.map(r => (
@@ -163,7 +165,7 @@ export default function HiringExperiencePage() {
         <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {tenets.map(t => (
             <li key={t.n} className="card flex flex-col gap-2">
-              <span className="font-serif text-ink-3" style={{ fontSize: '2rem', lineHeight: 1 }}>{t.n}</span>
+              <span className="font-serif text-ink-3" style={{ fontSize: 'var(--text-2xl)', lineHeight: 1 }}>{t.n}</span>
               <h3 className="text-title text-ink">{t.title}</h3>
               <p className="text-body-sm text-ink-2">{t.text}</p>
             </li>
@@ -198,20 +200,15 @@ export default function HiringExperiencePage() {
 
       <section id="sources" className="hairline-top py-8">
         <div className="container-site">
-          <h2 className="text-[11px] uppercase tracking-wider text-ink-3 mb-2">Sources</h2>
-          <p className="text-[11px] leading-snug text-ink-3 max-w-3xl mb-2">{sourceNote}</p>
+          <h2 className="text-t-tiny uppercase tracking-wider text-ink-3 mb-2">Sources</h2>
+          <p className="text-t-tiny leading-snug text-ink-3 max-w-3xl mb-2">{sourceNote}</p>
           <ul className="flex flex-col gap-1">
-            {sources.map(s => <li key={s.url} className="text-[11px] leading-snug"><a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink-3 underline underline-offset-2 hover:text-ink">{s.label}</a></li>)}
+            {sources.map(s => <li key={s.url} className="text-t-tiny leading-snug"><a href={s.url} target="_blank" rel="noopener noreferrer" className="text-ink-3 underline underline-offset-2 hover:text-ink">{s.label}</a></li>)}
           </ul>
         </div>
       </section>
 
-      <section className="hairline-top py-12">
-        <div className="container-site flex flex-wrap items-center justify-between gap-4">
-          <Button to="/resources" variant="tertiary">Back to Practice</Button>
-          <Button to="/leadership" variant="tertiary" arrow>Journey</Button>
-        </div>
-      </section>
+      <NextUp link={nextResource('/resources/hiring-experience')} />
     </>
   )
 }

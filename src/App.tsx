@@ -28,6 +28,8 @@ const HiringExperiencePage = lazy(() => import('./pages/HiringExperiencePage'))
 const PracticePage = lazy(() => import('./pages/grow/PracticePage'))
 const ChallengePage = lazy(() => import('./pages/grow/ChallengePage'))
 const PortfolioGuidePage = lazy(() => import('./pages/grow/PortfolioPage'))
+const LibraryPage = lazy(() => import('./pages/grow/LibraryPage'))
+const LibraryEntryPage = lazy(() => import('./pages/grow/LibraryEntryPage'))
 const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
 const ShortStoryPage = lazy(() => import('./pages/ShortStoryPage'))
 const CommunityPage = lazy(() => import('./pages/CommunityPage'))
@@ -44,6 +46,7 @@ const LeadingDesignPage = lazy(() => import('./pages/LeadingDesignPage'))
 const LeadingChapterPage = lazy(() => import('./pages/LeadingChapterPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
 const SAPAgenticStoryPage = lazy(() => import('./pages/SAPAgenticStoryPage'))
+const SAPAgenticStoryV2Page = lazy(() => import('./pages/SAPAgenticStoryV2Page'))
 const AgenticFilmPage = lazy(() => import('./film/AgenticFilmPage'))
 const AgenticFilmV1Page = lazy(() => import('./film/archive/AgenticFilmV1Page'))
 const AgenticFilmV2Page = lazy(() => import('./film/archive/AgenticFilmV2Page'))
@@ -99,12 +102,11 @@ function LegacyHashRedirect() {
 function CaseDetail() {
   const { id } = useParams<{ id: string }>()
   const Page = ({ 'airline-app': AirlineStoryPage, engaze: EngazeStoryPage, 'sap-search': SAPSearchStoryPage, 'sap-agentic': SAPAgenticStoryPage } as Record<string, React.ComponentType>)[id ?? ''] ?? CaseStudyPage
-  const own = Page === CaseStudyPage
   const body = (
     <div className="relative">
       <BackToShort id={id ?? ''} />
       <Suspense fallback={<LogoLoader />}><Page /></Suspense>
-      {!own && <NextCase id={id ?? ''} />}
+      <NextCase id={id ?? ''} />
     </div>
   )
   // Case studies under NDA ask for an access code first.
@@ -142,6 +144,7 @@ function AnimatedRoutes() {
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
         <Route path="/craft/engaze/film" element={<PageTransition><EngazeFilmPage /></PageTransition>} />
         <Route path="/craft/sap-search/film" element={<PageTransition><SearchFilmPage /></PageTransition>} />
+        <Route path="/craft/sap-agentic/story-v2" element={<PageTransition><SAPAgenticStoryV2Page /></PageTransition>} />
         <Route path="/craft/sap-agentic/film" element={<PageTransition><AgenticFilmPage /></PageTransition>} />
         <Route path="/craft/sap-agentic/film-v1" element={<PageTransition><AgenticFilmV1Page /></PageTransition>} />
         <Route path="/craft/sap-agentic/film-v2" element={<PageTransition><AgenticFilmV2Page /></PageTransition>} />
@@ -158,6 +161,8 @@ function AnimatedRoutes() {
         <Route path="/learn/practice" element={<PageTransition><PracticePage /></PageTransition>} />
         <Route path="/learn/practice/:topic/:id" element={<PageTransition><ChallengePage /></PageTransition>} />
         <Route path="/learn/portfolio" element={<PageTransition><PortfolioGuidePage /></PageTransition>} />
+        <Route path="/learn/library" element={<PageTransition><LibraryPage /></PageTransition>} />
+        <Route path="/learn/library/:slug" element={<PageTransition><LibraryEntryPage /></PageTransition>} />
         {/* Curious Minds is hidden for now: its page is src/pages/grow/CuriousPage.tsx. Re-add the route and the Grow card to bring it back. */}
         <Route path="/learn/curious" element={<Navigate to="/learn" replace />} />
         <Route path="/leadership/stories" element={<PageTransition><LeadershipStoriesPage /></PageTransition>} />

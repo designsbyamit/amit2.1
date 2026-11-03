@@ -38,12 +38,12 @@ export default function CuriousPage() {
                   <button type="button" aria-expanded={isOpen} aria-controls={`${q.id}-a`} onClick={() => { setOpen(isOpen ? null : q.id); if (!isOpen) history.replaceState(null, '', `#${q.id}`) }}
                     className="w-full grid grid-cols-[1fr_auto] md:grid-cols-[9rem_1fr_auto] gap-x-6 gap-y-2 items-start text-left py-6 group">
                     <span className="text-label text-ink-3 md:pt-2 order-2 md:order-none col-span-2 md:col-span-1">{q.theme}</span>
-                    <span className="text-heading text-ink group-hover:opacity-80" style={{ fontWeight: 300, fontSize: 'clamp(1.25rem,2.4vw,1.75rem)' }}>{q.q}</span>
+                    <span className="text-heading text-ink group-hover:opacity-80" style={{ fontWeight: 300, fontSize: 'var(--fs-section)' }}>{q.q}</span>
                     <span aria-hidden className="text-ink-3 text-2xl leading-none pt-1">{isOpen ? '−' : '+'}</span>
                   </button>
                   {isOpen && (
-                    <div id={`${q.id}-a`} className="md:pl-[10.5rem] pb-8 pr-10 flex flex-col gap-4">
-                      {q.a.map((p, i) => <p key={i} className="text-body-lg text-ink-2 max-w-[62ch]">{p}</p>)}
+                    <div id={`${q.id}-a`} className="md:pl-[var(--space-160)] pb-8 pr-10 flex flex-col gap-4">
+                      {q.a.map((p, i) => <p key={i} className="text-body-lg text-ink-2 max-w-measure-xl">{p}</p>)}
                     </div>
                   )}
                 </li>
@@ -56,8 +56,8 @@ export default function CuriousPage() {
       <section className="section-y hairline-top">
         <div className="container-site flex flex-wrap items-center justify-between gap-6">
           <div>
-            <p className="text-heading text-ink max-w-[26ch]" style={{ fontWeight: 300 }}>Have a question of your own?</p>
-            <p className="text-body text-ink-2 mt-3 max-w-[52ch]">Send it over. The ones that help other designers may be answered here.</p>
+            <p className="text-heading text-ink max-w-measure-s" style={{ fontWeight: 300 }}>Have a question of your own?</p>
+            <p className="text-body text-ink-2 mt-3 max-w-measure-l">Send it over. The ones that help other designers may be answered here.</p>
           </div>
           <Button to="/contact" arrow>Send a question</Button>
         </div>

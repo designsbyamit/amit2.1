@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /design-system
 Disallow: /templates/
-Sitemap: https://neo.designsbyamit.com/sitemap.xml
+Sitemap: https://www.designsbyamit.com/sitemap.xml

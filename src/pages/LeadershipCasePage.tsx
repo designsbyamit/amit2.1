@@ -1,8 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { cases, caseBySlug } from '../data/cases'
+import { caseBySlug } from '../data/cases'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import RevealText from '../components/ui/RevealText'
+import NextUp from '../components/case/NextUp'
+import { nextLeadershipCase } from '../data/sequence'
 import OutcomesLedger from '../components/leadership/OutcomesLedger'
 import PracticeCard from '../components/leadership/PracticeCard'
 import CapabilityLoop from '../components/leadership/CapabilityLoop'
@@ -11,8 +13,6 @@ export default function LeadershipCasePage() {
   const { slug } = useParams()
   const c = caseBySlug(slug)
   if (!c) return <Navigate to="/leadership" replace />
-  const idx = cases.indexOf(c)
-  const next = cases[idx + 1]
 
   return (
     <article>
@@ -21,7 +21,7 @@ export default function LeadershipCasePage() {
           <div className="mb-10"><Breadcrumb items={[{ label: 'Leadership', to: '/leadership' }, { label: `Case ${c.number}` }]} /></div>
           <p className="text-label text-ink-3 mb-5"><span className="text-signal-ink">Leadership case {c.number}</span></p>
           <h1 className="text-display-l text-ink max-w-[20ch]"><RevealText text={c.title} delay={0.1} /></h1>
-          <motion.p className="text-body-lg text-ink-2 max-w-[56ch] mt-6" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}>{c.subtitle}</motion.p>
+          <motion.p className="text-body-lg text-ink-2 max-w-measure-l mt-6" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25 }}>{c.subtitle}</motion.p>
         </div>
         <div className="container-site">
           <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px rounded-3 overflow-hidden" style={{ background: 'rgb(var(--ink-rgb) / 0.08)' }}>
@@ -87,19 +87,14 @@ export default function LeadershipCasePage() {
               <div className="flex flex-col gap-6 mt-8">
                 {c.account.map((p, i) => <p key={i} className="text-body-editorial text-ink-2">{p}</p>)}
                 <figure className="rounded-3 p-8 mt-4" style={{ background: 'var(--field-graphite)' }}>
-                  <blockquote className="text-heading" style={{ color: '#fff', fontWeight: 300 }}>{c.lesson}</blockquote>
+                  <blockquote className="text-heading" style={{ color: 'var(--on-field-strong)', fontWeight: 300 }}>{c.lesson}</blockquote>
                 </figure>
               </div>
             </details>
-
-            <nav aria-label="More leadership" className="flex flex-wrap gap-6 hairline-top pt-8">
-              {next && <Link to={`/leadership/cases/${next.slug}`} className="text-label text-ink hover:text-signal-ink">Next case &rarr;</Link>}
-              <Link to="/leadership" className="text-label text-ink-2 hover:text-ink">All leadership &rarr;</Link>
-              <Link to="/resources" className="text-label text-ink-2 hover:text-ink">Practices &rarr;</Link>
-            </nav>
           </div>
         </div>
       </div>
+      <NextUp link={nextLeadershipCase(c.slug)} />
     </article>
   )
 }

@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { Navigate, useParams } from 'react-router-dom'
+import NextUp from '../components/case/NextUp'
+import { nextChapter } from '../data/sequence'
 import { useContact } from '../components/contact/ContactProvider'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
@@ -42,7 +44,7 @@ function BuildingADesignTeam() {
             </div>
             <div className="col-span-4 md:col-span-4 md:col-start-9">
               <p className="text-label text-ink-3 mb-3">By the end you will have</p>
-              <ul className="flex flex-col gap-3">{chapterOne.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{o}</li>)}</ul>
+              <ul className="flex flex-col gap-3">{chapterOne.outcomes.map(o => <li key={o} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{o}</li>)}</ul>
             </div>
           </div>
           <nav aria-label="On this page" className="flex flex-wrap gap-2 mt-12">
@@ -71,7 +73,7 @@ function BuildingADesignTeam() {
               <span className="text-label text-signal-ink">Step {String(i + 1).padStart(2, '0')}</span>
               <h3 className="text-title text-ink">{s.title}</h3>
               <p className="text-body-sm text-ink-2">{s.text}</p>
-              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
             </li>
           ))}
         </ol>
@@ -114,13 +116,13 @@ function BuildingADesignTeam() {
               <span className="text-label text-signal-ink">Step {String(i + 1).padStart(2, '0')}</span>
               <h3 className="text-title text-ink">{s.title}</h3>
               <p className="text-body-sm text-ink-2">{s.what}</p>
-              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">–</span>{h}</li>)}</ul>
+              <ul className="flex flex-col gap-2">{s.how.map(h => <li key={h} className="text-body-sm text-ink-2 flex gap-2"><span aria-hidden="true" className="text-faint">-</span>{h}</li>)}</ul>
               <p className="text-body-sm text-ink-2 mt-auto pt-4 hairline-top"><span className="text-label text-ink-3 block mb-1">Watch for</span>{s.watch}</p>
             </li>
           ))}
           <li className="card flex flex-col gap-3 md:col-span-2" style={{ background: 'var(--field-teal)' }}>
-            <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>What you will have</span>
-            <p className="text-[1.25rem] font-light" style={{ color: '#ECEDEF' }}>{onboarding.outcome}</p>
+            <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>What you will have</span>
+            <p className="text-t-lg font-light" style={{ color: 'var(--on-field)' }}>{onboarding.outcome}</p>
           </li>
         </ol>
         <h3 className="text-label text-ink-3 mt-14 mb-5">Worksheet for this framework</h3>
@@ -141,8 +143,8 @@ function BuildingADesignTeam() {
 
       <Section id="worksheets" label="Everything in one place" title="All the worksheets for this chapter." intro="Print them, fill them in with your leader and your HR partner, and adapt them to your organisation. Six of them are also editable, each with a filled example.">
         <div className="card flex flex-col gap-4 mb-8" style={{ background: 'var(--field-teal)' }}>
-          <span className="font-mono text-xs tracking-[0.08em] uppercase" style={{ color: '#C8F55A' }}>Editable worksheets</span>
-          <p className="text-[1.25rem] font-light max-w-[52ch]" style={{ color: '#ECEDEF' }}>Type straight into each worksheet and switch to the filled example (a fictional company, NorthStar) to see how it is used. Your notes stay in your browser.</p>
+          <span className="font-mono text-xs tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>Editable worksheets</span>
+          <p className="text-t-lg font-light max-w-measure-l" style={{ color: 'var(--on-field)' }}>Type straight into each worksheet and switch to the filled example (a fictional company, NorthStar) to see how it is used. Your notes stay in your browser.</p>
           <div className="flex flex-wrap gap-3">
             <a href={WORKSHEET_KIT} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the editable worksheets<span className="sr-only"> (opens in a new tab)</span></a>
             {FIGMA_WORKSHEETS
@@ -153,12 +155,7 @@ function BuildingADesignTeam() {
         <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{[...ws.team, ...ws.hiring, ...ws.onboarding].map(d => <DownloadCard key={d.slug} d={d} />)}</ul>
       </Section>
 
-      <section className="hairline-top py-12">
-        <div className="container-site flex flex-wrap items-center justify-between gap-4">
-          <Button to={LEADING_DESIGN_PATH} variant="tertiary">Back to Leading Design</Button>
-          <Button to="/resources" variant="tertiary" arrow>Resources</Button>
-        </div>
-      </section>
+      <NextUp link={nextChapter(c.slug)} />
     </>
   )
 }

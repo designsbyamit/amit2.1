@@ -74,7 +74,7 @@ export default function CursorDot() {
     <>
       {/* Core dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full"
+        className="fixed top-0 left-0 pointer-events-none z-cursor rounded-full"
         style={{
           x: dotX,
           y: dotY,
@@ -93,7 +93,7 @@ export default function CursorDot() {
 
       {/* Expanding ring / label */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] flex items-center justify-center"
+        className="fixed top-0 left-0 pointer-events-none z-progress flex items-center justify-center"
         style={{
           x: ringX,
           y: ringY,
@@ -115,7 +115,7 @@ export default function CursorDot() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgb(var(--ink-rgb) / 0.75)' }}>
+            <span style={{ fontSize: 'var(--text-xs)', fontWeight: 500, letterSpacing: 'var(--track-wide)', textTransform: 'uppercase', color: 'rgb(var(--ink-rgb) / 0.75)' }}>
               {cursor.label}
             </span>
           </motion.div>
