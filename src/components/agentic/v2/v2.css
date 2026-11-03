@@ -32,9 +32,11 @@
 .pin-static { position: relative; transform: none; box-shadow: none; }
 
 /* ── Sticky notes ── */
-.sticky { position: relative; padding: var(--space-30) var(--space-30) var(--space-40); color: var(--note-ink); box-shadow: var(--shadow-3); border-radius: var(--radius-1); }
-.sticky .hand { font-family: var(--font-hand); font-size: var(--text-2xl); line-height: 1.15; }
-.sticky .scrawl { font-family: var(--font-hand); font-size: var(--text-lg); line-height: 1; }
+.sticky { position: relative; width: var(--size-sticky); padding: var(--space-20) var(--space-20) var(--space-30); color: var(--note-ink); box-shadow: var(--shadow-3); border-radius: var(--radius-1); font-family: var(--font-hand); font-size: var(--text-hand); line-height: 1.15; }
+.sticky .hand-k { opacity: 0.65; }
+.sticky .hand-t { font-weight: 700; margin-top: var(--space-4); }
+.sticky .hand { font-weight: 500; }
+.sticky .scrawl { font-weight: 400; }
 
 /* ── Connectors ── */
 .cx-flow { stroke-dasharray: var(--space-8) var(--space-8); animation: cx-flow calc(var(--dur-slow) * 2) linear infinite; }
@@ -43,3 +45,7 @@
 @media (prefers-reduced-motion: reduce) {
   .pg-rise, .pg-scan, .pg-blink, .pg-flow, .pg-tilt, .pg-ping, .pg-spin, .wf-bar, .cx-flow { animation: none; }
 }
+
+/* ── Pictogram tile and item titles ── */
+.pg-tile { width: var(--size-pictogram); height: var(--size-pictogram); padding: var(--space-10); border: 1px solid var(--line-1); border-radius: var(--radius-3); background: var(--surface-0); display: flex; align-items: center; justify-content: center; }
+.v2-item { font-size: var(--text-base); font-weight: 500; line-height: 1.4; }

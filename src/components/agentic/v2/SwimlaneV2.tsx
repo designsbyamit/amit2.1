@@ -75,7 +75,7 @@ export default function SwimlaneV2({ cols, lanes, legendA, legendG, legendH }: {
           <div className="relative" style={{ display: 'grid', gridTemplateColumns: `var(--size-cell) repeat(${cols.length}, minmax(var(--size-cell), 1fr))` }}>
             <div />
             {cols.map((c, i) => (
-              <motion.div key={c} className="px-2 pb-3 text-overline text-ink-3 flex items-center gap-2" initial={reduce ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+              <motion.div key={c} className="px-2 pb-3 text-label text-ink-3 flex items-center gap-2" initial={reduce ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <span>{String(i + 1).padStart(2, '0')}</span><span>{c}</span>
               </motion.div>
             ))}
@@ -85,7 +85,7 @@ export default function SwimlaneV2({ cols, lanes, legendA, legendG, legendH }: {
                 {l.cells.map((cell, ci) => (
                   <div key={ci} className="hairline-top p-3 min-h-lane">
                     {cell.map(c => (
-                      <motion.div key={c.t} ref={(e: HTMLDivElement | null) => { refs.current[`${li}:${ci}`] = e }} className="relative rounded-lg px-3 py-2.5 text-body-sm leading-snug w-[72%] mx-auto"
+                      <motion.div key={c.t} ref={(e: HTMLDivElement | null) => { refs.current[`${li}:${ci}`] = e }} className="relative rounded-lg px-3 py-2.5 text-body leading-snug w-[72%] mx-auto"
                         style={c.k === 'a' ? { background: 'rgb(var(--ink-rgb))', color: 'var(--surface-0)' } : c.k === 'g' ? { border: 'var(--space-2) solid var(--signal)', background: 'var(--surface-1)', color: 'rgb(var(--ink-rgb))' } : { border: 'var(--space-1) solid rgb(var(--ink-rgb) / 0.5)', background: 'var(--surface-1)', color: 'rgb(var(--ink-rgb))' }}
                         initial={reduce ? false : { opacity: 0, scale: 0.94 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.25 + ci * 0.16, ease }}>
                         {c.k === 'g' && <span className="block text-t-2xs tracking-overline uppercase opacity-70 mb-1">Gate</span>}

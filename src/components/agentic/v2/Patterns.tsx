@@ -97,7 +97,7 @@ export function PatternNotes({ notes }: { notes: Note[] }) {
       {notes.map(n => (
         <li key={n.n} className="hairline-top pt-4 grid grid-cols-[2rem_1fr] gap-x-3">
           <span className="pin pin-static">{n.n}</span>
-          <div><p className="text-label text-ink-3">{n.where}</p><p className="text-body-sm text-ink-2 mt-1">{n.text}</p></div>
+          <div><p className="text-label text-ink-3">{n.where}</p><p className="text-body text-ink-2 mt-1">{n.text}</p></div>
         </li>
       ))}
     </ol>

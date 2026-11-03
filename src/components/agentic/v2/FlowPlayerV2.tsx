@@ -114,7 +114,7 @@ export default function FlowPlayerV2({ imgs, title, intro }: { imgs: Record<stri
               <motion.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3, ease }}>
                 <span className="inline-block rounded-full px-3 py-1 text-label" style={actorStyle}>{step.who}</span>
                 <p className="text-label text-ink-3 mt-4">{CHAPTERS[step.ch]} · step {i + 1} of {STEPS.length}</p>
-                <p className="text-title text-white mt-1">{step.title}</p>
+                <p className="v2-item text-white mt-1">{step.title}</p>
                 <p className="text-body text-ink-2 mt-3">{step.text}</p>
               </motion.div>
             </AnimatePresence>

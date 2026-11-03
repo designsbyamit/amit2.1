@@ -32,13 +32,13 @@ function Section({ id, children, tone = 'base' }: { id?: string; children: React
 function Head({ c }: { c: Chapter }) {
   return (
     <header className="mb-14 md:mb-16">
-      <p className="text-overline text-ink-3">Chapter {c.n}</p>
+      <p className="text-label text-ink-3">Chapter {c.n}</p>
       <h2 className="text-display-l text-white mt-4 max-w-4xl">{c.title}</h2>
       <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{c.intro}</p>
       {c.together && (
         <dl className="grid sm:grid-cols-2 gap-x-10 gap-y-3 mt-8 max-w-4xl hairline-top pt-5">
-          <div><dt className="text-label text-ink-3">Together</dt><dd className="text-body-sm text-ink-2 mt-1">{c.together}</dd></div>
-          <div><dt className="text-label text-signal-ink">I drove</dt><dd className="text-body-sm text-white mt-1">{c.drove}</dd></div>
+          <div><dt className="text-label text-ink-3">Together</dt><dd className="text-body text-ink-2 mt-1">{c.together}</dd></div>
+          <div><dt className="text-label text-signal-ink">I drove</dt><dd className="text-body text-white mt-1">{c.drove}</dd></div>
         </dl>
       )}
     </header>
@@ -58,20 +58,20 @@ export default function SAPAgenticStoryV2Page() {
       <header style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic Order Confirmation' }]} />
-          <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
+          <p className="text-label text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{T.hero.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{T.hero.strap}</p>
           <div className="mt-8"><Button to="/craft/sap-agentic/film" arrow>Watch the 2-minute film</Button></div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-5xl">
             {T.hero.facts.map(([k, v]) => (
-              <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
+              <div key={k}><dt className="text-label text-ink-3">{k}</dt><dd className="v2-item text-white mt-2">{v}</dd></div>
             ))}
           </dl>
         </div>
       </header>
 
       <Section id="context" tone="raised">
-        <p className="text-overline text-ink-3">{T.context.label}</p>
+        <p className="text-label text-ink-3">{T.context.label}</p>
         <h2 className="text-display-l text-white mt-4 max-w-4xl">{T.context.title}</h2>
         <div className="mt-8 flex flex-col gap-5 max-w-measure-xl">
           {T.context.paras.map(p => <p key={p} className="text-body-lg text-ink-2">{p}</p>)}
@@ -92,13 +92,13 @@ export default function SAPAgenticStoryV2Page() {
             <motion.article key={p.id} className="card !p-0 overflow-hidden" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
               <img src={p.img} alt={`${p.name}, ${p.title}`} width={800} height={800} className="w-full aspect-[5/4] object-cover" style={{ objectPosition: '50% 30%' }} loading="lazy" decoding="async" />
               <div className="p-6">
-                <p className="text-overline text-ink-3">{p.role}</p>
-                <p className="text-title text-white mt-2">{p.name}</p>
-                <p className="text-body-sm text-ink-3">{p.title}</p>
+                <p className="text-label text-ink-3">{p.role}</p>
+                <p className="v2-item text-white mt-2">{p.name}</p>
+                <p className="text-body text-ink-3">{p.title}</p>
                 <p className="text-label text-signal-ink mt-6">Their struggle</p>
                 <p className="text-body text-ink-2 mt-2">{p.struggle}</p>
                 <p className="text-label text-ink-3 mt-6">They own</p>
-                <ul className="mt-2 space-y-2">{p.resp.map(r => <li key={r} className="text-body-sm text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{r}</li>)}</ul>
+                <ul className="mt-2 space-y-2">{p.resp.map(r => <li key={r} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{r}</li>)}</ul>
               </div>
             </motion.article>
           ))}
@@ -111,7 +111,7 @@ export default function SAPAgenticStoryV2Page() {
           {T.principles.map((p, i) => (
             <li key={p.t} className="hairline-top py-6">
               <p className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</p>
-              <p className="text-title text-white mt-2">{p.t}</p>
+              <p className="v2-item text-white mt-2">{p.t}</p>
               <p className="text-body text-ink-2 mt-2">{p.d}</p>
             </li>
           ))}
@@ -119,7 +119,7 @@ export default function SAPAgenticStoryV2Page() {
         <h3 className="text-heading text-white mt-16">{T.agentTitle}</h3>
         <dl className="max-w-4xl mt-4">
           {T.agent.map(([k, v]) => (
-            <div key={k} className="grid sm:grid-cols-[10rem_1fr] gap-2 sm:gap-8 py-4 hairline-top"><dt className="text-overline text-ink-3 pt-1">{k}</dt><dd className="text-body text-ink-2">{v}</dd></div>
+            <div key={k} className="grid sm:grid-cols-[10rem_1fr] gap-2 sm:gap-8 py-4 hairline-top"><dt className="text-label text-ink-3 pt-1">{k}</dt><dd className="text-body text-ink-2">{v}</dd></div>
           ))}
         </dl>
         <h3 className="text-heading text-white mt-16">{T.contractTitle}</h3>
@@ -141,7 +141,7 @@ export default function SAPAgenticStoryV2Page() {
       <Section id={C.risk.id}>
         <Head c={C.risk} />
         <RiskLogic formula={T.riskFormula} rows={T.riskRows} />
-        <p className="text-body-sm text-ink-3 mt-6 max-w-measure-xl">{T.riskNote}</p>
+        <p className="text-body text-ink-3 mt-6 max-w-measure-xl">{T.riskNote}</p>
         <h3 className="text-heading text-white mt-16 mb-8">{T.riskAppliedTitle}</h3>
         <RiskVisual chain={S.risk.chain} examples={S.risk.examples} orderRisk={S.risk.orderRisk} confidence={S.risk.confidence} note="Real differences from one order in the prototype." />
         <h3 className="text-heading text-white mt-20">{T.scenariosTitle}</h3>
@@ -151,7 +151,7 @@ export default function SAPAgenticStoryV2Page() {
               <figure className="m-0 rounded-3 overflow-hidden border border-[color:var(--line-1)] bg-surface-1">
                 <img src={shot(sc.shot)} alt={sc.t} width={2880} height={1798} className="w-full h-auto block" loading="lazy" decoding="async" />
               </figure>
-              <p className="text-title text-white mt-5">{sc.t}</p>
+              <p className="v2-item text-white mt-5">{sc.t}</p>
               <p className="text-body text-ink-2 mt-2">{sc.d}</p>
             </div>
           ))}
@@ -165,13 +165,13 @@ export default function SAPAgenticStoryV2Page() {
             <article key={pt.n} id={`pattern-${pt.n}`} className="scroll-mt-24">
               <div className="grid lg:grid-cols-12 gap-x-12 gap-y-6 mb-8">
                 <header className="lg:col-span-4">
-                  <p className="text-overline text-signal-ink">Pattern {pt.n}</p>
+                  <p className="text-label text-signal-ink">Pattern {pt.n}</p>
                   <h3 className="text-heading text-white mt-3">{pt.name}</h3>
                 </header>
                 <dl className="lg:col-span-8 grid sm:grid-cols-3 gap-6">
-                  <div><dt className="text-label text-ink-3">The problem</dt><dd className="text-body-sm text-ink-2 mt-2">{pt.problem}</dd></div>
-                  <div><dt className="text-label text-ink-3">The decision</dt><dd className="text-body-sm text-ink-2 mt-2">{pt.decision}</dd></div>
-                  <div><dt className="text-label text-ink-3">Where else</dt><dd className="text-body-sm text-ink-2 mt-2">{pt.reuse}</dd></div>
+                  <div><dt className="text-label text-ink-3">The problem</dt><dd className="text-body text-ink-2 mt-2">{pt.problem}</dd></div>
+                  <div><dt className="text-label text-ink-3">The decision</dt><dd className="text-body text-ink-2 mt-2">{pt.decision}</dd></div>
+                  <div><dt className="text-label text-ink-3">Where else</dt><dd className="text-body text-ink-2 mt-2">{pt.reuse}</dd></div>
                 </dl>
               </div>
               <PatternFigure kind={pt.kind} img={pt.img} alt={pt.alt} pins={pt.pins} wirePins={pt.wirePins} />
@@ -186,11 +186,11 @@ export default function SAPAgenticStoryV2Page() {
         <AutonomyLadder levels={S.autonomy.levels as never} next={T.next.list} />
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 mt-20">
           <div>
-            <p className="text-overline text-ink-3">{T.next.restsTitle}</p>
+            <p className="text-label text-ink-3">{T.next.restsTitle}</p>
             <ul className="mt-3">{T.next.rests.map(t => <li key={t} className="hairline-top py-3 text-body text-ink-2">{t}</li>)}</ul>
           </div>
           <div>
-            <p className="text-overline text-ink-3">{T.next.notTitle}</p>
+            <p className="text-label text-ink-3">{T.next.notTitle}</p>
             <ul className="mt-3">{T.next.not.map(t => <li key={t} className="hairline-top py-3 text-body text-ink-2">{t}</li>)}</ul>
           </div>
         </div>

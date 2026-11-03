@@ -6,16 +6,16 @@ function Block({ n, title, sub, children, delay = 0 }: { n: number; title: strin
   return (
     <motion.section className="p-6 md:p-8 flex flex-col" style={{ background: 'var(--surface-0)' }} initial={reduce ? false : { opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay }}>
       <header>
-        <p className="text-overline text-signal-ink">{String(n).padStart(2, '0')}</p>
-        <h3 className="text-title text-white mt-2">{title}</h3>
-        <p className="text-body-sm text-ink-3 mt-1">{sub}</p>
+        <p className="text-label text-signal-ink">{String(n).padStart(2, '0')}</p>
+        <h3 className="v2-item text-white mt-2">{title}</h3>
+        <p className="text-body text-ink-3 mt-1">{sub}</p>
       </header>
       <div className="mt-5 flex-1">{children}</div>
     </motion.section>
   )
 }
 const Field = ({ k, v }: { k: string; v: ReactNode }) => (
-  <div className="hairline-top py-3 grid gap-1"><dt className="text-label text-ink-3">{k}</dt><dd className="text-body-sm text-ink-2">{v}</dd></div>
+  <div className="hairline-top py-3 grid gap-1"><dt className="text-label text-ink-3">{k}</dt><dd className="text-body text-ink-2">{v}</dd></div>
 )
 const Tick = ({ on }: { on: boolean }) => (
   <span className="mt-0.5 w-check h-check rounded-2 grid place-items-center shrink-0 border" style={{ borderColor: on ? 'var(--signal)' : 'var(--line-control)', background: on ? 'var(--signal)' : 'transparent' }} aria-hidden="true">
@@ -50,11 +50,11 @@ export default function ContractV2() {
     <div className="rounded-3 overflow-hidden border" style={{ borderColor: 'var(--line-2)', background: 'var(--surface-0)', boxShadow: 'var(--shadow-3)' }}>
       <div className="px-6 md:px-8 py-7 md:py-9 grid md:grid-cols-[1fr_auto] gap-6 md:gap-12 items-end">
         <div>
-          <p className="text-overline text-ink-3">Template</p>
+          <p className="text-label text-ink-3">Template</p>
           <h3 className="text-heading text-white mt-3">Agent-Human Contract</h3>
           <p className="text-body text-ink-2 mt-3 max-w-measure-l">One page. What the agent does, what it never does, and when a person decides.</p>
         </div>
-        <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-body-sm">
+        <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-body">
           <dt className="text-label text-ink-3">Use case</dt><dd className="text-white">Supplier order confirmation</dd>
           <dt className="text-label text-ink-3">Team</dt><dd className="text-white">Procurement, supply chain</dd>
         </dl>
@@ -70,7 +70,7 @@ export default function ContractV2() {
         </Block>
         <Block n={2} title="Capabilities" sub="What the agent can do." delay={0.06}>
           <ul>{CAPS.map(([t, on, note]) => (
-            <li key={t} className="hairline-top flex gap-3 py-3"><Tick on={on} /><span className="text-body-sm"><span className={on ? 'text-white' : 'text-ink-3'}>{t}</span>{note && <span className="block text-ink-3 mt-0.5">{note}</span>}</span></li>
+            <li key={t} className="hairline-top flex gap-3 py-3"><Tick on={on} /><span className="text-body"><span className={on ? 'text-white' : 'text-ink-3'}>{t}</span>{note && <span className="block text-ink-3 mt-0.5">{note}</span>}</span></li>
           ))}</ul>
         </Block>
         <Block n={3} title="Guardrails" sub="What it must not do." delay={0.12}>
@@ -84,9 +84,9 @@ export default function ContractV2() {
         <Block n={4} title="Levels of autonomy" sub="How much freedom it has.">
           <ul className="space-y-3">{LEVELS.map(l => (
             <li key={l.name} className="rounded-3 p-4" style={{ border: l.today ? 'var(--space-2) solid var(--signal)' : 'var(--space-1) solid var(--line-2)', background: l.today ? 'var(--surface-1)' : 'transparent' }}>
-              <p className="text-body text-white flex items-center gap-2">{l.name}{l.today && <span className="rounded-full px-2 py-0.5 text-overline" style={{ background: 'var(--signal)', color: 'var(--on-signal)' }}>Today</span>}</p>
-              <p className="text-body-sm text-ink-2 mt-1.5">{l.text}</p>
-              <p className="text-body-sm text-ink-3 mt-1.5">{l.when}</p>
+              <p className="text-body text-white flex items-center gap-2">{l.name}{l.today && <span className="rounded-full px-2 py-0.5 text-label" style={{ background: 'var(--signal)', color: 'var(--on-signal)' }}>Today</span>}</p>
+              <p className="text-body text-ink-2 mt-1.5">{l.text}</p>
+              <p className="text-body text-ink-3 mt-1.5">{l.when}</p>
             </li>
           ))}</ul>
         </Block>

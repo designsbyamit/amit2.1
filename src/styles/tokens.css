@@ -228,6 +228,7 @@ html[data-theme='light'] {
   --text-md: 1.0625rem;
   --text-lead: 1.125rem;
   --text-lg: 1.25rem;
+  --text-hand: 1.5rem;         /* handwritten notes */
   --text-2xl: 2rem;
   --text-numeral-s: 4.5rem;
   --text-numeral-l: 6rem;
@@ -276,6 +277,8 @@ html[data-theme='light'] {
   --track-wide: 0.1em;
 
   /* Fixed sizes used by more than one component */
+  --size-pictogram: 8rem;      /* pictogram tile */
+  --size-sticky: 16rem;        /* sticky note */
   --size-note-s: 180px;        /* narrow captions and notes */
   --size-note: 240px;
   --size-note-l: 260px;
