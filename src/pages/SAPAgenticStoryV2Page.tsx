@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Breadcrumb from '../components/ds/Breadcrumb'
@@ -48,11 +47,6 @@ function Head({ c }: { c: Chapter }) {
 export default function SAPAgenticStoryV2Page() {
   const imgs = Object.fromEntries(S.journeys.flatMap(j => j.screens).map(sc => [sc.id, sc.img]))
   const C = T.chapters
-  useEffect(() => {
-    const m = document.createElement('meta'); m.name = 'robots'; m.content = 'noindex,nofollow'; document.head.appendChild(m)
-    return () => { m.remove() }
-  }, [])
-
   return (
     <div className="bg-surface-0 min-h-screen">
       <header style={{ paddingTop: 'var(--header-h)' }}>
@@ -90,7 +84,7 @@ export default function SAPAgenticStoryV2Page() {
         <div className="grid md:grid-cols-3 gap-4">
           {S.personas.map((p, i) => (
             <motion.article key={p.id} className="card !p-0 overflow-hidden" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
-              <img src={p.img} alt={`${p.name}, ${p.title}`} width={800} height={800} className="w-full aspect-[5/4] object-cover" style={{ objectPosition: '50% 30%' }} loading="lazy" decoding="async" />
+              <img src={p.img} alt={`${p.name}, ${p.title}`} width={600} height={600} className="w-full aspect-square object-cover bg-white" loading="lazy" decoding="async" />
               <div className="p-6">
                 <p className="text-label text-ink-3">{p.role}</p>
                 <p className="v2-item text-white mt-2">{p.name}</p>
@@ -181,17 +175,11 @@ export default function SAPAgenticStoryV2Page() {
       <Section id={C.next.id}>
         <Head c={C.next} />
         <AutonomyLadder levels={S.autonomy.levels as never} next={T.next.list} />
-        <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 mt-20">
-          <div>
-            <p className="text-label text-ink-3">{T.next.restsTitle}</p>
-            <ul className="mt-3">{T.next.rests.map(t => <li key={t} className="hairline-top py-3 text-body text-ink-2">{t}</li>)}</ul>
-          </div>
-          <div>
-            <p className="text-label text-ink-3">{T.next.notTitle}</p>
-            <ul className="mt-3">{T.next.not.map(t => <li key={t} className="hairline-top py-3 text-body text-ink-2">{t}</li>)}</ul>
-          </div>
+        <div className="mt-s120 max-w-measure-xl">
+          <p className="text-label text-ink-3">{T.next.restsTitle}</p>
+          <ul className="mt-s20">{T.next.rests.map(t => <li key={t} className="hairline-top py-s20 text-body text-ink-2">{t}</li>)}</ul>
         </div>
-        <div className="mt-16 flex flex-wrap gap-3">
+        <div className="mt-s80 flex flex-wrap gap-s20">
           <Link to="/craft" className="btn btn-secondary">All case studies</Link>
           <Link to="/contact" className="btn btn-primary">Talk about agentic AI</Link>
         </div>

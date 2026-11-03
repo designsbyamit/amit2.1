@@ -95,7 +95,5 @@ export const story = {
     ],
     restsTitle: 'What this rests on',
     rests: ['A working prototype of 33 screens across three roles.', 'Discovery and co-creation with customer stakeholders.', 'Workflows checked for feasibility with product, engineering and AI.'],
-    notTitle: 'What I am not claiming',
-    not: ['A measured turnaround time. Weeks to hours is the aim of the design, not a reported result.', 'A deployment figure.', 'Reuse in other use cases. The patterns were designed for it.'],
   },
 }
