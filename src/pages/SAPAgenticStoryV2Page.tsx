@@ -13,7 +13,7 @@ import SwimlaneV2 from '../components/agentic/v2/SwimlaneV2'
 import FlowDiagramV2 from '../components/agentic/v2/FlowDiagramV2'
 import FlowPlayerV2 from '../components/agentic/v2/FlowPlayerV2'
 import RiskLogic from '../components/agentic/v2/RiskLogic'
-import PatternFigure, { PatternNotes } from '../components/agentic/v2/Patterns'
+import PatternLoop from '../components/agentic/v2/Patterns'
 import RiskVisual from '../components/agentic/RiskVisual'
 import AutonomyLadder from '../components/agentic/AutonomyLadder'
 
@@ -160,22 +160,19 @@ export default function SAPAgenticStoryV2Page() {
 
       <Section id={C.patterns.id} tone="raised">
         <Head c={C.patterns} />
-        <div className="flex flex-col gap-24 md:gap-32">
+        <div className="flex flex-col gap-s120 md:gap-s160">
           {T.patterns.map(pt => (
-            <article key={pt.n} id={`pattern-${pt.n}`} className="scroll-mt-24">
-              <div className="grid lg:grid-cols-12 gap-x-12 gap-y-6 mb-8">
-                <header className="lg:col-span-4">
-                  <p className="text-label text-signal-ink">Pattern {pt.n}</p>
-                  <h3 className="text-heading text-white mt-3">{pt.name}</h3>
-                </header>
-                <dl className="lg:col-span-8 grid sm:grid-cols-3 gap-6">
-                  <div><dt className="text-label text-ink-3">The problem</dt><dd className="text-body text-ink-2 mt-2">{pt.problem}</dd></div>
-                  <div><dt className="text-label text-ink-3">The decision</dt><dd className="text-body text-ink-2 mt-2">{pt.decision}</dd></div>
-                  <div><dt className="text-label text-ink-3">Where else</dt><dd className="text-body text-ink-2 mt-2">{pt.reuse}</dd></div>
+            <article key={pt.n} id={`pattern-${pt.n}`} className="scroll-mt-24 grid lg:grid-cols-12 gap-x-s80 gap-y-s40 items-start">
+              <div className="lg:col-span-5">
+                <p className="text-label text-signal-ink">Pattern {pt.n}</p>
+                <h3 className="text-heading text-white mt-s20">{pt.name}</h3>
+                <dl className="mt-s40 flex flex-col gap-s30">
+                  <div><dt className="text-label text-ink-3">The problem</dt><dd className="text-body text-ink-2 mt-s10">{pt.problem}</dd></div>
+                  <div><dt className="text-label text-ink-3">The decision</dt><dd className="text-body text-ink-2 mt-s10">{pt.decision}</dd></div>
+                  <div><dt className="text-label text-ink-3">Where else</dt><dd className="text-body text-ink-2 mt-s10">{pt.reuse}</dd></div>
                 </dl>
               </div>
-              <PatternFigure kind={pt.kind} img={pt.img} alt={pt.alt} pins={pt.pins} wirePins={pt.wirePins} />
-              <PatternNotes notes={pt.notes} />
+              <div className="lg:col-span-7"><PatternLoop frames={pt.frames} name={pt.name} /></div>
             </article>
           ))}
         </div>
