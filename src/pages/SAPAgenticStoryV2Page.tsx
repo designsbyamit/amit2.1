@@ -90,7 +90,7 @@ export default function SAPAgenticStoryV2Page() {
         <div className="grid md:grid-cols-3 gap-4">
           {S.personas.map((p, i) => (
             <motion.article key={p.id} className="card !p-0 overflow-hidden" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
-              <img src={p.img} alt={`${p.name}, ${p.title}`} width={800} height={800} className="w-full aspect-[5/4] object-cover" style={{ objectPosition: '50% 30%' }} loading="lazy" decoding="async" />
+              <img src={p.img} alt={`${p.name}, ${p.title}`} width={600} height={600} className="w-full aspect-square object-cover bg-white" loading="lazy" decoding="async" />
               <div className="p-6">
                 <p className="text-label text-ink-3">{p.role}</p>
                 <p className="v2-item text-white mt-2">{p.name}</p>

@@ -262,9 +262,9 @@ export const sapAgenticV2 = {
   ],
 
   personas: [
-    { id: 'david', role: 'Procurement Operations', name: 'David Paul', title: 'Procurement Operations Manager', img: `${dir}persona-david-face.jpg`, struggle: 'Reads each PDF in the supplier\u2019s own layout, often in German, and checks every figure by hand.', resp: ['Review the extracted data from the order confirmations and make corrections', 'Confirm validated to kick off the discrepancy routing as per the policy'] },
-    { id: 'adrian', role: 'Buyer', name: 'Adrian Smith', title: 'Category Buyer', img: `${dir}persona-adrian-face.jpg`, struggle: 'Must weigh cost and logistics impact on each difference, then tell the supplier exactly what to fix.', resp: ['Evaluate and accept/reject deviations based on logistics and cost impact', 'Escalate critical commercial risks to procurement leadership'] },
-    { id: 'rajan', role: 'Goods Recipient', name: 'Rajan Nair', title: 'Store Executive', img: `${dir}persona-rajan-face.jpg`, struggle: 'Must judge whether quantity and delivery changes work for what the business actually needs.', resp: ['Validate quantity deviations based on actual business requirements', 'Review delivery date changes and assess impact on operations and flag risks'] },
+    { id: 'david', role: 'Procurement Operations', name: 'David Paul', title: 'Procurement Operations Manager', img: `${dir}persona-david-line.svg`, struggle: 'Reads each PDF in the supplier\u2019s own layout, often in German, and checks every figure by hand.', resp: ['Review the extracted data from the order confirmations and make corrections', 'Confirm validated to kick off the discrepancy routing as per the policy'] },
+    { id: 'adrian', role: 'Buyer', name: 'Adrian Smith', title: 'Category Buyer', img: `${dir}persona-adrian-line.svg`, struggle: 'Must weigh cost and logistics impact on each difference, then tell the supplier exactly what to fix.', resp: ['Evaluate and accept/reject deviations based on logistics and cost impact', 'Escalate critical commercial risks to procurement leadership'] },
+    { id: 'rajan', role: 'Goods Recipient', name: 'Rajan Nair', title: 'Store Executive', img: `${dir}persona-rajan-line.svg`, struggle: 'Must judge whether quantity and delivery changes work for what the business actually needs.', resp: ['Validate quantity deviations based on actual business requirements', 'Review delivery date changes and assess impact on operations and flag risks'] },
   ],
 
   flowSteps: [
