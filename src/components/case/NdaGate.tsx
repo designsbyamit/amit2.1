@@ -5,7 +5,7 @@ import { useContact } from '../contact/ContactProvider'
 
 /** Asks for an access code before showing a detailed case study that is under NDA. */
 export default function NdaGate({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  const [open, setOpen] = useState(isUnlocked())
+  const [open, setOpen] = useState(isUnlocked(id))
   const [code, setCode] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
@@ -14,9 +14,9 @@ export default function NdaGate({ id, title, children }: { id: string; title: st
   const submit = async (e: FormEvent) => {
     e.preventDefault()
     setBusy(true); setError('')
-    const ok = await checkCode(code).catch(() => false)
+    const ok = await checkCode(id, code).catch(() => false)
     setBusy(false)
-    if (ok) { unlock(); setOpen(true) } else setError('That code is not right. Check it and try again.')
+    if (ok) { unlock(id); setOpen(true) } else setError('That code is not right. Check it and try again.')
   }
   return (
     <section style={{ paddingTop: 'var(--header-h)' }}>
