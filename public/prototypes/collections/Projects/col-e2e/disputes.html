@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disputes Worklist · Collections Assistant</title>
+  <link rel="icon" href="../../lib/assets/favicon.ico">
+  <script data-ui5-config type="application/json">{ "theme": "sap_horizon" }</script>
+  <script type="module" src="../../lib/ui5-bundle/ui5-bundle.js"></script>
+  <script src="../../lib/shared/shellbar.js"></script>
+  <style>
+    @font-face { font-family:"72"; font-weight:400; src:url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Regular.woff2") format("woff2"); }
+    @font-face { font-family:"72"; font-weight:700; src:url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Bold.woff2") format("woff2"); }
+    @font-face { font-family:"72"; font-weight:600; src:url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Semibold.woff2") format("woff2"); }
+    @font-face { font-family:"72"; font-weight:300; src:url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Light.woff2") format("woff2"); }
+    ui5-button { --sapButton_FontFamily: "72", sans-serif; }
+    ui5-button::part(text) { font-family: "72", sans-serif; font-weight: 400; }
+    *,*::before,*::after{box-sizing:border-box} body{margin:0;min-height:100vh;font-family:"72",sans-serif;background:var(--sapBackgroundColor);color:var(--sapTextColor)}
+    header{padding:.75rem 2rem;background:var(--sapBaseColor);border-bottom:1px solid var(--sapList_BorderColor)} h1{font-size:1.375rem;margin:0}
+    main{padding:1.5rem 2rem}.table-card{background:var(--sapBaseColor);border:1px solid var(--sapList_BorderColor);border-radius:.5rem;overflow:auto}.toolbar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-bottom:1px solid var(--sapList_BorderColor)}.helper{margin:0;color:var(--sapContent_LabelColor);font-size:.875rem}
+  </style>
+</head>
+<body>
+  <app-shellbar title="Disputes Worklist" base-path="../../" avatar-initials="SS" hide-product-switch></app-shellbar>
+  <header><h1>Disputes Worklist</h1></header>
+  <main><div class="table-card"><div class="toolbar"><strong>Open disputes (3)</strong><ui5-input placeholder="Search disputes" show-clear-icon><ui5-icon slot="icon" name="search"></ui5-icon></ui5-input></div><ui5-table>
+    <ui5-table-header-row slot="headerRow"><ui5-table-header-cell width="170px" style="padding-inline-start:1rem">Customer</ui5-table-header-cell><ui5-table-header-cell width="120px">Company Code</ui5-table-header-cell><ui5-table-header-cell width="160px">Invoice</ui5-table-header-cell><ui5-table-header-cell width="145px">Disputed Amount</ui5-table-header-cell><ui5-table-header-cell>Reason</ui5-table-header-cell><ui5-table-header-cell width="140px">Status</ui5-table-header-cell></ui5-table-header-row>
+    <ui5-table-row interactive><ui5-table-cell style="padding-inline-start:1rem">Mapleton Foods Inc</ui5-table-cell><ui5-table-cell>GB11</ui5-table-cell><ui5-table-cell>INV-204875</ui5-table-cell><ui5-table-cell>GBP 1,850.00</ui5-table-cell><ui5-table-cell>Price difference</ui5-table-cell><ui5-table-cell><ui5-tag design="Critical">In review</ui5-tag></ui5-table-cell></ui5-table-row>
+    <ui5-table-row interactive><ui5-table-cell style="padding-inline-start:1rem">Grovemart Retail Group</ui5-table-cell><ui5-table-cell>GB11</ui5-table-cell><ui5-table-cell>INV-204702</ui5-table-cell><ui5-table-cell>GBP 4,200.00</ui5-table-cell><ui5-table-cell>Missing proof of delivery</ui5-table-cell><ui5-table-cell><ui5-tag design="Information">Awaiting evidence</ui5-tag></ui5-table-cell></ui5-table-row>
+    <ui5-table-row interactive><ui5-table-cell style="padding-inline-start:1rem">Clearwater Trade Supply</ui5-table-cell><ui5-table-cell>GB95</ui5-table-cell><ui5-table-cell>INV-198322</ui5-table-cell><ui5-table-cell>GBP 785.50</ui5-table-cell><ui5-table-cell>Short shipment</ui5-table-cell><ui5-table-cell><ui5-tag design="Positive">Resolved</ui5-tag></ui5-table-cell></ui5-table-row>
+  </ui5-table></div><p class="helper" style="margin-top:1rem">Return to <a href="launchpad-with-collections.html">Home</a>.</p></main>
+</body>
+</html>

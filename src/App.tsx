@@ -32,6 +32,7 @@ const LibraryPage = lazy(() => import('./pages/grow/LibraryPage'))
 const LibraryEntryPage = lazy(() => import('./pages/grow/LibraryEntryPage'))
 const ReflectionsPage = lazy(() => import('./pages/ReflectionsPage'))
 const ShortStoryPage = lazy(() => import('./pages/ShortStoryPage'))
+const DesignHubPage = lazy(() => import('./pages/DesignHubPage'))
 const CommunityPage = lazy(() => import('./pages/CommunityPage'))
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const CaseStudyPage = lazy(() => import('./pages/CaseStudyPage'))
@@ -45,6 +46,9 @@ const AINativeGlossaryPage = lazy(() => import('./pages/AINativeGlossaryPage'))
 const LeadingDesignPage = lazy(() => import('./pages/LeadingDesignPage'))
 const LeadingChapterPage = lazy(() => import('./pages/LeadingChapterPage'))
 const SAPSearchStoryPage = lazy(() => import('./pages/SAPSearchStoryPage'))
+const SAPCollectionsStoryPage = lazy(() => import('./pages/SAPCollectionsStoryPage'))
+const SAPSignInStoryPage = lazy(() => import('./pages/SAPSignInStoryPage'))
+const SAPCompositionalStoryPage = lazy(() => import('./pages/SAPCompositionalStoryPage'))
 const SAPAgenticStoryPage = lazy(() => import('./pages/SAPAgenticStoryV2Page'))
 const AgenticFilmPage = lazy(() => import('./film/AgenticFilmPage'))
 const AgenticFilmV1Page = lazy(() => import('./film/archive/AgenticFilmV1Page'))
@@ -100,7 +104,7 @@ function LegacyHashRedirect() {
 /** The detailed case study for a project. Each of the larger projects has its own page; the rest use the standard one. */
 function CaseDetail() {
   const { id } = useParams<{ id: string }>()
-  const Page = ({ 'airline-app': AirlineStoryPage, engaze: EngazeStoryPage, 'sap-search': SAPSearchStoryPage, 'sap-agentic': SAPAgenticStoryPage } as Record<string, React.ComponentType>)[id ?? ''] ?? CaseStudyPage
+  const Page = ({ 'airline-app': AirlineStoryPage, engaze: EngazeStoryPage, 'sap-search': SAPSearchStoryPage, 'sap-agentic': SAPAgenticStoryPage, 'sap-collections': SAPCollectionsStoryPage, 'sap-signin': SAPSignInStoryPage, 'sap-compositional': SAPCompositionalStoryPage } as Record<string, React.ComponentType>)[id ?? ''] ?? CaseStudyPage
   const body = (
     <div className="relative">
       <BackToShort id={id ?? ''} />
@@ -167,6 +171,7 @@ function AnimatedRoutes() {
         <Route path="/leadership/stories" element={<PageTransition><LeadershipStoriesPage /></PageTransition>} />
         <Route path="/leadership/stories/:slug" element={<PageTransition><LeadershipStoryPage /></PageTransition>} />
         <Route path="/mentoring" element={<PageTransition><MentoringPage /></PageTransition>} />
+        <Route path="/community/design-hub" element={<PageTransition><DesignHubPage /></PageTransition>} />
         <Route path="/community" element={<PageTransition><CommunityPage /></PageTransition>} />
         <Route path="/reflections" element={<PageTransition><ReflectionsPage /></PageTransition>} />
         <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />

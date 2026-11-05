@@ -6,7 +6,7 @@ W,H=1200,630
 def fit(im):
     s=max(W/im.width,H/im.height); im=im.resize((round(im.width*s),round(im.height*s)),Image.LANCZOS)
     x=(im.width-W)//2; y=(im.height-H)//2; return im.crop((x,y,x+W,y+H))
-for n in ['airline-app','data-ai','dnetworx','engaze','sap-agentic','sap-search']:
+for n in ['airline-app','data-ai','dnetworx','engaze','sap-agentic','sap-search','sap-collections','sap-compositional','sap-signin']:
     fit(Image.open(f'{R}/covers/{n}-1600.webp').convert('RGB')).save(f'{O}/{n}.jpg',quality=86,optimize=True)
 # Home: portrait on the right of a dark panel
 bg=Image.new('RGB',(W,H),(15,16,19)); p=Image.open(f'{R}/about/amit-hero-bw.webp').convert('RGB')

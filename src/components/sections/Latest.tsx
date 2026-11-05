@@ -34,7 +34,9 @@ export default function Latest() {
   return (
     <div className="mt-16 md:mt-24 pt-10 md:pt-14 border-t" style={{ borderColor: 'var(--line-2)' }} id="latest">
       <h3 className="text-label text-ink-3 mb-8 md:mb-10">Practice, workshop and writing</h3>
-        <ul className="grid md:grid-cols-3 gap-4 md:gap-6">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <Item to="/community/design-hub" kind="Community" title="Reviving Design Hub India" text="14 events this year, 252+ members and volunteers who own their spaces." cta="Read the story" delay={0}
+            visual={img(`${import.meta.env.BASE_URL}images/design-hub/film-poster.webp`)} />
           <Item to={`/leadership/cases/${practice.slug}`} kind="Practice" title={practice.title} text={practice.subtitle} cta="Read the case" delay={0.06}
             visual={<StoryCover motif="culture" tone="teal" className="!rounded-none w-full h-full" ratio="16 / 10" />} />
           <Item to="/resources/dual-fluency" kind="Workshop" title="Build Dual Fluency" text="A Framework, a vocabulary and set of tools for translating design quality into business outcomes." cta="View Toolkit" delay={0.12}

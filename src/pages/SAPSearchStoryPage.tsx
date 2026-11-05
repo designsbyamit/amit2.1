@@ -1,5 +1,3 @@
-import Distinct from '../components/case/Distinct'
-import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -46,7 +44,6 @@ export default function SAPSearchStoryPage() {
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{S.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
-          <div className="mt-8"><Button to="/craft/sap-search/film" arrow>Watch the film · 2 min 46 s</Button></div>
           <div className="flex flex-wrap gap-2 mt-8">
             <span className="tag">{S.kicker}</span>
             {S.pillars.map(p => <span key={p} className="tag">{p}</span>)}
@@ -56,12 +53,11 @@ export default function SAPSearchStoryPage() {
               <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
             ))}
           </dl>
-          {cs.distinct && <div className="mt-12"><Distinct title={cs.distinct.title} body={cs.distinct.body} /></div>}
         </div>
       </header>
 
       <Section id="vision">
-        <SectionHeader label="01 · Vision and impact" title={S.vision.title} intro={S.vision.intro} />
+        <SectionHeader label="01 · Direction" title={S.vision.title} intro={S.vision.intro} />
         <div className="grid md:grid-cols-3 gap-4">
           {S.vision.cards.map(c => (
             <div key={c.title} className="card">
@@ -172,7 +168,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Outcome */}
       <Section id="outcome" tone="raised">
-        <SectionHeader label="07 · Outcome" title="From fragmented search to one shared component." intro={cs.outcome} />
+        <SectionHeader label="07 · Outcome" title="Tested, validated and prototyped." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>

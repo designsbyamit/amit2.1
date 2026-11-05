@@ -6,7 +6,7 @@ import type { ReactNode } from 'react'
 
 export type MarkName =
   | 'lead' | 'experience' | 'community' | 'notes' | 'mentor' | 'toolkit' | 'portfolio'
-  | 'agentic' | 'search' | 'engaze' | 'airline' | 'data' | 'network'
+  | 'collections' | 'compositional' | 'signin' | 'agentic' | 'search' | 'engaze' | 'airline' | 'data' | 'network'
   | 'grow' | 'wingspan' | 'ama'
   | 'file18' | 'greenux' | 'gxd' | 'convai' | 'persona' | 'portal'
 
@@ -23,6 +23,12 @@ const D = (d: string, k?: string | number) => <path key={k} className="mk-guide"
 const N = (cx: number, cy: number, r = 3.5, k?: string | number) => <circle key={k} className="mk-node" cx={cx} cy={cy} r={r} fill={A} stroke="none" />
 
 const marks: Record<MarkName, ReactNode> = {
+  // Collections: a list of rows, one picked out and carried forward by a node.
+  collections: <>{L({ x: 8, y: 12, w: 40, h: 10, rx: 3, o: 0.45 }, 1)}{L({ x: 8, y: 27, w: 40, h: 10, rx: 3 }, 2)}{L({ x: 8, y: 42, w: 40, h: 10, rx: 3, o: 0.45 }, 3)}{L({ d: 'M48 32 H56' }, 4)}{N(58, 32)}</>,
+  // Compositional: separate pieces set inside a boundary, one placed by hand.
+  compositional: <>{L({ x: 8, y: 8, w: 48, h: 48, rx: 6, o: 0.45 }, 1)}{L({ x: 16, y: 16, w: 14, h: 14, rx: 3 }, 2)}{L({ x: 34, y: 16, w: 14, h: 8, rx: 3, o: 0.7 }, 3)}{L({ x: 16, y: 36, w: 32, h: 12, rx: 3, o: 0.7 }, 4)}{N(41, 30, 3)}</>,
+  // Sign in: a card with a single field and a node as the way in.
+  signin: <>{L({ x: 10, y: 10, w: 44, h: 44, rx: 6 }, 1)}{L({ d: 'M18 26 H46' }, 2)}{L({ d: 'M18 36 H38', o: 0.6 }, 3)}{N(46, 44, 3.5)}</>,
   // Leadership: a line of people set at different distances, one node out in front.
   lead: <>{L({ d: 'M8 46 H26' }, 1)}{L({ d: 'M8 36 H38' }, 2)}{L({ d: 'M8 26 H50' }, 3)}{L({ cx: 56, cy: 26, r: 7, o: 0.45 }, 4)}{N(56, 26)}</>,
   // Experience: stories stacked, each one a moment, the top one still open.
@@ -82,7 +88,7 @@ const storyMarks: Record<string, MarkName> = {
   'generative-experience-design-portal': 'portal',
 }
 const caseMarks: Record<string, MarkName> = {
-  'sap-agentic': 'agentic', 'sap-search': 'search', engaze: 'engaze', 'airline-app': 'airline', 'data-ai': 'data', dnetworx: 'network',
+  'sap-agentic': 'agentic', 'sap-collections': 'collections', 'sap-compositional': 'compositional', 'sap-signin': 'signin', 'sap-search': 'search', engaze: 'engaze', 'airline-app': 'airline', 'data-ai': 'data', dnetworx: 'network',
 }
 export const markForStory = (slug: string): MarkName | undefined => storyMarks[slug]
 export const markForCase = (id: string): MarkName | undefined => caseMarks[id]

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in · Collections Assistant</title>
+  <link rel="icon" href="../../lib/assets/favicon.ico">
+  <script data-ui5-config type="application/json">{ "theme": "sap_horizon" }</script>
+  <script type="module" src="../../lib/ui5-bundle/ui5-bundle.js"></script>
+  <style>
+    @font-face { font-family: "72"; font-weight: 400; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 700; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Bold.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 600; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Semibold.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 300; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Light.woff2") format("woff2"); }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--sapShell_Background, #eff1f2); color: var(--sapTextColor); font-family: "72", sans-serif; }
+    ui5-button { --sapButton_FontFamily: "72", sans-serif; }
+    ui5-button::part(text) { font-family: "72", sans-serif; font-weight: 400; }
+    .login-page { min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 4rem 3rem 2rem; }
+    .login-card { width: min(420px, 100%); margin: auto; padding: 2rem; background: var(--sapBaseColor, #fff); border: 1px solid var(--sapList_BorderColor); border-radius: var(--sapTile_BorderCornerRadius, 1rem); box-shadow: var(--sapContent_Shadow0); }
+    .sap-mark { display: block; width: 5.5rem; height: auto; margin-bottom: 2rem; }
+    .field { display: flex; flex-direction: column; gap: .35rem; margin: 1rem 0; }
+    .field label { color: var(--sapContent_LabelColor); font-size: .875rem; }
+    .field ui5-input { width: 100%; }
+    .login-actions { display: grid; gap: .75rem; margin-top: 1.25rem; }
+    .login-actions ui5-button { width: 100%; }
+    .login-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: var(--sapContent_LabelColor); font-size: .8125rem; }
+    .powered-by { display: flex; align-items: center; gap: .65rem; }
+    .powered-by img { width: 2.5rem; height: auto; }
+    .footer-links { display: flex; gap: 1rem; }
+    .hidden { display: none !important; }
+    @media (max-width: 600px) { .login-page { padding: 1.5rem; } .login-card { margin-top: 2rem; } }
+  </style>
+</head>
+<body>
+  <main class="login-page">
+    <section class="login-card" aria-label="Sign in">
+      <img class="sap-mark" src="assets/sap-logo.svg" alt="SAP">
+      <div id="passwordStep">
+        <div class="field"><label for="userName">Username</label><ui5-input id="userName" value="sofia.silva@northstar.com" readonly></ui5-input></div>
+        <div class="field"><label for="password">Password</label><ui5-input id="password" type="Password" placeholder="Enter your password"></ui5-input></div>
+        <div class="login-actions"><ui5-button id="continueBtn" design="Emphasized">Continue</ui5-button><ui5-button design="Transparent" id="forgotPassword">Forgot Password?</ui5-button><ui5-button design="Transparent" id="differentAccount">Sign in using a different account</ui5-button></div>
+      </div>
+      <div id="accountStep" class="hidden">
+        <div class="field"><label for="accountEmail">Email or username</label><ui5-input id="accountEmail" value="sofia.silva@northstar.com"></ui5-input></div>
+        <div class="login-actions"><ui5-button id="useAccount" design="Emphasized">Continue</ui5-button><ui5-button design="Transparent" id="backToPassword">Back</ui5-button></div>
+      </div>
+    </section>
+    <footer class="login-footer"><span class="powered-by"><img src="assets/sap-logo.svg" alt="">Powered by SAP</span><div class="footer-links"><span>Help</span><span>Privacy</span><span>Terms</span><span>Cookie Policy</span></div></footer>
+  </main>
+  <ui5-toast id="loginToast">Enter a password to continue.</ui5-toast>
+  <script>
+    const passwordStep = document.getElementById('passwordStep');
+    const accountStep = document.getElementById('accountStep');
+    document.getElementById('continueBtn').addEventListener('click', function() {
+      if (!document.getElementById('password').value.trim()) { document.getElementById('loginToast').show(); return; }
+      location.href = 'launchpad.html';
+    });
+    document.getElementById('differentAccount').addEventListener('click', function() { passwordStep.classList.add('hidden'); accountStep.classList.remove('hidden'); });
+    document.getElementById('backToPassword').addEventListener('click', function() { accountStep.classList.add('hidden'); passwordStep.classList.remove('hidden'); });
+    document.getElementById('useAccount').addEventListener('click', function() { if (document.getElementById('accountEmail').value.trim()) location.href = 'launchpad.html'; });
+    document.getElementById('forgotPassword').addEventListener('click', function() { document.getElementById('loginToast').textContent = 'Password reset instructions are sent by your identity provider.'; document.getElementById('loginToast').show(); });
+  </script>
+</body>
+</html>

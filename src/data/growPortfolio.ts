@@ -68,7 +68,7 @@ export const guide: GuideSection[] = [
     ],
     example: {
       label: 'How the Agentic case study opens',
-      quote: 'Processing a supplier order confirmation took weeks. The goal was a few hours.',
+      quote: 'Reading a supplier order confirmation by hand is slow. The aim was to bring it down to hours.',
       note: 'Problem and stake in two short sentences, before any mention of the solution. The next section is titled “A design problem, not an automation project”, which frames the thinking before the screens.',
       to: '/craft/sap-agentic',
     },

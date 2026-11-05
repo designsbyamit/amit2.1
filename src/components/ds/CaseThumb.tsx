@@ -47,7 +47,7 @@ export default function CaseThumb({ id, className = '', ratio = '1800 / 1000', c
     <div ref={root} className={`thumb relative overflow-hidden bg-field-ink ${className}`} style={{ aspectRatio: ratio, borderRadius: flush ? 0 : compact ? 10 : 20 }} aria-hidden="true">
       <img src={`${src}-1600.webp`} srcSet={`${src}-640.webp 640w, ${src}-1600.webp 1600w`} sizes={compact ? '320px' : '(min-width: 768px) 58vw, 100vw'}
         alt="" width={1800} height={1000} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
-      {mounted && (
+      {mounted && t.loop && (
         <div className="absolute inset-0 transition-opacity duration-500 ease-out" style={{ opacity: shown ? 1 : 0 }}>
           <AnimThumb id={t.loop} />
           {!compact && !live && <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 font-mono text-t-tiny uppercase tracking-widest text-white backdrop-blur"><span className="h-1.5 w-1.5 rounded-full bg-signal" />Preview</span>}

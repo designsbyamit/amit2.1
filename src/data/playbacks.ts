@@ -29,7 +29,7 @@ export interface Playback {
 export const playbacks: Playback[] = [
   {
     id: 'sap-agentic',
-    headline: 'Human-led agentic AI cuts order confirmation TAT from weeks to hours',
+    headline: 'Human-led agentic AI for supplier order confirmation and RFQ response',
     dek: 'An agent extracts and compares, people validate and decide. Co-created with customers as a white-labelled solution across supply chain management.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
@@ -56,7 +56,7 @@ export const playbacks: Playback[] = [
       { title: 'Human decision-making', text: 'Results are routed to the right stakeholders to approve, escalate or ask for clarification.', by: 'People' },
       { title: 'Communication and closure', text: 'Decisions and actions go back to the relevant parties, and the process is closed.', by: 'Agent + people' },
     ],
-    metric: { value: 'Weeks → hours', label: 'Order confirmation turnaround time' },
+    
     featured: true,
   },
   {
@@ -109,17 +109,57 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'Designing AI search experiences, scaled across products',
-    dek: 'AI search built into the design system so each improvement reaches every product that adopts it, designed to earn the trust of sceptical enterprise users.',
-    led: 'I led a design team of 28, working alongside engineering, product, data science and accessibility.',
-    roleNote: 'A design-system component case: the craft of interaction and behaviour, the anatomy of the component, and the specification product teams build from.',
+    headline: 'One vision for AI search, built from what stakeholders told us',
+    dek: 'We met line of business stakeholders, wrote the vision and principles, and led eight designers in three groups to a tested prototype.',
+    led: 'I led eight designers in three groups, alongside engineering and product.',
+    roleNote: 'Design Lead for the search vision and its three workstreams.',
     beats: {
-      about: 'One unified AI-powered search experience across the product suite.',
-      challenge: 'Each product had its own legacy search, vocabulary and assumptions, and enterprise users were sceptical of AI-surfaced results.',
-      users: 'Enterprise users across the suite who already distrust automation and need to see why a result appeared.',
-      solution: 'Intent over query, relevance over completeness, and reasoning shown instead of magic, including surfacing the AI’s confidence.',
+      about: 'One AI powered search experience for the product suite.',
+      challenge: 'Each product had its own search. We first needed to understand what line of business stakeholders needed and what search should offer. Two questions stayed hard: how search transitions into Joule, and how much information results should show.',
+      users: 'Line of business stakeholders and the people who search across the suite every day.',
+      solution: 'A vision and principles in Figma, three groups for pre-search and querying, search and results, and results to products and applications. The direction was tested and validated, and a prototype was built.',
     },
     featured: true,
+  },
+  {
+    id: 'sap-collections',
+    headline: 'An agent prepares the work on overdue customers, and people decide what to send',
+    dek: 'A Fiori app for collections, designed within Fiori and UI5 constraints and released through phase 2.',
+    led: 'I led the design, together with product and engineering.',
+    roleNote: 'Design Lead. Four rounds of discovery with three roles.',
+    beats: {
+      about: 'A collections app where an agent prepares the work on overdue customers.',
+      challenge: 'Collectors work long lists across many company codes, inside the constraints of Fiori.',
+      users: 'Three roles, met over four rounds of discovery.',
+      solution: 'One row per customer with company codes inline and an explainable priority. A Next Best Action comes before the draft, and a person approves before anything is sent. Phases 1 and 2 are released.',
+    },
+    featured: true,
+  },
+  {
+    id: 'sap-compositional',
+    headline: 'Giving AI a governed design language, from design systems to design intelligence',
+    dek: 'A research point of view, a working hypothesis called EOM, and a vertical slice lab.',
+    roleNote: 'Research and point of view. Status: working hypothesis.',
+    beats: {
+      about: 'A compositional design system gives AI a governed design language for creating experiences.',
+      challenge: 'Generative interfaces jump from prompt to arbitrary UI, with nothing to inspect on the way.',
+      users: 'Designers and product teams who will work alongside AI.',
+      solution: 'Keep the LLM, the design language, composition and guardrails apart, and check every step from intent to interface. Eight deliverables make it practical.',
+    },
+    featured: false,
+  },
+  {
+    id: 'sap-signin',
+    headline: 'One sign in and sign out experience for eight cloud products',
+    dek: 'A product standard with three flow types, one anatomy and one way to recover. Ready for implementation.',
+    roleNote: 'Guidelines and five interactive prototypes.',
+    beats: {
+      about: 'A single sign in and sign out standard for the cloud products.',
+      challenge: 'The first screen of every product looked different, with basics missing.',
+      users: 'People who move between products, and the product teams who build the entry.',
+      solution: 'Three flows, one card anatomy, recovery inside the same card and non blaming language. Adoption is not reported.',
+    },
+    featured: false,
   },
   {
     id: 'data-ai',

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings · Collections Assistant</title>
+  <link rel="icon" href="../../lib/assets/favicon.ico">
+  <script data-ui5-config type="application/json">{ "theme": "sap_horizon" }</script>
+  <script type="module" src="../../lib/ui5-bundle/ui5-bundle.js"></script>
+  <script src="../../lib/shared/shellbar.js"></script>
+  <style>
+    @font-face { font-family: "72"; font-weight: 400; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 700; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Bold.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 600; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Semibold.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 300; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseLib/baseTheme/fonts/72-Light.woff2") format("woff2"); }
+    *,*::before,*::after{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:"72",sans-serif;background:var(--sapShell_Background,#eff1f2);color:var(--sapTextColor)}
+    ui5-button{--sapButton_FontFamily:"72",sans-serif} ui5-button::part(text){font-family:"72",sans-serif;font-weight:400}
+    main{padding:2rem 3rem}.topline{display:flex;justify-content:space-between;align-items:center;max-width:1020px;margin-bottom:1rem}h1{margin:0;font-size:1.5rem}
+    .tile-grid{display:grid;grid-template-columns:repeat(4,153px);gap:.5rem;max-width:1020px}.tile{width:153px;height:153px;padding:1rem;background:var(--sapBaseColor,white);border:1px solid var(--sapList_BorderColor);border-radius:var(--sapTile_BorderCornerRadius,1rem);box-shadow:var(--sapContent_Shadow0);color:var(--sapTextColor);text-decoration:none;transition:transform .16s ease,box-shadow .16s ease}.tile:hover{transform:translateY(-3px);box-shadow:var(--sapContent_Shadow2)}.tile h2{margin:0;font-size:1rem;font-weight:600}
+    #settingsDialog{width:min(920px,calc(100vw - 2rem));max-height:calc(100vh - 3rem)}
+    .settings-layout{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:570px}
+    .settings-nav{border-right:1px solid var(--sapList_BorderColor);background:var(--sapList_Background);padding:.5rem 0}
+    .settings-nav button{width:100%;display:flex;align-items:flex-start;gap:.75rem;padding:.8rem 1rem;border:0;border-bottom:1px solid var(--sapList_BorderColor);background:transparent;color:var(--sapTextColor);text-align:left;font:400 .875rem "72",sans-serif;cursor:pointer}
+    .settings-nav button.active{background:var(--sapList_SelectionBackgroundColor);outline:2px solid var(--sapSelectedColor);outline-offset:-2px}
+    .settings-nav ui5-icon{margin-top:.1rem;color:var(--sapContent_IconColor)}
+    .nav-copy{display:flex;flex-direction:column;gap:.25rem}.nav-copy span:last-child{color:var(--sapContent_LabelColor)}
+    .settings-content{padding:1.5rem;min-width:0}.settings-content h2{margin:0 0 1.5rem;font-size:1.25rem}
+    .settings-pane{display:none}.settings-pane.active{display:block}
+    .account-hero{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--sapBaseColor);border-radius:var(--sapTile_BorderCornerRadius,1rem)}.account-name{font-size:1.125rem;font-weight:700}
+    .account-details{margin-top:1rem;padding:1rem;background:var(--sapBaseColor);border-radius:var(--sapTile_BorderCornerRadius,1rem)}.account-row{display:grid;grid-template-columns:90px 1fr;gap:.75rem;padding:.4rem 0;font-size:.875rem}.account-row span:first-child{color:var(--sapContent_LabelColor)}
+    .setting-label{font-size:.875rem;color:var(--sapContent_LabelColor)}.radio-list{display:grid;gap:.75rem;margin:.75rem 0 1.5rem}.help-copy{max-width:340px;color:var(--sapContent_LabelColor);font-size:.8125rem;line-height:1.45}.subtle-rule{border:0;border-top:1px solid var(--sapList_BorderColor);margin:1rem 0}
+    .dialog-content{padding:0}.dialog-footer{display:flex;align-items:center;justify-content:flex-end;gap:.5rem;padding:.5rem}
+    @media(max-width:720px){main{padding:1rem}.tile-grid{grid-template-columns:1fr 1fr}.settings-layout{grid-template-columns:1fr}.settings-nav{display:grid;grid-template-columns:1fr 1fr;border-right:0}.settings-nav button{border-bottom:1px solid var(--sapList_BorderColor)}}
+  </style>
+</head>
+<body>
+  <app-shellbar title="Home" base-path="../../" avatar-initials="SS" hide-product-switch></app-shellbar>
+  <main>
+    <div class="topline"><h1>Accounts Receivable Worklist</h1><ui5-button design="Transparent" icon="action-settings">Settings</ui5-button></div>
+    <section class="tile-grid" aria-label="Applications">
+      <a class="tile" href="worklist.html"><h2>Collection Worklist</h2></a>
+      <a class="tile" href="admin.html"><h2>Administration</h2></a>
+      <a class="tile" href="disputes.html"><h2>Disputes Worklist</h2></a>
+      <a class="tile" href="preferences.html"><h2>User Preferences</h2></a>
+    </section>
+  </main>
+  <ui5-dialog id="settingsDialog" header-text="Settings" open>
+    <div class="dialog-content">
+      <div class="settings-layout">
+        <nav class="settings-nav" aria-label="Settings categories">
+          <button type="button" data-panel="account" class="active"><ui5-icon name="employee"></ui5-icon><span class="nav-copy"><span>User Account</span><span>Sofia Silva</span></span></button>
+          <button type="button" data-panel="appearance"><ui5-icon name="palette"></ui5-icon><span class="nav-copy"><span>Appearance</span><span>SAP Morning Horizon</span></span></button>
+          <button type="button" data-panel="language"><ui5-icon name="map"></ui5-icon><span class="nav-copy"><span>Language and Region</span><span>English (GB)</span></span></button>
+          <button type="button" data-panel="home"><ui5-icon name="home"></ui5-icon><span class="nav-copy"><span>Home Page</span></span></button>
+        </nav>
+        <section class="settings-content">
+          <div class="settings-pane active" data-pane="account"><h2>User Account</h2><div class="account-hero"><ui5-avatar initials="SS" size="L" color-scheme="Accent6"></ui5-avatar><span class="account-name">Sofia Silva</span></div><div class="account-details"><div class="account-row"><span>Name</span><strong>Sofia Silva</strong></div><div class="account-row"><span>Email</span><strong>sofia.silva@northstar.com</strong></div><div class="account-row"><span>Environment</span><strong>Collections Assistant demo</strong></div></div><div class="account-details"><strong>Personalization</strong><p class="help-copy">Reset your personalized settings such as theme, language, user activities, and home page preferences.</p><ui5-button design="Default">Reset All Personalization</ui5-button></div></div>
+          <div class="settings-pane" data-pane="appearance"><h2>Appearance</h2><label class="setting-label" for="themeSelect">Theme</label><ui5-select id="themeSelect" style="display:block;width:260px;margin-top:.5rem"><ui5-option selected>SAP Morning Horizon</ui5-option><ui5-option>SAP Evening Horizon</ui5-option></ui5-select></div>
+          <div class="settings-pane" data-pane="language"><h2>Language and Region</h2><label class="setting-label" for="languageSelect">Language</label><ui5-select id="languageSelect" style="display:block;width:260px;margin:.5rem 0 1rem"><ui5-option selected>English (GB)</ui5-option><ui5-option>Deutsch (DE)</ui5-option><ui5-option>Français (FR)</ui5-option></ui5-select><label class="setting-label" for="regionSelect">Region</label><ui5-select id="regionSelect" style="display:block;width:260px;margin-top:.5rem"><ui5-option selected>United Kingdom</ui5-option><ui5-option>Switzerland</ui5-option><ui5-option>United States</ui5-option></ui5-select></div>
+          <div class="settings-pane" data-pane="home"><h2>Home Page</h2><div class="setting-label">Home Page Display</div><div class="radio-list"><ui5-radio-button name="homeDisplay" text="Show all content" checked></ui5-radio-button><ui5-radio-button name="homeDisplay" text="Show one group at a time"></ui5-radio-button></div><hr class="subtle-rule"><p class="help-copy">The home page displays your tiles and links in groups. Choose to show all groups on one page or one group at a time.</p></div>
+        </section>
+      </div>
+    </div>
+    <div slot="footer" class="dialog-footer"><ui5-button id="saveSettings" design="Emphasized">Save</ui5-button><ui5-button design="Transparent" onclick="location.href='launchpad.html'">Cancel</ui5-button></div>
+  </ui5-dialog>
+  <script>
+    document.querySelectorAll('.settings-nav button').forEach(function(button){button.addEventListener('click',function(){document.querySelectorAll('.settings-nav button').forEach(function(item){item.classList.remove('active');});document.querySelectorAll('.settings-pane').forEach(function(pane){pane.classList.remove('active');});button.classList.add('active');document.querySelector('[data-pane="'+button.dataset.panel+'"]').classList.add('active');});});
+    document.getElementById('saveSettings').addEventListener('click',function(){location.href='launchpad-with-collections.html';});
+  </script>
+</body>
+</html>

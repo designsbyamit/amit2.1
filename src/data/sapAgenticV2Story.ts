@@ -20,7 +20,7 @@ export const story = {
     ],
   },
   chapters: {
-    problem: { n: 1, id: 'problem', title: 'Weeks to confirm one order: six manual hand-offs, three roles, no single record.', intro: 'A supplier answers a purchase order with a PDF, in its own layout and often in German. Someone reads it, checks every price, term, quantity and date against the order, then chases the owner of each difference. Every hand-off adds waiting. A missed difference moves on as a wrong order.', together: 'The use case and its goal came from the customer and product teams.', drove: 'Seeing it as a design problem: what an agent should take on, and what people should keep.' },
+    problem: { n: 1, id: 'problem', title: 'Confirming one order meant six manual hand-offs, three roles and no single record.', intro: 'A supplier answers a purchase order with a PDF, in its own layout and often in German. Someone reads it, checks every price, term, quantity and date against the order, then chases the owner of each difference. Every hand-off adds waiting. A missed difference moves on as a wrong order.', together: 'The use case and its goal came from the customer and product teams.', drove: 'Seeing it as a design problem: what an agent should take on, and what people should keep.' },
     people: { n: 2, id: 'people', title: 'Three roles see the same order differently.', intro: 'Operations checks the data. The buyer weighs cost. The goods recipient judges quantity and dates. Several rounds of discovery showed what each one needs in order to decide.', together: 'Discovery rounds with customer operations and buyer stakeholders.', drove: 'Leading those sessions, and turning them into three roles with their struggles and decisions.' },
     contract: { n: 3, id: 'contract', title: 'Delegate the work, not the accountability.', intro: 'The agent reads, compares and prepares. People keep every decision that needs judgement. One contract sets the line.', together: 'Where the line sits, settled with the customer and product.', drove: 'The agent definition, the contract and the three gates.' },
     flow: { n: 4, id: 'flow', title: 'One flow from inbox to close, with three gates for people.', intro: 'From the supplier email to the closed confirmation. Follow one order all the way through.', together: 'The end-to-end workflow, shaped with the customer and product.', drove: 'Turning it into one connected flow, checked for feasibility with engineering and AI.' },
@@ -38,7 +38,7 @@ export const story = {
   ],
   stickiesTitle: 'What discovery kept pointing to',
   stickies: [
-    { k: 'Time', t: 'Weeks, not hours', d: 'One confirmation took weeks. The business needed hours.', scrawl: 'hours!', tone: 'a' as const, tilt: -2 },
+    { k: 'Time', t: 'Hours, not waiting', d: 'The aim was to bring confirmation down to hours. It is an aim of the design, not a reported result.', scrawl: 'hours!', tone: 'a' as const, tilt: -2 },
     { k: 'Scattered', t: 'Documents live everywhere', d: 'Email, PDFs, the ERP, other apps. No single place for an order’s story.', scrawl: 'where is it?', tone: 'b' as const, tilt: 1.5 },
     { k: 'Unstructured', t: 'Risk mapped by hand', d: 'Supplier and risk profiles matched by eye, with no common structure.', scrawl: 'by eye', tone: 'c' as const, tilt: -1 },
   ],

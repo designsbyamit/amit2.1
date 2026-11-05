@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home · Collections Assistant</title>
+  <link rel="icon" href="../../lib/assets/favicon.ico">
+  <script data-ui5-config type="application/json">{ "theme": "sap_horizon" }</script>
+  <script type="module" src="../../lib/ui5-bundle/ui5-bundle.js"></script>
+  <script src="../../lib/shared/shellbar.js"></script>
+  <style>
+    @font-face { font-family: "72"; font-weight: 400; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseTheme/fonts/72-Regular.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 700; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseTheme/fonts/72-Bold.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 600; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseTheme/fonts/72-Semibold.woff2") format("woff2"); }
+    @font-face { font-family: "72"; font-weight: 300; src: url("https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content@11.33.0/content/Base/baseTheme/fonts/72-Light.woff2") format("woff2"); }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family:"72",sans-serif; background:var(--sapShell_Background,#eff1f2); color:var(--sapTextColor); }
+    ui5-button { --sapButton_FontFamily: "72", sans-serif; }
+    ui5-button::part(text) { font-family: "72", sans-serif; font-weight: 400; }
+    main { padding:2rem 2.5rem; }
+    h1 { margin:0 0 1rem; font-size:1.5rem; }
+    .tile-grid { display:grid; grid-template-columns:repeat(4,153px); gap:.5rem; max-width:1020px; }
+    .tile { width:153px; height:153px; padding:1rem; background:var(--sapBaseColor,white); border:1px solid var(--sapList_BorderColor); border-radius:var(--sapTile_BorderCornerRadius,1rem); box-shadow:var(--sapContent_Shadow0); color:var(--sapTextColor); text-decoration:none; transition:transform .16s ease,box-shadow .16s ease; }
+    .tile:hover { transform:translateY(-3px); box-shadow:var(--sapContent_Shadow2); }
+    .tile h2 { margin:0; font-size:1rem; font-weight:600; }
+    .tile p { margin:.75rem 0 0; color:var(--sapContent_LabelColor); font-size:.875rem; line-height:1.45; }
+    .topline { display:flex; justify-content:space-between; align-items:center; max-width:1020px; margin-bottom:1rem; }
+    .topline ui5-button { margin-left:auto; }
+    @media(max-width:700px) { main { padding:1.25rem; } .tile-grid { grid-template-columns:repeat(2,153px); } }
+  </style>
+</head>
+<body>
+  <app-shellbar title="Home" base-path="../../" avatar-initials="SS" hide-product-switch></app-shellbar>
+  <main>
+    <div class="topline"><h1>Accounts Receivable Worklist</h1><ui5-button design="Transparent" icon="action-settings" onclick="location.href='settings.html'">Settings</ui5-button></div>
+    <section class="tile-grid" aria-label="Applications">
+      <a class="tile" href="worklist.html"><h2>Collection Worklist</h2></a>
+      <a class="tile" href="admin.html"><h2>Administration</h2></a>
+      <a class="tile" href="disputes.html"><h2>Disputes Worklist</h2></a>
+      <a class="tile" href="preferences.html"><h2>User Preferences</h2></a>
+    </section>
+  </main>
+</body>
+</html>
