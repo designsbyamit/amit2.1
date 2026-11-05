@@ -1,5 +1,5 @@
 // Content transcribed from the Figma file "S-Projects › AI-Powered Search", frames 1.1–5.4.
-export const apps = { s4: 'S/4HANA Cloud', ariba: 'Ariba', concur: 'Concur', sf: 'SuccessFactors', fieldglass: 'Fieldglass' };
+export const apps = { s4: 'S/4HANA Cloud', ariba: 'Ariba', concur: 'Concur', sf: 'SuccessFactors', fieldglass: 'Fieldglass', joule: 'Joule' };
 
 export const home = {
   app: 's4', greeting: 'Good morning, Alex', sub: 'What would you like to do today?',
@@ -14,6 +14,7 @@ export const typeahead = {
   pur: { route: 'po', app: 'S/4HANA Cloud', items: ['Purchase Orders, Pending Approval (14)', 'Purchase Requisitions, New This Week (8)', 'Purchase Contract, IT Equipment 2026', 'Purchase Invoice, Due This Week (3)'] },
   flight: { route: 'travel', app: 'Concur', items: ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5–12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20–27'] },
   laptop: { route: 'buy', app: 'Ariba', items: ['Difference: iPhone 17 vs iPhone 17 Pro', 'Difference: iPhone 17 vs iPhone 17 Air', 'Difference: iPhone 17 vs iPhone 16 Pro', 'Difference: iPhone 17 Pro vs Samsung S25 Ultra', 'Difference: iPhone 17 Pro vs iPhone 17 Pro Max'] },
+  policy: { route: 'policy', app: 'SuccessFactors', items: ['Education assistance policy', 'Learning and development policy', 'Education assistance, how to apply'] },
   goals: { route: 'goals', app: 'SuccessFactors', items: ['Draft quarterly OKRs, Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress, Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates'] },
 };
 
@@ -130,6 +131,18 @@ export const current = [['Current status & end date of SOW IDs for CyberSecure L
 const TAG = { Low: ['Positive', 'sys-enter-2'], Medium: ['Critical', 'alert'], High: ['Negative', 'error'] };
 const lvl = (l, label = 'Risk Level') => [`${label} - ${l}`, ...TAG[l]];
 export const resultSets = {
+  policy: {
+    app: 'sf', icon: 'document-text', query: 'Education policy', question: 'Education assistance policy',
+    filters: ['All', 'Policies', 'Guidelines'],
+    summaryTitle: 'Policy Summary',
+    summary: 'The education assistance policy describes who can apply for support and how a request is reviewed and approved.',
+    more: 'The documents below hold the details. To ask about your own situation and carry on from here, continue in Joule.',
+    total: 2, tabs: ['All ({n})', 'Policies ({n})'],
+    rows: [
+      { title: 'Education assistance policy', ids: ['Policy'], ref: 'Human Resources • Benefits', desc: 'Who can apply, what is covered and how a request is approved.', kv: [['Owner', 'Human Resources'], ['Applies to', 'All employees']], status: ['Active', 'Positive'], level: null, note: 'Best match for your search', actions: [['Continue in Joule', 'Emphasized', 'ai', 'joule'], ['Open policy', 'Default', 'document-text']], tabs: [1] },
+      { title: 'Learning and development guidelines', ids: ['Guideline'], ref: 'Human Resources • Learning', desc: 'How learning requests are planned with your manager.', kv: [['Owner', 'Human Resources'], ['Applies to', 'All employees']], status: ['Active', 'Positive'], level: null, note: 'Related', actions: [['Continue in Joule', 'Emphasized', 'ai', 'joule']], tabs: [] },
+    ],
+  },
   po: {
     app: 's4', icon: 'sales-order', query: 'Pending POs', question: 'Pending purchase orders',
     filters: ['All', 'Open POs', 'Overdue', 'Pending Approval', 'By Supplier', 'This Quarter', 'High Value'],

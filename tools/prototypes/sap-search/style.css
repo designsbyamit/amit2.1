@@ -23,7 +23,7 @@ ui5-flexible-column-layout{height:calc(100vh - 52px)}
 .kv{display:flex;flex-direction:column;gap:.25rem;margin:.5rem 0}.kv.h{flex-direction:row;gap:1rem}.kv.h ui5-label{width:8rem;flex:none}
 .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
 .band{padding:1rem 2.5rem;color:#fff;display:flex;flex-direction:column;gap:.15rem}.onband{color:#fff}.onband::part(title){color:#fff}.bandmeta{font-size:.8125rem;opacity:.9}
-.band.concur{background:#0a8ff0}.band.ariba{background:#3a8a2e}.band.sf{background:#0b6aa2}
+.band.concur{background:#0a8ff0}.band.ariba{background:#3a8a2e}.band.sf{background:#0b6aa2}.band.joule{background:#0a6ed1}.jmsg{display:flex;flex-direction:column;gap:.25rem;margin:1.5rem 0;padding:1rem;background:#fff;border-radius:.5rem;max-width:40rem}.jin{display:flex;gap:.5rem;max-width:40rem}.jin ui5-input{flex:1}
 .split{display:grid;gap:1rem;grid-template-columns:2fr 1fr;margin-top:1rem}.split3{display:grid;gap:1rem;grid-template-columns:1fr 1.4fr 1fr;margin-top:1rem}
 .cpad{padding:1.25rem;display:flex;flex-direction:column;gap:.5rem}
 .total{display:flex;justify-content:space-between;border-top:1px solid var(--sapGroup_TitleBorderColor,#d9d9d9);padding-top:.75rem;margin-top:.5rem}
@@ -40,13 +40,6 @@ ui5-flexible-column-layout{height:calc(100vh - 52px)}
 @media (max-width:820px){.page{padding:1rem}.pad,.headbar,.band,.aistrip{padding-left:1rem;padding-right:1rem}.split,.split3,.grid2,.cards.three{grid-template-columns:1fr}}
 .cards.c3{grid-template-columns:repeat(3,minmax(0,1fr));max-width:900px}@media (max-width:600px){.cards.c3{grid-template-columns:1fr}}
 /* Shell bar AI search field: same spec as the case-study anatomy (Figma 6-62101) */
-ui5-input.shellsearch{width:400px;max-width:100%;height:2.25rem;border-radius:1.125rem;background:#fff;border:1px solid #556b81;box-shadow:none;transition:border-color .15s,box-shadow .15s}
-ui5-input.shellsearch:hover{border-color:#0064d9;box-shadow:inset 0 0 0 1px rgba(79,160,255,.45)}
-ui5-input.shellsearch:focus-within{border-color:#0064d9;box-shadow:inset 0 0 0 1px #0064d9}
-ui5-input.shellsearch::part(root){background:transparent;border:0;box-shadow:none;outline:none}
-ui5-input.shellsearch::part(input){padding-left:.8125rem;font-size:.875rem;color:#131e29}
-ui5-input.shellsearch::part(input)::placeholder{font-style:normal;color:#556b81}
-.aisicon{display:flex;align-items:center;padding:0 .5rem 0 .25rem}
 /* Fieldglass SOW results (Figma 6-61420, 6-61503) */
 .sowtop{background:var(--sapObjectHeader_Background,#fff);border-bottom:1px solid var(--sapGroup_TitleBorderColor,#d9d9d9)}
 .sowtopin,.sowbody{max-width:1360px;margin:0 auto;padding:1.5rem 2.5rem;box-sizing:border-box}
@@ -66,4 +59,4 @@ ui5-input.shellsearch::part(input)::placeholder{font-style:normal;color:#556b81}
 .sowtags{display:flex;flex-wrap:wrap;gap:.5rem}
 .sowact{display:flex;align-items:flex-start;gap:.5rem;flex-wrap:wrap;justify-content:flex-end}
 @media (max-width:1000px){.sowrow{grid-template-columns:2rem 1fr}.sowact{grid-column:2;justify-content:flex-start}}
-@media (max-width:820px){.sowtopin,.sowbody{padding:1rem}.sowkv{gap:2rem}ui5-input.shellsearch{width:100%}}
+@media (max-width:820px){.sowtopin,.sowbody{padding:1rem}.sowkv{gap:2rem}}

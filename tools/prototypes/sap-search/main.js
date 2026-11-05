@@ -6,9 +6,9 @@ registerLocaleDataLoader('en', async () => cldrEn);
 import '@ui5/webcomponents-fiori/dist/ShellBar.js';
 import '@ui5/webcomponents-fiori/dist/ShellBarBranding.js';
 import '@ui5/webcomponents-fiori/dist/ShellBarItem.js';
-import '@ui5/webcomponents/dist/features/InputSuggestions.js';
-import '@ui5/webcomponents/dist/SuggestionItem.js';
-import '@ui5/webcomponents/dist/SuggestionItemGroup.js';
+import '@ui5/webcomponents-fiori/dist/ShellBarSearch.js';
+import '@ui5/webcomponents-fiori/dist/SearchItem.js';
+import '@ui5/webcomponents-fiori/dist/SearchItemGroup.js';
 import '@ui5/webcomponents-fiori/dist/FlexibleColumnLayout.js';
 import '@ui5/webcomponents/dist/Avatar.js';
 import '@ui5/webcomponents/dist/Card.js';
@@ -40,6 +40,9 @@ import '@ui5/webcomponents/dist/Toast.js';
 import '@ui5/webcomponents/dist/Icon.js';
 import '@ui5/webcomponents/dist/Link.js';
 import '@ui5/webcomponents-icons/dist/ai.js';
+import '@ui5/webcomponents-icons/dist/document-text.js';
+import '@ui5/webcomponents-icons/dist/pdf-attachment.js';
+import '@ui5/webcomponents-icons/dist/history.js';
 import '@ui5/webcomponents-icons/dist/paper-plane.js';
 import '@ui5/webcomponents-icons/dist/cart.js';
 import '@ui5/webcomponents-icons/dist/email.js';
@@ -93,49 +96,60 @@ const band = (cls, title, meta) => `<div class="band ${cls}"><ui5-title level="H
 // Same behaviour as the case-study animation: on focus, "Recent searches" + "Suggested for you";
 // once typing starts, one "Suggestions" group across every product, matches in bold,
 // source application on the right. Enter or click opens the unified results page.
-function listFor(v) {
+const TOOLS = [['S/4HANA Cloud', 'home', 'sales-order'], ['Ariba', 'buy', 'cart'], ['Concur', 'travel', 'flight'], ['SuccessFactors', 'goals', 'goal'], ['Fieldglass', 'sow', 'employee-lookup']];
+const ACTIONS = D.home.suggestions.map(t => [t, 'S/4HANA Cloud', 'po', 'add']);
+function domainFor(v) {
+  if (/sow|cyber|fieldglass|supplier|end date/.test(v)) return D.typeahead.sow;
+  if (/^pur/.test(v) && v.length < 5) return D.typeahead.pur;
+  if (/^purch|po\b|invoice/.test(v)) return D.typeahead.purchase;
+  if (/flight|trip|bangalore|palo|travel/.test(v)) return D.typeahead.flight;
+  if (/laptop|iphone|device|compare|differ/.test(v)) return D.typeahead.laptop;
+  if (/polic|educat|benefit|learning/.test(v)) return D.typeahead.policy;
+  if (/goal|okr|draft|team|performance/.test(v)) return D.typeahead.goals;
+  return D.typeahead.pur;
+}
+// Three groups, as in the spec for shell bar search: Tools, Recent items, Actions.
+function groupsFor(v) {
   v = v.trim().toLowerCase();
-  if (!v) return null;
-  let L;
-  if (/^cu|current/.test(v)) return { items: D.current.filter(([t]) => t.toLowerCase().includes(v)).length ? D.current.filter(([t]) => t.toLowerCase().includes(v)) : D.current };
-  if (/sow|cyber|fieldglass|supplier|end date/.test(v)) L = D.typeahead.sow;
-  else if (/^pur/.test(v) && v.length < 5) L = D.typeahead.pur;
-  else if (/^purch|po\b|invoice/.test(v)) L = D.typeahead.purchase;
-  else if (/flight|trip|bangalore|palo|travel/.test(v)) L = D.typeahead.flight;
-  else if (/laptop|iphone|device|compare|differ/.test(v)) L = D.typeahead.laptop;
-  else if (/goal|okr|draft|team|performance/.test(v)) L = D.typeahead.goals;
-  else L = D.typeahead.pur;
-  return { items: L.items.map(t => [t, L.app, L.route]) };
+  if (!v) return [
+    ['Recent items', D.recent.map(([t, a, r]) => [t, a, r, 'history'])],
+    ['Tools', TOOLS.map(([n, r, i]) => [n, 'Application', r, i])],
+    ['Actions', ACTIONS],
+  ];
+  const tools = TOOLS.filter(([n]) => n.toLowerCase().includes(v)).map(([n, r, i]) => [n, 'Application', r, i]);
+  const L = domainFor(v);
+  const hits = L.items.filter(t => t.toLowerCase().includes(v));
+  const acts = (hits.length ? hits : L.items).slice(0, 4).map(t => [t, L.app, L.route, 'ai']);
+  const recent = [...D.recent, ...D.current].filter(([t]) => t.toLowerCase().includes(v)).slice(0, 3).map(([t, a, r]) => [t, a, r, 'history']);
+  const dom = TOOLS.find(([n]) => n === L.app);
+  if (!tools.length && dom) tools.push([dom[0], 'Application', dom[1], dom[2]]);
+  return [['Tools', tools], ['Recent items', recent], ['Actions', acts]].filter(([, i]) => i.length);
 }
 let lastKey = '';
-const sugItem = ([t, app, route]) => { const it = document.createElement('ui5-suggestion-item'); it.text = t; it.additionalText = app; it.dataset.route = route; return it; };
-const sugGroup = (title, items) => { const g = document.createElement('ui5-suggestion-item-group'); g.headerText = title; items.forEach(i => g.appendChild(sugItem(i))); return g; };
+const sItem = ([t, app, route, icon]) => { const it = document.createElement('ui5-search-item'); it.text = t; it.description = app; it.icon = icon; it.dataset.route = route; return it; };
+const sGroup = (title, items) => { const g = document.createElement('ui5-search-item-group'); g.headerText = title; items.forEach(i => g.appendChild(sItem(i))); return g; };
 function renderSuggestions() {
-  const L = listFor(search.value || '');
-  const key = L ? L.items.map(i => i[0]).join('|') : '__open';
+  const G = groupsFor(search.value || '');
+  const key = G.map(([t, i]) => t + i.map(x => x[0]).join('|')).join('/');
   if (key === lastKey) return;
   lastKey = key;
-  search.querySelectorAll('ui5-suggestion-item, ui5-suggestion-item-group').forEach(n => n.remove());
-  if (L) search.appendChild(sugGroup('Suggestions', L.items));
-  else { search.appendChild(sugGroup('Recent searches', D.recent)); search.appendChild(sugGroup('Suggested for you', D.suggested)); }
+  search.querySelectorAll('ui5-search-item, ui5-search-item-group').forEach(n => n.remove());
+  G.forEach(([t, i]) => search.appendChild(sGroup(t, i)));
 }
-function pick(text, route) { search.value = text; search.open = false; search.blur?.(); go(routeAfterPick(route)); }
+const TOOL_ROUTE = new Set(TOOLS.map(t => t[1]));
+function pick(text, route) { search.value = text; search.open = false; go(routeAfterPick(route)); }
 search.addEventListener('input', renderSuggestions);
-search.addEventListener('focusin', () => { renderSuggestions(); if (!search.value) search.open = true; });
-// selection-change fires while arrowing through the list (preview); only commit on change (click or Enter)
-search.addEventListener('change', () => { const q = (search.value || '').trim(); const hit = [...search.querySelectorAll('ui5-suggestion-item')].find(i => i.text === q); if (hit) pick(q, hit.dataset.route); });
-search.addEventListener('keydown', e => {
-  if (e.key !== 'Enter') return;
-  setTimeout(() => {
-    const q = (search.value || '').trim(); if (!q) return;
-    const hit = [...search.querySelectorAll('ui5-suggestion-item')].find(i => i.text === q);
-    if (hit) return pick(q, hit.dataset.route);
-    const L = listFor(q); pick(q, L ? L.items[0][2] : 'po');
-  }, 0);
+search.addEventListener('open', renderSuggestions);
+// "search" fires on Enter, on the search button, and when a suggestion is chosen
+search.addEventListener('search', e => {
+  const it = e.detail && e.detail.item;
+  if (it) return pick(it.text, it.dataset.route);
+  const q = (search.value || '').trim(); if (!q) return;
+  const hit = [...search.querySelectorAll('ui5-search-item')].find(i => i.text === q);
+  if (hit) return pick(q, hit.dataset.route);
+  pick(q, domainFor(q.toLowerCase()).route);
 });
-const routeAfterPick = r => ({ po: 'po', travel: 'flights', buy: 'compare', goals: 'teamgoals', sow: 'sow' }[r] || r);
-// UI5 2.27: arrow-key preview can leave typedInValue undefined before onAfterRendering reads it
-customElements.whenDefined('ui5-input').then(() => { const o = search.onAfterRendering; search.onAfterRendering = function (...a) { if (this.typedInValue == null) this.typedInValue = ''; return o.apply(this, a); }; });
+const routeAfterPick = r => ({ policy: 'policy', po: 'po', travel: 'flights', buy: 'compare', goals: 'teamgoals', sow: 'sow' }[r] || r);
 renderSuggestions();
 
 // ── Views ────────────────────────────────────────────────────────────────
@@ -230,6 +244,7 @@ V.res = (key, tab = 0, filter = 0) => {
     const [ri, ai] = b.dataset.act.split(':').map(Number); const [t, , , next] = S.rows[ri].actions[ai];
     if (next === 'concur') handoff('Concur', 'Opening your booking...', 'booking');
     else if (next === 'ariba') handoff('Ariba', 'Opening procurement catalog...', 'ariba');
+    else if (next === 'joule') handoff('Joule', 'Opening Joule...', 'joule');
     else if (next) go(next);
     else toast(`${t}: opens in ${D.apps[S.app]}.`);
   }));
@@ -240,6 +255,12 @@ V.flights = () => V.res('travel');
 V.compare = () => V.res('buy');
 V.teamgoals = () => V.res('goals');
 V.sow = () => V.res('sow');
+V.policy = () => V.res('policy');
+V.joule = () => {
+  setApp('joule'); const q = search.value || 'Education assistance policy';
+  page(`${band('joule', 'Joule', 'Continuing from your search')}<div class="pad"><ui5-message-strip design="Information" hide-close-button>You came from search results. Your question is carried over, so you can carry on here.</ui5-message-strip><div class="jmsg"><ui5-label>You</ui5-label><ui5-text>${esc(q)}</ui5-text></div><div class="jin"><ui5-input id="jask" placeholder="Ask a follow-up question" accessible-name="Ask Joule"></ui5-input><ui5-button design="Emphasized" icon="paper-plane" accessible-name="Send" id="jsend"></ui5-button></div></div>`);
+  document.getElementById('jsend').onclick = () => toast('In the product, Joule answers here.');
+};
 
 function go(r) { search.open = false; (V[r] || V.home)(); }
 function toast(t) { const el = document.getElementById('toast'); el.textContent = t; el.open = true; }
@@ -249,7 +270,7 @@ app.addEventListener('click', e => { const el = e.target.closest('[data-go]'); i
 document.getElementById('brand').addEventListener('click', () => go({ s4: 'home', ariba: 'home', concur: 'travel', sf: 'goals', fieldglass: 'sow' }[ctx]));
 document.getElementById('shellMore').addEventListener('click', () => toast('More options'));
 document.getElementById('help').addEventListener('click', () => toast('Try: “Current status & end date of SOW IDs for CyberSecure Ltd”'));
-const routes = ['home', 'capsules', 'po', 'travel', 'buy', 'goals', 'sow', 'flights', 'compare', 'teamgoals'];
+const routes = ['policy', 'joule', 'home', 'capsules', 'po', 'travel', 'buy', 'goals', 'sow', 'flights', 'compare', 'teamgoals'];
 const fromHash = () => { const h = location.hash.slice(1); go(routes.includes(h) ? h : 'home'); };
 window.addEventListener('hashchange', fromHash);
 fromHash();
