@@ -43,9 +43,9 @@ export const engaze = {
   },
   ex: {
     title: 'Deep dive: employee experience',
-    intro: 'The module that shipped. A conversational companion for leave balances, approvals, benefits and pay, designed principle-first rather than flow-first, with the assistant\u2019s persona researched and written before any dialog, and measured against enterprise HR bots that typically score below 60% CSAT.',
+    intro: 'The module that shipped. A conversational companion for leave balances, approvals, benefits and pay, designed principle-first rather than flow-first, with the assistant\u2019s persona researched and written before any dialog.',
     teaserLabel: 'Watch the teaser · 1 min 6 s',
-    stats: [['90%', 'CSAT'], ['<60%', 'typical enterprise HR bot'], ['45+', 'conversational products evaluated'], ['5', 'design principles']] as [string, string][],
+    stats: [['90%', 'CSAT'], ['45+', 'conversational products evaluated'], ['5', 'design principles']] as [string, string][],
     steps: [
       { label: 'Scope', heading: 'What was in, what was out', body: 'HR operations broken into its parts. Talent management, employee relations and information systems were in scope for the first release; recruitment and employer branding were not. The suite vision extends the same companion to those areas.', image: O('engaze-01.png'), alt: 'HR operations scope tree showing in-scope and out-of-scope areas' },
       { label: 'Approach', heading: 'Think, make, check', body: 'An organic, experimental loop suited to the pace of generative AI: understand employee realms and benchmark, then make principles, tone and prototypes, then validate with stakeholders, A/B and user tests. Rapid prototypes were the primary argument.', image: O('engaze-02.png'), alt: 'Think, Make, Check cycle with activities in each stage' },
@@ -76,7 +76,7 @@ export const engaze = {
   },
   language: { image: I('hcm-system'), alt: 'Engaze design language: colour, type, components, principles' },
   outcomes: {
-    measured: [['90% CSAT', 'in a category that typically scores below 60%'], ['#1 HR AI', 'most praised HR AI product at the client'], ['Executive recognition', '"Stands beside any other leading studios\' work globally."']] as [string, string][],
+    measured: [['90% CSAT', 'in the employee-experience module'], ['#1 HR AI', 'most praised HR AI product at the client'], ['Executive recognition', '"Stands beside any other leading studios\' work globally."']] as [string, string][],
     vision: ['One design language across six roles and every stage of the lifecycle', 'Role homes designed and prototyped for recruiter, manager, HR partner and leader', 'A trust model (sources, approvals, fairness, audit) specified once and reused'] as string[],
   },
 }

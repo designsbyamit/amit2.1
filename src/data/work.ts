@@ -214,7 +214,7 @@ const allCaseStudies: CaseStudy[] = [
     },
     challenge: 'Human capital suites are built for administrators and sold as separate modules. Design an AI-powered suite that improves the experience of every role, set against the best of the category.',
     approach: 'Start from five principles instead of flows, prove them in the employee-experience module, then extend one companion, one trust model and one people graph across recruiting, onboarding, management, HR operations and workforce planning.',
-    outcome: 'Employee-experience module: 90% CSAT in a category where enterprise HR bots typically score below 60%, and the most praised HR AI product at the client. Wider suite: designed and prototyped as a design vision.',
+    outcome: 'Employee-experience module: 90% CSAT, and the most praised HR AI product at the client. Wider suite: designed and prototyped as a design vision.',
     image: `${B}images/case-studies/engaze-hero.jpg`,
     stats: [
       { label: 'CSAT Score', value: '90%' },
@@ -506,11 +506,11 @@ const allCaseStudies: CaseStudy[] = [
 ]
 /** Display order across the site (Craft menu, Craft page, prev/next). */
 const ORDER: [string, NonNullable<CaseStudy['tone']>][] = [
-  ['sap-agentic', 'cobalt'],
-  ['sap-collections', 'teal'],
   ['sap-search', 'plum'],
-  ['sap-compositional', 'cobalt'],
   ['sap-signin', 'teal'],
+  ['sap-collections', 'teal'],
+  ['sap-agentic', 'cobalt'],
+  ['sap-compositional', 'cobalt'],
   ['engaze', 'plum'],
   ['airline-app', 'cobalt'],
   ['data-ai', 'teal'],

@@ -34,7 +34,6 @@ export function EProblem({ t }: { t: number }) {
     <Words t={t} a={5.3} text="Enterprise HR is built for auditors." size={88} weight={600} style={{ left: 140, top: 190, width: 1500 }} />
     {rows.map(([a, b, at], i) => <In key={a} t={t} a={at} x={-40} y={0} style={{ left: 140, top: 520 + i * 130, width: 1640 }}>
       <div style={{ display: 'flex', alignItems: 'center', padding: '0 36px', height: 104, borderRadius: 22, background: V.p2, border: `1px solid ${V.line}`, fontSize: 40, color: V.ink }}><span>{a}</span><span style={{ flex: 1 }} /><span style={{ fontFamily: mono, fontSize: 28, color: V.red }}>{b}</span></div></In>)}
-    <In t={t} a={11.6} style={{ left: 140, top: 930 }}><div style={{ fontSize: 40, color: V.mute }}>Typical enterprise HR bots score <span style={{ color: V.amber }}>below 60% CSAT</span>.</div></In>
   </Scene>
 }
 
@@ -103,7 +102,7 @@ export function EOutcome({ t }: { t: number }) {
     <Bg />
     <Over style={{ position: 'absolute', left: 140, top: 110 }}>The outcome</Over>
     <In t={t} a={47.6} style={{ left: 140, top: 190 }}><div style={{ fontSize: 260, fontWeight: 600, letterSpacing: '-0.05em', color: V.ink, lineHeight: 1 }}>{Math.round(countTo(t, 47.8, 49.4, 0, 90))}<span style={{ color: V.violet }}>%</span></div></In>
-    <In t={t} a={48.2} style={{ left: 140, top: 480 }}><div style={{ fontSize: 44, color: V.mute, width: 760, lineHeight: 1.3 }}>CSAT, against a category that typically scores below 60%.</div></In>
+    <In t={t} a={48.2} style={{ left: 140, top: 480 }}><div style={{ fontSize: 44, color: V.mute, width: 760, lineHeight: 1.3 }}>CSAT in the employee-experience module.</div></In>
     <In t={t} a={48.4} style={{ left: 1040, top: 220, width: 740 }}>
       {[['Engaze', 90, grad], ['Typical enterprise HR bot', 60, V.dim]].map(([n, v, c], i) => <div key={n as string} style={{ marginBottom: 40 }}><div style={{ fontSize: 30, color: V.ink, marginBottom: 12 }}>{n}</div><div style={{ height: 52, width: `${bar(Number(v), 48.6 + i * 0.4) * 0.82}%`, borderRadius: 14, background: c as string }} /></div>)}
     </In>

@@ -70,9 +70,18 @@ export default function SAPSearchStoryPage() {
         <p className="text-body-lg text-ink-2 mt-12 max-w-measure-xl">{S.vision.why}</p>
       </Section>
 
+      <Section id="transition" tone="raised">
+        <SectionHeader label="02 · Results to next steps" title={S.transition.title} intro={S.transition.intro} />
+        <div className="grid md:grid-cols-2 gap-4">
+          {S.transition.items.map(c => <div key={c.t} className="card"><p className="text-title text-white">{c.t}</p><p className="text-body text-ink-2 mt-3">{c.d}</p></div>)}
+        </div>
+        <h3 className="text-heading text-white mt-16">{S.consistency.title}</h3>
+        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{S.consistency.intro}</p>
+      </Section>
+
       {/* Problem */}
       <Section id="problem">
-        <SectionHeader label="02 · The problem" title="What needed to be fixed?" intro={cs.challenge} />
+        <SectionHeader label="03 · The problem" title="What needed to be fixed?" intro={cs.challenge} />
         <div className="grid md:grid-cols-3 gap-4">
           {S.challenges.map(c => (
             <div key={c.area} className="card">
@@ -85,7 +94,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Exploration */}
       <Section id="explore" tone="raised">
-        <SectionHeader label="03 · Exploration" title="Where search capability meets AI and real user problems." intro="Every idea was tested against three inputs at once: what search can do, what AI can offer, and the problems users actually have." />
+        <SectionHeader label="04 · Exploration" title="Where search capability meets AI and real user problems." intro="Every idea was tested against three inputs at once: what search can do, what AI can offer, and the problems users actually have." />
         <div className="grid md:grid-cols-3 gap-4 mb-14">
           {S.ideas.inputs.map(i => <div key={i} className="card text-center"><p className="text-title text-white">{i}</p></div>)}
         </div>
@@ -109,7 +118,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Recommendations */}
       <Section id="recommendations">
-        <SectionHeader label="04 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
+        <SectionHeader label="05 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
         <ol className="grid sm:grid-cols-2 gap-x-10">
           {S.recommendations.map((r, i) => (
             <li key={r} className="flex gap-5 py-4 hairline-top"><span className="text-label text-ink-3 w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span><span className="text-body text-white">{r}</span></li>
@@ -119,7 +128,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Patterns */}
       <Section id="patterns" tone="raised">
-        <SectionHeader label="05 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined by how each behaves, so every product team applies them the same way." />
+        <SectionHeader label="06 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined by how each behaves, so every product team applies them the same way." />
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
           {S.patternGroups.map((g, i) => (
             <div key={g.title} className="card">
@@ -139,7 +148,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Experience */}
       <Section id="experience">
-        <SectionHeader label="06 · The experience" title="One search, specified down to the state." intro="The component is specified, not sketched: anatomy and spacing, states, and behaviour from the first focus to Enter. Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
+        <SectionHeader label="07 · The experience" title="One search, specified down to the state." intro="The component is specified, not sketched: anatomy and spacing, states, and behaviour from the first focus to Enter. Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
         <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
           {S.flows.map(f => (
             <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" aria-pressed={f.id === active} onClick={() => setActive(f.id)}>
@@ -168,7 +177,7 @@ export default function SAPSearchStoryPage() {
 
       {/* Outcome */}
       <Section id="outcome" tone="raised">
-        <SectionHeader label="07 · Outcome" title="Tested, validated and prototyped." intro={cs.outcome} />
+        <SectionHeader label="08 · Outcome" title="Tested, validated and prototyped." intro={cs.outcome} />
         <div className="grid md:grid-cols-3 gap-4">
           {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
         </div>

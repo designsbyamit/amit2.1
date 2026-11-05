@@ -11,6 +11,14 @@ export const NAMES = {
 export const bigFiveIds = ['sap-agentic', 'sap-search', 'engaze', 'airline-app', 'dnetworx']
 export const bigFive = bigFiveIds.map(id => caseStudies.find(c => c.id === id)).filter((c): c is NonNullable<typeof c> => !!c)
 
+/** The four capability pillars. The current works sit under them; everything earlier is listed as previous works. */
+export const pillars: { name: string; ids: string[] }[] = [
+  { name: 'Design leadership', ids: ['sap-search'] },
+  { name: 'Interaction craft', ids: ['sap-signin'] },
+  { name: 'Technical acumen', ids: ['sap-collections', 'sap-agentic', 'sap-compositional'] },
+]
+export const previousWorkIds = ['engaze', 'airline-app', 'data-ai', 'dnetworx']
+
 /** Works dropdown and Works page: all six case studies, in the site display order, numbered 01 to 06. */
 export const menuWorks = caseStudies
 

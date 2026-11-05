@@ -24,7 +24,20 @@ export const sapSearch = {
       { label: 'Group 2 · 3 designers', title: 'Search and results', body: 'The results themselves: layout, grouping, filters, explanations and actions on each row.' },
       { label: 'Group 3 · 3 designers', title: 'Results to products and applications', body: 'How a result becomes the next step inside a product, with the context carried across.' },
     ],
-    why: 'Two questions stayed hard, and they are still worth asking. How does search transition into Joule? And how much information should the results show before they stop being scannable? The direction was tested and validated, and a prototype was built.',
+    why: 'Two questions stayed hard, and they are still worth asking. How does search transition into Joule? And how much information should the results show before they stop being scannable? The direction was tested and validated, and a Figma prototype was built.',
+  },
+
+  transition: {
+    title: 'From a result to the next step.',
+    intro: 'Search ends where the work begins. Every result links to the right place to continue, so the person never has to guess where to go next.',
+    items: [
+      { t: 'A change to an invoice', d: 'The result leads into Ariba, where invoicing happens.' },
+      { t: 'A question that needs follow up', d: 'Someone asks about the education policy, gets the results, and wants to know more. The result carries an action to continue in Joule, and the conversation carries on there.' },
+    ],
+  },
+  consistency: {
+    title: 'How three groups stayed consistent.',
+    intro: 'The groups worked very closely and built on UI5 and the SAP web UI kit throughout. Every document was reviewed for familiar, consistent interaction patterns, so the pieces fit together without a separate rulebook.',
   },
 
   challenges: [
