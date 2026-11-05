@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="robots" content="noindex" />
+  <title>Sign in prototypes</title>
+  <style>*:not(:defined){display:none}html{forced-color-adjust:none}</style>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="hub-section-page">
+  <ui5-title level="H2" class="section-heading">Interactive prototype scenarios</ui5-title>
+  <ui5-text>Select a scenario. To reach the signed in screen, use demo.user@example.com and Prototype1!. Any other pair shows the error state.</ui5-text>
+  <div class="tiles-grid" style="margin-top:24px">
+    <ui5-card class="tile-card" data-href="s4hana.html"><ui5-card-header slot="header" title-text="SAP S/4HANA" subtitle-text="System ID required before sign-in" interactive><ui5-icon slot="avatar" name="product"></ui5-icon></ui5-card-header><div style="padding:.75rem 1rem 1rem"><ui5-text>Two step flow: enter your System ID, then provide credentials.</ui5-text></div></ui5-card>
+    <ui5-card class="tile-card" data-href="sac.html"><ui5-card-header slot="header" title-text="SAP Analytics Cloud" subtitle-text="Tenant ID, then credentials" interactive><ui5-icon slot="avatar" name="business-objects-experience"></ui5-icon></ui5-card-header><div style="padding:.75rem 1rem 1rem"><ui5-text>Two step flow: enter your Tenant ID, then provide credentials.</ui5-text></div></ui5-card>
+    <ui5-card class="tile-card" data-href="concur.html"><ui5-card-header slot="header" title-text="Concur" subtitle-text="Username and password together" interactive><ui5-icon slot="avatar" name="travel-expense"></ui5-icon></ui5-card-header><div style="padding:.75rem 1rem 1rem"><ui5-text>Single step flow: email or username and password on one screen.</ui5-text></div></ui5-card>
+    <ui5-card class="tile-card" data-href="sbn.html"><ui5-card-header slot="header" title-text="SAP Business Network" subtitle-text="Username first, then password" interactive><ui5-icon slot="avatar" name="supplier"></ui5-icon></ui5-card-header><div style="padding:.75rem 1rem 1rem"><ui5-text>Two step flow: enter your username, then your password.</ui5-text></div></ui5-card>
+    <ui5-card class="tile-card" data-href="emarsys.html"><ui5-card-header slot="header" title-text="Emarsys" subtitle-text="Sign in with split view" interactive><ui5-icon slot="avatar" name="customer-view"></ui5-icon></ui5-card-header><div style="padding:.75rem 1rem 1rem"><ui5-text>Split view layout: form on the left, product branding on the right.</ui5-text></div></ui5-card>
+  </div>
+  <script type="module" src="./shared.js"></script>
+  <script type="module">
+    document.querySelectorAll('.tile-card').forEach(c => { const go = () => (location.href = c.dataset.href); c.addEventListener('click', go); c.addEventListener('keydown', e => { if (e.key === 'Enter') go(); }); });
+  </script>
+</body>
+</html>

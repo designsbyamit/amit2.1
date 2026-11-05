@@ -488,7 +488,7 @@ const allCaseStudies: CaseStudy[] = [
     title: 'Unified Sign In: One Entry for Every Cloud Product',
     shortTitle: 'Unified Sign In',
     tagline: 'A product standard for sign in and sign out across eight cloud products: three flow types, one anatomy and one way to recover.',
-    role: 'Design',
+    role: 'Design Lead',
     domain: 'Identity · Design standard',
     tags: ['Design Standard', 'Identity', 'Accessibility'],
     challenge: 'The first screen of every product looked different, with missing basics and gaps in privacy links, recovery and accessibility.',

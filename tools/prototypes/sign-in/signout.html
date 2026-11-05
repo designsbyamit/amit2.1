@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signed Out</title>
+  <style>*:not(:defined){display:none}html{forced-color-adjust:none}</style>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="signout-page">
+
+  <main class="signin-center">
+    <ui5-card class="signin-card">
+      <div class="signin-inner">
+        <div class="signin-content">
+
+          <!-- Branding header -->
+          <div class="signin-header">
+            <ui5-shellbar-branding id="brandingHeader">
+              <span id="appNameLabel"></span>
+              <img slot="logo"
+                src="./logo-placeholder.png"
+                alt="SAP" />
+            </ui5-shellbar-branding>
+          </div>
+
+          <!-- Title + illustration -->
+          <div class="signout-body">
+            <ui5-title level="H2">Signed Out!</ui5-title>
+
+            <div class="signout-illustration">
+              <div class="signout-illus-bg"></div>
+              <div class="signout-illus-door-group">
+                <img class="signout-illus-shadow" src="./assets/signout-shadow.svg" alt="" />
+                <img class="signout-illus-door" src="./assets/signout-door.svg" alt="" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Card footer -->
+        <div class="card-footer">
+          <ui5-button id="signBackInBtn" design="Emphasized">Sign back in</ui5-button>
+        </div>
+      </div>
+    </ui5-card>
+  </main>
+
+  <footer class="page-footer">
+    <ui5-link href="#">Privacy</ui5-link>
+    <ui5-link href="#">Terms of use</ui5-link>
+    <ui5-link href="#">Copyright</ui5-link>
+    <ui5-link href="#">Cookie policy</ui5-link>
+    <ui5-link href="#">Help</ui5-link>
+  </footer>
+
+  <script type="module" src="./shared.js"></script>
+  <script type="module">
+    const APP_MAP = {
+      s4hana:  { name: 'SAP S/4HANA',         href: './s4hana.html' },
+      sac:     { name: 'SAP Analytics Cloud',  href: './sac.html' },
+      sbn:     { name: 'SAP Business Network', href: './sbn.html' },
+      concur:  { name: 'Concur',               href: './concur.html' },
+      emarsys: { name: 'Emarsys',              href: './emarsys.html' },
+    };
+
+    const app = new URLSearchParams(location.search).get('app') ?? 'concur';
+    const { name, href } = APP_MAP[app] ?? APP_MAP.concur;
+
+    document.getElementById('appNameLabel').textContent = name;
+    document.title = `Signed Out — ${name}`;
+
+    document.getElementById('signBackInBtn').addEventListener('click', () => {
+      window.location.href = href;
+    });
+  </script>
+</body>
+</html>

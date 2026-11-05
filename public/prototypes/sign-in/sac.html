@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAP Analytics Cloud — Sign In</title>
+  <style>*:not(:defined){display:none}html{forced-color-adjust:none}</style>
+  <script type="module" crossorigin src="./assets/sac-CrsxHSqJ.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/shared-BJko6njQ.js">
+  <link rel="modulepreload" crossorigin href="./assets/signin-utils-D_mhalIU.js">
+  <link rel="stylesheet" crossorigin href="./assets/shared-DnxjoRgd.css">
+</head>
+<body class="signin-page">
+
+  <main class="signin-center">
+    <div class="signin-card">
+    <ui5-card style="width:100%">
+      <div class="signin-inner">
+        <div class="signin-content">
+
+          <!-- Sign-in Header -->
+          <div class="signin-header">
+            <ui5-shellbar-branding>
+              SAP Analytics Cloud
+              <img slot="logo"
+                src="./logo-placeholder.png"
+                alt="SAP" />
+            </ui5-shellbar-branding>
+          </div>
+
+          <!-- Page Title -->
+          <div class="page-title">
+            <ui5-button id="titleBackBtn" design="Transparent" icon="nav-back"
+              tooltip="Back" class="hidden"></ui5-button>
+            <ui5-title level="H2">Sign In</ui5-title>
+          </div>
+
+          <!-- Auth Error (hidden) -->
+          <ui5-message-strip id="authError" design="Negative" hide-close-button class="hidden">
+            Incorrect username or password. Please try again.
+          </ui5-message-strip>
+
+          <!-- Form -->
+          <div class="form-area">
+
+            <!-- Step 1: Tenant ID -->
+            <div id="step1" class="step">
+              <div class="form-field">
+                <ui5-label for="tenantId" required>Tenant ID</ui5-label>
+                <ui5-input id="tenantId" placeholder="e.g., mycompany">
+                  <div slot="valueStateMessage">Enter a valid Tenant ID</div>
+                </ui5-input>
+              </div>
+            </div>
+
+            <!-- Step 2: Credentials (hidden) -->
+            <div id="step2" class="step hidden">
+              <div class="form-field">
+                <ui5-label>Tenant ID</ui5-label>
+                <ui5-input id="tenantIdDisplay" readonly></ui5-input>
+              </div>
+              <div class="form-field">
+                <ui5-label for="username" required>Email or Username</ui5-label>
+                <ui5-input id="username" type="Email"
+                  placeholder="Example - name@company.com">
+                  <div slot="valueStateMessage">This field is required</div>
+                </ui5-input>
+              </div>
+              <div class="form-field">
+                <ui5-label for="password" required>Password</ui5-label>
+                <ui5-input id="password" type="Password" placeholder="Password">
+                  <div slot="valueStateMessage">This field is required</div>
+                </ui5-input>
+              </div>
+              <div class="form-disclaimers">
+                <ui5-checkbox text="Stay signed in"></ui5-checkbox>
+                <ui5-text>By staying signed in, you agree to this device being trusted.
+                  You can manage your trusted devices in your account settings.</ui5-text>
+              </div>
+              <ui5-link href="./forgot.html?app=sac">Need help with sign-in</ui5-link>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer">
+          <ui5-button id="primaryBtn" design="Emphasized">Continue</ui5-button>
+        </div>
+      </div>
+    </ui5-card>
+    </div>
+  </main>
+
+  <div id="signingOverlay" class="signing-overlay hidden">
+    <ui5-busy-indicator size="L" text="Signing in…" active></ui5-busy-indicator>
+  </div>
+
+  <footer class="page-footer">
+    <ui5-button design="Transparent" icon="slim-arrow-left" onclick="window.location.href='./index.html'" tooltip="Back to scenarios"></ui5-button>
+    <ui5-link href="#">Privacy</ui5-link>
+    <ui5-link href="#">Terms of use</ui5-link>
+    <ui5-link href="#">Copyright</ui5-link>
+    <ui5-link href="#">Cookie policy</ui5-link>
+    <ui5-link href="#">Help</ui5-link>
+  </footer>
+
+</body>
+</html>

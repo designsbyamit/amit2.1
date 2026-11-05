@@ -23,9 +23,9 @@ const rounds = [
 ]
 
 const personas = [
-  { n: 'Elena', r: 'Collection specialist', g: 'Clear today’s highest risk customers without contacting anyone twice.', f: 'Rebuilds context from ERP, email and spreadsheets. Cannot tell which balances she owns.' },
-  { n: 'Marco', r: 'Customer administrator', g: 'Connect source systems and keep collector policies correct and auditable.', f: 'Policy changes have no validation before they go live. Connection failures are found by collectors.' },
-  { n: 'Priya', r: 'Collections manager who also collects', g: 'See the team’s exposure and step in where risk is building.', f: 'Team totals are compiled by hand, and she cannot see whether AI output was accepted.' },
+  { n: 'Elena', ph: 'elena', r: 'Collection specialist', g: 'Clear today’s highest risk customers without contacting anyone twice.', f: 'Rebuilds context from ERP, email and spreadsheets. Cannot tell which balances she owns.' },
+  { n: 'Marco', ph: 'marco', r: 'Customer administrator', g: 'Connect source systems and keep collector policies correct and auditable.', f: 'Policy changes have no validation before they go live. Connection failures are found by collectors.' },
+  { n: 'Priya', ph: 'priya', r: 'Collections manager who also collects', g: 'See the team’s exposure and step in where risk is building.', f: 'Team totals are compiled by hand, and she cannot see whether AI output was accepted.' },
 ]
 
 const insights: [string, string][] = [
@@ -74,7 +74,7 @@ const decisions = [
 
 const phases = [
   { p: 'Phase 1', t: 'UK launch', s: 'Live', items: ['Prioritised worklist', 'Customer context', 'Next Best Action recommendations', 'Reviewable email drafts', 'Administration'] },
-  { p: 'Phase 2', t: 'Control and communication depth', s: 'Live', items: ['Risk configuration and exclusions', 'Scheduled email and attachments', 'Activity history', 'Approved domain controls'] },
+  { p: 'Phase 2', t: 'Control and communication depth', s: 'Live', items: ['Risk configuration and exclusions', 'Scheduled email and attachments', 'Aging buckets', 'Automatic document retrieval', 'Activity history', 'Approved domain controls'] },
   { p: 'Phase 3', t: 'Global expansion', s: 'Planned', items: ['Company Code aware worklist', 'Segment isolation and strategy currency', 'My and Group worklists', 'Consolidated Customer 360'] },
 ]
 
@@ -113,6 +113,7 @@ export default function SAPCollectionsStoryPage() {
         <div className="grid md:grid-cols-3 gap-4">
           {personas.map(p => (
             <article key={p.n} className="card">
+              <img src={img(`persona-${p.ph}`)} alt="" width={640} height={640} loading="lazy" decoding="async" className="w-full h-auto rounded-3 block mb-6" />
               <p className="text-label text-ink-3">{p.r}</p>
               <p className="v2-item text-white mt-2">{p.n}</p>
               <p className="text-label text-signal-ink mt-6">Goal</p>
@@ -145,6 +146,7 @@ export default function SAPCollectionsStoryPage() {
 
       <Section id="fiori" raised>
         <Head n={4} title="Working inside Fiori." intro="This is a Fiori application. Its menu, navigation, filters and worklist patterns are fixed points, and every decision here was made inside them." />
+        <p className="text-body-lg text-ink-2 mb-16 max-w-measure-xl">Many of the patterns we designed were hard to build. Customised filters and the navigation menu options are two examples, and each was reshaped to what could be implemented.</p>
         <h3 className="text-heading text-white mb-6">One decision in detail: what is a row?</h3>
         <div className="grid md:grid-cols-3 gap-4">
           {options.map(o => (

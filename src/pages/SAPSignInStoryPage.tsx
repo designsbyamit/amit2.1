@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import Breadcrumb from '../components/ds/Breadcrumb'
+import Button from '../components/ds/Button'
 import { caseStudies } from '../data/work'
 import { Section, Head, Fig, ScreenTabs, Numbered, Defs, Grid } from '../components/case/Chapter'
 
@@ -64,6 +66,7 @@ const recovery = [
 ]
 
 export default function SAPSignInStoryPage() {
+  const [open, setOpen] = useState(false)
   return (
     <div className="bg-surface-0 min-h-screen">
       <header style={{ paddingTop: 'var(--header-h)' }}>
@@ -95,7 +98,7 @@ export default function SAPSignInStoryPage() {
       </Section>
 
       <Section id="scope" raised>
-        <Head n={2} title="Scope: the experience, not the identity plumbing." />
+        <Head n={2} title="Scope: the experience, not the identity plumbing." intro="The brief was very open, and every product line and vertical worked in its own world, with identity providers and other integrations already in place. Deciding what to cover, and keeping it consistent and realistic, was the hardest part and the longest stretch of the work." together="Stakeholders from each product line shaped what was in and out." drove="I led the topic from the first stakeholder conversations, through research scoping, to defining the scope." />
         <div className="grid md:grid-cols-2 gap-10 max-w-5xl">
           <div>
             <p className="text-label text-signal-ink">In scope</p>
@@ -132,11 +135,23 @@ export default function SAPSignInStoryPage() {
         <Fig className="mt-16 max-w-3xl" src={img('visual')} alt="Annotated visual specification of the sign in card" ratio="1200 / 1160" caption="The annotated visual specification: spacing, type and colour tied to tokens." />
       </Section>
 
-      <Section id="status" raised>
-        <Head n={6} title="Where it stands." />
+      <Section id="prototypes" raised>
+        <Head n={6} title="Five prototypes, five scenarios." intro="Each one is a real flow built from UI5 components: a two step flow with a system ID, a two step flow with a tenant ID, a single step flow, a username first flow and a split view. Recovery and sign out are included." />
+        <p className="text-body text-ink-2 mb-8 max-w-measure-xl">To reach the signed in screen, use demo.user@example.com and Prototype1!. Any other pair shows the error state.</p>
+        {!open ? (
+          <Button onClick={() => setOpen(true)} arrow>Open the prototypes</Button>
+        ) : (
+          <div className="rounded-3 overflow-hidden border bg-white" style={{ borderColor: 'var(--line-2)', aspectRatio: '16 / 10' }}>
+            <iframe title="Sign in prototypes" src={`${B}prototypes/sign-in/index.html`} className="w-full h-full block" loading="lazy" />
+          </div>
+        )}
+      </Section>
+
+      <Section id="status">
+        <Head n={7} title="Where it stands." />
         <Grid head={['Item', 'State']} rows={[
           ['Guidelines for the sign in and sign out experience', 'Ready for implementation'],
-          ['Interactive prototypes', '5 built: identity first, password first, tenant first, split view and recovery'],
+          ['Interactive prototypes', '5 built, one per scenario, with recovery and sign out'],
           ['Adoption across products', 'Not reported here'],
         ]} />
       </Section>

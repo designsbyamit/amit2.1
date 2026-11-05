@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Need Help — SAP</title>
+  <style>*:not(:defined){display:none}html{forced-color-adjust:none}</style>
+  <script type="module" crossorigin src="./assets/forgot-B70UwEhv.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/shared-BJko6njQ.js">
+  <link rel="stylesheet" crossorigin href="./assets/shared-DnxjoRgd.css">
+</head>
+<body class="signin-page">
+
+  <main class="signin-center">
+    <ui5-card class="signin-card">
+      <div class="signin-inner">
+
+        <!-- Branding (shared across all views) -->
+        <div class="signin-content" id="brandingRow" style="padding-bottom:0;gap:0">
+          <div class="signin-header">
+            <ui5-shellbar-branding>
+              SAP
+              <img slot="logo"
+                src="./logo-placeholder.png"
+                alt="SAP" />
+            </ui5-shellbar-branding>
+          </div>
+        </div>
+
+        <!-- ── View 1: Issue select ── -->
+        <div id="issueView" class="signin-content" style="padding-top:1rem">
+          <div class="page-title">
+            <ui5-title level="H2">Need help with sign-in?</ui5-title>
+          </div>
+          <div class="form-area">
+            <div class="form-field">
+              <ui5-label for="issueSelect" required>What do you need help with?</ui5-label>
+              <ui5-select id="issueSelect" style="width:100%">
+                <ui5-option value="" selected>Select an issue…</ui5-option>
+              </ui5-select>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer hidden" id="issueFooter">
+          <ui5-button design="Transparent" id="issueCancelBtn">Cancel</ui5-button>
+          <ui5-button design="Emphasized" id="issueContinueBtn" disabled>Continue</ui5-button>
+        </div>
+
+        <!-- ── View 2: Admin contact message ── -->
+        <div id="adminView" class="signin-content hidden" style="padding-top:1rem">
+          <div class="page-title">
+            <ui5-title level="H2">Contact Administrator</ui5-title>
+          </div>
+          <div class="form-area">
+            <ui5-message-strip design="Information" hide-close-button>
+              Contact your system administrator for further assistance.
+            </ui5-message-strip>
+          </div>
+        </div>
+        <div class="card-footer hidden" id="adminFooter">
+          <ui5-button design="Emphasized" id="adminBackBtn">Back to Sign In</ui5-button>
+        </div>
+
+        <!-- ── View 3: Email input (forgot password) ── -->
+        <div id="emailView" class="signin-content hidden" style="padding-top:1rem">
+          <div class="page-title">
+            <ui5-title level="H2">Reset Password</ui5-title>
+          </div>
+          <div class="form-area">
+            <ui5-text>Enter your email address and we'll send you a password reset link.</ui5-text>
+            <div class="form-field">
+              <ui5-label for="email" required>Email</ui5-label>
+              <ui5-input id="email" type="Email" placeholder="Example - name@company.com">
+                <div slot="valueStateMessage">Please enter a valid email address</div>
+              </ui5-input>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer hidden" id="emailFooter">
+          <ui5-button design="Transparent" id="emailBackBtn">Back</ui5-button>
+          <ui5-button design="Emphasized" id="emailSubmitBtn" disabled>Send Reset Link</ui5-button>
+        </div>
+
+        <!-- ── View 4: Confirmation ── -->
+        <div id="confirmView" class="hidden confirm-view">
+          <ui5-icon name="message-success" style="width:4rem;height:4rem;color:var(--sapPositiveColor)"></ui5-icon>
+          <ui5-title level="H2">Check your email</ui5-title>
+          <ui5-text id="confirmText">If an account exists for that address, we've sent a password reset link. Check your spam folder if you don't see it within a few minutes.</ui5-text>
+        </div>
+        <div class="card-footer hidden" id="confirmFooter">
+          <ui5-button design="Emphasized" id="confirmBackBtn">Back to Sign In</ui5-button>
+        </div>
+
+      </div>
+    </ui5-card>
+  </main>
+
+  <!-- Delayed reset link card -->
+  <ui5-card class="reset-link-card" id="resetLinkCard">
+    <div class="reset-link-card-body">
+      <div class="reset-link-card-text">
+        <ui5-title level="H5">Reset your password</ui5-title>
+        <ui5-text>Your reset link is ready. Click below to set a new password.</ui5-text>
+      </div>
+      <ui5-button id="resetLinkBtn" design="Emphasized">Reset your password</ui5-button>
+    </div>
+  </ui5-card>
+
+  <footer class="page-footer">
+    <ui5-link href="#">Privacy</ui5-link>
+    <ui5-link href="#">Terms of use</ui5-link>
+    <ui5-link href="#">Copyright</ui5-link>
+    <ui5-link href="#">Cookie policy</ui5-link>
+    <ui5-link href="#">Help</ui5-link>
+  </footer>
+
+</body>
+</html>

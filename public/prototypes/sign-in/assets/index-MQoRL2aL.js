@@ -1,0 +1,1 @@
+import"./shared-BJko6njQ.js";document.querySelectorAll(".tile-card").forEach(e=>{const t=()=>location.href=e.dataset.href;e.addEventListener("click",t),e.addEventListener("keydown",r=>{r.key==="Enter"&&t()})});

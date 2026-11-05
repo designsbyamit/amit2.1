@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concur — Sign In</title>
+  <style>*:not(:defined){display:none}html{forced-color-adjust:none}</style>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="signin-page">
+
+  <main class="signin-center">
+    <div class="signin-card">
+    <ui5-card style="width:100%">
+      <div class="signin-inner">
+        <div class="signin-content">
+
+          <!-- Sign-in Header -->
+          <div class="signin-header">
+            <ui5-shellbar-branding>
+              Concur
+              <img slot="logo"
+                src="./logo-placeholder.png"
+                alt="SAP" />
+            </ui5-shellbar-branding>
+          </div>
+
+          <!-- Page Title -->
+          <div class="page-title">
+            <ui5-title level="H2">Sign In</ui5-title>
+          </div>
+
+          <!-- Auth Error (hidden) -->
+          <ui5-message-strip id="authError" design="Negative" hide-close-button class="hidden">
+            Incorrect username or password. Please try again.
+          </ui5-message-strip>
+
+          <!-- Account Locked (hidden) -->
+          <ui5-message-strip id="lockedError" design="Negative" hide-close-button class="hidden">
+            Your account has been locked. Contact your administrator or
+            <ui5-link href="./forgot.html">reset your password</ui5-link>.
+          </ui5-message-strip>
+
+          <!-- Form -->
+          <div class="form-area">
+            <div class="form-field">
+              <ui5-label for="username" required>Email or Username</ui5-label>
+              <ui5-input id="username" type="Email"
+                placeholder="Example - name@company.com">
+                <div slot="valueStateMessage">This field is required</div>
+              </ui5-input>
+            </div>
+            <div class="form-field">
+              <ui5-label for="password" required>Password</ui5-label>
+              <ui5-input id="password" type="Password" placeholder="Password">
+                <div slot="valueStateMessage">This field is required</div>
+              </ui5-input>
+            </div>
+            <div class="form-disclaimers">
+              <ui5-checkbox text="Stay signed in"></ui5-checkbox>
+              <ui5-text>By staying signed in, you agree to this device being trusted.
+                You can manage your trusted devices in your account settings.</ui5-text>
+            </div>
+            <ui5-link href="./forgot.html?app=concur">Need help with sign-in</ui5-link>
+          </div>
+
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer">
+          <ui5-button id="primaryBtn" design="Emphasized">Sign In</ui5-button>
+        </div>
+      </div>
+    </ui5-card>
+    </div>
+  </main>
+
+  <div id="signingOverlay" class="signing-overlay hidden">
+    <ui5-busy-indicator size="L" text="Signing in…" active></ui5-busy-indicator>
+  </div>
+
+  <footer class="page-footer">
+    <ui5-button design="Transparent" icon="slim-arrow-left" onclick="window.location.href='./index.html'" tooltip="Back to scenarios"></ui5-button>
+    <ui5-link href="#">Privacy</ui5-link>
+    <ui5-link href="#">Terms of use</ui5-link>
+    <ui5-link href="#">Copyright</ui5-link>
+    <ui5-link href="#">Cookie policy</ui5-link>
+    <ui5-link href="#">Help</ui5-link>
+  </footer>
+
+  <script type="module" src="./shared.js"></script>
+  <script type="module">
+    import { setupSingleStep } from './signin-utils.js';
+
+    setupSingleStep({
+      formArea:    document.querySelector('.form-area'),
+      primaryBtn:  document.getElementById('primaryBtn'),
+      errorBanner: document.getElementById('authError'),
+      onSuccess:   () => {
+        document.getElementById('signingOverlay').classList.remove('hidden');
+        setTimeout(() => { window.location.href = './home.html?app=concur'; }, 4000);
+      },
+    });
+  </script>
+</body>
+</html>

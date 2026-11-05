@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <style>*:not(:defined){display:none}html{forced-color-adjust:none}</style>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="app-page">
+
+  <ui5-shellbar id="shellbar">
+    <img slot="logo"
+      src="./logo-placeholder.png"
+      alt="SAP" />
+    <ui5-avatar slot="profile" initials="AM" color-scheme="Accent1"
+      accessible-name="Alex Morgan"></ui5-avatar>
+  </ui5-shellbar>
+
+  <main class="app-main">
+    <div class="app-welcome">
+      <ui5-title level="H1">Welcome, Alex</ui5-title>
+      <ui5-text>You are signed in to <span id="appNameDisplay"></span>.</ui5-text>
+    </div>
+  </main>
+
+  <!-- User menu popover -->
+  <ui5-popover id="userMenu" placement="Bottom" horizontal-align="End" class="user-menu">
+    <div class="user-menu-header">
+      <ui5-avatar initials="AM" color-scheme="Accent1" size="L"></ui5-avatar>
+      <div class="user-menu-info">
+        <ui5-title level="H5">Alex Morgan</ui5-title>
+        <ui5-text>ami.t@sap.com</ui5-text>
+        <ui5-text>Design Manager · Cross Apps Experiences</ui5-text>
+      </div>
+      <ui5-button design="Default" class="user-menu-manage-btn">Manage Account</ui5-button>
+    </div>
+    <ui5-list separators="None">
+      <ui5-li icon="action-settings">Settings</ui5-li>
+      <ui5-li icon="official-service">Legal Information</ui5-li>
+      <ui5-li icon="message-information">About</ui5-li>
+    </ui5-list>
+    <div slot="footer" class="user-menu-footer">
+      <ui5-button id="signOutBtn" design="Transparent" icon="log">Sign Out</ui5-button>
+    </div>
+  </ui5-popover>
+
+  <script type="module" src="./shared.js"></script>
+  <script type="module">
+    const APP_MAP = {
+      s4hana:  { name: 'SAP S/4HANA',         href: './s4hana.html' },
+      sac:     { name: 'SAP Analytics Cloud',  href: './sac.html' },
+      sbn:     { name: 'SAP Business Network', href: './sbn.html' },
+      concur:  { name: 'Concur',               href: './concur.html' },
+      emarsys: { name: 'Emarsys',              href: './emarsys.html' },
+    };
+
+    const app = new URLSearchParams(location.search).get('app') ?? 'concur';
+    const { name, href } = APP_MAP[app] ?? APP_MAP.concur;
+
+    const shellbar = document.getElementById('shellbar');
+    shellbar.primaryTitle = name;
+    document.title = name;
+    document.getElementById('appNameDisplay').textContent = name;
+
+    const userMenu = document.getElementById('userMenu');
+
+    shellbar.addEventListener('profile-click', (e) => {
+      userMenu.opener = e.detail.targetRef;
+      userMenu.open = !userMenu.open;
+    });
+
+    document.getElementById('signOutBtn').addEventListener('click', () => {
+      window.location.href = `./signout.html?app=${app}`;
+    });
+  </script>
+</body>
+</html>

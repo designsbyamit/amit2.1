@@ -1,0 +1,1 @@
+import"./shared-BJko6njQ.js";import{s as e}from"./signin-utils-D_mhalIU.js";e({formArea:document.querySelector(".form-area"),primaryBtn:document.getElementById("primaryBtn"),errorBanner:document.getElementById("authError"),onSuccess:()=>{document.getElementById("signingOverlay").classList.remove("hidden"),setTimeout(()=>{window.location.href="./home.html?app=emarsys"},4e3)}});
