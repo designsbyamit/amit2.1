@@ -395,7 +395,7 @@ const allCaseStudies: CaseStudy[] = [
     domain: 'AI · Enterprise SaaS',
     tags: ['AI', 'Search Design', 'Enterprise UX'],
     challenge: 'Each product had its own search, vocabulary and assumptions. Before designing anything we met line of business stakeholders to understand the challenges and what search should offer.',
-    approach: 'From those conversations we wrote the vision and principles, then split the work across eight designers in three groups: pre-search and querying, search and results, and results to products and applications. Two questions stayed open and difficult: how search transitions into Joule, and how much information the results should show.',
+    approach: 'From those conversations we wrote the vision and principles, then split the work across eight designers in three groups: pre-search and querying, search and results, and results to products and applications. Two questions stayed open and difficult: how search hands over to the conversational assistant, and how much information the results should show.',
     outcome: 'The direction was tested and validated, and a prototype was built.',
     stats: [
       { label: 'Designers', value: '8, in 3 groups' },
@@ -404,7 +404,7 @@ const allCaseStudies: CaseStudy[] = [
     highlights: [
       'Started from stakeholder conversations, then wrote the vision and principles.',
       'Three groups covered the journey: before search, within results, and from results into products.',
-      'The hard questions were about Joule and result density, and they stayed questions worth asking.',
+      'The hard questions were about how search hands over to the conversational assistant, and result density, and they stayed questions worth asking.',
     ],
   },
   {
@@ -440,11 +440,11 @@ const allCaseStudies: CaseStudy[] = [
     category: 'Agentic AI · Finance · Enterprise',
     title: 'Agentic Collections: Working Overdue Invoices with an Agent',
     shortTitle: 'Agentic Collections',
-    tagline: 'A Fiori app where an agent prepares the work on overdue customers and people decide what to send. Built within Fiori and UI5 constraints, released through phase 2, together with the customer.',
+    tagline: 'An app where an agent prepares the work on overdue customers and people decide what to send. Built within the constraints of the enterprise UI framework and released through phase 2, together with the customer.',
     role: 'Design Lead',
     domain: 'Agentic AI · Finance',
-    tags: ['Agentic AI', 'Fiori', 'Enterprise UX'],
-    challenge: 'Collectors work a long list of overdue customers across many company codes. The question was how an agent could prepare that work while a person kept every decision, inside the constraints of Fiori.',
+    tags: ['Agentic AI', 'Finance', 'Enterprise UX'],
+    challenge: 'Collectors work a long list of overdue customers across many company codes. The question was how an agent could prepare that work while a person kept every decision, inside the constraints of the enterprise UI framework.',
     approach: 'Four rounds of discovery with three roles, one row per customer with company codes inline and an explainable, AI marked priority, and a Next Best Action shown before any draft and before approval.',
     outcome: 'Phase 1 and phase 2 are released. No outcome is reported yet.',
     stats: [
@@ -452,7 +452,7 @@ const allCaseStudies: CaseStudy[] = [
       { label: 'Roles', value: '3' },
     ],
     highlights: [
-      'Every decision traced to a Fiori or UI5 constraint, and each one is written down with its cost.',
+      'Every decision traced to a framework constraint, and each one is written down with its cost.',
       'The agent prepares; a person approves before anything is sent.',
       'An end to end prototype is embedded in the case.',
     ],

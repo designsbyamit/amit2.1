@@ -115,7 +115,7 @@ export const playbacks: Playback[] = [
     roleNote: 'Design Lead for the search vision and its three workstreams.',
     beats: {
       about: 'One AI powered search experience for the product suite.',
-      challenge: 'Each product had its own search. We first needed to understand what line of business stakeholders needed and what search should offer. Two questions stayed hard: how search transitions into Joule, and how much information results should show.',
+      challenge: 'Each product had its own search. We first needed to understand what line of business stakeholders needed and what search should offer. Two questions stayed hard: how search hands over to the conversational assistant, and how much information results should show.',
       users: 'Line of business stakeholders and the people who search across the suite every day.',
       solution: 'A vision and principles in Figma, three groups for pre-search and querying, search and results, and results to products and applications. The direction was tested and validated, and a prototype was built.',
     },
@@ -124,12 +124,12 @@ export const playbacks: Playback[] = [
   {
     id: 'sap-collections',
     headline: 'An agent prepares the work on overdue customers, and people decide what to send',
-    dek: 'A Fiori app for collections, designed within Fiori and UI5 constraints and released through phase 2.',
+    dek: 'A collections app, designed within the constraints of the enterprise UI framework and released through phase 2.',
     led: 'I led the design, together with product and engineering.',
     roleNote: 'Design Lead. Four rounds of discovery with three roles.',
     beats: {
       about: 'A collections app where an agent prepares the work on overdue customers.',
-      challenge: 'Collectors work long lists across many company codes, inside the constraints of Fiori.',
+      challenge: 'Collectors work long lists across many company codes, inside the constraints of the enterprise UI framework.',
       users: 'Three roles, met over four rounds of discovery.',
       solution: 'One row per customer with company codes inline and an explainable priority. A Next Best Action comes before the draft, and a person approves before anything is sent. Phases 1 and 2 are released.',
     },

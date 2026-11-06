@@ -13,7 +13,7 @@ const out = resolve(here, '../../public/images/covers'); mkdirSync(out, { recurs
 const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: 1700, height: 1100 } })
 await p.goto('file://' + resolve(here, 'covers.html')); await p.evaluate(svg => { for (const el of document.querySelectorAll('[data-svg]')) el.innerHTML = svg[el.dataset.svg] }, Object.fromEntries(['travel-home', 'travel-one', 'travel-two'].map(k => [k, readFileSync(resolve(here, 'frames/svg/' + k + '.svg'), 'utf8')])))
 await p.waitForLoadState('networkidle'); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(600)
-for (const id of await p.$$eval('.c', els => els.map(e => e.id))) {
+for (const id of (await p.$$eval('.c', els => els.map(e => e.id))).filter(i => !process.env.ONLY || i === process.env.ONLY)) {
   const png = `/tmp/cover-${id}.png`; await p.locator('#' + id).screenshot({ path: png })
   execFileSync('python3', ['-c', `from PIL import Image;im=Image.open('${png}').convert('RGB');im.save('${out}/${id}-1600.webp','WEBP',quality=84,method=6);im.resize((640,400),Image.LANCZOS).save('${out}/${id}-640.webp','WEBP',quality=82,method=6)`])
   console.log('built', id)
