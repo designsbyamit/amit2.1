@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import Breadcrumb from '../components/ds/Breadcrumb'
-import Button from '../components/ds/Button'
 import { caseStudies } from '../data/work'
 import { Section, Head, Fig, ScreenTabs, Numbered, Defs, Grid } from '../components/case/Chapter'
 
@@ -66,7 +64,6 @@ const recovery = [
 ]
 
 export default function SAPSignInStoryPage() {
-  const [open, setOpen] = useState(false)
   return (
     <div className="bg-surface-0 min-h-screen">
       <header style={{ paddingTop: 'var(--header-h)' }}>
@@ -138,13 +135,9 @@ export default function SAPSignInStoryPage() {
       <Section id="prototypes" raised>
         <Head n={6} title="Five prototypes, five scenarios." intro="Each one is a real flow built from UI5 components: a two step flow with a system ID, a two step flow with a tenant ID, a single step flow, a username first flow and a split view. Recovery and sign out are included." />
         <p className="text-body text-ink-2 mb-8 max-w-measure-xl">To reach the signed in screen, use demo.user@example.com and Prototype1!. Any other pair shows the error state.</p>
-        {!open ? (
-          <Button onClick={() => setOpen(true)} arrow>Open the prototypes</Button>
-        ) : (
-          <div className="rounded-3 overflow-hidden border bg-white" style={{ borderColor: 'var(--line-2)', aspectRatio: '16 / 10' }}>
-            <iframe title="Sign in prototypes" src={`${B}prototypes/sign-in/index.html`} className="w-full h-full block" loading="lazy" />
-          </div>
-        )}
+        <a href={`${B}prototypes/sign-in/index.html`} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open the five prototypes in a new tab
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </a>
       </Section>
 
       <Section id="status">

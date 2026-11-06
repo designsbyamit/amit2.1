@@ -6,7 +6,7 @@ import { publishedStories, storySlug } from './leadership'
 import { cases } from './cases'
 import { chapters, chapterPath } from './leadingDesign'
 
-export interface NextLink { label: string; to: string; title: string; eyebrow?: string; cta: string }
+export interface NextLink { label: string; to: string; title: string; eyebrow?: string; cta: string; alt?: { to: string; cta: string } }
 
 const after = <T,>(list: T[], i: number) => list[(i + 1) % list.length]
 
@@ -15,7 +15,7 @@ export function nextCase(id: string): NextLink | null {
   const i = caseStudies.findIndex(c => c.id === id)
   if (i < 0) return null
   const n = after(caseStudies, i)
-  return { label: 'Next case study', to: `/craft/${n.id}`, title: n.title, eyebrow: n.category.split(' · ').slice(0, 2).join(' · '), cta: 'Read the short story' }
+  return { label: 'Next case study', to: `/craft/${n.id}`, title: n.title, eyebrow: n.category.split(' · ').slice(0, 2).join(' · '), cta: 'View teaser', alt: { to: `/craft/${n.id}/details`, cta: 'Take a deep dive' } }
 }
 
 export function nextShortStory(slug: string): NextLink | null {

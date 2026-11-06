@@ -101,7 +101,7 @@ export default function PlaybackPage() {
           <p className="hidden md:block text-body text-ink-2 min-w-0">Want to get inside the messy process, explore the screens, and understand the design decisions?</p>
           <div className="flex items-center gap-3 w-full md:w-auto md:shrink-0">
             {film && <button type="button" onClick={() => setWatching(true)} className="btn btn-secondary !py-2 !px-4 md:!px-6 whitespace-nowrap flex-1 md:flex-none justify-center min-w-0">Watch the video</button>}
-            <Link to={detail} className="btn btn-primary !py-2 !px-4 md:!px-6 whitespace-nowrap flex-1 md:flex-none justify-center min-w-0"><span className="md:hidden">Full case study</span><span className="hidden md:inline">View Detailed Case Study</span><Arrow /></Link>
+            <Link to={detail} className="btn btn-primary !py-2 !px-4 md:!px-6 whitespace-nowrap flex-1 md:flex-none justify-center min-w-0"><span className="md:hidden">Deep dive</span><span className="hidden md:inline">Take a deep dive</span><Arrow /></Link>
           </div>
         </div>
       </div>
