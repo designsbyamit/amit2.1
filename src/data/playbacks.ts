@@ -89,7 +89,7 @@ export const playbacks: Playback[] = [
       impact: 'Engagement up 92%, add-on sales up 50×, and check-in cut from 9 steps to 2. The pod model became the standard for large design programmes at Accenture ME.',
     },
     metric: { value: '50×', label: 'Increase in add-on sales' },
-    featured: true,
+    featured: false,
   },
   {
     id: 'dnetworx',
@@ -105,7 +105,7 @@ export const playbacks: Playback[] = [
       impact: '$5M saved, a figure reported by the client. Changes that needed three-team handoffs are now done in a single self-serve flow.',
     },
     metric: { value: '$5M', label: 'Saved, as reported by the client' },
-    featured: true,
+    featured: false,
   },
   {
     id: 'sap-search',
@@ -133,7 +133,7 @@ export const playbacks: Playback[] = [
       users: 'Three roles, met over four rounds of discovery.',
       solution: 'One row per customer with company codes inline and an explainable priority. A Next Best Action comes before the draft, and a person approves before anything is sent. Phases 1 and 2 are released.',
     },
-    featured: true,
+    featured: false,
   },
   {
     id: 'sap-compositional',
