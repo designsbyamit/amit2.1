@@ -46,6 +46,13 @@ export const growItems: MenuItem[] = [
   { label: 'AlphaVector', to: '', href: 'https://alphavector.designsbyamit.com/', kind: 'Find your direction', mark: 'wingspan', tone: 'graphite' },
 ]
 
+/** Practice: the frameworks and playbooks on the Practice page that have a page of their own. */
+export const practiceItems: MenuItem[] = [
+  { label: 'AI-Native Frameworks', to: '/resources/ai-native-patterns', kind: 'Playbook', mark: 'compositional', tone: 'teal' },
+  { label: 'Dual Fluency', to: '/resources/dual-fluency', kind: 'Playbook', mark: 'persona', tone: 'cobalt' },
+  { label: 'Conversation Experience', to: '/resources/conversation-experience', kind: 'Playbook', mark: 'convai', tone: 'plum' },
+]
+
 export const leadershipItems: MenuItem[] = [
   { label: NAMES.leadership, to: '/leadership', kind: 'Career', mark: 'lead', tone: 'cobalt' },
   { label: 'Experience', to: '/leadership/stories', kind: 'Stories', mark: 'experience', tone: 'teal' },

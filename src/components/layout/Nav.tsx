@@ -1,19 +1,19 @@
 import { useState, useEffect, useRef, useId } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { menuWorks, growItems, leadershipItems, type MenuItem } from '../../data/ia'
+import { menuWorks, growItems, leadershipItems, practiceItems, type MenuItem } from '../../data/ia'
 import MenuCover from '../ds/MenuCover'
 import CaseThumb from '../ds/CaseThumb'
 import Logo from './Logo'
 import NameRoles from './RoleRotator'
 import ThemeToggle from '../ds/ThemeToggle'
 
-type MenuKey = 'Works' | 'Leadership' | 'Grow'
-// Works, Leadership and Grow open a menu; the rest are plain links.
+type MenuKey = 'Works' | 'Leadership' | 'Practice' | 'Grow'
+// Every item except About opens a menu: three pages, then the way to the section's own page.
 const navItems: { label: string; to: string; menu?: MenuKey; quiet?: boolean }[] = [
   { label: 'Works', to: '/craft', menu: 'Works' },
   { label: 'Leadership', to: '/leadership', menu: 'Leadership' },
-  { label: 'Practice', to: '/resources' },
+  { label: 'Practice', to: '/resources', menu: 'Practice' },
   { label: 'About', to: '/about' },
   { label: 'Grow (For Designers)', to: '/learn', menu: 'Grow', quiet: true },
 ]
@@ -23,7 +23,6 @@ const LEADERSHIP_RESOURCES = ['/resources/leading-design', '/resources/hiring']
 const inLeadershipResources = (path: string) => LEADERSHIP_RESOURCES.some(x => path === x || path.startsWith(x))
 
 const arrowSvg = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-const soonTag = <span className="ml-2 font-mono text-t-2xs uppercase tracking-overline text-ink-3 align-middle">Coming soon</span>
 
 const chevron = (open: boolean) => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true" style={{ transition: 'transform .25s', transform: open ? 'rotate(180deg)' : 'none' }}><path d="M4 7l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -32,7 +31,7 @@ const goChevron = <svg width="16" height="16" viewBox="0 0 16 16" fill="none" st
 
 /** The phone menu: sections that open and close, each page shown as a tappable card with its cover and an arrow. */
 function MobileNav({ pathname }: { pathname: string }) {
-  const [openKey, setOpenKey] = useState<MenuKey | null>(() => (pathname.startsWith('/leadership') || pathname.startsWith('/community') || pathname.startsWith('/reflections') || inLeadershipResources(pathname) ? 'Leadership' : pathname.startsWith('/learn') || pathname.startsWith('/mentoring') ? 'Grow' : 'Works'))
+  const [openKey, setOpenKey] = useState<MenuKey | null>(() => (pathname.startsWith('/leadership') || pathname.startsWith('/community') || pathname.startsWith('/reflections') || inLeadershipResources(pathname) ? 'Leadership' : pathname.startsWith('/learn') || pathname.startsWith('/mentoring') ? 'Grow' : pathname.startsWith('/resources') ? 'Practice' : 'Works'))
   const isHere = (to: string) => to !== '' && (pathname === to || (to !== '/' && pathname.startsWith(to + '/'))) && !(to === '/resources' && inLeadershipResources(pathname))
 
   const row = (key: string, cover: React.ReactNode, title: string, sub: string | undefined, to: string, soon?: boolean) => {
@@ -58,6 +57,7 @@ function MobileNav({ pathname }: { pathname: string }) {
   const content: Record<MenuKey, React.ReactNode> = {
     Works: <>{menuWorks.map(cs => row(cs.id, <CaseThumb id={cs.id} compact />, cs.shortTitle, cs.number, `/craft/${cs.id}`))}{allBtn('All work', '/craft')}</>,
     Leadership: <>{leadershipItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.kind, x.to))}{allBtn('All leadership', '/leadership')}</>,
+    Practice: <>{practiceItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.kind, x.to))}{allBtn('All practice', '/resources')}</>,
     Grow: <>{growItems.map(x => row(x.label, <MenuCover mark={x.mark!} tone={x.tone!} size={30} />, x.label, x.soon ? undefined : x.kind, x.href ?? x.to, x.soon))}{allBtn('All Grow', '/learn')}</>,
   }
 
@@ -144,65 +144,45 @@ export default function Nav() {
   const activeFor = (k: MenuKey) =>
     k === 'Works' ? path.startsWith('/craft')
     : k === 'Leadership' ? ['/leadership', '/community', '/reflections'].some(x => path.startsWith(x)) || inLeadershipResources(path)
+    : k === 'Practice' ? path.startsWith('/resources') && !inLeadershipResources(path)
     : ['/learn', '/mentoring'].some(x => path.startsWith(x))
 
   const titleCls = 'text-t-md leading-snug font-light tracking-tight text-ink group-hover:underline underline-offset-4 decoration-1'
-  const linkCls = 'py-1.5 text-t-ui leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4'
-  const featured = menuWorks.slice(0, 2)
-  const moreBig = menuWorks.slice(2)
-
-  // Works: the first tile is the way to the Works page (it sits under the pointer's path from the trigger, so the menu
-  // never swaps to Leadership on the way), then two featured covers, then the "More work" column.
-  const worksPanel = (
+  // Every menu follows one rule: three pages with a cover, then a fourth tile that opens the section's own page.
+  type Tile = { key: string; to: string; cover: React.ReactNode; kicker: string; title: string; all?: boolean }
+  const panel = (heading: string, tiles: Tile[]) => (
     <div className="container-site grid-site py-8">
-      <p className="col-span-12 text-overline text-ink-3 mb-5">Selected work</p>
-      <Link to="/craft" className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 self-start hover:bg-surface-2 transition-colors">
-        <MenuCover mark="portfolio" tone="graphite" size={110} />
-        <span className="text-label text-signal-ink">All / {menuWorks.length} works</span>
-        <span className={`${titleCls} inline-flex items-center gap-2`}>See all work{arrowSvg}</span>
-      </Link>
-      {featured.map(cs => (
-        <Link key={cs.id} to={`/craft/${cs.id}`} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
-          <CaseThumb id={cs.id} compact />
-          <span className="text-label text-signal-ink">{cs.number} / {cs.category.split(' · ')[0]}</span>
-          <span className={titleCls}>{cs.title}</span>
+      <p className="col-span-12 text-overline text-ink-3 mb-5">{heading}</p>
+      {tiles.map(t => (
+        <Link key={t.key} to={t.to} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 self-start hover:bg-surface-2 transition-colors">
+          {t.cover}
+          <span className="text-label text-signal-ink">{t.kicker}</span>
+          <span className={`${titleCls} ${t.all ? 'inline-flex items-center gap-2' : ''}`}>{t.title}{t.all && arrowSvg}</span>
         </Link>
       ))}
-      <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
-        <span className="text-label text-ink-3 mb-2">More work</span>
-        {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{cs.title}</Link>)}
-      </div>
     </div>
   )
+  const itemTiles = (items: MenuItem[]): Tile[] => items.slice(0, 3).map((it, i) => ({ key: it.label, to: it.to, cover: <MenuCover mark={it.mark!} tone={it.tone!} />, kicker: `${String(i + 1).padStart(2, '0')} / ${it.kind}`, title: it.label }))
+  const allTile = (key: string, to: string, mark: MenuItem['mark'], kicker: string, title: string): Tile => ({ key, to, cover: <MenuCover mark={mark!} tone="graphite" size={110} />, kicker, title, all: true })
 
-  // Leadership and Grow: the same rule as Works. The first three pages get a cover, any others are listed on the right,
-  // and the last link goes to the section's own page.
-  const coverPanel = (heading: string, items: MenuItem[], all: { label: string; to: string }) => {
-    const shown = items.slice(0, 3)
-    const rest = items.slice(3)
-    return (
-      <div className="container-site grid-site py-8">
-        <p className="col-span-12 text-overline text-ink-3 mb-5">{heading}</p>
-        {shown.map((it, i) => (
-          <Link key={it.label} to={it.to} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
-            <MenuCover mark={it.mark!} tone={it.tone!} />
-            <span className="text-label text-signal-ink">{String(i + 1).padStart(2, '0')} / {it.kind}</span>
-            <span className={titleCls}>{it.label}</span>
-          </Link>
-        ))}
-        <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
-          {rest.length > 0 && <span className="text-label text-ink-3 mb-2">More</span>}
-          {rest.map(it => it.soon
-            ? <span key={it.label} className="py-1.5 text-t-ui leading-snug text-ink-3">{it.label}{soonTag}{it.note && <span className="block text-body-sm mt-0.5">{it.note}</span>}</span>
-            : it.href
-              ? <a key={it.label} href={it.href} target="_blank" rel="noopener noreferrer" className={linkCls}>{it.label}<span className="sr-only"> (opens in a new tab)</span></a>
-              : <Link key={it.label} to={it.to} className={linkCls}>{it.label}</Link>)}
-          <Link to={all.to} className={`btn btn-ghost self-start ${rest.length > 0 ? 'mt-3' : ''}`}>{all.label}{arrowSvg}</Link>
-        </div>
-      </div>
-    )
+  const panels: Record<MenuKey, React.ReactNode> = {
+    Works: panel('Selected work in enterprise AI', [
+      ...menuWorks.slice(0, 3).map(cs => ({ key: cs.id, to: `/craft/${cs.id}`, cover: <CaseThumb id={cs.id} compact />, kicker: `${cs.number} / ${cs.category.split(' · ')[0]}`, title: cs.title })),
+      allTile('all', '/craft', 'portfolio', `All / ${menuWorks.length} works`, 'See all work'),
+    ]),
+    Leadership: panel('My journey leading design', [
+      ...itemTiles(leadershipItems.slice(1)),
+      allTile('all', '/leadership', 'lead', 'Overview', 'The leadership journey'),
+    ]),
+    Practice: panel('Frameworks for design practice', [
+      ...itemTiles(practiceItems),
+      allTile('all', '/resources', 'toolkit', 'All / Practice', 'All of my practice'),
+    ]),
+    Grow: panel('Resources to grow your craft', [
+      ...itemTiles(growItems.slice(1)),
+      allTile('all', '/learn', 'grow', 'Overview', 'Grow, for designers'),
+    ]),
   }
-  const panels: Record<MenuKey, React.ReactNode> = { Works: worksPanel, Leadership: coverPanel('Leadership', leadershipItems, { label: 'All leadership', to: '/leadership' }), Grow: coverPanel('Grow', growItems, { label: 'All Grow', to: '/learn' }) }
 
   return (
     <>
