@@ -154,7 +154,8 @@ export default function Nav() {
     <div className="container-site grid-site py-8">
       <p className="col-span-12 text-overline text-ink-3 mb-5">{heading}</p>
       {tiles.map(t => (
-        <Link key={t.key} to={t.to} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 self-start hover:bg-surface-2 transition-colors">
+        <Link key={t.key} to={t.to} className="relative col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 self-start hover:bg-surface-2 transition-colors">
+          {t.all && <span aria-hidden="true" className="absolute top-0 bottom-0" style={{ left: -3, width: 1, background: 'var(--line-2)' }} />}
           {t.cover}
           <span className="text-label text-signal-ink">{t.kicker}</span>
           <span className={`${titleCls} ${t.all ? 'inline-flex items-center gap-2' : ''}`}>{t.title}{t.all && arrowSvg}</span>
