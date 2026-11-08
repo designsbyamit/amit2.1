@@ -33,7 +33,7 @@ export const stories: LeadershipStory[] = [
     tone: 'cobalt',
     year: '',
     context: 'DevOps plugin marketplace · design, engineering and product',
-    title: 'Defending design by co-creating the answer',
+    title: 'Building consensus out of a massive conflict',
     cues: [
       'What was the moment you realised design was about to be removed or sidelined, and what was at stake?',
       'How did you make the case? What did you say, and to whom?',
