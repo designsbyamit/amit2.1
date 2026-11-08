@@ -29,7 +29,7 @@ export interface Playback {
 export const playbacks: Playback[] = [
   {
     id: 'sap-agentic',
-    headline: 'Human-led agentic AI for supplier order confirmation and RFQ response',
+    headline: 'Agentic Order Confirmations',
     dek: 'Taking RFQ approvals beyond manual review towards autonomous procurement decisions.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
@@ -61,7 +61,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'engaze',
-    headline: 'Conversation-first HCM suite that earned 90% employee satisfaction',
+    headline: 'Engaze',
     dek: 'Making HR conversations the starting point for an autonomous HCM experience.',
     led: 'I led a design team of 5 to 6, inside a larger team where the rest of the people came from other disciplines.',
     roleNote: 'The team researched conversation design in depth, including how to build a persona that keeps one consistent conversation pattern.',
@@ -77,7 +77,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'airline-app',
-    headline: 'Air travel booking journey redesign drove 50x in-app add-on sales',
+    headline: 'Omnichannel Travel Booking',
     dek: 'Connecting the travel booking journey across channels to drive a 92% boost in engagement.',
     led: 'I led experience strategy across 11+ designers, organised in pods that each owned a journey.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8-9 person team for almost a year.',
@@ -93,7 +93,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'dnetworx',
-    headline: 'Dynamic network management app that saved $5M',
+    headline: 'Dynamic Network Management',
     dek: 'Making network management smarter, simpler and $5M more efficient.',
     led: 'I led a design team of mostly 5 to 6, working as one team with engineering and product partners.',
     roleNote: 'A massive project on complex technology, where what the platform changes lands on the customer’s own infrastructure.',
@@ -109,7 +109,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'One vision for AI search, built from what stakeholders told us',
+    headline: 'AI-Powered Search',
     dek: 'Turning enterprise search into a unified path from questions to action.',
     led: 'I led eight designers in three groups, alongside engineering and product.',
     roleNote: 'Design Lead for the search vision and its three workstreams.',
@@ -123,7 +123,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-collections',
-    headline: 'An agent prepares the work on overdue customers, and people decide what to send',
+    headline: 'Agentic AR Collections',
     dek: 'Putting four AI agents to work on overdue invoices across 140 countries.',
     led: 'I led the design, together with product and engineering.',
     roleNote: 'Design Lead. Four rounds of discovery with three roles.',
@@ -150,7 +150,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-signin',
-    headline: 'One sign in and sign out experience for eight cloud products',
+    headline: 'Unified Sign-in/Out Experience',
     dek: 'Bringing consistency to authentication across 1,500+ apps, without losing the needs of individual products.',
     roleNote: 'Guidelines and five interactive prototypes.',
     beats: {
@@ -163,7 +163,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'data-ai',
-    headline: 'Marketplace for data governance apps driving 76% adoption',
+    headline: 'Data Products & Apps Marketplace',
     dek: 'Turning a marketplace for data products and apps into an adoption story: 76% and counting.',
     roleNote: 'I led the redesign of the Collibra data-governance experience and defined the NCPI heuristic evaluation framework.',
     beats: {

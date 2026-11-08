@@ -34,7 +34,7 @@ export default function AirlineStoryPage() {
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Travel Booking' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{S.title}</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{cs.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A service ecosystem, not an app. I led the mobile experience: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.</p>
           <div className="flex flex-wrap gap-2 mt-8">{(cs.tags ?? []).map(t => <span key={t} className="tag">{t}</span>)}</div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">

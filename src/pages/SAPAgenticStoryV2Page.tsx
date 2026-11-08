@@ -53,7 +53,7 @@ export default function SAPAgenticStoryV2Page() {
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic Order Confirmations' }]} />
           <p className="text-label text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{T.hero.title}</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{cs.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{T.hero.strap}</p>
           <div className="mt-8"><Button to="/craft/sap-agentic/film" arrow>Watch the 2-minute film</Button></div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-5xl">

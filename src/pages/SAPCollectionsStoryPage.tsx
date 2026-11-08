@@ -88,7 +88,7 @@ export default function SAPCollectionsStoryPage() {
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic AR Collections' }]} />
           <p className="text-label text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">Collections: an agentic worklist that turns overdue invoices into decisions</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{cs.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">An assistant for accounts receivable, built inside Fiori. The agent ranks the work and recommends the next action. A person approves everything that reaches a customer.</p>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-5xl">
             {facts.map(([k, v]) => <div key={k}><dt className="text-label text-ink-3">{k}</dt><dd className="v2-item text-white mt-2">{v}</dd></div>)}

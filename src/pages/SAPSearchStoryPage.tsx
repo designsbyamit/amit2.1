@@ -42,7 +42,7 @@ export default function SAPSearchStoryPage() {
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'AI-Powered Search' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{S.title}</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{cs.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
           <div className="flex flex-wrap gap-2 mt-8">
             <span className="tag">{S.kicker}</span>
