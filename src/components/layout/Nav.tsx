@@ -168,7 +168,7 @@ export default function Nav() {
 
   const panels: Record<MenuKey, React.ReactNode> = {
     Works: panel('Selected work in enterprise AI', [
-      ...menuWorks.slice(0, 3).map(cs => ({ key: cs.id, to: `/craft/${cs.id}`, cover: <CaseThumb id={cs.id} compact />, kicker: `${cs.number} / ${cs.category.split(' · ')[0]}`, title: cs.title })),
+      ...menuWorks.slice(0, 3).map(cs => ({ key: cs.id, to: `/craft/${cs.id}`, cover: <CaseThumb id={cs.id} compact />, kicker: `${cs.number} / ${cs.category.split(' · ').slice(0, 2).join(' · ')}`, title: cs.title })),
       allTile('all', '/craft', 'portfolio', `All / ${menuWorks.length} works`, 'See all work'),
     ]),
     Leadership: panel('My journey leading design', [

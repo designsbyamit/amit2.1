@@ -15,7 +15,7 @@ export function nextCase(id: string): NextLink | null {
   const i = caseStudies.findIndex(c => c.id === id)
   if (i < 0) return null
   const n = after(caseStudies, i)
-  return { label: 'Next case study', to: `/craft/${n.id}`, title: n.title, eyebrow: n.category.split(' · ').slice(0, 2).join(' · '), cta: 'View teaser', alt: { to: `/craft/${n.id}/details`, cta: 'Take a deep dive' } }
+  return { label: 'Next case study', to: `/craft/${n.id}`, title: n.title, eyebrow: n.category.split(' · ').slice(0, 3).join(' · '), cta: 'View teaser', alt: { to: `/craft/${n.id}/details`, cta: 'Take a deep dive' } }
 }
 
 export function nextShortStory(slug: string): NextLink | null {
