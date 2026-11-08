@@ -70,6 +70,7 @@ const projects: RouteMeta[] = playbacks.flatMap(p => {
   const cs = caseStudies.find(c => c.id === p.id)
   const out: RouteMeta[] = [{ path: `/craft/${p.id}`, title: T(p.headline), description: p.dek, image: `/og/${p.id}.jpg`, type: 'article' }]
   if (cs && !gatedCases.includes(p.id)) out.push({ path: `/craft/${p.id}/details`, title: T(`${cs.shortTitle}: the detailed case study`), description: cs.tagline, image: `/og/${p.id}.jpg`, type: 'article' })
+  if (cs && gatedCases.includes(p.id)) out.push({ path: `/craft/${p.id}/details`, title: T(`${cs.shortTitle}: access code`), description: 'The detailed case study is shared by access code.', noindex: true })
   return out
 })
 
