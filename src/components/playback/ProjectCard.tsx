@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import CaseTags from '../ds/CaseTags'
 import CaseThumb from '../ds/CaseThumb'
 import type { CaseStudy } from '../../data/work'
 import type { Playback } from '../../data/playbacks'
@@ -31,7 +32,7 @@ export default function ProjectCard({ cs, pb, variant = 'tile', headingLevel = '
         <WindowFrame className="transition-transform duration-500 group-hover:-translate-y-0.5"><CaseThumb id={cs.id} ratio="1800 / 1000" flush /></WindowFrame>
       </div>
       <div className={row ? 'col-span-4 md:col-span-5 order-2 md:order-1 flex flex-col justify-center gap-4 md:pr-6' : 'flex flex-col gap-4 pt-6'}>
-        <p className="text-label text-ink-3">{showNumber && <><span className="text-signal-ink">{cs.number}</span> / </>}{cs.category.split(' · ').slice(0, 3).join(' · ')}</p>
+        <p className="text-label text-ink-2">{showNumber && <><span className="text-signal-ink">{cs.number}</span> / </>}<CaseTags category={cs.category} /></p>
         <H className={`text-heading text-ink group-hover:underline decoration-1 underline-offset-[0.18em] ${row ? '' : 'max-w-measure-s'}`}>{pb.headline}</H>
         <p className="text-body text-ink-2 max-w-measure-l">{pb.dek}</p>
         <span className="inline-flex items-center gap-2 text-label text-ink mt-1" aria-hidden="true">View project<Arrow /></span>

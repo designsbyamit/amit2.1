@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import CaseTags from '../components/ds/CaseTags'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Mark, { markForCase } from '../components/marks/Marks'
 import Breadcrumb from '../components/ds/Breadcrumb'
@@ -44,7 +45,7 @@ export default function PlaybackPage() {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-5">
             {markForCase(cs.id) && <Mark name={markForCase(cs.id)!} size={36} className="text-ink-2" />}
             <p className="text-label text-ink-3">
-              <span className="text-signal-ink">{cs.number}</span> / {cs.category.split(' · ').slice(0, 3).join(' · ')}
+              <span className="text-signal-ink">{cs.number}</span> / <CaseTags category={cs.category} />
             </p>
             <span className="md:hidden"><ShortStoryTag compact /></span>
           </div>

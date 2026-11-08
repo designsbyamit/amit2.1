@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import CaseTags from './CaseTags'
 import { motion } from 'framer-motion'
 import type { CaseStudy } from '../../data/work'
 import CaseThumb from './CaseThumb'
@@ -12,7 +13,7 @@ export default function CaseRow({ cs, index = 0, headingLevel = 'h3' }: { cs: Ca
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}>
       <Link to={`/craft/${cs.id}`} className="group grid-site gap-y-6 py-10 md:py-14" data-cursor="project" data-cursor-label="View case">
         <div className="col-span-4 md:col-span-5 flex flex-col justify-center gap-4 md:pr-6 order-2 md:order-1">
-          <p className="text-label text-ink-3"><span className="text-signal-ink">{cs.number}</span> / {cs.category.split(' · ').slice(0, 3).join(' · ')}</p>
+          <p className="text-label text-ink-2"><span className="text-signal-ink">{cs.number}</span> / <CaseTags category={cs.category} /></p>
           <H className="text-heading text-ink group-hover:underline decoration-1 underline-offset-[0.18em]">{cs.title}</H>
           <p className="text-body text-ink-2 max-w-md">{cs.tagline}</p>
           {cs.role && <p className="tag">{cs.role}</p>}
