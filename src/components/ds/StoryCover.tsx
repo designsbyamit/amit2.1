@@ -1,6 +1,6 @@
 import type { FieldTone } from './MediaFrame'
 
-export type StoryMotif = 'seat' | 'team' | 'influence' | 'hub' | 'culture'
+export type StoryMotif = 'seat' | 'cocreate' | 'team' | 'influence' | 'hub' | 'culture'
 
 const L = '#C8F55A'
 const I = '#ECEDEF'
@@ -15,6 +15,12 @@ function Motif({ motif }: { motif: StoryMotif }) {
         {[60, 85, 115, 140].map(x => <circle key={x} cx={x} cy="34" r="8" fill="none" stroke={I} strokeWidth="1.5" />)}
         {[60, 85, 140].map(x => <circle key={x} cx={x} cy="86" r="8" fill="none" stroke={I} strokeWidth="1.5" />)}
         <circle cx="115" cy="86" r="8" fill={L} />
+      </svg>
+    case 'cocreate': // separate ideas drawn into one direction
+      return <svg viewBox="0 0 200 120" className="w-full h-full" aria-hidden="true">
+        {[[30, 24], [58, 40], [26, 58], [56, 74], [32, 96]].map(([x, y], i) => <g key={i}><line x1={x + 8} y1={y + (60 - y) * 0.1} x2="104" y2="60" stroke={I} strokeWidth="1" opacity="0.45" /><circle cx={x} cy={y} r="7" fill="none" stroke={I} strokeWidth="1.5" /></g>)}
+        <circle cx="116" cy="60" r="9" fill={L} />
+        <line x1="132" y1="60" x2="178" y2="60" stroke={L} strokeWidth="1.5" /><polyline points="170,52 178,60 170,68" fill="none" stroke={L} strokeWidth="1.5" />
       </svg>
     case 'team': // a team forming around a first hire
       return <svg viewBox="0 0 200 120" className="w-full h-full" aria-hidden="true">

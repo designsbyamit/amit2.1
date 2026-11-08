@@ -8,7 +8,7 @@ import { motion, useInView, useReducedMotion } from 'framer-motion'
    Reduced motion: drawn and still. Decorative: the caption carries the meaning. */
 
 export type PictogramKind =
-  | 'conflict' | 'understand' | 'converge' | 'seat'
+  | 'conflict' | 'understand' | 'converge' | 'seat' | 'direction'
   | 'blueprint' | 'enable' | 'zoom'
   | 'mindset' | 'pillars' | 'spread'
   | 'custodian' | 'expand' | 'between' | 'languages'
@@ -101,6 +101,14 @@ const Converge = () => (<>
   <Ring cx={104} cy={50} r={32} /><Ring cx={140} cy={50} r={32} delay={0.2} /><Ring cx={122} cy={80} r={32} delay={0.4} />
   <Dot cx={122} cy={60} r={6} c={SIG} delay={1.2} />
   <Pulse cx={122} cy={60} r={6} delay={1.2} />
+</>)
+
+/** Many ideas, thought of alone, drawn into one direction. */
+const Direction = () => (<>
+  {[[34, 26], [64, 42], [30, 60], [62, 76], [36, 96]].map(([x, y], i) => <g key={i}><Ring cx={x} cy={y} r={8} delay={0.2 + i * 0.12} /><Ln d={`M${x + 9} ${y + (60 - y) * 0.12} L118 60`} c={DIM} delay={0.9 + i * 0.1} /></g>)}
+  <Dot cx={130} cy={60} r={8} c={SIG} delay={1.5} />
+  <Pulse cx={130} cy={60} r={8} delay={1.5} />
+  <Ln d="M148 60 H206" c={SIG} delay={1.9} /><Ln d="M197 52 L206 60 L197 68" c={SIG} delay={2.2} />
 </>)
 
 /** A table of seats, the last one earned. */
@@ -253,7 +261,7 @@ const Purpose = () => {
 }
 
 const ART: Record<PictogramKind, () => ReactNode> = {
-  conflict: Conflict, understand: Understand, converge: Converge, seat: Seat,
+  conflict: Conflict, understand: Understand, converge: Converge, seat: Seat, direction: Direction,
   blueprint: Blueprint, enable: Enable, zoom: Zoom,
   mindset: Mindset, pillars: Pillars, spread: Spread,
   custodian: Custodian, expand: Expand, between: Between, languages: Languages,
