@@ -132,6 +132,7 @@ export default function Nav() {
   // the pointer from the trigger into the panel never drops it.
   const hoverOpen = (k: MenuKey) => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
+    if (openTimer.current) clearTimeout(openTimer.current)
     openTimer.current = setTimeout(() => setOpen(k), 90)
   }
   const hoverClose = () => {
@@ -147,13 +148,19 @@ export default function Nav() {
 
   const titleCls = 'text-t-md leading-snug font-light tracking-tight text-ink group-hover:underline underline-offset-4 decoration-1'
   const linkCls = 'py-1.5 text-t-ui leading-snug text-ink-2 hover:text-ink hover:underline underline-offset-4'
-  const featured = menuWorks.slice(0, 3)
-  const moreBig = menuWorks.slice(3)
+  const featured = menuWorks.slice(0, 2)
+  const moreBig = menuWorks.slice(2)
 
-  // Works: the same panel as before. Three featured covers with previews, then the "More work" column.
+  // Works: the first tile is the way to the Works page (it sits under the pointer's path from the trigger, so the menu
+  // never swaps to Leadership on the way), then two featured covers, then the "More work" column.
   const worksPanel = (
     <div className="container-site grid-site py-8">
       <p className="col-span-12 text-overline text-ink-3 mb-5">Selected work</p>
+      <Link to="/craft" className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 self-start hover:bg-surface-2 transition-colors">
+        <MenuCover mark="portfolio" tone="graphite" size={110} />
+        <span className="text-label text-signal-ink">All / {menuWorks.length} works</span>
+        <span className={`${titleCls} inline-flex items-center gap-2`}>See all work{arrowSvg}</span>
+      </Link>
       {featured.map(cs => (
         <Link key={cs.id} to={`/craft/${cs.id}`} className="col-span-3 group flex flex-col gap-3 rounded-3 p-3 -m-3 hover:bg-surface-2 transition-colors">
           <CaseThumb id={cs.id} compact />
@@ -164,7 +171,6 @@ export default function Nav() {
       <div className="col-span-3 flex flex-col gap-0.5 pl-6" style={{ borderLeft: '1px solid var(--line-1)' }}>
         <span className="text-label text-ink-3 mb-2">More work</span>
         {moreBig.map(cs => <Link key={cs.id} to={`/craft/${cs.id}`} className={linkCls}>{cs.title}</Link>)}
-        <Link to="/craft" className="btn btn-ghost mt-3 self-start">All work{arrowSvg}</Link>
       </div>
     </div>
   )
@@ -212,7 +218,7 @@ export default function Nav() {
           <div className="flex items-center gap-6">
             <ul className="hidden lg:flex items-center gap-7">
               {navItems.map(item => item.menu ? (
-                <li key={item.to} onMouseEnter={() => hoverOpen(item.menu!)} className={item.quiet ? 'pl-7 ml-1 border-l' : undefined} style={item.quiet ? { borderColor: 'rgb(var(--ink-rgb) / 0.14)' } : undefined}>
+                <li key={item.to} onMouseEnter={() => hoverOpen(item.menu!)} onMouseLeave={() => { if (openTimer.current) clearTimeout(openTimer.current) }} className={item.quiet ? 'pl-7 ml-1 border-l' : undefined} style={item.quiet ? { borderColor: 'rgb(var(--ink-rgb) / 0.14)' } : undefined}>
                   <button ref={el => { triggers.current[item.menu!] = el }} type="button" aria-expanded={open === item.menu} aria-controls={`${panelId}-${item.menu}`}
                     onClick={() => setOpen(o => (o === item.menu ? null : item.menu!))}
                     className={`flex items-center gap-1.5 py-2 transition-colors ${item.quiet ? 'text-t-sm' : 'text-t-ui'} ${open === item.menu || activeFor(item.menu!) ? 'text-ink' : item.quiet ? 'text-ink-3 hover:text-ink' : 'text-ink-2 hover:text-ink'}`}>
