@@ -68,7 +68,7 @@ export default function SAPSignInStoryPage() {
     <div className="bg-surface-0 min-h-screen">
       <header style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
-          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Unified sign in' }]} />
+          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Unified Sign-in/Out' }]} />
           <p className="text-label text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">One sign in and sign out experience for every cloud product</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A product standard for the moment of entry. Three flow types, one anatomy, one way to recover, and a sign out that tells you what happened.</p>

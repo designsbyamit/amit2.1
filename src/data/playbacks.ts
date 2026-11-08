@@ -30,7 +30,7 @@ export const playbacks: Playback[] = [
   {
     id: 'sap-agentic',
     headline: 'Human-led agentic AI for supplier order confirmation and RFQ response',
-    dek: 'An agent extracts and compares, people validate and decide. Co-created with customers as a white-labelled solution across supply chain management.',
+    dek: 'Taking RFQ approvals beyond manual review towards autonomous procurement decisions.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
       about: 'The opportunity was to design an agentic experience for procurement. The agent ingests many documents, including supplier order confirmations and RFQ responses, and compares them against purchase orders. Procurement specialists and operations teams then validate the discrepancies, approve outcomes and make the decisions.',
@@ -62,7 +62,7 @@ export const playbacks: Playback[] = [
   {
     id: 'engaze',
     headline: 'Conversation-first HCM suite that earned 90% employee satisfaction',
-    dek: 'A conversational experience built on five principles instead of flows, with one companion serving employees and managers across the HCM suite. The employee module shipped at 90% CSAT.',
+    dek: 'Making HR conversations the starting point for an autonomous HCM experience.',
     led: 'I led a design team of 5 to 6, inside a larger team where the rest of the people came from other disciplines.',
     roleNote: 'The team researched conversation design in depth, including how to build a persona that keeps one consistent conversation pattern.',
     beats: {
@@ -78,7 +78,7 @@ export const playbacks: Playback[] = [
   {
     id: 'airline-app',
     headline: 'Air travel booking journey redesign drove 50x in-app add-on sales',
-    dek: 'A service ecosystem rather than an app: engagement up 92%, add-on sales up 50×, check-in cut from 9 steps to 2.',
+    dek: 'Connecting the travel booking journey across channels to drive a 92% boost in engagement.',
     led: 'I led experience strategy across 11+ designers, organised in pods that each owned a journey.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8-9 person team for almost a year.',
     beats: {
@@ -94,7 +94,7 @@ export const playbacks: Playback[] = [
   {
     id: 'dnetworx',
     headline: 'Dynamic network management app that saved $5M',
-    dek: 'A change-resistant network platform made self-serve for enterprises, with 70,000+ customers and a client-reported $5M saving.',
+    dek: 'Making network management smarter, simpler and $5M more efficient.',
     led: 'I led a design team of mostly 5 to 6, working as one team with engineering and product partners.',
     roleNote: 'A massive project on complex technology, where what the platform changes lands on the customer’s own infrastructure.',
     beats: {
@@ -110,7 +110,7 @@ export const playbacks: Playback[] = [
   {
     id: 'sap-search',
     headline: 'One vision for AI search, built from what stakeholders told us',
-    dek: 'We met line of business stakeholders, wrote the vision and principles, and led eight designers in three groups to a tested prototype.',
+    dek: 'Turning enterprise search into a unified path from questions to action.',
     led: 'I led eight designers in three groups, alongside engineering and product.',
     roleNote: 'Design Lead for the search vision and its three workstreams.',
     beats: {
@@ -124,7 +124,7 @@ export const playbacks: Playback[] = [
   {
     id: 'sap-collections',
     headline: 'An agent prepares the work on overdue customers, and people decide what to send',
-    dek: 'A collections app, designed within the constraints of the enterprise UI framework and released through phase 2.',
+    dek: 'Putting four AI agents to work on overdue invoices across 140 countries.',
     led: 'I led the design, together with product and engineering.',
     roleNote: 'Design Lead. Four rounds of discovery with three roles.',
     beats: {
@@ -151,7 +151,7 @@ export const playbacks: Playback[] = [
   {
     id: 'sap-signin',
     headline: 'One sign in and sign out experience for eight cloud products',
-    dek: 'A product standard with three flow types, one anatomy and one way to recover. Ready for implementation.',
+    dek: 'Bringing consistency to authentication across 1,500+ apps, without losing the needs of individual products.',
     roleNote: 'Guidelines and five interactive prototypes.',
     beats: {
       about: 'A single sign in and sign out standard for the cloud products.',
@@ -164,7 +164,7 @@ export const playbacks: Playback[] = [
   {
     id: 'data-ai',
     headline: 'Marketplace for data governance apps driving 76% adoption',
-    dek: 'Executive data products for a global data and AI practice. The scorecard became a reference for presenting governance health to enterprise clients.',
+    dek: 'Turning a marketplace for data products and apps into an adoption story: 76% and counting.',
     roleNote: 'I led the redesign of the Collibra data-governance experience and defined the NCPI heuristic evaluation framework.',
     beats: {
       about: 'Executive-grade data products that turn the complexity of data governance into something leaders can act on.',

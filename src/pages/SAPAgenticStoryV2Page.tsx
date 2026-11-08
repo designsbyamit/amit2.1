@@ -51,7 +51,7 @@ export default function SAPAgenticStoryV2Page() {
     <div className="bg-surface-0 min-h-screen">
       <header style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
-          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic Order Confirmation' }]} />
+          <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic Order Confirmations' }]} />
           <p className="text-label text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{T.hero.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{T.hero.strap}</p>
