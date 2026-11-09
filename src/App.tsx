@@ -104,12 +104,6 @@ function LegacyHashRedirect() {
   return null
 }
 
-/** A film of a case study under NDA asks for the same access code as the detailed page. */
-function GatedFilm({ id, children }: { id: string; children: React.ReactNode }) {
-  const cs = caseStudies.find(c => c.id === id)
-  return <NdaGate id={id} title={cs?.title ?? id}>{children}</NdaGate>
-}
-
 /** The detailed case study for a project. Each of the larger projects has its own page; the rest use the standard one. */
 function CaseDetail() {
   const { id } = useParams<{ id: string }>()
@@ -155,9 +149,9 @@ function AnimatedRoutes() {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
         <Route path="/craft/engaze/film" element={<PageTransition><EngazeFilmPage /></PageTransition>} />
-        <Route path="/craft/sap-collections/film" element={<PageTransition><GatedFilm id="sap-collections"><CollectionsFilmPage /></GatedFilm></PageTransition>} />
-        <Route path="/craft/sap-signin/film" element={<PageTransition><GatedFilm id="sap-signin"><SignInFilmPage /></GatedFilm></PageTransition>} />
-        <Route path="/craft/sap-compositional/film" element={<PageTransition><GatedFilm id="sap-compositional"><CompositionalFilmPage /></GatedFilm></PageTransition>} />
+        <Route path="/craft/sap-collections/film" element={<PageTransition><CollectionsFilmPage /></PageTransition>} />
+        <Route path="/craft/sap-signin/film" element={<PageTransition><SignInFilmPage /></PageTransition>} />
+        <Route path="/craft/sap-compositional/film" element={<PageTransition><CompositionalFilmPage /></PageTransition>} />
         <Route path="/craft/sap-search/film" element={<PageTransition><SearchFilmPage /></PageTransition>} />
         <Route path="/craft/sap-agentic/story-v2" element={<Navigate to="/craft/sap-agentic/details" replace />} />
         <Route path="/craft/sap-agentic/film" element={<PageTransition><AgenticFilmPage /></PageTransition>} />
