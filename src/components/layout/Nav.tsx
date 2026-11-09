@@ -201,12 +201,14 @@ export default function Nav() {
             <ul className="hidden lg:flex items-center gap-7">
               {navItems.map(item => item.menu ? (
                 <li key={item.to} onMouseEnter={() => hoverOpen(item.menu!)} onMouseLeave={() => { if (openTimer.current) clearTimeout(openTimer.current) }} className={item.quiet ? 'pl-7 ml-1 border-l' : undefined} style={item.quiet ? { borderColor: 'rgb(var(--ink-rgb) / 0.14)' } : undefined}>
-                  <button ref={el => { triggers.current[item.menu!] = el }} type="button" aria-expanded={open === item.menu} aria-controls={`${panelId}-${item.menu}`}
-                    onClick={() => setOpen(o => (o === item.menu ? null : item.menu!))}
-                    className={`flex items-center gap-1.5 py-2 transition-colors ${item.quiet ? 'text-t-sm' : 'text-t-ui'} ${open === item.menu || activeFor(item.menu!) ? 'text-ink' : item.quiet ? 'text-ink-3 hover:text-ink' : 'text-ink-2 hover:text-ink'}`}>
-                    {item.label}
-                    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${open === item.menu ? 'rotate-180' : ''}`}><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </button>
+                  <div className={`flex items-center gap-1 ${item.quiet ? 'text-t-sm' : 'text-t-ui'}`}>
+                    <Link to={item.to} className={`py-2 transition-colors ${open === item.menu || activeFor(item.menu!) ? 'text-ink' : item.quiet ? 'text-ink-3 hover:text-ink' : 'text-ink-2 hover:text-ink'}`}>{item.label}</Link>
+                    <button ref={el => { triggers.current[item.menu!] = el }} type="button" aria-expanded={open === item.menu} aria-controls={`${panelId}-${item.menu}`} aria-label={`${item.label} menu`}
+                      onClick={() => setOpen(o => (o === item.menu ? null : item.menu!))}
+                      className={`py-2 transition-colors ${open === item.menu || activeFor(item.menu!) ? 'text-ink' : item.quiet ? 'text-ink-3 hover:text-ink' : 'text-ink-2 hover:text-ink'}`}>
+                      <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform duration-200 ${open === item.menu ? 'rotate-180' : ''}`}><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </button>
+                  </div>
                 </li>
               ) : (
                 <li key={item.to} onMouseEnter={hoverClose}>
