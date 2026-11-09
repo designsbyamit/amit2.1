@@ -13,7 +13,7 @@ export default function Craft() {
         label="Works"
         title="Work that matters at scale."
         subtitle="This work goes beyond the solutions delivered. It reflects how I approach complexity, bring business and user needs together, and help teams make thoughtful decisions when the answers aren’t obvious."
-        image="/images/covers/sap-agentic-1600.webp" imagePosition="40% 50%" plain imageAlt="An AI agent comparing a supplier quote, contract terms and past orders before a person decides"
+        image="/images/about/works-hero.webp" imagePosition="50% 30%" mono imageAlt="Amit presenting a user flow on a wall screen"
       />
 
       <WorksBento />
