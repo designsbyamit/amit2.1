@@ -104,7 +104,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
             </button>
           </div>
         </div>
-        <ol hidden={embed} className="grid grid-cols-2 md:[grid-template-columns:repeat(var(--n),minmax(0,1fr))] gap-2 mt-4" style={{ ['--n' as string]: chapters.length }}>
+        <ol className={`${embed ? "hidden" : "grid"} grid-cols-2 md:[grid-template-columns:repeat(var(--n),minmax(0,1fr))] gap-2 mt-4`} style={{ ['--n' as string]: chapters.length }}>
           {chapters.map(c => (
             <li key={c.at}><button onClick={() => { if (!started) setStarted(true); seek(c.at); if (!playing) play() }} className="w-full text-left rounded-2 px-3 py-2 text-caption" style={{ background: chapter.at === c.at ? 'rgb(var(--ink-rgb) / 0.08)' : 'transparent', border: '1px solid var(--line-1)', color: 'var(--ink-2)' }}>
               <span style={{ fontFamily: mono, fontSize: 11, color: 'var(--ink-3)' }}>{fmtT(c.at)}</span><br />{c.label}
