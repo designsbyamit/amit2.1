@@ -72,7 +72,6 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
           <div ref={wrap} className="relative w-full" style={{ aspectRatio: '16 / 9', overflow: 'hidden', fontFamily: "'Geist Variable','Geist',system-ui,sans-serif", color: C.ink }}>
             <div style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transformOrigin: '0 0', transform: `scale(${scale})`, background: C.bg }}>
               {render(t)}
-              <div style={{ position: 'absolute', right: 40, bottom: 24, fontFamily: mono, fontSize: 18, letterSpacing: '0.14em', color: C.mute, padding: '6px 14px', borderRadius: 20, background: 'rgba(15,16,19,0.78)' }}>{chapter.label.toUpperCase()}</div>
             </div>
             {!started && (
               <button onClick={start} aria-label="Play the film with sound" className="absolute inset-0 grid place-items-center cursor-pointer" style={{ background: 'rgba(15,16,19,0.78)' }}>
@@ -84,7 +83,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
             )}
           </div>
 
-          <div className="flex flex-wrap md:flex-nowrap items-center gap-x-4 gap-y-2 px-4 py-3" style={{ background: C.panel, borderTop: `1px solid ${C.line}` }}>
+          <div className="flex flex-wrap md:flex-nowrap items-center gap-x-4 gap-y-2 px-4 py-3" style={{ background: C.panel, boxShadow: `inset 0 1px 0 ${C.line}` }}>
             <button onClick={() => (playing ? pause() : started ? play() : start())} aria-label={playing ? 'Pause' : 'Play'} className="btn-reset grid place-items-center rounded-full" style={{ width: 40, height: 40, background: C.lime, color: C.bg }}>
               {playing ? <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z" /></svg> : <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>}
             </button>
@@ -95,7 +94,6 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
                 <div className="h-full rounded" style={{ width: `${(t / duration) * 100}%`, background: C.lime }} />
               </div>
             </div>
-            <span className="hidden md:block" style={{ fontFamily: mono, fontSize: 12, letterSpacing: '0.1em', color: C.mute, minWidth: 190 }}>{chapter.label.toUpperCase()}</span>
             <button onClick={() => setMuted(m => !m)} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted} className="btn-reset grid place-items-center ml-auto md:ml-0" style={{ color: C.ink, width: 32, height: 32 }}>
               {muted
                 ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" /><path d="M16 9.5l5 5M21 9.5l-5 5" /></svg>
