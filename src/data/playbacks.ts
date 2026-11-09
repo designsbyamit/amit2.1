@@ -29,8 +29,8 @@ export interface Playback {
 export const playbacks: Playback[] = [
   {
     id: 'sap-agentic',
-    headline: 'Agentic Order Confirmations',
-    dek: 'Taking RFQ approvals beyond manual review towards autonomous procurement decisions.',
+    headline: 'From inbox to approval, automating the legwork',
+    dek: 'RFQ approvals towards autonomous procurement decisions.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
       about: 'The opportunity was to design an agentic experience for procurement. The agent ingests many documents, including supplier order confirmations and RFQ responses, and compares them against purchase orders. Procurement specialists and operations teams then validate the discrepancies, approve outcomes and make the decisions.',
@@ -61,7 +61,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'engaze',
-    headline: 'Engaze',
+    headline: 'Enterprise Assistant to Stay Engaged',
     dek: 'Making HR conversations the starting point for an autonomous HCM experience.',
     led: 'I led a design team of 5 to 6, inside a larger team where the rest of the people came from other disciplines.',
     roleNote: 'The team researched conversation design in depth, including how to build a persona that keeps one consistent conversation pattern.',
@@ -77,8 +77,8 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'airline-app',
-    headline: 'Omnichannel Travel Booking',
-    dek: 'Connecting the travel booking journey across channels to drive a 92% boost in engagement.',
+    headline: 'Omnichannel Air travel experience',
+    dek: 'Connecting the travel booking journey across channels that drives a 92% boost in engagement.',
     led: 'I led experience strategy across 11+ designers, organised in pods that each owned a journey.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8-9 person team for almost a year.',
     beats: {
@@ -94,7 +94,7 @@ export const playbacks: Playback[] = [
   {
     id: 'dnetworx',
     headline: 'Dynamic Network Management',
-    dek: 'Making network management smarter, simpler and $5M more efficient.',
+    dek: 'Self-serve network management that saved $5M',
     led: 'I led a design team of mostly 5 to 6, working as one team with engineering and product partners.',
     roleNote: 'A massive project on complex technology, where what the platform changes lands on the customer’s own infrastructure.',
     beats: {
@@ -109,7 +109,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'AI-Powered Search',
+    headline: 'Search that talks back and gets things done',
     dek: 'Turning enterprise search into a unified path from questions to action.',
     led: 'I led eight designers in three groups, alongside engineering and product.',
     roleNote: 'Design Lead for the search vision and its three workstreams.',
@@ -123,8 +123,8 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-collections',
-    headline: 'Agentic AR Collections',
-    dek: 'Putting four AI agents to work on overdue invoices across 140 countries.',
+    headline: 'Overdue invoices, managed by agents and led by humans',
+    dek: 'Multi-agentic orchestrations for overdue invoices across 140 countries.',
     led: 'I led the design, together with product and engineering.',
     roleNote: 'Design Lead. Four rounds of discovery with three roles.',
     beats: {
@@ -137,8 +137,8 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-compositional',
-    headline: 'Giving AI a governed design language, from design systems to design intelligence',
-    dek: 'A research point of view, a working hypothesis called EOM, and a vertical slice lab.',
+    headline: 'Beyond compositions',
+    dek: 'Intelligent Experience Optimisation for CompDS.',
     roleNote: 'Research and point of view. Status: working hypothesis.',
     beats: {
       about: 'A compositional design system gives AI a governed design language for creating experiences.',
@@ -150,8 +150,8 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-signin',
-    headline: 'Unified Sign-in/Out Experience',
-    dek: 'Bringing consistency to authentication across 1,500+ apps, without losing the needs of individual products.',
+    headline: 'Crafting a unified sign-in, consistent across 1,500+ apps',
+    dek: 'Harmonising authentication across 1,500+ apps',
     roleNote: 'Guidelines and five interactive prototypes.',
     beats: {
       about: 'A single sign in and sign out standard for the cloud products.',
@@ -163,8 +163,8 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'data-ai',
-    headline: 'Data Products & Apps Marketplace',
-    dek: 'Turning a marketplace for data products and apps into an adoption story: 76% and counting.',
+    headline: 'Data Products Marketplace',
+    dek: 'Enabling Data Governance Adoption for the Enterprise',
     roleNote: 'I led the redesign of the Collibra data-governance experience and defined the NCPI heuristic evaluation framework.',
     beats: {
       about: 'Executive-grade data products that turn the complexity of data governance into something leaders can act on.',
