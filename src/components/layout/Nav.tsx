@@ -133,7 +133,8 @@ export default function Nav() {
   const hoverOpen = (k: MenuKey) => {
     if (closeTimer.current) clearTimeout(closeTimer.current)
     if (openTimer.current) clearTimeout(openTimer.current)
-    openTimer.current = setTimeout(() => setOpen(k), 90)
+    // Opening from closed is quick; switching from an open menu waits, so sweeping across the bar toward a panel tile does not swap the panel.
+    openTimer.current = setTimeout(() => setOpen(k), open && open !== k ? 420 : 90)
   }
   const hoverClose = () => {
     if (openTimer.current) clearTimeout(openTimer.current)

@@ -21,6 +21,8 @@ export interface Playback {
   }
   /** Optional: the end-to-end process, shown as a flow between the solution and the impact. */
   flow?: { title: string; text: string; by: 'Agent' | 'People' | 'Agent + people' }[]
+  /** Optional: one design decision worth telling, shown as a last beat. */
+  decision?: { heading: string; body: string }
   /** Optional: leave out where the figure is scale, not impact. */
   metric?: { value: string; label: string }
   featured: boolean
@@ -57,6 +59,7 @@ export const playbacks: Playback[] = [
       { title: 'Communication and closure', text: 'Decisions and actions go back to the relevant parties, and the process is closed.', by: 'Agent + people' },
     ],
     
+    decision: { heading: 'In autonomous systems, what the agent doesn\'t show matters as much as what it does', body: 'The instinct in agentic AI design is to surface everything: every step, every inference, every confidence score. But information overload defeats the purpose of automation. The principle we settled on: show the outcome, surface the reasoning only when it matters, and always preserve the human\'s ability to intervene. Trust is designed, not assumed.' },
     featured: true,
   },
   {
@@ -73,6 +76,7 @@ export const playbacks: Playback[] = [
       impact: 'The employee-experience module shipped at 90% CSAT and was the most praised HR AI product at the client.',
     },
     metric: { value: '90%', label: 'CSAT in the employee-experience module' },
+    decision: { heading: 'Why we stopped designing flows and started designing principles', body: 'In conversational AI, dialog flows only cover the happy path. The generative layer handles everything else. We recognised early that writing more flows was the wrong answer: instead, we defined five principles (trust, guidance, discoverability, cognitive simplicity, continuity) that taught the system how to behave in any situation. Those five principles outlasted every screen we designed.' },
     featured: true,
   },
   {
@@ -89,6 +93,7 @@ export const playbacks: Playback[] = [
       impact: 'Engagement up 92%, add-on sales up 50×, and check-in cut from 9 steps to 2. The pod model became the standard for large design programmes at Accenture ME.',
     },
     metric: { value: '50×', label: 'Increase in add-on sales' },
+    decision: { heading: 'The booking app was not the product. The passenger journey was.', body: 'When a business wants to grow digital revenue 50-fold, every stakeholder sees a booking flow problem. Reframing it as a service ecosystem problem changed what we built. The pod structure that delivered the work was itself a design decision: when designers own journeys instead of features, they design for coherence rather than correctness.' },
     featured: false,
   },
   {
@@ -105,6 +110,7 @@ export const playbacks: Playback[] = [
       impact: '$5M saved, a figure reported by the client. Changes that needed three-team handoffs are now done in a single self-serve flow.',
     },
     metric: { value: '$5M', label: 'Saved, as reported by the client' },
+    decision: { heading: 'Introducing progressive disclosure into a system that resisted simplification', body: 'Enterprise engineers had spent years learning to navigate complexity: removing it felt like a regression. Progressive disclosure was the solution: show less by default without removing anything. Expert users still had full control on demand. First-time users saw only what they needed. Nobody lost anything. Adoption followed.' },
     featured: false,
   },
   {

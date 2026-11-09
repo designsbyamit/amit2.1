@@ -95,6 +95,17 @@ export default function PlaybackPage() {
         </Fragment>
       ))}
 
+      {pb.decision && (
+        <section className={`hairline-top section-y ${beats.length % 2 === 0 ? 'bg-surface-1' : 'bg-surface-0'}`} aria-labelledby="beat-decision">
+          <div className="container-site grid-site gap-y-6 items-start">
+            <h2 id="beat-decision" className="col-span-4 md:col-span-3 text-overline text-ink-3">A design decision</h2>
+            <div className="col-span-4 md:col-span-8">
+              <h3 className="text-heading text-ink max-w-measure-l">{pb.decision.heading}</h3>
+              <p className="text-body-lg text-ink-2 mt-5 max-w-2xl">{pb.decision.body}</p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* One component with the footer: it stays at the bottom of the screen while scrolling, then settles into the footer. */}
       <div className="sticky bottom-0 z-30 border-t bg-bg" style={{ borderColor: 'var(--line-1)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
