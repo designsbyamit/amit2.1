@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/ds/Breadcrumb'
+import { heroClass, heroStyle } from '../data/caseTheme'
 import { caseStudies } from '../data/work'
 import { Section, Head, Fig, ScreenTabs, Numbered, Defs, Grid } from '../components/case/Chapter'
 
@@ -66,7 +67,7 @@ const recovery = [
 export default function SAPSignInStoryPage() {
   return (
     <div className="bg-surface-0 min-h-screen">
-      <header style={{ paddingTop: 'var(--header-h)' }}>
+      <header className={heroClass(cs.id)} style={{ paddingTop: 'var(--header-h)', ...heroStyle(cs.id) }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Unified Sign-in/Out' }]} />
           <p className="text-label text-ink-3 mt-10">{cs.category}</p>

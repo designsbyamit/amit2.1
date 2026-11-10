@@ -1,0 +1,126 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Mesh covers</title>
+<style>
+@font-face{font-family:'Geist';src:url('../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2');font-weight:100 900}
+*{box-sizing:border-box;margin:0}
+body{background:#222;display:grid;gap:40px;padding:40px;width:1680px;font-family:Geist,sans-serif}
+.c{position:relative;width:1600px;height:1000px;overflow:hidden}
+.h{position:relative;width:1920px;height:1080px;overflow:hidden}
+/* mesh: a base colour, soft blobs, and film grain */
+.mesh{position:absolute;inset:0;overflow:hidden}
+.mesh i{position:absolute;border-radius:50%;filter:blur(120px);opacity:.6!important}
+.mesh::after{content:'';position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+/* each case has its own base and its own arrangement */
+.m-search{background:#111160}
+.m-search i:nth-child(1){left:-12%;top:-30%;width:70%;height:90%;background:#4B3FE0}
+.m-search i:nth-child(2){right:-18%;top:10%;width:70%;height:80%;background:#8A5CFF;opacity:.8}
+.m-search i:nth-child(3){left:20%;bottom:-45%;width:80%;height:70%;background:#2B6BFF;opacity:.85}
+.m-search i:nth-child(4){right:6%;top:-30%;width:34%;height:60%;background:#BFC6FF;opacity:.55}
+.m-collections{background:#005695}
+.m-collections i:nth-child(1){left:-20%;bottom:-40%;width:80%;height:90%;background:#0B86C9}
+.m-collections i:nth-child(2){right:-12%;top:-30%;width:70%;height:85%;background:#22B5C9;opacity:.8}
+.m-collections i:nth-child(3){left:30%;top:20%;width:50%;height:60%;background:#003A73;opacity:.9}
+.m-collections i:nth-child(4){left:-8%;top:-26%;width:36%;height:58%;background:#9CD8FF;opacity:.5}
+.m-signin{background:#0B4F46}
+.m-signin i:nth-child(1){right:-15%;top:-35%;width:80%;height:90%;background:#25B58A}
+.m-signin i:nth-child(2){left:-25%;bottom:-40%;width:75%;height:80%;background:#1E8F6B;opacity:.9}
+.m-signin i:nth-child(3){left:25%;top:-20%;width:40%;height:55%;background:#B5E86A;opacity:.5}
+.m-signin i:nth-child(4){right:-5%;bottom:-40%;width:55%;height:60%;background:#06302B}
+.m-agentic{background:#5C2A08}
+.m-agentic i:nth-child(1){left:-15%;top:-30%;width:75%;height:85%;background:#D9822B}
+.m-agentic i:nth-child(2){right:-20%;bottom:-40%;width:80%;height:85%;background:#E8B04E;opacity:.85}
+.m-agentic i:nth-child(3){right:10%;top:-35%;width:50%;height:60%;background:#2A1204}
+.m-agentic i:nth-child(4){left:25%;bottom:-30%;width:45%;height:55%;background:#A5451A;opacity:.9}
+.m-cds{background:#3B1466}
+.m-cds i:nth-child(1){left:-18%;bottom:-35%;width:70%;height:85%;background:#D23FC8}
+.m-cds i:nth-child(2){right:-15%;top:-30%;width:75%;height:85%;background:#6B3FE0;opacity:.9}
+.m-cds i:nth-child(3){left:28%;top:25%;width:45%;height:55%;background:#FF7BB8;opacity:.55}
+.m-cds i:nth-child(4){right:-5%;bottom:-40%;width:50%;height:60%;background:#1E0B45}
+/* heroes are the same mesh, deepened on the left and top where the title sits */
+.h .shade{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,8,16,.62) 0%,rgba(8,8,16,.34) 45%,rgba(8,8,16,.08) 100%)}
+/* page header variant with no extra shade, for covers */
+.panel{background:var(--p);border:2px solid var(--pl);border-radius:30px;box-shadow:0 50px 100px -30px rgba(0,0,0,.55),0 10px 24px rgba(0,0,0,.25);color:#F2F3F8}
+.t1{font:600 40px/1.1 Geist;letter-spacing:-.02em}
+.t2{font:500 26px/1.2 Geist;color:var(--mute)}
+.btn{display:grid;place-items:center;height:76px;border-radius:20px;background:var(--a);color:var(--ai);font:600 30px Geist}
+.fld{height:70px;border-radius:16px;border:2px solid var(--pl);background:var(--p2)}
+.lbl{font:500 22px Geist;color:var(--mute);margin:22px 0 10px}
+.chip{display:inline-flex;align-items:center;gap:14px;padding:16px 26px;border-radius:999px;border:2px solid var(--pl);background:var(--p);font:500 28px Geist;color:#F2F3F8}
+.node{height:104px;padding:0 34px;border-radius:24px;display:flex;align-items:center;gap:18px;font:500 30px Geist;background:var(--p);border:2px solid var(--pl);color:#F2F3F8;box-shadow:0 30px 60px -24px rgba(0,0,0,.5)}
+.node.on{background:var(--a);border-color:var(--a);color:var(--ai);font-weight:600}
+.dot{width:22px;height:22px;border-radius:50%;background:var(--a);flex:none}
+.link{position:absolute;height:4px;background:var(--pl)}
+</style></head><body>
+
+<!-- AI Search -->
+<div class="c" id="sap-search" style="--p:#0A0A3C;--p2:#12124F;--pl:#2A2A7A;--mute:#A9AEE0;--a:#7C8BFF;--ai:#0A0A3C">
+  <div class="mesh m-search"><i></i><i></i><i></i><i></i></div>
+  <div style="position:absolute;left:200px;top:170px;width:1200px">
+    <div class="panel" style="height:112px;border-radius:34px;border:4px solid #8FA0FF;display:flex;align-items:center;padding:0 44px;gap:28px"><svg width="40" height="40" viewBox="0 0 24 24" fill="#B8C2FF"><path d="M12 2l2.2 6.3L20.5 10.5l-6.3 2.2L12 19l-2.2-6.3L3.5 10.5l6.3-2.2z"/></svg><div style="font:500 38px/1 Geist">purchase<i style="display:inline-block;width:3px;height:42px;background:#B8C2FF;vertical-align:-8px;margin-left:4px"></i></div></div>
+    <div class="panel" style="margin-top:22px;padding:16px">
+      <div style="display:flex;align-items:center;gap:24px;height:94px;padding:0 28px;font:500 27px Geist"><span style="flex:1">Purchase order, office supplies</span><span class="t2" style="font-size:20px">Finance</span><span style="padding:11px 22px;border-radius:99px;border:2px solid var(--pl);font:600 20px Geist">Follow up</span></div>
+      <div style="display:flex;align-items:center;gap:24px;height:94px;padding:0 28px;font:500 27px Geist;background:var(--p2);border-radius:20px"><span style="flex:1">Purchase requisition, IT equipment</span><span class="t2" style="font-size:20px">Finance</span><span style="padding:11px 22px;border-radius:99px;background:var(--a);color:var(--ai);font:600 20px Geist">Approve</span></div>
+      <div style="display:flex;align-items:center;gap:24px;height:94px;padding:0 28px;font:500 27px Geist"><span style="flex:1">Business trip to Bangalore</span><span class="t2" style="font-size:20px">Travel</span><span style="padding:11px 22px;border-radius:99px;border:2px solid var(--pl);font:600 20px Geist">Open</span></div>
+      <div style="display:flex;align-items:center;gap:24px;height:94px;padding:0 28px;font:500 27px Geist"><span style="flex:1">Flight to Bangalore</span><span class="t2" style="font-size:20px">Travel</span><span style="padding:11px 22px;border-radius:99px;border:2px solid var(--pl);font:600 20px Geist">Book</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Sign-in -->
+<div class="c" id="sap-signin" style="--p:#062E29;--p2:#0A3C35;--pl:#1F6B5E;--mute:#9FD6C6;--a:#7CE3B8;--ai:#04231F">
+  <div class="mesh m-signin"><i></i><i></i><i></i><i></i></div>
+  <div class="chip" style="position:absolute;left:110px;top:230px"><span class="dot"></span>Direct</div>
+  <div class="chip" style="position:absolute;left:110px;top:350px"><span class="dot" style="opacity:.6"></span>Progressive</div>
+  <div class="chip" style="position:absolute;left:110px;top:470px"><span class="dot" style="opacity:.35"></span>Context first</div>
+  <div class="panel" style="position:absolute;left:520px;top:120px;width:560px;padding:44px 46px 50px">
+    <div style="width:56px;height:56px;border-radius:16px;background:var(--a)"></div>
+    <div class="t1" style="margin-top:26px;font-size:48px">Sign in</div>
+    <div class="lbl">Email</div><div class="fld"></div>
+    <div class="lbl">Password</div><div class="fld"></div>
+    <div class="btn" style="margin-top:34px">Sign In</div>
+    <div class="t2" style="margin-top:26px;font-size:24px;color:var(--a)">Need sign in assistance?</div>
+  </div>
+  <div class="panel" style="position:absolute;left:1150px;top:250px;width:340px;padding:30px 34px"><div class="t2" style="font-size:22px">Recovery</div><div class="t1" style="font-size:34px;margin-top:10px">Forgot password</div><div class="t2" style="margin-top:12px;font-size:24px">Reset in the same card</div></div>
+  <div class="panel" style="position:absolute;left:1150px;top:470px;width:340px;padding:30px 34px"><div class="t2" style="font-size:22px">Sign out</div><div class="t1" style="font-size:34px;margin-top:10px">Signed Out</div><div class="t2" style="margin-top:12px;font-size:24px">A clear way back in</div></div>
+</div>
+
+<!-- Collections -->
+<div class="c" id="sap-collections" style="--p:#02223F">
+  <div class="mesh m-collections"><i></i><i></i><i></i><i></i></div>
+  <div style="position:absolute;left:150px;top:150px;width:1300px;height:700px;border-radius:26px;overflow:hidden;box-shadow:0 60px 110px -30px rgba(0,20,50,.7),0 10px 26px rgba(0,20,50,.3);border:2px solid rgba(255,255,255,.0);background:#fff"><img src="../../public/images/case-studies/sap-collections/worklist.webp" style="width:100%;display:block"></div>
+</div>
+
+<!-- Procurement -->
+<div class="c" id="sap-agentic" style="--p:#2A1204;--p2:#3A1A08;--pl:#7A4318;--mute:#E8C6A0;--a:#FFC470;--ai:#2A1204">
+  <div class="mesh m-agentic"><i></i><i></i><i></i><i></i></div>
+  <div class="node" style="position:absolute;left:90px;top:250px;width:340px"><span class="dot" style="background:#FFB08A"></span>Supplier quote</div>
+  <div class="node" style="position:absolute;left:90px;top:400px;width:340px"><span class="dot" style="background:#FFD98A"></span>Contract terms</div>
+  <div class="node" style="position:absolute;left:90px;top:550px;width:340px"><span class="dot" style="background:#C9E8A0"></span>Past orders</div>
+  <div class="node on" style="position:absolute;left:560px;top:340px;width:330px;height:260px;flex-direction:column;justify-content:center;font-size:40px;border-radius:30px"><svg width="54" height="54" viewBox="0 0 24 24" fill="#2A1204"><path d="M12 2l2.2 6.3L20.5 10.5l-6.3 2.2L12 19l-2.2-6.3L3.5 10.5l6.3-2.2z"/></svg>AI Agent</div>
+  <div class="node" style="position:absolute;left:1010px;top:250px;width:330px">Price and terms</div>
+  <div class="node" style="position:absolute;left:1010px;top:400px;width:330px">Quantity and dates</div>
+  <div class="node" style="position:absolute;left:1010px;top:550px;width:330px">Delivery</div>
+  <div class="link" style="left:430px;top:300px;width:130px"></div><div class="link" style="left:430px;top:450px;width:130px"></div><div class="link" style="left:430px;top:600px;width:130px"></div>
+  <div class="link" style="left:890px;top:300px;width:120px"></div><div class="link" style="left:890px;top:450px;width:120px"></div><div class="link" style="left:890px;top:600px;width:120px"></div>
+  <div class="node on" style="position:absolute;left:1400px;top:400px;width:150px;height:100px;justify-content:center;font-size:30px">Approve</div><div class="link" style="left:1340px;top:450px;width:60px"></div>
+</div>
+
+<!-- CDS -->
+<div class="c" id="sap-compositional" style="--p:#240A45;--p2:#33105C;--pl:#7A3BB8;--mute:#DDB8F2;--a:#FFB3E6;--ai:#2A0B48">
+  <div class="mesh m-cds"><i></i><i></i><i></i><i></i></div>
+  <div style="position:absolute;left:100px;top:300px;width:1400px;display:flex;gap:34px">
+    <div class="node" style="flex:1;justify-content:center">Intent</div><div class="node" style="flex:1;justify-content:center">Context</div><div class="node on" style="flex:1.3;justify-content:center">CDS</div><div class="node" style="flex:1.2;justify-content:center">Composition</div>
+  </div>
+  <div style="position:absolute;left:100px;top:520px;width:1400px;display:flex;gap:34px">
+    <div class="node" style="flex:1;justify-content:center">UI</div><div class="node" style="flex:1;justify-content:center">Renderer</div><div class="node" style="flex:1.3;justify-content:center">Validation</div><div class="node" style="flex:1.2;justify-content:center">Guardrails</div>
+  </div>
+  <div class="t2" style="position:absolute;left:100px;top:700px;font-size:30px;color:#EBD3F8">A governed design language, not a component library</div>
+</div>
+
+<!-- Heroes: the same mesh, deepened where the title sits -->
+<div class="h" id="hero-sap-search"><div class="mesh m-search"><i></i><i></i><i></i><i></i></div><div class="shade"></div></div>
+<div class="h" id="hero-sap-signin"><div class="mesh m-signin"><i></i><i></i><i></i><i></i></div><div class="shade"></div></div>
+<div class="h" id="hero-sap-collections"><div class="mesh m-collections"><i></i><i></i><i></i><i></i></div><div class="shade"></div></div>
+<div class="h" id="hero-sap-agentic"><div class="mesh m-agentic"><i></i><i></i><i></i><i></i></div><div class="shade"></div></div>
+<div class="h" id="hero-sap-compositional"><div class="mesh m-cds"><i></i><i></i><i></i><i></i></div><div class="shade"></div></div>
+</body></html>

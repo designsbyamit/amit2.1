@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/ds/Breadcrumb'
+import { heroClass, heroStyle } from '../data/caseTheme'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../data/work'
@@ -38,7 +39,7 @@ export default function SAPSearchStoryPage() {
   return (
     <div className="bg-surface-0 min-h-screen">
       {/* Hero */}
-      <header style={{ paddingTop: 'var(--header-h)' }}>
+      <header className={heroClass(cs.id)} style={{ paddingTop: 'var(--header-h)', ...heroStyle(cs.id) }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'AI-Powered Search' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>

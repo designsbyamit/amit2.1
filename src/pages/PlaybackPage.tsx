@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import { heroClass, heroStyle } from '../data/caseTheme'
 import CaseTags from '../components/ds/CaseTags'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import Mark, { markForCase } from '../components/marks/Marks'
@@ -39,7 +40,7 @@ export default function PlaybackPage() {
 
   return (
     <article>
-      <header style={{ paddingTop: 'var(--header-h)' }}>
+      <header className={heroClass(cs.id)} style={{ paddingTop: 'var(--header-h)', ...heroStyle(cs.id) }}>
         <div className="container-site pt-10 md:pt-14 pb-12 md:pb-16">
           <div className="mb-8"><Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: cs.shortTitle }]} /></div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mb-5">

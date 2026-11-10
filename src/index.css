@@ -511,3 +511,6 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 @container (max-width: 767px) {
   .film-frame { aspect-ratio: auto; height: calc(100cqw * 9 / 16 + var(--space-120)); }
 }
+
+/* Project page headers: each project's mesh gradient (see data/caseTheme.ts). The mesh is deepened where the title sits, so text stays on a solid, dark ground. */
+html[data-theme='dark'] .case-hero { background-image: var(--mesh); background-size: cover; background-position: center; }
