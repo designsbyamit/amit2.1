@@ -144,7 +144,7 @@ export const playbacks: Playback[] = [
   {
     id: 'sap-compositional',
     headline: 'Beyond compositions',
-    dek: 'Intelligent Experience Optimisation for CompDS.',
+    dek: 'Intelligent Experience Orchestration for CompDS.',
     roleNote: 'Research and point of view. Status: working hypothesis.',
     beats: {
       about: 'A compositional design system gives AI a governed design language for creating experiences.',

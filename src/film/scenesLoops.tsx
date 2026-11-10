@@ -12,10 +12,10 @@ const W = 1500, H = 760
 
 const U = { bg: '#F3F5F8', card: '#FFFFFF', line: '#DCE2EA', ink: '#18212B', mute: '#5B6776', err: '#B3261E', errBg: '#FDECEA', ok: '#17794F', okBg: '#E4F4EC', warn: '#7A4F00', warnBg: '#FFF1D6', off: '#E6EAEF', offInk: '#677383' }
 const A = {
-  signin: { mesh: 'sap-signin', a: '#0B4F46', tint: '#E2F0ED', dark: '#062E29' },
+  signin: { mesh: 'sap-signin', a: '#0B5F73', tint: '#E0F0F3', dark: '#053640' },
   collections: { mesh: 'sap-collections', a: '#005695', tint: '#E3EEF8', dark: '#02223F' },
   search: { mesh: 'sap-search', a: '#111160', tint: '#E8E8F6', dark: '#0A0A3A' },
-  cds: { mesh: 'sap-compositional', a: '#4A1B85', tint: '#EEE6F8', dark: '#240A45' },
+  cds: { mesh: 'sap-compositional', a: '#5B43C8', tint: '#ECE8FB', dark: '#241A66' },
 }
 type K = keyof typeof A
 
@@ -355,7 +355,7 @@ export function LoopCds({ t }: { t: number }) {
     </div>)}
     <Box x={160} y={596} w={640} h={140} s={{ background: '#fff', border: `2px solid ${a.a}`, borderRadius: 16, opacity: out, transform: `translateY(${(1 - out) * 16}px)` }}>
       <Txt x={24} y={18} w={400} h={24} size={17} color={a.a} mono>GENERATED EXPERIENCE</Txt>
-      <Box x={24} y={54} w={592} h={60} s={{ display: 'flex', alignItems: 'flex-end', gap: 12 }}>{[1, 0.75, 0.55, 0.4, 0.28].map((h, k) => <div key={k} style={{ flex: 1, height: 60 * h * easeOut(fade(t, 15 + k * 0.12, 16 + k * 0.12)), borderRadius: '6px 6px 2px 2px', background: k === 0 ? a.a : '#B79AE0' }} />)}</Box>
+      <Box x={24} y={54} w={592} h={60} s={{ display: 'flex', alignItems: 'flex-end', gap: 12 }}>{[1, 0.75, 0.55, 0.4, 0.28].map((h, k) => <div key={k} style={{ flex: 1, height: 60 * h * easeOut(fade(t, 15 + k * 0.12, 16 + k * 0.12)), borderRadius: '6px 6px 2px 2px', background: k === 0 ? a.a : '#B8A8F0' }} />)}</Box>
     </Box>
     <Box x={830} y={596} w={630} h={140} s={{ background: a.tint, border: `2px solid ${a.a}`, borderRadius: 16, opacity: ev, transform: `translateY(${(1 - ev) * 16}px)` }}>
       <Txt x={24} y={18} w={500} h={24} size={17} color={a.a} mono>IXO EVALUATION  ·  FEEDBACK LOOP</Txt>

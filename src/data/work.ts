@@ -464,7 +464,7 @@ const allCaseStudies: CaseStudy[] = [
     category: 'Design systems · AI design system · Research',
     title: 'Beyond compositions',
     shortTitle: 'Compositional Design System',
-    tagline: 'Intelligent Experience Optimisation for CompDS.',
+    tagline: 'Intelligent Experience Orchestration for CompDS.',
     role: 'Design',
     domain: 'Design Systems · AI',
     tags: ['Design Systems', 'AI', 'Research'],
