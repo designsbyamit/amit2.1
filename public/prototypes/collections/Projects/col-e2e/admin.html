@@ -212,7 +212,7 @@
       <ui5-table id="connectionsTable">
         <ui5-table-header-row slot="headerRow"><ui5-table-header-cell width="230px" style="padding-inline-start:1rem">Connection Type</ui5-table-header-cell><ui5-table-header-cell width="180px">Last Modified By</ui5-table-header-cell><ui5-table-header-cell width="180px">Last Modified On</ui5-table-header-cell><ui5-table-header-cell width="145px">Status</ui5-table-header-cell><ui5-table-header-cell width="125px">Actions</ui5-table-header-cell></ui5-table-header-row>
         <ui5-table-row><ui5-table-cell style="padding-inline-start:1rem">Microsoft 365</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell><ui5-tag design="Neutral">Not Connected</ui5-tag></ui5-table-cell><ui5-table-cell><ui5-button design="Default">Connect</ui5-button></ui5-table-cell></ui5-table-row>
-        <ui5-table-row><ui5-table-cell style="padding-inline-start:1rem">SAP FSCM</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell><ui5-tag design="Neutral">Not Connected</ui5-tag></ui5-table-cell><ui5-table-cell><ui5-button id="fscmConnect" design="Default">Connect</ui5-button></ui5-table-cell></ui5-table-row>
+        <ui5-table-row><ui5-table-cell style="padding-inline-start:1rem">Finance system</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell><ui5-tag design="Neutral">Not Connected</ui5-tag></ui5-table-cell><ui5-table-cell><ui5-button id="fscmConnect" design="Default">Connect</ui5-button></ui5-table-cell></ui5-table-row>
         <ui5-table-row><ui5-table-cell style="padding-inline-start:1rem">Data Platform</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell><ui5-tag design="Neutral">Not Connected</ui5-tag></ui5-table-cell><ui5-table-cell><ui5-button design="Default">Connect</ui5-button></ui5-table-cell></ui5-table-row>
         <ui5-table-row><ui5-table-cell style="padding-inline-start:1rem">ServiceNow</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell><ui5-tag design="Neutral">Not Connected</ui5-tag></ui5-table-cell><ui5-table-cell><ui5-button design="Default">Connect</ui5-button></ui5-table-cell></ui5-table-row>
         <ui5-table-row><ui5-table-cell style="padding-inline-start:1rem">Ticketing System</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell>—</ui5-table-cell><ui5-table-cell><ui5-tag design="Neutral">Not Connected</ui5-tag></ui5-table-cell><ui5-table-cell><ui5-button design="Default">Connect</ui5-button></ui5-table-cell></ui5-table-row>
@@ -330,9 +330,9 @@
     </div>
   </main>
 
-  <ui5-dialog id="fscmDialog" header-text="Connect SAP FSCM">
+  <ui5-dialog id="fscmDialog" header-text="Connect Finance system">
     <div class="dialog-content">
-      <p class="dialog-lead">Enter the SAP FSCM endpoint and client context for this customer deployment.</p>
+      <p class="dialog-lead">Enter the Finance system endpoint and client context for this customer deployment.</p>
       <div class="field-grid">
         <div class="field"><label class="field-label" for="fscmTenant">System URL</label><ui5-input id="fscmTenant" value="https://fscm.northstar.example/sap/bc/srt"></ui5-input></div>
         <div class="field"><label class="field-label" for="fscmClient">Client</label><ui5-input id="fscmClient" value="100"></ui5-input></div>

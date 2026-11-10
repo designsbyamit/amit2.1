@@ -291,7 +291,7 @@ export default function DesignSystemPage() {
           <Accordion items={[{ title: 'What is Dual Fluency?', body: 'Speaking design and business with equal confidence.', open: true }, { title: 'Who is it for?', body: 'Designers moving into leadership.' }]} />
         </Spec>
         <Spec name="Callout" note="Context and notes. Not for errors.">
-          <Callout title="Note">Screens are shown as designed in the SAP UI kit and are not modified.</Callout>
+          <Callout title="Note">Screens are shown as designed in the enterprise UI kit and are not modified.</Callout>
         </Spec>
         <Spec name="Quote">
           <Quote by="Mentee" role="Product designer">The session changed how I present design decisions to my leadership.</Quote>

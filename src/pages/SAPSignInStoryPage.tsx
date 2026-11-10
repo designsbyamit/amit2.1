@@ -40,7 +40,7 @@ const insights = [
 
 const decisions = [
   { t: 'Card layout, with an optional split page', d: 'A single centred card is simple, consistent and responsive by default, but gives products no identity. So the card is the default, and products with a strong brand can add a media panel beside the form. On small screens the panel hides.' },
-  { t: 'Header: SAP branding and the product identifier', d: 'Recommended over SAP branding alone or branding with an application name. It gives product context without tying the experience to one application.' },
+  { t: 'Header: company branding and the product identifier', d: 'Recommended over company branding alone or branding with an application name. It gives product context without tying the experience to one application.' },
   { t: 'Progressive when routing is needed', d: 'If the system must resolve the identity before it knows how to authenticate, ask for the identity first, then route to password, passkey or single sign on.' },
   { t: 'Two kinds of error, two places', d: 'A field error appears inline under the field and disables Continue. An account or credential error is a banner at the top, and the fields stay filled so nobody retypes.' },
   { t: 'One entry point for help', d: '"Need sign in assistance?" opens a dropdown in the same card: forgot password, forgot username, locked out, other. The card updates in place.' },

@@ -37,7 +37,7 @@ export const sapSearch = {
   },
   consistency: {
     title: 'How three groups stayed consistent.',
-    intro: 'The groups worked very closely and built on UI5 and the SAP web UI kit throughout. Every document was reviewed for familiar, consistent interaction patterns, so the pieces fit together without a separate rulebook.',
+    intro: 'The groups worked very closely and built on UI5 and the enterprise web UI kit throughout. Every document was reviewed for familiar, consistent interaction patterns, so the pieces fit together without a separate rulebook.',
   },
 
   challenges: [

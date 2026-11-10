@@ -8,7 +8,7 @@ export const engaze = {
   title: 'Engaze: an AI-native HCM suite for every role',
   kicker: 'Employee experience shipped · suite designed',
   hero: I('hcm-hero'),
-  brief: 'Design an AI-powered human capital management suite that improves the experience of everyone who touches it, whatever their role: employee, new joiner, people manager, recruiter, HR partner or senior leader. The bar was the best of the category, set against suites such as Workday, SAP SuccessFactors and SmartRecruiters.',
+  brief: 'Design an AI-powered human capital management suite that improves the experience of everyone who touches it, whatever their role: employee, new joiner, people manager, recruiter, HR partner or senior leader. The bar was the best of the category, set against suites such as Workday, SuccessFactors and SmartRecruiters.',
   honesty: 'What shipped: the employee-experience module (conversational HR companion), with measured results. What is design vision: the wider suite, built as a case-study exercise on top of the same principles. Screens and numbers for the wider suite are illustrative and marked so.',
   problem: [
     ['Fragmented by module', 'Recruiting, onboarding, performance, learning, pay and planning each ship as a separate product with its own navigation, vocabulary and login.'],
