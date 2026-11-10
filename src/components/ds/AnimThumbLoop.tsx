@@ -1,39 +1,40 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { LoopSignIn, LoopCollections, LoopCds, SIGNIN_LOOP, COLLECTIONS_LOOP, CDS_LOOP } from '../../film/scenesLoops'
-import { SPrototype } from '../../film/scenesSearchC'
-import { Mesh } from '../../film/scenesLoops'
-import { C } from '../../film/ui'
+import { LoopSignIn, LoopCollections, LoopSearch, LoopCds, SIGNIN_LOOP, COLLECTIONS_LOOP, SEARCH_LOOP, CDS_LOOP, STAGE } from '../../film/scenesLoops'
 
-/** Looping previews made from the same scenes as the films, drawn on a 1920 x 1080 stage and scaled to the cover. */
-const LOOPS: Record<string, { duration: number; from?: number; speed?: number; render: (t: number) => ReactNode }> = {
+/** Looping previews drawn on the cover's own 1800 x 1000 stage and scaled to fit it exactly. */
+const LOOPS: Record<string, { duration: number; render: (t: number) => ReactNode }> = {
   signin: { duration: SIGNIN_LOOP, render: t => <LoopSignIn t={t} /> },
   collections: { duration: COLLECTIONS_LOOP, render: t => <LoopCollections t={t} /> },
+  search: { duration: SEARCH_LOOP, render: t => <LoopSearch t={t} /> },
   cds: { duration: CDS_LOOP, render: t => <LoopCds t={t} /> },
-  search: { duration: 28, from: 117, speed: 1.2, render: t => <><Mesh id="sap-search" /><SPrototype t={t} /></> },
 }
-export const hasLoop = (id: string) => id in LOOPS
 
 export default function AnimThumbLoop({ id }: { id: string }) {
   const L = LOOPS[id]
   const wrap = useRef<HTMLDivElement>(null)
-  const [scale, setScale] = useState(0.5)
+  const [scale, setScale] = useState(0.4)
   const [t, setT] = useState(0)
   useEffect(() => {
     const el = wrap.current; if (!el) return
-    const ro = new ResizeObserver(() => setScale(el.clientWidth / 1920)); ro.observe(el); setScale(el.clientWidth / 1920)
+    const ro = new ResizeObserver(() => setScale(el.clientWidth / STAGE.w)); ro.observe(el); setScale(el.clientWidth / STAGE.w)
     return () => ro.disconnect()
   }, [])
   useEffect(() => {
     if (!L) return
-    let raf = 0; const t0 = performance.now(); const sp = L.speed ?? 1
-    const tick = () => { if (!document.hidden) setT(((performance.now() - t0) / 1000 * sp) % L.duration + (L.from ?? 0)); raf = requestAnimationFrame(tick) }
+    let raf = 0; const t0 = performance.now()
+    const tick = () => {
+      const o = (window as unknown as { __loopT?: number }).__loopT
+      if (typeof o === 'number') setT(o)
+      else if (!document.hidden) setT(((performance.now() - t0) / 1000) % L.duration)
+      raf = requestAnimationFrame(tick)
+    }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
   }, [L])
   if (!L) return null
   return (
-    <div ref={wrap} className="absolute inset-0 overflow-hidden" style={{ background: C.bg, fontFamily: "'Geist Variable','Geist',system-ui,sans-serif" }}>
-      <div style={{ position: 'absolute', left: 0, top: 0, width: 1920, height: 1080, transformOrigin: '0 0', transform: `scale(${scale})` }}>{L.render(t)}</div>
+    <div ref={wrap} className="absolute inset-0 overflow-hidden">
+      <div style={{ position: 'absolute', left: 0, top: 0, width: STAGE.w, height: STAGE.h, transformOrigin: '0 0', transform: `scale(${scale})` }}>{L.render(t)}</div>
     </div>
   )
 }

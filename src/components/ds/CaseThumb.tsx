@@ -50,7 +50,6 @@ export default function CaseThumb({ id, className = '', ratio = '1800 / 1000', c
       {mounted && t.loop && (
         <div className="absolute inset-0 transition-opacity duration-500 ease-out" style={{ opacity: shown ? 1 : 0 }}>
           <AnimThumb id={t.loop} />
-          {!compact && !live && <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-2 rounded-full bg-black/55 px-3 py-1.5 font-mono text-t-tiny uppercase tracking-widest text-white backdrop-blur"><span className="h-1.5 w-1.5 rounded-full bg-signal" />Preview</span>}
         </div>
       )}
     </div>
