@@ -34,8 +34,7 @@ export function LoopEngaze({ t }: { t: number }) {
   return <Stage look={L} t={t} cam={cam} cur={cur} clicks={clicks} caps={caps} accent={accent}>
     <Box x={0} y={0} w={W} h={H} s={{ background: K.bg, color: K.ink }} />
     {/* sidebar */}
-    <Box x={22} y={24} w={30} h={30}><Ico n="layers" s={30} c={K.v} w={2} /></Box>
-    <Txt x={62} y={22} w={180} h={34} size={24} weight={600}>engaze</Txt>
+    <Txt x={26} y={22} w={180} h={34} size={24} weight={600}>engaze</Txt>
     <Box x={18} y={78} w={228} h={46} s={{ background: '#fff', border: ln(), borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10, padding: '0 14px', fontSize: 17, fontWeight: 500 }}><Ico n="plus" s={18} c={K.ink} />New conversation</Box>
     <Txt x={28} y={146} w={200} h={22} size={14} color={K.faint} weight={500}>Today</Txt>
     <Box x={18} y={172} w={228} h={42} s={{ background: K.vS, borderRadius: 10, padding: '0 14px', fontSize: 16, lineHeight: '42px', color: K.v, fontWeight: 500, ...one }}>{t >= 2.0 ? 'Sick leave today' : 'New conversation'}</Box>

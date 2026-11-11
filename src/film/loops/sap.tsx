@@ -50,7 +50,7 @@ export function LoopSignIn({ t }: { t: number }) {
   return <Stage look={A.signin} t={t} cam={cam} cur={cur} clicks={clicks} caps={caps} accent={accent}>
     <Box x={0} y={0} w={W} h={H} s={{ background: `radial-gradient(90% 80% at 50% 0%, ${tint} 0%, ${U.bg} 62%)` }} />
     <Box x={CX} y={CY} w={CWd} h={600} s={{ background: '#fff', borderRadius: 22, border: line(), boxShadow: SH.card }} />
-    <Box x={X} y={CY + 46} w={40} h={40} s={{ borderRadius: 11, background: a, ...center }}><Box x={12} y={12} w={16} h={16} s={{ borderRadius: 4, border: '2px solid rgba(255,255,255,.9)' }} /></Box>
+    <Box x={X} y={CY + 52} w={56} h={28} s={{ borderRadius: 6, background: '#1F3A5F' }} />
     <Txt x={X} y={CY + 108} w={IW} h={48} size={38} weight={600}>{s3 > 0.5 ? 'Welcome back' : 'Sign in'}</Txt>
 
     <Box x={0} y={0} w={W} h={H} s={{ opacity: s1, visibility: s1 > 0 ? 'visible' : 'hidden' }}>

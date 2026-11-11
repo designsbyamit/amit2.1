@@ -64,8 +64,8 @@ function Shell({ w, y, field, left = 0 }: { w: number; y: number; field: ReactNo
   const x = shellX(w)
   return (
     <div className="sa-shell" style={{ top: y, width: w, left }}>
-      <img src={`${A}logo-placeholder.png`} alt="Logo placeholder" className="sa-abs" style={{ left: 56, top: 11, width: 59, height: 29 }} />
-      <span className="sa-pname" style={{ left: 125 }}>Product Name</span>
+      <span className="sa-abs" aria-hidden style={{ left: 56, top: 12, width: 28, height: 28, borderRadius: 14, background: '#C7CDD4' }} />
+      <span className="sa-pname" style={{ left: 94 }}>Product Name</span>
       <div className="sa-abs" style={{ left: x.field, top: 0 }}>{field}</div>
       <span className="sa-btn" style={{ left: x.bell }}><Ico d={P.bell} /></span>
       <span className="sa-btn" style={{ left: x.help }}><Ico d={P.help} /></span>
@@ -193,7 +193,7 @@ function Anatomy() {
       <Shell w={W} y={Y} left={O} field={<Field state="default" />} />
       {/* outer spacing */}
       <HDim x1={O} x2={O + 56} y={Y - 18} label="56" />
-      <HDim x1={O + 115} x2={O + 125} y={Y - 18} label="10" />
+      <HDim x1={O + 84} x2={O + 94} y={Y - 18} label="10" />
       <HDim x1={x.field} x2={x.fieldR} y={Y - 18} label="400" />
       <HDim x1={O + W - 48} x2={O + W} y={Y - 18} label="48" />
       <VDim x={O - 12} y1={Y} y2={Y + 52} label="52" side="left" />
@@ -346,7 +346,7 @@ export default function SearchAnatomy() {
         <figcaption className="mb-5"><p className="text-overline text-ink-3">Anatomy & spacing</p><p className="text-body text-ink-2 mt-2 max-w-measure-xl">The AI search lives in the shell bar of every product, so it looks and sits the same everywhere. Measurements at 1×.</p></figcaption>
         <Anatomy />
         <Legend items={[
-          ['Logo placeholder', '59×29, 56 from the left edge'],
+          ['Logo placeholder', '28 circle, 56 from the left edge'],
           ['Product name', '72 Bold 16, 10 after the logo'],
           ['AI search field', '400×36 pill, 8 before the first action'],
           ['AI search icon', '19×18, the only trailing icon: it marks the search as AI-powered'],

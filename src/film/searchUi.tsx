@@ -58,8 +58,8 @@ export function Shell({ w, field, name = 'Product Name', style }: { w: number; f
   const x = shellX(w)
   return (
     <div className="sa-shell" style={{ top: 0, width: w, left: 0, fontFamily: FONT72, ...style }}>
-      <img src={`${A}logo-placeholder.png`} alt="" className="sa-abs" style={{ left: 56, top: 11, width: 59, height: 29 }} />
-      <span className="sa-pname" style={{ left: 125 }}>{name}</span>
+      <span className="sa-abs" aria-hidden style={{ left: 56, top: 12, width: 28, height: 28, borderRadius: 14, background: '#C7CDD4' }} />
+      <span className="sa-pname" style={{ left: 94 }}>{name}</span>
       <div className="sa-abs" style={{ left: x.field, top: 8 }}>{field}</div>
       <span className="sa-btn" style={{ left: x.bell }}><Ico d={P.bell} /></span>
       <span className="sa-btn" style={{ left: x.help }}><Ico d={P.help} /></span>

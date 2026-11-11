@@ -37,7 +37,7 @@ export function LoopData({ t }: { t: number }) {
     <Box x={0} y={0} w={W} h={H} s={{ background: K.bg, color: K.ink }} />
     <Box x={1080} y={-280} w={760} h={760} s={{ borderRadius: 380, background: `radial-gradient(circle, ${K.vio}33, transparent 68%)` }} />
     <Box x={0} y={0} w={268} h={H} s={{ background: K.side, borderRight: ln() }} />
-    <Box x={26} y={30} w={30} h={30} s={{ borderRadius: 9, background: GR }} />
+    <Box x={26} y={30} w={30} h={30} s={{ borderRadius: 15, background: K.ln }} />
     <Txt x={68} y={30} w={190} h={30} size={19} weight={600} color={K.ink}>Data marketplace</Txt>
     {['All products', 'Customer', 'Finance', 'Supply chain', 'Marketing', 'Product'].map((q2, i) => { const on = i === 0
       return <Box key={q2} x={16} y={96 + i * 46} w={236} h={40} s={{ borderRadius: 10, background: on ? K.sf2 : 'transparent', padding: '0 16px', fontSize: 17, lineHeight: '40px', fontWeight: on ? 500 : 400, color: on ? K.ink : K.i3 }}>{q2}</Box> })}
