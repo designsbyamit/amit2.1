@@ -14,7 +14,7 @@ const b = await chromium.launch(); const p = await b.newPage({ viewport: { width
 await p.goto('file://' + resolve(here, 'mesh.html')); await p.waitForLoadState('networkidle'); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(800)
 const ids = ['sap-search', 'sap-signin', 'sap-collections', 'sap-agentic', 'sap-compositional']
 const save = (png, out, w, h, q) => execFileSync('python3', ['-c', `from PIL import Image;im=Image.open('${png}').convert('RGB');im.resize((${w},${h}),Image.LANCZOS).save('${out}','WEBP',quality=${q},method=6)`])
-for (const id of ids) {
+for (const id of process.env.CV ? [] : ids) {
   if (process.env.ONLY && process.env.ONLY !== id) continue
   const png = `/tmp/mesh-${id}.png`
   await p.locator('#' + id).screenshot({ path: png })
@@ -23,5 +23,11 @@ for (const id of ids) {
   await p.locator('#hero-' + id).screenshot({ path: hp })
   save(hp, `${mesh}/${id}.webp`, 1920, 1080, 78); save(hp, `${mesh}/${id}-960.webp`, 960, 540, 76)
   console.log('built', id)
+}
+for (const id of [...ids, 'engaze', 'airline-app', 'data-ai', 'dnetworx']) {
+  if (process.env.ONLY && process.env.ONLY !== id) continue
+  const png = `/tmp/mesh-cv-${id}.png`
+  await p.locator('#cv-' + id).screenshot({ path: png })
+  save(png, `${mesh}/${id}-cover.webp`, 1800, 1000, 80)
 }
 await b.close()
