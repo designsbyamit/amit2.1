@@ -136,104 +136,154 @@ export function LoopSignIn({ t }: { t: number }) {
   </Stage>
 }
 
-/* ───────────── Collections: worklist to Customer 360 to an email (22 s) ───────────── */
-export const COLLECTIONS_LOOP = 22
-const Pill = ({ x, y, w, label, kind }: { x: number; y: number; w: number; label: string; kind: 'high' | 'med' | 'low' | 'past' }) => {
-  const m = { high: [U.errBg, U.err], past: [U.errBg, U.err], med: [U.warnBg, U.warn], low: [U.off, U.offInk] }[kind]
-  return <Box x={x} y={y} w={w} h={36} s={{ borderRadius: 18, background: m[0], color: m[1], fontSize: 20, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{label}</Box>
-}
+/* ───────────── Collections: worklist, Customer 360, an email with attachments (24 s) ───────────── */
+export const COLLECTIONS_LOOP = 24
+const LINK = '#0A5FB4', NBA_BG = '#DDEEFB', NBA_LINE = '#B9D8F2'
+const PR = { High: ['#F7C9C5', '#8E1B13'], Medium: ['#FFE2A6', '#6E4600'], Low: ['#CDEFD8', '#14663F'] } as const
+const Usd = ({ v }: { v: string }) => <>{v}<span style={{ color: U.mute, fontSize: 14, marginLeft: 5 }}>USD</span></>
+type WRow = { id: string; name: string; codes: string; pr?: keyof typeof PR; od: string; due: string; cb: string; days: string; bo: string; boa: string; act?: string }
+const W_ROWS: WRow[] = [
+  { id: '56102', name: 'Orchard Gro…', codes: '1000', pr: 'High', od: '384,006.55', due: '398,182.58', cb: '7,988.07', days: '20', bo: '3', boa: '31,810.96' },
+  { id: '92341', name: 'Kestrel Foo…', codes: '', pr: 'High', od: '92,011.93', due: '102,101.82', cb: '1,994.62', days: '18', bo: '5', boa: '22,660.73' },
+  { id: '76530', name: 'BlueFern Tr…', codes: '1000', pr: 'High', od: '97,810.96', due: '129,291.01', cb: '2,189.04', days: '10', bo: '0', boa: '' },
+  { id: '22804', name: 'Linden & Ro…', codes: '1000', pr: 'High', od: '49,752.85', due: '76,718.91', cb: '10,247.15', days: '10', bo: '0', boa: '', act: 'Call Customer' },
+  { id: '82033', name: 'Copperfield…', codes: '3000', pr: 'High', od: '45,700.06', due: '53,810.25', cb: '14,299.94', days: '18', bo: '0', boa: '82,622.47' },
+  { id: '82047', name: 'Halden Fre…', codes: '4000', pr: 'High', od: '70,616.73', due: '80,095.18', cb: '9,383.27', days: '8', bo: '5', boa: '', act: 'Review and Approve' },
+  { id: '102944', name: 'Wexford Su…', codes: '1000', pr: 'Medium', od: '109,522.35', due: '117,760.25', cb: '4,477.65', days: '17', bo: '0', boa: '' },
+  { id: '102937', name: 'Ashgrove Mi…', codes: '1000', pr: 'Medium', od: '91,456.10', due: '136,810.25', cb: '8,543.90', days: '18', bo: '0', boa: '' },
+  { id: '28290', name: 'Fernhill Lo…', codes: '3000', pr: 'Medium', od: '18,400.00', due: '30,400.00', cb: '31,600.00', days: '14', bo: '0', boa: '' },
+]
+const CHILD: WRow[] = [
+  { id: '', name: '', codes: '1000', od: '51,346.20', due: '62,213.54', cb: '1006.55', days: '18', bo: '2', boa: '12,112.03', act: 'Email Customer' },
+  { id: '', name: '', codes: '3000', od: '40,665.73', due: '39888.28', cb: '988.07', days: '16', bo: '3', boa: '10,548.70', act: 'Email Customer' }]
+const HIST: [string, string, string][] = [
+  ['Oct 14, 2026, 3:25:35 PM', '3000: A blocked orders email with the subject “Blocked Orders - Kestrel Foods Limited - 92341” was sent to the customer contacts.', 'Email Sent · agent@collections.example'],
+  ['Sep 22, 2026, 9:44:28 AM', '1000: A credit limit reached email with the subject “Credit Limit Reached - Kestrel Foods Limited - 92341” was sent to the customer contacts.', 'Email Failed · agent@collections.example'],
+  ['Aug 13, 2026, 2:20:15 PM', '1000: A remittance advice email with the subject “Remittance Advice - Kestrel Foods Limited - 92341” was sent to Finance.', 'Email Sent · agent@collections.example']]
 export function LoopCollections({ t }: { t: number }) {
   const a = A.collections
-  const clicks = [2.4, 9.6, 17.4]
-  const rows: [string, string, string, 'high' | 'med' | 'low', string][] = [
-    ['Customer A', '1000 · 2000', 'High', 'high', 'Send a reminder'], ['Customer B', '1000', 'High', 'high', 'Review the dispute'], ['Customer C', '1000 · 4000', 'Medium', 'med', 'Wait for the cooldown'],
-    ['Customer D', '3000', 'Medium', 'med', 'Send a reminder'], ['Customer E', '2000', 'Low', 'low', 'No action needed']]
-  const w1 = 1 - fade(t, 2.5, 2.9)
-  const pageO = 1
-  const v2 = fade(t, 2.7, 3.2)
-  const panel = easeOut(fade(t, 9.8, 10.5))
-  const body = ty('Hello, this is a reminder about the open items on your account. Please let us know if anything is unclear. Thank you.', t, 10.8, 44)
-  const a1 = fade(t, 13.8, 14.2), a1ok = t >= 14.9, a2 = fade(t, 14.6, 15.0), a2ok = t >= 15.7
-  const approved = t >= 17.4, sent = t >= 17.9
-  const cam: Cam[] = [{ t: 0, s: 1, x: 750, y: 380 }, { t: 2.4, s: 1, x: 750, y: 380 }, { t: 3.2, s: 1.4, x: 400, y: 340 }, { t: 5.2, s: 1.4, x: 400, y: 340 }, { t: 6.2, s: 1.4, x: 400, y: 420 }, { t: 6.8, s: 1.4, x: 400, y: 420 }, { t: 7.6, s: 1, x: 750, y: 380 }, { t: 9.0, s: 1, x: 750, y: 380 }, { t: 9.7, s: 1.3, x: 1000, y: 260 }, { t: 10.7, s: 1.5, x: 1000, y: 300 }, { t: 14.0, s: 1.5, x: 1000, y: 300 }, { t: 15.2, s: 1.5, x: 1000, y: 470 }, { t: 18.6, s: 1.5, x: 1000, y: 470 }, { t: 20.2, s: 1, x: 750, y: 380 }]
-  const cur: Cur[] = [[0, 1300, 640], [0.7, 1300, 640], [2.2, 150, 286], [2.7, 150, 286], [3.4, 730, 420], [8.4, 730, 420], [9.5, 1370, 128], [10.2, 1370, 128], [10.9, 1160, 470], [16.8, 1160, 470], [17.3, 650, 642], [18.2, 650, 642]]
-  const caps: [number, number, string][] = [[0.3, 2.5, 'Start from a prioritised worklist'], [2.7, 9.4, 'Customer 360 gives the reason before the action'], [9.8, 13.8, 'One click drafts the email'], [13.8, 17.2, 'Attachments are fetched automatically'], [17.4, 21.4, 'A person approves before anything is sent']]
+  const clicks = [2.0, 4.8, 11.0, 17.6]
+  const exp = easeOut(fade(t, 2.0, 2.7))
+  const p2 = easeOut(fade(t, 4.9, 5.5))
+  const onW = t < 5.0, onC = t >= 5.0
+  const dlg = easeOut(fade(t, 11.2, 11.8)), dlgOn = t >= 11.2 && t < 18.4
+  const body = ty('Hello, your account has two open credit notes that can be offset against the upcoming payment. Copies are attached for your review. Please let us know if you have any questions.', t, 11.9, 52)
+  const at1 = fade(t, 14.6, 15.0), at1ok = t >= 15.5, at2 = fade(t, 15.4, 15.8), at2ok = t >= 16.3
+  const sending = t >= 17.6 && t < 18.3, done = t >= 18.8
+  const hist = easeOut(fade(t, 19.0, 19.8))
+  const toast = fade(t, 18.7, 19.0) * (1 - fade(t, 22.0, 22.4))
+  const cam: Cam[] = [{ t: 0, s: 1, x: 750, y: 380 }, { t: 0.9, s: 1, x: 750, y: 380 }, { t: 1.6, s: 1.45, x: 520, y: 330 }, { t: 2.8, s: 1.45, x: 520, y: 330 }, { t: 3.2, s: 1.4, x: 930, y: 330 }, { t: 4.0, s: 1.4, x: 930, y: 330 }, { t: 4.6, s: 1.45, x: 520, y: 330 }, { t: 5.2, s: 1.45, x: 520, y: 330 }, { t: 5.8, s: 1.4, x: 520, y: 270 }, { t: 8.0, s: 1.4, x: 520, y: 270 }, { t: 9.0, s: 1.4, x: 520, y: 470 }, { t: 11.2, s: 1.4, x: 520, y: 470 }, { t: 11.9, s: 1.25, x: 750, y: 380 }, { t: 18.3, s: 1.25, x: 750, y: 380 }, { t: 19.0, s: 1.1, x: 750, y: 380 }, { t: 22.0, s: 1.1, x: 750, y: 380 }, { t: 23.0, s: 1, x: 750, y: 380 }]
+  const cur: Cur[] = [[0, 1250, 620], [0.8, 1250, 620], [1.9, 160, 310], [2.5, 160, 310], [3.3, 1290, 346], [3.9, 1290, 346], [4.7, 215, 310], [5.0, 215, 310], [6.0, 1010, 640], [10.2, 1010, 640], [10.9, 200, 483], [11.6, 200, 483], [12.4, 1250, 640], [16.3, 1250, 640], [17.4, 462, 630], [18.2, 462, 630], [19.0, 1010, 640]]
+  const caps: [number, number, string][] = [[0.3, 4.4, 'A prioritised worklist, one row per customer'], [4.6, 11.0, 'Customer 360: the insight and the next best action'], [11.2, 14.6, 'The email is drafted for you'], [14.6, 17.4, 'Attachments are fetched automatically'], [17.6, 19.0, 'A person approves before it is sent'], [19.0, 23.0, 'The send is logged in the account history']]
   const Shell = <>
-    <Box x={0} y={0} w={W} h={56} s={{ background: '#fff', borderBottom: `2px solid ${U.line}` }} />
-    {[0, 1, 2].map(i => <Box key={i} x={24} y={19 + i * 8} w={22} h={3} s={{ background: U.ink, borderRadius: 2 }} />)}
-    <Txt x={68} y={12} w={300} h={32} size={24} weight={600}>Collections</Txt>
-    <Box x={1424} y={12} w={32} h={32} s={{ borderRadius: 16, background: a.tint, border: `2px solid ${a.a}` }} />
+    <Box x={0} y={0} w={W} h={54} s={{ background: '#fff', borderBottom: `2px solid ${U.line}` }} />
+    {[0, 1, 2].map(i => <Box key={i} x={30} y={18 + i * 8} w={22} h={3} s={{ background: U.ink, borderRadius: 2 }} />)}
+    <Txt x={76} y={12} w={420} h={30} size={21} weight={500} color={LINK}>Collections Assistant</Txt>
+    <Box x={1390} y={14} w={26} h={26} s={{ borderRadius: 13, border: `3px solid ${U.ink}`, fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>?</Box>
+    <Box x={1432} y={9} w={36} h={36} s={{ borderRadius: 18, background: a.tint, border: `3px solid ${a.a}` }} />
   </>
+  const COLS: [string, number, number, boolean][] = [['Customer ID', 66, 80, false], ['Customer Name', 150, 130, false], ['Company Codes', 290, 100, false], ['Priority', 424, 90, false], ['Overdue Amount', 490, 140, true], ['Due by End of Month', 630, 140, true], ['Credit Balance', 770, 140, true], ['Predicted Average Arrear Days', 910, 120, true], ['Blocked Orders', 1030, 90, true], ['Blocked Orders Amount', 1120, 130, true], ['Actions', 1270, 150, false]]
+  const RH = 36, R0 = 256
+  const rowY = (i: number) => R0 + i * RH + (i >= 2 ? 2 * RH * exp : 0)
+  const WCell = ({ r, y, bg, hov, i }: { r: WRow; y: number; bg: string; hov?: boolean; i: number }) => <div style={{ opacity: easeOut(fade(t, 0.1 + i * 0.07, 0.6 + i * 0.07)) }}>
+    <Box x={49} y={y} w={1402} h={RH} s={{ background: bg, borderBottom: `2px solid ${U.line}` }} />
+    <Txt x={66} y={y + 5} w={80} h={26} size={17}>{r.id}</Txt>
+    <Txt x={150} y={y + 5} w={140} h={26} size={17} weight={500} color={LINK} s={{ textDecoration: hov ? 'underline' : 'none' }}>{r.codes === '' ? <><span style={{ marginRight: 8, display: 'inline-block',  }}>{exp > 0.5 ? '⌄' : '›'}</span>{r.name}</> : r.name}</Txt>
+    <Txt x={290} y={y + 5} w={100} h={26} size={17}>{r.codes}</Txt>
+    {r.pr && <Box x={424} y={y + 6} w={70} h={24} s={{ borderRadius: 5, background: PR[r.pr][0], color: PR[r.pr][1], fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{r.pr}</Box>}
+    {([['od', 490], ['due', 630], ['cb', 770]] as [keyof WRow, number][]).map(([k, x]) => <Txt key={k} x={x} y={y + 5} w={140} h={26} size={17} s={{ textAlign: 'right' }}><Usd v={r[k] as string} /></Txt>)}
+    <Txt x={910} y={y + 5} w={120} h={26} size={17} s={{ textAlign: 'right' }}>{r.days}</Txt>
+    <Txt x={1030} y={y + 5} w={90} h={26} size={17} s={{ textAlign: 'right' }}>{r.bo}</Txt>
+    <Txt x={1120} y={y + 5} w={130} h={26} size={17} s={{ textAlign: 'right' }}>{r.boa ? <Usd v={r.boa} /> : ''}</Txt>
+    <Txt x={1270} y={y + 5} w={160} h={26} size={17} color={r.act ? LINK : U.mute}>{r.act ? <><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 7, background: LINK, marginRight: 8, verticalAlign: -1 }} />{r.act}</> : '--'}</Txt>
+    <Txt x={1430} y={y + 5} w={16} h={26} size={17} color={U.mute}>›</Txt>
+  </div>
   return <Stage id="collections" t={t} dur={COLLECTIONS_LOOP} cam={cam} cur={cur} clicks={clicks} caps={caps}>
-    <Box x={0} y={0} w={W} h={H} s={{ background: U.bg }} />
+    <Box x={0} y={0} w={W} h={H} s={{ background: '#fff' }} />
     {Shell}
 
-    <Box x={0} y={56} w={W} h={H - 56} s={{ opacity: w1 }}>
-      <Txt x={40} y={28} w={600} h={44} size={34} weight={600}>Worklist</Txt>
-      <Txt x={40} y={76} w={700} size={22} color={U.mute}>Customers that need action, ordered by priority</Txt>
-      <Box x={40} y={144} w={1420} h={472} s={{ background: '#fff', border: `2px solid ${U.line}`, borderRadius: 16, overflow: 'hidden' }}>
-        <Box x={0} y={0} w={1416} h={48} s={{ background: U.bg, borderBottom: `2px solid ${U.line}` }} />
-        {([['CUSTOMER', 24], ['COMPANY CODES', 360], ['PRIORITY', 650], ['RECOMMENDED ACTION', 900], ['', 1260]] as [string, number][]).map(([l, x]) => <Txt key={l + x} x={x} y={12} w={260} h={24} size={17} color={U.mute} mono>{l}</Txt>)}
-        {rows.map(([n, cc, pr, kind, act], i) => {
-          const y = 48 + i * 84, hov = i === 0 && t >= 1.8
-          return <div key={n} style={{ opacity: easeOut(fade(t, 0.1 + i * 0.15, 0.6 + i * 0.15)) }}>
-            <Box x={0} y={y} w={1416} h={84} s={{ background: hov ? a.tint : '#fff', borderBottom: i < 4 ? `2px solid ${U.line}` : 'none' }} />
-            <Txt x={24} y={y + 24} w={300} h={36} size={24} weight={600}>{n}</Txt>
-            <Txt x={360} y={y + 24} w={260} h={36} size={22} color={U.mute} mono>{cc}</Txt>
-            <Pill x={650} y={y + 24} w={120} label={pr} kind={kind} />
-            <Txt x={784} y={y + 24} w={40} h={36} size={24} color={a.a}>✦</Txt>
-            <Txt x={900} y={y + 24} w={340} h={36} size={22}>{act}</Txt>
-            <Txt x={1260} y={y + 24} w={140} h={36} size={22} color={a.a} weight={600}>Email</Txt>
-          </div>
+    <Box x={0} y={54} w={W} h={H - 54} s={{ opacity: onW ? 1 : 0, visibility: onW ? 'visible' : 'hidden' }}>
+      <Txt x={48} y={6} w={700} h={40} size={30} weight={700} color={LINK}>My Collection Worklist  ⌄</Txt>
+      <Txt x={48} y={48} w={700} h={26} size={17} color={U.mute}>Last agent review: 11/09/26 11:59 PM</Txt>
+    </Box>
+    <Box x={0} y={0} w={W} h={H} s={{ opacity: onW ? 1 : 0, visibility: onW ? 'visible' : 'hidden' }}>
+      <Box x={48} y={134} w={1404} h={H - 134 - 20} s={{ border: `2px solid ${U.line}`, borderRadius: 10, background: '#fff' }} />
+      <Txt x={66} y={146} w={170} h={36} size={20} weight={700}>Accounts (20)</Txt>
+      {([['Overdue Amount', '69.38M USD', 250, 232], ['Due by End of Month', '82.69M USD', 490, 300], ['High Risk Customers', '8', 800, 250], ['Blocked Orders', '10', 1060, 200]] as [string, string, number, number][]).map(([l, v, x, w]) =>
+        <Box key={l} x={x - 10} y={146} w={w} h={36} s={{ background: '#EEF1F5', borderLeft: `5px solid ${a.a}`, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 14px 0 12px', fontSize: 16 }}><span>{l}</span><b style={{ fontWeight: 600 }}>{v}</b></Box>)}
+      <Txt x={1350} y={146} w={36} h={36} size={22} color={a.a}>⚙</Txt><Txt x={1400} y={146} w={36} h={36} size={22} color={a.a}>⤢</Txt>
+      <Box x={49} y={196} w={1402} h={60} s={{ borderTop: `2px solid ${U.line}`, borderBottom: `2px solid ${U.line}`, background: '#fff' }} />
+      {COLS.map(([l, x, w, r]) => <Box key={l} x={x} y={198} w={w} h={56} s={{ fontSize: 15, fontWeight: 600, lineHeight: '18px', display: 'flex', alignItems: 'center', justifyContent: r ? 'flex-end' : 'flex-start', textAlign: r ? 'right' : 'left' }}>{l === 'Priority' ? <span><span style={{ color: a.a }}>✦ </span>Priority</span> : l === 'Predicted Average Arrear Days' ? <span><span style={{ color: a.a }}>✦ </span>Predicted Avg Arrear Days</span> : l}</Box>)}
+      {W_ROWS.map((r, i) => { const idx = i; const y = rowY(idx); const hov = i === 1 && t >= 4.0
+        return <WCell key={r.id} r={r} y={y} i={i} hov={hov} bg={i === 1 ? '#F4F8FC' : '#fff'} /> })}
+      {CHILD.map((r, k) => <div key={k} style={{ opacity: exp, visibility: exp > 0 ? 'visible' : 'hidden' }}><WCell r={r} y={R0 + (2 + k) * RH} i={0} bg="#F4F8FC" /></div>)}
+    </Box>
+
+    <Box x={0} y={0} w={W} h={H} s={{ opacity: 1, visibility: onC ? 'visible' : 'hidden', transform: `translateX(${(1 - p2) * 50}px)`, background: '#fff' }}>
+      <Box x={0} y={54} w={W} h={H - 54} s={{ background: '#fff' }} />
+      <Txt x={48} y={66} w={700} h={24} size={16} color={LINK}>Collection Worklist  <span style={{ color: U.mute }}>/  Kestrel Foods Limited</span></Txt>
+      <Txt x={48} y={92} w={700} h={44} size={34} weight={700}>Kestrel Foods Limited</Txt>
+      <Txt x={48} y={138} w={900} h={26} size={16} color={U.mute}>Customer Contact: <span style={{ color: LINK, fontWeight: 600 }}>p.morris@kestrelfoods.example</span>, <span style={{ color: LINK }}>2 more</span>   <span style={{ color: a.a }}>✦</span> Priority: <span style={{ background: PR.High[0], color: PR.High[1], borderRadius: 5, padding: '2px 12px', fontWeight: 700, fontSize: 14 }}>High</span></Txt>
+      <Box x={1350} y={94} w={98} h={38} s={{ border: `2px solid ${LINK}`, borderRadius: 8, color: LINK, fontSize: 17, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Close</Box>
+      <Box x={0} y={176} w={W} h={H - 176} s={{ background: '#F4F6F8' }} />
+
+      <Box x={48} y={188} w={950} h={128} s={{ background: '#fff', border: `2px solid ${U.line}`, borderRadius: 10, opacity: easeOut(fade(t, 5.6, 6.2)) }}>
+        <Txt x={20} y={12} w={600} h={32} size={20} weight={700}><span style={{ color: a.a }}>✦  </span>Insights and Recommendations</Txt>
+        <Box x={0} y={50} w={946} h={2} s={{ background: U.line }} />
+        <Txt x={20} y={58} w={900} h={28} size={18} weight={700}>Multiple invoices in extreme arrears (&gt;90 days)</Txt>
+        <Box x={20} y={86} w={906} h={36} s={{ fontSize: 16, lineHeight: '18px', color: U.ink }}>Customer has 92K currently overdue across 9 invoices, with the oldest overdue by 133 days. An additional 28K is due by the end of the month, increasing total exposure risk.</Box>
+      </Box>
+      <Box x={48} y={330} w={950} h={366} s={{ background: '#fff', border: `2px solid ${U.line}`, borderRadius: 10, opacity: easeOut(fade(t, 6.4, 7.0)) }}>
+        <Txt x={20} y={12} w={600} h={32} size={20} weight={700}><span style={{ color: a.a }}>◎  </span>Next Best Actions</Txt>
+        {([['1000: Send Credit Note Copies', 'Invoice INV-30442310 of 92,011.93 is due in 5 days. There are 2 open credit notes totalling 65,345.65 on this account. Sending copies now gives the customer time to offset against the upcoming payment and reduce the amount owed.', 'Send Credit Note Copies'], ['3000: Chase Overdue Invoices', '18,792.78 is overdue across 2 invoices, with the oldest now 24 days past due. The customer’s average days-to-pay is 27. Escalating via a direct email with a firm deadline may prompt the overdue payment before month-end.', 'Send Email']] as [string, string, string][]).map(([h, b, btn], i) =>
+          <Box key={h} x={20} y={56 + i * 150} w={906} h={140} s={{ background: i === 0 && done ? '#DDF3E6' : NBA_BG, border: `2px solid ${i === 0 && done ? '#9FD6B5' : NBA_LINE}`, borderRadius: 8 }}>
+            <Txt x={16} y={10} w={870} h={26} size={17} weight={700}>{h}</Txt>
+            <Box x={16} y={38} w={874} h={54} s={{ fontSize: 15.5, lineHeight: '18px', color: U.ink }}>{b}</Box>
+            <Box x={16} y={96} w={i === 0 ? 232 : 118} h={34} s={{ background: '#fff', border: `2px solid ${i === 0 && done ? U.ok : LINK}`, borderRadius: 7, color: i === 0 && done ? U.ok : LINK, fontSize: 16, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, transform: i === 0 && clk(t, [11.0]) ? 'scale(.97)' : 'none' }}>{i === 0 && done ? '✓ Sent' : <><span>➤</span>{btn}</>}</Box>
+          </Box>)}
+      </Box>
+      <Box x={48} y={710} w={950} h={90} s={{ background: '#fff', border: `2px solid ${U.line}`, borderRadius: 10 }}>
+        {['Account Overview', 'Open Items', 'Disputes'].map((l, i) => <Txt key={l} x={20 + [0, 190, 330][i]} y={16} w={180} h={30} size={17} weight={i === 0 ? 700 : 400} color={i === 0 ? LINK : U.ink}>{l}</Txt>)}
+        <Box x={20} y={48} w={158} h={3} s={{ background: LINK }} />
+      </Box>
+
+      <Box x={1030} y={176} w={470} h={H - 176} s={{ background: '#fff', borderLeft: `2px solid ${U.line}`, overflow: 'hidden' }}>
+        <Txt x={24} y={14} w={400} h={34} size={20} weight={700}>↺  Account History</Txt>
+        {['All', '1000', '3000', '4000'].map((l, i) => <Txt key={l} x={24 + i * 78} y={66} w={70} h={28} size={16} weight={i === 0 ? 700 : 400} color={i === 0 ? LINK : U.ink}>{l}</Txt>)}
+        <Box x={24} y={96} w={44} h={3} s={{ background: LINK }} />
+        {[['Nov 11, 2026, 6:52:10 AM', '1000: A credit note copies email with the subject “Credit Note Copies - Kestrel Foods Limited - 92341” was sent to the customer contacts, with 2 attachments.', 'Email Sent · agent@collections.example'], ...HIST].map(([d, tx, st], i) => {
+          const yy = i === 0 ? 120 : 120 + (i - 1) * 136 + 136 * hist
+          const o = i === 0 ? hist : 1
+          return <div key={i} style={{ opacity: o }}>
+            {i === 0 && <Box x={16} y={yy - 6} w={430} h={132} s={{ background: '#E8F6EE', borderRadius: 8 }} />}
+            <Box x={24} y={yy + 6} w={10} h={10} s={{ borderRadius: 5, background: i === 0 ? U.ok : '#9AA6B4' }} />
+            <Txt x={44} y={yy} w={400} h={22} size={14} color={U.mute}>{d}</Txt>
+            <Box x={44} y={yy + 24} w={400} h={62} s={{ fontSize: 14.5, lineHeight: '20px' }}>{tx}</Box>
+            <Txt x={44} y={yy + 88} w={400} h={20} size={14} color={U.mute}>{st}</Txt>
+            <Txt x={44} y={yy + 108} w={200} h={20} size={14} color={LINK} weight={600}>View Email</Txt></div>
         })}
       </Box>
     </Box>
 
-    <Box x={0} y={56} w={W} h={H - 56} s={{ opacity: v2 * pageO, transform: `translateX(${(1 - v2) * 60}px)` }}>
-      <Txt x={40} y={16} w={600} size={20} color={U.mute}>Worklist  /  Customer A</Txt>
-      <Txt x={40} y={46} w={700} h={46} size={36} weight={600}>Customer A</Txt>
-      <Box x={1280} y={44} w={180} h={52} s={{ borderRadius: 12, background: a.a, color: '#fff', fontSize: 22, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: clk(t, [9.6]) ? 'scale(.97)' : 'none' }}>Email customer</Box>
-      {(['Overview', 'Open items', 'Disputes', 'Emails'] as string[]).map((l, i) => <Txt key={l} x={[40, 171, 317, 443][i]} y={118} w={130} h={36} size={22} weight={i === 0 ? 600 : 400} color={i === 0 ? a.a : U.mute}>{l}</Txt>)}
-      <Box x={40} y={156} w={1420} h={2} s={{ background: U.line }} />
-      <Box x={40} y={154} w={96} h={4} s={{ background: a.a, borderRadius: 2 }} />
-
-      <Box x={40} y={180} w={660} h={190} s={{ background: '#fff', border: `2px solid ${U.line}`, borderRadius: 16, opacity: easeOut(fade(t, 3.3, 3.9)) }}>
-        <Txt x={24} y={20} w={400} h={24} size={17} color={U.mute} mono>SUMMARY</Txt>
-        <Box x={24} y={56} w={610} h={110} s={{ fontSize: 24, lineHeight: '36px', color: U.ink }}>Customer A has open items in two company codes. A reminder was sent last time, and no dispute is open.</Box>
-      </Box>
-      <Box x={40} y={390} w={660} h={190} s={{ background: a.tint, border: `2px solid ${a.a}`, borderRadius: 16, opacity: easeOut(fade(t, 4.4, 5.0)) }}>
-        <Txt x={24} y={20} w={400} h={24} size={17} color={a.a} mono>NEXT BEST ACTION  ✦</Txt>
-        <Txt x={24} y={60} w={610} h={46} size={38} weight={600}>Send a reminder</Txt>
-        <Box x={24} y={118} w={610} h={60} s={{ fontSize: 22, lineHeight: '30px', color: U.mute }}>The open items are past due, and no dispute is logged.</Box>
-      </Box>
-      <Box x={740} y={180} w={720} h={400} s={{ background: '#fff', border: `2px solid ${U.line}`, borderRadius: 16, overflow: 'hidden', opacity: easeOut(fade(t, 5.6, 6.2)) }}>
-        <Txt x={24} y={20} w={400} h={24} size={17} color={U.mute} mono>OPEN ITEMS</Txt>
-        <Box x={0} y={60} w={716} h={44} s={{ background: U.bg, borderTop: `2px solid ${U.line}`, borderBottom: `2px solid ${U.line}` }} />
-        {([['DOCUMENT', 24], ['CODE', 330], ['STATUS', 500]] as [string, number][]).map(([l, x]) => <Txt key={l} x={x} y={70} w={200} h={24} size={17} color={U.mute} mono>{l}</Txt>)}
-        {['90001201', '90001244', '90001310', '90001388'].map((d, i) => <div key={d}>
-          <Box x={0} y={104 + i * 72} w={716} h={72} s={{ borderBottom: i < 3 ? `2px solid ${U.line}` : 'none' }} />
-          <Txt x={24} y={104 + i * 72 + 18} w={290} h={36} size={22} mono>Invoice {d}</Txt>
-          <Txt x={330} y={104 + i * 72 + 18} w={140} h={36} size={22} color={U.mute} mono>{i < 2 ? '1000' : '2000'}</Txt>
-          <Pill x={500} y={104 + i * 72 + 18} w={150} label="Past due" kind="past" />
-        </div>)}
+    <Box x={0} y={0} w={W} h={H} s={{ visibility: dlgOn ? 'visible' : 'hidden', pointerEvents: 'none', background: '#E6ECF2' }}>
+      <Box x={360} y={80} w={780} h={600} s={{ background: '#fff', border: `2px solid ${U.line}`, borderRadius: 14, boxShadow: '0 40px 80px -20px rgba(0,30,60,.5)', transform: `translateY(${(1 - dlg) * 30}px)`, opacity: dlg }}>
+        <Txt x={28} y={20} w={640} h={40} size={26} weight={700}>Send Credit Note Copies</Txt>
+        <Txt x={700} y={20} w={50} h={40} size={28} color={U.mute}>×</Txt>
+        <Txt x={28} y={90} w={90} h={30} size={17} color={U.mute}>To</Txt>
+        <Box x={120} y={82} w={634} h={46} s={{ border: `2px solid ${U.line}`, borderRadius: 8, display: 'flex', alignItems: 'center', gap: 10, padding: '0 10px' }}><span style={{ background: a.tint, borderRadius: 6, padding: '4px 12px', fontSize: 17 }}>p.morris@kestrelfoods.example</span><span style={{ color: U.mute, fontSize: 17 }}>+2 more</span></Box>
+        <Txt x={28} y={148} w={90} h={30} size={17} color={U.mute}>Subject</Txt>
+        <Box x={120} y={140} w={634} h={46} s={{ border: `2px solid ${U.line}`, borderRadius: 8, padding: '0 14px', fontSize: 19, lineHeight: '42px', ...line1 }}>Credit note copies for your account</Box>
+        <Txt x={28} y={204} w={500} h={24} size={14} mono color={a.a}>✦ DRAFTED BY THE AGENT · EDITABLE</Txt>
+        <Box x={28} y={234} w={726} h={118} s={{ border: `2px solid ${U.line}`, borderRadius: 8, padding: '10px 16px', fontSize: 19, lineHeight: '29px', overflow: 'hidden' }}>{body}{t >= 11.9 && t < 14.6 && caret(t) && <span style={{ display: 'inline-block', width: 2, height: 22, background: a.a, verticalAlign: 'middle' }} />}</Box>
+        <Txt x={28} y={370} w={600} h={24} size={14} mono color={U.mute}>ATTACHMENTS · FETCHED AUTOMATICALLY</Txt>
+        {([['Credit note CN-20417.pdf', at1, at1ok], ['Credit note CN-20463.pdf', at2, at2ok]] as [string, number, boolean][]).map(([n, o, ok], i) =>
+          <Box key={n} x={28} y={400 + i * 56} w={726} h={48} s={{ border: `2px solid ${ok ? a.a : U.line}`, background: ok ? a.tint : '#fff', borderRadius: 8, opacity: o, display: 'flex', alignItems: 'center', gap: 14, padding: '0 14px', fontSize: 19 }}>
+            <span style={{ width: 22, height: 28, borderRadius: 4, background: a.a, flex: 'none' }} /><span style={{ flex: 1, ...line1 }}>{n}</span><span style={{ fontFamily: M, fontSize: 15, color: ok ? a.a : U.mute, flex: 'none' }}>{ok ? 'ATTACHED' : 'FETCHING'}</span></Box>)}
+        <Box x={28} y={520} w={140} h={50} s={{ borderRadius: 8, background: sending ? U.ok : a.a, color: '#fff', fontSize: 20, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: clk(t, [17.6]) ? 'scale(.97)' : 'none' }}>{sending ? 'Sending…' : 'Send'}</Box>
+        <Box x={184} y={520} w={120} h={50} s={{ borderRadius: 8, border: `2px solid ${LINK}`, color: LINK, fontSize: 20, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Cancel</Box>
       </Box>
     </Box>
-
-    <Box x={500} y={56} w={1000} h={H - 56} s={{ background: '#fff', borderLeft: `2px solid ${U.line}`, boxShadow: '-30px 0 60px -30px rgba(10,30,60,.3)', visibility: t >= 9.8 ? 'visible' : 'hidden', transform: `translateX(${(1 - panel) * 760}px)` }}>
-      <Txt x={32} y={22} w={500} h={40} size={30} weight={600}>Email customer</Txt>
-      <Txt x={32} y={80} w={90} h={30} size={20} color={U.mute}>To</Txt>
-      <Box x={130} y={72} w={838} h={46} s={{ borderRadius: 10, border: `2px solid ${U.line}`, padding: '0 14px', fontSize: 22, lineHeight: '42px', ...line1 }}>accounts@customer-a.example</Box>
-      <Txt x={32} y={140} w={90} h={30} size={20} color={U.mute}>Subject</Txt>
-      <Box x={130} y={132} w={838} h={46} s={{ borderRadius: 10, border: `2px solid ${U.line}`, padding: '0 14px', fontSize: 22, lineHeight: '42px', ...line1 }}>Open items on your account</Box>
-      <Box x={32} y={198} w={936} h={140} s={{ borderRadius: 10, border: `2px solid ${U.line}`, padding: '12px 16px', fontSize: 22, lineHeight: '32px', color: U.ink, overflow: 'hidden' }}>{body}{t >= 10.8 && t < 13.6 && caret(t) && <span style={{ display: 'inline-block', width: 2, height: 24, background: a.a, verticalAlign: 'middle' }} />}</Box>
-      <Txt x={32} y={364} w={500} h={24} size={17} color={U.mute} mono>ATTACHMENTS  ·  FETCHED AUTOMATICALLY</Txt>
-      {([['Invoice copies.pdf', a1, a1ok], ['Account statement.pdf', a2, a2ok]] as [string, number, boolean][]).map(([n, o, ok], i) =>
-        <Box key={n} x={32} y={402 + i * 64} w={936} h={52} s={{ borderRadius: 10, border: `2px solid ${ok ? a.a : U.line}`, background: ok ? a.tint : '#fff', opacity: o, display: 'flex', alignItems: 'center', gap: 14, padding: '0 14px', fontSize: 22 }}>
-          <span style={{ width: 24, height: 30, borderRadius: 4, background: a.a, flex: 'none' }} /><span style={{ flex: 1, ...line1 }}>{n}</span>
-          <span style={{ fontFamily: M, fontSize: 17, color: ok ? a.a : U.mute, flex: 'none' }}>{ok ? 'ADDED' : 'FETCHING'}</span></Box>)}
-      <Box x={32} y={560} w={230} h={52} s={{ borderRadius: 12, background: sent ? U.ok : a.a, color: '#fff', fontSize: 22, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: clk(t, [17.4]) ? 'scale(.97)' : 'none' }}>{sent ? 'Sent  ✓' : approved ? 'Approving' : 'Approve and send'}</Box>
-      <Box x={276} y={560} w={110} h={52} s={{ borderRadius: 12, border: `2px solid ${U.line}`, fontSize: 22, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Edit</Box>
-    </Box>
+    <Box x={980} y={66} w={400} h={48} s={{ background: U.ok, color: '#fff', borderRadius: 10, fontSize: 19, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: toast, visibility: toast > 0 ? 'visible' : 'hidden', boxShadow: '0 20px 40px -15px rgba(0,60,30,.5)' }}>✓ Email sent to the customer</Box>
   </Stage>
 }
 
