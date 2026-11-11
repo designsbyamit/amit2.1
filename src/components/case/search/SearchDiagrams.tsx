@@ -1,17 +1,19 @@
 // Diagrams and product fragments for the AI-Powered Search case study.
 // The diagrams use the site tokens (they follow the light and dark themes). The product fragments draw a light enterprise UI on purpose.
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react'
 
 /* ───────── shared ───────── */
 /** Draws a fixed-size composition and scales it to the width of its container, so a product view never overflows on a phone. */
-export function Scaled({ w, h, children, className = '', minW = 0 }: { w: number; h: number; children: ReactNode; className?: string; /** Below this container width the view keeps this width and scrolls sideways instead of shrinking further. */ minW?: number }) {
-  const ref = useRef<HTMLDivElement>(null)
+export function Scaled({ w, h, children, className = '', minW = 0 }: { w: number; /** Fixed design height, or 'auto' to follow the content. */ h: number | 'auto'; children: ReactNode; className?: string; /** Below this container width the view keeps this width and scrolls sideways instead of shrinking further. */ minW?: number }) {
+  const ref = useRef<HTMLDivElement>(null), inner = useRef<HTMLDivElement>(null)
   const [cw, setCw] = useState(w)
+  const [ch, setCh] = useState(typeof h === 'number' ? h : 0)
   useEffect(() => { const el = ref.current; if (!el) return; const ro = new ResizeObserver(() => setCw(el.clientWidth)); ro.observe(el); setCw(el.clientWidth); return () => ro.disconnect() }, [])
-  const k = Math.max(cw, minW) / w
+  useEffect(() => { if (h !== 'auto') return; const el = inner.current; if (!el) return; const ro = new ResizeObserver(() => setCh(el.offsetHeight)); ro.observe(el); setCh(el.offsetHeight); return () => ro.disconnect() }, [h])
+  const k = Math.max(cw, minW) / w, H = typeof h === 'number' ? h : ch
   return <div ref={ref} className={className} style={{ overflowX: cw < minW ? 'auto' : 'visible' }}>
-    <div style={{ height: h * k, width: w * k, position: 'relative' }}>
-      <div style={{ width: w, height: h, transform: `scale(${k})`, transformOrigin: '0 0', position: 'absolute', left: 0, top: 0 }}>{children}</div>
+    <div style={{ height: H * k, width: w * k, position: 'relative', transition: 'height .25s' }}>
+      <div ref={inner} style={{ width: w, height: typeof h === 'number' ? h : undefined, transform: `scale(${k})`, transformOrigin: '0 0', position: 'absolute', left: 0, top: 0 }}>{children}</div>
     </div>
   </div>
 }
@@ -154,43 +156,93 @@ export const CAPABILITIES: { t: string; answers: string; why: string; visual: Re
 /* ───────── 06 · pattern anatomy on a results page ───────── */
 const Num = ({ n, x, y }: { n: number; x: number; y: number }) =>
   <div style={{ position: 'absolute', left: x, top: y, width: 26, height: 26, borderRadius: 13, background: P.ink, color: '#fff', fontSize: 13, fontWeight: 600, display: 'grid', placeItems: 'center', boxShadow: '0 0 0 3px #fff', fontFamily: F }}>{n}</div>
+const Tag = ({ children, bg = '#D1EFFF', fg = P.ink, s }: { children: ReactNode; bg?: string; fg?: string; s?: CSSProperties }) =>
+  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 9px', borderRadius: 6, background: bg, color: fg, fontSize: 12.5, fontWeight: 600, whiteSpace: 'nowrap', ...s }}>{children}</span>
+const Btn = ({ children, primary }: { children: ReactNode; primary?: boolean }) =>
+  <span style={{ padding: '5px 12px', borderRadius: 8, background: primary ? P.blue : '#fff', border: `1px solid ${primary ? P.blue : '#BCC3CA'}`, color: primary ? '#fff' : P.blue, fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap' }}>{children}</span>
+const More = () => <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden><circle cx="12" cy="5" r="1.8" fill={P.blue} /><circle cx="12" cy="12" r="1.8" fill={P.blue} /><circle cx="12" cy="19" r="1.8" fill={P.blue} /></svg>
+const Mark = () => <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" fill="none" stroke={P.blue} strokeWidth="1.8" strokeLinejoin="round" /></svg>
+
+/** One search result, the shared row every product uses. */
+function ResultRow({ title, type, match, ids, desc, attrs, tags, actions, thumb = true, gap = 18 }: { title: string; type: string; match: string; ids: string[]; desc: string; attrs: [string, string][]; tags: ReactNode; actions: ReactNode; thumb?: boolean; gap?: number }) {
+  return <div style={{ display: 'flex', gap, padding: '16px 20px', fontFamily: F, color: P.ink }}>
+    {thumb && <div style={{ width: 96, height: 96, borderRadius: 12, background: '#E1E4E8', flex: 'none' }} />}
+    <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span style={{ fontSize: 16, fontWeight: 600, color: P.blue, whiteSpace: 'nowrap' }}>{title}</span><Tag>{type}</Tag><Tag>{match}</Tag>
+        <span style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>{actions}<Mark /><More /></span>
+      </div>
+      <div style={{ fontSize: 12.5, color: P.ink2, marginTop: 4 }}>{ids.join('  •  ')}</div>
+      <div style={{ fontSize: 13.5, marginTop: 8 }}>{desc}</div>
+      <div style={{ display: 'flex', gap: 36, marginTop: 8 }}>{attrs.map(([k, v]) => <div key={k}><div style={{ fontSize: 12.5, color: P.mute }}>{k}</div><div style={{ fontSize: 13.5, marginTop: 2 }}>{v}</div></div>)}</div>
+      <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>{tags}</div>
+    </div>
+  </div>
+}
+
+export const ROW_PARTS = [
+  ['Thumbnail', 'An image, avatar or icon for the object, so a mixed list can be scanned by kind.'],
+  ['Title', 'The object’s name as a link into the product that owns it.'],
+  ['Entity type', 'What the result is: order, requisition, goal, employee, SOW.'],
+  ['Match', 'How well it matches the query, as a percentage, so ranking can be read.'],
+  ['Subheader', 'Identifiers and the area it belongs to, separated by dots.'],
+  ['Description', 'One or two lines that say what the record is about.'],
+  ['Attributes', 'Up to six label and value pairs, chosen per entity type.'],
+  ['Labels', 'Status, risk and AI notes as tags. AI-written ones carry the spark.'],
+  ['Actions', 'One primary action, up to two secondary, then bookmark and more.'],
+] as [string, string][]
+
+export function RowAnatomy() {
+  const N = ({ n, x, y }: { n: number; x: number; y: number }) => <div style={{ position: 'absolute', left: x, top: y, width: 22, height: 22, borderRadius: 11, background: P.ink, color: '#fff', fontSize: 11.5, fontWeight: 600, display: 'grid', placeItems: 'center', fontFamily: F }}>{n}</div>
+  return <Scaled w={1040} h={244} minW={760}>
+    <div style={{ position: 'relative', width: 1040, height: 244, background: '#fff', borderRadius: 12, boxShadow: '0 0 0 1px rgba(29,45,62,.08)' }}>
+      <div style={{ position: 'absolute', left: 30, top: 30, right: 0 }}>
+        <ResultRow gap={44} title="Mobile Device Purchase Order" type="Order" match="96% Match to Query" ids={['PO-2025-001823', 'Supply Chain']}
+          desc="50 units of a mobile handset with accessories, as per agreed pricing and delivery schedule."
+          attrs={[['Amount', '$89,450.00'], ['Requested by', 'Sarah Chen'], ['Date of delivery', '2025-08-16'], ['Supplier', 'Diamond Electronics'], ['Category', 'Raw material']]}
+          tags={<><Tag bg="#FFE9D6" fg="#9A4A00">Status: Ready for pickup</Tag><Tag bg="#2E7D32" fg="#fff">✓ Approved by supplier</Tag><Tag bg="#EBF8FF" fg={P.blue}>High</Tag></>}
+          actions={<><Btn primary>Contact Supplier</Btn><Btn>View PO</Btn></>} />
+      </div>
+      <N n={1} x={16} y={84} />
+      {[[2, 49], [5, 76], [6, 103], [7, 133], [8, 177]].map(([n, y]) => <N key={n} n={n} x={158} y={y} />)}
+      <N n={3} x={443} y={14} /><N n={4} x={546} y={14} /><N n={9} x={810} y={14} />
+    </div>
+  </Scaled>
+}
+
 export const PATTERN_ZONES = [
-  { t: 'Query input and understanding', d: 'The question stays visible and editable, and what the system understood is shown as chips that can be removed.', p: ['Type-ahead suggestions', 'Natural language query parsing', 'Conversational follow-up', 'Multi-entity query support'] },
-  { t: 'Result exploration and interpretation', d: 'An AI overview answers first, then the records it is based on, so people can read the answer and check it.', p: ['Result grouping and summarisation', 'Search result annotations', 'Multi-result preview and comparison'] },
-  { t: 'Result grouping and filtering', d: 'Tabs by object type and facets by attribute, with counts, so the list narrows without a new search.', p: ['Dynamic filters and faceted search', 'Search within results'] },
-  { t: 'Context and explanations', d: 'Each row says where it comes from and why it was ranked there.', p: ['Explainable AI recommendations', 'Contextual search entry points', 'Smart history and re-query'] },
-  { t: 'Actionability and next steps', d: 'Actions sit on the row, and opening a result lands inside the right product with the context carried over.', p: ['Inline smart actions', 'Task-oriented suggestions', 'Save search as smart bookmark'] },
+  { t: 'Query input and understanding', d: 'The question stays visible in the shell bar and as the page title, and suggested filters show what was understood.', p: ['Type-ahead suggestions', 'Natural language query parsing', 'Conversational follow-up', 'Multi-entity query support'] },
+  { t: 'Result exploration and interpretation', d: 'An AI overview answers first, collapsed by default, with its sources one click away, then the records themselves.', p: ['Result grouping and summarisation', 'Search result annotations', 'Multi-result preview and comparison'] },
+  { t: 'Result grouping and filtering', d: 'Tabs by object type with counts, and a sort, so the list narrows without a new search.', p: ['Dynamic filters and faceted search', 'Search within results'] },
+  { t: 'Context and explanations', d: 'Every row shows its type, its match to the query and its status, and AI-written notes carry the spark.', p: ['Explainable AI recommendations', 'Contextual search entry points', 'Smart history and re-query'] },
+  { t: 'Actionability and next steps', d: 'One primary action and up to two secondary ones on the row, plus bookmark and more, so work starts from the result.', p: ['Inline smart actions', 'Task-oriented suggestions', 'Save search as smart bookmark'] },
 ]
 export function PatternAnatomy() {
-  const rows = [
-    ['PO 4500019284 · Office supplies', '$12,400', 'Pending 9 days', 'Matches “pending” and your plant'],
-    ['PO 4500019301 · IT equipment', '$184,000', 'Pending 6 days', 'Over $100k: needs your approval'],
-    ['PO 4500019322 · Facilities', '$8,950', 'Pending 3 days', 'Supplier you approved last month'],
-  ]
-  return <Scaled w={1040} h={476} minW={760}>
-    <div style={{ position: 'relative', width: 1040, height: 476, background: P.bg, borderRadius: 14, overflow: 'hidden', fontFamily: F, color: P.ink }}>
-      <div style={{ position: 'absolute', left: 0, top: 0, width: 1040, height: 48, background: '#fff', borderBottom: `1px solid ${P.line}`, display: 'flex', alignItems: 'center', gap: 16, padding: '0 20px' }}>
-        <span style={{ width: 28, height: 18, borderRadius: 4, background: P.line }} /><span style={{ fontWeight: 700, fontSize: 14, color: P.blue }}>Product name</span>
-        <div style={{ marginLeft: 120, width: 420, height: 32, borderRadius: 16, border: `2px solid ${P.blue}`, display: 'flex', alignItems: 'center', gap: 8, padding: '0 12px', fontSize: 13.5 }}>Pending POs over $5k this month<span style={{ marginLeft: 'auto' }}><Ic n="spark" s={16} c={P.blue} /></span></div>
+  return <Scaled w={1040} h={'auto'} minW={760}>
+    <div style={{ position: 'relative', width: 1040, background: P.bg, borderRadius: 14, overflow: 'hidden', fontFamily: F, color: P.ink, paddingBottom: 20 }}>
+      <div style={{ height: 48, background: '#fff', borderBottom: `1px solid ${P.line}`, display: 'flex', alignItems: 'center', gap: 16, padding: '0 20px' }}>
+        <span style={{ fontWeight: 600, fontSize: 14, color: P.blue }}>Procurement</span>
+        <div style={{ marginLeft: 'auto', width: 400, height: 32, borderRadius: 16, border: `1px solid #89919A`, display: 'flex', alignItems: 'center', gap: 8, padding: '0 12px', fontSize: 13.5 }}>Pending POs for material MOB-00123<span style={{ marginLeft: 'auto' }}><Ic n="search" s={16} c={P.ink2} /></span></div>
+        <span style={{ width: 28, height: 28, borderRadius: 14, background: '#D9DEE3' }} />
       </div>
-      <div style={{ position: 'absolute', left: 40, top: 64, display: 'flex', gap: 6, alignItems: 'center', fontSize: 12 }}><span style={{ color: P.mute, marginRight: 4 }}>You asked for</span><Chip>Purchase orders ×</Chip><Chip>Status · pending ×</Chip><Chip>Amount › $5k ×</Chip><Chip>This month ×</Chip></div>
-      <div style={{ position: 'absolute', left: 40, top: 100, width: 960, borderRadius: 10, background: P.violetS, padding: '12px 16px', fontSize: 13, lineHeight: '20px' }}>
-        <b style={{ color: P.violet, fontWeight: 600 }}>AI overview</b> · 14 purchase orders are pending, $1.8M in total. Three are over $100k and need your approval; the oldest has waited 9 days.<div style={{ display: 'flex', gap: 6, marginTop: 8 }}><Chip bg="#fff" fg={P.ink2}>Based on 14 records</Chip><Chip bg="#fff" fg={P.ink2}>Only what you can access</Chip></div>
+      <div style={{ background: '#fff', padding: '16px 24px', borderBottom: `1px solid ${P.line}`, fontSize: 21, fontWeight: 700 }}>Search results for “Pending POs for material MOB-00123”</div>
+      <div style={{ margin: '16px 24px 0', background: '#fff', borderRadius: 12, padding: '16px 22px 10px', boxShadow: '0 1px 3px rgba(29,45,62,.08)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}><Ic n="spark" s={22} c={P.blue} /><span style={{ fontSize: 17, fontWeight: 600 }}>AI Overview</span><span style={{ marginLeft: 'auto', fontSize: 13.5, fontWeight: 600, textDecoration: 'underline' }}>Sources</span><More /></div>
+        <div style={{ fontSize: 14, fontWeight: 600, marginTop: 12 }}>Insight</div>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20, listStyle: 'disc', fontSize: 13.5, lineHeight: '21px' }}><li><b style={{ fontWeight: 600 }}>Supplier engagement:</b> Both POs are approved by the supplier, indicating no upstream delays.</li><li><b style={{ fontWeight: 600 }}>Logistics bottleneck:</b> PO-2025-001823 is stuck at the pickup stage, suggesting a delay in transportation…</li></ul>
+        <div style={{ textAlign: 'center', fontSize: 13, color: P.blue, marginTop: 8 }}>⌄ Show more</div>
       </div>
-      <div style={{ position: 'absolute', left: 40, top: 196, display: 'flex', gap: 22, fontSize: 13, borderBottom: `1px solid ${P.line}`, width: 960, height: 30 }}>{['All 14', 'Purchase orders 11', 'Documents 2', 'Suppliers 1'].map((t, i) => <span key={t} style={{ color: i === 0 ? P.blue : P.ink2, fontWeight: i === 0 ? 600 : 400, borderBottom: i === 0 ? `2px solid ${P.blue}` : 'none', paddingBottom: 6 }}>{t}</span>)}</div>
-      <div style={{ position: 'absolute', left: 40, top: 240, width: 196, display: 'grid', gap: 8, fontSize: 12.5 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600 }}><Ic n="filter" s={14} c={P.ink2} />Filters</div>
-        {[['Plant', '1010 Berlin'], ['Supplier', 'Any'], ['Amount', '> $5k'], ['Age', 'Any']].map(([a, b]) => <div key={a} style={{ background: '#fff', border: `1px solid ${P.line}`, borderRadius: 8, padding: '6px 10px' }}><div style={{ color: P.mute, fontSize: 11 }}>{a}</div><div>{b}</div></div>)}
+      <div style={{ margin: '14px 24px 0', background: '#fff', borderRadius: 12, boxShadow: '0 1px 3px rgba(29,45,62,.08)', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', alignItems: 'center', padding: '14px 20px 0' }}><span style={{ fontSize: 14.5, fontWeight: 600 }}>Showing 7 related results for ‘MOB-00123’</span><span style={{ marginLeft: 'auto', fontSize: 13, color: P.blue, border: '1px solid #BCC3CA', borderRadius: 8, padding: '4px 10px' }}>Sort by ⌄</span></div>
+        <div style={{ display: 'flex', gap: 28, padding: '14px 28px 0', borderBottom: `1px solid ${P.line}`, fontSize: 13.5, fontWeight: 600 }}>{['Purchase Orders (2)', 'Purchase Requisitions (1)', 'Suppliers (2)', 'Contacts (2)'].map((t, i) => <span key={t} style={{ color: i ? P.ink : P.blue, borderBottom: i ? 0 : `2px solid ${P.blue}`, paddingBottom: 10 }}>{t}</span>)}</div>
+        <ResultRow thumb={false} title="Mobile Device Purchase Order" type="Order" match="96% Match to Query" ids={['PO-2025-001823', 'Supply Chain']} desc="50 units of a mobile handset with accessories. Items to be delivered to the Mumbai warehouse by August 16, 2025."
+          attrs={[['Amount', '$89,450.00'], ['Requested by', 'Sarah Chen'], ['Date of delivery', '2025-08-16'], ['Supplier', 'Diamond Electronics']]}
+          tags={<><Tag bg="#FFE9D6" fg="#9A4A00">Status: Ready for pickup</Tag><Tag bg="#2E7D32" fg="#fff">✓ Approved by supplier</Tag><Tag bg="#EBF8FF" fg={P.blue}>High</Tag></>} actions={<><Btn primary>Contact Supplier</Btn><Btn>View PO</Btn></>} />
+        <div style={{ borderTop: `1px solid ${P.line}` }}><ResultRow thumb={false} title="Executive Team Mobile & Accessories" type="Order" match="84% Match to Query" ids={['PO-2025-006523', 'Supply Chain']} desc="30 units with standard warranty. Delivery expected at the Bengaluru distribution centre."
+          attrs={[['Amount', '$89,450.00'], ['Requested by', 'Sarah Chen'], ['Date of delivery', '2025-01-16'], ['Supplier', 'Wurth Electronics']]}
+          tags={<><Tag bg="#2E7D32" fg="#fff">✓ Delivered</Tag><Tag bg="#E9730C" fg="#fff">⚠ Payment due</Tag><Tag bg="#EBF8FF" fg={P.blue}>Medium</Tag></>} actions={<><Btn primary>Contact Supplier</Btn><Btn>View PO</Btn></>} /></div>
       </div>
-      <div style={{ position: 'absolute', left: 252, top: 240, width: 748, display: 'grid', gap: 8 }}>
-        {rows.map(([t, amt, age, why], i) => <div key={t} style={{ background: '#fff', border: `1px solid ${P.line}`, borderRadius: 10, padding: '10px 14px', display: 'grid', gridTemplateColumns: '1fr auto', gap: 4 }}>
-          <div style={{ fontSize: 13.5, fontWeight: 600 }}>{t}</div>
-          <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}><span style={{ padding: '4px 12px', borderRadius: 6, background: P.blue, color: '#fff', fontSize: 12 }}>Approve</span><span style={{ padding: '4px 12px', borderRadius: 6, border: `1px solid ${P.line}`, color: P.blue, fontSize: 12 }}>Open in Ariba</span></div>
-          <div style={{ fontSize: 12, color: P.mute, display: 'flex', gap: 10 }}><span>{amt}</span><span>·</span><span style={{ color: i === 1 ? P.warn : P.mute }}>{age}</span><span>·</span><span>Purchasing</span></div>
-          <div style={{ fontSize: 11.5, color: P.violet, display: 'flex', alignItems: 'center', gap: 5, justifyContent: 'flex-end' }}><Ic n="spark" s={12} c={P.violet} />{why}</div>
-        </div>)}
-      </div>
-      <Num n={1} x={258} y={11} /><Num n={2} x={7} y={112} /><Num n={3} x={7} y={198} /><Num n={4} x={1008} y={282} /><Num n={5} x={1008} y={250} />
+      <Num n={1} x={546} y={11} /><Num n={2} x={10} y={124} /><Num n={3} x={10} y={322} /><Num n={4} x={10} y={552} /><Num n={5} x={1012} y={414} />
     </div>
   </Scaled>
 }

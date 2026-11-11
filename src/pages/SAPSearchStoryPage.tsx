@@ -9,7 +9,8 @@ import type { Screen } from '../data/sapSearch'
 import SectionHeader from '../components/ds/SectionHeader'
 import CaseThumb from '../components/ds/CaseThumb'
 import SearchAnatomy from '../components/case/SearchAnatomy'
-import { Fragmented, Workstreams, OpportunityVenn, CAPABILITIES, PatternAnatomy, PATTERN_ZONES } from '../components/case/search/SearchDiagrams'
+import { Fragmented, Workstreams, OpportunityVenn, CAPABILITIES, PatternAnatomy, PATTERN_ZONES, RowAnatomy, ROW_PARTS } from '../components/case/search/SearchDiagrams'
+import AISummary from '../components/case/search/AISummary'
 
 const cs = caseStudies.find(c => c.id === 'sap-search')!
 
@@ -155,7 +156,7 @@ export default function SAPSearchStoryPage() {
       <Section id="patterns" tone="raised">
         <SectionHeader label="06 · Common patterns" title="The anatomy of one results page." intro="Ten capabilities only help if every product applies them the same way. So the patterns were defined by the moment they serve on the page, and each one placed where it lives." />
         <PatternAnatomy />
-        <p className="text-caption text-ink-3 mt-3">A results page for “Pending POs over $5k this month”, with sample data.</p>
+        <p className="text-caption text-ink-3 mt-3">The results page for “Pending POs for material MOB-00123”, redrawn from the design.</p>
         <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 list-none p-0">
           {PATTERN_ZONES.map((z, i) => (
             <li key={z.t} className="card">
@@ -166,6 +167,21 @@ export default function SAPSearchStoryPage() {
             </li>
           ))}
         </ol>
+        <h3 className="text-heading text-ink mt-24">One row, nine parts</h3>
+        <p className="text-body-lg text-ink-2 mt-4 mb-10 max-w-measure-xl">Every product returns the same row, so a purchase order, a goal and a statement of work read the same way. Only the attributes and actions change with the entity type.</p>
+        <RowAnatomy />
+        <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 mt-8 list-none p-0">
+          {ROW_PARTS.map(([t, d], i) => <li key={t} className="py-4 hairline-top flex gap-4"><span className="text-label text-ink-3 w-5 shrink-0">{i + 1}</span><span><span className="text-body text-ink block">{t}</span><span className="text-body-sm text-ink-2">{d}</span></span></li>)}
+        </ol>
+        <figure className="m-0 mt-12">
+          <img src={`${import.meta.env.BASE_URL}images/case-studies/sap-search/row-actions.webp`} alt="A requisition result with Approve and Reject on the row, and the same row after approval showing Approved" width={2688} height={776} loading="lazy" decoding="async" className="w-full h-auto block rounded-lg bg-white" />
+          <figcaption className="text-caption text-ink-3 mt-3">Inline actions change state on the row: Approve and Reject become Approved, without leaving the results.</figcaption>
+        </figure>
+
+        <h3 className="text-heading text-ink mt-24">An AI summary you can trace</h3>
+        <p className="text-body-lg text-ink-2 mt-4 mb-10 max-w-measure-xl">The summary is collapsed by default, so results stay in view. Each insight carries a link to its sources. We explored two ways to show them: a reference panel beside the summary, and focusing the results that produced the insight at the top of the list. Try both.</p>
+        <AISummary />
+
         <details className="mt-8">
           <summary className="text-body-sm text-ink-2 cursor-pointer">The full pattern library, by moment in the journey</summary>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
@@ -190,8 +206,12 @@ export default function SAPSearchStoryPage() {
         <SearchAnatomy />
 
         <h3 className="text-heading text-ink mt-24">The results page</h3>
-        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{results.summary}</p>
-        <Screens screens={results.screens} title={results.title} onZoom={setZoom} cols="md:grid-cols-2" />
+        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">One layout for every product: the question as the title, an AI overview with its sources, results grouped in tabs with counts, and rows built from the same parts. Three products, three questions.</p>
+        <ResultPages onZoom={setZoom} />
+        <details className="mt-10">
+          <summary className="text-body-sm text-ink-2 cursor-pointer">Earlier results screens from the prototype</summary>
+          <Screens screens={results.screens} title={results.title} onZoom={setZoom} cols="md:grid-cols-2" />
+        </details>
         <LiveButton onOpen={() => setLive(results.hash)} />
 
         <h3 className="text-heading text-ink mt-24">Into the products</h3>
@@ -246,6 +266,32 @@ export default function SAPSearchStoryPage() {
       {live && <LivePrototype hash={live} onClose={() => setLive(null)} />}
     </div>
   )
+}
+
+const RP: (Screen & { q: string; d: string; h: number })[] = [
+  { id: 'procurement', name: 'Procurement', q: 'Pending POs for material MOB-00123', d: 'Purchase orders, requisitions, suppliers and contacts in one list, with product results below for reordering.', img: `${import.meta.env.BASE_URL}images/case-studies/sap-search/results-procurement.webp`, h: 2814 },
+  { id: 'goals', name: 'People and goals', q: 'Team goal progress & performance summary Q2', d: 'Goals, performance analytics and team members together, each with the action that fits it.', img: `${import.meta.env.BASE_URL}images/case-studies/sap-search/results-goals.webp`, h: 4512 },
+  { id: 'sow', name: 'Statements of work', q: 'Current status and end date of SOW IDs for CyberSecure Ltd?', d: 'Suggested filters under the question, an overview of every SOW, and risk and AI notes on each row.', img: `${import.meta.env.BASE_URL}images/case-studies/sap-search/results-sow.webp`, h: 4040 },
+]
+function ResultPages({ onZoom }: { onZoom: (s: Screen) => void }) {
+  const [i, setI] = useState(0)
+  const r = RP[i]
+  return <div className="mt-10">
+    <div className="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Results pages">
+      {RP.map((x, k) => <button key={x.id} type="button" role="tab" aria-selected={k === i} className="chip" onClick={() => setI(k)}>{x.name}</button>)}
+    </div>
+    <div className="grid lg:grid-cols-[1fr_minmax(0,18rem)] gap-8 items-start" role="tabpanel">
+      <button type="button" onClick={() => onZoom(r)} className="block w-full rounded-lg overflow-y-auto overflow-x-hidden border focus-visible:outline-2 bg-white" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in', maxHeight: 'min(70vh, 46rem)' }} aria-label={`Enlarge the ${r.name} results page`}>
+        <img src={r.img} alt={`Search results for “${r.q}”`} width={2872} height={r.h} className="w-full h-auto block" loading="lazy" decoding="async" />
+      </button>
+      <div>
+        <p className="text-overline text-ink-3">The question</p>
+        <p className="text-title text-ink mt-3">“{r.q}”</p>
+        <p className="text-body text-ink-2 mt-4">{r.d}</p>
+        <p className="text-caption text-ink-3 mt-6">Scroll inside the frame, or select it to see the full page.</p>
+      </div>
+    </div>
+  </div>
 }
 
 function Screens({ screens, title, onZoom, cols }: { screens: Screen[]; title: string; onZoom: (s: Screen) => void; cols: string }) {
