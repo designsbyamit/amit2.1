@@ -7,7 +7,9 @@ import { sapSearch as S } from '../data/sapSearch'
 import type { Screen } from '../data/sapSearch'
 
 import SectionHeader from '../components/ds/SectionHeader'
+import CaseThumb from '../components/ds/CaseThumb'
 import SearchAnatomy from '../components/case/SearchAnatomy'
+import { Fragmented, Workstreams, OpportunityVenn, CAPABILITIES, PatternAnatomy, PATTERN_ZONES } from '../components/case/search/SearchDiagrams'
 
 const cs = caseStudies.find(c => c.id === 'sap-search')!
 
@@ -19,22 +21,20 @@ function Section({ id, children, tone = 'base' }: { id?: string; children: React
   )
 }
 
-function Prototype({ hash }: { hash: string }) {
-  return (
-    <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--line-2)' }}>
-      <div className="flex items-center justify-between gap-4 px-4 py-2 bg-surface-2">
-        <span className="text-caption text-ink-3">Interactive prototype · UI5 Web Components</span>
-        <a href={`${S.prototype}#${hash}`} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white tap-target inline-flex items-center">Open full screen ↗</a>
-      </div>
-      <iframe key={hash} title="AI-Powered Search prototype" src={`${S.prototype}#${hash}`} className="w-full block bg-white" style={{ height: 'min(820px, 80vh)' }} loading="lazy" />
-    </div>
-  )
-}
+const AI_VERBS: [string, string][] = [['Informational AI', 'answers and explains'], ['Transactional AI', 'does the task'], ['Analytical AI', 'finds the signal'], ['Generative AI', 'drafts and summarises']]
+const PILLARS: [string, string][] = [
+  ['Consistent', 'One search field in every shell bar, and one results page every product can use.'],
+  ['User friendly', 'Ask in a sentence, the way you would ask a colleague, and get an answer you can act on.'],
+  ['Contextual', 'Results shaped by who you are and where you are, carried into the product where the work happens.'],
+]
 
 export default function SAPSearchStoryPage() {
-  const [active, setActive] = useState(S.flows[0].id)
+  const flows = S.flows.filter(f => !['component', 'results'].includes(f.id))
+  const results = S.flows.find(f => f.id === 'results')!
+  const [active, setActive] = useState(flows[0].id)
   const [zoom, setZoom] = useState<Screen | null>(null)
-  const flow = S.flows.find(f => f.id === active)!
+  const [live, setLive] = useState<string | null>(null)
+  const flow = flows.find(f => f.id === active)!
 
   return (
     <div className="bg-surface-0 min-h-screen">
@@ -42,145 +42,199 @@ export default function SAPSearchStoryPage() {
       <header className={heroClass(cs.id)} style={{ paddingTop: 'var(--header-h)', ...heroStyle(cs.id) }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'AI-Powered Search' }]} />
-          <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{cs.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
-          <div className="flex flex-wrap gap-2 mt-8">
-            <span className="tag">{S.kicker}</span>
-            {S.pillars.map(p => <span key={p} className="tag">{p}</span>)}
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center mt-10">
+            <div className="lg:col-span-5">
+              <p className="text-overline text-ink-3">{cs.category}</p>
+              <h1 className="text-display-l text-white mt-5">{cs.title}</h1>
+              <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
+            </div>
+            <figure className="lg:col-span-7 m-0">
+              <div className="rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-3)' }}><CaseThumb id="sap-search" live flush /></div>
+              <figcaption className="text-caption text-ink-3 mt-3">One sentence to a booked, policy-compliant trip. From the prototype.</figcaption>
+            </figure>
           </div>
-          <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-4xl">
-            {[['Role', cs.role], ['Timeline', cs.timeline], ['Domain', cs.domain], ...(cs.stats ?? []).map(s => [s.label, s.value])].slice(0, 4).map(([k, v]) => (
+          <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top">
+            {[['Role', cs.role], ['Timeline', cs.timeline], ['Team', '8 designers, 3 workstreams'], ['Status', 'Validated, prototyped']].map(([k, v]) => (
               <div key={k}><dt className="text-overline text-ink-3">{k}</dt><dd className="text-title text-white mt-2">{v}</dd></div>
             ))}
           </dl>
         </div>
       </header>
 
-      <Section id="vision">
-        <SectionHeader label="01 · Direction" title={S.vision.title} intro={S.vision.intro} />
-        <div className="grid md:grid-cols-3 gap-4">
-          {S.vision.cards.map(c => (
-            <div key={c.title} className="card">
-              <p className="text-overline text-ink-3">{c.label}</p>
-              <p className="text-title text-white mt-3">{c.title}</p>
-              <p className="text-body text-ink-2 mt-4">{c.body}</p>
-            </div>
-          ))}
-        </div>
-        <p className="text-body-lg text-ink-2 mt-12 max-w-measure-xl">{S.vision.why}</p>
-      </Section>
-
-      <Section id="transition" tone="raised">
-        <SectionHeader label="02 · Results to next steps" title={S.transition.title} intro={S.transition.intro} />
-        <div className="grid md:grid-cols-2 gap-4">
-          {S.transition.items.map(c => <div key={c.t} className="card"><p className="text-title text-white">{c.t}</p><p className="text-body text-ink-2 mt-3">{c.d}</p></div>)}
-        </div>
-        <h3 className="text-heading text-white mt-16">{S.consistency.title}</h3>
-        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{S.consistency.intro}</p>
-      </Section>
-
-      {/* Problem */}
+      {/* 01 · Problem */}
       <Section id="problem">
-        <SectionHeader label="03 · The problem" title="What needed to be fixed?" intro={cs.challenge} />
-        <div className="grid md:grid-cols-3 gap-4">
+        <SectionHeader label="01 · The problem" title="Every product had its own search." intro="Each application shipped its own search box, with its own vocabulary and its own rules. A question that crossed products, such as a trip, a supplier or a contract, had no single place to start." />
+        <Fragmented />
+        <p className="text-caption text-ink-3 mt-3">Illustrative: the kinds of difference people met from one product to the next.</p>
+        <div className="grid md:grid-cols-3 gap-4 mt-14">
           {S.challenges.map(c => (
             <div key={c.area} className="card">
               <p className="text-overline text-ink-3">{c.area}</p>
-              <ul className="mt-5 space-y-3">{c.items.map(i => <li key={i} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">-</span>{i}</li>)}</ul>
+              <ul className="mt-5 space-y-3 list-none p-0">{c.items.map(i => <li key={i} className="text-body text-ink-2 flex gap-3"><span aria-hidden className="text-ink-3">·</span>{i}</li>)}</ul>
             </div>
           ))}
         </div>
+        <p className="text-body text-ink-2 mt-6 max-w-measure-xl">Twelve pain points, heard in conversations with line of business stakeholders before any design started.</p>
       </Section>
 
-      {/* Exploration */}
+      {/* 02 · Direction */}
+      <Section id="vision" tone="raised">
+        <SectionHeader label="02 · Direction" title="We listened first, then wrote the vision." intro="The conversations shaped the vision and its principles, written in Figma before any screen: one search across every application, and a path from a question to the work that follows it." />
+        <div className="grid md:grid-cols-3 gap-4">
+          {PILLARS.map(([t, d], i) => (
+            <div key={t} className="card">
+              <p className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</p>
+              <p className="text-title text-ink mt-3">{t}</p>
+              <p className="text-body text-ink-2 mt-3">{d}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-10 grid md:grid-cols-[auto_1fr] gap-x-10 gap-y-3 rounded-lg p-6 md:p-8 bg-surface-2">
+          <p className="text-overline text-ink-3">Two questions we kept open</p>
+          <div className="space-y-3">
+            <p className="text-body-lg text-ink">How does search hand over to the conversational assistant?</p>
+            <p className="text-body-lg text-ink">How much should a result show before the list stops being scannable?</p>
+          </div>
+        </div>
+      </Section>
+
+      {/* 03 · Organising the work */}
+      <Section id="workstreams">
+        <SectionHeader label="03 · Organising the work" title="Three workstreams along one journey." intro="With the vision written, the work was split across eight designers in three groups. Each owned one stretch of the journey rather than one product, so the seams between them were exactly where search needed to feel like one thing." />
+        <Workstreams />
+        <div className="grid md:grid-cols-2 gap-4 mt-10">
+          {S.transition.items.map(c => <div key={c.t} className="card"><p className="text-overline text-ink-3">Where workstream 3 lands</p><p className="text-title text-ink mt-3">{c.t}</p><p className="text-body text-ink-2 mt-3">{c.d}</p></div>)}
+        </div>
+      </Section>
+
+      {/* 04 · Opportunity */}
       <Section id="explore" tone="raised">
-        <SectionHeader label="04 · Exploration" title="Where search capability meets AI and real user problems." intro="Every idea was tested against three inputs at once: what search can do, what AI can offer, and the problems users actually have." />
-        <div className="grid md:grid-cols-3 gap-4 mb-14">
-          {S.ideas.inputs.map(i => <div key={i} className="card text-center"><p className="text-title text-white">{i}</p></div>)}
-        </div>
-        <p className="text-overline text-ink-3 mb-4">AI offerings</p>
-        <div className="flex flex-wrap gap-2 mb-14">{S.ideas.aiOfferings.map(a => <span key={a} className="tag">{a}</span>)}</div>
-        <div className="grid lg:grid-cols-[2fr_1fr] gap-10">
-          <div>
-            <p className="text-overline text-ink-3 mb-4">Search functionalities</p>
-            <dl className="divide-y" style={{ borderColor: 'var(--line-1)' }}>
-              {S.searchFunctionalities.map(([t, d]) => (
-                <div key={t} className="py-4 grid sm:grid-cols-[180px_1fr] gap-2 hairline-top"><dt className="text-body text-white">{t}</dt><dd className="text-body-sm text-ink-2">{d}</dd></div>
-              ))}
-            </dl>
-          </div>
+        <SectionHeader label="04 · Finding the opportunity" title="Where search, AI and real problems meet." intro="Every idea had to answer all three at once: what kind of search it needs, what kind of AI makes it possible, and which problem people actually have. Ideas that met only one or two were set aside." />
+        <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-center">
+          <div className="max-w-xl w-full mx-auto"><OpportunityVenn /></div>
           <div className="space-y-10">
-            <div><p className="text-overline text-ink-3 mb-4">Search mechanics</p><div className="flex flex-wrap gap-2">{S.mechanics.map(m => <span key={m} className="tag">{m}</span>)}</div></div>
-            <div><p className="text-overline text-ink-3 mb-4">AI functionalities</p><div className="flex flex-wrap gap-2">{S.aiFunctionalities.map(m => <span key={m} className="tag">{m}</span>)}</div></div>
+            <div>
+              <p className="text-overline text-ink-3 mb-4">4 AI offerings</p>
+              <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3">{AI_VERBS.map(([a, v]) => <div key={a} className="flex items-baseline gap-3 hairline-top pt-3"><dt className="text-body text-ink">{a}</dt><dd className="text-body-sm text-ink-3">{v}</dd></div>)}</dl>
+            </div>
+            <div>
+              <p className="text-overline text-ink-3 mb-4">9 search functionalities</p>
+              <div className="flex flex-wrap gap-2">{S.searchFunctionalities.map(([t]) => <span key={t} className="tag">{t}</span>)}</div>
+              <details className="mt-4">
+                <summary className="text-body-sm text-ink-2 cursor-pointer">What each one does</summary>
+                <dl className="mt-4">{S.searchFunctionalities.map(([t, d]) => <div key={t} className="py-3 grid sm:grid-cols-[160px_1fr] gap-2 hairline-top"><dt className="text-body-sm text-ink">{t}</dt><dd className="text-body-sm text-ink-2">{d}</dd></div>)}</dl>
+              </details>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-8">
+              <div><p className="text-overline text-ink-3 mb-4">Search mechanics</p><div className="flex flex-wrap gap-2">{S.mechanics.map(m => <span key={m} className="tag">{m}</span>)}</div></div>
+              <div><p className="text-overline text-ink-3 mb-4">AI functionalities</p><div className="flex flex-wrap gap-2">{S.aiFunctionalities.map(m => <span key={m} className="tag">{m}</span>)}</div></div>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* Recommendations */}
+      {/* 05 · Capabilities */}
       <Section id="recommendations">
-        <SectionHeader label="05 · Solution recommendations" title="Ten capabilities for one search across every application." intro={cs.approach} />
-        <ol className="grid sm:grid-cols-2 gap-x-10">
-          {S.recommendations.map((r, i) => (
-            <li key={r} className="flex gap-5 py-4 hairline-top"><span className="text-label text-ink-3 w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span><span className="text-body text-white">{r}</span></li>
+        <SectionHeader label="05 · Ten capabilities" title="What one search needs to do, and why." intro="The intersection became ten recommendations. Each one answers a pain point from the conversations and names the capability that makes it possible." />
+        <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0">
+          {CAPABILITIES.map((c, i) => (
+            <li key={c.t} className="card flex flex-col gap-5 min-w-0">
+              <div aria-hidden>{c.visual}</div>
+              <div>
+                <p className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</p>
+                <p className="text-title text-ink mt-2">{c.t}</p>
+                <p className="text-body text-ink-2 mt-3">{c.why}</p>
+                <p className="text-caption text-ink-3 mt-4"><span className="text-overline">Answers</span> · {c.answers}</p>
+              </div>
+            </li>
           ))}
         </ol>
       </Section>
 
-      {/* Patterns */}
+      {/* 06 · Patterns */}
       <Section id="patterns" tone="raised">
-        <SectionHeader label="06 · Common patterns" title="A pattern library for AI search." intro="Grouped by the moment in the search journey they serve, then defined by how each behaves, so every product team applies them the same way." />
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
-          {S.patternGroups.map((g, i) => (
-            <div key={g.title} className="card">
-              <p className="text-label text-ink-3">{i + 1}</p>
-              <p className="text-title text-white mt-2">{g.title}</p>
-              {g.note && <p className="text-body-sm text-ink-3 mt-2">{g.note}</p>}
-              <ul className="mt-4 space-y-2">{g.items.map(it => <li key={it} className="text-body-sm text-ink-2">{it}</li>)}</ul>
-            </div>
+        <SectionHeader label="06 · Common patterns" title="The anatomy of one results page." intro="Ten capabilities only help if every product applies them the same way. So the patterns were defined by the moment they serve on the page, and each one placed where it lives." />
+        <PatternAnatomy />
+        <p className="text-caption text-ink-3 mt-3">A results page for “Pending POs over $5k this month”, with sample data.</p>
+        <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 list-none p-0">
+          {PATTERN_ZONES.map((z, i) => (
+            <li key={z.t} className="card">
+              <span className="inline-grid place-items-center rounded-full bg-surface-3 text-label text-ink" style={{ width: 'var(--space-30)', height: 'var(--space-30)' }}>{i + 1}</span>
+              <p className="text-title text-ink mt-4">{z.t}</p>
+              <p className="text-body-sm text-ink-2 mt-3">{z.d}</p>
+              <ul className="mt-4 space-y-1 list-none p-0">{z.p.map(p => <li key={p} className="text-caption text-ink-3">{p}</li>)}</ul>
+            </li>
           ))}
-        </div>
-        <dl className="grid md:grid-cols-2 gap-x-10">
-          {S.patternDefinitions.map(([t, d]) => (
-            <div key={t} className="py-4 hairline-top"><dt className="text-body text-white">{t}</dt><dd className="text-body-sm text-ink-2 mt-1">{d}</dd></div>
-          ))}
-        </dl>
+        </ol>
+        <details className="mt-8">
+          <summary className="text-body-sm text-ink-2 cursor-pointer">The full pattern library, by moment in the journey</summary>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            {S.patternGroups.map(g => (
+              <div key={g.title} className="card">
+                <p className="text-title text-ink">{g.title}</p>
+                <ul className="mt-4 space-y-2 list-none p-0">{g.items.map(it => <li key={it} className="text-body-sm text-ink-2">{it}</li>)}</ul>
+              </div>
+            ))}
+          </div>
+          <dl className="grid md:grid-cols-2 gap-x-10 mt-6">
+            {S.patternDefinitions.map(([t, d]) => <div key={t} className="py-4 hairline-top"><dt className="text-body text-ink">{t}</dt><dd className="text-body-sm text-ink-2 mt-1">{d}</dd></div>)}
+          </dl>
+        </details>
       </Section>
 
-      {/* Experience */}
+      {/* 07 · Experience */}
       <Section id="experience">
-        <SectionHeader label="07 · The experience" title="One search, specified down to the state." intro="The component is specified, not sketched: anatomy and spacing, states, and behaviour from the first focus to Enter. Built entirely with native enterprise UI components. Pick a journey to see its screens and try it live." />
-        <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Journeys">
-          {S.flows.map(f => (
-            <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" aria-pressed={f.id === active} onClick={() => setActive(f.id)}>
-              {f.label} · {f.title.replace('Use case: ', '')}
-            </button>
+        <SectionHeader label="07 · The experience" title="From the search field to the results page." intro="The component is specified, not sketched: anatomy, spacing, states and behaviour from the first focus to Enter. Built entirely with native enterprise UI components." />
+        <h3 className="text-heading text-ink">The search input</h3>
+        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{S.flows[0].summary}</p>
+        <SearchAnatomy />
+
+        <h3 className="text-heading text-ink mt-24">The results page</h3>
+        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{results.summary}</p>
+        <Screens screens={results.screens} title={results.title} onZoom={setZoom} cols="md:grid-cols-2" />
+        <LiveButton onOpen={() => setLive(results.hash)} />
+
+        <h3 className="text-heading text-ink mt-24">Into the products</h3>
+        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">Four journeys show workstream 3 at work: the result opens the right product with the context already in place.</p>
+        <div className="flex flex-wrap gap-2 mt-8 mb-8" role="tablist" aria-label="Journeys">
+          {flows.map(f => (
+            <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" onClick={() => setActive(f.id)}>{f.title.replace('Use case: ', '')}</button>
           ))}
         </div>
         <div role="tabpanel">
-          <h3 className="text-heading text-white">{flow.title}</h3>
-          <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{flow.summary}</p>
-          {flow.id === 'component' && <SearchAnatomy />}
-          {flow.screens.length > 0 && <div className="grid md:grid-cols-2 gap-6 mt-10">
-            {flow.screens.map(s => (
-              <figure key={s.id} className="m-0">
-                <button type="button" onClick={() => setZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen ${s.id.replace('-', '.')} ${s.name}`}>
-                  <img src={s.img} alt={`${flow.title}: ${s.name}`} width={1440} height={900} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
-                </button>
-                <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} - {s.name}</figcaption>
-              </figure>
-            ))}
-          </div>}
-          <p className="text-body text-ink-2 mt-12">{flow.screens.length > 0 ? 'Try this journey live. The prototype uses the same UI5 components as the screens above.' : (flow.id === 'component' ? 'Try the same behaviour live: hover, focus, type, use the arrow keys and press Enter.' : 'Try this journey live, built with the same UI5 components.')}</p>
-          <div className="mt-10"><Prototype hash={flow.hash} /></div>
+          <p className="text-body text-ink-2 max-w-measure-xl">{flow.summary}</p>
+          {flow.screens.length > 0 && <Screens screens={flow.screens} title={flow.title} onZoom={setZoom} cols="sm:grid-cols-2 lg:grid-cols-3" />}
+          <LiveButton onOpen={() => setLive(flow.hash)} />
         </div>
       </Section>
 
-      {/* Outcome */}
+      {/* 08 · Outcome */}
       <Section id="outcome" tone="raised">
-        <SectionHeader label="08 · Outcome" title="Tested, validated and prototyped." intro={cs.outcome} />
+        <SectionHeader label="08 · Outcome" title="Back to the vision." intro={`${cs.outcome} Each principle can now be shown, not just stated.`} />
         <div className="grid md:grid-cols-3 gap-4">
-          {(cs.highlights ?? []).map(h => <blockquote key={h} className="card text-body-lg text-white m-0">{h}</blockquote>)}
+          {[
+            ['Consistent', 'One search field specified for every shell bar, with its anatomy and five states, and one results layout shared by every product.'],
+            ['User friendly', 'Natural language, type-ahead and an AI overview that names its sources, so a sentence is enough to start.'],
+            ['Contextual', 'Four journeys where a result opens Concur, Ariba, SuccessFactors or Fieldglass with the context carried across.'],
+          ].map(([t, d]) => <div key={t} className="card"><p className="text-overline text-ink-3">{t}</p><p className="text-body-lg text-ink mt-4">{d}</p></div>)}
+        </div>
+        <div className="grid md:grid-cols-2 gap-10 mt-16">
+          <div>
+            <p className="text-overline text-ink-3">What exists now</p>
+            <ul className="mt-5 space-y-3 list-none p-0 text-body text-ink-2">
+              <li>A direction tested and validated, and a Figma prototype.</li>
+              <li>A live prototype built with UI5 Web Components, covering six journeys.</li>
+              <li>Ten capability recommendations and a pattern library organised by the moment it serves.</li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-overline text-ink-3">What the work shows about the approach</p>
+            <ul className="mt-5 space-y-3 list-none p-0 text-body text-ink-2">
+              <li>Start by listening, and write the vision from what people said.</li>
+              <li>Split the team by stretches of the journey, not by product, so consistency is designed at the seams.</li>
+              <li>Keep the hard questions open: the hand-over to the assistant and result density are still worth asking.</li>
+            </ul>
+          </div>
         </div>
         <div className="mt-16 flex flex-wrap gap-3">
           <Link to="/craft" className="btn btn-secondary">All case studies</Link>
@@ -189,22 +243,63 @@ export default function SAPSearchStoryPage() {
       </Section>
 
       {zoom && <Lightbox screen={zoom} onClose={() => setZoom(null)} />}
+      {live && <LivePrototype hash={live} onClose={() => setLive(null)} />}
     </div>
   )
 }
 
-function Lightbox({ screen, onClose }: { screen: Screen; onClose: () => void }) {
+function Screens({ screens, title, onZoom, cols }: { screens: Screen[]; title: string; onZoom: (s: Screen) => void; cols: string }) {
+  return <div className={`grid ${cols} gap-6 mt-10`}>
+    {screens.map(s => (
+      <figure key={s.id} className="m-0">
+        <button type="button" onClick={() => onZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen ${s.id.replace('-', '.')} ${s.name}`}>
+          <img src={s.img} alt={`${title}: ${s.name}`} width={1440} height={900} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
+        </button>
+        <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} · {s.name}</figcaption>
+      </figure>
+    ))}
+  </div>
+}
+
+function LiveButton({ onOpen }: { onOpen: () => void }) {
+  return <div className="mt-8 flex flex-wrap items-center gap-4">
+    <button type="button" className="btn btn-secondary" onClick={onOpen}>Try it in the live prototype</button>
+    <span className="text-caption text-ink-3">Opens over the page. Built with UI5 Web Components.</span>
+  </div>
+}
+
+function useDialog(onClose: () => void) {
   useEffect(() => {
     const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', k); document.body.style.overflow = 'hidden'
     return () => { document.removeEventListener('keydown', k); document.body.style.overflow = '' }
   }, [onClose])
+}
+
+function LivePrototype({ hash, onClose }: { hash: string; onClose: () => void }) {
+  useDialog(onClose)
+  return (
+    <div role="dialog" aria-modal="true" aria-label="Live prototype" className="fixed inset-0 z-dialog bg-black/90 flex flex-col p-3 md:p-8 gap-3">
+      <div className="flex items-center justify-between gap-4">
+        <span className="text-caption text-ink-2">Interactive prototype · UI5 Web Components</span>
+        <div className="flex items-center gap-3">
+          <a href={`${S.prototype}#${hash}`} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white underline">Open in a new tab ↗</a>
+          <button type="button" className="btn btn-secondary btn-sm" onClick={onClose} autoFocus>Close</button>
+        </div>
+      </div>
+      <iframe title="AI-Powered Search prototype" src={`${S.prototype}#${hash}`} className="w-full flex-1 block bg-white rounded-md" />
+    </div>
+  )
+}
+
+function Lightbox({ screen, onClose }: { screen: Screen; onClose: () => void }) {
+  useDialog(onClose)
   return (
     <div role="dialog" aria-modal="true" aria-label={screen.name} className="fixed inset-0 z-dialog bg-black/90 overflow-auto" onClick={onClose}>
       <div className="min-h-full flex flex-col items-center justify-center p-4 md:p-10 gap-4">
         <img src={screen.img} alt={screen.name} className="max-w-full max-h-[calc(100vh-var(--space-120))] w-auto h-auto bg-white rounded-md" onClick={e => e.stopPropagation()} />
         <div className="flex items-center gap-4">
-          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} - {screen.name}</span>
+          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} · {screen.name}</span>
           <a href={screen.img} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white underline" onClick={e => e.stopPropagation()}>Open at full resolution ↗</a>
           <button type="button" className="btn btn-secondary btn-sm" onClick={onClose} autoFocus>Close</button>
         </div>

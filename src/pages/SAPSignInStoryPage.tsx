@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/ds/Breadcrumb'
+import CaseThumb from '../components/ds/CaseThumb'
 import { heroClass, heroStyle } from '../data/caseTheme'
 import { caseStudies } from '../data/work'
 import { Section, Head, Fig, ScreenTabs, Numbered, Defs, Grid } from '../components/case/Chapter'
@@ -70,9 +71,17 @@ export default function SAPSignInStoryPage() {
       <header className={heroClass(cs.id)} style={{ paddingTop: 'var(--header-h)', ...heroStyle(cs.id) }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Unified Sign-in/Out' }]} />
-          <p className="text-label text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{cs.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A product standard for the moment of entry. Three flow types, one anatomy, one way to recover, and a sign out that tells you what happened.</p>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center mt-10">
+            <div className="lg:col-span-5">
+              <p className="text-label text-ink-3 ">{cs.category}</p>
+              <h1 className="text-display-l text-white mt-5">{cs.title}</h1>
+              <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A product standard for the moment of entry. Three flow types, one anatomy, one way to recover, and a sign out that tells you what happened.</p>
+            </div>
+            <figure className="lg:col-span-7 m-0">
+              <div className="rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-3)' }}><CaseThumb id={cs.id} live flush /></div>
+              <figcaption className="text-caption text-ink-3 mt-3">Identity first, a clear error, then signed in. From the standard.</figcaption>
+            </figure>
+          </div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-5xl">
             {facts.map(([k, v]) => <div key={k}><dt className="text-label text-ink-3">{k}</dt><dd className="v2-item text-white mt-2">{v}</dd></div>)}
           </dl>

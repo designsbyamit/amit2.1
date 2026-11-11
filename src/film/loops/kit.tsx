@@ -76,7 +76,9 @@ export const Ico = ({ n, s = 22, c = 'currentColor', w = 1.75, fill }: { n: keyo
 export const Pill = ({ x, y, w, h = 30, bg, fg, size = 16, children, s }: { x: number; y: number; w: number; h?: number; bg: string; fg: string; size?: number; children: ReactNode; s?: CSSProperties }) =>
   <Box x={x} y={y} w={w} h={h} s={{ borderRadius: h / 2, background: bg, color: fg, fontSize: size, fontWeight: 500, gap: 6, ...center, ...one, ...s }}>{children}</Box>
 
-const isStill = () => typeof window !== 'undefined' && !!(window as unknown as { __cover?: boolean }).__cover
+type Flags = { __cover?: boolean; __plain?: boolean; __cam1?: boolean }
+const flag = (k: keyof Flags) => typeof window !== 'undefined' && !!(window as unknown as Flags)[k]
+const isStill = () => flag('__cover')
 
 function Cursor({ t, k, clicks, touch }: { t: number; k: Cur[]; clicks: number[]; touch?: boolean }) {
   if (!k.length) return null
@@ -120,7 +122,7 @@ export function Backdrop({ look }: { look: Look }) {
 
 /** Desktop: the product window stays put and the camera glides inside it. */
 export function Stage({ look, t, cam, cur, clicks = [], caps, accent, children }: { look: Look; t: number; cam: Cam[]; cur: Cur[]; clicks?: number[]; caps: [number, string][]; accent?: ReactNode; children: ReactNode }) {
-  const c = camAt(cam, t), still = isStill()
+  const c = flag('__cam1') ? { s: 1, x: W / 2, y: H / 2 } : camAt(cam, t), still = isStill()
   const tx = clamp(W / 2 - c.x * c.s, W - W * c.s, 0), tyy = clamp(H / 2 - c.y * c.s, H - H * c.s, 0)
   return <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', fontFamily: F, WebkitFontSmoothing: 'antialiased' }}>
     <Backdrop look={look} />
@@ -131,7 +133,7 @@ export function Stage({ look, t, cam, cur, clicks = [], caps, accent, children }
         {!still && <Cursor t={t} k={cur} clicks={clicks} />}
       </div>
     </div>
-    {still ? accent : <Rail t={t} caps={caps} light={look.light} />}
+    {still ? (flag('__plain') ? null : accent) : <Rail t={t} caps={caps} light={look.light} />}
   </div>
 }
 

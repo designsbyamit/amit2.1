@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { heroClass, heroStyle } from '../data/caseTheme'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import Button from '../components/ds/Button'
+import CaseThumb from '../components/ds/CaseThumb'
 import { caseStudies } from '../data/work'
 import { Section, Head, Fig, ScreenTabs, Numbered, Defs, Grid, Strip } from '../components/case/Chapter'
 
@@ -40,9 +41,9 @@ const insights: [string, string][] = [
 ]
 
 const screens = [
-  { id: 'worklist', label: 'Worklist', src: img('worklist'), alt: 'The collection worklist, action required', ratio: '1440 / 900', note: 'One row per customer, with Company Codes listed inline. The toolbar totals react to filters. Priority and predicted arrear days carry the AI icon, and the recommended action is one link per row.' },
-  { id: 'c360', label: 'Customer 360', src: img('c360-all'), alt: 'Customer 360 with insights and a recommended action', ratio: '1440 / 1120', note: 'The reason comes before the action, and the action before any draft. Tabs answer how bad (overview), which invoices (open items) and what blocks payment (disputes).' },
-  { id: 'email', label: 'Email for approval', src: img('c360-email'), alt: 'An editable email draft beside the recommendation', ratio: '1440 / 1120', note: 'The draft is editable and nothing is sent until a person approves. The email is written after approval, from fresh data.' },
+  { id: 'worklist', label: 'Worklist', src: img('worklist-v2'), alt: 'My Collection Worklist: one row per customer, with priority, amounts and a recommended action', ratio: '1800 / 909', note: 'One row per customer, with Company Codes listed inline. The toolbar totals react to filters. Priority and predicted arrear days carry the AI icon, and the recommended action is one link per row.' },
+  { id: 'c360', label: 'Customer 360', src: img('c360-v2'), alt: 'Customer 360: insights, next best actions and account history', ratio: '1800 / 909', note: 'The reason comes before the action, and the action before any draft. Tabs answer how bad (overview), which invoices (open items) and what blocks payment (disputes).' },
+  { id: 'email', label: 'Email for approval', src: img('email-v2'), alt: 'An email drafted by the agent, with credit notes attached automatically, waiting for a person to send it', ratio: '1800 / 909', note: 'The draft is editable and nothing is sent until a person approves. The email is written after approval, from fresh data.' },
   { id: 'disputes', label: 'Disputes', src: img('c360-disputes'), alt: 'The disputes tab of Customer 360', ratio: '1440 / 1120', note: 'Exceptions that block payment sit next to the balance, so nobody chases an amount that is already contested.' },
   { id: 'admin', label: 'Administration', src: img('admin'), alt: 'Administration, system configuration', ratio: '1440 / 900', note: 'Connections and agent configuration in one place, so an administrator sees a failure before collectors do.' },
   { id: 'upload', label: 'Policy upload', src: img('upload-groups'), alt: 'Policy files per collector group', ratio: '1440 / 900', note: 'Policy files are validated before activation, and activation is a separate, explicit step per group.' },
@@ -88,9 +89,17 @@ export default function SAPCollectionsStoryPage() {
       <header className={heroClass(cs.id)} style={{ paddingTop: 'var(--header-h)', ...heroStyle(cs.id) }}>
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic AR Collections' }]} />
-          <p className="text-label text-ink-3 mt-10">{cs.category}</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">{cs.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">An assistant for accounts receivable, built inside Fiori. The agent ranks the work and recommends the next action. A person approves everything that reaches a customer.</p>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center mt-10">
+            <div className="lg:col-span-5">
+              <p className="text-label text-ink-3">{cs.category}</p>
+              <h1 className="text-display-l text-white mt-5">{cs.title}</h1>
+              <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">An assistant for accounts receivable, built inside Fiori. The agent ranks the work and recommends the next action. A person approves everything that reaches a customer.</p>
+            </div>
+            <figure className="lg:col-span-7 m-0">
+              <div className="rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-3)' }}><CaseThumb id={cs.id} live flush /></div>
+              <figcaption className="text-caption text-ink-3 mt-3">From the worklist to an approved email, with fictional data.</figcaption>
+            </figure>
+          </div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-5xl">
             {facts.map(([k, v]) => <div key={k}><dt className="text-label text-ink-3">{k}</dt><dd className="v2-item text-white mt-2">{v}</dd></div>)}
           </dl>
@@ -129,7 +138,7 @@ export default function SAPCollectionsStoryPage() {
       </Section>
 
       <Section id="solution" raised>
-        <Head n={2} title="Worklist, Customer 360 and Administration, one screen at a time." intro="Real screens from the end to end prototype. Pick a screen to see what it is for." />
+        <Head n={2} title="Worklist, Customer 360 and Administration, one screen at a time." intro="Screens from the end to end prototype, shown with fictional names and data. Pick a screen to see what it is for." />
         <ScreenTabs label="Collections screens" screens={screens} />
       </Section>
 

@@ -14,7 +14,7 @@ import { join, relative } from 'node:path'
 const root = new URL('../../', import.meta.url).pathname
 const SRC = join(root, 'src')
 const BASE = join(root, 'tools/tokens/baseline.json')
-const ALLOW = ['src/styles/tokens.css', 'src/labs/', 'src/film/', 'src/components/case/search-anatomy.css', 'src/components/case/SearchAnatomy', 'src/components/illustrations/', 'src/components/marks/', 'src/components/ds/anim/', 'src/components/ds/HubPictograms', 'src/components/ds/StoryPictogram', 'src/components/ds/AnimThumb', 'src/components/ds/FlowThumb', 'src/components/ds/ResourceCover', 'src/components/ds/MenuCover', 'src/components/ds/StoryCover', 'src/components/sections/DriveGrid', 'src/components/playback/ShortStoryTag']
+const ALLOW = ['src/styles/tokens.css', 'src/labs/', 'src/film/', 'src/components/case/search-anatomy.css', 'src/components/case/SearchAnatomy', 'src/components/case/search/', 'src/components/illustrations/', 'src/components/marks/', 'src/components/ds/anim/', 'src/components/ds/HubPictograms', 'src/components/ds/StoryPictogram', 'src/components/ds/AnimThumb', 'src/components/ds/FlowThumb', 'src/components/ds/ResourceCover', 'src/components/ds/MenuCover', 'src/components/ds/StoryCover', 'src/components/sections/DriveGrid', 'src/components/playback/ShortStoryTag']
 
 const files = []
 ;(function walk(d) {
