@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../data/work'
 import { sapSearch as S } from '../data/sapSearch'
-import type { Screen } from '../data/sapSearch'
 
 import SectionHeader from '../components/ds/SectionHeader'
 import CaseThumb from '../components/ds/CaseThumb'
 import SearchAnatomy from '../components/case/SearchAnatomy'
 import { Fragmented, Workstreams, OpportunityVenn, CAPABILITIES, PatternAnatomy, PATTERN_ZONES, RowAnatomy, ROW_PARTS } from '../components/case/search/SearchDiagrams'
 import AISummary from '../components/case/search/AISummary'
+import GlobalSearch from '../components/case/search/GlobalSearch'
 
 const cs = caseStudies.find(c => c.id === 'sap-search')!
 
@@ -33,7 +33,6 @@ export default function SAPSearchStoryPage() {
   const flows = S.flows.filter(f => !['component', 'results'].includes(f.id))
   const results = S.flows.find(f => f.id === 'results')!
   const [active, setActive] = useState(flows[0].id)
-  const [zoom, setZoom] = useState<Screen | null>(null)
   const [live, setLive] = useState<string | null>(null)
   const flow = flows.find(f => f.id === active)!
 
@@ -78,9 +77,15 @@ export default function SAPSearchStoryPage() {
         <p className="text-body text-ink-2 mt-6 max-w-measure-xl">Twelve pain points, heard in conversations with line of business stakeholders before any design started.</p>
       </Section>
 
-      {/* 02 · Direction */}
-      <Section id="vision" tone="raised">
-        <SectionHeader label="02 · Direction" title="We listened first, then wrote the vision." intro="The conversations shaped the vision and its principles, written in Figma before any screen: one search across every application, and a path from a question to the work that follows it." />
+      {/* 02 · The idea: global search */}
+      <Section id="global" tone="raised">
+        <SectionHeader label="02 · The idea" title="One search, in every application." intro="This is a global search. It lives in the shell bar of every application, answers with results from all of them, and when someone acts on a result it opens that application with the question and the choice already carried across." />
+        <GlobalSearch />
+      </Section>
+
+      {/* 03 · Direction */}
+      <Section id="vision">
+        <SectionHeader label="03 · Direction" title="We listened first, then wrote the vision." intro="The conversations shaped the vision and its principles, written in Figma before any screen: one search across every application, and a path from a question to the work that follows it." />
         <div className="grid md:grid-cols-3 gap-4">
           {PILLARS.map(([t, d], i) => (
             <div key={t} className="card">
@@ -100,8 +105,8 @@ export default function SAPSearchStoryPage() {
       </Section>
 
       {/* 03 · Organising the work */}
-      <Section id="workstreams">
-        <SectionHeader label="03 · Organising the work" title="Three workstreams along one journey." intro="With the vision written, the work was split across eight designers in three groups. Each owned one stretch of the journey rather than one product, so the seams between them were exactly where search needed to feel like one thing." />
+      <Section id="workstreams" tone="raised">
+        <SectionHeader label="04 · Organising the work" title="Three workstreams along one journey." intro="With the vision written, the work was split across eight designers in three groups. Each owned one stretch of the journey rather than one product, so the seams between them were exactly where search needed to feel like one thing." />
         <Workstreams />
         <div className="grid md:grid-cols-2 gap-4 mt-10">
           {S.transition.items.map(c => <div key={c.t} className="card"><p className="text-overline text-ink-3">Where workstream 3 lands</p><p className="text-title text-ink mt-3">{c.t}</p><p className="text-body text-ink-2 mt-3">{c.d}</p></div>)}
@@ -109,8 +114,8 @@ export default function SAPSearchStoryPage() {
       </Section>
 
       {/* 04 · Opportunity */}
-      <Section id="explore" tone="raised">
-        <SectionHeader label="04 · Finding the opportunity" title="Where search, AI and real problems meet." intro="Every idea had to answer all three at once: what kind of search it needs, what kind of AI makes it possible, and which problem people actually have. Ideas that met only one or two were set aside." />
+      <Section id="explore">
+        <SectionHeader label="05 · Finding the opportunity" title="Where search, AI and real problems meet." intro="Every idea had to answer all three at once: what kind of search it needs, what kind of AI makes it possible, and which problem people actually have. Ideas that met only one or two were set aside." />
         <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-center">
           <div className="max-w-xl w-full mx-auto"><OpportunityVenn /></div>
           <div className="space-y-10">
@@ -135,8 +140,8 @@ export default function SAPSearchStoryPage() {
       </Section>
 
       {/* 05 · Capabilities */}
-      <Section id="recommendations">
-        <SectionHeader label="05 · Ten capabilities" title="What one search needs to do, and why." intro="The intersection became ten recommendations. Each one answers a pain point from the conversations and names the capability that makes it possible." />
+      <Section id="recommendations" tone="raised">
+        <SectionHeader label="06 · Ten capabilities" title="What one search needs to do, and why." intro="The intersection became ten recommendations. Each one answers a pain point from the conversations and names the capability that makes it possible." />
         <ol className="grid grid-cols-1 md:grid-cols-2 gap-4 list-none p-0">
           {CAPABILITIES.map((c, i) => (
             <li key={c.t} className="card flex flex-col gap-5 min-w-0">
@@ -153,8 +158,8 @@ export default function SAPSearchStoryPage() {
       </Section>
 
       {/* 06 · Patterns */}
-      <Section id="patterns" tone="raised">
-        <SectionHeader label="06 · Common patterns" title="The anatomy of one results page." intro="Ten capabilities only help if every product applies them the same way. So the patterns were defined by the moment they serve on the page, and each one placed where it lives." />
+      <Section id="patterns">
+        <SectionHeader label="07 · Common patterns" title="The anatomy of one results page." intro="Ten capabilities only help if every product applies them the same way. So the patterns were defined by the moment they serve on the page, and each one placed where it lives." />
         <PatternAnatomy />
         <p className="text-caption text-ink-3 mt-3">The results page for “Pending POs for material MOB-00123”, redrawn from the design.</p>
         <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 list-none p-0">
@@ -199,23 +204,18 @@ export default function SAPSearchStoryPage() {
       </Section>
 
       {/* 07 · Experience */}
-      <Section id="experience">
-        <SectionHeader label="07 · The experience" title="From the search field to the results page." intro="The component is specified, not sketched: anatomy, spacing, states and behaviour from the first focus to Enter. Built entirely with native enterprise UI components." />
+      <Section id="experience" tone="raised">
+        <SectionHeader label="08 · The experience" title="From the search field to the results page." intro="The component is specified, not sketched: anatomy, spacing, states and behaviour from the first focus to Enter. Built entirely with native enterprise UI components." />
         <h3 className="text-heading text-ink">The search input</h3>
         <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">{S.flows[0].summary}</p>
         <SearchAnatomy />
 
         <h3 className="text-heading text-ink mt-24">The results page</h3>
-        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">One layout for every product: the question as the title, an AI overview with its sources, results grouped in tabs with counts, and rows built from the same parts. Three products, three questions.</p>
-        <ResultPages onZoom={setZoom} />
-        <details className="mt-10">
-          <summary className="text-body-sm text-ink-2 cursor-pointer">Earlier results screens from the prototype</summary>
-          <Screens screens={results.screens} title={results.title} onZoom={setZoom} cols="md:grid-cols-2" />
-        </details>
+        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">One layout for every question: the question as the title, an AI overview that names its sources, results from every application filtered by application with counts, and rows built from the same parts. Each row says which application it comes from and carries the actions that fit it.</p>
         <LiveButton onOpen={() => setLive(results.hash)} />
 
         <h3 className="text-heading text-ink mt-24">Into the products</h3>
-        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">Four journeys show workstream 3 at work: the result opens the right product with the context already in place.</p>
+        <p className="text-body-lg text-ink-2 mt-4 max-w-measure-xl">Workstream 3 at work: the action on a result opens the right application with the context already in place. Each journey starts from a different application, because the search is in all of them.</p>
         <div className="flex flex-wrap gap-2 mt-8 mb-8" role="tablist" aria-label="Journeys">
           {flows.map(f => (
             <button key={f.id} type="button" role="tab" aria-selected={f.id === active} className="chip" onClick={() => setActive(f.id)}>{f.title.replace('Use case: ', '')}</button>
@@ -223,19 +223,18 @@ export default function SAPSearchStoryPage() {
         </div>
         <div role="tabpanel">
           <p className="text-body text-ink-2 max-w-measure-xl">{flow.summary}</p>
-          {flow.screens.length > 0 && <Screens screens={flow.screens} title={flow.title} onZoom={setZoom} cols="sm:grid-cols-2 lg:grid-cols-3" />}
           <LiveButton onOpen={() => setLive(flow.hash)} />
         </div>
       </Section>
 
       {/* 08 · Outcome */}
-      <Section id="outcome" tone="raised">
-        <SectionHeader label="08 · Outcome" title="Back to the vision." intro={`${cs.outcome} Each principle can now be shown, not just stated.`} />
+      <Section id="outcome">
+        <SectionHeader label="09 · Outcome" title="Back to the vision." intro={`${cs.outcome} Each principle can now be shown, not just stated.`} />
         <div className="grid md:grid-cols-3 gap-4">
           {[
             ['Consistent', 'One search field specified for every shell bar, with its anatomy and five states, and one results layout shared by every product.'],
             ['User friendly', 'Natural language, type-ahead and an AI overview that names its sources, so a sentence is enough to start.'],
-            ['Contextual', 'Four journeys where a result opens Concur, Ariba, SuccessFactors or Fieldglass with the context carried across.'],
+            ['Contextual', 'Journeys where a result opens the right application, wherever the person started, with the context carried across.'],
           ].map(([t, d]) => <div key={t} className="card"><p className="text-overline text-ink-3">{t}</p><p className="text-body-lg text-ink mt-4">{d}</p></div>)}
         </div>
         <div className="grid md:grid-cols-2 gap-10 mt-16">
@@ -262,49 +261,9 @@ export default function SAPSearchStoryPage() {
         </div>
       </Section>
 
-      {zoom && <Lightbox screen={zoom} onClose={() => setZoom(null)} />}
       {live && <LivePrototype hash={live} onClose={() => setLive(null)} />}
     </div>
   )
-}
-
-const RP: (Screen & { q: string; d: string; h: number })[] = [
-  { id: 'procurement', name: 'Procurement', q: 'Pending POs for material MOB-00123', d: 'Purchase orders, requisitions, suppliers and contacts in one list, with product results below for reordering.', img: `${import.meta.env.BASE_URL}images/case-studies/sap-search/results-procurement.webp`, h: 2814 },
-  { id: 'goals', name: 'People and goals', q: 'Team goal progress & performance summary Q2', d: 'Goals, performance analytics and team members together, each with the action that fits it.', img: `${import.meta.env.BASE_URL}images/case-studies/sap-search/results-goals.webp`, h: 4512 },
-  { id: 'sow', name: 'Statements of work', q: 'Current status and end date of SOW IDs for CyberSecure Ltd?', d: 'Suggested filters under the question, an overview of every SOW, and risk and AI notes on each row.', img: `${import.meta.env.BASE_URL}images/case-studies/sap-search/results-sow.webp`, h: 4040 },
-]
-function ResultPages({ onZoom }: { onZoom: (s: Screen) => void }) {
-  const [i, setI] = useState(0)
-  const r = RP[i]
-  return <div className="mt-10">
-    <div className="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Results pages">
-      {RP.map((x, k) => <button key={x.id} type="button" role="tab" aria-selected={k === i} className="chip" onClick={() => setI(k)}>{x.name}</button>)}
-    </div>
-    <div className="grid lg:grid-cols-[1fr_minmax(0,18rem)] gap-8 items-start" role="tabpanel">
-      <button type="button" onClick={() => onZoom(r)} className="block w-full rounded-lg overflow-y-auto overflow-x-hidden border focus-visible:outline-2 bg-white" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in', maxHeight: 'min(70vh, 46rem)' }} aria-label={`Enlarge the ${r.name} results page`}>
-        <img src={r.img} alt={`Search results for “${r.q}”`} width={2872} height={r.h} className="w-full h-auto block" loading="lazy" decoding="async" />
-      </button>
-      <div>
-        <p className="text-overline text-ink-3">The question</p>
-        <p className="text-title text-ink mt-3">“{r.q}”</p>
-        <p className="text-body text-ink-2 mt-4">{r.d}</p>
-        <p className="text-caption text-ink-3 mt-6">Scroll inside the frame, or select it to see the full page.</p>
-      </div>
-    </div>
-  </div>
-}
-
-function Screens({ screens, title, onZoom, cols }: { screens: Screen[]; title: string; onZoom: (s: Screen) => void; cols: string }) {
-  return <div className={`grid ${cols} gap-6 mt-10`}>
-    {screens.map(s => (
-      <figure key={s.id} className="m-0">
-        <button type="button" onClick={() => onZoom(s)} className="block w-full rounded-lg overflow-hidden border focus-visible:outline-2" style={{ borderColor: 'var(--line-2)', cursor: 'zoom-in' }} aria-label={`Enlarge screen ${s.id.replace('-', '.')} ${s.name}`}>
-          <img src={s.img} alt={`${title}: ${s.name}`} width={1440} height={900} className="w-full h-auto block bg-white" loading="lazy" decoding="async" />
-        </button>
-        <figcaption className="text-caption text-ink-3 mt-3">{s.id.replace('-', '.')} · {s.name}</figcaption>
-      </figure>
-    ))}
-  </div>
 }
 
 function LiveButton({ onOpen }: { onOpen: () => void }) {
@@ -334,22 +293,6 @@ function LivePrototype({ hash, onClose }: { hash: string; onClose: () => void })
         </div>
       </div>
       <iframe title="AI-Powered Search prototype" src={`${S.prototype}#${hash}`} className="w-full flex-1 block bg-white rounded-md" />
-    </div>
-  )
-}
-
-function Lightbox({ screen, onClose }: { screen: Screen; onClose: () => void }) {
-  useDialog(onClose)
-  return (
-    <div role="dialog" aria-modal="true" aria-label={screen.name} className="fixed inset-0 z-dialog bg-black/90 overflow-auto" onClick={onClose}>
-      <div className="min-h-full flex flex-col items-center justify-center p-4 md:p-10 gap-4">
-        <img src={screen.img} alt={screen.name} className="max-w-full max-h-[calc(100vh-var(--space-120))] w-auto h-auto bg-white rounded-md" onClick={e => e.stopPropagation()} />
-        <div className="flex items-center gap-4">
-          <span className="text-caption text-ink-2">{screen.id.replace('-', '.')} · {screen.name}</span>
-          <a href={screen.img} target="_blank" rel="noopener noreferrer" className="text-caption text-ink-2 hover:text-white underline" onClick={e => e.stopPropagation()}>Open at full resolution ↗</a>
-          <button type="button" className="btn btn-secondary btn-sm" onClick={onClose} autoFocus>Close</button>
-        </div>
-      </div>
     </div>
   )
 }

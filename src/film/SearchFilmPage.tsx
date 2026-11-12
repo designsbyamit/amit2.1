@@ -1,27 +1,24 @@
 import Player from './Player'
-import { SHook, SSetup, SProblem, SProcess } from './scenesSearchA'
-import { SAnatomy, SInteraction } from './scenesSearchB'
-import { SPrototype, SOutcome } from './scenesSearchC'
-import { SDURATION } from './scoreSearch'
+import { SHook, SComplex, SPeople, SOrg, SDecision, SProduct, SAnywhere, SResult, SEARCH_FILM_DURATION } from './scenesSearchFilm'
 import type { Chapter } from './engine'
 
 const chapters: Chapter[] = [
-  { at: 0, label: 'The hook' }, { at: 9, label: 'The setup' }, { at: 25, label: 'The problem' }, { at: 51, label: 'Research' },
-  { at: 74, label: 'Craft · anatomy' }, { at: 95, label: 'Interaction' }, { at: 117, label: 'The prototype' }, { at: 152, label: 'The outcome' },
+  { at: 0, label: 'The hook' }, { at: 6.4, label: 'The complexity' }, { at: 17, label: 'The people' }, { at: 27, label: 'The work' },
+  { at: 37, label: 'The decision' }, { at: 51, label: 'The product' }, { at: 90, label: 'Start anywhere' }, { at: 97, label: 'Where it stands' },
 ]
 
 export default function SearchFilmPage() {
   return (
     <Player
-      audioSrc="/audio/search-film-monsoon.mp3"
-      duration={SDURATION}
-      length="2 min 46 s"
+      audioSrc="/audio/search-film-monsoon-cut.mp3"
+      duration={SEARCH_FILM_DURATION}
+      length="1 min 46 s"
       title="AI-Powered Search"
-      subtitle="NorthStar has 43 apps and 43 search boxes. Maria needs a flight to Bangalore. A film about the research, the craft, the interaction behaviour, and one trip booked through search."
+      subtitle="One global search, in the shell bar of every application. It returns results from all of them, and an action opens the application where the work continues."
       chapters={chapters}
       backTo="/craft/sap-search"
-      backLabel="← Read the case study"
-      render={t => <><SHook t={t} /><SSetup t={t} /><SProblem t={t} /><SProcess t={t} /><SAnatomy t={t} /><SInteraction t={t} /><SPrototype t={t} /><SOutcome t={t} /></>}
+      backLabel="← Read the short story"
+      render={t => <><SHook t={t} /><SComplex t={t} /><SPeople t={t} /><SOrg t={t} /><SDecision t={t} /><SProduct t={t} /><SAnywhere t={t} /><SResult t={t} /></>}
     />
   )
 }

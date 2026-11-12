@@ -389,7 +389,7 @@ const allCaseStudies: CaseStudy[] = [
     category: 'Enterprise software · AI search · Enterprise UX',
     title: 'Enterprise search that gets things done',
     shortTitle: 'AI-Powered Search',
-    tagline: 'Turning enterprise search into a unified path from questions to action.',
+    tagline: 'One global search in the shell bar of every application, with results from all of them and a path into the one that matters.',
     role: 'Design Lead',
     timeline: '2024-Ongoing',
     domain: 'AI · Enterprise SaaS',

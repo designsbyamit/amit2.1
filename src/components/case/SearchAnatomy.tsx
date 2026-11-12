@@ -270,19 +270,19 @@ type Sug = { t: string; app: string; icon: 'history' | 'ai' | 'search' }
 const OPEN_GROUPS: [string, Sug[]][] = [
   ['Recent searches', [
     { t: 'Pending POs', app: 'iSearch', icon: 'history' },
-    { t: 'Flight to Bangalore', app: 'Concur', icon: 'history' },
-    { t: 'Draft goals for product design team', app: 'SuccessFactors', icon: 'history' },
+    { t: 'Flight to Bangalore', app: 'Travel', icon: 'history' },
+    { t: 'Draft goals for product design team', app: 'People', icon: 'history' },
   ]],
   ['Suggested for you', [
-    { t: 'SOWs expiring this month', app: 'Fieldglass', icon: 'ai' },
+    { t: 'SOWs expiring this month', app: 'Workforce', icon: 'ai' },
     { t: 'Invoices awaiting my approval', app: 'iSearch', icon: 'ai' },
   ]],
 ]
 export const TYPEAHEAD: Sug[] = [
-  { t: 'Current status & end date of SOW IDs for CyberSecure Ltd', app: 'Fieldglass', icon: 'search' },
-  { t: 'Current status of PO 4500012345 (ACME)', app: 'iSearch', icon: 'search' },
-  { t: 'Current trip - SFO → BLR, Jun 10-17', app: 'Concur', icon: 'search' },
-  { t: 'Current quarter goals - Product Design team', app: 'SuccessFactors', icon: 'search' },
+  { t: 'Current status & end date of SOW IDs for CyberSecure Ltd', app: 'Workforce', icon: 'search' },
+  { t: 'Current status of PO 4500012345 (Northwind)', app: 'iSearch', icon: 'search' },
+  { t: 'Current trip - SFO → BLR, Jun 10-17', app: 'Travel', icon: 'search' },
+  { t: 'Current quarter goals - Product Design team', app: 'People', icon: 'search' },
 ]
 const SUG_SEGS: Seg[] = [
   { key: 'open', label: 'Focus: recent & suggested', d: 2400 },

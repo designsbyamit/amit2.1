@@ -7,7 +7,7 @@ export type BeatKey = 'about' | 'challenge' | 'users' | 'solution' | 'decision' 
 /** A picture inside a beat: an image file, or one of the diagrams already drawn for the detailed case study. */
 export type Visual =
   | { src: string; alt: string; caption: string; ratio: string; narrow?: boolean }
-  | { embed: 'search-workstreams' | 'search-anatomy' | 'search-summary' | 'cds-pipeline' | 'collections-steps' | 'agentic-gates'; caption: string }
+  | { embed: 'search-global' | 'search-workstreams' | 'search-anatomy' | 'search-summary' | 'cds-pipeline' | 'collections-steps' | 'agentic-gates'; caption: string }
 
 export interface Playback {
   id: string
@@ -151,21 +151,22 @@ export const playbacks: Playback[] = [
   {
     id: 'sap-search',
     headline: 'Enterprise search that gets things done',
-    dek: 'One search across the suite that answers in plain language, shows its sources and opens the work that follows.',
+    dek: 'One global search in the shell bar of every application. It answers in plain language, shows where each answer came from, and opens the application where the work continues.',
     led: 'I led eight designers in three groups, alongside engineering and product.',
     roleNote: 'Design Lead for the search vision and its three workstreams.',
     beats: {
-      challenge: 'Every product had its own search box, with its own vocabulary and its own rules. A question that crossed products, such as a trip, a supplier or a contract, had no single place to start.',
+      challenge: 'Every application had its own search box, with its own vocabulary and its own rules. A question that crossed applications, such as a trip, a supplier or a contract, had no single place to start.',
       users: 'Line of business stakeholders shaped the vision, and the people who search across the suite every day shaped the patterns. We listened first, then wrote the vision and its principles before drawing a screen.',
-      solution: 'Eight designers in three workstreams, each owning one stretch of the journey rather than one product, because the seams were exactly where search needed to feel like one thing. The work became ten capabilities and one results page every product can apply the same way.',
+      solution: 'One search field, in the global shell bar of every application. It returns results from all of them, each tagged with where it comes from, and when someone acts on a result it opens that application with the question and the choice carried across. Eight designers in three workstreams, each owning one stretch of the journey rather than one application, because the seams were exactly where search needed to feel like one thing. The work became ten capabilities and one results page every application applies the same way.',
       impact: 'A direction tested and validated, ten capability recommendations, a pattern library, and a live prototype built with UI5 Web Components covering six journeys.',
     },
     order: ['challenge', 'users', 'solution', 'decision', 'impact'],
     labels: { impact: 'Where it stands' },
     visuals: {
       solution: [
+        { embed: 'search-global', caption: 'Try it: start in any application, ask a question, then act on a result. Sample data and made-up applications.' },
         { embed: 'search-workstreams', caption: 'Three workstreams along one journey.' },
-        { embed: 'search-anatomy', caption: 'One results page for every product, redrawn from the design with fictional data.' },
+        { embed: 'search-anatomy', caption: 'One results page for every application, redrawn from the design with fictional data.' },
       ],
       decision: [{ embed: 'search-summary', caption: 'Try it: open the summary, then select a link icon next to an insight. Sample data.' }],
     },

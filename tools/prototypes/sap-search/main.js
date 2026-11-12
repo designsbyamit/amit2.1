@@ -96,8 +96,8 @@ const band = (cls, title, meta) => `<div class="band ${cls}"><ui5-title level="H
 // Same behaviour as the case-study animation: on focus, "Recent searches" + "Suggested for you";
 // once typing starts, one "Suggestions" group across every product, matches in bold,
 // source application on the right. Enter or click opens the unified results page.
-const TOOLS = [['S/4HANA Cloud', 'home', 'sales-order'], ['Ariba', 'buy', 'cart'], ['Concur', 'travel', 'flight'], ['SuccessFactors', 'goals', 'goal'], ['Fieldglass', 'sow', 'employee-lookup']];
-const ACTIONS = D.home.suggestions.map(t => [t, 'S/4HANA Cloud', 'po', 'add']);
+const TOOLS = [['Enterprise Suite', 'home', 'sales-order'], ['Procurement', 'buy', 'cart'], ['Travel', 'travel', 'flight'], ['People', 'goals', 'goal'], ['Workforce', 'sow', 'employee-lookup']];
+const ACTIONS = D.home.suggestions.map(t => [t, 'Enterprise Suite', 'po', 'add']);
 function domainFor(v) {
   if (/sow|cyber|fieldglass|supplier|end date/.test(v)) return D.typeahead.sow;
   if (/^pur/.test(v) && v.length < 5) return D.typeahead.pur;
@@ -242,9 +242,9 @@ V.res = (key, tab = 0, filter = 0) => {
   app.querySelectorAll('[data-open]').forEach(l => l.addEventListener('click', () => toast(`Opens in ${D.apps[S.app]}.`)));
   app.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => {
     const [ri, ai] = b.dataset.act.split(':').map(Number); const [t, , , next] = S.rows[ri].actions[ai];
-    if (next === 'concur') handoff('Concur', 'Opening your booking...', 'booking');
-    else if (next === 'ariba') handoff('Ariba', 'Opening procurement catalog...', 'ariba');
-    else if (next === 'joule') handoff('Joule', 'Opening Joule...', 'joule');
+    if (next === 'concur') handoff('Travel', 'Opening your booking...', 'booking');
+    else if (next === 'ariba') handoff('Procurement', 'Opening procurement catalog...', 'ariba');
+    else if (next === 'joule') handoff('Assistant', 'Opening the assistant...', 'joule');
     else if (next) go(next);
     else toast(`${t}: opens in ${D.apps[S.app]}.`);
   }));
@@ -258,8 +258,8 @@ V.sow = () => V.res('sow');
 V.policy = () => V.res('policy');
 V.joule = () => {
   setApp('joule'); const q = search.value || 'Education assistance policy';
-  page(`${band('joule', 'Joule', 'Continuing from your search')}<div class="pad"><ui5-message-strip design="Information" hide-close-button>You came from search results. Your question is carried over, so you can carry on here.</ui5-message-strip><div class="jmsg"><ui5-label>You</ui5-label><ui5-text>${esc(q)}</ui5-text></div><div class="jin"><ui5-input id="jask" placeholder="Ask a follow-up question" accessible-name="Ask Joule"></ui5-input><ui5-button design="Emphasized" icon="paper-plane" accessible-name="Send" id="jsend"></ui5-button></div></div>`);
-  document.getElementById('jsend').onclick = () => toast('In the product, Joule answers here.');
+  page(`${band('joule', 'Assistant', 'Continuing from your search')}<div class="pad"><ui5-message-strip design="Information" hide-close-button>You came from search results. Your question is carried over, so you can carry on here.</ui5-message-strip><div class="jmsg"><ui5-label>You</ui5-label><ui5-text>${esc(q)}</ui5-text></div><div class="jin"><ui5-input id="jask" placeholder="Ask a follow-up question" accessible-name="Ask Assistant"></ui5-input><ui5-button design="Emphasized" icon="paper-plane" accessible-name="Send" id="jsend"></ui5-button></div></div>`);
+  document.getElementById('jsend').onclick = () => toast('In the product, Assistant answers here.');
 };
 
 function go(r) { search.open = false; (V[r] || V.home)(); }

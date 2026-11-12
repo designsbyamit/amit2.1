@@ -430,7 +430,7 @@ function Booking({ onBack, toast }: { onBack: () => void; toast: (t: string) => 
   )
 }
 
-function AribaPage({ onBack, toast }: { onBack: () => void; toast: (t: string) => void }) {
+function ProcurementPage({ onBack, toast }: { onBack: () => void; toast: (t: string) => void }) {
   const [qty, setQty] = useState(ariba.qty)
   const [added, setAdded] = useState(false)
   return (
@@ -649,7 +649,7 @@ export default function SearchPrototype() {
             )}
             {resultsView && <ResultsView key={resultsView.key + resultsView.q} res={results[resultsView.key]} q={resultsView.q} onGo={goApp} toast={toast} onFeedback={up => toast(up ? 'Thanks. Marked as helpful.' : 'Thanks. We will use this to improve the answer.')} />}
             {view.k === 'booking' && <Booking onBack={() => nav(prev.current.k === 'results' ? prev.current : { k: 'home' })} toast={toast} />}
-            {view.k === 'ariba' && <AribaPage onBack={() => nav(prev.current.k === 'results' ? prev.current : { k: 'home' })} toast={toast} />}
+            {view.k === 'ariba' && <ProcurementPage onBack={() => nav(prev.current.k === 'results' ? prev.current : { k: 'home' })} toast={toast} />}
             {view.k === 'goaldraft' && <GoalPage onBack={() => nav(prev.current.k === 'results' ? prev.current : { k: 'home' })} toast={toast} />}
           </motion.div>
         </AnimatePresence>

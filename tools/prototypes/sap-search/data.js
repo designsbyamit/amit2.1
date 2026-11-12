@@ -1,5 +1,5 @@
 // Content transcribed from the Figma file "S-Projects › AI-Powered Search", frames 1.1–5.4.
-export const apps = { s4: 'S/4HANA Cloud', ariba: 'Ariba', concur: 'Concur', sf: 'SuccessFactors', fieldglass: 'Fieldglass', joule: 'Joule' };
+export const apps = { s4: 'Enterprise Suite', ariba: 'Procurement', concur: 'Travel', sf: 'People', fieldglass: 'Workforce', joule: 'Assistant' };
 
 export const home = {
   app: 's4', greeting: 'Good morning, Alex', sub: 'What would you like to do today?',
@@ -9,13 +9,13 @@ export const home = {
 
 // Type-ahead lists exactly as in frames 1.4, 1.5, 3.2, 4.2, 5.2
 export const typeahead = {
-  sow: { route: 'sow', app: 'Fieldglass', items: ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs, CyberSecure Ltd', 'SOWs expiring in the next 30 days, CyberSecure Ltd', 'Pending items on SOW 1150, Endpoint Protection Rollout', 'Workers assigned to SOW 1133, Compliance Readiness'] },
-  purchase: { route: 'po', app: 'S/4HANA Cloud', items: ['PO 4500012345 - ACME Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Accenture Services', 'GR 5500045321 - Electronics Delivery'] },
-  pur: { route: 'po', app: 'S/4HANA Cloud', items: ['Purchase Orders, Pending Approval (14)', 'Purchase Requisitions, New This Week (8)', 'Purchase Contract, IT Equipment 2026', 'Purchase Invoice, Due This Week (3)'] },
-  flight: { route: 'travel', app: 'Concur', items: ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5–12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20–27'] },
-  laptop: { route: 'buy', app: 'Ariba', items: ['Difference: iPhone 17 vs iPhone 17 Pro', 'Difference: iPhone 17 vs iPhone 17 Air', 'Difference: iPhone 17 vs iPhone 16 Pro', 'Difference: iPhone 17 Pro vs Samsung S25 Ultra', 'Difference: iPhone 17 Pro vs iPhone 17 Pro Max'] },
-  policy: { route: 'policy', app: 'SuccessFactors', items: ['Education assistance policy', 'Learning and development policy', 'Education assistance, how to apply'] },
-  goals: { route: 'goals', app: 'SuccessFactors', items: ['Draft quarterly OKRs, Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress, Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates'] },
+  sow: { route: 'sow', app: 'Workforce', items: ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs, CyberSecure Ltd', 'SOWs expiring in the next 30 days, CyberSecure Ltd', 'Pending items on SOW 1150, Endpoint Protection Rollout', 'Workers assigned to SOW 1133, Compliance Readiness'] },
+  purchase: { route: 'po', app: 'Enterprise Suite', items: ['PO 4500012345 - Northwind Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Northwind Services', 'GR 5500045321 - Electronics Delivery'] },
+  pur: { route: 'po', app: 'Enterprise Suite', items: ['Purchase Orders, Pending Approval (14)', 'Purchase Requisitions, New This Week (8)', 'Purchase Contract, IT Equipment 2026', 'Purchase Invoice, Due This Week (3)'] },
+  flight: { route: 'travel', app: 'Travel', items: ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10–17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3–10', 'Conference · SFO → NRT · ANA NH106 · Aug 15–22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5–12', 'SAP Global Summit · SFO → AMS · KLM · Sep 20–27'] },
+  laptop: { route: 'buy', app: 'Procurement', items: ['Difference: iPhone 17 vs iPhone 17 Pro', 'Difference: iPhone 17 vs iPhone 17 Air', 'Difference: iPhone 17 vs iPhone 16 Pro', 'Difference: iPhone 17 Pro vs Samsung S25 Ultra', 'Difference: iPhone 17 Pro vs iPhone 17 Pro Max'] },
+  policy: { route: 'policy', app: 'People', items: ['Education assistance policy', 'Learning and development policy', 'Education assistance, how to apply'] },
+  goals: { route: 'goals', app: 'People', items: ['Draft quarterly OKRs, Product Design Q3', 'Generate goals aligned to company strategy', 'Review goal progress, Engineering team', 'Calibrate performance metrics Q2 2026', 'Apply leadership goal templates'] },
 };
 
 export const capsules = {
@@ -99,13 +99,13 @@ export const goals = {
   draft: { name: 'Deliver Q2 Product Roadmap', description: 'Complete all 3 milestones by end of June 2026 with full stakeholder sign-off', category: 'Operational Excellence', progress: 75, weight: '20%' },
 };
 
-// Fieldglass SOW results, from Figma frames 6-61420 (At-Risk tab) and 6-61503 (All tab).
+// Workforce SOW results, from Figma frames 6-61420 (At-Risk tab) and 6-61503 (All tab).
 // The All frame lists SOW 1023 twice; the prototype shows the seven unique SOWs the AI summary refers to.
 export const sow = {
   query: 'Current status & end date of SOW IDs for CyberSecure Ltd',
   question: 'Current status and end date of SOW IDs for CyberSecure Ltd?',
   filters: ['All', 'Supplier Name', 'Upcoming', 'Active', 'Location', 'Business Unit', 'Project Name'],
-  summary: 'CyberSecure Ltd currently has seven active and historical Statements of Work (SOWs) in Fieldglass. These SOWs span across various statuses including Active, Completed, In Review, and Expired. The total spend across these SOWs is approximately $415,000, with worker counts ranging from 0 to 8. Most active SOWs are progressing on schedule, while',
+  summary: 'CyberSecure Ltd currently has seven active and historical Statements of Work (SOWs) in Workforce. These SOWs span across various statuses including Active, Completed, In Review, and Expired. The total spend across these SOWs is approximately $415,000, with worker counts ranging from 0 to 8. Most active SOWs are progressing on schedule, while',
   summaryMore: 'three (1045, 1133 and 1150) are delayed and rated high risk: two are awaiting budget approval and one is short of staff. SOW 1101 was delivered ahead of schedule, and the end date of SOW 1120 is still to be confirmed while legal review is in progress.',
   tabs: ['All ({n})', 'At-Risk SOWs ({n})', 'Upcoming Expirations ({n})'],
   upcoming: ['1172', '1023'],
@@ -122,9 +122,9 @@ export const sow = {
 
 // ── Search field: what the suggestions list shows (same as the case-study animation) ──
 // [text, source application, route]
-export const recent = [['Pending POs', 'S/4HANA Cloud', 'po'], ['Flight to Bangalore', 'Concur', 'travel'], ['Draft goals for product design team', 'SuccessFactors', 'goals']];
-export const suggested = [['SOWs expiring this month', 'Fieldglass', 'sow'], ['Invoices awaiting my approval', 'S/4HANA Cloud', 'po']];
-export const current = [['Current status & end date of SOW IDs for CyberSecure Ltd', 'Fieldglass', 'sow'], ['Current status of PO 4500012345 (ACME)', 'S/4HANA Cloud', 'po'], ['Current trip, SFO → BLR, Jun 10–17', 'Concur', 'travel'], ['Current quarter goals, Product Design team', 'SuccessFactors', 'goals']];
+export const recent = [['Pending POs', 'Enterprise Suite', 'po'], ['Flight to Bangalore', 'Travel', 'travel'], ['Draft goals for product design team', 'People', 'goals']];
+export const suggested = [['SOWs expiring this month', 'Workforce', 'sow'], ['Invoices awaiting my approval', 'Enterprise Suite', 'po']];
+export const current = [['Current status & end date of SOW IDs for CyberSecure Ltd', 'Workforce', 'sow'], ['Current status of PO 4500012345 (Northwind)', 'Enterprise Suite', 'po'], ['Current trip, SFO → BLR, Jun 10–17', 'Travel', 'travel'], ['Current quarter goals, Product Design team', 'People', 'goals']];
 
 // ── One results layout for every product (structure of Figma 6-61420 / 6-61503) ──
 // Each row: title, id tags, reference line, description, key facts, status, level, AI note, actions.
@@ -136,18 +136,18 @@ export const resultSets = {
     filters: ['All', 'Policies', 'Guidelines'],
     summaryTitle: 'Policy Summary',
     summary: 'The education assistance policy describes who can apply for support and how a request is reviewed and approved.',
-    more: 'The documents below hold the details. To ask about your own situation and carry on from here, continue in Joule.',
+    more: 'The documents below hold the details. To ask about your own situation and carry on from here, continue in Assistant.',
     total: 2, tabs: ['All ({n})', 'Policies ({n})'],
     rows: [
-      { title: 'Education assistance policy', ids: ['Policy'], ref: 'Human Resources • Benefits', desc: 'Who can apply, what is covered and how a request is approved.', kv: [['Owner', 'Human Resources'], ['Applies to', 'All employees']], status: ['Active', 'Positive'], level: null, note: 'Best match for your search', actions: [['Continue in Joule', 'Emphasized', 'ai', 'joule'], ['Open policy', 'Default', 'document-text']], tabs: [1] },
-      { title: 'Learning and development guidelines', ids: ['Guideline'], ref: 'Human Resources • Learning', desc: 'How learning requests are planned with your manager.', kv: [['Owner', 'Human Resources'], ['Applies to', 'All employees']], status: ['Active', 'Positive'], level: null, note: 'Related', actions: [['Continue in Joule', 'Emphasized', 'ai', 'joule']], tabs: [] },
+      { title: 'Education assistance policy', ids: ['Policy'], ref: 'Human Resources • Benefits', desc: 'Who can apply, what is covered and how a request is approved.', kv: [['Owner', 'Human Resources'], ['Applies to', 'All employees']], status: ['Active', 'Positive'], level: null, note: 'Best match for your search', actions: [['Continue in Assistant', 'Emphasized', 'ai', 'joule'], ['Open policy', 'Default', 'document-text']], tabs: [1] },
+      { title: 'Learning and development guidelines', ids: ['Guideline'], ref: 'Human Resources • Learning', desc: 'How learning requests are planned with your manager.', kv: [['Owner', 'Human Resources'], ['Applies to', 'All employees']], status: ['Active', 'Positive'], level: null, note: 'Related', actions: [['Continue in Assistant', 'Emphasized', 'ai', 'joule']], tabs: [] },
     ],
   },
   po: {
     app: 's4', icon: 'sales-order', query: 'Pending POs', question: 'Pending purchase orders',
     filters: ['All', 'Open POs', 'Overdue', 'Pending Approval', 'By Supplier', 'This Quarter', 'High Value'],
     summaryTitle: 'Purchase Order Summary',
-    summary: 'There are 14 purchase orders pending in S/4HANA Cloud, with $1.8M impacted. One is overdue: Office Depot GmbH ($42,500) is 8 days past its 31 January due date. Two are waiting on approval: Lenovo Solutions AG ($127,800) at level 2 and CleanPro Services ($18,200) at level 1,',
+    summary: 'There are 14 purchase orders pending in Enterprise Suite, with $1.8M impacted. One is overdue: Office Depot GmbH ($42,500) is 8 days past its 31 January due date. Two are waiting on approval: Lenovo Solutions AG ($127,800) at level 2 and CleanPro Services ($18,200) at level 1,',
     more: 'which together hold up $146,000. The other orders are on schedule. Approving the Lenovo order clears the largest single amount, and the Office Depot order needs a follow-up with T. Mueller in Facility Mgmt.',
     total: 14, tabs: ['All ({n})', 'Overdue ({n})', 'Pending Approval ({n})'],
     rows: [
@@ -180,16 +180,16 @@ export const resultSets = {
     more: 'with a 2–3 business-day lead time; 50 units come to $59,950. The Dell Latitude 5540 and HP EliteBook 850 both have 15.6" FHD displays and weigh about 1.8 kg.',
     total: 3, tabs: ['All ({n})', 'On Contract ({n})', 'Catalog Only ({n})'],
     rows: [
-      { title: 'Apple iPhone 17 Pro', ids: ['$1,199 / unit'], ref: 'Supplier: CDW • Apple Enterprise 2026', desc: 'Intel Core i7-1365U · 16 GB DDR5 · 512 GB NVMe SSD · 3 years on-site.', kv: [['Display', '14" 2.8K OLED'], ['Weight', '1.12 kg'], ['Lead Time', '2–3 days']], status: ['On Contract', 'Positive'], level: ['Preferred', 'Positive', 'sys-enter-2'], note: 'Lightest of the three', actions: [['Request in Ariba', 'Emphasized', 'cart', 'ariba']], tabs: [1] },
-      { title: 'Dell Latitude 5540', ids: ['Dell'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB SSD · 3 years ProSupport.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.78 kg'], ['Lead Time', '-']], status: ['Catalog', 'Information'], level: null, note: 'Heavier, larger display', actions: [['Request in Ariba', 'Default', 'cart', 'ariba']], tabs: [2] },
-      { title: 'HP EliteBook 850', ids: ['HP'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB PCIe SSD · 3 years next-day.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.79 kg'], ['Lead Time', '-']], status: ['Catalog', 'Information'], level: null, note: 'Next-day warranty service', actions: [['Request in Ariba', 'Default', 'cart', 'ariba']], tabs: [2] },
+      { title: 'Apple iPhone 17 Pro', ids: ['$1,199 / unit'], ref: 'Supplier: CDW • Apple Enterprise 2026', desc: 'Intel Core i7-1365U · 16 GB DDR5 · 512 GB NVMe SSD · 3 years on-site.', kv: [['Display', '14" 2.8K OLED'], ['Weight', '1.12 kg'], ['Lead Time', '2–3 days']], status: ['On Contract', 'Positive'], level: ['Preferred', 'Positive', 'sys-enter-2'], note: 'Lightest of the three', actions: [['Request in Procurement', 'Emphasized', 'cart', 'ariba']], tabs: [1] },
+      { title: 'Dell Latitude 5540', ids: ['Dell'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB SSD · 3 years ProSupport.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.78 kg'], ['Lead Time', '-']], status: ['Catalog', 'Information'], level: null, note: 'Heavier, larger display', actions: [['Request in Procurement', 'Default', 'cart', 'ariba']], tabs: [2] },
+      { title: 'HP EliteBook 850', ids: ['HP'], ref: 'IT equipment catalog', desc: 'Intel Core i7-1355U · 16 GB DDR4 · 512 GB PCIe SSD · 3 years next-day.', kv: [['Display', '15.6" FHD IPS'], ['Weight', '1.79 kg'], ['Lead Time', '-']], status: ['Catalog', 'Information'], level: null, note: 'Next-day warranty service', actions: [['Request in Procurement', 'Default', 'cart', 'ariba']], tabs: [2] },
     ],
   },
   goals: {
     app: 'sf', icon: 'goal', query: 'Review goal progress - Engineering team', question: 'Q2 2026 goals for Alex Johnson',
     filters: ['All', 'On Track', 'At Risk', 'Category', 'Due Date', 'Team Member', 'Weight'],
     summaryTitle: 'Goal Summary',
-    summary: 'Alex Johnson has six goals for Q2 2026 in SuccessFactors. Three are on track, two are in progress and one is at risk: Reduce Tech Debt by 30% is 20% complete. The furthest along is Deliver Q2 Product Roadmap at 75%,',
+    summary: 'Alex Johnson has six goals for Q2 2026 in People. Three are on track, two are in progress and one is at risk: Reduce Tech Debt by 30% is 20% complete. The furthest along is Deliver Q2 Product Roadmap at 75%,',
     more: 'and average progress across all six goals is 50%. The leadership training and mentoring goals are at or below the halfway mark and may need time set aside before the June review.',
     total: 6, tabs: ['All ({n})', 'On Track ({n})', 'At Risk ({n})'],
     rows: [

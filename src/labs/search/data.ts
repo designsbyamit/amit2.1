@@ -8,10 +8,10 @@ export type RouteKey = 'po' | 'travel' | 'buy' | 'goals' | 'sow'
 
 export const apps: Record<AppId, { name: string; short: string; hue: string; role: string }> = {
   s4: { name: 'iSearch', short: 'iS', hue: '#6C8BFF', role: 'Procurement' },
-  concur: { name: 'Concur', short: 'C', hue: '#34D6B6', role: 'Travel & Expense' },
-  ariba: { name: 'Ariba', short: 'A', hue: '#FFB35C', role: 'Procurement' },
-  sf: { name: 'SuccessFactors', short: 'SF', hue: '#C58BFF', role: 'People & Performance' },
-  fieldglass: { name: 'Fieldglass', short: 'F', hue: '#FF7A9C', role: 'Contingent workforce' },
+  concur: { name: 'Travel', short: 'C', hue: '#34D6B6', role: 'Travel & Expense' },
+  ariba: { name: 'Procurement', short: 'A', hue: '#FFB35C', role: 'Procurement' },
+  sf: { name: 'People', short: 'SF', hue: '#C58BFF', role: 'People & Performance' },
+  fieldglass: { name: 'Workforce', short: 'F', hue: '#FF7A9C', role: 'Contingent workforce' },
 }
 
 /* ---------- Home ---------- */
@@ -52,13 +52,13 @@ export const suggested: Sug[] = [
 ]
 const current: Sug[] = [
   { text: 'Current status & end date of SOW IDs for CyberSecure Ltd', app: 'fieldglass', route: 'sow' },
-  { text: 'Current status of PO 4500012345 (ACME)', app: 's4', route: 'po' },
+  { text: 'Current status of PO 4500012345 (Northwind)', app: 's4', route: 'po' },
   { text: 'Current trip - SFO → BLR, Jun 10-17', app: 'concur', route: 'travel' },
   { text: 'Current quarter goals - Product Design team', app: 'sf', route: 'goals' },
 ]
 const sets = {
   sow: s('fieldglass', 'sow', ['Current status & end date of SOW IDs for CyberSecure Ltd', 'At-risk SOWs, CyberSecure Ltd', 'SOWs expiring in the next 30 days, CyberSecure Ltd', 'Pending items on SOW 1150, Endpoint Protection Rollout', 'Workers assigned to SOW 1133, Compliance Readiness']),
-  purchase: s('s4', 'po', ['PO 4500012345 - ACME Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Accenture Services', 'GR 5500045321 - Electronics Delivery']),
+  purchase: s('s4', 'po', ['PO 4500012345 - Northwind Office Supplies', 'PR 7800098765 - IT Equipment Request', 'Contract CNT-2026-001 - Facilities Mgmt', 'Invoice INV-884521 - Northwind Services', 'GR 5500045321 - Electronics Delivery']),
   pur: s('s4', 'po', ['Purchase Orders, Pending Approval (14)', 'Purchase Requisitions, New This Week (8)', 'Purchase Contract, IT Equipment 2026', 'Purchase Invoice, Due This Week (3)']),
   flight: s('concur', 'travel', ['Business Trip · SFO → BLR · Emirates EK237 · Jun 10-17', 'Business Trip · SFO → SIN · Singapore Airlines · Jul 3-10', 'Conference · SFO → NRT · ANA NH106 · Aug 15-22', 'Workshop · SFO → ZRH · Swiss LX40 · Sep 5-12', 'Global Summit · SFO → AMS · KLM · Sep 20-27']),
   laptop: s('ariba', 'buy', ['Difference: iPhone 17 vs iPhone 17 Pro', 'Difference: iPhone 17 vs iPhone 17 Air', 'Difference: iPhone 17 vs iPhone 16 Pro', 'Difference: iPhone 17 Pro vs Samsung S25 Ultra', 'Difference: iPhone 17 Pro vs iPhone 17 Pro Max']),
@@ -128,8 +128,8 @@ const travel: Result = {
   summaryTitle: 'Trip Summary',
   summary: '8 flights match your trip from San Francisco (SFO) to Bangalore (BLR), 10-17 June 2026. Emirates EK237 is the preferred route at $1,240, with one stop in Dubai (DXB), and is within travel policy. The Lufthansa business fare at $1,850 is over the policy limit,',
   more: 'so it would need approval. The preferred hotel for this trip is The Leela Palace, Bangalore, 0.8 km from the office. India requires a visa, with processing taking 5-7 days, so apply before you book.',
-  total: 8, sources: ['Concur · Travel booking', 'Company travel policy'],
-  how: ['Read “Flight to Bangalore” as your trip SFO → BLR, 10-17 June', 'Searched flights available to you in Concur', 'Checked each fare against your company travel policy', 'Put the preferred route first, then the rest by fare'],
+  total: 8, sources: ['Travel booking', 'Company travel policy'],
+  how: ['Read “Flight to Bangalore” as your trip SFO → BLR, 10-17 June', 'Searched flights available to you in Travel', 'Checked each fare against your company travel policy', 'Put the preferred route first, then the rest by fare'],
   tabs: ['All', 'Policy Compliant', 'Exceeds Policy'],
   facets: [
     { label: '1 stop', test: r => r.kv.some(([k, v]) => k === 'Stops' && v.startsWith('1')) },
@@ -144,13 +144,13 @@ const travel: Result = {
   ],
 }
 
-const req = (primary: boolean): Action => ({ label: 'Request in Ariba', kind: primary ? 'primary' : 'ghost', icon: 'cart', go: 'ariba' })
+const req = (primary: boolean): Action => ({ label: 'Request in Procurement', kind: primary ? 'primary' : 'ghost', icon: 'cart', go: 'ariba' })
 const buy: Result = {
   app: 'ariba', key: 'buy', icon: 'box', query: 'laptop', question: 'Laptops in the IT equipment catalog',
   summaryTitle: 'Product Comparison',
   summary: 'Three devices match in the IT equipment catalog. All have an Intel Core i7 processor, 16 GB of RAM, a 512 GB SSD and a three-year warranty. The Apple iPhone 17 Pro is the lightest at 1.12 kg, has a 14" 2.8K OLED display and is on the preferred CDW contract,',
   more: 'with a 2-3 business-day lead time; 50 units come to $59,950. The Dell Latitude 5540 and HP EliteBook 850 both have 15.6" FHD displays and weigh about 1.8 kg.',
-  total: 3, sources: ['Ariba · IT equipment catalog', 'Apple Enterprise 2026 contract'],
+  total: 3, sources: ['Procurement · IT equipment catalog', 'Apple Enterprise 2026 contract'],
   how: ['Read “laptop” as a catalog search in IT equipment', 'Compared the three matching devices on the same specs', 'Checked which ones are on a preferred contract', 'Put the contract item first'],
   tabs: ['All', 'On Contract', 'Catalog Only'],
   facets: [
@@ -176,10 +176,10 @@ const goalRows: [string, string, number, string][] = [
 const goals: Result = {
   app: 'sf', key: 'goals', icon: 'target', query: 'Draft goals for product design team', question: 'Q2 2026 goals for Alex Johnson',
   summaryTitle: 'Goal Summary',
-  summary: 'Alex Johnson has six goals for Q2 2026 in SuccessFactors. Three are on track, two are in progress and one is at risk: Reduce Tech Debt by 30% is 20% complete. The furthest along is Deliver Q2 Product Roadmap at 75%,',
+  summary: 'Alex Johnson has six goals for Q2 2026 in People. Three are on track, two are in progress and one is at risk: Reduce Tech Debt by 30% is 20% complete. The furthest along is Deliver Q2 Product Roadmap at 75%,',
   more: 'and average progress across all six goals is 50%. The leadership training and mentoring goals are at or below the halfway mark and may need time set aside before the June review.',
-  total: 6, sources: ['SuccessFactors · Goals', 'Q2 2026 review cycle'],
-  how: ['Read “goals for product design team” as Alex Johnson’s goals this quarter', 'Pulled the six Q2 2026 goals from SuccessFactors', 'Grouped them by on track, in progress and at risk', 'Ordered by the goal plan'],
+  total: 6, sources: ['People · Goals', 'Q2 2026 review cycle'],
+  how: ['Read “goals for product design team” as Alex Johnson’s goals this quarter', 'Pulled the six Q2 2026 goals from People', 'Grouped them by on track, in progress and at risk', 'Ordered by the goal plan'],
   tabs: ['All', 'On Track', 'At Risk'],
   facets: [
     { label: 'Over halfway', test: r => (r.progress ?? 0) >= 50 },
@@ -208,10 +208,10 @@ const sowTone: Record<string, Tone> = { 'In Progress': 'pos', Delayed: 'warn', C
 const sow: Result = {
   app: 'fieldglass', key: 'sow', icon: 'users', query: 'Current status & end date of SOW IDs for CyberSecure Ltd', question: 'Current status and end date of SOW IDs for CyberSecure Ltd?',
   summaryTitle: 'SOW Summary',
-  summary: 'CyberSecure Ltd currently has seven active and historical Statements of Work (SOWs) in Fieldglass. These SOWs span across various statuses including Active, Completed, In Review, and Expired. The total spend across these SOWs is approximately $415,000, with worker counts ranging from 0 to 8. Most active SOWs are progressing on schedule, while',
+  summary: 'CyberSecure Ltd currently has seven active and historical Statements of Work (SOWs) in Workforce. These SOWs span across various statuses including Active, Completed, In Review, and Expired. The total spend across these SOWs is approximately $415,000, with worker counts ranging from 0 to 8. Most active SOWs are progressing on schedule, while',
   more: 'three (1045, 1133 and 1150) are delayed and rated high risk: two are awaiting budget approval and one is short of staff. SOW 1101 was delivered ahead of schedule, and the end date of SOW 1120 is still to be confirmed while legal review is in progress.',
-  total: 7, sources: ['Fieldglass · Statements of work', 'Supplier: CyberSecure Ltd'],
-  how: ['Read the question as: status and end date of every SOW for CyberSecure Ltd', 'Searched statements of work for that supplier in Fieldglass', 'Sorted them into at-risk and expiring', 'Kept the staffing actions on each row'],
+  total: 7, sources: ['Workforce · Statements of work', 'Supplier: CyberSecure Ltd'],
+  how: ['Read the question as: status and end date of every SOW for CyberSecure Ltd', 'Searched statements of work for that supplier in Workforce', 'Sorted them into at-risk and expiring', 'Kept the staffing actions on each row'],
   tabs: ['All', 'At-Risk SOWs', 'Upcoming Expirations'],
   facets: [
     { label: 'Delayed', test: r => r.status.label === 'Delayed' },

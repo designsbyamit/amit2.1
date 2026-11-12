@@ -1,6 +1,7 @@
 // The diagrams a short version borrows from its detailed case study. Loaded on demand, so the short page stays light.
 import { Workstreams, PatternAnatomy } from '../case/search/SearchDiagrams'
 import AISummary from '../case/search/AISummary'
+import GlobalSearch from '../case/search/GlobalSearch'
 import Pipeline from '../case/cds/Pipeline'
 import { Strip } from '../case/Chapter'
 import FlowThumb from '../ds/FlowThumb'
@@ -15,10 +16,11 @@ const collectionsSteps = [
   { step: 'Monitor outcome', kind: 'Event driven' },
 ]
 
-export type EmbedName = 'search-workstreams' | 'search-anatomy' | 'search-summary' | 'cds-pipeline' | 'collections-steps' | 'agentic-gates'
+export type EmbedName = 'search-global' | 'search-workstreams' | 'search-anatomy' | 'search-summary' | 'cds-pipeline' | 'collections-steps' | 'agentic-gates'
 
 export default function Embed({ name }: { name: EmbedName }) {
   switch (name) {
+    case 'search-global': return <GlobalSearch />
     case 'search-workstreams': return <Workstreams />
     case 'search-anatomy': return <PatternAnatomy />
     case 'search-summary': return <AISummary />
