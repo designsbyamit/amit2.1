@@ -27,6 +27,8 @@ export interface LeadershipCase {
   next: { title: string; steps: string[] }
   account: string[]
   lesson: string
+  /** The principle the case builds to, named in a few words. */
+  principle?: string
 }
 
 export const cases: LeadershipCase[] = [
@@ -101,6 +103,7 @@ export const cases: LeadershipCase[] = [
       'The interns developed their design skills, soft skills, understanding of industry work, and familiarity with emerging technology. AI was an especially exciting area for them to explore. Their feedback also reflected how our working relationship evolved: they came to value me deeply as a leader.',
       'The experience reinforced a principle I carry into leadership: when you enter unfamiliar territory, you don’t need to have every answer. You need the patience to learn, the resilience to keep moving, and the ability to create enough structure for people to learn, contribute and grow together.',
     ],
+    principle: 'Structure for learning, not certainty',
     lesson: 'In unfamiliar territory you don’t need every answer. You need the patience to learn, the resilience to keep moving, and enough structure for people to learn, contribute and grow together.',
   },
 ]

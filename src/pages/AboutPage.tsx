@@ -17,6 +17,14 @@ const steady = [
   { t: 'Science meets spirituality', image: '/images/about/science-behind-spirituality.svg', alt: 'Line illustration for the science behind spirituality', text: 'Curious about consciousness, philosophy and the questions that don’t always have straightforward answers.' },
 ]
 
+/** How I work: four habits, each shown by something that already happened in the work. */
+const habits = [
+  { t: 'Stay close to the work.', d: 'On AI Search I built the prototype myself, with UI5 Web Components and six journeys, so the team could test a direction instead of debating a picture.', to: '/craft/sap-search', link: 'AI Search' },
+  { t: 'Design what can ship.', d: 'Collections is a Fiori application. Every decision was made inside its fixed patterns, and the ideas that were hard to build were reshaped until they could be. Phases 1 and 2 are live.', to: '/craft/sap-collections', link: 'Collections' },
+  { t: 'Write principles, not more screens.', d: 'On Engaze we stopped adding dialog flows and wrote five principles that taught the assistant how to behave. The module shipped at 90% CSAT.', to: '/craft/engaze', link: 'Engaze' },
+  { t: 'Make the decision visible.', d: 'In agentic work the hard question is where a person decides. On order confirmations I designed the human-in-the-loop model with the agent: three gates where only a person can accept or reject, and every difference shown with its reasoning.', to: '/craft/sap-agentic', link: 'Agentic order confirmations' },
+]
+
 type Chapter = { when: string; role: string; org: string; intro: string; highlights?: string[] }
 const chapters: Chapter[] = [
   { when: 'August 2024 - Present', role: 'Design Leader | User Experience Manager', org: 'SAP Labs', intro: 'Shaping connected enterprise experiences, exploring AI and agentic interactions, and contributing to SAP’s Suite-first direction.', highlights: ['Leading SAP Design Hub India, a community of 250+ designers.', 'Driving design initiatives across enterprise products.', 'Exploring AI-powered search and agentic experiences.', 'Curating Impulse India.'] },
@@ -72,27 +80,42 @@ export default function AboutPage() {
     <>
       <PageHeader
         label="A little about me"
-        title="I make complex things feel simple. And imagine what they could become."
-        subtitle="I’m Amit, a design leader, product thinker and technology enthusiast. For 16+ years, I’ve been exploring the sweet spot between people, business and technology."
+        title="I lead designers, and I stay close to the craft."
+        subtitle="I’m Amit, a design leader with 16+ years in enterprise products, now focused on AI-native and agentic experiences. I lead teams, and I still sketch the flow, write the spec and build the prototype, because the best decisions get made close to the work."
         image={aboutImg} imagePosition="50% 28%" mono
         imageAlt="Amit Kumar Tiwari speaking at a design event"
       >
-        <p className="text-body text-ink-2 max-w-2xl mb-8">Currently shaping enterprise experiences, exploring AI-native products and building teams that make a difference.</p>
+        <p className="text-body text-ink-2 max-w-2xl mb-8">Today I lead Core Design work at SAP and SAP Design Hub India, a community of 250+ designers.</p>
         <div className="flex flex-wrap gap-3">
           <Button to="/craft" arrow>Explore my work</Button>
-          <a className="btn btn-secondary" href="#person">A little more about me</a>
+          <a className="btn btn-secondary" href="#how">How I work</a>
         </div>
       </PageHeader>
 
-      <section className="section-y hairline-top scroll-mt-24" id="person">
+      <section className="section-y hairline-top scroll-mt-24" id="how">
+        <div className="container-site">
+          <SectionHeader label="How I work" title="Four habits, each one visible in the work." />
+          <ol className="grid md:grid-cols-2 gap-6 list-none p-0 m-0">
+            {habits.map((h, i) => (
+              <li key={h.t} className="card flex flex-col">
+                <p className="text-label text-ink-3">{String(i + 1).padStart(2, '0')}</p>
+                <h3 className="text-title text-ink mt-3">{h.t}</h3>
+                <p className="text-body text-ink-2 mt-3 flex-1">{h.d}</p>
+                <div className="mt-6"><Button variant="secondary" to={h.to} arrow>{h.link}</Button></div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section-y hairline-top" id="person">
         <div className="container-site grid-site gap-y-10">
-          <div className="col-span-4 md:col-span-4"><p className="text-overline text-ink-3">The person behind the pixels</p></div>
+          <div className="col-span-4 md:col-span-4"><p className="text-overline text-ink-3">The path here</p></div>
           <div className="col-span-4 md:col-span-7 md:col-start-6 flex flex-col gap-6">
-            <h2 className="text-heading text-ink">From writing code to shaping how people experience technology.</h2>
-            <p className="text-body-editorial text-ink-2">Trained in computer science, drawn to design, and eventually fascinated by the bigger picture.</p>
-            <p className="text-body-editorial text-ink-2">I’ve moved from designing interfaces to shaping products, building teams and influencing how organisations think about design.</p>
-            <p className="text-body-editorial text-ink-2">I enjoy connecting dots that don’t always seem connected: design and business, creativity and technology, people and systems.</p>
-            <p className="text-body-editorial text-ink">Still curious. Still questioning. Still figuring things out.</p>
+            <h2 className="text-heading text-ink" style={{ textWrap: 'balance' }}>From writing code to leading design, without leaving the work.</h2>
+            <p className="text-body-editorial text-ink-2">I trained in computer science and learned UX at Infosys, across 20+ client engagements. Since then I have designed enterprise cloud experiences at HPE, built Generative AI and Conversational AI design capability at Accenture Song, and now shape AI-native enterprise experiences at SAP.</p>
+            <p className="text-body-editorial text-ink-2">Along the way the job moved from designing interfaces to shaping products, building teams and changing how organisations think about design. The habit stayed the same: see the real problem, the real constraint and the real user before trusting an idea.</p>
+            <p className="text-body-editorial text-ink">What I care about most is the gap between a good idea and a working solution. That is where most of the craft lives.</p>
           </div>
         </div>
       </section>

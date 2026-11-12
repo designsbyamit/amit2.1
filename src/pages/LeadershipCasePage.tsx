@@ -87,6 +87,7 @@ export default function LeadershipCasePage() {
               <div className="flex flex-col gap-6 mt-8">
                 {c.account.map((p, i) => <p key={i} className="text-body-editorial text-ink-2">{p}</p>)}
                 <figure className="rounded-3 p-8 mt-4" style={{ background: 'var(--field-graphite)' }}>
+                  {c.principle && <figcaption className="mb-5"><span className="text-overline block" style={{ color: 'var(--on-field-muted)' }}>The principle</span><span className="text-title block mt-2" style={{ color: 'var(--on-field-strong)' }}>{c.principle}</span></figcaption>}
                   <blockquote className="text-heading" style={{ color: 'var(--on-field-strong)', fontWeight: 300 }}>{c.lesson}</blockquote>
                 </figure>
               </div>

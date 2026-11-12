@@ -59,18 +59,18 @@ const WS = [
 const HANDOFF = ['The shaped question', 'The chosen result, with its context']
 export function Workstreams() {
   return <div>
-    <div className="hidden lg:grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center mb-4">
+    <div className="hidden lg:grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] items-center mb-4">
       {WS.map((w, i) => <div key={w.n} className="contents">
         <div className="flex items-center gap-3"><span className="text-overline text-ink-3">{w.stretch}</span><span className="flex-1 hairline-top" /></div>
         {i < 2 && <span className="text-ink-3 px-2" aria-hidden>→</span>}
       </div>)}
     </div>
-    <ol className="grid lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-3 lg:gap-0 items-stretch list-none p-0 m-0">
+    <ol className="grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] gap-3 lg:gap-0 items-stretch list-none p-0 m-0">
       {WS.map((w, i) => <li key={w.n} className="contents">
         <div className="card flex flex-col">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-overline text-ink-3">{w.n}</p>
-            <span className="flex items-center gap-1" aria-label={`${w.d} designers`}>{Array.from({ length: w.d }).map((_, k) => <span key={k} className="inline-block rounded-full bg-surface-3" style={{ width: 'var(--space-20)', height: 'var(--space-20)', boxShadow: 'inset 0 0 0 1px var(--line-2)' }} />)}<span className="text-caption text-ink-3 ml-2">{w.d} designers</span></span>
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+            <p className="text-overline text-ink-3 whitespace-nowrap">{w.n}</p>
+            <span className="flex items-center gap-1 whitespace-nowrap" aria-label={`${w.d} designers`}>{Array.from({ length: w.d }).map((_, k) => <span key={k} className="inline-block rounded-full bg-surface-3" style={{ width: 'var(--space-20)', height: 'var(--space-20)', boxShadow: 'inset 0 0 0 1px var(--line-2)' }} />)}<span className="text-caption text-ink-3 ml-2">{w.d} designers</span></span>
           </div>
           <p className="text-title text-ink mt-4">{w.title}</p>
           <p className="text-overline text-ink-3 mt-6">Owned</p>

@@ -13,6 +13,8 @@ export interface LeadershipStory {
   learnings?: string[]
   nuggets?: string[]
   lesson: string
+  /** The principle the story builds to, named in a few words. Shown above the closing line. */
+  principle?: string
   image?: string
   /** Visual on the story card and page */
   motif?: 'seat' | 'cocreate' | 'team' | 'influence' | 'hub' | 'culture'
@@ -23,6 +25,7 @@ export interface LeadershipStory {
 export const stories: LeadershipStory[] = [
   {
     id: 'story-business-seat',
+    principle: 'Be the one the decision needs',
     motif: 'seat',
     figures: [
       { after: 3, kind: 'conflict', caption: 'Two solutions, and a seat at the table at stake.' },
@@ -68,6 +71,7 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-co-creation',
+    principle: 'Made together, never defended',
     motif: 'cocreate',
     figures: [
       { after: 4, kind: 'conflict', caption: 'Two solutions, and a product direction at stake.' },
@@ -78,7 +82,7 @@ export const stories: LeadershipStory[] = [
     tone: 'cobalt',
     year: '',
     context: 'Idea generation workshop · design, engineering and product',
-    title: 'Collective Creative Confidence into Product Direction',
+    title: 'A product direction nobody had to defend',
     cues: [
       'What was the situation where two sides held two different answers, and what was at stake for the product?',
       'How did you get people to think and create together, instead of defending positions?',
@@ -122,6 +126,7 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-first-team',
+    principle: 'Fluent in business and craft',
     motif: 'team',
     figures: [
       { after: 5, kind: 'blueprint', caption: 'A team designed for what it needs to become.' },
@@ -169,6 +174,7 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-influence',
+    principle: 'Trust before authority',
     motif: 'influence',
     figures: [
       { after: 2, kind: 'mindset', caption: 'A designer\'s mindset does not need a design title.' },
@@ -217,6 +223,7 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-sap-community',
+    principle: 'Custodian, not owner',
     motif: 'hub',
     figures: [
       { after: 1, kind: 'custodian', caption: 'A custodian of something that belongs to many people.' },
@@ -227,7 +234,7 @@ export const stories: LeadershipStory[] = [
     tone: 'cobalt',
     year: '',
     context: 'SAP Design Hub India',
-    title: 'Leading SAP Design Hub India',
+    title: 'Reviving SAP Design Hub India',
     cues: [
       'What did you inherit when you became Lead of SAP Design Hub India in February 2025, and what did you decide to change first?',
       'What surprised you most about what the community revealed: about designers, or about organisations?',
@@ -269,6 +276,7 @@ export const stories: LeadershipStory[] = [
   },
   {
     id: 'story-design-culture',
+    principle: 'Culture is what you do, not what you say',
     motif: 'culture',
     figures: [
       { after: 3, kind: 'status', caption: 'The visible work is only a fraction of the real work.' },
@@ -308,7 +316,7 @@ export const stories: LeadershipStory[] = [
       'You can\'t ask people to innovate and then make them afraid of getting it wrong.',
       'Archive the why, not just the what.',
     ],
-    lesson: 'Over time, what we celebrate, what people can challenge, what they can experiment with, what knowledge we keep, and whether they understand the purpose shape a culture far more than any statement about the culture we want.',
+    lesson: 'What we celebrate, what people may challenge, what they may try, what we remember and why we do it: that is the culture. Not the statement about the culture we want.',
   },
 ]
 

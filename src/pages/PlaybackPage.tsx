@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, Suspense, lazy, useState } from 'react'
 import { heroClass, heroStyle } from '../data/caseTheme'
 import CaseTags from '../components/ds/CaseTags'
 import { Link, Navigate, useParams } from 'react-router-dom'
@@ -10,15 +10,34 @@ import ShortStoryTag from '../components/playback/ShortStoryTag'
 import ProcessFlow from '../components/playback/ProcessFlow'
 import { TagList } from '../components/ds/Tag'
 import { caseStudies } from '../data/work'
-import { playbackById } from '../data/playbacks'
+import { playbackById, type BeatKey, type Visual } from '../data/playbacks'
 import { films } from '../data/films'
 import VideoModal from '../components/ui/VideoModal'
+
+const Embed = lazy(() => import('../components/playback/Embeds'))
+
+const LABELS: Record<BeatKey, string> = { about: 'What it is', challenge: 'The challenge', users: 'Who it is for', solution: 'The solution', decision: 'A design decision', impact: 'The impact' }
+const ORDER: BeatKey[] = ['about', 'challenge', 'users', 'solution', 'decision', 'impact']
+
+/** One picture inside a beat, with a line saying what it shows. */
+function BeatVisual({ v }: { v: Visual }) {
+  return (
+    <figure className={'embed' in v ? '' : v.narrow ? 'max-w-md' : ''}>
+      {'embed' in v
+        ? <Suspense fallback={<div className="rounded-3 bg-surface-2" style={{ aspectRatio: '16 / 7' }} />}><Embed name={v.embed} /></Suspense>
+        : <div className="rounded-3 overflow-hidden border" style={{ borderColor: 'var(--line-1)', aspectRatio: v.ratio }}>
+            <img src={v.src} alt={v.alt} loading="lazy" decoding="async" className="w-full h-full object-cover block" />
+          </div>}
+      <figcaption className="text-body-sm text-ink-3 mt-3 max-w-2xl">{v.caption}</figcaption>
+    </figure>
+  )
+}
 
 const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
 )
 
-/** The short version of a case study, as plain stacked sections: the headline, one clean cover, then five short beats.
+/** The short version of a case study, as plain stacked sections: the headline, one clean cover, then short beats, each project in its own order, with pictures where they explain.
  *  Nothing plays and nothing slides. The button to the detailed case study is fixed to the bottom of the screen the whole way down. */
 export default function PlaybackPage() {
   const { id } = useParams<{ id: string }>()
@@ -29,13 +48,7 @@ export default function PlaybackPage() {
 
   const detail = `/craft/${cs.id}/details`
   const film = films[cs.id]
-  const beats: [string, string][] = [
-    ['What it is', pb.beats.about],
-    ['The challenge', pb.beats.challenge],
-    ['Who it is for', pb.beats.users],
-    ['The solution', pb.beats.solution],
-    ...(pb.beats.impact ? [['The impact', pb.beats.impact] as [string, string]] : []),
-  ]
+  const order = (pb.order ?? ORDER).filter(k => k === 'decision' ? !!pb.decision : !!pb.beats[k as Exclude<BeatKey, 'decision'>])
   const meta = [cs.role, cs.timeline, cs.domain].filter(Boolean)
 
   return (
@@ -70,43 +83,45 @@ export default function PlaybackPage() {
         </div>
       </header>
 
-      {beats.map(([label, text], i) => (
-        <Fragment key={label}>
-          <section className={`hairline-top section-y ${i % 2 === 0 ? 'bg-surface-1' : 'bg-surface-0'}`} aria-labelledby={`beat-${i}`}>
-            <div className="container-site grid-site gap-y-6 items-start">
-              <h2 id={`beat-${i}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{label}</h2>
-              <div className="col-span-4 md:col-span-8">
-                {label === 'The impact' && pb.metric && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /></div>}
-                {label === 'Who it is for' && pb.beats.personas && (
-                  <ul className="flex flex-wrap gap-2 mb-5" aria-label="Personas">{pb.beats.personas.map(x => <li key={x} className="tag">{x}</li>)}</ul>
-                )}
-                <p className="text-body-lg text-ink-2 max-w-2xl">{text}</p>
-                {label === 'The challenge' && pb.beats.challengePoints && (
-                  <ul className="mt-5 flex flex-col gap-3 max-w-2xl">
-                    {pb.beats.challengePoints.map(x => (
-                      <li key={x} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">-</span>{x}</li>
-                    ))}
-                  </ul>
-                )}
-                {label === 'The challenge' && pb.beats.challengeNote && <p className="text-body-lg text-ink mt-6 max-w-2xl">{pb.beats.challengeNote}</p>}
+      {order.map((key, i) => {
+        const label = pb.labels?.[key] ?? LABELS[key]
+        const visuals = pb.visuals?.[key] ?? []
+        return (
+          <Fragment key={key}>
+            <section className={`hairline-top section-y ${i % 2 === 0 ? 'bg-surface-1' : 'bg-surface-0'}`} aria-labelledby={`beat-${key}`}>
+              <div className="container-site grid-site gap-y-6 items-start">
+                <h2 id={`beat-${key}`} className="col-span-4 md:col-span-3 text-overline text-ink-3">{label}</h2>
+                <div className="col-span-4 md:col-span-9 min-w-0">
+                  {key === 'decision' && pb.decision ? (
+                    <>
+                      <h3 className="text-heading text-ink max-w-measure-l" style={{ textWrap: 'balance' }}>{pb.decision.heading}</h3>
+                      <p className="text-body-lg text-ink-2 mt-5 max-w-2xl">{pb.decision.body}</p>
+                    </>
+                  ) : (
+                    <>
+                      {key === 'impact' && pb.metric && <div className="mb-6"><Stat value={pb.metric.value} label={pb.metric.label} /></div>}
+                      {key === 'users' && pb.beats.personas && (
+                        <ul className="flex flex-wrap gap-2 mb-5" aria-label="Personas">{pb.beats.personas.map(x => <li key={x} className="tag">{x}</li>)}</ul>
+                      )}
+                      <p className="text-body-lg text-ink-2 max-w-2xl">{pb.beats[key as Exclude<BeatKey, 'decision'>]}</p>
+                      {key === 'challenge' && pb.beats.challengePoints && (
+                        <ul className="mt-5 flex flex-col gap-3 max-w-2xl">
+                          {pb.beats.challengePoints.map(x => (
+                            <li key={x} className="flex gap-3 text-body-lg text-ink-2"><span aria-hidden="true" className="text-signal-ink mt-[0.1em]">-</span>{x}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {key === 'challenge' && pb.beats.challengeNote && <p className="text-body-lg text-ink mt-6 max-w-2xl">{pb.beats.challengeNote}</p>}
+                    </>
+                  )}
+                  {visuals.length > 0 && <div className="mt-10 md:mt-12 flex flex-col gap-12">{visuals.map((v, j) => <BeatVisual key={j} v={v} />)}</div>}
+                </div>
               </div>
-            </div>
-          </section>
-          {label === 'The solution' && pb.flow && <ProcessFlow stages={pb.flow} />}
-        </Fragment>
-      ))}
-
-      {pb.decision && (
-        <section className={`hairline-top section-y ${beats.length % 2 === 0 ? 'bg-surface-1' : 'bg-surface-0'}`} aria-labelledby="beat-decision">
-          <div className="container-site grid-site gap-y-6 items-start">
-            <h2 id="beat-decision" className="col-span-4 md:col-span-3 text-overline text-ink-3">A design decision</h2>
-            <div className="col-span-4 md:col-span-8">
-              <h3 className="text-heading text-ink max-w-measure-l">{pb.decision.heading}</h3>
-              <p className="text-body-lg text-ink-2 mt-5 max-w-2xl">{pb.decision.body}</p>
-            </div>
-          </div>
-        </section>
-      )}
+            </section>
+            {key === 'solution' && pb.flow && <ProcessFlow stages={pb.flow} />}
+          </Fragment>
+        )
+      })}
 
       {/* One component with the footer: it stays at the bottom of the screen while scrolling, then settles into the footer. */}
       <div className="sticky bottom-0 z-30 border-t bg-bg" style={{ borderColor: 'var(--line-1)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
