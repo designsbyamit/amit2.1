@@ -48,8 +48,8 @@ const C = (n: string) => `${B}images/case-studies/${n}`
 export const playbacks: Playback[] = [
   {
     id: 'sap-agentic',
-    headline: 'From inbox to approval, automating the legwork',
-    dek: 'An agent reads every supplier confirmation and finds the differences. People make the decisions that matter.',
+    headline: 'Supplier order confirmations, where agents do the legwork and humans make the call',
+    dek: 'Agents parse, compare, assess risk and recommend on every supplier confirmation. People make the decisions that matter.',
     roleNote: 'I framed it as a design pattern and led the agent, the human-in-the-loop model and the architecture.',
     beats: {
       about: 'The opportunity was to design an agentic experience for procurement. The agent ingests many documents, including supplier order confirmations and RFQ responses, and compares them against purchase orders. Procurement specialists and operations teams then validate the discrepancies, approve outcomes and make the decisions.',

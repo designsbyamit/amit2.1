@@ -412,7 +412,7 @@ const allCaseStudies: CaseStudy[] = [
     image: `${B}images/case-studies/sap-agentic/thumbnail.webp`,
     number: '06',
     category: 'Procurement · Supply chain · Agentic AI',
-    title: 'From inbox to approval, automating the legwork',
+    title: 'Supplier order confirmations, where agents do the legwork and humans make the call',
     shortTitle: 'Agentic Order Confirmations',
     tagline: 'RFQ approvals towards autonomous procurement decisions.',
     role: 'Design Lead · vision and pattern',
