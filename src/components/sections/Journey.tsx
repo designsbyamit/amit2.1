@@ -11,7 +11,7 @@ function Stop({ i, active }: { i: number; active: boolean }) {
       {/* node on the line */}
       <div className="relative h-10 flex items-center" aria-hidden="true">
         <span className={`block w-3.5 h-3.5 rounded-full border-2 transition-colors duration-300 ${active ? 'bg-signal border-signal' : 'bg-bg border-[var(--line-control)]'}`} />
-        {last && <span className="ml-3 text-label text-signal-ink">Now</span>}
+        {last && <span className="absolute left-0 -top-3 text-label text-signal-ink">Now</span>}
       </div>
       <p className="text-label text-ink-3 mt-5">{p.years}</p>
       <h3 className="text-heading text-ink mt-3">{p.title}</h3>

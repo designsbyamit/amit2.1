@@ -2,7 +2,6 @@ import Hero from '../components/sections/Hero'
 import ImpactSnapshot from '../components/sections/ImpactSnapshot'
 import FeaturedWork from '../components/sections/FeaturedWork'
 import Brands from '../components/sections/Brands'
-import HomeTestimonial from '../components/sections/HomeTestimonial'
 
 export default function Home() {
   return (
@@ -16,9 +15,8 @@ export default function Home() {
       {/* 3. Scale: grid blocks */}
       <ImpactSnapshot />
 
-      {/* 4. Brands worked with, then one voice */}
+      {/* 4. Brands worked with */}
       <Brands />
-      <HomeTestimonial />
 
     </>
   )

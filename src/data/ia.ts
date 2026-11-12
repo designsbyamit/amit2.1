@@ -22,13 +22,12 @@ export const previousWorkIds = ['engaze', 'airline-app', 'data-ai', 'dnetworx']
 /** Works dropdown and Works page: all six case studies, in the site display order, numbered 01 to 06. */
 export const menuWorks = caseStudies
 
-/** Research that is on the way. Shown as coming soon, never as a half-finished page. */
-export const research = [
-  'Compositional Design',
-  'AI Maturity in Design Organisations',
-  'The Shifting Shape of Design by AI',
-  'Agentic AI Interventions in FinTech',
-]
+/** In my labs: ideas still being explored. Shown as cards, never as half-finished pages. */
+export const labs = [
+  { id: 'compositional', title: 'Compositional Design', text: 'How AI can compose experiences inside a design language an organisation defines, and stay inspectable.' },
+  { id: 'maturity', title: 'AI Maturity', text: 'How design organisations move from trying AI to building it into the way they work.' },
+  { id: 'shape', title: 'The Shifting Shape of Design in the AI Era', text: 'What changes in the designer’s role, skills and craft as AI takes on more of the making.' },
+] as const
 
 import type { MarkName } from '../components/marks/Marks'
 import type { FieldTone } from '../components/ds/MediaFrame'

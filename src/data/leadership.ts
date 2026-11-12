@@ -234,7 +234,7 @@ export const stories: LeadershipStory[] = [
     tone: 'cobalt',
     year: '',
     context: 'SAP Design Hub India',
-    title: 'Reviving SAP Design Hub India',
+    title: 'Leading SAP Design Hub India',
     cues: [
       'What did you inherit when you became Lead of SAP Design Hub India in February 2025, and what did you decide to change first?',
       'What surprised you most about what the community revealed: about designers, or about organisations?',

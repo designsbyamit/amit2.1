@@ -25,14 +25,18 @@ const habits = [
   { t: 'Make the decision visible.', d: 'In agentic work the hard question is where a person decides. On order confirmations I designed the human-in-the-loop model with the agent: three gates where only a person can accept or reject, and every difference shown with its reasoning.', to: '/craft/sap-agentic', link: 'Agentic order confirmations' },
 ]
 
-type Chapter = { when: string; role: string; org: string; intro: string; highlights?: string[] }
-const chapters: Chapter[] = [
-  { when: 'August 2024 - Present', role: 'Design Leader | User Experience Manager', org: 'SAP Labs', intro: 'Shaping connected enterprise experiences, exploring AI and agentic interactions, and contributing to SAP’s Suite-first direction.', highlights: ['Leading SAP Design Hub India, a community of 250+ designers.', 'Driving design initiatives across enterprise products.', 'Exploring AI-powered search and agentic experiences.', 'Curating Impulse India.'] },
-  { when: 'December 2018 - July 2024', role: 'User Experience Manager', org: 'Accenture Song', intro: 'Scaling UX capabilities, leading multidisciplinary teams and shaping complex B2B and B2C experiences.', highlights: ['Led teams of 6-30 designers.', 'Built Generative AI and Conversational AI design capabilities.', 'Worked across experience strategy and product delivery.'] },
-  { when: 'December 2015 - December 2018', role: 'Staff Product Designer', org: 'Hewlett Packard Enterprise', intro: 'Designing enterprise cloud experiences and strengthening design practices.', highlights: ['UX initiatives for GreenLake.', 'Contributions to Grommet Design System.', 'DesignOps and design community initiatives.'] },
-  { when: 'July 2014 - December 2015', role: 'Creative UX Lead | Founding UX Lead', org: 'Photon Interactive', intro: 'Building UX capabilities and creating digital experiences for e-commerce and other industries.' },
-  { when: 'January 2011 - July 2014', role: 'Senior UX Designer', org: 'Infosys Limited', intro: 'Building my foundations in UX across 20+ client engagements, research and interaction design.' },
+/** The career, oldest first: each stop with what it was about and the few things that mattered there. */
+type Stop = { when: string; phase: string; role: string; org: string; intro: string; points: string[]; now?: boolean }
+const stops: Stop[] = [
+  { when: '2011 - 2014', phase: 'Early practice', role: 'Senior UX Designer', org: 'Infosys', intro: 'Building my foundations in UX across 20+ client engagements.', points: ['Ran the UX cycle end to end: interfaces, research and artefacts.', 'Learned interaction design on real client constraints.'] },
+  { when: '2014 - 2015', phase: 'Founding lead', role: 'Creative UX Lead | Founding UX Lead', org: 'Photon Interactive', intro: 'The founding UX lead, creating digital experiences for e-commerce and other industries.', points: ['Built the UX capability from the start.', 'Brought research and analytics into the work.', 'Started a design culture in the team.'] },
+  { when: '2015 - 2018', phase: 'Enterprise scale', role: 'Staff Product Designer', org: 'Hewlett Packard Enterprise', intro: 'Designing enterprise cloud experiences and strengthening design practices.', points: ['Led UX initiatives for the GreenLake cloud platform.', 'Contributed to the Grommet design system.', 'Set up DesignOps, design hiring and local communities of practice.'] },
+  { when: '2018 - 2024', phase: 'Strategic leadership', role: 'User Experience Manager', org: 'Accenture Song', intro: 'Scaling UX capabilities, leading multidisciplinary teams and shaping complex B2B and B2C experiences.', points: ['Led the UX practice across B2B and B2C.', 'Led teams of 6 to 30 designers.', 'Founding member of the studio’s Generative AI and Conversational AI design capabilities.', 'Worked across experience strategy and product delivery.'] },
+  { when: '2024 - Present', phase: 'AI-native era', role: 'Design Leader | User Experience Manager', org: 'SAP Labs', intro: 'Shaping connected enterprise experiences, exploring AI and agentic interactions, and contributing to SAP’s Suite-first direction.', points: ['AI-powered search and agentic experiences.', 'Driving design initiatives across enterprise products.', 'Leading SAP Design Hub India, a community of 250+ designers.', 'Curating Impulse India.'], now: true },
 ]
+
+/** Hidden for now, kept for later: the How I work section. */
+const SHOW_HOW = false
 
 /** Colleagues, clients and a mentee, mixed. Each person appears once: the short excerpts stand in for Mayura, Stepan and Mahesh. */
 const inTheirWords = [quoteExcerpts.mayura, clientTestimonials[0], colleagueTestimonials[0], colleagueTestimonials[1], clientTestimonials[1], quoteExcerpts.mahesh, colleagueTestimonials[2], clientTestimonials[2], quoteExcerpts.stepan]
@@ -81,18 +85,14 @@ export default function AboutPage() {
       <PageHeader
         label="A little about me"
         title="I lead designers, and I stay close to the craft."
-        subtitle="I’m Amit, a design leader with 16+ years in enterprise products, now focused on AI-native and agentic experiences. I lead teams, and I still sketch the flow, write the spec and build the prototype, because the best decisions get made close to the work."
+        subtitle="I’m Amit, a design leader in enterprise products, now focused on AI-native and agentic experiences. I lead teams, and I still sketch the flow, write the spec and build the prototype, because the best decisions get made close to the work."
         image={aboutImg} imagePosition="50% 28%" mono
         imageAlt="Amit Kumar Tiwari speaking at a design event"
       >
-        <p className="text-body text-ink-2 max-w-2xl mb-8">Today I lead Core Design work at SAP and SAP Design Hub India, a community of 250+ designers.</p>
-        <div className="flex flex-wrap gap-3">
-          <Button to="/craft" arrow>Explore my work</Button>
-          <a className="btn btn-secondary" href="#how">How I work</a>
-        </div>
+        <p className="text-body text-ink-2 max-w-2xl">Today I lead Core Design work at SAP and SAP Design Hub India, a community of 250+ designers.</p>
       </PageHeader>
 
-      <section className="section-y hairline-top scroll-mt-24" id="how">
+      {SHOW_HOW && <section className="section-y hairline-top scroll-mt-24" id="how">
         <div className="container-site">
           <SectionHeader label="How I work" title="Four habits, each one visible in the work." />
           <ol className="grid md:grid-cols-2 gap-6 list-none p-0 m-0">
@@ -106,13 +106,13 @@ export default function AboutPage() {
             ))}
           </ol>
         </div>
-      </section>
+      </section>}
 
       <section className="section-y hairline-top" id="person">
         <div className="container-site grid-site gap-y-10">
           <div className="col-span-4 md:col-span-4"><p className="text-overline text-ink-3">The path here</p></div>
           <div className="col-span-4 md:col-span-7 md:col-start-6 flex flex-col gap-6">
-            <h2 className="text-heading text-ink" style={{ textWrap: 'balance' }}>From writing code to leading design, without leaving the work.</h2>
+            <h2 className="text-heading text-ink" style={{ textWrap: 'balance' }}>Trained as an engineer, grown as a designer, shaped by the business around the work.</h2>
             <p className="text-body-editorial text-ink-2">I trained in computer science and learned UX at Infosys, across 20+ client engagements. Since then I have designed enterprise cloud experiences at HPE, built Generative AI and Conversational AI design capability at Accenture Song, and now shape AI-native enterprise experiences at SAP.</p>
             <p className="text-body-editorial text-ink-2">Along the way the job moved from designing interfaces to shaping products, building teams and changing how organisations think about design. The habit stayed the same: see the real problem, the real constraint and the real user before trusting an idea.</p>
             <p className="text-body-editorial text-ink">What I care about most is the gap between a good idea and a working solution. That is where most of the craft lives.</p>
@@ -149,23 +149,27 @@ export default function AboutPage() {
 
       <section className="section-y hairline-top" id="journey">
         <div className="container-site">
-          <SectionHeader label="Places, people and experiences" title="16 years. Five organisations. Many lessons." />
+          <SectionHeader label="The journey" title="Five organisations. One thread: making design matter." />
           <ol>
-            {chapters.map(c => (
-              <li key={c.when} className="hairline-top py-8 grid md:grid-cols-[14rem_1fr] gap-3 md:gap-8">
-                <p className="text-label text-ink-3 pt-1">{c.when}</p>
-                <div>
+            {stops.map((c, i) => (
+              <motion.li key={c.when} className="grid md:grid-cols-[14rem_1fr] gap-x-6 gap-y-3"
+                initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-8%' }} transition={{ duration: 0.6, delay: i === 0 ? 0 : 0.05 }}>
+                <div className="md:pr-6">
+                  <p className="text-label text-ink-3">{c.when}</p>
+                  <p className="text-overline text-signal-ink mt-2">{c.now ? `${c.phase} · Now` : c.phase}</p>
+                </div>
+                <div className="relative border-l pl-8 md:pl-10 pb-12" style={{ borderColor: i === stops.length - 1 ? 'transparent' : 'var(--line-2)' }}>
+                  <span aria-hidden="true" className={`absolute -left-2 top-0.5 w-4 h-4 rounded-full border-2 ${c.now ? 'bg-signal border-signal' : 'bg-bg border-[var(--line-control)]'}`} />
                   <h3 className="text-title text-ink">{c.role}</h3>
                   <p className="text-body-sm text-ink-3 mt-1">{c.org}</p>
-                  <p className="text-body-sm text-ink-2 mt-4 max-w-2xl">{c.intro}</p>
-                  {c.highlights && <ul className="mt-4 flex flex-col gap-2 max-w-2xl list-disc pl-5 marker:text-ink-3">{c.highlights.map(h => <li key={h} className="text-body-sm text-ink-2">{h}</li>)}</ul>}
+                  <p className="text-body text-ink-2 mt-4 max-w-2xl">{c.intro}</p>
+                  <ul className="mt-4 flex flex-col gap-2 list-disc pl-5 marker:text-ink-3 max-w-2xl">{c.points.map(h => <li key={h} className="text-body-sm text-ink-2">{h}</li>)}</ul>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ol>
-          <div className="flex flex-wrap gap-3 mt-10">
-            <a className="btn btn-secondary" href="/downloads/Amit-Kumar-Tiwari-CV.pdf" download>Download my CV</a>
-            <Button to="/leadership#journey" variant="secondary" arrow>Explore my leadership journey</Button>
+          <div className="mt-12">
+            <a className="btn btn-ghost !px-0" href="/downloads/Amit-Kumar-Tiwari-CV.pdf" download>Download my CV</a>
           </div>
         </div>
       </section>

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { NAMES } from '../data/ia'
 import PageHeader from '../components/ui/PageHeader'
 import Journey from '../components/sections/Journey'
-import LeadershipChange from '../components/sections/LeadershipChange'
 import { ExperiencePictogram, CollectivePictogram, ReflectionsFinePictogram, HiringPictogram } from '../components/ds/HubPictograms'
 import ResourceCover from '../components/ds/ResourceCover'
 import Button from '../components/ds/Button'
@@ -24,14 +23,14 @@ function Tiles() {
   return (
     <section className="section-y hairline-top">
       <div className="container-site">
-        <ul className="grid md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
+        <ul className="grid lg:grid-cols-2 gap-5 md:gap-6">
           {tiles.map((t, k) => (
             <motion.li key={t.to} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: k * 0.08 }}>
-              <Link to={t.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
-                <div className="relative aspect-[16/9] overflow-hidden" style={{ background: t.tone }}>
+              <Link to={t.to} className="group card !p-0 flex flex-col sm:flex-row h-full overflow-hidden hover:bg-surface-1 transition-colors">
+                <div className="relative aspect-[16/10] sm:aspect-auto sm:min-h-72 sm:w-[56%] shrink-0 overflow-hidden" style={{ background: t.tone }}>
                   <div className="absolute inset-0 opacity-[0.07]" style={grid} />
                   <span className="absolute left-5 top-4 font-mono text-t-tiny tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>{String(k + 1).padStart(2, '0')} / {String(tiles.length).padStart(2, '0')}</span>
-                  <div className="absolute inset-0 px-[16%] py-[9%] transition-transform duration-500 group-hover:scale-[1.04]">{t.art}</div>
+                  <div className="absolute inset-0 px-[12%] py-[12%] transition-transform duration-500 group-hover:scale-[1.04]">{t.art}</div>
                 </div>
                 <div className="p-7 md:p-8 flex flex-col gap-3 flex-1">
                   <h2 className="text-heading text-ink" style={{ fontWeight: 300 }}>{t.title}</h2>
@@ -77,7 +76,6 @@ export default function LeadershipPage() {
         imageAlt="Amit Kumar Tiwari on stage"
       />
       <Journey />
-      <LeadershipChange />
       <LeadingDesignBand />
       <Tiles />
     </>

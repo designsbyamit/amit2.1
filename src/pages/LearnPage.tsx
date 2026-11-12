@@ -6,12 +6,12 @@ import { MentoringPictogram, PortfolioPictogram, PracticePictogram, ResourcesPic
 
 const grid = { backgroundImage: 'linear-gradient(var(--on-field-strong) 1px, transparent 1px), linear-gradient(90deg, var(--on-field-strong) 1px, transparent 1px)', backgroundSize: '20px 20px' }
 
-const items: { to: string; title: string; text: string; tone: string; art: ReactNode; soon?: boolean }[] = [
+const items: { to: string; title: string; text: string; tone: string; art: ReactNode; soon?: boolean; wide?: boolean; cta?: string }[] = [
   { to: '/mentoring', title: 'Mentoring', text: 'How I coach designers, and templates you can use with your own mentor or team.', tone: 'var(--field-cobalt)', art: <MentoringPictogram /> },
   { to: '/learn/practice', title: 'Toolkits', text: 'Practise designing with AI, from a conversational interface to multi-agent orchestration, with exercises and reflection prompts.', tone: 'var(--field-teal)', art: <PracticePictogram /> },
   { to: '/learn/portfolio', title: 'Portfolio Guide', text: 'Give your portfolio a character, then shape each project with a clear anatomy and a story.', tone: 'var(--field-plum)', art: <PortfolioPictogram /> },
   { to: '/learn/library', title: 'Library', text: 'Articles, frameworks and worksheets for designers who are growing, starting with what it takes to become an AI designer.', tone: 'var(--field-cobalt)', art: <ResourcesPictogram /> },
-  { to: 'https://alphavector.designsbyamit.com/', title: 'AlphaVector', text: 'Find your direction.', tone: 'var(--field-graphite)', art: <ResourcesPictogram /> },
+  { to: 'https://alphavector.designsbyamit.com/', title: 'AlphaVector: find your direction', text: 'For the moment you know you want to grow but cannot yet name where. AlphaVector helps you turn that feeling into a direction you can act on, and the next steps that move you along it.', tone: 'var(--field-graphite)', art: <ResourcesPictogram />, wide: true, cta: 'Try AlphaVector' },
 ]
 
 /** A card link: opens another site in a new tab, or moves within this one. */
@@ -24,7 +24,7 @@ function CardLink({ to, className, children }: { to: string; className: string; 
 export default function LearnPage() {
   return (
     <>
-      <PageHeader label="Grow" title="For designers who are growing." subtitle="Mentoring, toolkits to practise with, a guide to presenting your work and a library of articles."
+      <PageHeader label="Growth and Aspirations" title="Grow with intent, wherever you are in your work." subtitle="Honest answers, practice and tools for growing personally and professionally, whether you design, build, lead or are just starting out. Mentoring, toolkits, a guide to presenting your work and a library of articles."
         image="/images/about/grow-hero.webp" imagePosition="50% 35%" mono imageAlt="Amit speaking to a room of designers during a session" />
       <section className="section-y hairline-top">
         <div className="container-site">
@@ -34,7 +34,7 @@ export default function LearnPage() {
           </div>
           <ul className="grid md:grid-cols-2 gap-5 md:gap-6">
             {items.map((i, k) => (
-              <motion.li key={i.to} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: (k % 2) * 0.08 }}>
+              <motion.li key={i.to} className={i.wide ? 'md:col-span-2' : ''} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-5%' }} transition={{ duration: 0.5, delay: (k % 2) * 0.08 }}>
                 {i.soon ? (
                   <div className="card !p-0 flex flex-col h-full overflow-hidden">
                   <div className="relative aspect-[16/9] overflow-hidden" style={{ background: i.tone }}>
@@ -49,16 +49,17 @@ export default function LearnPage() {
                   </div>
                 </div>
                 ) : (
-                  <CardLink to={i.to} className="group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors">
-                  <div className="relative aspect-[16/9] overflow-hidden" style={{ background: i.tone }}>
+                  <CardLink to={i.to} className={`group card !p-0 flex flex-col h-full overflow-hidden hover:bg-surface-1 transition-colors ${i.wide ? 'md:flex-row' : ''}`}>
+                  <div className={`relative aspect-[16/9] overflow-hidden ${i.wide ? 'md:aspect-auto md:min-h-96 md:w-[58%] shrink-0' : ''}`} style={{ background: i.tone }}>
                     <div className="absolute inset-0 opacity-[0.07]" style={grid} />
                     <span className="absolute left-5 top-4 font-mono text-t-tiny tracking-overline uppercase" style={{ color: 'var(--on-field-accent)' }}>{String(k + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
                     <div className="absolute inset-0 px-[18%] py-[9%] transition-transform duration-500 group-hover:scale-[1.04]">{i.art}</div>
                   </div>
-                  <div className="p-7 md:p-9 flex flex-col gap-3 flex-1">
-                    <h2 className="text-heading text-ink" style={{ fontWeight: 300 }}>{i.title}</h2>
-                    <p className="text-body text-ink-2 max-w-measure-m">{i.text}</p>
-                    <p className="text-label text-ink-3 group-hover:text-ink mt-auto pt-4">{i.soon ? 'Coming soon' : <>Open &rarr;</>}</p>
+                  <div className={`p-7 md:p-9 flex flex-col gap-3 flex-1 ${i.wide ? 'md:p-12 md:justify-center' : ''}`}>
+                    {i.wide && <p className="text-label text-signal-ink">New</p>}
+                    <h2 className={`${i.wide ? 'text-display-l' : 'text-heading'} text-ink`} style={{ fontWeight: 300 }}>{i.title}</h2>
+                    <p className={`${i.wide ? 'text-body-lg' : 'text-body'} text-ink-2 max-w-measure-m`}>{i.text}</p>
+                    {i.cta ? <span className="btn btn-primary self-start mt-6">{i.cta} &rarr;</span> : <p className="text-label text-ink-3 group-hover:text-ink mt-auto pt-4">{i.soon ? 'Coming soon' : <>Open &rarr;</>}</p>}
                   </div>
                 </CardLink>
                 )}

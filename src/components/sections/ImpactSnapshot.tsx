@@ -59,7 +59,7 @@ export default function ImpactSnapshot() {
             <p className="font-serif text-ink" style={{ fontSize: 'var(--fs-figure)', lineHeight: 1.2 }}>The numbers are the headline. The story is in the 61+ projects behind them.</p>
             <p className="text-body-sm text-ink-2 mt-3">An interactive atlas of how my roles, industries, team scale and capabilities changed from 2011 to 2024, with every finding tagged as fact, calculation, inference or hypothesis.</p>
           </div>
-          <Button href="/career-atlas/" variant="primary" arrow className="shrink-0 self-start md:self-center">Explore the career atlas</Button>
+          <Button href="/career-atlas/" variant="secondary" arrow className="shrink-0 self-start md:self-center">Explore my Career Atlas</Button>
         </div>
       </div>
     </section>

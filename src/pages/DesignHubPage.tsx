@@ -25,7 +25,7 @@ export default function DesignHubPage() {
         <div className="container-site relative pt-10 md:pt-14 pb-16 md:pb-24">
           <Breadcrumb items={[{ label: 'Collective', to: '/community' }, { label: 'Design Hub India' }]} />
           <p className="text-label text-ink-3 mt-10">Community · Leadership</p>
-          <h1 className="text-display-xl text-white mt-5 max-w-5xl">Reviving Design Hub India</h1>
+          <h1 className="text-display-xl text-white mt-5 max-w-5xl">Leading Design Hub India</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A community of designers across India, run by volunteers who own their spaces and drive their own initiatives.</p>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-5xl">
             {numbers.map(([v, k]) => <div key={k}><dd className="text-display-l text-white">{v}</dd><dt className="text-label text-ink-3 mt-2">{k}</dt></div>)}

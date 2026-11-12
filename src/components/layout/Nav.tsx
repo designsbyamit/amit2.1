@@ -15,7 +15,7 @@ const navItems: { label: string; to: string; menu?: MenuKey; quiet?: boolean }[]
   { label: 'Leadership', to: '/leadership', menu: 'Leadership' },
   { label: 'Practice', to: '/resources', menu: 'Practice' },
   { label: 'About', to: '/about' },
-  { label: 'Grow (For Designers)', to: '/learn', menu: 'Grow', quiet: true },
+  { label: 'Growth and Aspirations', to: '/learn', menu: 'Grow', quiet: true },
 ]
 
 // Resource pages that belong to Leadership in the menu, so they highlight Leadership and not Practice.
