@@ -1,0 +1,236 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Hand-composed static covers for the five newer cases. Each cover shows the story's main output, with its own palette.
+     Render: node tools/covers/crafted.mjs  (ONLY=<id> for one) -->
+<style>
+@font-face{font-family:'Geist';src:url('../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2');font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;display:grid;gap:40px;padding:40px;width:1680px;font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.c{width:1600px;height:1000px;position:relative;overflow:hidden}
+.abs{position:absolute}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1.4px,transparent 1.6px);background-size:34px 34px;-webkit-mask-image:radial-gradient(ellipse at 50% 50%,#000 30%,transparent 75%)}
+svg{display:block}
+
+/* ---------- Agentic: indigo ---------- */
+#sap-agentic{background:radial-gradient(900px 620px at 37% 50%,#2B2F86 0%,#141A4E 42%,#0A0E2A 75%,#070A1D 100%)}
+#sap-agentic .card{position:absolute;background:#171D47;border:1.5px solid #3A4290;border-radius:22px;box-shadow:0 30px 60px rgba(3,5,20,.55),0 2px 0 rgba(255,255,255,.04) inset}
+#sap-agentic .doc{left:80px;width:370px;height:124px;display:flex;align-items:center;gap:22px;padding:0 28px}
+#sap-agentic .doc .ic{width:62px;height:62px;border-radius:14px;display:grid;place-items:center;flex:none}
+#sap-agentic .doc b{display:block;font:500 25px/1.15 Geist;color:#EEF0FF}
+#sap-agentic .doc span{display:block;font:500 17px/1 Geist;color:#8F97CF;margin-top:9px;letter-spacing:.04em}
+#sap-agentic .agent{position:absolute;left:540px;top:330px;width:260px;height:300px;border-radius:30px;background:#232A75;border:2.5px solid #8C93FF;box-shadow:0 0 0 10px rgba(124,132,255,.10),0 0 90px 10px rgba(110,118,255,.55),0 40px 80px rgba(3,5,20,.6);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 26px}
+#sap-agentic .agent b{font:500 38px/1 Geist;color:#fff;margin-top:26px;letter-spacing:-.01em}
+#sap-agentic .agent span{font:400 18px/1.35 Geist;color:#B7BCF5;margin-top:16px}
+#sap-agentic .chk{left:890px;width:320px;height:140px;padding:26px 28px}
+#sap-agentic .chk b{font:500 25px/1 Geist;color:#EEF0FF;display:block}
+#sap-agentic .st{display:flex;align-items:center;gap:12px;margin-top:30px;font:500 21px/1 Geist}
+#sap-agentic .st i{flex:1;height:6px;border-radius:3px;background:#2C3470;margin-left:10px}
+#sap-agentic .dec{left:1265px;top:350px;width:250px;height:262px;padding:26px}
+#sap-agentic .dec b{font:500 26px/1 Geist;color:#EEF0FF;display:block;margin-top:18px}
+#sap-agentic .btn{height:52px;border-radius:12px;display:grid;place-items:center;font:600 19px/1 Geist;margin-top:16px}
+
+/* ---------- Search: copper ---------- */
+#sap-search{background:radial-gradient(760px 520px at 30% 18%,#7A3B12 0%,rgba(122,59,18,0) 70%),radial-gradient(900px 700px at 85% 100%,#4A1E10 0%,rgba(74,30,16,0) 70%),linear-gradient(160deg,#1C110B 0%,#120B07 60%,#0D0806 100%)}
+#sap-search .bar{position:absolute;left:230px;top:150px;width:1140px;height:116px;border-radius:30px;background:#22150D;border:2.5px solid #F2A65A;box-shadow:0 0 0 9px rgba(242,166,90,.12),0 0 70px rgba(242,140,60,.45),0 30px 60px rgba(0,0,0,.5);display:flex;align-items:center;padding:0 36px;gap:26px}
+#sap-search .q{font:500 44px/1 Geist;color:#FFF3E6;letter-spacing:-.01em;flex:1}
+#sap-search .q i{display:inline-block;width:3px;height:46px;background:#F2A65A;vertical-align:-9px;margin-left:5px}
+#sap-search .k{font:600 18px/1 Geist;color:#D8B898;background:#3A2516;border-radius:10px;padding:10px 14px}
+#sap-search .panel{position:absolute;left:230px;top:302px;width:1140px;height:560px;border-radius:30px;background:#1B110B;border:1.5px solid #4A3020;box-shadow:0 50px 90px rgba(0,0,0,.6);padding:34px 36px}
+#sap-search .ov{display:flex;align-items:center;gap:14px;font:500 22px/1.2 Geist;color:#F6DCC0;background:#2A1A10;border:1.5px solid #5A3A22;border-radius:16px;padding:18px 22px}
+#sap-search .chips{display:flex;gap:12px;margin:26px 0 12px}
+#sap-search .chips span{font:500 19px/1 Geist;color:#E8CBAE;background:#2D1D12;border-radius:999px;padding:13px 22px}
+#sap-search .chips span.on{background:#F2A65A;color:#2A1608}
+#sap-search .row{display:flex;align-items:center;gap:24px;padding:18px 22px;border-radius:18px}
+#sap-search .row.hot{background:#33200F;box-shadow:0 0 0 1.5px #6A4426 inset}
+#sap-search .ring{width:46px;height:46px;border-radius:12px;background:#2B1C12;display:grid;place-items:center;flex:none}
+#sap-search .ring i{width:20px;height:20px;border-radius:50%;border:2.5px solid #C9A07A}
+#sap-search .t{flex:1;min-width:0}
+#sap-search .t b{display:block;font:500 25px/1.1 Geist;color:#FFF1E2;white-space:nowrap}
+#sap-search .t span{display:block;font:400 18px/1 Geist;color:#B8957A;margin-top:9px}
+#sap-search .src{width:190px;display:flex;align-items:center;gap:12px;font:500 19px/1 Geist;color:#E6CDB4}
+#sap-search .src i{width:14px;height:14px;border-radius:50%}
+#sap-search .act{width:150px;height:50px;border-radius:999px;display:grid;place-items:center;font:600 19px/1 Geist;color:#FFE4C7;border:1.5px solid #7A5130}
+#sap-search .act.p{background:#F2A65A;border-color:#F2A65A;color:#2A1608}
+
+/* ---------- Collections: jade ---------- */
+#sap-collections{background:radial-gradient(800px 600px at 72% 40%,#0F6B5C 0%,rgba(15,107,92,0) 70%),linear-gradient(150deg,#06231F 0%,#041915 55%,#03110F 100%)}
+#sap-collections .wl{position:absolute;left:70px;top:150px;width:900px;height:700px;border-radius:26px;background:#F7FAF9;box-shadow:0 60px 100px rgba(0,0,0,.55);transform:perspective(1800px) rotateY(16deg) rotateX(4deg);transform-origin:0 50%;padding:34px 36px;overflow:hidden}
+#sap-collections .wl h3{font:600 28px/1 Geist;color:#13302B}
+#sap-collections .wl .sub{font:400 18px/1 Geist;color:#5B7470;margin-top:10px}
+#sap-collections .wl .hd,#sap-collections .wl .r{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;align-items:center;gap:14px}
+#sap-collections .wl .hd{margin-top:30px;padding:0 6px 14px;border-bottom:1.5px solid #DCE6E3;font:600 15px/1 Geist;color:#6B827E;letter-spacing:.06em;text-transform:uppercase}
+#sap-collections .wl .r{padding:20px 6px;border-bottom:1.5px solid #E7EEEC;font:500 20px/1 Geist;color:#13302B}
+#sap-collections .wl .r small{display:block;font:400 15px/1 Geist;color:#6B827E;margin-top:7px}
+#sap-collections .pr{display:inline-flex;align-items:center;gap:8px;font:600 16px/1 Geist;border-radius:8px;padding:8px 11px}
+#sap-collections .nba{position:absolute;left:880px;top:270px;width:620px;height:470px;border-radius:28px;background:#0E2E29;border:2px solid #3FC7A8;box-shadow:0 0 0 9px rgba(63,199,168,.10),0 0 80px rgba(63,199,168,.35),0 50px 90px rgba(0,0,0,.6);padding:38px 40px}
+#sap-collections .nba .ov{font:600 16px/1 Geist;color:#7FE3C9;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+#sap-collections .nba h3{font:500 34px/1.2 Geist;color:#F1FFFB;margin-top:22px;letter-spacing:-.01em}
+#sap-collections .nba ul{list-style:none;margin-top:26px;display:grid;gap:14px}
+#sap-collections .nba li{display:flex;gap:14px;font:400 20px/1.35 Geist;color:#BFE3DA}
+#sap-collections .nba li i{width:8px;height:8px;border-radius:50%;background:#3FC7A8;margin-top:10px;flex:none}
+#sap-collections .nba .btns{display:flex;gap:14px;margin-top:36px}
+#sap-collections .nba .btns span{height:56px;border-radius:14px;padding:0 28px;display:grid;place-items:center;font:600 20px/1 Geist}
+#sap-collections .who{position:absolute;left:1180px;top:770px;display:flex;align-items:center;gap:14px;background:#F1FFFB;color:#0E2E29;border-radius:999px;padding:14px 24px 14px 14px;font:600 19px/1 Geist;box-shadow:0 20px 40px rgba(0,0,0,.45)}
+#sap-collections .who i{width:36px;height:36px;border-radius:50%;background:#0E2E29;display:grid;place-items:center}
+
+/* ---------- Sign-in: cobalt ---------- */
+#sap-signin{background:radial-gradient(760px 560px at 50% 55%,#1F4FC2 0%,rgba(31,79,194,0) 72%),linear-gradient(160deg,#0A1A45 0%,#071233 55%,#050C24 100%)}
+#sap-signin .tiles{position:absolute;inset:-40px;display:grid;grid-template-columns:repeat(22,64px);gap:20px;padding:30px;-webkit-mask-image:radial-gradient(ellipse at 50% 50%,transparent 26%,#000 60%)}
+#sap-signin .tiles i{width:64px;height:64px;border-radius:16px;background:#0D1D4E;border:1.5px solid #152B66}
+#sap-signin .tiles i:nth-child(7n){background:#10235A}
+#sap-signin .tiles i:nth-child(11n){background:#173480;border-color:#24479A}
+#sap-signin .card{position:absolute;top:170px;width:440px;height:640px;border-radius:26px;background:#FFFFFF;box-shadow:0 60px 110px rgba(0,4,20,.6),0 0 0 1px rgba(255,255,255,.4);padding:46px 42px}
+#sap-signin .logo{width:84px;height:42px;border-radius:7px;background:#1F3A5F}
+#sap-signin h4{font:600 32px/1.1 Geist;color:#0E1B33;margin-top:38px;letter-spacing:-.01em}
+#sap-signin .lab{font:500 17px/1 Geist;color:#556580;margin-top:34px}
+#sap-signin .in{height:58px;border-radius:12px;border:1.5px solid #B7C2D3;margin-top:12px;display:flex;align-items:center;padding:0 18px;font:400 20px/1 Geist;color:#0E1B33}
+#sap-signin .in.f{border:2px solid #2F6BFF;box-shadow:0 0 0 4px rgba(47,107,255,.15)}
+#sap-signin .cta{height:58px;border-radius:12px;background:#2F6BFF;color:#fff;font:600 20px/1 Geist;display:grid;place-items:center;margin-top:34px}
+#sap-signin .lnk{font:500 17px/1 Geist;color:#2F6BFF;margin-top:22px;text-align:center}
+#sap-signin .chip{display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:#EEF3FB;border-radius:999px;padding:10px 16px 10px 10px;font:500 17px/1 Geist;color:#0E1B33}
+#sap-signin .chip i{width:28px;height:28px;border-radius:50%;background:#C7D3E6}
+
+/* ---------- Compositional: violet ---------- */
+#sap-compositional{background:radial-gradient(760px 600px at 46% 56%,#5B2AA8 0%,rgba(91,42,168,0) 70%),radial-gradient(700px 500px at 95% 10%,#7A1F6E 0%,rgba(122,31,110,0) 70%),linear-gradient(160deg,#170B33 0%,#100726 60%,#0B051C 100%)}
+#sap-compositional .prompt{position:absolute;left:90px;top:120px;display:flex;align-items:center;gap:16px;background:#F6F1FF;border-radius:999px;padding:20px 30px 20px 20px;font:500 25px/1 Geist;color:#1E1240;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+#sap-compositional .prompt i{width:44px;height:44px;border-radius:50%;background:#7B4DFF;display:grid;place-items:center}
+#sap-compositional .stack{position:absolute;left:110px;top:380px;width:480px;height:520px}
+#sap-compositional .pl{position:absolute;left:0;width:400px;height:400px;border-radius:40px;transform:rotateX(58deg) rotateZ(-42deg);transform-origin:50% 50%;box-shadow:0 30px 50px rgba(0,0,0,.45)}
+#sap-compositional .stage3d{position:absolute;inset:0;perspective:2400px}
+#sap-compositional .tag{position:absolute;left:600px;flex-direction:row-reverse;font:600 18px/1 Geist;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:14px;color:#E9DEFF}
+#sap-compositional .tag i{width:60px;height:1.5px;background:#9C82E8}
+#sap-compositional .ui{position:absolute;left:930px;top:250px;width:560px;height:545px;border-radius:28px;background:#FBF9FF;box-shadow:0 0 0 9px rgba(160,120,255,.14),0 0 90px rgba(140,90,255,.45),0 60px 100px rgba(0,0,0,.55);padding:36px}
+#sap-compositional .ui h5{font:600 26px/1.15 Geist;color:#1E1240}
+#sap-compositional .ui .kp{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+#sap-compositional .ui .kp div{background:#F1ECFF;border-radius:16px;padding:20px}
+#sap-compositional .ui .kp b{display:block;font:600 36px/1 Geist;color:#1E1240}
+#sap-compositional .ui .kp span{display:block;font:400 16px/1.2 Geist;color:#5E5480;margin-top:10px}
+#sap-compositional .bars{display:flex;align-items:flex-end;gap:16px;height:170px;margin-top:28px;padding:0 6px;border-bottom:1.5px solid #E2DAF5}
+#sap-compositional .bars i{flex:1;border-radius:8px 8px 0 0;background:#C9B8F7}
+#sap-compositional .bars i.h{background:#7B4DFF}
+#sap-compositional .ins{margin-top:24px;font:400 18px/1.4 Geist;color:#3C3360;display:flex;gap:12px}
+#sap-compositional .ok{position:absolute;left:1380px;top:212px;display:flex;align-items:center;gap:10px;background:#1E9E6A;color:#fff;border-radius:999px;padding:13px 20px 13px 14px;font:600 18px/1 Geist;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+</style></head><body>
+
+<!-- 1 · Agentic: documents in, the agent works, three checks, a person decides -->
+<div class="c" id="sap-agentic">
+  <div class="dots"></div>
+  <svg class="abs" style="inset:0" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" stroke="#5961C8" stroke-width="2.5">
+    <path d="M450 322H492Q506 322 506 336V466Q506 480 520 480H540"/><path d="M450 480H540"/><path d="M450 638H492Q506 638 506 624V494Q506 480 520 480"/>
+    <path d="M800 480H846"/><path d="M846 480Q860 480 860 466V300Q860 286 874 286H890"/><path d="M846 480H890"/><path d="M846 480Q860 480 860 494V660Q860 674 874 674H890"/>
+    <path d="M1210 286H1222Q1236 286 1236 300V466Q1236 480 1250 480H1265"/><path d="M1210 480H1265"/><path d="M1210 674H1222Q1236 674 1236 660V494Q1236 480 1250 480"/>
+    <g fill="#C9CDFF" stroke="none"><circle cx="520" cy="480" r="7"/><circle cx="846" cy="480" r="7"/><circle cx="1250" cy="480" r="7"/></g>
+    <g fill="none" stroke="#9AA2FF" stroke-width="10" opacity=".25"><circle cx="520" cy="480" r="9"/><circle cx="846" cy="480" r="9"/><circle cx="1250" cy="480" r="9"/></g>
+  </svg>
+  <div class="card doc" style="top:260px"><span class="ic" style="background:#E0524F"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg></span><div><b>Order confirmation</b><span>PDF</span></div></div>
+  <div class="card doc" style="top:418px"><span class="ic" style="background:#3F7BE8"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg></span><div><b>Purchase order</b><span>DOC</span></div></div>
+  <div class="card doc" style="top:576px"><span class="ic" style="background:#2E9E5B"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg></span><div><b>Past orders</b><span>XLS</span></div></div>
+  <div class="agent">
+    <svg width="74" height="74" viewBox="0 0 24 24" fill="none" stroke="#D9DCFF" stroke-width="1.4" stroke-linejoin="round"><path d="M10 3l1.6 4.6L16 9.2l-4.4 1.6L10 15.4l-1.6-4.6L4 9.2l4.4-1.6z"/><path d="M17.5 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg>
+    <b>AI Agent</b><span>Parsing, comparing and assessing risk</span>
+  </div>
+  <div class="card chk" style="top:216px"><b>Price and terms</b><div class="st" style="color:#6FE0A0"><svg width="30" height="30" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#2FB874"/><path d="M7 12.5l3.2 3L17 8.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Matched<i></i></div></div>
+  <div class="card chk" style="top:410px"><b>Quantity and dates</b><div class="st" style="color:#6FE0A0"><svg width="30" height="30" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#2FB874"/><path d="M7 12.5l3.2 3L17 8.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Matched<i></i></div></div>
+  <div class="card chk" style="top:604px;border-color:#7C6A3A"><b>Delivery and logistics</b><div class="st" style="color:#FFC85A"><svg width="32" height="30" viewBox="0 0 26 24"><path d="M13 2L25 22H1z" fill="#F5B83D" stroke="#F5B83D" stroke-width="2" stroke-linejoin="round"/><path d="M13 9v6" stroke="#3A2A05" stroke-width="2.4" stroke-linecap="round"/><circle cx="13" cy="18.5" r="1.4" fill="#3A2A05"/></svg>Needs review<i></i></div></div>
+  <div class="card dec">
+    <svg width="46" height="46" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11.5" fill="#2E3680"/><circle cx="12" cy="9.5" r="3.4" fill="none" stroke="#DADDFF" stroke-width="1.8"/><path d="M5.8 18.5c1.3-2.6 3.5-3.9 6.2-3.9s4.9 1.3 6.2 3.9" fill="none" stroke="#DADDFF" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <b>Your decision</b>
+    <div class="btn" style="background:#3DBA68;color:#082814;margin-top:26px">Approve</div>
+    <div class="btn" style="border:1.5px solid #8C93FF;color:#E4E6FF">Request changes</div>
+  </div>
+</div>
+
+<!-- 2 · Search: one query, results you can act on -->
+<div class="c" id="sap-search">
+  <div class="bar">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F2C08E" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L20 20"/></svg>
+    <div class="q">purchase<i></i></div><span class="k">⌘ K</span>
+  </div>
+  <div class="panel">
+    <div class="ov"><svg width="26" height="26" viewBox="0 0 24 24" fill="#F2A65A"><path d="M12 3l1.9 5.2 5.1 1.8-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.8z"/></svg>Two items need you today: one approval and one follow up.</div>
+    <div class="chips"><span class="on">All</span><span>Orders</span><span>Travel</span><span>Contracts</span></div>
+    <div class="row"><span class="ring"><i></i></span><span class="t"><b>PO 4500012345 · Northwind Office Supplies</b><span>Purchase order · Updated today</span></span><span class="src"><i style="background:#F2A65A"></i>Procurement</span><span class="act">Follow up</span></div>
+    <div class="row hot"><span class="ring"><i style="border-color:#F2A65A"></i></span><span class="t"><b>PR 7800098765 · IT equipment request</b><span>Purchase requisition · Awaiting you</span></span><span class="src"><i style="background:#F2A65A"></i>Procurement</span><span class="act p">Approve</span></div>
+    <div class="row"><span class="ring"><i></i></span><span class="t"><b>Business trip · SFO → BLR</b><span>Travel request · Approved</span></span><span class="src"><i style="background:#5FD3B0"></i>Travel</span><span class="act">Open</span></div>
+    <div class="row"><span class="ring"><i></i></span><span class="t"><b>Contract CNT-2026-001 · Facilities</b><span>Contract · Expires in 41 days</span></span><span class="src"><i style="background:#E7D27A"></i>Contracts</span><span class="act">Open</span></div>
+  </div>
+</div>
+
+<!-- 3 · Collections: the worklist behind, the agent's recommendation in front, a person approves -->
+<div class="c" id="sap-collections">
+  <div class="dots"></div>
+  <div class="wl">
+    <h3>My collection worklist</h3><div class="sub">48 customers · 12 need action today</div>
+    <div class="hd"><span>Customer</span><span>Overdue</span><span>Priority</span><span>Next step</span></div>
+    <div class="r"><span>Northwind Traders<small>3 company codes</small></span><span>€ 182,400</span><span><span class="pr" style="background:#FDE3DE;color:#A3271A">✦ Very high</span></span><span>Reminder</span></div>
+    <div class="r"><span>Blue Harbor Foods<small>2 company codes</small></span><span>€ 96,150</span><span><span class="pr" style="background:#FFEBD2;color:#8A4A06">✦ High</span></span><span>Call</span></div>
+    <div class="r"><span>Kestrel Logistics<small>1 company code</small></span><span>€ 64,900</span><span><span class="pr" style="background:#FFEBD2;color:#8A4A06">✦ High</span></span><span>Dispute</span></div>
+    <div class="r"><span>Alder and Finch<small>4 company codes</small></span><span>€ 41,280</span><span><span class="pr" style="background:#E3F1EE;color:#1F5C51">✦ Medium</span></span><span>Wait</span></div>
+    <div class="r"><span>Copperline Retail<small>2 company codes</small></span><span>€ 27,640</span><span><span class="pr" style="background:#E3F1EE;color:#1F5C51">✦ Medium</span></span><span>Reminder</span></div>
+  </div>
+  <div class="nba">
+    <div class="ov"><svg width="22" height="22" viewBox="0 0 24 24" fill="#7FE3C9"><path d="M12 3l1.9 5.2 5.1 1.8-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.8z"/></svg>Next best action</div>
+    <h3>Send Northwind a reminder with the two open credit notes</h3>
+    <ul>
+      <li><i></i>Three invoices are 45 days past due</li>
+      <li><i></i>Two credit notes can offset part of the balance</li>
+      <li><i></i>No contact in the last 14 days</li>
+    </ul>
+    <div class="btns"><span style="background:#3FC7A8;color:#062520">Approve and draft</span><span style="border:1.5px solid #3FC7A8;color:#D8FFF4">Edit</span></div>
+  </div>
+  <div class="who"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F1FFFB" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="9" r="3.6"/><path d="M5.5 19c1.4-2.8 3.7-4.2 6.5-4.2s5.1 1.4 6.5 4.2"/></svg></i>A person decides</div>
+</div>
+
+<!-- 4 · Sign-in: many apps around, one sign-in card, its three steps -->
+<div class="c" id="sap-signin">
+  <div class="tiles" id="tiles"></div>
+  <div class="card" style="left:110px;transform:perspective(2000px) rotateY(24deg) scale(.86);transform-origin:100% 50%">
+    <div class="logo"></div><h4>Sign in</h4>
+    <div class="lab">Email or user name</div><div class="in">dana.lee@company.com</div>
+    <div class="cta">Continue</div><div class="lnk">Need help signing in?</div>
+  </div>
+  <div class="card" style="left:1050px;transform:perspective(2000px) rotateY(-24deg) scale(.86);transform-origin:0 50%">
+    <div class="logo"></div><h4>Welcome back, Dana</h4>
+    <div class="chip"><i></i>dana.lee@company.com</div>
+    <div style="margin-top:40px;display:grid;gap:16px">
+      <div style="height:22px;border-radius:6px;background:#E6ECF5;width:88%"></div>
+      <div style="height:22px;border-radius:6px;background:#E6ECF5;width:70%"></div>
+      <div style="height:22px;border-radius:6px;background:#E6ECF5;width:80%"></div>
+    </div>
+    <div class="cta" style="background:#E9F0FF;color:#2F6BFF;margin-top:60px">Sign out</div>
+  </div>
+  <div class="card" style="left:580px;top:150px;height:680px;z-index:2">
+    <div class="logo"></div><h4>Enter your password</h4>
+    <div class="chip"><i></i>dana.lee@company.com</div>
+    <div class="lab" style="margin-top:28px">Password</div><div class="in f">••••••••••<span style="margin-left:auto;font-size:16px;color:#556580">Show</span></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:22px;font:500 17px/1 Geist;color:#0E1B33"><span style="width:24px;height:24px;border-radius:6px;background:#2F6BFF;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4L19 7"/></svg></span>Stay signed in</div>
+    <div class="cta">Sign in</div><div class="lnk">Forgot password?</div>
+  </div>
+</div>
+
+<!-- 5 · Compositional: an intent, the layers that do one job each, a validated composition -->
+<div class="c" id="sap-compositional">
+  <div class="dots"></div>
+  <div class="prompt"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12 3l1.9 5.2 5.1 1.8-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.8z"/></svg></i>Help me understand why attrition is rising</div>
+  <div class="stack"><div class="stage3d">
+    <div class="pl" style="top:180px;background:#2A1658;border:2px solid #4B2D8F"></div>
+    <div class="pl" style="top:110px;background:#3A1E78;border:2px solid #6440B8"></div>
+    <div class="pl" style="top:40px;background:#4E29A0;border:2px solid #8A62E6"></div>
+    <div class="pl" style="top:-30px;background:#6B3BD6;border:2.5px solid #C2A8FF;box-shadow:0 0 70px rgba(160,120,255,.55),0 30px 50px rgba(0,0,0,.45)"></div>
+  </div></div>
+  <div class="tag" style="top:538px">Guardrails<i></i></div>
+  <div class="tag" style="top:608px">Design system<i></i></div>
+  <div class="tag" style="top:678px">IXO<i></i></div>
+  <div class="tag" style="top:748px">LLM<i></i></div>
+  
+  <div class="ui">
+    <h5>Attrition is rising in two teams</h5>
+    <div class="kp"><div><b>14.2%</b><span>Attrition, last 12 months</span></div><div><b>+3.1</b><span>Points since last year</span></div></div>
+    <div class="bars"><i style="height:38%"></i><i style="height:46%"></i><i style="height:42%"></i><i class="h" style="height:88%"></i><i style="height:50%"></i><i class="h" style="height:76%"></i></div>
+    <div class="ins"><svg width="22" height="22" viewBox="0 0 24 24" fill="#7B4DFF" style="flex:none;margin-top:2px"><path d="M12 3l1.9 5.2 5.1 1.8-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.8z"/></svg>Most exits follow a manager change within six months.</div>
+  </div>
+  <div class="ok"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#fff"/><path d="M7 12.5l3.2 3L17 8.8" fill="none" stroke="#1E9E6A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Validated</div>
+</div>
+
+<script>const t=document.getElementById('tiles');t.innerHTML='<i></i>'.repeat(22*14)</script>
+</body></html>
