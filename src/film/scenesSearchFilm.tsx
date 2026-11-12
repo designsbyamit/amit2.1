@@ -3,12 +3,12 @@
 // of every application, results from all of them, and an action that opens the right application.
 import logoLoader from '../assets/logo-loader.svg?raw'
 import { C, In, Words, Label, Scene, mono } from './ui'
-import { Over, Pill, Cursor } from './kit'
+import { Pill, Cursor } from './kit'
 import { seg, easeOut, easeInOut, easeOutBack, clamp, lerp } from './engine'
 import { L, FONT72, Shell, Field, Scaled, Pointer, pathAt, press, typed, shellX, FIELD_W } from './searchUi'
 import { APPS, SCENARIOS, type AppKey } from '../components/case/search/globalSearchData'
 
-export const SEARCH_FILM_DURATION = 106
+export const SEARCH_FILM_DURATION = 102
 
 const sc = SCENARIOS[0]
 const QUERY = sc.query
@@ -354,26 +354,13 @@ export function SAnywhere({ t }: { t: number }) {
   )
 }
 
-/* ───────────── 7 · RESULT + SIGNATURE (97-106) ───────────── */
+/* ───────────── 7 · SIGNATURE (97-102) ───────────── */
 export function SResult({ t }: { t: number }) {
-  const sign = easeOut(seg(t, 102.6, 103.2))
+  const sign = easeOut(seg(t, 97.1, 97.8))
   return (
-    <Scene t={t} s={97} e={106}>
-      <div style={{ opacity: 1 - seg(t, 102.2, 102.7) }}>
-        <In t={t} a={97.2} o={102} style={{ left: 100, top: 60 }}><Over style={{ position: 'static' }}>Where it stands</Over></In>
-        <Words t={t} a={97.4} text="A direction, tested and validated." size={76} style={{ left: 100, top: 112, width: 1750 }} />
-        {[['10', 'capabilities'], ['1', 'pattern library'], ['6', 'journeys in a live prototype']].map(([n, l], i) => (
-          <In key={l} t={t} a={98.6 + i * 0.6} y={30} style={{ left: 100 + i * 600, top: 400, width: 560 }}>
-            <div style={{ padding: '44px 40px', borderRadius: 22, background: C.panel, border: `1px solid ${C.lime}` }}>
-              <div style={{ fontSize: 170, fontWeight: 100, color: C.lime, letterSpacing: '-0.05em', lineHeight: 1 }}>{n}</div>
-              <div style={{ fontSize: 38, fontWeight: 300, marginTop: 14 }}>{l}</div>
-            </div>
-          </In>
-        ))}
-        <In t={t} a={100.6} style={{ left: 100, top: 800, width: 1700 }}><div style={{ fontSize: 40, fontWeight: 200 }}>One search, in every application, that answers, shows its sources, <span style={{ color: C.lime }}>and opens the work that follows.</span></div></In>
-      </div>
+    <Scene t={t} s={97} e={102}>
       <div style={{ position: 'absolute', inset: 0, background: C.bg, opacity: sign }} />
-      {t > 102.6 && (
+      {t > 97.1 && (
         <div style={{ position: 'absolute', left: 0, width: 1920, top: 330, textAlign: 'center', opacity: sign }}>
           <div className="logo-loader-mark" aria-hidden style={{ width: 130, height: 130, margin: '0 auto', color: C.ink }} dangerouslySetInnerHTML={{ __html: logoLoader.replace(/<title>.*?<\/title>/, '').replace(/ width="96" height="96"/, ' width="100%" height="100%"') }} />
           <div style={{ fontSize: 84, fontWeight: 200, letterSpacing: '-0.035em', marginTop: 40 }}>AI-Powered Search</div>
