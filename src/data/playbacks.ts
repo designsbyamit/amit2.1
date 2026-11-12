@@ -150,7 +150,7 @@ export const playbacks: Playback[] = [
   },
   {
     id: 'sap-search',
-    headline: 'Search that talks back and gets things done',
+    headline: 'Enterprise search that gets things done',
     dek: 'One search across the suite that answers in plain language, shows its sources and opens the work that follows.',
     led: 'I led eight designers in three groups, alongside engineering and product.',
     roleNote: 'Design Lead for the search vision and its three workstreams.',

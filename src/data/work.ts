@@ -387,7 +387,7 @@ const allCaseStudies: CaseStudy[] = [
     image: `${B}images/case-studies/sap-search/cover.jpg`,
     number: '05',
     category: 'Enterprise software · AI search · Enterprise UX',
-    title: 'Search that talks back and gets things done',
+    title: 'Enterprise search that gets things done',
     shortTitle: 'AI-Powered Search',
     tagline: 'Turning enterprise search into a unified path from questions to action.',
     role: 'Design Lead',
