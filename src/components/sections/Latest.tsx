@@ -31,7 +31,7 @@ export default function Latest() {
   const img = (src?: string, pos?: string) => src ? <img src={src} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: pos }} /> : <div className="w-full h-full bg-surface-1" />
   return (
     <div className="mt-16 md:mt-24 pt-10 md:pt-14 border-t" style={{ borderColor: 'var(--line-2)' }} id="latest">
-      <h3 className="text-label text-ink-3 mb-8 md:mb-10">Practice, workshop and writing</h3>
+      <h3 className="text-label text-ink-3 mb-8 md:mb-10">Practice, community and workshops</h3>
         <ul className="grid grid-cols-1 gap-6 md:gap-8">
           <Item to="/community/design-hub" kind="Community" title="Leading Design Hub India" text="14 events this year, 252+ members and volunteers who own their spaces." cta="Read the story" delay={0}
             visual={img(`${import.meta.env.BASE_URL}images/design-hub/film-poster.webp`)} />

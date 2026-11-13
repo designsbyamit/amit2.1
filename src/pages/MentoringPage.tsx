@@ -48,7 +48,7 @@ const templates: { id: string; title: string; motif: 'checklist' | 'loop' | 'pha
   },
   {
     id: 'portfolio-viz', title: 'Portfolio data visualisation', motif: 'spark', tone: 'graphite',
-    use: 'Enter your projects once and see your portfolio as a picture: range, depth and gaps. An interactive version is in the works.',
+    use: 'Enter your projects once and see your portfolio as a picture: range, depth and gaps.',
     prompts: ['Project name, year and your role', 'Type of work and the outcome you can evidence', 'Skills each project shows', 'What the picture says about the story you are telling'],
   },
 ]

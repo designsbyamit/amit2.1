@@ -24,7 +24,7 @@ export default function LeadingDesignPage() {
               <p className="text-overline text-ink-3 mb-5">Guide · Managing design teams</p>
               <motion.h1 className="text-display-xl text-ink" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease }}>Leading Design</motion.h1>
               <motion.p className="text-body-lg text-ink-2 mt-6 max-w-2xl" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.15, ease }}>
-                Stories, points and worksheets for new and mid-level design managers, in five chapters. Frameworks where they help.
+                Stories, points and worksheets for new and mid-level design managers, in four chapters. Frameworks where they help.
               </motion.p>
               <p className="text-body text-ink-2 mt-4 max-w-2xl">Each chapter takes one part of managing a design team and gives you the story behind it, the points to carry into your own team, and worksheets to write on. Where a chapter has a framework, it is there too.</p>
               <div className="flex flex-wrap gap-3 mt-8">
@@ -69,10 +69,10 @@ export default function LeadingDesignPage() {
             </div>
           </div>
           <ol className="flex flex-col">
-            {chapters.map((c, i) => {
+            {chapters.filter(c => c.ready).map((c, i) => {
               const body = (
                 <>
-                  <span className="font-mono text-sm text-ink-3 md:col-span-1">{c.n}</span>
+                  <span className="font-mono text-sm text-ink-3 md:col-span-1">{String(i + 1).padStart(2, '0')}</span>
                   <div className="md:col-span-7 flex flex-col gap-3">
                     <h3 className="text-title text-ink">{c.title}</h3>
                     <p className="text-body text-ink-2 max-w-measure-xl">{c.summary}</p>

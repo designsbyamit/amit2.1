@@ -81,7 +81,7 @@ const resources: Resource[] = [
     topics: ['leadership', 'managing design', 'hiring'],
     title: 'Leading Design',
     type: ['Guide', 'Worksheets'],
-    description: 'Stories, points and worksheets for new and mid-level design managers, in five chapters, with frameworks where they help. Start with building a design team: team shape, hiring and the first ninety days.',
+    description: 'Stories, points and worksheets for new and mid-level design managers, in four chapters, with frameworks where they help. Start with building a design team: team shape, hiring and the first ninety days.',
     outcomes: ['A team shaped on purpose', 'A hiring experience people respect', 'Editable worksheets with filled examples', 'A guide that grows chapter by chapter'],
     tags: ['Leadership', 'Hiring', 'Management', 'Design'],
     filterTags: ['Leadership', 'Career Growth'],

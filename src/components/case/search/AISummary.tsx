@@ -15,9 +15,9 @@ const I = ({ n, s = 16, c = P.blue, w = 1.8 }: { n: keyof typeof path; s?: numbe
   <svg width={s} height={s} viewBox="0 0 24 24" aria-hidden style={{ flex: 'none', display: 'block' }}><path d={path[n]} fill="none" stroke={c} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round" /></svg>
 
 const INSIGHTS: { t: ReactNode; refs: number[] }[] = [
-  { t: <>ABC Company remained a <b style={{ fontWeight: 700 }}>key supplier of raw materials throughout FY 2024–2025</b>, contributing to 27% of total raw material procurement.</>, refs: [0, 4, 5] },
-  { t: <>Procurement peaked in Q3 (Oct–Dec 2024), driven by increased demand for copper wire and steel sheets in production.</>, refs: [1, 2] },
-  { t: <>Cost efficiency improved by 6% compared to FY 2023–2024, due to better negotiated rates and bulk ordering strategies.</>, refs: [3, 6] },
+  { t: <>ABC Company remained a <b style={{ fontWeight: 700 }}>key supplier of raw materials throughout FY 2024-2025</b>, contributing to 27% of total raw material procurement.</>, refs: [0, 4, 5] },
+  { t: <>Procurement peaked in Q3 (Oct-Dec 2024), driven by increased demand for copper wire and steel sheets in production.</>, refs: [1, 2] },
+  { t: <>Cost efficiency improved by 6% compared to FY 2023-2024, due to better negotiated rates and bulk ordering strategies.</>, refs: [3, 6] },
   { t: <>Delivery performance was strong, with a 92% on-time delivery rate and minimal quality issues reported.</>, refs: [2, 5] },
 ]
 const REFS = ['PO-2025-001876', 'PO-2025-001902', 'PO-2025-001944', 'CT-2024-0311', 'PO-2025-002015', 'PO-2025-002088', 'PR-2025-1823']
