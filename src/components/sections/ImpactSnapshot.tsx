@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { metrics } from '../../data/impact'
-import Button from '../ds/Button'
+import CareerAtlasPreview from './CareerAtlasPreview'
 
 function CountUp({ target, suffix = '' }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0)
@@ -53,14 +53,7 @@ export default function ImpactSnapshot() {
             </div>
           ))}
         </dl>
-        <div className="mt-8 md:mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-5 rounded-3 border p-6 md:p-8" style={{ borderColor: 'var(--line-1)', background: 'rgb(var(--surface-1-rgb))' }}>
-          <div className="max-w-2xl">
-            <p className="text-overline text-ink-3 mb-3">Career atlas</p>
-            <p className="font-serif text-ink" style={{ fontSize: 'var(--fs-figure)', lineHeight: 1.2 }}>The numbers are the headline. The story is in the 61+ projects behind them.</p>
-            <p className="text-body-sm text-ink-2 mt-3">An interactive atlas of how my roles, industries, team scale and capabilities changed from 2011 to 2024, with every finding tagged as fact, calculation, inference or hypothesis.</p>
-          </div>
-          <Button href="/career-atlas/" variant="secondary" arrow className="shrink-0 self-start md:self-center">Explore my Career Atlas</Button>
-        </div>
+        <CareerAtlasPreview />
       </div>
     </section>
   )
