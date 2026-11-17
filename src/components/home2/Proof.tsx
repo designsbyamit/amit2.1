@@ -37,15 +37,23 @@ export default function Proof() {
     const tl = gsap.timeline({
       defaults: { ease: 'power3.inOut' },
       scrollTrigger: {
-        trigger: root, start: 'top top', end: () => `+=${window.innerHeight * N * 0.85}`, pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1,
+        trigger: root, start: 'top top', end: () => `+=${window.innerHeight * (N + 0.5) * 0.8}`, pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1,
         snap: { snapTo: 'labelsDirectional', duration: { min: 0.25, max: 0.7 }, delay: 0.05, ease: 'power2.inOut' },
-        onUpdate: s => setCur(Math.min(N - 1, Math.floor(s.progress * N * 0.999))),
+        onUpdate: s => setCur(Math.max(0, Math.min(N - 1, Math.floor(s.progress * (N + 0.75) - 0.45)))),
       },
     })
-    // Intro: the dot arrives and the counter appears.
-    tl.from(q('.pf-dot'), { scale: 0, duration: 0.25, ease: 'back.out(3)' }, 0)
+    // Intro: all nine covers cascade up in depth, then fall back into the dot.
+    const deck = q('.pf-deck > *')
+    gsap.set(deck, { yPercent: 160, opacity: 0, scale: 0.9, transformOrigin: '50% 0%' })
+    gsap.set(q('.pf-dot'), { scale: 0 })
+    // The deck rises as the section scrolls in, so there is never an empty screen.
+    gsap.to(deck, { yPercent: (i: number) => -i * 9, scale: (i: number) => 1 - i * 0.055, opacity: (i: number) => 1 - i * 0.07, ease: 'expo.out', stagger: 0.04,
+      scrollTrigger: { trigger: root, start: 'top 95%', end: 'top top', scrub: 0.5 } })
+    tl.to(deck, { scale: 0.02, yPercent: 0, opacity: 0, transformOrigin: '50% 50%', duration: 0.3, stagger: { each: 0.02, from: 'end' }, ease: 'power3.in' }, 0.05)
+      .to(q('.pf-dot'), { scale: 1, duration: 0.12, ease: 'back.out(3)' }, 0.3)
+    const D = 0.45
     for (let i = 0; i < N; i++) {
-      const at = i + 0.05
+      const at = D + i + 0.05
       const words = texts[i].querySelectorAll('.w'), meta = texts[i].querySelectorAll('.pf-meta')
       tl.to(q('.pf-dot'), { scale: 0, duration: 0.15 }, at)
         .to(frames[i], { clipPath: OPEN, duration: 0.4 }, at)
@@ -53,10 +61,10 @@ export default function Proof() {
         .to(meta, { opacity: 1, y: 0, duration: 0.25 }, at + 0.25)
         .addLabel(`p${i}`, at + 0.45)
       if (i < N - 1) {
-        tl.to(words, { yPercent: -110, opacity: 0, duration: 0.25, stagger: 0.01, ease: 'power2.in' }, i + 0.72)
-          .to(meta, { opacity: 0, y: -10, duration: 0.15 }, i + 0.72)
-          .to(frames[i], { clipPath: SHUT, duration: 0.25, ease: 'power3.in' }, i + 0.75)
-          .to(q('.pf-dot'), { scale: 1, duration: 0.12 }, i + 0.92)
+        tl.to(words, { yPercent: -110, opacity: 0, duration: 0.25, stagger: 0.01, ease: 'power2.in' }, D + i + 0.72)
+          .to(meta, { opacity: 0, y: -10, duration: 0.15 }, D + i + 0.72)
+          .to(frames[i], { clipPath: SHUT, duration: 0.25, ease: 'power3.in' }, D + i + 0.75)
+          .to(q('.pf-dot'), { scale: 1, duration: 0.12 }, D + i + 0.92)
       }
     }
     tl.to({}, { duration: 0.3 })
@@ -102,7 +110,14 @@ export default function Proof() {
         </div>
 
         {/* the lens */}
-        <Link to={`/craft/${it.id}`} aria-label={`Open ${it.title}`} className="col-span-4 md:col-span-8 lg:col-span-9 order-1 md:order-2 relative block aspect-[5/4] md:aspect-[18/10] -mx-[var(--gutter)] md:mx-0 md:-mr-[var(--gutter)] md:rounded-l-3 overflow-hidden">
+        <Link to={`/craft/${it.id}`} aria-label={`Open ${it.title}`} className="col-span-4 md:col-span-8 lg:col-span-9 order-1 md:order-2 relative block aspect-[5/4] md:aspect-[18/10] -mx-[var(--gutter)] md:mx-0 md:-mr-[var(--gutter)]">
+          {/* the depth deck: every cover, stacked back into the screen */}
+          <div className="pf-deck absolute inset-0 pointer-events-none" aria-hidden="true">
+            {ITEMS.map((x, i) => (
+              <img key={x.id} src={`${import.meta.env.BASE_URL}images/covers/${x.id}-640.webp`} alt="" decoding="async"
+                className="absolute inset-0 w-full h-full object-cover rounded-3 shadow-4" style={{ zIndex: N - i }} />
+            ))}
+          </div>
           {ITEMS.map((x, i) => (
             <div key={x.id} className="pf-frame absolute inset-0">
               <CaseThumb id={x.id} live={wide && i === cur} flush className="w-full h-full" />

@@ -49,6 +49,8 @@ function Shapes() {
       <g className="p-shape" data-k="t">
         <polygon className="p-draw" points="50,30.4 67,59.8 33,59.8" fill={stroke('--viz-res')} fillOpacity={0} stroke={stroke('--viz-res')} strokeWidth="0.32" strokeLinejoin="round" pathLength={1} />
       </g>
+      {/* ripples off the dot */}
+      {[0, 1, 2].map(i => <circle key={i} className="p-ring" cx="50" cy="50" r="4" fill="none" stroke="rgb(var(--signal-rgb) / 0.6)" strokeWidth="0.18" opacity="0" />)}
       {/* the meeting point */}
       <circle className="p-halo" cx="50" cy="50" r="4" fill="rgb(var(--signal-rgb) / 0.09)" />
       <circle className="p-core" cx="50" cy="50" r="1.6" fill="rgb(var(--signal-rgb))" />
@@ -83,6 +85,7 @@ export default function Prologue() {
     gsap.set(draws, { strokeDasharray: 1, strokeDashoffset: 1 })
     shapes.forEach((g, i) => gsap.set(g, { x: FORCES[i].off[0], y: FORCES[i].off[1], scale: 0.2, transformOrigin: '50% 50%', autoAlpha: 0 }))
     gsap.set(q('.p-label, .p-meet, .p-out, .p-caption'), { autoAlpha: 0, y: 16 })
+    gsap.set(q('.p-beam'), { scaleX: 0, rotate: 0, transformOrigin: '0% 50%' })
 
     // The greeting arrives on its own, before any scroll.
     gsap.from(q('.p-ch'), { yPercent: 110, opacity: 0, duration: 1.4, ease: 'expo.out', stagger: 0.07, delay: 0.15 })
@@ -92,7 +95,7 @@ export default function Prologue() {
 
     const tl = gsap.timeline({
       defaults: { ease: 'power2.inOut' },
-      scrollTrigger: { trigger: root, start: 'top top', end: 'bottom bottom', scrub: 0.9, invalidateOnRefresh: true },
+      scrollTrigger: { trigger: root, start: 'top top', end: 'bottom bottom', scrub: 0.5, invalidateOnRefresh: true },
     })
 
     // Act 1 → 2: the letters lift away; the full stop glides to the centre and becomes the dot.
@@ -111,6 +114,7 @@ export default function Prologue() {
       .to(q('.p-lead2 .w'), { opacity: 1, yPercent: 0, stagger: 0.12, duration: 0.4, ease: 'power2.out' }, 'what+=0.9')
       .to(q('.p-sub'), { opacity: 1, duration: 0.5, ease: 'none' }, 'what+=1.7')
       .to(q('.p-core'), { scale: 1.5, duration: 0.6, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 'what+=0.4')
+      .fromTo(q('.p-ring'), { scale: 0.4, opacity: 0.9, transformOrigin: '50% 50%' }, { scale: 7, opacity: 0, duration: 1.4, stagger: 0.35, ease: 'power2.out' }, 'what+=0.1')
       .to(q('.p-what'), { autoAlpha: 0, y: -40, duration: 0.6, ease: 'power2.in' }, 'what+=2.6')
 
     // Act 3: three forces grow out of the dot, each drawn as it arrives.
@@ -139,7 +143,13 @@ export default function Prologue() {
       .to(q('.p-halo'), { scale: 3.2, duration: 1.4, ease: 'sine.inOut' }, 'shapes')
 
     // Exit: a slow push into the meeting point, handing over to the work.
-      .to(stage, { scale: 1.12, autoAlpha: 0, duration: 1, ease: 'power2.in' }, 'shapes+=2.6')
+      .addLabel('fire', 'shapes+=2.6')
+      .to(q('.p-out, .p-caption, .p-meet'), { autoAlpha: 0, duration: 0.3 }, 'fire')
+      .to(q('.p-shape, .p-ray, .p-halo'), { autoAlpha: 0, scale: 0.6, duration: 0.4, ease: 'power3.in' }, 'fire')
+      .to(q('.p-beam'), { scaleX: 1, duration: 0.5, ease: 'expo.in' }, 'fire+=0.3')
+      .to(q('.p-beam'), { rotate: (i: number) => (i - 3) * 9, duration: 0.6, ease: 'expo.out' }, 'fire+=0.85')
+      .to(q('.p-beam'), { opacity: (i: number) => (i === 3 ? 1 : 0.35), duration: 0.3 }, 'fire+=0.85')
+      .to(stage, { autoAlpha: 0, duration: 0.25, ease: 'none' }, 'fire+=1.5')
 
     // Ambient life: the halo breathes while the scene is held.
     gsap.to(q('.p-ambient'), { backgroundPosition: '60% 40%', duration: 18, repeat: -1, yoyo: true, ease: 'sine.inOut' })
@@ -162,7 +172,7 @@ export default function Prologue() {
   }
 
   return (
-    <section ref={ref} data-chapter="Hello" className="relative" style={{ height: '1100vh' }} aria-label="Introduction">
+    <section ref={ref} data-chapter="Hello" className="relative" style={{ height: '820vh' }} aria-label="Introduction">
       <div className="p-stage sticky top-0 h-screen overflow-hidden">
         <div className="p-ambient h2-ambient absolute inset-0" aria-hidden="true" />
 
@@ -188,6 +198,10 @@ export default function Prologue() {
         <div className="absolute inset-0 flex items-center justify-center" style={{ paddingTop: 'var(--header-h)' }}>
           <div className="p-field relative w-[min(84vw,56vh)] aspect-square">
             <Shapes />
+            {/* the beam the dot fires on the way out, which fans into rays */}
+            {Array.from({ length: 7 }, (_, i) => (
+              <span key={i} aria-hidden="true" className="p-beam absolute left-1/2 top-1/2 h-px w-[120vw] origin-left bg-signal pointer-events-none" style={{ transform: 'scaleX(0)' }} />
+            ))}
 
             {/* Act 2 */}
             <div className="p-what absolute inset-0 pointer-events-none">
