@@ -18,6 +18,7 @@ import ContactProvider from './components/contact/ContactProvider'
 
 // Route-level code splitting: only the page being visited is downloaded.
 const Craft = lazy(() => import('./pages/Craft'))
+const HomeV2 = lazy(() => import('./pages/HomeV2'))
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage'))
 const LeadershipStoriesPage = lazy(() => import('./pages/LeadershipStoriesPage'))
 const LeadershipStoryPage = lazy(() => import('./pages/LeadershipStoryPage'))
@@ -147,6 +148,7 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/home-v2" element={<HomeV2 />} />
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
         <Route path="/craft/engaze/film" element={<PageTransition><EngazeFilmPage /></PageTransition>} />
         <Route path="/craft/sap-collections/film" element={<PageTransition><CollectionsFilmPage /></PageTransition>} />
