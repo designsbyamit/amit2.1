@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Prologue from '../components/home2/Prologue'
-import WorksReel from '../components/home2/WorksReel'
-import PracticeStack from '../components/home2/PracticeStack'
+import Proof from '../components/home2/Proof'
+import Multiplier from '../components/home2/Multiplier'
 import Numbers from '../components/home2/Numbers'
 import AtlasWindow from '../components/home2/AtlasWindow'
 import BrandsFlow from '../components/home2/BrandsFlow'
@@ -11,7 +11,7 @@ import { ScrollTrigger } from '../components/home2/scene'
 
 /**
  * The home page as one continuous story, told in scroll:
- * Hello → what I do → three forces meet → the work → what I give back → the scale → the career atlas → the brands → what's next.
+ * Hello → the gap I work in → three forces meet → the work, through the dot → the dot multiplies into teams and a community → the scale → the career atlas → the brands → what's next.
  */
 export default function HomeV2() {
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function HomeV2() {
     <div className="home2">
       <Thread />
       <Prologue />
-      <WorksReel />
-      <PracticeStack />
+      <Proof />
+      <Multiplier />
       <Numbers />
       <AtlasWindow />
       <BrandsFlow />

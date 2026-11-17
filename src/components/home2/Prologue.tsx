@@ -14,19 +14,20 @@ import { gsap, useScene, prefersReduced } from './scene'
  */
 
 const HELLO = 'Hello'
-const LEAD = 'I lead design for AI-native enterprise software at SAP.'
-const SUB = 'Sixteen years of making complex work feel simple.'
+const LEAD = 'Software is learning to think.'
+const LEAD2 = 'It still has to learn people.'
+const SUB = 'That gap is my work. Design leader at SAP Labs, 16+ years in.'
 
 const FORCES = [
-  { k: 'c', n: '01', name: 'Human behaviour', gloss: 'How people think, decide and work.', hue: '--viz-des', pos: 'left-0 top-0 text-left', off: [-23, -15] },
-  { k: 's', n: '02', name: 'Business systems', gloss: 'The processes and data that run a company.', hue: '--viz-lead', pos: 'right-0 top-0 text-right', off: [23, -15] },
-  { k: 't', n: '03', name: 'Artificial intelligence', gloss: 'Models that can reason and act.', hue: '--viz-res', pos: 'left-1/2 -translate-x-1/2 bottom-0 text-center', off: [0, 19] },
+  { k: 'c', n: '01', name: 'People', gloss: 'How we think, decide and work.', hue: '--viz-des', pos: 'left-0 top-0 text-left', off: [-23, -15] },
+  { k: 's', n: '02', name: 'Systems', gloss: 'How a business actually runs.', hue: '--viz-lead', pos: 'right-0 top-0 text-right', off: [23, -15] },
+  { k: 't', n: '03', name: 'Intelligence', gloss: 'What machines can now do.', hue: '--viz-res', pos: 'left-1/2 -translate-x-1/2 bottom-0 text-center', off: [0, 19] },
 ] as const
 
 const OUTCOMES = [
-  { t: 'How people work', end: [10, 88], pos: 'left-0 bottom-0 text-left' },
-  { t: 'How products evolve', end: [90, 88], pos: 'right-0 bottom-0 text-right' },
-  { t: 'How businesses create lasting value', end: [50, 4], pos: 'left-1/2 -translate-x-1/2 top-0 text-center' },
+  { t: 'Work gets simpler.', end: [10, 88], pos: 'left-0 bottom-0 text-left' },
+  { t: 'Products get smarter.', end: [90, 88], pos: 'right-0 bottom-0 text-right' },
+  { t: 'Value lasts.', end: [50, 4], pos: 'left-1/2 -translate-x-1/2 top-0 text-center' },
 ] as const
 
 const stroke = (hue: string) => `rgb(var(${hue}))`
@@ -75,7 +76,8 @@ export default function Prologue() {
     }
 
     // Resting state before the scroll starts.
-    gsap.set(q('.p-lead .w, .p-sub'), { opacity: 0.08 })
+    gsap.set(q('.p-lead .w, .p-lead2 .w'), { opacity: 0.06, yPercent: 30 })
+    gsap.set(q('.p-sub'), { opacity: 0 })
     gsap.set(q('.p-what'), { autoAlpha: 0 })
     gsap.set(q('.p-core, .p-halo'), { autoAlpha: 0, transformOrigin: '50% 50%' })
     gsap.set(draws, { strokeDasharray: 1, strokeDashoffset: 1 })
@@ -105,8 +107,9 @@ export default function Prologue() {
     // Act 2: what I do, written in around the dot, word by word.
       .addLabel('what', 1.5)
       .set(q('.p-what'), { autoAlpha: 1 }, 'what')
-      .to(q('.p-lead .w'), { opacity: 1, stagger: 0.12, duration: 0.4, ease: 'none' }, 'what')
-      .to(q('.p-sub'), { opacity: 1, duration: 0.6, ease: 'none' }, 'what+=1.2')
+      .to(q('.p-lead .w'), { opacity: 1, yPercent: 0, stagger: 0.12, duration: 0.4, ease: 'power2.out' }, 'what')
+      .to(q('.p-lead2 .w'), { opacity: 1, yPercent: 0, stagger: 0.12, duration: 0.4, ease: 'power2.out' }, 'what+=0.9')
+      .to(q('.p-sub'), { opacity: 1, duration: 0.5, ease: 'none' }, 'what+=1.7')
       .to(q('.p-core'), { scale: 1.5, duration: 0.6, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 'what+=0.4')
       .to(q('.p-what'), { autoAlpha: 0, y: -40, duration: 0.6, ease: 'power2.in' }, 'what+=2.6')
 
@@ -151,6 +154,7 @@ export default function Prologue() {
         <h1 className="font-serif text-ink leading-none tracking-tightest font-light" style={{ fontSize: 'var(--fs-mega)' }}>Hello<span className="text-signal-ink">.</span></h1>
         <p className="text-body-lg text-ink-2 mt-6">I&rsquo;m Amit, a design leader at SAP Labs.</p>
         <p className="font-serif text-ink mt-16 mx-auto max-w-4xl" style={{ fontSize: 'var(--fs-d-l)', lineHeight: 1.1 }}>{LEAD}</p>
+        <p className="font-serif text-ink mt-2 mx-auto max-w-4xl" style={{ fontSize: 'var(--fs-d-l)', lineHeight: 1.1 }}>{LEAD2}</p>
         <p className="text-body-lg text-ink-2 mt-5">{SUB}</p>
         <p className="text-body-lg text-ink-2 mt-16 mx-auto max-w-2xl">Advancing the convergence of human behaviour, business systems, and artificial intelligence to shape how people work, how products evolve, and how businesses create lasting value.</p>
       </section>
@@ -190,7 +194,10 @@ export default function Prologue() {
               <p className="p-lead absolute -inset-x-2 md:inset-x-[-18%] bottom-[56%] text-center font-serif text-ink font-light" style={{ fontSize: 'var(--fs-d-l)', lineHeight: 1.08, textWrap: 'balance' }}>
                 {lead.map((w, i) => <span key={i} className="w inline-block">{w}{i < lead.length - 1 ? ' ' : ''}</span>)}
               </p>
-              <p className="p-sub absolute inset-x-0 md:inset-x-[-10%] top-[56%] text-center text-body-lg text-ink-2">{SUB}</p>
+              <p className="p-lead2 absolute -inset-x-2 md:inset-x-[-18%] top-[56%] text-center font-serif text-ink font-light" style={{ fontSize: 'var(--fs-d-l)', lineHeight: 1.08, textWrap: 'balance' }}>
+                {LEAD2.split(' ').map((w, i, a) => <span key={i} className="w inline-block">{w}{i < a.length - 1 ? '\u00a0' : ''}</span>)}
+              </p>
+              <p className="p-sub absolute inset-x-0 md:inset-x-[-10%] top-[94%] text-center text-body text-ink-3">{SUB}</p>
             </div>
 
             {/* Act 3 labels */}
@@ -211,7 +218,7 @@ export default function Prologue() {
 
         {/* Act 4 headline and the closing caption sit outside the field */}
         <p className="p-meet absolute inset-x-0 top-[calc(var(--header-h)+var(--space-20))] text-center font-serif text-ink px-6" style={{ fontSize: 'var(--fs-heading)', lineHeight: 1.15 }}>
-          Where they meet is where I work.
+          I design where they meet.
         </p>
         <p className="p-caption absolute inset-x-0 bottom-6 md:bottom-8 mx-auto max-w-2xl px-6 text-center text-body-sm text-ink-3">
           Advancing the convergence of human behaviour, business systems, and artificial intelligence to shape how people work, how products evolve, and how businesses create lasting value.

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger, prefersReduced } from './scene'
 
 /** Must match the data-chapter names on the page's sections, in order. */
-const CHAPTERS = ['Hello', 'Work', 'Practice', 'Scale', 'Atlas', 'Brands', 'Next']
+const CHAPTERS = ['Hello', 'Work', 'Teams', 'Scale', 'Atlas', 'Brands', 'Next']
 const find = (name: string) => document.querySelector<HTMLElement>(`[data-chapter="${name}"]`)
 
 /** The thread that holds the story together: a quiet rail on the left with the chapters and a line that fills as you read.

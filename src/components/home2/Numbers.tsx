@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { metrics } from '../../data/impact'
 import { gsap, useScene } from './scene'
 
-const SHOW = ['Years in design', 'Products and platforms designed end to end', 'Industries and domains', 'Brands and customers', 'Designers hired across organisations', 'Members in the Design Hub community I drive']
+const SHOW = ['Years in design', 'Products and platforms designed end to end', 'Industries and domains', 'Brands and customers']
 const rows = SHOW.map(l => metrics.find(m => m.label === l)!).filter(Boolean)
 
 /** The scale of it, as type: each number counts up as its row crosses the screen, rows drifting in from alternate sides. */
