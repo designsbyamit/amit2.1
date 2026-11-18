@@ -7,6 +7,7 @@ import { gatedCases } from '../data/nda'
 import { caseStudies } from '../data/work'
 import { publishedStories, storySlug } from '../data/leadership'
 import { library } from '../data/library'
+import { films } from '../data/films'
 
 export const SITE = {
   /** Production is www; the staging branch (neo) is a beta that points at itself and is kept out of search. */
@@ -66,6 +67,17 @@ const base: RouteMeta[] = [
   { path: '/design-system/reference', title: T('Design system: full reference'), description: 'Principles, tokens, icons, illustration, pictograms, imagery, components, interaction and motion behind this site.', noindex: true },
 ]
 
+/** Pages that live outside the main menu: the home versions in review, the films and the working prototypes. */
+const extras: RouteMeta[] = [
+  { path: '/home-v2', title: base[0].title, description: base[0].description, noindex: true },
+  { path: '/home-v3', title: base[0].title, description: base[0].description, noindex: true },
+  ...Object.values(films).map(f => ({ path: f.to, title: T(`${f.title}: the film`), description: `A short film about ${f.title}.`, type: 'article' as const })),
+  ...['v1', 'v2', 'v3'].map(v => ({ path: `/craft/sap-agentic/film-${v}`, title: T(`Agentic Order Confirmations: the film (${v})`), description: 'An earlier cut of the film.', noindex: true })),
+  { path: '/labs/order-confirmation', title: T('Prototype: Agentic Order Confirmations'), description: 'A working prototype.', noindex: true },
+  { path: '/labs/engaze', title: T('Prototype: Engaze'), description: 'A working prototype.', noindex: true },
+  { path: '/labs/ai-search', title: T('Prototype: AI-Powered Search'), description: 'A working prototype.', noindex: true },
+]
+
 const projects: RouteMeta[] = playbacks.flatMap(p => {
   const cs = caseStudies.find(c => c.id === p.id)
   const out: RouteMeta[] = [{ path: `/craft/${p.id}`, title: T(p.headline), description: p.dek, image: `/og/${p.id}.jpg`, type: 'article' }]
@@ -84,7 +96,7 @@ const stories: RouteMeta[] = publishedStories.map(s => ({
 
 const libraryRoutes: RouteMeta[] = library.map(e => ({ path: `/learn/library/${e.slug}`, title: T(e.title), description: e.summary, type: 'article' as const }))
 
-export const routes: RouteMeta[] = [...base, ...projects, ...shortStoryRoutes, ...stories, ...libraryRoutes]
+export const routes: RouteMeta[] = [...base, ...extras, ...projects, ...shortStoryRoutes, ...stories, ...libraryRoutes]
 const byPath = new Map(routes.map(r => [r.path, r]))
 const groups = [...routes.map(r => r.group).filter((g): g is string => !!g), '/leadership/cases/']
 

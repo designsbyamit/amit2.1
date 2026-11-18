@@ -76,7 +76,7 @@ export default function Signal() {
 
   useLayoutEffect(() => {
     const el = root.current, cv = canvas.current
-    if (!el || !cv) return
+    if (!el || !cv || !vp.w || !vp.h) return
     const headerH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 70
     const L: Layout = computeLayout(vp.w, vp.h, headerH)
 
@@ -131,6 +131,7 @@ export default function Signal() {
     let visible = true, raf = 0
     const lastClip = ['', '', '']
     const lastTab = [-2, -2, -2]
+    let lastCard = ''
     const tick = (now: number) => {
       raf = requestAnimationFrame(tick)
       if (!visible || document.hidden) return
@@ -170,15 +171,17 @@ export default function Signal() {
 
       const cp = (1 - Math.min(1, Math.max(0, st.card))) * 50
       const cclip = `inset(${cp.toFixed(2)}% ${cp.toFixed(2)}% ${cp.toFixed(2)}% ${cp.toFixed(2)}% round 16px)`
-      cards.current.forEach(c => {
-        if (!c) return
-        const on = st.card > 0.002
-        c.style.opacity = on ? '1' : '0'
-        c.style.clipPath = cclip
-        const live = st.card > 0.6
-        c.style.pointerEvents = live ? 'auto' : 'none'
-        c.tabIndex = live ? 0 : -1
-      })
+      if (cclip !== lastCard) {
+        lastCard = cclip
+        const on = st.card > 0.002, live = st.card > 0.6
+        cards.current.forEach(c => {
+          if (!c) return
+          c.style.opacity = on ? '1' : '0'
+          c.style.clipPath = cclip
+          c.style.pointerEvents = live ? 'auto' : 'none'
+          c.tabIndex = live ? 0 : -1
+        })
+      }
       if (count.current) {
         const tm = Math.min(1, Math.max(0, st.team)), cm = Math.min(1, Math.max(0, st.comm))
         const v = cm > 0 ? Math.round(200 + 52 * cm) : Math.round(61 + 139 * tm)
@@ -392,7 +395,7 @@ export default function Signal() {
     <section ref={root} className="relative" style={{ height: `${TOTAL * VH + 100}vh` }} aria-label="Amit Kumar Tiwari, design leader">
       <div className="sticky top-0 h-screen overflow-hidden">
         <SignalBackdrop />
-        <canvas ref={canvas} className="absolute inset-0 w-full h-full" aria-hidden="true" />
+        <canvas key={`${vp.w}x${vp.h}`} ref={canvas} className="absolute inset-0 w-full h-full" aria-hidden="true" />
         {['Human behaviour', 'Business', 'Technology'].map((l, i) => (
           <p key={l} ref={el => { labels.current[i] = el }} className="absolute left-0 top-0 text-label whitespace-nowrap pointer-events-none" style={{ color: FORCE_CSS[i], opacity: 0 }} aria-hidden="true">{l}</p>
         ))}

@@ -74,12 +74,13 @@ function makeGL(canvas: HTMLCanvasElement): LightRenderer | null {
       gl.bufferData(gl.ARRAY_BUFFER, buf.subarray(0, count * STRIDE), gl.DYNAMIC_DRAW)
       gl.drawArrays(gl.POINTS, 0, count)
     },
-    dispose() { gl.deleteBuffer(vbo); gl.deleteVertexArray(vao); gl.deleteProgram(prog); gl.getExtension('WEBGL_lose_context')?.loseContext() },
+    dispose() { gl.deleteBuffer(vbo); gl.deleteVertexArray(vao); gl.deleteProgram(prog) },
   }
 }
 
 function make2D(canvas: HTMLCanvasElement): LightRenderer {
-  const x = canvas.getContext('2d')!
+  const x = canvas.getContext('2d')
+  if (!x) return { resize() {}, draw() {}, dispose() {} }
   let D = 1
   return {
     resize(w, h, dpr) { D = Math.min(dpr, 1.5); canvas.width = Math.round(w * D); canvas.height = Math.round(h * D) },

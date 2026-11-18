@@ -1,6 +1,15 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+gsap.registerPlugin(ScrollTrigger)
+
+/**
+ * Smooth scrolling for the whole site.
+ * Lenis runs on GSAP's own clock and hands every scroll step straight to ScrollTrigger,
+ * so scroll-driven scenes and the page move on the same frame instead of two loops drifting apart.
+ */
 export function useLenis() {
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -13,17 +22,17 @@ export function useLenis() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       touchMultiplier: 2,
+      autoRaf: false,
     })
 
-    let raf: number
-    const loop = (time: number) => {
-      lenis.raf(time)
-      raf = requestAnimationFrame(loop)
-    }
-    raf = requestAnimationFrame(loop)
+    lenis.on('scroll', ScrollTrigger.update)
+    const tick = (time: number) => lenis.raf(time * 1000)
+    gsap.ticker.add(tick)
+    gsap.ticker.lagSmoothing(0)
 
     return () => {
-      cancelAnimationFrame(raf)
+      gsap.ticker.remove(tick)
+      lenis.off('scroll', ScrollTrigger.update)
       lenis.destroy()
     }
   }, [])
