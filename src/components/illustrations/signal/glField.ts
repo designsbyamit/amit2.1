@@ -10,6 +10,8 @@ export const STRIDE = 8
 export interface LightRenderer {
   resize(w: number, h: number, dpr: number): void
   draw(buf: Float32Array, count: number): void
+  /** Light mode: the light is drawn as ink on paper instead of glowing on black. */
+  setLight(on: boolean): void
   dispose(): void
 }
 
@@ -35,6 +37,7 @@ const FS = `#version 300 es
 precision mediump float;
 in vec4 vCol;
 in float vHard;
+uniform float uLight;
 out vec4 o;
 void main(){
   vec2 p = gl_PointCoord * 2.0 - 1.0;
@@ -42,9 +45,15 @@ void main(){
   if (d2 > 1.0) discard;
   float k = mix(3.2, 18.0, vHard);
   float a = exp(-d2 * k) * (1.0 - smoothstep(0.85, 1.0, d2));
-  vec3 c = vCol.rgb * vCol.a * a;
-  // A real alpha keeps the colour valid as premultiplied, so every browser composites the light (Safari drops colour with zero alpha).
-  o = vec4(c, max(c.r, max(c.g, c.b)));
+  vec3 col = vCol.rgb;
+  // On paper, colours deepen and white marks become ink.
+  float sat = max(col.r, max(col.g, col.b)) - min(col.r, min(col.g, col.b));
+  col = mix(col, mix(vec3(0.07, 0.08, 0.1), col * 0.62, smoothstep(0.08, 0.3, sat)), uLight);
+  float s = vCol.a * a * mix(1.0, 1.2, uLight);
+  vec3 c = col * s;
+  // A real alpha keeps the colour valid as premultiplied, so every browser composites it (Safari drops colour with zero alpha).
+  // Dark: light adds up. Light: ink lays over the paper.
+  o = vec4(c, mix(max(c.r, max(c.g, c.b)), s, uLight));
 }`
 
 function makeGL(canvas: HTMLCanvasElement): LightRenderer | null {
@@ -61,42 +70,46 @@ function makeGL(canvas: HTMLCanvasElement): LightRenderer | null {
   gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1, 1, gl.FLOAT, false, B, 8)
   gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2, 4, gl.FLOAT, false, B, 12)
   gl.enableVertexAttribArray(3); gl.vertexAttribPointer(3, 1, gl.FLOAT, false, B, 28)
-  const uRes = gl.getUniformLocation(prog, 'uRes'), uDpr = gl.getUniformLocation(prog, 'uDpr'), uMax = gl.getUniformLocation(prog, 'uMax')
+  const uLight = gl.getUniformLocation(prog, 'uLight'), uRes = gl.getUniformLocation(prog, 'uRes'), uDpr = gl.getUniformLocation(prog, 'uDpr'), uMax = gl.getUniformLocation(prog, 'uMax')
   const range = gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE) as Float32Array
-  let W = 1, H = 1, D = 1
+  let W = 1, H = 1, D = 1, LT = 0
   return {
     resize(w, h, dpr) { W = w; H = h; D = dpr; canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr) },
     draw(buf, count) {
       gl.viewport(0, 0, canvas.width, canvas.height)
       gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT)
       gl.useProgram(prog); gl.bindVertexArray(vao)
-      gl.uniform2f(uRes, W, H); gl.uniform1f(uDpr, D); gl.uniform1f(uMax, range[1])
-      gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE)
+      gl.uniform2f(uRes, W, H); gl.uniform1f(uDpr, D); gl.uniform1f(uMax, range[1]); gl.uniform1f(uLight, LT)
+      gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, LT ? gl.ONE_MINUS_SRC_ALPHA : gl.ONE)
       gl.bindBuffer(gl.ARRAY_BUFFER, vbo)
       gl.bufferData(gl.ARRAY_BUFFER, buf.subarray(0, count * STRIDE), gl.DYNAMIC_DRAW)
       gl.drawArrays(gl.POINTS, 0, count)
     },
+    setLight(on) { LT = on ? 1 : 0 },
     dispose() { gl.deleteBuffer(vbo); gl.deleteVertexArray(vao); gl.deleteProgram(prog) },
   }
 }
 
 function make2D(canvas: HTMLCanvasElement): LightRenderer {
   const x = canvas.getContext('2d')
-  if (!x) return { resize() {}, draw() {}, dispose() {} }
-  let D = 1
+  if (!x) return { resize() {}, draw() {}, setLight() {}, dispose() {} }
+  let D = 1, LT = false
   return {
     resize(w, h, dpr) { D = Math.min(dpr, 1.5); canvas.width = Math.round(w * D); canvas.height = Math.round(h * D) },
     draw(buf, count) {
       x.setTransform(1, 0, 0, 1, 0, 0); x.clearRect(0, 0, canvas.width, canvas.height)
-      x.setTransform(D, 0, 0, D, 0, 0); x.globalCompositeOperation = 'lighter'
+      x.setTransform(D, 0, 0, D, 0, 0); x.globalCompositeOperation = LT ? 'source-over' : 'lighter'
       for (let i = 0; i < count; i++) {
         const o = i * STRIDE, a = buf[o + 6]
         if (a < 0.02) continue
         const s = buf[o + 2], hard = buf[o + 7]
-        x.fillStyle = `rgba(${(buf[o + 3] * 255) | 0},${(buf[o + 4] * 255) | 0},${(buf[o + 5] * 255) | 0},${a * (hard > 0.5 ? 0.9 : 0.35)})`
+        const k = LT ? 0.62 : 1, inkish = LT && Math.max(buf[o + 3], buf[o + 4], buf[o + 5]) - Math.min(buf[o + 3], buf[o + 4], buf[o + 5]) < 0.15
+        const cr = inkish ? 18 : (buf[o + 3] * 255 * k) | 0, cg = inkish ? 20 : (buf[o + 4] * 255 * k) | 0, cb = inkish ? 26 : (buf[o + 5] * 255 * k) | 0
+        x.fillStyle = `rgba(${cr},${cg},${cb},${a * (hard > 0.5 ? 0.9 : 0.35)})`
         x.beginPath(); x.arc(buf[o], buf[o + 1], Math.max(0.6, s * (hard > 0.5 ? 0.22 : 0.3)), 0, 6.283); x.fill()
       }
     },
+    setLight(on) { LT = on },
     dispose() {},
   }
 }

@@ -5,8 +5,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import CaseThumb from '../ds/CaseThumb'
 import SignalBackdrop from '../illustrations/signal/SignalBackdrop'
-import { createLight } from '../illustrations/signal/glField'
-import { Field, computeLayout, frameRect, blank, opened, FORCE_CSS, type SceneState, type Layout } from '../illustrations/signal/signalScene'
+import { createLight, type LightRenderer } from '../illustrations/signal/glField'
+import { useThemeValue } from '../ds/theme'
+import { Field, computeLayout, frameRect, blank, opened, FORCE_CSS, FORCE_INK, type SceneState, type Layout } from '../illustrations/signal/signalScene'
 import NavCards from './NavCards'
 import { COPY, WORKS, CHAPTERS, MEASURES, SHARE } from './copy'
 import { atlasRoles } from '../../data/atlasSummary'
@@ -73,6 +74,9 @@ export default function Signal() {
   const S = useRef<SceneState>(blank())
   const introDone = useRef(false)
   const vp = useViewport()
+  const theme = useThemeValue()
+  const lightR = useRef<LightRenderer | null>(null)
+  useEffect(() => { lightR.current?.setLight(theme === 'light') }, [theme])
 
   useLayoutEffect(() => {
     const el = root.current, cv = canvas.current
@@ -90,9 +94,14 @@ export default function Signal() {
 
     /* light */
     const light = createLight(cv)
+    light.setLight(document.documentElement.getAttribute('data-theme') === 'light')
+    lightR.current = light
     light.resize(vp.w, vp.h, Math.min(window.devicePixelRatio || 1, 2))
     const field = new Field()
     const G = field.geom(L)
+    // one corner radius for the frames, their reveal mask, the cards and the light that traces them
+    const rad = (tilts.current[0] && parseFloat(getComputedStyle(tilts.current[0]).borderTopLeftRadius)) || 10
+    G.radius = rad
     cards.current.forEach((c, i) => { if (c) Object.assign(c.style, { left: `${G.cards[i].x}px`, top: `${G.cards[i].y}px`, width: `${G.cards[i].w}px`, height: `${G.cards[i].h}px` }) })
     {
       const m = measures.current, gapY = L.mobile ? 14 : 22
@@ -151,7 +160,7 @@ export default function Signal() {
       })
 
       const p = (1 - Math.min(1, Math.max(0, st.reveal))) * 50
-      const clip = p > 0.01 ? `inset(${p.toFixed(2)}% ${p.toFixed(2)}% ${p.toFixed(2)}% ${p.toFixed(2)}% round 16px)` : 'inset(0% round 16px)'
+      const clip = p > 0.01 ? `inset(${p.toFixed(2)}% ${p.toFixed(2)}% ${p.toFixed(2)}% ${p.toFixed(2)}% round ${rad}px)` : `inset(0% round ${rad}px)`
       const active = Math.round(st.workIdx)
       frames.current.forEach((f, i) => {
         if (!f) return
@@ -170,7 +179,7 @@ export default function Signal() {
       })
 
       const cp = (1 - Math.min(1, Math.max(0, st.card))) * 50
-      const cclip = `inset(${cp.toFixed(2)}% ${cp.toFixed(2)}% ${cp.toFixed(2)}% ${cp.toFixed(2)}% round 16px)`
+      const cclip = `inset(${cp.toFixed(2)}% ${cp.toFixed(2)}% ${cp.toFixed(2)}% ${cp.toFixed(2)}% round ${rad}px)`
       if (cclip !== lastCard) {
         lastCard = cclip
         const on = st.card > 0.002, live = st.card > 0.6
@@ -393,11 +402,11 @@ export default function Signal() {
   const hStyle = { fontSize: 'var(--fs-d-l)', lineHeight: 1.05 }
   return (
     <section ref={root} className="relative" style={{ height: `${TOTAL * VH + 100}vh` }} aria-label="Amit Kumar Tiwari, design leader">
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sg-stage sticky top-0 h-screen overflow-hidden">
         <SignalBackdrop />
         <canvas key={`${vp.w}x${vp.h}`} ref={canvas} className="absolute inset-0 w-full h-full" aria-hidden="true" />
         {['Human behaviour', 'Business', 'Technology'].map((l, i) => (
-          <p key={l} ref={el => { labels.current[i] = el }} className="absolute left-0 top-0 text-label whitespace-nowrap pointer-events-none" style={{ color: FORCE_CSS[i], opacity: 0 }} aria-hidden="true">{l}</p>
+          <p key={l} ref={el => { labels.current[i] = el }} className="absolute left-0 top-0 text-label whitespace-nowrap pointer-events-none" style={{ color: (theme === 'light' ? FORCE_INK : FORCE_CSS)[i], opacity: 0 }} aria-hidden="true">{l}</p>
         ))}
 
         {/* the work: three frames, positioned by the scene every frame */}
@@ -497,7 +506,7 @@ export default function Signal() {
         </div>
         {SHARE.map((c, i) => (
           <Link key={c.to} to={c.to} ref={el => { cards.current[i] = el }} tabIndex={-1}
-            className="group absolute flex flex-col justify-between rounded-2xl border p-4 md:p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="sg-panel group absolute flex flex-col justify-between rounded-2xl border p-4 md:p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
             style={{ opacity: 0, pointerEvents: 'none', clipPath: 'inset(50%)', background: c.field, borderColor: 'var(--field-line)', boxShadow: 'var(--shadow-4)', outlineColor: 'var(--on-field-accent)' }}>
             <span className="text-overline text-on-field-muted">{c.kind}</span>
             <span className="flex items-end justify-between gap-3">

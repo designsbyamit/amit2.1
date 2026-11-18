@@ -337,3 +337,24 @@ html[data-theme='light'] {
     --section-y: var(--space-120);
   }
 }
+
+/* Home v3 (Signal): the stage follows the site theme. On the light ground, text that sits on the
+   stage turns to ink; the coloured share cards (.sg-panel) keep their field text. */
+html[data-theme='light'] .sg-stage {
+  --on-field: rgb(var(--ink-2-rgb));
+  --on-field-strong: rgb(var(--ink-rgb));
+  --on-field-muted: rgb(var(--ink-3-rgb));
+  --on-field-accent: rgb(var(--signal-ink-rgb));
+  --on-field-strong-rgb: var(--ink-rgb);
+  --field-line: rgb(var(--ink-rgb) / 0.18);
+  --field-graphite: rgb(var(--surface-1-rgb));
+  --veil-rgb: var(--surface-2-rgb);
+}
+html[data-theme='light'] .sg-stage .sg-panel {
+  --on-field: #ECEDEF;
+  --on-field-strong: #FFFFFF;
+  --on-field-muted: #B9BEC6;
+  --on-field-accent: #C8F55A;
+  --on-field-strong-rgb: 255 255 255;
+  --field-line: rgb(255 255 255 / 0.25);
+}

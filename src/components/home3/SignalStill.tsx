@@ -2,6 +2,7 @@ import { useEffect, useRef, type RefObject } from 'react'
 import { Link } from 'react-router-dom'
 import CaseThumb from '../ds/CaseThumb'
 import SignalBackdrop from '../illustrations/signal/SignalBackdrop'
+import { useThemeValue } from '../ds/theme'
 import { createLight } from '../illustrations/signal/glField'
 import { Field, computeLayout, finalHero, type SceneState } from '../illustrations/signal/signalScene'
 import { COPY, WORKS, SHARE } from './copy'
@@ -12,12 +13,14 @@ import { ROLE_CSS } from '../illustrations/signal/signalLater'
 /** One still frame of the light, drawn once. */
 function Light({ state, pill }: { state: SceneState; pill?: RefObject<HTMLAnchorElement | null> }) {
   const cv = useRef<HTMLCanvasElement>(null)
+  const theme = useThemeValue()
   useEffect(() => {
     const c = cv.current
     if (!c) return
     const w = c.clientWidth, h = c.clientHeight
     const headerH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 70
     const light = createLight(c)
+    light.setLight(theme === 'light')
     light.resize(w, h, Math.min(window.devicePixelRatio || 1, 2))
     const f = new Field()
     const L = computeLayout(w, h, headerH)
@@ -30,7 +33,7 @@ function Light({ state, pill }: { state: SceneState; pill?: RefObject<HTMLAnchor
     }
     light.draw(f.buf, f.compose(state, L, 4))
     return () => light.dispose()
-  }, [state, pill])
+  }, [state, pill, theme])
   return <canvas ref={cv} className="absolute inset-0 w-full h-full" aria-hidden="true" />
 }
 
@@ -50,7 +53,7 @@ export default function SignalStill() {
   const h = COPY.hero, o = COPY.outcomes, w = COPY.works, C = COPY
   const pill = useRef<HTMLAnchorElement>(null)
   return (
-    <div aria-label="Amit Kumar Tiwari, design leader">
+    <div className="sg-stage" aria-label="Amit Kumar Tiwari, design leader">
       <section className="relative h-screen overflow-hidden">
         <SignalBackdrop />
         <Light state={HERO} />
@@ -124,7 +127,7 @@ export default function SignalStill() {
         <ul className="relative mt-12 grid gap-4 md:grid-cols-3 md:gap-8">
           {SHARE.map(c => (
             <li key={c.to}>
-              <Link to={c.to} className="group flex h-full min-h-40 flex-col justify-between rounded-2xl border p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" style={{ background: c.field, borderColor: 'var(--field-line)', outlineColor: 'var(--on-field-accent)' }}>
+              <Link to={c.to} className="sg-panel group flex h-full min-h-40 flex-col justify-between rounded-2xl border p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" style={{ background: c.field, borderColor: 'var(--field-line)', outlineColor: 'var(--on-field-accent)' }}>
                 <span className="text-overline text-on-field-muted">{c.kind}</span>
                 <span className="mt-8 font-serif text-title text-on-field-strong group-hover:text-on-field-accent">{c.title}</span>
               </Link>

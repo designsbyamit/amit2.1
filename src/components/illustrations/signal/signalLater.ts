@@ -25,6 +25,8 @@ export interface Later {
   pill: Rect | null
   /** the button's corner radius, read from the page */
   pillR?: number
+  /** corner radius of the work frames and shared cards, read from the page */
+  radius?: number
   year: P[]; role: number[]; ind: P[]; team: P[]; comm: P[]
   edges: [number, number][]
   /** 04: industries as a ranked dot matrix, one row each; dots run from x0 in steps of `step` (negative runs leftward) */
@@ -143,12 +145,24 @@ export function pointAt(S: SceneState, G: Later, fc: P): P {
   return { x, y }
 }
 
-function perim(r: Rect, u: number): P {
-  const per = 2 * (r.w + r.h); let d = (((u % 1) + 1) % 1) * per
-  if (d < r.w) return { x: r.x + d, y: r.y }
-  d -= r.w; if (d < r.h) return { x: r.x + r.w, y: r.y + d }
-  d -= r.h; if (d < r.w) return { x: r.x + r.w - d, y: r.y + r.h }
-  d -= r.w; return { x: r.x, y: r.y + r.h - d }
+/** Fallback corner radius of the work frames and shared cards; the page passes the real one in as `radius`. */
+export const CARD_RADIUS = 10
+
+/** A point at fraction u along the outline of a rounded rectangle, clockwise from the top-left straight. */
+export function roundedPerim(r: Rect, rad: number, u: number, o: P = { x: 0, y: 0 }): P {
+  const k = Math.max(0, Math.min(rad, r.w / 2, r.h / 2))
+  const sw = r.w - 2 * k, sh = r.h - 2 * k, arc = (Math.PI * k) / 2
+  const per = 2 * (sw + sh) + 4 * arc
+  let d = (((u % 1) + 1) % 1) * per
+  const corner = (cx: number, cy: number, a0: number) => { const a = a0 + (arc > 0 ? (d / arc) * (Math.PI / 2) : 0); o.x = cx + Math.cos(a) * k; o.y = cy + Math.sin(a) * k; return o }
+  if (d < sw) { o.x = r.x + k + d; o.y = r.y; return o } d -= sw
+  if (d < arc) return corner(r.x + r.w - k, r.y + k, -Math.PI / 2); d -= arc
+  if (d < sh) { o.x = r.x + r.w; o.y = r.y + k + d; return o } d -= sh
+  if (d < arc) return corner(r.x + r.w - k, r.y + r.h - k, 0); d -= arc
+  if (d < sw) { o.x = r.x + r.w - k - d; o.y = r.y + r.h; return o } d -= sw
+  if (d < arc) return corner(r.x + k, r.y + r.h - k, Math.PI / 2); d -= arc
+  if (d < sh) { o.x = r.x; o.y = r.y + r.h - k - d; return o } d -= sh
+  return corner(r.x + k, r.y + k, Math.PI)
 }
 
 type Put = (x: number, y: number, size: number, c: readonly number[], a: number, hard: number) => void
@@ -219,7 +233,7 @@ export function composeLater(put: Put, S: SceneState, G: Later, L: Layout, t: nu
     // sharing: three streams, each tracing one card
     const ps = ease(stag(S.share, r3, 0.6))
     if (ps > 0) {
-      const ci = i % 3, cr = G.cards[ci], tgt = perim(cr, i / N_HUB * 3 + r1 * 0.02)
+      const ci = i % 3, cr = G.cards[ci], tgt = roundedPerim(cr, G.radius ?? CARD_RADIUS, i / N_HUB * 3 + r1 * 0.02)
       const mx = mix(x, tgt.x, 0.5) + (r2 - 0.5) * 60 * sc, my = mix(y, tgt.y, 0.5) - 40 * sc
       const u = ps, w0 = (1 - u) * (1 - u), w1 = 2 * u * (1 - u), w2 = u * u
       x = w0 * x + w1 * mx + w2 * tgt.x; y = w0 * y + w1 * my + w2 * tgt.y

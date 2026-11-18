@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export type Theme = 'dark' | 'light'
 const KEY = 'theme'
@@ -18,4 +18,15 @@ export function useTheme() {
   }, [])
 
   return { theme, setTheme, toggle: () => setTheme(theme === 'dark' ? 'light' : 'dark') }
+}
+
+/** The current site theme, kept in step when the toggle anywhere on the page changes it. */
+export function useThemeValue(): Theme {
+  const [theme, set] = useState<Theme>(() => (typeof document === 'undefined' ? 'dark' : current()))
+  useEffect(() => {
+    const mo = new MutationObserver(() => set(current()))
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+    return () => mo.disconnect()
+  }, [])
+  return theme
 }

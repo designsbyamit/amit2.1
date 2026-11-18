@@ -5,7 +5,7 @@
  * the outcomes become the light around each piece of work.
  */
 import { STRIDE } from './glField'
-import { laterGeometry, composeLater, pointAt, type Later } from './signalLater'
+import { laterGeometry, composeLater, pointAt, roundedPerim, CARD_RADIUS, type Later } from './signalLater'
 
 export const COL = {
   lime: [200 / 255, 245 / 255, 90 / 255],
@@ -19,6 +19,8 @@ export const COL = {
 
 /** The same three hues for DOM labels that travel with the forces. */
 export const FORCE_CSS = ['#FFB86B', '#7D98FF', '#4FD1BC'] as const
+/** The same hues deepened for the light ground, readable as text on paper. */
+export const FORCE_INK = ['#9A5A12', '#3A55C8', '#167A6A'] as const
 
 export interface SceneState {
   pt: number; ptR: number
@@ -114,14 +116,6 @@ function bez(a: P, b: P, c: P, d: P, t: number, o: P) {
   o.y = u * u * u * a.y + 3 * u * u * t * b.y + 3 * u * t * t * c.y + t * t * t * d.y
 }
 
-function perimeter(r: Rect, u: number, o: P) {
-  const per = 2 * (r.w + r.h)
-  let d = (u % 1) * per
-  if (d < r.w) { o.x = r.x + d; o.y = r.y; return }
-  d -= r.w; if (d < r.h) { o.x = r.x + r.w; o.y = r.y + d; return }
-  d -= r.h; if (d < r.w) { o.x = r.x + r.w - d; o.y = r.y + r.h; return }
-  d -= r.w; o.x = r.x; o.y = r.y + r.h - d
-}
 
 const HEX = [{ x: 0, y: 0 }, ...[0, 60, 120, 180, 240, 300].map(a => ({ x: Math.cos((a - 90) * DEG) * 0.9, y: Math.sin((a - 90) * DEG) * 0.9 }))]
 const EDGES: [number, number][] = [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 1]]
@@ -147,14 +141,11 @@ function outcome(i: number, k: number, n: number, r1: number, t: number, o: P) {
 
 const NF = 760, NE = 150, ND = 520
 
-/** Each force has its own character while it moves alone: human behaviour is organic, business is structured, technology is faceted.
+/** While a force is still on its own it is an almost-circle that breathes a little, each on its own rhythm.
  *  w = how independent it still is (1 before convergence, 0 once locked). At w = 0 all three are perfect circles. */
 function shapeR(i: number, ang: number, t: number, w: number) {
   if (w <= 0.001) return 1
-  let r: number
-  if (i === 0) r = 1 + 0.17 * Math.sin(3 * ang + t * 1.1) + 0.07 * Math.sin(5 * ang - t * 0.8)
-  else if (i === 1) { const c = Math.abs(Math.cos(ang)), sn = Math.abs(Math.sin(ang)); r = 1.08 / Math.pow(Math.pow(c, 5) + Math.pow(sn, 5), 1 / 5) * 0.86 }
-  else { const seg = Math.PI / 3, a = (((ang % seg) + seg) % seg) - seg / 2; r = Math.cos(Math.PI / 6) / Math.cos(a) * 1.02 }
+  const r = 1 + 0.045 * Math.sin(3 * ang + t * 0.6 + i * 2.1) + 0.025 * Math.sin(5 * ang - t * 0.45 + i * 1.3)
   return 1 + (r - 1) * w
 }
 
@@ -233,35 +224,33 @@ export class Field {
     for (let i = 0; i < 3; i++) {
       if (forceA <= 0.01) break
       const col = COL.force[i], dir = L.dirs[i]
-      const wob = { x: dir.x * R * 1.25 + Math.sin(t * (0.42 + i * 0.13) + i * 2.1) * R * 0.45, y: dir.y * R * 1.05 + Math.cos(t * (0.37 + i * 0.11) + i * 1.3) * R * 0.38 }
+      // apart, in a loose triangle around the point, drifting only a little
+      const wob = { x: dir.x * R * 0.6 + Math.sin(t * (0.32 + i * 0.07) + i * 2.1) * R * 0.07, y: dir.y * R * 0.55 + Math.cos(t * (0.28 + i * 0.06) + i * 1.3) * R * 0.06 }
       const lk = easeOut(S.lock)
       const cx = fc.x + mix(dir.x * dc + wob.x, dir.x * dc, lk), cy = fc.y + mix(dir.y * dc + wob.y, dir.y * dc, lk)
       const E = L.E[i], oR = L.oR
       this.centers[i].x = cx; this.centers[i].y = cy
       const wInd = 1 - lk
-      const rot = wInd * t * (i === 0 ? 0.12 : i === 1 ? -0.18 : 0.35)
-      const sz = mix(i === 1 ? 0.82 : i === 2 ? 0.74 : 0.9, 1, lk)
+      const rot = wInd * t * (i === 1 ? -0.06 : 0.06)
+      const sz = mix(1.12, 1, lk)
       for (let k = 0; k < NF; k++) {
         const j = (i * NF + k) * 4, r = this.rnd
-        const thin = r[j] < 0.66
+        const thin = k % 3 !== 0
         const u = k / NF, ang = u * 6.283 + spin * (i === 1 ? -1 : 1) + i + rot
         const Rk = Rc * sz * shapeR(i, ang - rot, t, wInd)
-        const jit = thin ? (r[j + 1] - 0.5) * 1.6 : (r[j + 1] - 0.5) * 14 * sc
+        // a crisp line with a soft glow hugging it: the core sits on the line, the glow spreads only a little either side
+        const jit = thin ? (r[j + 1] - 0.5) * 0.6 : (r[j + 1] - 0.5) * 5 * sc
         const rx = cx + Math.cos(ang) * (Rk + jit), ry = cy + Math.sin(ang) * (Rk + jit)
-        let x = rx, y = ry, alpha = thin ? 0.62 : 0.06, size = (thin ? 4.8 : 20) * sc
-        const hard = thin ? 0.72 : 0
+        let x = rx, y = ry, alpha = thin ? 0.78 : 0.07, size = (thin ? 3.4 : 16) * sc
+        const hard = thin ? 0.92 : 0
 
-        // arrival: a stream from off screen that wraps into the ring
-        const pa = clamp(arr[i] * 1.55 - r[j + 2] * 0.55)
+        // arrival: the ring traces itself in place, a bright head running round its circumference
+        const pa = clamp(arr[i] * 1.4 - u * 0.4)
         if (pa < 1) {
           if (pa <= 0) continue
-          const o = L.origins[i], tx = -Math.sin(ang), ty = Math.cos(ang)
-          this.a.x = o.x; this.a.y = o.y
-          this.b.x = mix(o.x, cx, 0.4) - dir.y * R * 1.6; this.b.y = mix(o.y, cy, 0.4) + dir.x * R * 1.6
-          this.c.x = rx - tx * Rk * 1.1; this.c.y = ry - ty * Rk * 1.1
-          this.d.x = rx; this.d.y = ry
-          bez(this.a, this.b, this.c, this.d, easeOut(pa), this.tmp); x = this.tmp.x; y = this.tmp.y
-          alpha *= 0.6 + (1 - pa) * 1.2
+          const g = mix(0.86, 1, easeOut(pa))
+          x = cx + (rx - cx) * g; y = cy + (ry - cy) * g
+          alpha *= 0.6 + (1 - pa) * 1.4
         }
 
         // 02: the ring unspools into a path and lands as an outcome
@@ -285,9 +274,9 @@ export class Field {
         const pf = clamp(S.toFrame * 1.45 - r[j + 2] * 0.45)
         if (pf > 0) {
           const fr = frameRect(L, i, S.workIdx)
-          perimeter(fr, u + (thin ? 0 : r[j + 1] * 0.01), this.tmp)
+          roundedPerim(fr, (G.radius ?? CARD_RADIUS) * fr.w / L.hero.w, u + (thin ? 0 : r[j + 1] * 0.01), this.tmp)
           let fx = this.tmp.x, fy = this.tmp.y
-          if (!thin) { fx += (r[j + 2] - 0.5) * 10 * sc; fy += (r[j + 3] - 0.5) * 10 * sc }
+          if (!thin) { fx += (r[j + 2] - 0.5) * 4 * sc; fy += (r[j + 3] - 0.5) * 4 * sc }
           const pe = ease(pf)
           this.a.x = ox; this.a.y = oy
           this.b.x = ox + (r[j + 1] - 0.5) * oR * 2; this.b.y = oy - oR * 1.2
