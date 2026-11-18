@@ -8,6 +8,7 @@ import { caseStudies } from '../data/work'
 import { publishedStories, storySlug } from '../data/leadership'
 import { library } from '../data/library'
 import { films } from '../data/films'
+import { stories as caseStories } from '../data/stories'
 
 export const SITE = {
   /** Production is www; the staging branch (neo) is a beta that points at itself and is kept out of search. */
@@ -76,6 +77,7 @@ const extras: RouteMeta[] = [
   { path: '/labs/order-confirmation', title: T('Prototype: Agentic Order Confirmations'), description: 'A working prototype.', noindex: true },
   { path: '/labs/engaze', title: T('Prototype: Engaze'), description: 'A working prototype.', noindex: true },
   { path: '/labs/ai-search', title: T('Prototype: AI-Powered Search'), description: 'A working prototype.', noindex: true },
+  ...caseStories.map(s => ({ path: `/craft/${s.id}/story`, title: T(s.headline), description: s.crux.tension, type: 'article' as const, noindex: true })),
 ]
 
 const projects: RouteMeta[] = playbacks.flatMap(p => {
