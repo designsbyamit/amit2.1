@@ -42,7 +42,9 @@ void main(){
   if (d2 > 1.0) discard;
   float k = mix(3.2, 18.0, vHard);
   float a = exp(-d2 * k) * (1.0 - smoothstep(0.85, 1.0, d2));
-  o = vec4(vCol.rgb * vCol.a * a, 0.0);
+  vec3 c = vCol.rgb * vCol.a * a;
+  // A real alpha keeps the colour valid as premultiplied, so every browser composites the light (Safari drops colour with zero alpha).
+  o = vec4(c, max(c.r, max(c.g, c.b)));
 }`
 
 function makeGL(canvas: HTMLCanvasElement): LightRenderer | null {
@@ -100,6 +102,10 @@ function make2D(canvas: HTMLCanvasElement): LightRenderer {
 }
 
 export function createLight(canvas: HTMLCanvasElement): LightRenderer {
-  try { const g = makeGL(canvas); if (g) return g } catch { /* fall through */ }
+  // Try WebGL on a throwaway canvas first: once a canvas has a WebGL context it can never give a 2D one,
+  // so a shader that fails to build must not touch the real canvas.
+  let ok: boolean
+  try { const probe = makeGL(document.createElement('canvas')); ok = !!probe; probe?.dispose() } catch { ok = false }
+  if (ok) { try { const g = makeGL(canvas); if (g) return g } catch { /* fall through */ } }
   return make2D(canvas)
 }
