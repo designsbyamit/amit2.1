@@ -20,6 +20,7 @@ import ContactProvider from './components/contact/ContactProvider'
 const Craft = lazy(() => import('./pages/Craft'))
 const HomeV2 = lazy(() => import('./pages/HomeV2'))
 const StoryPage = lazy(() => import('./pages/StoryPage'))
+const HomeV3 = lazy(() => import('./pages/HomeV3'))
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage'))
 const LeadershipStoriesPage = lazy(() => import('./pages/LeadershipStoriesPage'))
 const LeadershipStoryPage = lazy(() => import('./pages/LeadershipStoryPage'))
@@ -150,6 +151,7 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/home-v2" element={<HomeV2 />} />
+        <Route path="/home-v3" element={<HomeV3 />} />
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
         <Route path="/craft/engaze/film" element={<PageTransition><EngazeFilmPage /></PageTransition>} />
         <Route path="/craft/sap-collections/film" element={<PageTransition><CollectionsFilmPage /></PageTransition>} />

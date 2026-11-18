@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="common.css">
+<style>
+body{background:#0E0F10}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+.vig{position:absolute;inset:0;background:radial-gradient(120% 90% at 60% 50%,transparent 40%,rgba(0,0,0,.65));pointer-events:none;z-index:2}
+.grain{position:absolute;inset:0;z-index:3;opacity:.09;mix-blend-mode:overlay;pointer-events:none}
+.t{position:absolute;z-index:10}
+h1{font-weight:300;letter-spacing:-.015em;line-height:1.02}
+.w{color:var(--ink)}.d{color:rgba(237,237,237,.38)}
+.lab{position:absolute;z-index:10}
+.frame{position:absolute;z-index:8;border-radius:14px;overflow:hidden;background:#111}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.cap h3{font-weight:300;line-height:1.1}
+</style></head><body><canvas id="c"></canvas><div class="vig"></div><canvas class="grain" id="g"></canvas><div id="root"></div>
+<script src="copy.js"></script><script>
+const W=innerWidth,H=innerHeight,dpr=2,c=document.getElementById('c'),x=c.getContext('2d');c.width=W*dpr;c.height=H*dpr;x.scale(dpr,dpr);
+const g=document.getElementById('g');g.width=W;g.height=H;const gx=g.getContext('2d');const id=gx.createImageData(W,H);for(let i=0;i<id.data.length;i+=4){const v=Math.random()*255;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=255}gx.putImageData(id,0,0);
+const C={lime:[200,245,90],amber:[255,184,107],cobalt:[125,152,255],teal:[79,209,188],white:[255,255,255]};
+const rgba=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
+function glow(px,py,r,col,a){const gr=x.createRadialGradient(px,py,0,px,py,r);gr.addColorStop(0,rgba(col,a));gr.addColorStop(.35,rgba(col,a*.35));gr.addColorStop(1,rgba(col,0));x.fillStyle=gr;x.beginPath();x.arc(px,py,r,0,7);x.fill()}
+function ring(px,py,r,col,a,w){for(const [bw,ba] of [[w*14,a*.06],[w*6,a*.14],[w*2.2,a*.4],[w,a]]){x.strokeStyle=rgba(col,ba);x.lineWidth=bw;x.beginPath();x.arc(px,py,r,0,7);x.stroke()}}
+function point(px,py,s){glow(px,py,s*16,C.lime,.35);glow(px,py,s*5,C.lime,.8);glow(px,py,s*1.6,C.white,1)}
+function dust(n,cx,cy,spread,col,a){for(let i=0;i<n;i++){const ang=rnd()*7,d=Math.pow(rnd(),.6)*spread;const px=cx+Math.cos(ang)*d,py=cy+Math.sin(ang)*d*.8,s=rnd()*1.6+.3;x.fillStyle=rgba(col,a*rnd());x.beginPath();x.arc(px,py,s,0,7);x.fill()}}
+function streak(points,col,w,a){for(const [bw,ba] of [[w*18,a*.05],[w*7,a*.12],[w*2.5,a*.35],[w,a]]){x.strokeStyle=rgba(col,ba);x.lineWidth=bw;x.lineCap='round';x.beginPath();x.moveTo(...points[0]);x.bezierCurveTo(...points[1],...points[2],...points[3]);x.stroke()}}
+x.globalCompositeOperation='lighter';
+const root=document.getElementById('root');const cp=COPY[KF];let html=HDR+RAIL(+KF);
+const words=(s,bright)=>s.split(' ').map((w,i)=>`<span class="${bright.includes(i)?'w':'d'}">${w}</span>`).join(' ');
+
+if(KF==='01'){
+ const cx=M?W*.5:W*.68,cy=M?H*.3:H*.5,R=M?W*.24:H*.2,d=R*.62;
+ glow(cx,cy,R*3.2,C.cobalt,.05);
+ const forces=[[C.amber,-90,'Human behaviour'],[C.cobalt,30,'Business'],[C.teal,150,'Technology']];
+ forces.forEach(([col,deg])=>{const a=deg*Math.PI/180,px=cx+Math.cos(a)*d,py=cy+Math.sin(a)*d;
+  const gr=x.createRadialGradient(px,py,R*.2,px,py,R);gr.addColorStop(0,rgba(col,.02));gr.addColorStop(.85,rgba(col,.10));gr.addColorStop(1,rgba(col,0));x.fillStyle=gr;x.beginPath();x.arc(px,py,R,0,7);x.fill();
+  ring(px,py,R,col,.75,1.1);
+  // trailing arrival streak
+  const ox=px+Math.cos(a)*R*4.5,oy=py+Math.sin(a)*R*4.5;streak([[ox,oy],[ox-Math.sin(a)*R*1.8,oy+Math.cos(a)*R*1.8],[px+Math.cos(a)*R*1.6,py+Math.sin(a)*R*1.6],[px+Math.cos(a)*R,py+Math.sin(a)*R]],col,.8,.22);
+  dust(140,px+Math.cos(a)*R*.9,py+Math.sin(a)*R*.9,R*1.3,col,.5)});
+ // echo petals
+ [-30,90,210].forEach(deg=>{const a=deg*Math.PI/180;ring(cx+Math.cos(a)*d,cy+Math.sin(a)*d,R,C.white,.06,1)});
+ glow(cx,cy,R*.9,C.white,.10);point(cx,cy,M?5:6);
+ const fs=M?40:86;
+ html+=`<div class="t" style="${M?`left:20px;right:20px;bottom:44px`:`left:7.5%;top:28%;width:44%`}"><div class="mono" style="margin-bottom:${M?16:28}px;color:var(--lime)">01 &nbsp;Identity</div>
+ <h1 class="serif" style="font-size:${fs}px">${words(cp.h,[0,1,3,4,5])}</h1>
+ <p style="margin-top:${M?18:32}px;font-size:${M?15:18}px;line-height:1.55;color:var(--ink2);max-width:30em">${cp.s.replace('I work at their convergence.','<span style="color:var(--ink)">I work at their convergence.</span>')}</p></div>`;
+ forces.forEach(([col,deg,l])=>{const a=deg*Math.PI/180,px=cx+Math.cos(a)*(d+R+(M?14:26)),py=cy+Math.sin(a)*(d+R+(M?14:26));html+=`<div class="lab mono" style="left:${px}px;top:${py}px;transform:translate(-50%,-50%);color:${rgba(col,.9)};${M?'font-size:9px':''}">${l}</div>`});
+}
+if(KF==='03'){
+ const fw=M?W*.86:W*.5,fh=fw*.62,fx=M?W*.07:W*.40,fy=M?H*.17:H*.2;
+ const ox=M?W*.5:W*.14,oy=M?H*.02:H*.82;
+ [[C.amber,-60],[C.cobalt,0],[C.teal,60]].forEach(([col,o],i)=>streak([[ox,oy],[ox+(M?o:W*.12),oy+(M?H*.06:-H*.05+o)],[fx-40,fy+fh*(.3+i*.2)],[fx+fw*.04,fy+fh*(.3+i*.2)]],col,.9,.5));
+ point(ox,oy,4);
+ glow(fx+fw/2,fy+fh/2,fw*.75,C.lime,.07);
+ // floor reflection
+ x.globalCompositeOperation='source-over';const rf=x.createLinearGradient(0,fy+fh,0,fy+fh+fh*.35);rf.addColorStop(0,'rgba(200,245,90,.10)');rf.addColorStop(1,'rgba(200,245,90,0)');x.fillStyle=rf;x.fillRect(fx,fy+fh+10,fw,fh*.35);x.globalCompositeOperation='lighter';
+ if(!M){ // queued works receding right, breaking frame
+  html+=`<div class="frame" style="left:${W*.86}px;top:${H*.24}px;width:${fw*.62}px;height:${fh*.62}px;opacity:.55;transform:perspective(1200px) rotateY(-28deg);filter:brightness(.55)"><img src="${COVER('sap-agentic')}"></div>
+  <div class="frame" style="left:${W*.97}px;top:${H*.30}px;width:${fw*.5}px;height:${fh*.5}px;opacity:.35;transform:perspective(1200px) rotateY(-34deg);filter:brightness(.4)"><img src="${COVER('airline-app')}"></div>`}
+ html+=`<div class="frame" style="left:${fx}px;top:${fy}px;width:${fw}px;height:${fh}px;box-shadow:0 0 0 1px rgba(200,245,90,.35),0 0 60px rgba(200,245,90,.18),0 40px 100px rgba(0,0,0,.6)"><img src="${COVER('sap-search')}"></div>`;
+ html+=`<div class="t" style="${M?`left:20px;right:20px;bottom:40px`:`left:7.5%;top:18%;width:27%`}"><div class="mono" style="color:var(--lime);margin-bottom:20px">03 &nbsp;Selected works</div><h1 class="serif" style="font-size:${M?38:64}px">${cp.h}</h1><p style="margin-top:16px;font-size:${M?14:16}px;line-height:1.55;color:var(--ink2)">${cp.s}</p>
+ ${M?`<div style="margin-top:22px;border-top:1px solid rgba(237,237,237,.12);padding-top:16px"><div class="mono">01 / 03 &nbsp;${WORKS[0].t}</div><div class="serif" style="font-size:22px;margin-top:8px">${WORKS[0].h}</div></div>`:''}</div>`;
+ if(!M)html+=`<div class="t cap" style="left:${fx}px;top:${fy+fh+28}px;width:${fw}px;display:flex;justify-content:space-between;align-items:flex-end"><div><div class="mono">01 / 03 &nbsp;${WORKS[0].t}</div><h3 class="serif" style="font-size:30px;margin-top:10px">${WORKS[0].h}</h3></div><span class="cta s">View case</span></div>`;
+}
+if(KF==='05'){
+ const cx=M?W*.5:W*.7,cy=M?H*.3:H*.5,RX=M?W*.42:W*.22,RY=M?H*.16:H*.3;
+ point(cx,cy,5);
+ for(let p=0;p<8;p++){const a=p/8*Math.PI*2+.3,pz=Math.sin(a),px=cx+Math.cos(a)*RX,py=cy+Math.sin(a)*RY*.85,sc=.65+(pz+1)*.3;
+  const col=[C.amber,C.cobalt,C.teal,C.lime][p%4];
+  x.strokeStyle=rgba(C.white,.05);x.lineWidth=1;x.beginPath();x.moveTo(cx,cy);x.lineTo(px,py);x.stroke();
+  glow(px,py,(M?44:80)*sc,col,.08);
+  const pts=[];for(let i=0;i<25;i++){const ga=i*2.399,gr=Math.sqrt(i)*(M?6:11)*sc;pts.push([px+Math.cos(ga)*gr,py+Math.sin(ga)*gr*.8])}
+  x.strokeStyle=rgba(col,.12);x.beginPath();pts.forEach((q,i)=>{if(i){const n=pts[Math.floor(i/2)];x.moveTo(...q);x.lineTo(...n)}});x.stroke();
+  pts.forEach((q,i)=>{const s=(i==0?2.6:1.3+rnd())*sc*(M?.8:1);glow(q[0],q[1],s*5,col,.25);x.fillStyle=rgba(i==0?C.white:col,.95);x.beginPath();x.arc(q[0],q[1],s,0,7);x.fill()});
+ }
+ dust(260,cx,cy,RX*1.6,C.white,.25);
+ html+=`<div class="t" style="${M?`left:20px;right:20px;bottom:40px`:`left:7.5%;top:24%;width:40%`}"><div class="mono" style="color:var(--lime);margin-bottom:16px">05 &nbsp;Building teams</div>
+ <div class="serif" style="font-size:${M?96:220}px;line-height:.85;letter-spacing:-.04em;color:var(--ink);text-shadow:0 0 60px rgba(200,245,90,.25)">200<span style="color:var(--lime)">+</span></div>
+ <div class="mono" style="margin-top:${M?8:14}px">Designers hired across organisations</div>
+ <h1 class="serif" style="font-size:${M?28:40}px;margin-top:${M?20:40}px">${cp.h}</h1><p style="margin-top:12px;font-size:${M?14:16}px;line-height:1.55;color:var(--ink2)">${cp.s}</p></div>`;
+}
+if(KF==='08'){
+ const px=M?W*.5:W*.08,py=M?H*.36:H*.62;
+ [[C.amber,-.12],[C.cobalt,0],[C.teal,.12]].forEach(([col,o])=>streak([[px-(M?W*.6:W*.1),py+H*o*2],[px-W*.05,py+H*o],[px-20,py+H*o*.2],[px,py]],col,.7,.3));
+ // the open line
+ const lg=x.createLinearGradient(px,0,W,0);lg.addColorStop(0,rgba(C.lime,1));lg.addColorStop(.7,rgba(C.lime,.8));lg.addColorStop(1,rgba(C.lime,0));
+ for(const [bw,ba] of [[24,.05],[8,.14],[3,.45],[1.2,1]]){x.globalAlpha=ba;x.strokeStyle=lg;x.lineWidth=bw;x.beginPath();x.moveTo(px,py);x.lineTo(W,py);x.stroke()}x.globalAlpha=1;
+ glow(W*.9,py,W*.12,C.lime,.06);point(px,py,6);
+ html+=`<div class="t" style="${M?`left:20px;right:20px;top:46%`:`left:7.5%;top:22%;width:60%`}"><div class="mono" style="color:var(--lime);margin-bottom:20px">08 &nbsp;Collaborate</div><h1 class="serif" style="font-size:${M?40:92}px">${cp.h}</h1></div>
+ <div class="t" style="${M?`left:20px;right:20px;bottom:40px`:`left:7.5%;top:70%;width:40%`}"><p style="font-size:${M?15:17}px;line-height:1.55;color:var(--ink2)">${cp.s}</p><div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap"><span class="cta p">Start a conversation</span><span class="cta s">See all works</span></div></div>`;
+}
+root.innerHTML=html;
+</script></body></html>

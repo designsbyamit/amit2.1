@@ -247,6 +247,7 @@ html[data-theme='light'] {
 
   /* Fluid sizes: a role, a floor, a slope and a ceiling. */
   --fs-d-2xl: clamp(3.25rem, 8.5vw, 8rem);
+  --fs-signal: clamp(2.5rem, 5.9vw, 5.75rem);  /* the opening line of the Signal home */
   --fs-mega: clamp(5.5rem, 21vw, 19rem);       /* the one-word greeting on the home page */
   --fs-d-xl: clamp(2.5rem, 6.2vw, 5.75rem);
   --fs-d-l: clamp(2.125rem, 4.8vw, 4.25rem);

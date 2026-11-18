@@ -527,3 +527,46 @@ html[data-theme='dark'] .case-hero { background-image: var(--mesh); background-s
 .h2-cue-line { transform-origin: top; animation: h2-cue 2.4s var(--ease-out) infinite; }
 @keyframes h2-cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 @media (prefers-reduced-motion: reduce) { .h2-cue-line { animation: none; } }
+
+/* Home v3 (Signal): chapter rail */
+.sg-rail .sg-rail-name { opacity: 0; transition: opacity var(--dur-base) var(--ease-out); }
+.sg-rail .sg-rail-mark { width: var(--space-20); background: var(--field-line); transition: width var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out); }
+.sg-rail[data-on] .sg-rail-name { opacity: 1; }
+.sg-rail[data-on] .sg-rail-mark { width: var(--space-40); background: var(--on-field-accent); }
+
+/* Home v3 (Signal): the five doors at the end. A glass card that tilts towards the pointer;
+   a light gathers where the pointer rests and catches the edge nearest to it. */
+.sg-doors { scrollbar-width: none; perspective: 1100px; }
+.sg-doors::-webkit-scrollbar { display: none; }
+.lumen {
+  --mx: 50%; --my: 0%; --rx: 0deg; --ry: 0deg;
+  position: relative; display: flex; flex-direction: column; isolation: isolate; height: 100%;
+  min-height: calc(var(--space-160) + var(--space-20)); padding: var(--space-20);
+  border-radius: var(--radius-3); border: 1px solid transparent;
+  background:
+    linear-gradient(180deg, var(--field-graphite), rgb(var(--veil-rgb))) padding-box,
+    radial-gradient(60% 80% at var(--mx) var(--my), rgb(var(--signal-rgb) / 0.55), transparent 70%) border-box,
+    linear-gradient(var(--field-line), rgb(var(--on-field-strong-rgb) / 0.08)) border-box;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-3);
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  outline-color: var(--on-field-accent);
+}
+.lumen::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1; pointer-events: none;
+  background: radial-gradient(70% 60% at var(--mx) var(--my), rgb(var(--signal-rgb) / 0.22), transparent 70%);
+  opacity: 0.22; transition: opacity var(--dur-base) var(--ease-out);
+}
+.lumen[data-lit] { transition: transform var(--dur-fast) linear, box-shadow var(--dur-base) var(--ease-out); box-shadow: var(--shadow-4), var(--shadow-glow); }
+.lumen[data-lit]::before, .lumen:focus-visible::before { opacity: 1; }
+.lumen:focus-visible { outline: 2px solid var(--on-field-accent); outline-offset: 4px; }
+.lumen .lumen-depth { transform: translateZ(28px); transition: transform var(--dur-slow) var(--ease-out); }
+.lumen .lumen-arrow { transition: transform var(--dur-base) var(--ease-out); }
+.lumen:hover .lumen-arrow, .lumen:focus-visible .lumen-arrow { transform: translateX(var(--space-4)); }
+@media (min-width: 768px) { .lumen { min-height: calc(var(--space-160) + var(--space-40)); } }
+@media (prefers-reduced-motion: reduce) {
+  .lumen, .lumen[data-lit] { transform: none; transition: box-shadow var(--dur-base) var(--ease-out); }
+  .lumen .lumen-depth { transform: none; }
+}
