@@ -22,9 +22,9 @@ export const MEASURES = [
 ] as const
 
 export const SHARE = [
-  { kind: 'Workshop', title: 'Build Dual Fluency', to: '/resources/dual-fluency', field: 'var(--field-cobalt)' },
-  { kind: 'Resource', title: 'Leading Design', to: '/resources/leading-design', field: 'var(--field-plum)' },
-  { kind: 'Initiative', title: 'From AI experiments to a capability', to: '/leadership/cases/ai-experimentation-to-capability', field: 'var(--field-teal)' },
+  { kind: 'Workshop', title: 'Build Dual Fluency', to: '/resources/dual-fluency' },
+  { kind: 'Resource', title: 'Leading Design', to: '/resources/leading-design' },
+  { kind: 'Initiative', title: 'From AI experiments to a capability', to: '/leadership/cases/ai-experimentation-to-capability' },
 ] as const
 
 export const WORKS = ['sap-search', 'sap-agentic', 'airline-app'].map(id => {

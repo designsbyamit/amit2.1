@@ -566,6 +566,15 @@ html[data-theme='dark'] .case-hero { background-image: var(--mesh); background-s
 .lumen .lumen-arrow { transition: transform var(--dur-base) var(--ease-out); }
 .lumen:hover .lumen-arrow, .lumen:focus-visible .lumen-arrow { transform: translateX(var(--space-4)); }
 @media (min-width: 768px) { .lumen { min-height: calc(var(--space-160) + var(--space-40)); } }
+/* The same lit hairline edge for anything that already fills itself, such as the work frames. */
+.lumen-edge {
+  --mx: 50%; --my: 0%;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--field-ink), var(--field-ink)) padding-box,
+    radial-gradient(60% 80% at var(--mx) var(--my), rgb(var(--signal-rgb) / 0.55), transparent 70%) border-box,
+    linear-gradient(var(--field-line), rgb(var(--on-field-strong-rgb) / 0.08)) border-box;
+}
 @media (prefers-reduced-motion: reduce) {
   .lumen, .lumen[data-lit] { transform: none; transition: box-shadow var(--dur-base) var(--ease-out); }
   .lumen .lumen-depth { transform: none; }

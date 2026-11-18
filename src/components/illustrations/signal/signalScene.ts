@@ -239,10 +239,10 @@ export class Field {
         const u = k / NF, ang = u * 6.283 + spin * (i === 1 ? -1 : 1) + i + rot
         const Rk = Rc * sz * shapeR(i, ang - rot, t, wInd)
         // a crisp line with a soft glow hugging it: the core sits on the line, the glow spreads only a little either side
-        const jit = thin ? (r[j + 1] - 0.5) * 0.6 : (r[j + 1] - 0.5) * 5 * sc
+        const jit = thin ? (r[j + 1] - 0.5) * 0.5 : (r[j + 1] - 0.5) * 2.5 * sc
         const rx = cx + Math.cos(ang) * (Rk + jit), ry = cy + Math.sin(ang) * (Rk + jit)
-        let x = rx, y = ry, alpha = thin ? 0.78 : 0.07, size = (thin ? 3.4 : 16) * sc
-        const hard = thin ? 0.92 : 0
+        let x = rx, y = ry, alpha = thin ? 0.8 : 0.055, size = (thin ? 3 : 10) * sc
+        const hard = thin ? 1 : 0
 
         // arrival: the ring traces itself in place, a bright head running round its circumference
         const pa = clamp(arr[i] * 1.4 - u * 0.4)
@@ -284,7 +284,7 @@ export class Field {
           this.d.x = fx; this.d.y = fy
           bez(this.a, this.b, this.c, this.d, pe, this.tmp); x = this.tmp.x; y = this.tmp.y
           const settle = S.reveal
-          alpha *= mix(1, fr.bright * (thin ? 0.42 : 0.6), settle) * (pf < 1 ? 1 + Math.sin(pf * Math.PI) * 0.6 : 1)
+          alpha *= mix(1, fr.bright * (thin ? 0.22 : 0.35), settle) * (pf < 1 ? 1 + Math.sin(pf * Math.PI) * 0.6 : 1)
           size *= mix(1, thin ? 0.8 : 1.3, settle)
           if (fr.bright < 0.02 && settle > 0.9) continue
         }

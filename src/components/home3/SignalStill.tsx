@@ -7,6 +7,7 @@ import { createLight } from '../illustrations/signal/glField'
 import { Field, computeLayout, finalHero, type SceneState } from '../illustrations/signal/signalScene'
 import { COPY, WORKS, SHARE } from './copy'
 import NavCards from './NavCards'
+import { track, release } from './lumen'
 import { atlasRoles } from '../../data/atlasSummary'
 import { ROLE_CSS } from '../illustrations/signal/signalLater'
 
@@ -125,11 +126,14 @@ export default function SignalStill() {
           <p className="mt-4 md:mt-6 text-body-lg text-on-field-muted">{C.share.sub}</p>
         </div>
         <ul className="relative mt-12 grid gap-4 md:grid-cols-3 md:gap-8">
-          {SHARE.map(c => (
+          {SHARE.map((c, i) => (
             <li key={c.to}>
-              <Link to={c.to} className="sg-panel group flex h-full min-h-40 flex-col justify-between rounded-2xl border p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" style={{ background: c.field, borderColor: 'var(--field-line)', outlineColor: 'var(--on-field-accent)' }}>
-                <span className="text-overline text-on-field-muted">{c.kind}</span>
-                <span className="mt-8 font-serif text-title text-on-field-strong group-hover:text-on-field-accent">{c.title}</span>
+              <Link to={c.to} onPointerMove={track} onPointerLeave={release} className="lumen group">
+                <span className="lumen-depth flex items-start justify-between gap-3">
+                  <span className="text-overline text-on-field-muted">{c.kind}</span>
+                  <span className="text-label text-on-field-muted tabular-nums">0{i + 1}</span>
+                </span>
+                <span className="lumen-depth mt-auto font-serif text-title text-on-field-strong group-hover:text-on-field-accent">{c.title}</span>
               </Link>
             </li>
           ))}

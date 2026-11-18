@@ -9,6 +9,7 @@ import { createLight, type LightRenderer } from '../illustrations/signal/glField
 import { useThemeValue } from '../ds/theme'
 import { Field, computeLayout, frameRect, blank, opened, FORCE_CSS, FORCE_INK, type SceneState, type Layout } from '../illustrations/signal/signalScene'
 import NavCards from './NavCards'
+import { track, release, lightAt, lightOff } from './lumen'
 import { COPY, WORKS, CHAPTERS, MEASURES, SHARE } from './copy'
 import { atlasRoles } from '../../data/atlasSummary'
 import { ROLE_CSS, industryRows } from '../illustrations/signal/signalLater'
@@ -132,8 +133,8 @@ export default function Signal() {
     const leave: (() => void)[] = []
     frames.current.forEach((f, i) => {
       if (!f) return
-      enter[i] = (e: PointerEvent) => { const r = f.getBoundingClientRect(); hover[i].tx = ((e.clientX - r.left) / r.width - 0.5) * 2; hover[i].ty = ((e.clientY - r.top) / r.height - 0.5) * 2 }
-      leave[i] = () => { hover[i].tx = 0; hover[i].ty = 0 }
+      enter[i] = (e: PointerEvent) => { const r = f.getBoundingClientRect(); hover[i].tx = ((e.clientX - r.left) / r.width - 0.5) * 2; hover[i].ty = ((e.clientY - r.top) / r.height - 0.5) * 2; const tl = tilts.current[i]; if (tl) lightAt(tl, e) }
+      leave[i] = () => { hover[i].tx = 0; hover[i].ty = 0; const tl = tilts.current[i]; if (tl) lightOff(tl) }
       f.addEventListener('pointermove', enter[i]); f.addEventListener('pointerleave', leave[i])
     })
 
@@ -415,8 +416,8 @@ export default function Signal() {
             className="absolute left-0 top-0 block origin-top-left rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
             style={{ opacity: 0, pointerEvents: 'none', clipPath: 'inset(50%)', willChange: 'transform', outlineColor: 'var(--on-field-accent)' }}
             aria-label={`${wk.title}: ${wk.line}`}>
-            <div ref={el => { tilts.current[i] = el }} className="relative w-full h-full rounded-2xl overflow-hidden border"
-              style={{ borderColor: 'rgb(var(--signal-rgb) / 0.32)', boxShadow: 'var(--shadow-4)' }}>
+            <div ref={el => { tilts.current[i] = el }} className="lumen-edge relative w-full h-full rounded-2xl overflow-hidden"
+              style={{ boxShadow: 'var(--shadow-4)' }}>
               <CaseThumb id={wk.id} live flush ratio="1800 / 1000" className="w-full h-full" />
               <div ref={el => { shades.current[i] = el }} className="absolute inset-0 pointer-events-none" style={{ background: 'rgb(var(--black-rgb))', opacity: 0 }} />
             </div>
@@ -505,13 +506,15 @@ export default function Signal() {
           <p className="sg-sub7 mt-4 md:mt-6 text-body-lg text-on-field-muted">{C.share.sub}</p>
         </div>
         {SHARE.map((c, i) => (
-          <Link key={c.to} to={c.to} ref={el => { cards.current[i] = el }} tabIndex={-1}
-            className="sg-panel group absolute flex flex-col justify-between rounded-2xl border p-4 md:p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
-            style={{ opacity: 0, pointerEvents: 'none', clipPath: 'inset(50%)', background: c.field, borderColor: 'var(--field-line)', boxShadow: 'var(--shadow-4)', outlineColor: 'var(--on-field-accent)' }}>
-            <span className="text-overline text-on-field-muted">{c.kind}</span>
-            <span className="flex items-end justify-between gap-3">
+          <Link key={c.to} to={c.to} ref={el => { cards.current[i] = el }} tabIndex={-1} onPointerMove={track} onPointerLeave={release}
+            className="lumen group" style={{ position: 'absolute', minHeight: 0, opacity: 0, pointerEvents: 'none', clipPath: 'inset(50%)' }}>
+            <span className="lumen-depth flex items-start justify-between gap-3">
+              <span className="text-overline text-on-field-muted">{c.kind}</span>
+              <span className="text-label text-on-field-muted tabular-nums">0{i + 1}</span>
+            </span>
+            <span className="lumen-depth mt-auto flex items-end justify-between gap-3">
               <span className="font-serif text-title text-on-field-strong group-hover:text-on-field-accent" style={{ lineHeight: 1.15 }}>{c.title}</span>
-              <span className="text-on-field-strong group-hover:text-on-field-accent"><Arrow /></span>
+              <span className="lumen-arrow shrink-0 text-on-field-strong group-hover:text-on-field-accent"><Arrow /></span>
             </span>
           </Link>
         ))}

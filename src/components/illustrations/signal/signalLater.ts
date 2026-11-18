@@ -123,7 +123,7 @@ export function laterGeometry(L: Layout): Later {
   // sharing: three cards
   const cards: Rect[] = mobile
     ? [0, 1, 2].map(k => ({ x: W * 0.06, y: top + H * 0.035 + k * (W * 0.3 + 10), w: W * 0.88, h: W * 0.3, bright: 1 }))
-    : (() => { const w = W * 0.165, h = w * 1.18, gx = W * 0.018, x0 = W * 0.4, y = top + (H - top) * 0.5 - h / 2; return [0, 1, 2].map(k => ({ x: x0 + k * (w + gx), y: y + (k === 1 ? -h * 0.06 : h * 0.04), w, h, bright: 1 })) })()
+    : (() => { const w = W * 0.15, h = w * 1.22, gx = W * 0.016, x0 = W * 0.4, y = top + (H - top) * 0.5 - h / 2; return [0, 1, 2].map(k => ({ x: x0 + k * (w + gx), y: y + (k === 1 ? -h * 0.06 : h * 0.04), w, h, bright: 1 })) })()
 
   const P8 = mobile ? { x: W * 0.07, y: top + H * 0.62 } : { x: W * 0.075, y: top + (H - top) * 0.72 }
   const hero = L.hero
@@ -238,7 +238,7 @@ export function composeLater(put: Put, S: SceneState, G: Later, L: Layout, t: nu
       const u = ps, w0 = (1 - u) * (1 - u), w1 = 2 * u * (1 - u), w2 = u * u
       x = w0 * x + w1 * mx + w2 * tgt.x; y = w0 * y + w1 * my + w2 * tgt.y
       const cc = CARD_RGB[ci]; col = [mix(col[0], cc[0], ps), mix(col[1], cc[1], ps), mix(col[2], cc[2], ps)]
-      a *= mix(1, 0.55, clamp(S.card))
+      a *= mix(1, 0.2, clamp(S.card))
       size *= mix(1, 0.8, ps)
     }
     // the end: everything returns to the point
@@ -246,7 +246,7 @@ export function composeLater(put: Put, S: SceneState, G: Later, L: Layout, t: nu
     if (pb > 0) { x = mix(x, pt.x, pb); y = mix(y, pt.y, pb); a *= 1 - pb * pb }
     pos[i] = { x, y }
     if (a < 0.01) continue
-    put(x, y, size * 3.6, col, 0.09 * a, 0)
+    put(x, y, size * 2.4, col, 0.08 * a, 0)
     put(x, y, size, col, 0.95 * a, 0.7)
   }
 
@@ -269,7 +269,7 @@ export function composeLater(put: Put, S: SceneState, G: Later, L: Layout, t: nu
       const a = (k / n) * Math.PI * 2 + spin, f = 0.5 + 0.5 * Math.sin(a * 1 + t * 0.4)
       const c = [mix(0.78, 0.31, f), mix(0.96, 0.82, f), mix(0.35, 0.74, f)]
       put(G.Ct.x + Math.cos(a) * R, G.Ct.y + Math.sin(a) * R, 4.4 * sc, c, 0.8 * ring, 0.75)
-      if (k % 2 === 0) put(G.Ct.x + Math.cos(a) * R, G.Ct.y + Math.sin(a) * R, 22 * sc, c, 0.05 * ring, 0)
+      if (k % 2 === 0) put(G.Ct.x + Math.cos(a) * R, G.Ct.y + Math.sin(a) * R, 12 * sc, c, 0.05 * ring, 0)
     }
     for (let k = 0; k < 6; k++) {
       const a = (k / 6) * Math.PI * 2 + spin * 1.6 + 0.4
@@ -309,7 +309,7 @@ export function composeLater(put: Put, S: SceneState, G: Later, L: Layout, t: nu
         const pp = at((k / Math.max(1, n2)) * per * p2)
         const f = 0.5 + 0.5 * Math.sin(k * 0.05 + t * 1.2), c = [mix(lime[0], teal[0], f), mix(lime[1], teal[1], f), mix(lime[2], teal[2], f)]
         put(pp.x, pp.y, 3.6 * sc, c, 0.95, 0.8)
-        if (k % 4 === 0) put(pp.x, pp.y, 22 * sc, c, 0.05, 0)
+        if (k % 4 === 0) put(pp.x, pp.y, 12 * sc, c, 0.04, 0)
       }
     }
     // 3. and on, out of the frame

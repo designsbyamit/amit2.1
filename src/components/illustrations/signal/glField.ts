@@ -43,7 +43,7 @@ void main(){
   vec2 p = gl_PointCoord * 2.0 - 1.0;
   float d2 = dot(p, p);
   if (d2 > 1.0) discard;
-  float k = mix(3.2, 18.0, vHard);
+  float k = mix(3.2, 26.0, vHard);
   float a = exp(-d2 * k) * (1.0 - smoothstep(0.85, 1.0, d2));
   vec3 col = vCol.rgb;
   // On paper, colours deepen and white marks become ink.
