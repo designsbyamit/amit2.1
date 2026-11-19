@@ -24,11 +24,11 @@
 
 
 /* ── Sticky notes ── */
-.sticky { position: relative; width: var(--size-sticky); padding: var(--space-20) var(--space-20) var(--space-30); color: var(--note-ink); box-shadow: var(--shadow-3); border-radius: var(--radius-1); font-family: var(--font-hand); font-size: var(--text-hand); line-height: 1.15; }
-.sticky .hand-k { opacity: 0.65; }
-.sticky .hand-t { font-weight: 700; margin-top: var(--space-4); }
-.sticky .hand { font-weight: 500; }
-.sticky .scrawl { font-weight: 400; }
+.v2-note { position: relative; width: var(--size-sticky); padding: var(--space-20) var(--space-20) var(--space-30); color: var(--note-ink); box-shadow: var(--shadow-3); border-radius: var(--radius-1); font-family: var(--font-hand); font-size: var(--text-hand); line-height: 1.15; }
+.v2-note .hand-k { opacity: 0.65; }
+.v2-note .hand-t { font-weight: 700; margin-top: var(--space-4); }
+.v2-note .hand { font-weight: 500; }
+.v2-note .scrawl { font-weight: 400; }
 
 /* ── Connectors ── */
 .cx-flow { stroke-dasharray: var(--space-8) var(--space-8); animation: cx-flow calc(var(--dur-slow) * 2) linear infinite; }

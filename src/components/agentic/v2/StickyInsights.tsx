@@ -9,7 +9,7 @@ export default function StickyInsights({ notes }: { notes: Note[] }) {
   return (
     <ul className="flex flex-wrap gap-s60 mt-s60">
       {notes.map((n, i) => (
-        <motion.li key={n.k} className="sticky" style={{ background: `var(--note-${n.tone})`, rotate: `${n.tilt}deg` }}
+        <motion.li key={n.k} className="v2-note" style={{ background: `var(--note-${n.tone})`, rotate: `${n.tilt}deg` }}
           initial={reduce ? false : { opacity: 0, y: 24, rotate: 0 }} whileInView={{ opacity: 1, y: 0, rotate: n.tilt }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.12 }}>
           <p className="hand-k">{n.k}</p>
           <p className="hand-t">{n.t}</p>
