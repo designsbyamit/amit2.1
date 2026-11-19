@@ -35,7 +35,7 @@ export default function AirlineStoryPage() {
           <Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Travel Booking' }]} />
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl">{cs.title}</h1>
-          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A service ecosystem, not an app. I led the mobile experience: engagement up 92%, add-on sales up 50×, check-in from 9 steps to 2.</p>
+          <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">A service ecosystem, not an app. I led the mobile experience. Together, we took check-in from 9 steps to 2 and booking down to 4 minutes for returning customers.</p>
           <div className="flex flex-wrap gap-2 mt-8">{(cs.tags ?? []).map(t => <span key={t} className="tag">{t}</span>)}</div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
             {S.headline.map(([v, k]) => <Stat key={k} v={v} k={k} />)}
@@ -67,10 +67,7 @@ export default function AirlineStoryPage() {
         <div className="grid md:grid-cols-3 gap-4">
           {S.problem.failures.map(([t, d]) => <div key={t} className="card"><p className="text-title text-white">{t}</p><p className="text-body-sm text-ink-2 mt-3">{d}</p></div>)}
         </div>
-        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-12 items-start">
-          <Fig src={S.problem.audit.image} alt={S.problem.audit.alt} note={S.problem.audit.note} />
-          <Fig src={S.problem.before.image} alt={S.problem.before.alt} note={S.problem.before.note} />
-        </div>
+        <Fig className="mt-12 max-w-3xl" src={S.problem.audit.image} alt={S.problem.audit.alt} note={S.problem.audit.note} />
       </Section>
 
       <Section id="reframe">

@@ -107,14 +107,14 @@ export const playbacks: Playback[] = [
   {
     id: 'airline-app',
     headline: 'Redesigning the trip, not the booking flow',
-    dek: 'One connected journey across channels for a carrier serving 30M+ guests a year, with engagement up 92%.',
+    dek: 'One connected journey across channels for a carrier serving 30M+ guests a year, with check-in cut from 9 steps to 2.',
     led: 'I led experience strategy across 11+ designers, organised in pods that each owned a journey.',
     roleNote: 'I led experience strategy across 11+ designers, and the whole mobile experience with an 8-9 person team for almost a year.',
     beats: {
       challenge: 'Functional teams each built on their own, and the result was an incoherent whole: the homepage alone had 183 issues, 21 of them major. The business goal was to grow digital bookings from a $2M channel to $100M.',
       users: 'Travellers of a carrier with 95+ destinations. The friction that mattered most was physical before it was digital, so research was done in airport lounges.',
       solution: 'Five journeys redesigned, from plan and book to manage and check in, each owned end to end by one pod of design, product and engineering.',
-      impact: 'Engagement up 92%, add-on sales up 50×, and check-in cut from 9 steps to 2. The pod model became the standard for large design programmes at Accenture ME.',
+      impact: 'Check-in cut from 9 steps to 2, booking in 4 minutes for returning customers, customer engagement up 13% and bookings up 16%, measured across the releases after launch. The pod model became the standard for large design programmes at Accenture ME.',
     },
     order: ['challenge', 'users', 'decision', 'solution', 'impact'],
     visuals: {
@@ -122,8 +122,8 @@ export const playbacks: Playback[] = [
       decision: [{ src: C('airline/airline-04.webp'), alt: 'Modular collaboration model: five journey pods, each with design, product and engineering, surrounded by client stakeholders, legal and marketing', ratio: '2116 / 1098', caption: 'Five journey pods, each with design, product and engineering.' }],
       solution: [{ src: C('airline/airline-13.webp'), alt: 'Booking flow screens: where to, flight search, dates, passengers, fares, seats and extras', ratio: '2200 / 1530', caption: 'Plan and book: search, dates, passengers, fares, seats and extras.' }],
     },
-    metric: { value: '50×', label: 'Increase in add-on sales' },
-    decision: { heading: 'The booking app was not the product. The passenger journey was.', body: 'When a business wants to grow digital revenue 50-fold, every stakeholder sees a booking flow problem. Reframing it as a service ecosystem problem changed what we built. The pod structure that delivered the work was itself a design decision: when designers own journeys instead of features, they design for coherence rather than correctness.' },
+    metric: { value: '9 → 2', label: 'Steps to check in' },
+    decision: { heading: 'The booking app was not the product. The passenger journey was.', body: 'When a business wants to grow digital bookings from $2M to $100M, every stakeholder sees a booking flow problem. Reframing it as a service ecosystem problem changed what we built. The pod structure that delivered the work was itself a design decision: when designers own journeys instead of features, they design for coherence rather than correctness.' },
     featured: false,
   },
   {

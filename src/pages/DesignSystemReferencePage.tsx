@@ -548,7 +548,7 @@ export default function DesignSystemReferencePage() {
           <div className="grid md:grid-cols-2 gap-4"><Card><p className="text-label text-ink-3 mb-3">Static</p><p className="text-title text-ink">Holds content only</p></Card><Card to="/leadership"><p className="text-label text-ink-3 mb-3">Link card</p><p className="text-title text-ink">The whole card is one link</p></Card></div>
         </Spec>
         <Spec name="Metrics and callouts" note="Numbers always have a plain-language label.">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8"><Stat value="30M+" label="Guests served a year" /><Stat value="50x" label="Add-on sales" /><Stat value="90%" label="Employee satisfaction" /><Stat value="$5M" label="Documented savings" /></div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8"><Stat value="30M+" label="Guests served a year" /><Stat value="9 → 2" label="Steps to check in" /><Stat value="90%" label="Employee satisfaction" /><Stat value="$5M" label="Documented savings" /></div>
           <Callout title="Note">Outcomes are the team’s. Roles describe what I led.</Callout>
         </Spec>
         <Spec name="Tabs and accordion" note="Tabs use the arrow keys, Home and End. Accordion is native details, so it works without JavaScript.">

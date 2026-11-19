@@ -7,10 +7,10 @@ export const airline = {
   hero: I('airline-hero'),
   heroAlt: 'The redesigned airline app on two phones',
   headline: [
-    ['92%', 'engagement boost'],
-    ['50×', 'add-on sales'],
     ['9 → 2', 'steps to check in'],
-    ['9%', 'faster booking'],
+    ['+16%', 'more bookings'],
+    ['+13%', 'customer engagement'],
+    ['4 min', 'to book, for returning customers'],
   ] as [string, string][],
 
   scale: {
@@ -36,7 +36,6 @@ export const airline = {
     title: 'Six kinds of failure, one cause.',
     intro: 'A UX audit found failures everywhere. They shared a root: the digital team was organised around functional owners, each building on their own, so the whole never added up.',
     audit: { image: I('airline-03'), alt: 'Homepage audit showing 183 issues and a benchmark of 54 competitors', note: 'The homepage alone: 183 issues, 21 of them major. The audit benchmarked 54 competitor experiences.' },
-    before: { image: I('airline-11'), alt: 'The existing website and app', note: 'The existing website and app.' },
     failures: [
       ['Navigation and discoverability', 'No consistent model for moving between journeys. Every section had to be relearned.'],
       ['Fragmented experience', 'Booking, manage, check-in and add-ons each had their own logic and visual language.'],
@@ -89,24 +88,24 @@ export const airline = {
     intro: 'The same content, in the right place, at the right moment. No new features.',
     booking: { image: I('airline-13'), alt: 'Booking flow screens: where to, flight search, dates, passengers, fares, seats and extras', note: 'Plan and book: search, dates, passengers, fares, extras and seats.', points: ['Booking time down 9%', 'Multi-city flight selection in 3 minutes', 'Booking in 7 minutes with the eWallet'] },
     manage: { image: I('airline-14'), alt: 'Manage and check-in screens: trips, passenger check-in, travel documents and boarding pass', note: 'Manage and check in: trips, passengers, documents and the boarding pass.', points: ['Check-in in 2 steps, down from 9', 'Claiming miles in 1 step', 'eVisa application in 3 steps'] },
-    ancillaries: 'Add-ons were brought into the journey at the moments they matter. Ancillary sales grew 50× after the final release.',
+    ancillaries: 'Add-ons were brought into the journey at the moments they matter, and choosing a seat took 30% less effort.',
     lifestyle: { image: I('airline-15'), alt: 'The app in use', note: 'The app in use.' },
   },
 
   impact: {
     label: '07 · The impact',
-    title: 'Measured after the final release.',
-    intro: 'The numbers below were measured after the final release, at the end of 8-9 months of work.',
+    title: 'Measured release after release.',
+    intro: 'The web launched first, then the app. After launch, the work moved to measurement and continuous improvement. These numbers come from that period, across the releases that followed.',
     tiles: [
-      ['92%', 'engagement boost'],
-      ['50×', 'ancillary sales'],
-      ['9%', 'reduced booking time'],
+      ['+13%', 'customer engagement'],
+      ['+16%', 'more bookings'],
+      ['+38%', 'more visits to app and web'],
       ['2 steps', 'to check in, from 9'],
-      ['7 min', 'to book with the eWallet'],
-      ['3 min', 'multi-city flight selection'],
+      ['4 min', 'to book, for returning customers'],
+      ['30%', 'less effort to choose a seat'],
+      ['3 min', 'multi-city flight selection, from 12'],
       ['3 steps', 'to apply for an eVisa'],
-      ['1 step', 'to claim miles'],
-      ['12k', 'visas issued'],
+      ['7 min', 'to book with the eWallet'],
     ] as [string, string][],
     leadership: 'The pod model became the standard framework for large-scale design programmes at Accenture ME.',
     today: {
