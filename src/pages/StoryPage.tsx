@@ -87,7 +87,7 @@ export default function StoryPage() {
   )
 
   return (
-    <article>
+    <article className="story-v">
       {/* ── first screen: the headline, one line, one still ── */}
       <header className={heroClass(cs.id)} style={{ paddingTop: 'var(--header-h)', ...heroStyle(cs.id) }}>
         <div className="container-site pt-12 md:pt-20 pb-14 md:pb-20">

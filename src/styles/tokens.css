@@ -70,6 +70,8 @@ html[data-theme='dark'] {
   --shadow-glow: 0 0 30px rgb(var(--signal-rgb) / 0.35);  /* live and active states */
   --shadow-halo: 0 0 0 4px rgb(var(--signal-ink-rgb) / 0.18); /* status dot halo */
   --shadow-hairline: 0 0 0 1px var(--line-1);              /* one pixel outline without a border */
+  --shadow-panel-rim: inset 0 1px 0 rgb(var(--ink-rgb) / 0.05);   /* the lit top edge of a story panel */
+  --shadow-signal-rim: inset 0 1px 0 rgb(var(--signal-rgb) / 0.18); /* the lit top edge of a signal panel */
 }
 
 html[data-theme='light'] {

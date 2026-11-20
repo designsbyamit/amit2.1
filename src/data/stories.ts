@@ -114,7 +114,7 @@ export const stories: Story[] = [
       {
         statement: 'Search becomes the middle ground.',
         body: 'One field in the shell bar of every application. Ask in a sentence, the way you would ask a colleague. Get results from every application and an answer that names its sources. Then act, right from search.',
-        visual: { kind: 'embed', name: 'search-global', caption: 'Try it. Sample data.' },
+        visual: { kind: 'embed', name: 'search-global' },
         nuance: true,
         spectrum: 0.5,
       },
@@ -132,14 +132,14 @@ export const stories: Story[] = [
       },
       {
         statement: 'The next step is conversation.',
-        body: 'One journey already shows the way: someone asks about the education policy, reads the results and wants to know more, and the result offers to continue in the AI assistant. How far that hand-over goes is what is evolving now.',
+        body: 'One journey already shows the way: someone asks about the education policy, reads the results and wants to know more, and the result offers to continue in the AI assistant.',
         visual: { kind: 'diagram', name: 'search-handoff' },
         spectrum: 0.8,
       },
     ],
     ending: {
       label: 'Where it stands',
-      stands: 'Now evolving into a more conversational experience.',
+      stands: 'Built to carry people from search into conversation, one step at a time.',
       delivered: 'Delivered: a validated direction, ten capability recommendations, a pattern library and a live prototype covering six journeys.',
       role: 'Design Lead for the search vision. I led eight designers in three workstreams, alongside engineering and product.',
     },
@@ -207,7 +207,7 @@ export const stories: Story[] = [
       {
         statement: 'A trip is not one flow. It is a hundred use cases, end to end.',
         body: 'Mixed cabins, an infant on a lap, multi-city trips, branded fares, a booking on hold, three passengers with missing passport details, a transit visa, a group check-in, a delay that needs rebooking. Each one had to feel like the same app.',
-        visual: { kind: 'diagram', name: 'travel-trip', caption: 'A sample from the feature backlog, placed where each use case first shows up in the trip.' },
+        visual: { kind: 'diagram', name: 'travel-trip' },
         nuance: true,
       },
       {

@@ -1,5 +1,5 @@
 // The AI Summary pattern, playable: collapsed, expanded, reference links, and tracing one insight to its sources
-// (either in the reference panel or by focusing the results that produced it). Sample data from the design file.
+// (either in the reference panel or by focusing the results that produced it).
 import { useState, type ReactNode } from 'react'
 import { Scaled } from './SearchDiagrams'
 
@@ -21,6 +21,17 @@ const INSIGHTS: { t: ReactNode; refs: number[] }[] = [
   { t: <>Delivery performance was strong, with a 92% on-time delivery rate and minimal quality issues reported.</>, refs: [2, 5] },
 ]
 const REFS = ['PO-2025-001876', 'PO-2025-001902', 'PO-2025-001944', 'CT-2024-0311', 'PO-2025-002015', 'PO-2025-002088', 'PR-2025-1823']
+// what each result is, so the list reads as real search results (sample data)
+const ROWS: { title: string; type: 'Purchase Order' | 'Contract' | 'Requisition'; meta: string; amount: string; status: [string, string, string] }[] = [
+  { title: 'Hot-rolled steel sheets, 3 mm', type: 'Purchase Order', meta: 'ABC Company · Plant 1010', amount: '$412,600.00', status: ['Delivered', '#EAF7EE', '#256F3A'] },
+  { title: 'Copper wire, 2.5 mm, 500 coils', type: 'Purchase Order', meta: 'ABC Company · Plant 1020', amount: '$186,240.00', status: ['Delivered', '#EAF7EE', '#256F3A'] },
+  { title: 'Steel sheets, galvanised, Q3 lot', type: 'Purchase Order', meta: 'ABC Company · Plant 1010', amount: '$298,900.00', status: ['Delivered', '#EAF7EE', '#256F3A'] },
+  { title: 'Raw materials framework agreement', type: 'Contract', meta: 'ABC Company · Valid to Mar 2026', amount: '$2,400,000.00', status: ['Active', '#E5F0FF', '#0057D2'] },
+  { title: 'Aluminium billets, 6061 grade', type: 'Purchase Order', meta: 'ABC Company · Plant 1030', amount: '$94,180.00', status: ['In transit', '#FFF3E0', '#AA5808'] },
+  { title: 'Copper cathodes, grade A', type: 'Purchase Order', meta: 'ABC Company · Plant 1020', amount: '$221,500.00', status: ['Delivered', '#EAF7EE', '#256F3A'] },
+  { title: 'Steel plates for Q1 production', type: 'Requisition', meta: 'Requested by Sarah Chen', amount: '$89,450.00', status: ['Approved', '#EAF7EE', '#256F3A'] },
+]
+const doc = { po: 'M7 3.5h7l4 4V20.5H7zM14 3.5V8h4M9.5 12h6M9.5 15h6M9.5 18h3.5', ct: 'M6 3.5h12v17H6zM9 8h6M9 11h6M9 14h3M14 17.5l1.5 1.5 3-3', pr: 'M5 6.5h14M5 12h14M5 17.5h9M3 6.5h.01M3 12h.01M3 17.5h.01' }
 
 type Mode = 'panel' | 'results'
 export default function AISummary() {
@@ -65,21 +76,33 @@ export default function AISummary() {
   const refsPanel = <div style={{ width: 360, background: '#fff', borderRadius: '0 12px 12px 0', borderLeft: `1px solid ${P.line}`, display: 'flex', flexDirection: 'column', boxShadow: '0 0 0 1px rgba(29,45,62,.06)' }}>
     <div style={{ padding: '14px 18px', borderBottom: `1px solid ${P.line}`, fontSize: 13.5, fontWeight: 600, color: P.ink }}>Reference Links{focus === null ? ` (${REFS.length})` : ''}</div>
     <div style={{ padding: 18, display: 'grid', gap: 10, alignContent: 'start', flex: 1, maxHeight: 300, overflow: 'auto' }}>
-      {(focus === null ? REFS.map((_, i) => i) : related).map(i => <div key={i} style={{ border: `1px solid ${P.blue}`, background: P.blueS, borderRadius: 8, padding: '9px 12px', fontSize: 12.5, color: P.ink }}><b style={{ fontWeight: 600 }}>Industrial CNC Machine Tools &amp; Cutting Equipment</b><div style={{ color: P.ink2, marginTop: 2 }}>{REFS[i]}</div></div>)}
+      {(focus === null ? REFS.map((_, i) => i) : related).map(i => <div key={i} style={{ border: `1px solid ${P.blue}`, background: P.blueS, borderRadius: 8, padding: '9px 12px', fontSize: 12.5, color: P.ink }}><b style={{ fontWeight: 600 }}>{ROWS[i].title}</b><div style={{ color: P.ink2, marginTop: 2 }}>{REFS[i]}</div></div>)}
       {focus !== null && <button type="button" onClick={() => setFocus(null)} style={{ justifySelf: 'end', background: 'none', border: 0, color: P.blue, fontSize: 12.5, textDecoration: 'underline', cursor: 'pointer', fontFamily: F }}>Show all Links</button>}
     </div>
     <div style={{ padding: '10px 18px', borderTop: `1px solid ${P.line}`, textAlign: 'right' }}><button type="button" onClick={() => { setPanel(false); setFocus(null) }} style={{ background: 'none', border: 0, color: P.blue, fontSize: 13, cursor: 'pointer', fontFamily: F }}>Close</button></div>
   </div>
 
-  const results = <div style={{ width: 1000, marginTop: 14, background: '#fff', borderRadius: 12, boxShadow: '0 0 0 1px rgba(29,45,62,.06)', overflow: 'hidden' }}>
-    <div style={{ padding: '14px 20px 0', fontSize: 13, fontWeight: 600, color: P.ink }}>Showing 7 results</div>
-    <div style={{ display: 'flex', gap: 18, padding: '14px 20px 0', borderBottom: `1px solid ${P.line}` }}>{[40, 30, 30].map((w, i) => <span key={i} style={{ width: w, height: 5, borderRadius: 3, background: i ? P.skel : P.blue, marginBottom: 10 }} />)}</div>
-    {order.map((i, k) => { const hot = related.includes(i)
-      return <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '12px 20px', borderTop: k ? `1px solid ${P.line}` : 0, background: hot ? P.focus : '#fff', transition: 'background .25s' }}>
-        <span style={{ width: 34, height: 34, borderRadius: 17, background: P.skel, flex: 'none' }} />
-        <span style={{ flex: 1, display: 'grid', gap: 6 }}><span style={{ fontSize: 13, fontWeight: 600, color: P.ink }}>{REFS[i]}</span><span style={{ width: '46%', height: 6, borderRadius: 3, background: P.skel }} /></span>
-        {hot && <span style={{ fontSize: 11.5, color: P.blue, display: 'flex', alignItems: 'center', gap: 4 }}><I n="spark" s={12} />Contributed to the insight</span>}
-        <span style={{ width: 54, height: 22, borderRadius: 6, background: P.blue }} /><span style={{ width: 18, height: 18, borderRadius: 4, border: `1.5px solid ${P.blue}` }} />
+  const tabs: [string, number][] = [['All', 7], ['Purchase Orders', 5], ['Contracts', 1], ['Requisitions', 1]]
+  const results = <div style={{ width: 1000, marginTop: 14, background: '#fff', borderRadius: 12, boxShadow: '0 0 0 1px rgba(29,45,62,.06), 0 1px 3px rgba(29,45,62,.04)', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', alignItems: 'center', padding: '14px 20px 0' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: P.ink }}>Showing 7 results</span>
+      <span style={{ marginLeft: 'auto', fontSize: 12.5, color: P.ink2 }}>Sort by <b style={{ fontWeight: 600, color: P.ink }}>Relevance</b></span>
+    </div>
+    <div style={{ display: 'flex', gap: 22, padding: '10px 20px 0', borderBottom: `1px solid ${P.line}` }}>
+      {tabs.map(([t, n], i) => <span key={t} style={{ fontSize: 13, fontWeight: i ? 400 : 600, color: i ? P.ink2 : P.blue, paddingBottom: 9, borderBottom: `2px solid ${i ? 'transparent' : P.blue}`, marginBottom: -1 }}>{t} <span style={{ color: P.mute, fontWeight: 400 }}>({n})</span></span>)}
+    </div>
+    {order.map((i, k) => { const hot = related.includes(i); const r = ROWS[i]
+      const icon = r.type === 'Contract' ? doc.ct : r.type === 'Requisition' ? doc.pr : doc.po
+      return <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 20px', borderTop: k ? `1px solid ${P.line}` : 0, background: hot ? P.focus : '#fff', transition: 'background .25s' }}>
+        <span style={{ width: 34, height: 34, borderRadius: 8, background: P.blueS, display: 'grid', placeItems: 'center', flex: 'none' }}><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden><path d={icon} fill="none" stroke={P.blue} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
+        <span style={{ flex: 1, minWidth: 0, display: 'grid', gap: 3 }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ fontSize: 13.5, fontWeight: 600, color: P.blue }}>{r.title}</span><span style={{ fontSize: 11, fontWeight: 600, padding: '1px 6px', borderRadius: 4, background: P.bg, color: P.ink2 }}>{r.type}</span></span>
+          <span style={{ fontSize: 12, color: P.ink2 }}>{REFS[i]} · {r.meta}</span>
+        </span>
+        {hot && <span style={{ fontSize: 11.5, color: P.blue, display: 'flex', alignItems: 'center', gap: 4, whiteSpace: 'nowrap' }}><I n="spark" s={12} />Used in the insight</span>}
+        <span style={{ width: 120, textAlign: 'right', fontSize: 13, fontWeight: 600, color: P.ink, fontVariantNumeric: 'tabular-nums' }}>{r.amount}</span>
+        <span style={{ width: 82, display: 'flex', justifyContent: 'flex-end' }}><span style={{ fontSize: 11.5, fontWeight: 600, padding: '2px 8px', borderRadius: 10, background: r.status[1], color: r.status[2] }}>{r.status[0]}</span></span>
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden style={{ flex: 'none' }}><path d="M9 6l6 6-6 6" fill="none" stroke={P.mute} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </div> })}
   </div>
 

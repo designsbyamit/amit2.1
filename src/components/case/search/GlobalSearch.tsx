@@ -195,7 +195,7 @@ export default function GlobalSearch() {
           </div>
         </Scaled>
       </div>
-      <p className="text-caption text-ink-3 mt-3">Sample data and made-up applications. Start from different applications, ask the same question, and the field is always in the same place.</p>
+      <p className="text-caption text-ink-3 mt-3">Start from different applications, ask the same question, and the field is always in the same place.</p>
     </div>
   )
 }
