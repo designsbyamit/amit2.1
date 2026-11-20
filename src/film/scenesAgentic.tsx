@@ -27,8 +27,9 @@ export const IMAGES = [...SHOTS.map(shotUrl), ...PEOPLE.map(p => p.img)]
 
 const VENDORS = ['Helios Components AG', 'Baumann Chemie', 'Kestrel Reagents', 'Orchid Solvents', 'Veritas Fine Chem', 'Nordlicht GmbH', 'Altamira Pharma', 'Sable Polymers', 'Tessera Labs', 'Quillon Catalysts', 'Meridian Excipients', 'Brightwater Bio', 'Onyx Packaging', 'Ferro & Vale']
 
+/** Tervana, the fictional buying company: a rounded tile with a cut T and a seed dot. */
 export const Star = ({ size = 80, color = C.lime }: { size?: number; color?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 C53 36 64 47 96 50 C64 53 53 64 50 96 C47 64 36 53 4 50 C36 47 47 36 50 4Z" fill={color} /></svg>
+  <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden="true"><rect x="4" y="4" width="92" height="92" rx="26" fill={color} /><path d="M27 33h46" stroke="#0E0F12" strokeWidth="12" strokeLinecap="round" /><path d="M50 33v38" stroke="#0E0F12" strokeWidth="12" strokeLinecap="round" /><circle cx="73" cy="70" r="7" fill="#0E0F12" /></svg>
 )
 const Tag = ({ children, color = C.lime, style }: { children: ReactNode; color?: string; style?: CSSProperties }) => (
   <span style={{ fontFamily: mono, fontSize: 20, letterSpacing: '0.12em', textTransform: 'uppercase', color, border: `1px solid ${color}`, borderRadius: 999, padding: '6px 16px', ...style }}>{children}</span>
@@ -61,11 +62,11 @@ export function Hook({ t }: { t: number }) {
           {[[1480, 500], [1636, 410], [1636, 590], [1324, 590]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={9} fill={i === 0 ? C.lime : C.cobalt} stroke="none" opacity={clamp(draw * 2 - i * 0.4)} />)}
         </g>
       </svg>
-      <In t={t} a={0.3} o={e - 0.3} style={{ left: 120, top: 150 }}><Label>NorthStar Chemicals &amp; Pharma · a story</Label></In>
+      <In t={t} a={0.3} o={e - 0.3} style={{ left: 120, top: 150 }}><Label>Tervana Chemicals &amp; Pharma · a story</Label></In>
       <Words t={t} a={0.8} text="Every medicine" size={150} style={{ left: 120, top: 300 }} />
       <Words t={t} a={2.2} text="starts as an email." size={150} weight={300} style={{ left: 120, top: 460 }} accent={['email']} />
       <In t={t} a={4.6} o={e - 0.3} y={16} style={{ left: 120, top: 700, width: 1700 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}><Star size={52} /><span style={{ fontSize: 38, fontWeight: 300 }}>NorthStar buys raw materials from suppliers. That is procurement.</span></div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}><Star size={52} /><span style={{ fontSize: 38, fontWeight: 300 }}>Tervana buys raw materials from suppliers. That is procurement.</span></div>
       </In>
     </Scene>
   )
@@ -87,7 +88,7 @@ export function Setup({ t: t0 }: { t: number }) {
         {pos.map(([x, y], i) => <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke={C.line} strokeWidth="1.5" opacity={easeOut(seg(t, s + 0.6 + i * 0.06, s + 1.4 + i * 0.06)) * 0.9} />)}
       </svg>
       <div style={{ position: 'absolute', left: cx - 130, top: cy - 90, width: 260, height: 180, borderRadius: 24, background: C.panel, border: `2px solid ${C.lime}`, display: 'grid', placeItems: 'center', boxShadow: `0 0 ${40 + 30 * easeOut(seg(t, s + 10.6, s + 14.6))}px rgba(200,245,90,${0.18 + 0.22 * easeOut(seg(t, s + 10.6, s + 14.6))})`, opacity: easeOut(seg(t, s + 0.3, s + 1)) }}>
-        <div style={{ textAlign: 'center' }}><Star size={46} /><div style={{ fontSize: 34, fontWeight: 400, marginTop: 8 }}>NorthStar</div><div style={{ fontFamily: mono, fontSize: 16, color: C.mute, letterSpacing: '0.1em' }}>PROCUREMENT</div></div>
+        <div style={{ textAlign: 'center' }}><Star size={46} /><div style={{ fontSize: 34, fontWeight: 400, marginTop: 8 }}>Tervana</div><div style={{ fontFamily: mono, fontSize: 16, color: C.mute, letterSpacing: '0.1em' }}>PROCUREMENT</div></div>
       </div>
       {pos.map(([x, y], i) => {
         const pin = easeOutBack(seg(t, s + 0.6 + i * 0.06, s + 1.3 + i * 0.06))
@@ -473,7 +474,7 @@ export function Next({ t }: { t: number }) {
         <div style={{ display: 'flex', justifyContent: 'center' }}><Star size={70} /></div>
         <div style={{ fontSize: 88, fontWeight: 200, letterSpacing: '-0.035em', marginTop: 20 }}>Agentic Order Confirmation</div>
         <div style={{ fontSize: 50, fontWeight: 300, color: C.lime, marginTop: 18 }}>Simplifying the complex.</div>
-        <div style={{ fontSize: 24, color: C.dim, marginTop: 40 }}>NorthStar is a fictional company. Scenario figures are illustrative.</div>
+        <div style={{ fontSize: 24, color: C.dim, marginTop: 40 }}>Tervana is a fictional company. Scenario figures are illustrative.</div>
       </In>
     </Scene>
   )

@@ -1,467 +1,171 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Order confirmations · interactive prototype</title>
+<title>Supplier Order Assistant · Tervana · interactive prototype</title>
 <meta name="robots" content="noindex">
 <style>
 @font-face{font-family:'Outfit';src:url(outfit.woff2) format('woff2');font-weight:100 900;font-display:swap}
-@font-face{font-family:'LMono';src:url(gmono.woff2) format('woff2');font-weight:400;font-display:swap}
-:root{--canvas:#F7F7F5;--surface:#fff;--sunk:#F1F1EE;--line:#E7E7E3;--line-2:#D6D6D1;--ink:#111216;--ink-2:#4A4C55;--ink-3:#8A8C95;--ink-4:#B4B6BD;--accent:#3A3AF4;--accent-t:#EEEEFE;--agent:linear-gradient(135deg,#7C5CFF,#22C7E8);--agent-ink:#5B3FE0;--agent-t:#F5F3FF;--high:#E5484D;--high-t:#FDECEC;--high-ink:#B4232A;--med:#E8A33D;--med-t:#FDF4E6;--med-ink:#97600F;--low:#1EA387;--low-t:#E7F6F2;--low-ink:#0E7560;--r1:4px;--r2:6px;--r3:10px;--hair:0 0 0 1px var(--line);--float:0 0 0 1px rgba(17,18,22,.07),0 24px 48px -16px rgba(17,18,22,.24);--sans:'Outfit',system-ui,sans-serif;--mono:'LMono',ui-monospace,monospace}
+:root{
+ --canvas:#F6F6F4;--surface:#fff;--sunk:#F0F0ED;--line:#E3E3DF;--line-2:#CDCDC7;
+ --ink:#0F1115;--ink-2:#383B44;--ink-3:#666A74;--ink-4:#A0A3AB;
+ --primary:#5B3FE0;--primary-h:#4A2FCC;--primary-t:#F1EEFE;--primary-ink:#4326C4;
+ --agent:linear-gradient(135deg,#7C5CFF,#22C7E8);
+ --high:#D93D42;--high-t:#FCE9E9;--high-ink:#A61E24;
+ --med:#D98E1F;--med-t:#FCF1E0;--med-ink:#8A5507;
+ --low:#14936F;--low-t:#E3F4EE;--low-ink:#0B6B50;
+ --r1:6px;--r2:8px;--r3:12px;
+ --e1:0 1px 2px rgba(15,17,21,.05),0 0 0 1px rgba(15,17,21,.06);
+ --e2:0 8px 24px -8px rgba(15,17,21,.14),0 0 0 1px rgba(15,17,21,.06);
+ --e3:0 24px 56px -16px rgba(15,17,21,.28),0 0 0 1px rgba(15,17,21,.07);
+ --sans:'Outfit',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{background:var(--canvas);color:var(--ink);font:300 14px/1.45 var(--sans);-webkit-font-smoothing:antialiased;min-width:1180px}
+body{background:var(--canvas);color:var(--ink);font:400 14px/1.5 var(--sans);-webkit-font-smoothing:antialiased;min-width:1180px}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 input,textarea,select{font:inherit;color:inherit}
-.id{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
-.k{font:400 10.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-.muted{color:var(--ink-3)}.b{font-weight:500}
-.h1{font:200 30px/1.1 var(--sans);letter-spacing:-.03em}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.t-page{font:600 26px/1.2 var(--sans);letter-spacing:-.02em}
+.t-sec{font:600 16px/1.3 var(--sans);letter-spacing:-.005em}
+.t-sub{font:600 14px/1.35 var(--sans)}
+.t-lab{font:500 12.5px/1.3 var(--sans);color:var(--ink-3)}
+.t-small{font-size:13px;color:var(--ink-3)}
+.muted{color:var(--ink-3)}.b{font-weight:600}.num{font-variant-numeric:tabular-nums}
 .spark{width:12px;height:12px;flex:none;vertical-align:-1px}
-/* shell */
-.top{position:sticky;top:0;z-index:30;height:56px;background:var(--surface);box-shadow:0 1px 0 var(--line);display:flex;align-items:center;gap:14px;padding:0 24px}
-.logo{width:24px;height:24px;border-radius:99px;background:#C7CDD4;flex:none}
-.prod{font:400 15px var(--sans)}
+.top{position:sticky;top:0;z-index:30;height:60px;background:var(--surface);box-shadow:0 1px 0 var(--line);display:flex;align-items:center;gap:12px;padding:0 24px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .co{font:600 15px var(--sans);letter-spacing:-.01em}
+.brand .sep{width:1px;height:20px;background:var(--line-2);margin:0 4px}
+.brand .app{font:500 15px var(--sans);color:var(--ink-2)}
 .sp{flex:1}
-.ask{width:360px;height:34px;border-radius:var(--r2);box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--ink-3);font-size:13px}
-.ask:hover{box-shadow:inset 0 0 0 1px var(--line-2)}
-.ask kbd{margin-left:auto;font:400 10.5px var(--mono);color:var(--ink-4)}
-.ic{width:32px;height:32px;border-radius:var(--r2);display:grid;place-items:center;color:var(--ink-2);position:relative}.ic:hover{background:var(--sunk)}
-.ic svg{width:17px;height:17px}
-.ic .dot{position:absolute;right:6px;top:6px;width:7px;height:7px;border-radius:99px;background:var(--high);box-shadow:0 0 0 2px #fff}
-.av{width:28px;height:28px;border-radius:99px;display:grid;place-items:center;font:400 11px var(--sans);background:#E3E1F7;flex:none}
-.av.p2{background:#DCEFEA}.av.p3{background:#F6E6D2}.av.p4{background:#E2E6EC}.av.sm{width:22px;height:22px;font-size:9.5px}.av.ag{background:var(--agent);color:#fff}
+.ic{width:36px;height:36px;border-radius:var(--r2);display:grid;place-items:center;color:var(--ink-2);position:relative}.ic:hover{background:var(--sunk);color:var(--ink)}
+.ic svg{width:19px;height:19px}
+.ic .dot{position:absolute;right:8px;top:8px;width:8px;height:8px;border-radius:99px;background:var(--high);box-shadow:0 0 0 2px #fff}
+.av{width:30px;height:30px;border-radius:99px;display:grid;place-items:center;font:600 11px var(--sans);background:#E1DCFB;color:#3B2A8F;flex:none}
+.av.p2{background:#D5EEE5;color:#0B5A43}.av.p3{background:#F7E3CB;color:#7A4A0B}.av.p4{background:#E1E5EC;color:#384152}.av.sm{width:24px;height:24px;font-size:9.5px}.av.ag{background:var(--agent);color:#fff}
+.me{display:flex;align-items:center;gap:10px;padding:4px 8px 4px 4px;border-radius:99px}.me:hover{background:var(--sunk)}
+.me .n{font:500 13.5px var(--sans)}
 .wrap{max-width:1440px;margin:0 auto;padding:0 32px}
-/* controls */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:32px;padding:0 14px;border-radius:var(--r2);font:400 13.5px var(--sans);white-space:nowrap;transition:background .15s,box-shadow .15s}
-.btn svg{width:15px;height:15px}
-.btn-p{background:var(--ink);color:#fff}.btn-p:hover{background:#2a2b31}
-.btn-s{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line-2)}.btn-s:hover{box-shadow:inset 0 0 0 1px var(--ink-3)}
-.btn-g{color:var(--ink-2)}.btn-g:hover{background:var(--sunk)}
-.btn-a{background:var(--agent);color:#fff}.btn-a:hover{filter:brightness(1.05)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:36px;padding:0 16px;border-radius:var(--r2);font:500 14px var(--sans);white-space:nowrap;transition:background .15s,box-shadow .15s,color .15s}
+.btn svg{width:16px;height:16px}
+.btn-p{background:var(--primary);color:#fff;box-shadow:0 1px 2px rgba(67,38,196,.3)}.btn-p:hover{background:var(--primary-h)}
+.btn-s{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}.btn-s:hover{box-shadow:inset 0 0 0 1px var(--ink-3);background:#FBFBFA}
+.btn-g{color:var(--ink-2)}.btn-g:hover{background:var(--sunk);color:var(--ink)}
 .btn[disabled]{background:var(--sunk);color:var(--ink-4);box-shadow:none;cursor:not-allowed}
-.btn-sm{height:28px;padding:0 10px;font-size:12.5px}
-.link{color:var(--accent);font-weight:400}.link:hover{text-decoration:underline}
-.chip{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:var(--r1);font:400 11.5px var(--sans);white-space:nowrap}
+.btn-sm{height:32px;padding:0 12px;font-size:13px}
+.link{color:var(--primary-ink);font-weight:500}.link:hover{text-decoration:underline}
+.chip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:99px;font:500 12px var(--sans);white-space:nowrap}
 .chip i{width:6px;height:6px;border-radius:99px;background:currentColor}
 .c-high{background:var(--high-t);color:var(--high-ink)}.c-high i{background:var(--high)}
 .c-med{background:var(--med-t);color:var(--med-ink)}.c-med i{background:var(--med)}
 .c-low{background:var(--low-t);color:var(--low-ink)}.c-low i{background:var(--low)}
-.c-n{background:var(--sunk);color:var(--ink-2)}.c-acc{background:var(--accent-t);color:var(--accent)}.c-ag{background:var(--agent-t);color:var(--agent-ink)}
-.res{display:inline-flex;align-items:center;gap:7px;font-size:13px}.res i{width:6px;height:6px;border-radius:99px;background:var(--ink-4)}
-.res.acc i{background:var(--low)}.res.rej i{background:var(--high)}.res.new i{background:var(--accent)}.res.prog i{background:var(--med)}.res.dim{color:var(--ink-3)}
-.seg{display:inline-flex;box-shadow:inset 0 0 0 1px var(--line-2);border-radius:var(--r2);overflow:hidden}
-.seg button{height:28px;padding:0 11px;font-size:12.5px;color:var(--ink-3)}.seg button:hover{background:var(--sunk);color:var(--ink)}
-.seg button+button{box-shadow:-1px 0 0 var(--line-2)}
-.seg button.on{background:var(--ink);color:#fff}.seg button.on.rej{background:var(--high)}
-.panel{background:var(--surface);border-radius:var(--r3);box-shadow:var(--hair)}
-.ph{display:flex;align-items:center;justify-content:space-between;height:48px;padding:0 16px}
-.ph h3{font:400 15px var(--sans)}
-.views{display:inline-flex;gap:2px;padding:3px;border-radius:var(--r2);background:var(--sunk)}
-.views button{height:26px;padding:0 10px;border-radius:var(--r1);font-size:13px;color:var(--ink-2);display:flex;gap:6px;align-items:center}
-.views button.on{background:#fff;color:var(--ink);box-shadow:0 0 0 1px var(--line)}
-.views em{font:normal 400 11px var(--mono);color:var(--ink-3)}
-.field{height:36px;border-radius:var(--r2);background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);display:flex;align-items:center;padding:0 10px;gap:8px;width:100%;border:0;outline:0}
-.field:focus,.field:focus-within{box-shadow:inset 0 0 0 1.5px var(--accent),0 0 0 3px rgba(58,58,244,.12)}
-textarea.field{height:auto;padding:12px;line-height:1.5;resize:vertical}
-/* tables */
+.c-n{background:var(--sunk);color:var(--ink-2)}.c-p{background:var(--primary-t);color:var(--primary-ink)}
+.st{display:inline-flex;align-items:center;gap:8px;font-size:13.5px}.st i{width:8px;height:8px;border-radius:99px;background:var(--ink-4)}
+.st.new i{background:var(--primary)}.st.wip i{background:var(--med)}.st.ok i{background:var(--low)}.st.bad i{background:var(--high)}.st.off{color:var(--ink-3)}
+.cdot{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-3)}.cdot i{width:7px;height:7px;border-radius:99px}
+.card{background:var(--surface);border-radius:var(--r3);box-shadow:var(--e1)}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px}
 table{width:100%;border-collapse:collapse}
-th{font:400 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-align:left;height:36px;padding:0 12px;border-bottom:1px solid var(--line);background:#FBFBFA;white-space:nowrap}
-td{height:42px;padding:6px 12px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:middle}
+th{font:500 12.5px var(--sans);color:var(--ink-3);text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
 tr:last-child td{border-bottom:0}
 td.r,th.r{text-align:right}.nw{white-space:nowrap}
-tr.click{cursor:pointer}tr.click:hover td{background:#FAFAF8}
-tr.grp td{height:30px;background:#FBFBFA;font:400 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-tr.dim td{color:var(--ink-3)}
-tr.flash td{animation:flash 1.6s}
-@keyframes flash{0%{background:var(--agent-t)}100%{background:transparent}}
-/* page head */
+tr.click{cursor:pointer}tr.click:hover td{background:#F8F7FE}
+tr.grp td{padding:8px 14px;background:#FAFAF8;font:600 12.5px var(--sans);color:var(--ink-2)}
+tr.other td{color:var(--ink-3)}
+tr.flash td{animation:flash 1.6s}@keyframes flash{0%{background:var(--primary-t)}100%{background:transparent}}
+.idc{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tabsv{display:inline-flex;gap:4px}
+.tabsv button{height:34px;padding:0 14px;border-radius:99px;font:500 13.5px var(--sans);color:var(--ink-2);display:flex;gap:8px;align-items:center}
+.tabsv button:hover{background:var(--sunk)}
+.tabsv button.on{background:var(--ink);color:#fff}
+.tabsv em{font-style:normal;font-size:12px;opacity:.7}
+.input{height:38px;border-radius:var(--r2);background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);display:flex;align-items:center;padding:0 12px;gap:8px;width:100%;border:0;outline:0;transition:box-shadow .15s}
+.input:hover{box-shadow:inset 0 0 0 1px var(--ink-4)}
+.input:focus,.input:focus-within{box-shadow:inset 0 0 0 1.5px var(--primary),0 0 0 4px rgba(91,63,224,.14)}
+.input.changed{box-shadow:inset 0 0 0 1px var(--primary);background:#FBFAFF}
+.input[readonly]{background:var(--sunk);box-shadow:none}
+textarea.input{height:auto;padding:12px;line-height:1.55;resize:vertical}
 .head{background:var(--surface);box-shadow:0 1px 0 var(--line)}
-.crumb{font:400 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-.crumb button{color:var(--ink-2)}.crumb button:hover{color:var(--ink)}
-.tabs{display:flex;gap:26px;margin-top:16px}
-.tabs button{font:400 13.5px var(--sans);color:var(--ink-3);padding-bottom:9px;position:relative}
-.tabs button:hover{color:var(--ink)}
-.tabs button.on{color:var(--ink)}.tabs button.on:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ink)}
-.meta{display:flex;align-items:center;color:var(--ink-2);font-size:13.5px;margin-top:10px}
-.meta>span{padding:0 12px;border-left:1px solid var(--line-2)}.meta>span:first-child{padding-left:0;border:0}
-.conf{display:inline-flex;align-items:center;gap:8px;height:24px;padding:0 9px;border-radius:var(--r1);background:var(--agent-t);font:400 12px var(--sans);color:var(--agent-ink)}
-.bar{display:block;height:3px;border-radius:3px;background:var(--sunk);overflow:hidden}.bar i{display:block;height:100%;background:var(--ink)}
-/* layout */
+.crumb{font-size:13px;color:var(--ink-3)}.crumb button{color:var(--primary-ink);font-weight:500}.crumb button:hover{text-decoration:underline}
+.ptabs{display:flex;gap:28px;margin-top:18px}
+.ptabs button{font:500 14px var(--sans);color:var(--ink-3);padding-bottom:12px;position:relative;display:flex;gap:6px;align-items:center}
+.ptabs button:hover{color:var(--ink)}
+.ptabs button.on{color:var(--ink)}.ptabs button.on:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--primary)}
+.ptabs .cnt{font-size:12px;background:var(--sunk);border-radius:99px;padding:0 7px;color:var(--ink-2)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 0;color:var(--ink-2);font-size:14px;margin-top:8px}
+.meta>span{padding:0 14px;border-left:1px solid var(--line-2)}.meta>span:first-child{padding-left:0;border:0}
 .grid2{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start}
-.rail{display:flex;flex-direction:column;gap:12px;position:sticky;top:76px}
-.rec{padding:18px 20px}.rec .say{font:500 16px/1.35 var(--sans);margin-top:12px}.rec .why{color:var(--ink-2);margin-top:8px;font-size:13.5px}
-.rec .next{margin:16px -20px -18px;padding:14px 20px 16px;box-shadow:0 -1px 0 var(--line)}
-.who{display:flex;align-items:center;gap:10px;height:40px;box-shadow:0 1px 0 var(--line)}.who:last-child{box-shadow:none}.who .n{flex:1}
-.tiles{display:grid;grid-template-columns:repeat(6,1fr)}
-.tile{padding:14px 16px;box-shadow:inset -1px 0 0 var(--line)}.tile:last-child{box-shadow:none}
-.tile .v{font:200 26px/1.1 var(--sans);letter-spacing:-.02em;margin-top:8px}.tile .s{font-size:12.5px;color:var(--ink-3);margin-top:4px}
-.steps{display:flex;gap:2px}
-.st{flex:1;padding:8px 10px;background:var(--sunk);font-size:12px;color:var(--ink-3);min-height:52px}
-.st:first-child{border-radius:var(--r2) 0 0 var(--r2)}.st:last-child{border-radius:0 var(--r2) var(--r2) 0}
-.st.done{background:#EEF6F3;color:var(--low-ink)}.st.now{background:var(--ink);color:#fff}
-.st b{display:block;font:400 10px var(--mono);letter-spacing:.06em;margin-bottom:3px;opacity:.8}
-.trace{padding:14px 16px;border-radius:var(--r2);background:#FBFBFA;box-shadow:inset 0 0 0 1px var(--line)}
-.trace dl{display:grid;grid-template-columns:110px 1fr;gap:4px 12px;margin-top:10px;font-size:13px}.trace dt{color:var(--ink-3)}
-.act{display:flex;gap:14px;padding:14px 0;box-shadow:0 1px 0 var(--line);align-items:flex-start}.act:last-child{box-shadow:none}
-.act .n{font:200 22px/1 var(--sans);width:18px;color:var(--ink-3)}
-ul.li{list-style:none}ul.li li{padding:7px 0;box-shadow:0 1px 0 var(--line);display:flex;justify-content:space-between;gap:12px;font-size:13.5px}ul.li li:last-child{box-shadow:none}
-.feed{display:flex;gap:12px;padding:12px 0;box-shadow:0 1px 0 var(--line)}.feed:last-child{box-shadow:none}
-.ag-t{background:var(--agent);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400}
-/* extraction */
-.split{display:grid;grid-template-columns:1fr 480px;min-height:calc(100vh - 56px - 150px)}
-.fg{display:grid;grid-template-columns:repeat(3,1fr)}
-.fg>div{padding:12px 16px;box-shadow:inset -1px -1px 0 var(--line);min-height:76px}
-.fg .v{margin-top:8px}
-.fconf{display:flex;align-items:center;gap:8px;margin-top:8px;font:400 11px var(--mono);color:var(--ink-3)}.fconf .bar{width:44px}
-.pdfpane{background:var(--sunk);box-shadow:inset 1px 0 0 var(--line);padding:24px}
-.pdf{background:#fff;border-radius:2px;box-shadow:0 0 0 1px var(--line),0 8px 24px -12px rgba(17,18,22,.18);padding:24px;font:7px/1.55 Arial,sans-serif;color:#555;position:sticky;top:80px}
+.rail{display:flex;flex-direction:column;gap:14px;position:sticky;top:80px}
+.rec{padding:20px}.rec .say{font:600 17px/1.4 var(--sans);margin-top:10px;letter-spacing:-.005em}.rec .why{color:var(--ink-2);margin-top:8px}
+.rec .next{margin:18px -20px -20px;padding:16px 20px 18px;border-top:1px solid var(--line);background:#FBFBFA;border-radius:0 0 var(--r3) var(--r3)}
+.who{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}.who:first-child{border-top:0}.who .n{flex:1}
+.prog{display:block;height:4px;border-radius:4px;background:var(--sunk);overflow:hidden;width:56px}.prog i{display:block;height:100%;background:var(--primary)}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--line)}
+.tile{padding:16px 20px;border-left:1px solid var(--line)}.tile:first-child{border-left:0}
+.tile .v{font:600 22px/1.2 var(--sans);letter-spacing:-.01em;margin-top:6px}.tile .s{font-size:12.5px;color:var(--ink-3);margin-top:4px}
+.steps{display:flex;gap:3px}
+.stp{flex:1;padding:9px 10px;background:var(--sunk);font:500 12px/1.3 var(--sans);color:var(--ink-3);min-height:54px}
+.stp:first-child{border-radius:var(--r2) 0 0 var(--r2)}.stp:last-child{border-radius:0 var(--r2) var(--r2) 0}
+.stp.done{background:var(--low-t);color:var(--low-ink)}.stp.now{background:var(--primary);color:#fff}
+.stp b{display:block;font-weight:600;margin-bottom:2px;opacity:.75;font-size:11px}
+.trace{padding:14px 16px;border-radius:var(--r2);background:#FAFAF8;border:1px solid var(--line)}
+.trace dl{display:grid;grid-template-columns:100px 1fr;gap:4px 12px;margin-top:8px;font-size:13.5px}.trace dt{color:var(--ink-3)}
+.act{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line);align-items:flex-start}.act:first-child{border-top:0}
+.act .n{width:24px;height:24px;border-radius:99px;background:var(--sunk);display:grid;place-items:center;font:600 12px var(--sans);color:var(--ink-2);flex:none}
+ul.li{list-style:none}ul.li li{padding:9px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}ul.li li:first-child{border-top:0}ul.li li>span:first-child{color:var(--ink-3)}
+.feed{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.feed:first-child{border-top:0}
+.ag-t{background:var(--agent);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600}
+.dec{display:inline-flex;gap:6px}
+.dec button{height:32px;padding:0 12px;border-radius:var(--r2);font:500 13px var(--sans);color:var(--ink);background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);display:flex;align-items:center;gap:6px}
+.dec button:hover{box-shadow:inset 0 0 0 1px var(--ink-3)}
+.dec button.acc.on{background:var(--low);color:#fff;box-shadow:none}
+.dec button.rej.on{background:var(--high);color:#fff;box-shadow:none}
+.sug{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink-3);margin-top:6px}
+.sug.diff{color:var(--med-ink)}
+.done-by{font-size:12px;color:var(--ink-3);margin-top:2px}
+.split{display:grid;grid-template-columns:1fr 480px;min-height:calc(100vh - 210px)}
+.fields{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 28px;padding:4px 20px 22px}
+.fl .top2{display:flex;justify-content:space-between;align-items:center}
+.fl .v{margin-top:6px;font-size:15px}
+.fl .input{margin-top:6px}
+.pdfpane{background:#ECECE8;border-left:1px solid var(--line);padding:24px}
+.pdf{background:#fff;border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 10px 30px -12px rgba(0,0,0,.2);padding:24px;font:7px/1.55 Arial,sans-serif;color:#555;position:sticky;top:84px}
 .pdf .pbar{background:#2a2b2f;color:#fff;font:700 9.5px Arial;padding:6px 8px;display:flex;justify-content:space-between}
-.pdf table td,.pdf table th{height:auto;padding:3px 4px;font:6.5px Arial;color:#555;border-bottom:1px solid #ddd;text-transform:none;letter-spacing:0;background:none}
+.pdf table td,.pdf table th{padding:3px 4px;font:6.5px Arial;color:#555;border-bottom:1px solid #ddd;background:none}
 .pdf table th{background:#2a2b2f;color:#fff;font-weight:700}
 .pdf .ln{height:5px;background:#e8e8e8;border-radius:2px;margin:4px 0}
-.hl{box-shadow:0 0 0 1.5px #7C5CFF;background:rgba(124,92,255,.10);border-radius:2px;padding:0 2px}
-/* overlays */
-.scrim{position:fixed;inset:0;background:rgba(247,247,245,.7);z-index:50;display:grid;place-items:center}
-.dialog{background:#fff;border-radius:var(--r3);box-shadow:var(--float);width:460px;max-height:92vh;overflow:auto}
-.dialog .dh{padding:20px 22px 0;font:400 18px var(--sans)}.dialog .db{padding:10px 22px 18px;color:var(--ink-2)}
-.dialog .df{padding:12px 16px;display:flex;justify-content:flex-end;gap:8px;box-shadow:0 -1px 0 var(--line)}
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:60;background:var(--ink);color:#fff;border-radius:var(--r2);height:42px;padding:0 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--float);animation:up .3s}
+.hl{box-shadow:0 0 0 1.5px var(--primary);background:rgba(91,63,224,.1);border-radius:2px;padding:0 2px}
+.actionbar{position:sticky;bottom:20px;margin-top:16px;background:#fff;border-radius:var(--r3);box-shadow:var(--e3);height:60px;display:flex;align-items:center;gap:10px;padding:0 12px 0 20px;z-index:5}
+.tl{position:relative;padding:0 24px 16px}
+.tl-day{font:600 13px var(--sans);color:var(--ink-2);margin:14px 0 6px 52px}
+.tl-i{position:relative;display:grid;grid-template-columns:52px 1fr;padding:8px 0 14px}
+.tl-i:before{content:'';position:absolute;left:15px;top:40px;bottom:-8px;width:2px;background:var(--line)}
+.tl-i.last:before{display:none}
+.tl-i .node{width:32px;height:32px;display:grid;place-items:center;z-index:1}
+.tl-i .node .av{width:32px;height:32px;font-size:11px}
+.tl-i .time{font-size:12.5px;color:var(--ink-3)}
+.tl-i .x{margin-top:2px}
+.scrim{position:fixed;inset:0;background:rgba(15,17,21,.32);z-index:50;display:grid;place-items:center;animation:fi .15s}
+@keyframes fi{from{opacity:0}}
+.dialog{background:#fff;border-radius:14px;box-shadow:var(--e3);width:480px;max-height:92vh;overflow:auto;animation:pop .2s}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.99)}}
+.dialog .dh{padding:22px 24px 0;font:600 18px var(--sans)}.dialog .db{padding:10px 24px 20px;color:var(--ink-2)}
+.dialog .df{padding:14px 20px;display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--line)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:60;background:var(--ink);color:#fff;border-radius:10px;height:44px;padding:0 18px;display:flex;align-items:center;gap:10px;box-shadow:var(--e3);animation:up .3s}
 @keyframes up{from{opacity:0;transform:translate(-50%,8px)}}
-.drawer{position:fixed;right:0;top:56px;bottom:0;width:420px;background:#fff;box-shadow:-1px 0 0 var(--line),-24px 0 48px -24px rgba(17,18,22,.2);z-index:40;display:flex;flex-direction:column;animation:slide .25s}
-@keyframes slide{from{transform:translateX(24px);opacity:0}}
-.msg{max-width:88%;padding:10px 12px;border-radius:var(--r3);font-size:13.5px;line-height:1.45}
-.msg.me{align-self:flex-end;background:var(--ink);color:#fff}.msg.ag{background:var(--agent-t);color:var(--ink)}
-.menu{position:absolute;right:16px;top:50px;width:260px;background:#fff;border-radius:var(--r3);box-shadow:var(--float);padding:6px;z-index:45}
-.menu button{width:100%;text-align:left;padding:8px 10px;border-radius:var(--r2);display:flex;gap:10px;align-items:center}.menu button:hover{background:var(--sunk)}
-/* coach */
-.coach{position:fixed;left:20px;bottom:20px;z-index:35;width:320px;background:var(--ink);color:#fff;border-radius:var(--r3);box-shadow:var(--float);padding:14px 16px}
-.coach .k{color:#9b9da6}.coach p{margin-top:6px;font-size:13.5px;line-height:1.45}
-.coach .row{display:flex;gap:8px;margin-top:12px}
-.coach .btn-s{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px #3a3b42}
+.menu{position:absolute;right:16px;top:54px;width:290px;background:#fff;border-radius:var(--r3);box-shadow:var(--e3);padding:6px;z-index:45;animation:pop .15s}
+.menu button{width:100%;text-align:left;padding:9px 10px;border-radius:var(--r2);display:flex;gap:10px;align-items:center}.menu button:hover{background:var(--sunk)}
+.menu hr{border:0;height:1px;background:var(--line);margin:6px 0}
+.pop{position:absolute;z-index:20;background:#fff;border-radius:var(--r3);box-shadow:var(--e3);padding:14px;width:240px}
+.check{display:flex;align-items:center;gap:10px;padding:7px 4px;border-radius:var(--r1);cursor:pointer}.check:hover{background:var(--sunk)}
+.check input{accent-color:var(--primary);width:16px;height:16px}
+.switch{width:36px;height:20px;border-radius:99px;background:var(--line-2);position:relative;flex:none}.switch.on{background:var(--primary)}
+.switch:after{content:'';position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:99px;background:#fff;transition:left .15s}.switch.on:after{left:18px}
+.coach{position:fixed;left:20px;bottom:20px;z-index:35;width:320px;background:var(--ink);color:#fff;border-radius:var(--r3);box-shadow:var(--e3);padding:16px}
+.coach .lbl{font:600 12px var(--sans);color:#A7A9B2}.coach p{margin-top:6px;font-size:14px;line-height:1.5}
 .coach-min{position:fixed;left:20px;bottom:20px;z-index:35}
-/* login */
-.login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(900px 500px at 50% -10%,#ECEAFF,transparent 70%),var(--canvas)}
-.persona{display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:var(--r2);box-shadow:inset 0 0 0 1px var(--line);text-align:left;width:100%}
-.persona:hover{box-shadow:inset 0 0 0 1px var(--ink-3)}.persona.on{box-shadow:inset 0 0 0 1.5px var(--ink);background:#FBFBFA}
+.login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(900px 520px at 50% -10%,#E9E4FF,transparent 70%),var(--canvas)}
+.persona{display:flex;gap:12px;align-items:center;padding:12px;border-radius:var(--r2);box-shadow:inset 0 0 0 1px var(--line);text-align:left;width:100%;background:#fff}
+.persona:hover{box-shadow:inset 0 0 0 1px var(--ink-4)}.persona.on{box-shadow:inset 0 0 0 2px var(--primary);background:#FBFAFF}
 .fade{animation:fade .25s}@keyframes fade{from{opacity:0;transform:translateY(4px)}}
 </style></head><body><div id="app"></div>
-<script>
-/* ============ icons ============ */
-const SP=`<svg class="spark" viewBox="0 0 16 16"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C5CFF"/><stop offset="1" stop-color="#22C7E8"/></linearGradient></defs><path fill="url(#g)" d="M8 0l1.7 5.1L15 7l-5.3 1.9L8 14l-1.7-5.1L1 7l5.3-1.9z"/></svg>`
-const I={bell:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 14V9a5 5 0 0110 0v5l1.5 1.5h-13zM8.5 17.5h3"/></svg>`,help:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10" cy="10" r="7.5"/><path d="M8 8a2 2 0 113 1.7c-.7.4-1 .8-1 1.6M10 14v.2"/></svg>`,send:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 2L7 9M14 2l-4.5 12-2.5-5-5-2.5z"/></svg>`,search:`<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#8A8C95" stroke-width="1.4"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>`,check:`<svg viewBox="0 0 10 10" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5.2l2 2 4-4.4"/></svg>`,x:`<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4l8 8M12 4l-8 8"/></svg>`,back:`<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 3L5 8l5 5"/></svg>`,filter:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 4h11M4.5 8h7M6.5 12h3"/></svg>`}
-/* ============ people ============ */
-const PEOPLE={ops:{n:'David Paul',r:'Procurement operations',i:'DP',c:'',mail:'procurement.david@company.com',does:'Validates what the agent read'},buyer:{n:'Adrian Smith',r:'Buyer',i:'AS',c:'p2',mail:'adrian@company.com',does:'Decides prices, terms and costs, and replies'},gr:{n:'Rajan Nair',r:'Goods recipient',i:'RN',c:'p3',mail:'rajan@company.com',does:'Decides quantity and delivery'},admin:{n:'Emma Hudson',r:'Administrator',i:'EH',c:'p4',mail:'emma@company.com',does:'Connects systems and sets the agent'}}
-/* ============ data ============ */
-const FIELDS=[['supplier','Supplier','294730',99],['sname','Supplier name','Helios Components AG',99],['purch','Purchaser','FR0L',97],['terms','Payment terms','GI15: Net 45 days after invoice date',79],['created','Created on','Jan 5, 2026',98],['inco','Incoterms','EXW',99],['total','OC total net value','EUR 164,865',92],['items','Sum of OC items','6',99],['delivery','Delivery (header)','Week 13, 2026 (estimated)',62],['costs','Additional costs','65.00',88]]
-const LINES=[['1001','SKU-8821-B','Steuerungsmodul Rev.B','2,400','25.03','Jun 4, 2026'],['1002','SKU-4410-A','PCBC 40-pin','2,000','22.65','Jun 4, 2026'],['1003','SKU-4411-B','PCBC 40-pin -2','1,800','22.39','Jun 4, 2026'],['1004','SKU-4412-C','Widerstandsnetzwerk 4.7kΩ','1,500','12.80','Jul 14, 2026']]
-const DIFFS1=()=>[
- {id:'total',g:'Order',f:'Total value',po:'€142,800',oc:'€164,865',d:'+€22,065 · 15.4%',sev:'High',why:'Unit price change on line 1001 times quantity. Approving overpays by €22,065.',own:'buyer',sug:'reject'},
- {id:'terms',g:'Order',f:'Payment terms',po:'Net 30',oc:'Net 45',d:'+15 days',sev:'High',why:'Read from “45 Tage netto”. Longer terms need finance approval.',own:'buyer',sug:'reject'},
- {id:'costs',g:'Order',f:'Additional costs',po:'none',oc:'€65.00',d:'New cost',sev:'Medium',why:'A freight charge that is not on the PO. Within the usual range for this lane.',own:'buyer',sug:'accept'},
- {id:'price',g:'Line items',f:'1001 · Unit price',po:'€15.83',oc:'€25.03',d:'+58%',sev:'High',why:'No price change was agreed. This drives the €22,065 increase.',own:'buyer',sug:'reject'},
- {id:'desc',g:'Line items',f:'1001 · Description',po:'Microcontroller Module Rev.B',oc:'Steuerungsmodul Rev.B',d:'German term',sev:'Low',why:'The same part, named in German. No functional difference.',own:'buyer',sug:'accept'},
- {id:'qty',g:'Line items',f:'1002 · Quantity',po:'2,500',oc:'2,000',d:'−500 units',sev:'Medium',why:'Only 2,000 confirmed. 620 in stock may cover the gap; the store decides.',own:'gr',sug:null},
- {id:'date',g:'Line items',f:'1004 · Delivery date',po:'Jun 4',oc:'Jul 14',d:'+40 days',sev:'High',why:'Six weeks late. Two production orders depend on this line.',own:'gr',sug:null}]
-const DIFFS2=()=>[
- {id:'terms2',g:'Order',f:'Payment terms',po:'Net 30',oc:'Net 35',d:'+5 days',sev:'Medium',why:'Read from “35 Tage netto”. Within the 5-day tolerance the buyer can approve alone.',own:'buyer',sug:'accept'},
- {id:'price2',g:'Line items',f:'1001 · Unit price',po:'€15.83',oc:'€25.03',d:'+58%',sev:'High',why:'Unchanged from version 1, after it was rejected. Escalation suggested.',own:'buyer',sug:'reject'}]
-const OTHERS=[['4994546960','1505456','Orion Tech Ltd.','71,800','08.04.26','4 differences','High'],['4994546960','1505982','Cascadia Polymers','25,450','07.04.26','3 differences','High'],['4994546961','1505365','Nebula Systems','39,600','06.04.26','Price +8.4%, delay +7 days','High'],['4994546962','1505974','Quantum Electronics','26,300','31.03.26','Price +6.1%, delay +3 days','High'],['4994546963','1505683','Stellar Innovations','10,750','26.03.26','Price +2.3%, payment terms','Medium'],['4994546964','1505246','Apollo Devices','56,900','23.03.26','Price +1.1%, incoterms','Medium'],['4994546965','1505867','Cosmos Circuitry','70,500','05.04.26','Price +1.4%','Medium'],['4994546966','1505795','Lunar Tech Solutions','37,200','02.04.26','Price +0.5%','Low'],['4994546967','1505680','Solaris Works','14,600','11.03.26','Payment terms','Low']]
-const OPS_OTHERS=[['4994546960','1505900','Orion Tech Ltd.','2,800','08.04.26 10:15',95,'New'],['4994546960','1505901','Cascadia Polymers','5,450','07.04.26 11:18',92,'Validated'],['4994546961','1505902','Nebula Systems','9,600','06.04.26 12:11',90,'Validated'],['4994546962','1505903','Quantum Electronics','6,300','31.03.26 11:10',94,'Validated'],['4994546963','1505904','Stellar Innovations','10,750','26.03.26 16:21',89,'Validated'],['4994546967','1505907','Solaris Works','14,600','11.03.26 10:16',96,'Processed']]
-/* ============ state ============ */
-const fresh=()=>({user:null,view:'login',tab:null,picked:'ops',conn:{mail:true,erp:true},autonomy:'guided',
- o:{ver:1,stage:'read',fields:Object.fromEntries(FIELDS.map(f=>[f[0],f[2]])),edited:{},editing:false,diffs:DIFFS1(),saved:{buyer:false,gr:false},sent:false,closed:false},
- events:[{t:'08.04.26 14:04',who:'agent',x:'Confirmation 1505899 received by email and read. 10 header fields, 4 lines, 87% average confidence.'}],
- chat:[],drawer:false,menu:false,bell:false,dialog:null,toast:null,coach:true,flash:null})
-let S=fresh()
-const now=()=>{const d=new Date();return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
-const log=(who,x)=>S.events.unshift({t:'Today '+now(),who,x})
-const toast=(t)=>{S.toast=t;clearTimeout(window._tt);window._tt=setTimeout(()=>{S.toast=null;render()},2600)}
-const role=()=>S.user
-const mine=(d)=>d.own===role()
-const O=()=>S.o
-const decided=(d)=>d.dec==='accept'||d.dec==='reject'
-const allDone=(r)=>O().diffs.filter(d=>d.own===r).every(decided)
-/* ============ bits ============ */
-const chip=(s)=>`<span class="chip ${{High:'c-high',Medium:'c-med',Low:'c-low'}[s]}"><i></i>${s}</span>`
-const avatar=(r,cls='')=>`<span class="av ${PEOPLE[r].c} ${cls}">${PEOPLE[r].i}</span>`
-const stageInfo=()=>{const o=O();if(o.closed)return['Closed','acc'];if(o.ver===2&&!o.sent)return['Version 2 to review','new'];if(o.sent)return['Reply sent','acc'];if(o.stage==='read')return['To validate','new'];if(!o.saved.buyer||!o.saved.gr)return['In review','prog'];return['Ready to reply','prog']}
-/* ============ shell ============ */
-function shell(inner){
-  const unread=S.events.length>1
-  return `<div class="top"><span class="logo"></span><button class="prod" data-a="home">Order confirmations</button><span class="sp"></span>
-  <button class="ask" data-a="drawer">${SP}Ask the agent about any order<kbd>⌘K</kbd></button><span class="sp"></span>
-  <button class="ic" data-a="bell" aria-label="Notifications">${I.bell}${unread?'<span class="dot"></span>':''}</button><button class="ic" data-a="coach" aria-label="Guide">${I.help}</button>
-  <button data-a="menu" aria-label="Account">${avatar(role())}</button>
-  ${S.menu?`<div class="menu fade"><div style="padding:10px 10px 8px"><div class="b">${PEOPLE[role()].n}</div><div class="muted" style="font-size:12.5px">${PEOPLE[role()].r}</div></div>
-   ${['ops','buyer','gr','admin'].filter(r=>r!==role()).map(r=>`<button data-a="switch" data-r="${r}">${avatar(r,'sm')}Switch to ${PEOPLE[r].n.split(' ')[0]} <span class="muted" style="margin-left:auto;font-size:12px">${PEOPLE[r].r.split(' ')[0]}</span></button>`).join('')}
-   <div style="height:1px;background:var(--line);margin:6px 0"></div><button data-a="signout">Sign out</button><button data-a="reset">Reset the prototype</button></div>`:''}
-  ${S.bell?`<div class="menu fade" style="width:360px;right:80px;max-height:420px;overflow:auto"><div class="k" style="padding:8px 10px">Activity</div>${S.events.slice(0,8).map(e=>`<div style="display:flex;gap:10px;padding:8px 10px">${e.who==='agent'?'<span class="av sm ag">✦</span>':e.who==='sys'?'<span class="av sm">·</span>':avatar(e.who,'sm')}<div><div style="font-size:13px">${e.x}</div><div class="id" style="font-size:11px;color:var(--ink-3)">${e.t}</div></div></div>`).join('')}</div>`:''}
-  </div>${inner}${drawer()}${dialog()}${S.toast?`<div class="toast"><span style="width:16px;height:16px;border-radius:99px;background:var(--low);display:grid;place-items:center">${I.check}</span>${S.toast}</div>`:''}${coach()}`}
-/* ============ login ============ */
-function login(){
-  const p=PEOPLE[S.picked]
-  return `<div class="login"><div class="fade" style="display:grid;grid-template-columns:420px 360px;gap:20px;align-items:start">
-  <div class="panel" style="padding:40px">
-   <div style="width:64px;height:24px;border-radius:3px;background:#1F3A5F"></div>
-   <div class="h1" style="margin-top:26px">Sign in</div><div class="muted" style="margin-top:6px">Order confirmations, with an agent that reads, compares and drafts.</div>
-   <div class="k" style="margin:26px 0 8px">Email</div><input class="field" value="${p.mail}" readonly>
-   <div class="k" style="margin:16px 0 8px">Password</div><input class="field" type="password" value="prototype" readonly>
-   <button class="btn btn-p" data-a="login" style="width:100%;margin-top:24px;height:40px">Continue as ${p.n.split(' ')[0]}</button>
-   <div class="muted" style="font-size:12.5px;margin-top:14px">A prototype with sample data. Nothing is sent anywhere.</div>
-  </div>
-  <div class="panel" style="padding:20px"><div class="k">Sign in as</div>
-   <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">${['ops','buyer','gr','admin'].map(r=>`<button class="persona ${S.picked===r?'on':''}" data-a="pick" data-r="${r}">${avatar(r)}<span><span class="b" style="display:block">${PEOPLE[r].n}</span><span class="muted" style="font-size:12.5px">${PEOPLE[r].r} · ${PEOPLE[r].does}</span></span></button>`).join('')}</div>
-   <div class="muted" style="font-size:12.5px;margin-top:14px;line-height:1.5">Start as David. The guide at the bottom left suggests each next step, and you can switch person from the avatar at any time.</div>
-  </div></div></div>${coach()}`}
-/* ============ worklists ============ */
-function worklist(){
-  const r=role(),o=O(),[st,sc]=stageInfo()
-  if(r==='admin')return admin()
-  if(r==='ops'){
-    const val=o.stage!=='read'
-    const rows=[['4994546957','1505899','Helios Components AG','142,800','08.04.26 14:04',87,val?'Validated':'New',true],...OPS_OTHERS.map(x=>[...x,false])]
-    return `<div class="wrap fade" style="padding-top:28px;padding-bottom:120px"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="h1">My worklist</div><div class="muted" style="margin-top:6px">${SP} The agent has read every confirmation. Check the least certain first.</div></div>
-    <div style="display:flex;gap:28px"><div><div class="k">To validate</div><div class="h1" style="font-size:26px;margin-top:6px">${val?1:2}</div></div><div><div class="k">Avg. confidence</div><div class="h1" style="font-size:26px;margin-top:6px">91<span class="muted" style="font-size:14px">%</span></div></div></div></div>
-    ${toolbar([['All',7],['To validate',val?1:2],['Validated',val?5:4],['Processed',1]])}
-    <div class="panel" style="overflow:hidden;margin-top:12px"><table><tr><th>PO</th><th>Document</th><th>Supplier</th><th class="r">Value (EUR)</th><th>Received</th><th>Agent confidence</th><th>Status</th><th></th></tr>
-    ${rows.map(x=>`<tr class="${x[7]?'click':''}" ${x[7]?'data-a="open"':''}><td class="id">${x[0]}</td><td class="id">${x[1]}</td><td>${x[2]}</td><td class="r">${x[3]}</td><td class="nw">${x[4]}</td><td><span style="display:inline-flex;align-items:center;gap:8px"><span class="bar" style="width:52px"><i style="width:${x[5]}%;background:${x[5]<90?'var(--med)':'var(--ink)'}"></i></span>${x[5]}%</span></td><td>${x[6]==='New'?'<span class="res new"><i></i>New</span>':x[6]==='Validated'?'<span class="res acc"><i></i>Validated</span>':'<span class="res dim"><i></i>Processed</span>'}</td><td class="r">${x[7]?`<span class="link">${val?'View':'Validate'}</span>`:'<span class="muted">View</span>'}</td></tr>`).join('')}</table></div></div>`}
-  const mineOpen=o.diffs.filter(d=>d.own===r&&!d.locked).length
-  const top=`<tr class="click ${S.flash==='row'?'flash':''}" data-a="open"><td class="id">4994546957</td><td class="id">1505899${o.ver===2?'/2':''}</td><td>Helios Components AG</td><td class="r">${o.ver===2?'164,865':'142,800'}</td><td class="nw">${o.ver===2?'Today':'08.04.26'}</td><td>${o.stage==='read'?'<span class="muted">Waiting for validation</span>':`${o.diffs.length} differences${r==='gr'?` · <b>${o.diffs.filter(d=>d.own==='gr').length} yours</b>`:''}`}</td><td>${chip(o.ver===2?'Medium':'High')}</td><td><span class="res ${sc}"><i></i>${st}</span></td><td class="r"><span class="link">${o.stage==='read'?'View':'Review'}</span></td></tr>`
-  return `<div class="wrap fade" style="padding-top:28px;padding-bottom:120px"><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="h1">My worklist</div><div class="muted" style="margin-top:6px">${SP} Read, compared with the PO and ranked by risk.${r==='gr'?' Showing confirmations with quantity or delivery changes.':''}</div></div></div>
-  ${toolbar([['All',10],['High',5],['Medium',3],['Low',2]])}
-  <div class="panel" style="overflow:hidden;margin-top:12px"><table><tr><th>PO</th><th>Document</th><th>Supplier</th><th class="r">Value (EUR)</th><th>Received</th><th>Differences</th><th>Risk</th><th>Status</th><th></th></tr>${top}
-  ${OTHERS.filter((x,i)=>r==='buyer'||[0,2,3].includes(i)).map(x=>`<tr><td class="id">${x[0]}</td><td class="id">${x[1]}</td><td>${x[2]}</td><td class="r">${x[3]}</td><td>${x[4]}</td><td>${x[5]}</td><td>${chip(x[6])}</td><td><span class="res prog"><i></i>In review</span></td><td class="r"><span class="muted">Review</span></td></tr>`).join('')}</table></div>
-  <div class="muted" style="font-size:12.5px;margin-top:10px">In this prototype, order 1505899 is the one to open.</div></div>`}
-const toolbar=(v)=>`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px"><div class="views">${v.map((x,i)=>`<button class="${i?'':'on'}">${x[0]} <em>${x[1]}</em></button>`).join('')}</div><div style="display:flex;gap:8px"><div class="field" style="width:240px;height:32px">${I.search}<span class="muted" style="font-size:13px">Search orders, suppliers</span></div><button class="btn btn-s btn-sm" style="height:32px">${I.filter}Filter</button></div></div>`
-/* ============ order ============ */
-function order(){
-  const r=role(),o=O(),[st,sc]=stageInfo()
-  const tabs=r==='ops'?['Extraction','Activity']:['Overview','Differences','Extraction','Activity']
-  if(!S.tab||!tabs.includes(S.tab))S.tab=tabs[0]
-  let act=''
-  if(r==='ops'&&o.stage==='read')act=o.editing?'':`<button class="btn btn-s" data-a="edit">Edit</button><button class="btn btn-p" data-a="validate">Confirm validation</button>`
-  if(r==='buyer'&&o.saved.buyer&&o.saved.gr&&!o.sent)act=`<button class="btn btn-a" data-a="reply">${I.send}Review the reply</button>`
-  if(r==='buyer'&&o.sent&&o.ver===1)act=`<button class="btn btn-s" data-a="revise">${SP}Simulate the supplier’s revision</button>`
-  if(r==='buyer'&&o.sent&&o.ver===2&&!o.closed)act=`<button class="btn btn-p" data-a="close">Close order</button>`
-  const id='1505899'+(o.ver===2?'/2':'')
-  return `<div class="head"><div class="wrap" style="padding-top:18px"><div class="crumb"><button data-a="home">My worklist</button> &nbsp;/&nbsp; ${id}</div>
-   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-top:8px"><div style="display:flex;align-items:center;gap:12px"><span class="h1">Order confirmation ${id}</span>${chip(o.ver===2?'Medium':'High')}<span class="res ${sc}" style="margin-left:4px"><i></i>${st}</span>${r==='ops'?`<span class="conf">${SP}Read with 87% confidence</span>`:''}</div><div style="display:flex;gap:8px">${act}</div></div>
-   <div class="meta"><span>PO <span class="id" style="color:var(--ink)">4994546957</span></span><span>Helios Components AG</span><span>€164,865</span><span>Version ${o.ver}</span></div>
-   <div class="tabs">${tabs.map(t=>`<button class="${t===S.tab?'on':''}" data-a="tab" data-t="${t}">${t}${t==='Differences'&&o.stage!=='read'?` <span class="id" style="color:var(--ink-3)">${o.diffs.length}</span>`:''}</button>`).join('')}</div></div></div>
-  <div class="fade">${S.tab==='Overview'?overview():S.tab==='Differences'?differences():S.tab==='Extraction'?extraction():activity()}</div>`}
-function gateBanner(){return `<div class="panel" style="padding:16px 18px;display:flex;align-items:center;gap:14px;margin-bottom:16px"><span class="chip c-n">Gate 1</span><div style="flex:1"><div class="b">Waiting for operations to validate the reading</div><div class="muted" style="font-size:13px">Nothing is compared or routed until a person confirms what the agent read.</div></div><button class="btn btn-s btn-sm" data-a="switch" data-r="ops">Switch to David</button></div>`}
-/* ---- overview ---- */
-function overview(){
-  const o=O(),r=role()
-  if(o.stage==='read')return `<div class="wrap" style="padding-top:20px;padding-bottom:120px">${gateBanner()}</div>`
-  const hi=o.diffs.filter(d=>d.sev==='High').length,me=o.diffs.filter(d=>d.sev==='Medium').length,lo=o.diffs.filter(d=>d.sev==='Low').length
-  const v1=o.ver===1
-  const steps=[['Received',1],['Read by agent',1],['Validated',1],['Compared',1],['Buyer decides',o.saved.buyer],['Recipient decides',o.saved.gr],['Reply sent',o.sent],['Revision',o.ver===2&&o.closed]]
-  const nowIdx=steps.findIndex(s=>!s[1])
-  return `<div class="wrap" style="padding-top:20px;padding-bottom:120px;display:flex;flex-direction:column;gap:16px">
-  <div class="panel"><div class="ph"><h3>${SP} What the agent found</h3><span class="chip c-ag">Agent</span></div><div class="tiles" style="box-shadow:0 -1px 0 var(--line)">
-   <div class="tile"><div class="k">Confidence</div><div class="v">87%</div><div class="s">Weighted over 10 fields</div></div>
-   <div class="tile"><div class="k">Order risk</div><div class="v" style="color:var(--high-ink)">${v1?'High':'Medium'}</div><div class="s">Set by the most severe difference</div></div>
-   <div class="tile"><div class="k">Differences</div><div class="v">${o.diffs.length}</div><div class="s">${hi} high · ${me} medium${lo?` · ${lo} low`:''}</div></div>
-   <div class="tile"><div class="k">Price exposure</div><div class="v">+€22,065</div><div class="s">Overpaid if approved</div></div>
-   <div class="tile"><div class="k">Delivery</div><div class="v">${v1?'+40 days':'On time'}</div><div class="s">${v1?'Line 1004, two orders depend on it':'Version 2 keeps the dates'}</div></div>
-   <div class="tile"><div class="k">Recommendation</div><div class="v" style="color:var(--agent-ink)">${v1?'Reject 3':'Escalate price'}</div><div class="s">${v1?'Accept 2, two are Rajan’s':'Accept net 35'}</div></div></div></div>
-  <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:16px">
-   <div class="panel" style="overflow:hidden"><div class="ph"><h3>PO against the confirmation</h3><span class="muted" style="font-size:12.5px">Matched to the ERP</span></div><table><tr><th>Field</th><th>PO</th><th>Confirmation</th><th>Status</th></tr>
-    ${[['Unit price, 1001','€15.83',v1?'€25.03':'€25.03','High'],['Total value','€142,800','€164,865','High'],['Payment terms','Net 30',v1?'Net 45':'Net 35',v1?'High':'Medium'],['Delivery, 1004','Jun 4',v1?'Jul 14':'Jun 4',v1?'High':'ok'],['Quantity, 1002','2,500',v1?'2,000':'2,500',v1?'Medium':'ok'],['Incoterms','EXW','EXW','ok'],['Currency','EUR','EUR','ok']].map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td class="${x[3]==='ok'?'':'b'}">${x[2]}</td><td>${x[3]==='ok'?'<span class="res acc"><i></i>Matched</span>':chip(x[3])}</td></tr>`).join('')}</table></div>
-   <div class="panel" style="padding:0 16px 16px"><div class="ph" style="padding:0"><h3>Where it stands</h3></div>
-    <div class="steps">${steps.map((s,i)=>`<div class="st ${s[1]?'done':i===nowIdx?'now':''}"><b>${String(i+1).padStart(2,'0')}</b>${s[0]}</div>`).join('')}</div>
-    <div class="k" style="margin-top:20px">Confidence by field</div>
-    <div style="margin-top:10px;display:grid;gap:9px">${FIELDS.filter(f=>['terms','delivery','costs','total','purch','supplier'].includes(f[0])).map(f=>`<div style="display:grid;grid-template-columns:130px 1fr 40px;align-items:center;gap:12px;font-size:13px"><span class="muted">${f[1]}</span><span class="bar" style="height:4px"><i style="width:${f[3]}%;background:${f[3]<70?'var(--high)':f[3]<90?'var(--med)':'var(--low)'}"></i></span><span class="r" style="text-align:right">${f[3]}%</span></div>`).join('')}</div>
-    <div class="muted" style="font-size:12.5px;margin-top:10px">${O().edited.terms||O().edited.delivery?'Fields below 80% were checked and corrected by David.':'Fields below 80% are checked by operations first.'}</div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-   <div class="panel" style="padding:0 16px 16px"><div class="ph" style="padding:0"><h3>How it reasoned</h3><span class="muted" style="font-size:12.5px">Every step traceable</span></div><div style="display:grid;gap:10px">
-    <div class="trace"><div class="b">Unit price, from a German column “PREIS”</div><dl><dt>Method</dt><dd>Read the column, mapped it to unit price</dd><dt>PO</dt><dd>€15.83</dd><dt>Confirmation</dt><dd style="color:var(--high-ink)">€25.03 · +58%</dd><dt>History</dt><dd>One approved price change in 24 months, +4.2%</dd></dl></div>
-    <div class="trace"><div class="b">Payment terms, from “${v1?'45':'35'} Tage netto”</div><dl><dt>Source</dt><dd>Terms section, page 1, German</dd><dt>Read as</dt><dd>Net ${v1?'45':'35'} days, 99% sure of the translation</dd><dt>Policy</dt><dd>${v1?'Beyond 5 days needs finance':'Within the buyer’s tolerance'}</dd></dl></div>
-    <div class="trace"><div class="b">Description, “Steuerungsmodul Rev.B”</div><dl><dt>Match</dt><dd>Same part number, German name</dd><dt>Verdict</dt><dd>Not a real difference, severity low</dd></dl></div></div></div>
-   <div class="panel" style="padding:0 16px 8px"><div class="ph" style="padding:0"><h3>Suggested next actions</h3><span class="muted" style="font-size:12.5px">For you, in order</span></div>
-    ${(r==='gr'?[['Decide the shortfall on line 1002','620 in stock may cover 500 short','Now'],['Decide the delivery on line 1004','Two production orders start before Jul 14','Now']]:v1?[['Reject the price on line 1001','€22,065 overpaid if approved','Now'],['Reject net 45, or send to finance','Beyond your 5-day tolerance','Now'],['Accept the €65 freight','Usual range for this lane','Today'],['Rajan decides quantity and delivery','Routed to him automatically','Waiting']]:[['Accept net 35','Within your tolerance','Now'],['Escalate the unit price','Rejected once, unchanged in version 2','Now']]).map((a,i)=>`<div class="act"><span class="n">${i+1}</span><div style="flex:1"><div>${a[0]}</div><div class="muted" style="font-size:13px">${a[1]}</div></div><span class="chip ${a[2]==='Now'?'c-high':a[2]==='Waiting'?'c-n':'c-med'}">${a[2]}</span></div>`).join('')}
-    <div style="padding:12px 0 8px"><button class="btn btn-p btn-sm" data-a="tab" data-t="Differences">Decide the differences</button></div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
-   <div class="panel" style="padding:0 16px 10px"><div class="ph" style="padding:0"><h3>Supplier</h3><span class="muted" style="font-size:12.5px">Master data</span></div><ul class="li"><li><span class="muted">Helios Components AG</span><span class="id">294730</span></li><li><span class="muted">Contract</span><span>Active to Dec 2026</span></li><li><span class="muted">On-time delivery</span><span>84%</span></li><li><span class="muted">Price changes this year</span><span>2 of 6 orders</span></li><li><span class="muted">Price escalation clause</span><span>None</span></li></ul></div>
-   <div class="panel" style="padding:0 16px 10px"><div class="ph" style="padding:0"><h3>Supply impact</h3><span class="muted" style="font-size:12.5px">For Rajan</span></div><ul class="li"><li><span class="muted">SKU-4410-A in stock</span><span>620 EA</span></li><li><span class="muted">Shortfall on 1002</span><span>500 EA</span></li><li><span class="muted">Orders that need 1004</span><span>2, from Jun 10</span></li><li><span class="muted">Other suppliers for 1004</span><span>2 qualified</span></li></ul></div>
-   <div class="panel" style="padding:0 16px 10px"><div class="ph" style="padding:0"><h3>Documents</h3><span class="muted" style="font-size:12.5px">Attached by email</span></div><ul class="li"><li><span>Order confirmation, PDF</span><span class="res acc"><i></i>Read</span></li><li><span>Terms and conditions, PDF</span><span class="res acc"><i></i>Read</span></li><li><span>Quality certificate</span><span class="res acc"><i></i>On file</span></li><li><span>Delivery schedule</span><span class="res rej"><i></i>Missing</span></li></ul></div>
-  </div>
-  <div class="panel" style="padding:0 16px 14px"><div class="ph" style="padding:0"><h3>Conversation</h3><span class="muted" style="font-size:12.5px">Ask the agent about this order</span></div>
-   ${S.chat.length?S.chat.slice(-6).map(m=>`<div class="feed">${m.me?avatar(role(),'sm'):'<span class="av sm ag">✦</span>'}<div><div class="${m.me?'b':'ag-t'}" style="font-size:13px">${m.me?PEOPLE[role()].n:'Agent'}</div><div style="margin-top:2px">${m.t}</div></div></div>`).join(''):`<div class="muted" style="padding:6px 0 12px">No questions yet.</div>`}
-   ${chatInput()}</div>
-  </div>`}
-/* ---- differences ---- */
-function differences(){
-  const o=O(),r=role()
-  if(o.stage==='read')return `<div class="wrap" style="padding-top:20px;padding-bottom:120px">${gateBanner()}</div>`
-  const myDone=allDone(r),saved=o.saved[r]
-  const row=(d)=>{const own=d.own===r,lock=o.saved[d.own]||o.sent
-    const cell=lock||!own?(d.dec?`<span class="res ${d.dec==='accept'?'acc':'rej'} ${own?'':'dim'}"><i></i>${d.dec==='accept'?'Accepted':'Rejected'}</span>`:`<span class="res dim"><i></i>Open</span>`)
-     :`<div><span class="seg"><button class="${d.dec==='accept'?'on':''}" data-a="dec" data-id="${d.id}" data-v="accept">Accept</button><button class="${d.dec==='reject'?'on rej':''}" data-a="dec" data-id="${d.id}" data-v="reject">Reject</button></span>${d.sug?`<div style="font-size:11.5px;margin-top:4px" class="muted">${SP} Suggests ${d.sug}</div>`:`<div style="font-size:11.5px;margin-top:4px" class="muted">Your judgement</div>`}</div>`
-    return `<tr class="${own?'':'dim'}"><td style="width:150px">${d.f}</td><td style="width:210px"><div style="font-size:12.5px;color:var(--ink-3)"><s>${d.po}</s> → <span style="color:${own?'var(--ink)':'inherit'}">${d.oc}</span></div><div style="font-size:12.5px;color:var(--ink-2)">${d.d}</div></td><td style="width:92px">${chip(d.sev)}</td><td><div style="display:flex;gap:8px;color:var(--ink-2);line-height:1.35">${SP}<span>${d.why}</span></div></td><td style="width:52px">${avatar(d.own,'sm')}</td><td style="width:170px">${cell}</td></tr>`}
-  const groups=['Order','Line items'].map(g=>{const ds=o.diffs.filter(d=>d.g===g);return ds.length?`<tr class="grp"><td colspan="6">${g}</td></tr>${ds.map(row).join('')}`:''}).join('')
-  const rec=recFor(r)
-  const n=(x)=>o.diffs.filter(d=>d.own===x).length,dn=(x)=>o.diffs.filter(d=>d.own===x&&decided(d)).length
-  return `<div class="wrap" style="padding-top:20px;padding-bottom:140px"><div class="grid2"><div>
-   <div class="panel" style="overflow:hidden"><div class="ph"><h3>Differences from the purchase order</h3><div class="views"><button class="on">All <em>${o.diffs.length}</em></button><button>Mine <em>${n(r)}</em></button></div></div>
-   <table><tr><th>Field</th><th>PO → Confirmation</th><th>Severity</th><th>Agent's reasoning</th><th>Owner</th><th>Decision</th></tr>${groups}</table></div>
-   ${(r==='buyer'||r==='gr')&&!saved&&!o.sent?`<div class="panel" style="margin-top:12px;height:54px;display:flex;align-items:center;padding:0 10px 0 16px;gap:10px"><span class="muted" style="flex:1;font-size:13px">${dn(r)} of ${n(r)} of yours decided</span>${r==='buyer'?`<button class="btn btn-g btn-sm" data-a="acceptsug">${SP}Apply the agent’s suggestions</button>`:''}<button class="btn btn-p btn-sm" data-a="savedec" ${myDone?'':'disabled'}>${r==='gr'?'Submit decisions':'Save decisions'}</button></div>`:''}
-  </div>
-  <div class="rail"><div class="panel rec"><span class="k" style="display:flex;gap:7px;align-items:center">${SP}Agent recommendation</span><div class="say">${rec.say}</div><div class="why">${rec.why}</div>
-    <div class="next"><span class="k">Next</span><div style="margin-top:8px">${rec.next[0]}</div><div class="muted" style="font-size:13px;margin-top:2px">${rec.next[1]}</div>${rec.btn||''}</div></div>
-   <div class="panel" style="padding:14px 16px"><span class="k">Who decides</span><div style="margin-top:8px">${['buyer','gr'].filter(x=>n(x)).map(x=>`<div class="who">${avatar(x,'sm')}<span class="n">${PEOPLE[x].n}<span class="muted"> · ${PEOPLE[x].r.toLowerCase()}</span></span><span class="id" style="font-size:11px;color:var(--ink-3)">${dn(x)}/${n(x)}</span><span class="bar" style="width:48px"><i style="width:${n(x)?dn(x)/n(x)*100:0}%"></i></span></div>`).join('')}</div></div>
-   <div class="panel" style="padding:14px 16px"><span class="k">Order risk</span><div style="display:flex;align-items:center;gap:10px;margin-top:10px">${chip(o.ver===2?'Medium':'High')}<span class="muted" style="font-size:13px">Set by the most severe difference</span></div></div>
-  </div></div></div>`}
-function recFor(r){
-  const o=O()
-  if(o.closed)return{say:'Order closed.',why:'Every decision, the reply and both versions are in Activity.',next:['Nothing left to do','The record stays for audit.']}
-  if(r==='gr'){
-    if(o.saved.gr)return{say:'Your decisions are submitted.',why:'Adrian replies to the supplier once his are in too.',next:['Nothing left for you','You will see the revision if the supplier changes your lines.']}
-    return{say:'Two differences are yours: quantity and delivery date.',why:'The buyer decides the commercial ones. These depend on what the store needs.',next:['Decide quantity and delivery','620 in stock may cover the shortfall. Line 1004 is six weeks late.']}}
-  if(o.ver===2){
-    if(o.sent)return{say:'Reply sent on version 2.',why:'Net 35 accepted, the price escalated.',next:['Close the order','Or keep it open for the supplier’s answer on price.']}
-    return{say:'Accept net 35. Escalate the unit price.',why:'Version 2 moved terms within your tolerance, but line 1001 still carries the 58% rise.',next:['Decide the revised differences','Then the agent drafts the reply again.'],btn:o.saved.buyer?`<button class="btn btn-a btn-sm" style="margin-top:12px" data-a="reply">${I.send}Review the reply</button>`:''}}
-  if(o.sent)return{say:'Sent to the supplier.',why:'The agent is watching the mailbox for a revised confirmation.',next:['All set for now','Use “Simulate the supplier’s revision” to see what happens next.']}
-  if(o.saved.buyer&&o.saved.gr)return{say:'Every decision is in. The reply is drafted.',why:'It lists what was rejected and why, with the differences attached.',next:['Review the reply and send it','Nothing leaves without you.'],btn:`<button class="btn btn-a btn-sm" style="margin-top:12px" data-a="reply">${I.send}Review the reply</button>`}
-  if(o.saved.buyer)return{say:'Your decisions are saved.',why:'Quantity and delivery are with Rajan.',next:['Waiting for Rajan','Switch to Rajan from the avatar to decide them.'],btn:`<button class="btn btn-s btn-sm" style="margin-top:12px" data-a="switch" data-r="gr">Switch to Rajan</button>`}
-  return{say:'Reject the price and the longer payment terms. Accept the freight charge and the description.',why:'The unit price rose 58% on line 1001, which drives the €22,065 increase. Net 45 needs finance approval.',next:['Decide each difference','Yours are marked AS. Quantity and delivery go to Rajan.']}}
-/* ---- extraction ---- */
-function extraction(){
-  const o=O(),ed=o.editing
-  const can=role()==='ops'&&o.stage==='read'
-  return `<div class="split"><div class="wrap" style="padding-top:20px;padding-bottom:140px;margin:0;max-width:none;width:100%">
-   <div style="display:flex;justify-content:space-between;align-items:center"><span class="k">What the agent read${o.stage!=='read'?' · validated by David':''}</span>${ed?'<span class="chip c-acc">Editing</span>':can?'<button class="btn btn-s btn-sm" data-a="edit">Edit</button>':''}</div>
-   <div class="panel" style="overflow:hidden;margin-top:12px"><div class="fg">${FIELDS.map(f=>{const v=o.fields[f[0]],c=o.edited[f[0]]?100:f[3]
-     return `<div><div class="k">${f[1]}</div>${ed?`<input class="field" style="height:32px;margin-top:6px;background:var(--sunk);box-shadow:none" data-f="${f[0]}" value="${v}">`:`<div class="v">${v}${o.edited[f[0]]?' <span class="chip c-acc" style="margin-left:4px">Corrected</span>':''}</div>`}
-     <div class="fconf"><span class="bar"><i style="width:${c}%;background:${c<70?'var(--high)':c<90?'var(--med)':'var(--ink)'}"></i></span>${o.edited[f[0]]?'checked by a person':c+'%'}</div></div>`}).join('')}<div></div><div></div></div></div>
-   <div class="panel" style="overflow:hidden;margin-top:16px"><div class="ph"><h3>Line items</h3><span class="k">4 lines</span></div><table><tr><th>Line</th><th>Material</th><th>Description</th><th class="r">Quantity</th><th class="r">Unit price</th><th>Delivery</th></tr>${LINES.map(l=>`<tr><td class="id">${l[0]}</td><td class="id">${l[1]}</td><td>${l[2]}</td><td class="r">${l[3]}</td><td class="r">${l[4]}</td><td>${l[5]}</td></tr>`).join('')}</table></div>
-   ${ed?`<div class="panel" style="margin-top:12px;height:54px;display:flex;align-items:center;padding:0 10px 0 16px;gap:8px;position:sticky;bottom:16px"><span class="muted" style="flex:1;font-size:13px">Changes are logged for audit. Try fixing “GI15” to “GL15”, or the delivery week.</span><button class="btn btn-g btn-sm" data-a="canceledit">Cancel</button><button class="btn btn-p btn-sm" data-a="saveedit">Save</button></div>`:''}
-  </div><div class="pdfpane">${pdf()}</div></div>`}
-function pdf(){
-  const ln=(w)=>`<div class="ln" style="width:${w}%"></div>`
-  return `<div class="pdf"><div class="pbar"><span>HELIOS COMPONENTS AG</span><span style="font-weight:400;font-size:6.5px">Precision Electronic Components · Munich</span></div>
-  <div style="display:flex;justify-content:space-between;margin-top:10px"><div style="width:40%">${ln(70)+ln(50)+ln(60)}</div><div style="text-align:right;font:700 10px Arial;color:#333">AUFTRAGSBESTÄTIGUNG<br><span style="font-weight:400;font-size:7px">Nr. 1505899 · Bestellung 4994546957</span></div></div>
-  <div style="margin:10px 0;display:flex;gap:16px"><span>Zahlungsbedingungen: <span class="hl" style="color:#333">${O().ver===2?'35':'45'} Tage netto</span></span><span>Lieferung: <span class="hl" style="color:#333">voraussichtlich KW 13</span></span></div>
-  <table><tr><th>Pos</th><th>Artikel-Nr.</th><th>Bezeichnung</th><th>Menge</th><th>PREIS (EUR)</th><th>Liefertermin</th></tr>${LINES.map(l=>`<tr><td>${l[0]}</td><td>${l[1]}</td><td>${l[2]}</td><td>${l[3].replace(',','.')}</td><td>${l[4].replace('.',',')}</td><td>${l[5]}</td></tr>`).join('')}</table>
-  <div style="margin:12px 0 0 auto;width:50%"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:3px 0"><span>Nettobetrag</span><span>EUR 164.865,00</span></div><div style="display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:3px 0"><span>Fracht</span><span>EUR 65,00</span></div></div>
-  <div style="margin-top:14px;border:1px solid #ddd;padding:6px"><b style="color:#333">Hinweis:</b> Pos. 1002 Teillieferung, 2.000 Stück. ${ln(90)+ln(60)}</div>
-  <div style="font:700 7.5px Arial;color:#333;margin:12px 0 4px">QUALITÄT UND KONFORMITÄT</div>${ln(92)+ln(70)+ln(85)+ln(55)}
-  <div style="font:700 7.5px Arial;color:#333;margin:12px 0 4px">BESONDERE BEDINGUNGEN</div>${ln(88)+ln(76)+ln(90)+ln(48)+ln(80)}
-  <div style="margin-top:14px">Wir freuen uns auf die weitere Zusammenarbeit.</div></div>`}
-/* ---- activity ---- */
-function activity(){return `<div class="wrap" style="padding-top:20px;padding-bottom:120px"><div class="grid2"><div class="panel" style="padding:16px 22px">${S.events.map(e=>`<div style="display:flex;gap:14px;padding:12px 0;box-shadow:0 1px 0 var(--line)">${e.who==='agent'?'<span class="av sm ag" style="width:24px;height:24px">✦</span>':e.who==='sys'?'<span class="av sm" style="width:24px;height:24px;background:#fff;box-shadow:inset 0 0 0 1px var(--line-2)"></span>':avatar(e.who,'sm')}<div><div class="id" style="font-size:11px;color:var(--ink-3)">${e.t}</div><div style="margin-top:2px">${e.x}</div><div style="font-size:12.5px;margin-top:1px">${e.who==='agent'?'<span class="ag-t">Agent</span>':e.who==='sys'?'<span class="muted">System</span>':`<span class="muted">${PEOPLE[e.who].n}</span>`}</div></div></div>`).join('')}</div>
- <div class="rail"><div class="panel" style="padding:14px 16px"><span class="k">On the record</span><div style="margin-top:8px">${['agent','ops','buyer','gr'].map(w=>{const c=S.events.filter(e=>e.who===w).length;return `<div class="who">${w==='agent'?'<span class="av sm ag">✦</span>':avatar(w,'sm')}<span class="n">${w==='agent'?'Agent':PEOPLE[w].n}</span><span class="id" style="font-size:11px;color:var(--ink-3)">${c} ${c===1?'action':'actions'}</span></div>`}).join('')}</div></div></div></div></div>`}
-/* ---- admin ---- */
-function admin(){
-  const row=(k,n)=>`<tr><td>${n}</td><td>${S.conn[k]?'Emma Hudson':'–'}</td><td class="nw">${S.conn[k]?'02/26/2026, 7:52 AM':'–'}</td><td>${S.conn[k]?'<span class="res acc"><i></i>Connected</span>':'<span class="res dim"><i></i>Not connected</span>'}</td><td class="r"><button class="btn ${S.conn[k]?'btn-s':'btn-p'} btn-sm" data-a="conn" data-k="${k}">${S.conn[k]?'Disconnect':'Connect'}</button></td></tr>`
-  const lv=[['assist','Assist','The agent recommends. People do the work.'],['guided','Guided','The agent prepares. People decide at three gates.'],['bounded','Bounded','Low risk, high confidence: resolved inside policy. Not enabled yet.']]
-  return `<div class="wrap fade" style="padding-top:28px;padding-bottom:120px;max-width:1000px;margin:0"><div class="h1">Administration</div>
-  <div class="panel" style="overflow:hidden;margin-top:22px"><div class="ph"><h3>Connections</h3><span class="k">Data in · data out</span></div><table><tr><th>Connection</th><th>Last modified by</th><th>Last modified on</th><th>Status</th><th></th></tr>${row('mail','Microsoft Office 365 mailbox')}${row('erp','ERP system')}</table></div>
-  <div class="panel" style="margin-top:16px;padding:0 16px 16px"><div class="ph" style="padding:0"><h3>${SP} Agent autonomy</h3></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">${lv.map(l=>`<button class="persona ${S.autonomy===l[0]?'on':''}" ${l[0]==='bounded'?'disabled style="opacity:.5;cursor:not-allowed"':`data-a="auto" data-k="${l[0]}"`}><span><span class="b" style="display:block">${l[1]}</span><span class="muted" style="font-size:12.5px">${l[2]}</span></span></button>`).join('')}</div></div>
-  <div class="panel" style="margin-top:16px;overflow:hidden"><div class="ph"><h3>Routing</h3><span class="muted" style="font-size:12.5px">Fixed rules, not model judgement</span></div><table><tr><th>Difference</th><th>Owner</th><th>Escalates to</th></tr><tr><td>Price, total value, additional costs</td><td>Buyer</td><td>Category lead, above 10%</td></tr><tr><td>Payment terms</td><td>Buyer</td><td>Finance, beyond 5 days</td></tr><tr><td>Quantity, delivery date</td><td>Goods recipient</td><td>Planner, when production depends on it</td></tr><tr><td>Description, units</td><td>Buyer</td><td>None</td></tr></table></div></div>`}
-/* ---- chat ---- */
-const SUGG=['Has Helios changed prices before?','Why is net 45 high risk?','What happens if I accept the shortfall?']
-function answer(q){q=q.toLowerCase()
- if(/price|history|before|helios/.test(q))return 'One approved price change in 24 months: +4.2% in Oct 2025. This +58% on line 1001 was not agreed, and the contract has no price escalation clause.'
- if(/45|terms|net|finance/.test(q))return 'Your tolerance on payment terms is 5 days. Net 45 is 15 days beyond net 30, so it needs finance approval, or a rejection.'
- if(/short|quantity|stock|500/.test(q))return '620 units of SKU-4410-A are in stock, so the 500 short is covered this month. The next order would need to be raised earlier.'
- if(/deliver|date|late|1004/.test(q))return 'Line 1004 moves from Jun 4 to Jul 14. Two production orders need it from Jun 10. Two other qualified suppliers carry this part.'
- return 'I can answer from this order’s documents, the PO and the supplier’s history. Try asking about price, terms, quantity or delivery.'}
-const chatInput=()=>`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${SUGG.map(s=>`<button class="chip c-ag" style="height:28px;cursor:pointer" data-a="sugg" data-q="${s}">${s}</button>`).join('')}</div>
- <form data-a="chatform" style="display:flex;gap:8px;margin-top:10px"><input class="field" name="q" placeholder="Ask about this order" autocomplete="off"><button class="btn btn-p">Ask</button></form>`
-function drawer(){if(!S.drawer)return ''
- return `<div class="drawer"><div class="ph" style="box-shadow:0 1px 0 var(--line)"><h3>${SP} Ask the agent</h3><button class="ic" data-a="drawer">${I.x}</button></div>
- <div style="flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px">${S.chat.length?S.chat.map(m=>`<div class="msg ${m.me?'me':'ag'}">${m.t}</div>`).join(''):'<div class="muted">Ask about order 1505899, the supplier, or what to do next.</div>'}</div>
- <div style="padding:12px 16px;box-shadow:0 -1px 0 var(--line)">${chatInput()}</div></div>`}
-/* ---- dialogs ---- */
-function emailText(){const o=O(),d=o.diffs,rej=d.filter(x=>x.dec==='reject'),acc=d.filter(x=>x.dec==='accept')
- const greet=S.tone==='Friendly'?'Hi Michael,':'Dear Michael,'
- return `${greet}\n\nThank you for the order confirmation for PO 4994546957${o.ver===2?' (version 2)':''}.\n\nWe have reviewed it against the purchase order.${acc.length?`\n\nWe accept: ${acc.map(x=>x.f.replace(/^\d+ · /,'').toLowerCase()+(x.f.match(/^\d+/)?' on line '+x.f.match(/^\d+/)[0]:'')).join('; ')}.`:''}${rej.length?`\n\nWe cannot accept: ${rej.map(x=>`${x.f.replace(/^\d+ · /,'').toLowerCase()}${x.f.match(/^\d+/)?' on line '+x.f.match(/^\d+/)[0]:''} (${x.oc}, agreed ${x.po})`).join('; ')}.`:''}\n\nPlease send an updated confirmation. The full list of differences is attached.\n\n${S.tone==='Friendly'?'Thanks,':'Best regards,'}\nAdrian Smith`}
-function dialog(){const d=S.dialog;if(!d)return ''
- if(d==='validate')return `<div class="scrim"><div class="dialog fade"><div class="dh">Confirm validation</div><div class="db">${Object.keys(O().edited).length?`${Object.keys(O().edited).length} correction${Object.keys(O().edited).length>1?'s':''} saved and logged for audit.`:'No corrections made.'} Once confirmed, the reading becomes the record, and the agent compares it with the purchase order and routes each difference to its owner.</div><div class="df"><button class="btn btn-g" data-a="close-d">Cancel</button><button class="btn btn-p" data-a="confirmval">Confirm validation</button></div></div></div>`
- if(d==='reply')return `<div class="scrim"><div class="dialog fade" style="width:620px"><div class="dh" style="display:flex;justify-content:space-between">Email supplier <button class="ic" data-a="close-d">${I.x}</button></div><div class="db" style="color:var(--ink)">
-  <div style="display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:center"><span class="k">To</span><div class="field"><span class="chip c-n">Michael Purdy</span><span class="chip c-n">Helios Components SCM</span></div>
-  <span class="k">Subject</span><input class="field" value="Re: Order confirmation for PO 4994546957"><span class="k">Tone</span><select class="field" data-a="tone">${['Professional','Friendly'].map(t=>`<option ${S.tone===t?'selected':''}>${t}</option>`).join('')}</select></div>
-  <div style="position:relative;margin-top:12px"><span class="chip c-ag" style="position:absolute;right:10px;top:10px">${SP}Drafted by the agent from your decisions</span><textarea class="field" rows="14" style="padding-top:40px">${emailText()}</textarea></div>
-  <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><span class="chip c-n">PDF</span><span>Differences ${O().ver===2?'v2':'v1'}.pdf</span></div></div>
-  <div class="df"><button class="btn btn-g" data-a="close-d">Cancel</button><button class="btn btn-p" data-a="send">${I.send}Send</button></div></div></div>`
- return ''}
-/* ---- coach ---- */
-function next(){const o=O(),r=S.user
- if(!r)return['Sign in as David, in procurement operations. His job is to check what the agent read.',null]
- if(r==='admin')return['Emma connects the mailbox and the ERP, and sets how far the agent may act. Next, switch to David.',['switch','ops','Switch to David']]
- if(o.stage==='read'){if(r!=='ops')return['Nothing moves until operations validates the reading. Switch to David.',['switch','ops','Switch to David']]
-  if(S.view==='worklist')return['Open order 1505899. The agent read it with 87% confidence.',['open',null,'Open 1505899']]
-  if(o.editing)return['Correct a field the agent was unsure of, like “GI15”, then save.',null]
-  return['Check the fields below 80% against the supplier’s PDF on the right. Edit if needed, then confirm validation.',null]}
- if(!o.saved.buyer){if(r!=='buyer')return['Gate 1 is done. Switch to Adrian, the buyer, to decide the commercial differences.',['switch','buyer','Switch to Adrian']]
-  if(S.view==='worklist')return['The order is now ranked high risk. Open it.',['open',null,'Open 1505899']]
-  if(S.tab==='Overview')return['The overview shows what the agent found and why. Then decide the differences that are yours.',['tab','Differences','Go to Differences']]
-  return['Accept or reject each of your five differences, or apply the agent’s suggestions. Then save.',null]}
- if(!o.saved.gr){if(r!=='gr')return['Quantity and delivery were routed to Rajan. Switch to him.',['switch','gr','Switch to Rajan']]
-  if(S.view==='worklist')return['Rajan sees only what he can judge. Open the order.',['open',null,'Open 1505899']]
-  if(S.tab!=='Differences')return['Decide the two differences that are Rajan’s.',['tab','Differences','Go to Differences']]
-  return['Accept or reject quantity and delivery against the store’s stock, then submit.',null]}
- if(!o.sent){if(r!=='buyer')return['Every decision is in. Switch back to Adrian to send the reply.',['switch','buyer','Switch to Adrian']]
-  if(S.view==='worklist')return['Open the order. The reply is drafted.',['open',null,'Open 1505899']]
-  return['Gate 3: review the reply the agent drafted from the decisions, then send it.',['reply',null,'Review the reply']]}
- if(o.ver===1)return['The supplier answers. Simulate the revised confirmation.',r==='buyer'?['revise',null,'Simulate the revision']:['switch','buyer','Switch to Adrian']]
- if(!o.closed){if(!o.saved.buyer)return['Version 2 has two differences. Decide them, then save.',S.tab!=='Differences'?['tab','Differences','Go to Differences']:null]
-  if(!o.sent)return['Send the reply on version 2.',['reply',null,'Review the reply']]
-  return['Close the order. Everything stays on the record in Activity.',['close',null,'Close the order']]}
- return['That is the whole flow: three gates, three people, one record. Reset to start again.',['reset',null,'Start again']]}
-function coach(){if(!S.coach)return `<button class="coach-min btn btn-p" data-a="coach">${I.help} Guide</button>`
- const [t,a]=next()
- return `<div class="coach fade"><div style="display:flex;justify-content:space-between;align-items:center"><span class="k">Guide</span><button style="color:#9b9da6" data-a="coach">${I.x}</button></div><p>${t}</p>${a?`<div class="row"><button class="btn btn-sm" style="background:#fff;color:var(--ink)" data-a="${a[0]}" ${a[0]==='switch'?`data-r="${a[1]}"`:a[0]==='tab'?`data-t="${a[1]}"`:''}>${a[2]}</button></div>`:''}</div>`}
-/* ============ render & events ============ */
-function render(){
-  const app=document.getElementById('app')
-  const focus=document.activeElement&&document.activeElement.name==='q'
-  app.innerHTML=S.view==='login'?login():shell(S.view==='worklist'?worklist():order())
-  if(focus){const el=app.querySelector('input[name=q]');el&&el.focus()}
-}
-function go(view,tab){S.view=view;if(tab!==undefined)S.tab=tab;S.menu=false;S.bell=false;render();window.scrollTo(0,0)}
-document.addEventListener('click',e=>{
-  const el=e.target.closest('[data-a]');if(!el){if(S.menu||S.bell){S.menu=false;S.bell=false;render()}return}
-  const a=el.dataset.a,o=O()
-  if(a==='chatform'||a==='tone')return
-  const A={
-   pick:()=>{S.picked=el.dataset.r;render()},
-   login:()=>{S.user=S.picked;S.tab=null;go('worklist')},
-   home:()=>go('worklist'),
-   open:()=>{S.tab=null;go('order')},
-   tab:()=>{S.tab=el.dataset.t;S.view='order';render();window.scrollTo(0,0)},
-   menu:()=>{S.menu=!S.menu;S.bell=false;render()},
-   bell:()=>{S.bell=!S.bell;S.menu=false;render()},
-   coach:()=>{S.coach=!S.coach;render()},
-   drawer:()=>{S.drawer=!S.drawer;render()},
-   switch:()=>{S.picked=el.dataset.r;S.user=el.dataset.r;S.tab=null;S.drawer=false;go('worklist');toast(`Signed in as ${PEOPLE[S.user].n}`)},
-   signout:()=>{S.user=null;S.drawer=false;go('login')},
-   reset:()=>{S=fresh();render()},
-   edit:()=>{o.editing=true;S.tab='Extraction';render()},
-   canceledit:()=>{o.editing=false;render()},
-   saveedit:()=>{document.querySelectorAll('[data-f]').forEach(i=>{const k=i.dataset.f;if(i.value!==o.fields[k]){log('ops',`Extraction corrected: ${FIELDS.find(f=>f[0]===k)[1].toLowerCase()} <s class="muted">${o.fields[k]}</s> → ${i.value}.`);o.fields[k]=i.value;o.edited[k]=true}});o.editing=false;toast('Corrections saved');render()},
-   validate:()=>{S.dialog='validate';render()},
-   'close-d':()=>{S.dialog=null;render()},
-   confirmval:()=>{o.stage='validated';S.dialog=null;log('ops','Validation confirmed. The reading is now the record.');log('agent','Compared with the PO: 7 differences, risk high. 5 routed to Adrian, 2 to Rajan.');toast('Validated. The agent is comparing it with the PO.');render()},
-   dec:()=>{const d=o.diffs.find(x=>x.id===el.dataset.id);d.dec=d.dec===el.dataset.v?null:el.dataset.v;render()},
-   acceptsug:()=>{o.diffs.filter(d=>d.own===S.user&&d.sug).forEach(d=>d.dec=d.sug);toast('Suggestions applied. Check each before saving.');render()},
-   savedec:()=>{const r=S.user;o.saved[r]=true;const ds=o.diffs.filter(d=>d.own===r);log(r,`${r==='gr'?'Goods recipient':'Buyer'} decisions ${r==='gr'?'submitted':'saved'}: ${ds.filter(d=>d.dec==='accept').length} accepted, ${ds.filter(d=>d.dec==='reject').length} rejected.`);
-     if(o.saved.buyer&&o.saved.gr)log('agent','Every decision is in. Reply to the supplier drafted.');toast(r==='gr'?'Decisions submitted':'Decisions saved');render()},
-   reply:()=>{S.tab='Differences';S.view='order';S.dialog='reply';render()},
-   send:()=>{o.sent=true;S.dialog=null;log('buyer',`Reply sent to the supplier${o.ver===2?' on version 2':''}.`);if(o.ver===1)log('agent','Watching the mailbox for a revised confirmation.');toast('Email sent to the supplier');render()},
-   revise:()=>{o.ver=2;o.sent=false;o.saved={buyer:false,gr:true};o.diffs=DIFFS2();log('agent','Revised confirmation 1505899/2 received and read. 2 differences remain; quantity and delivery now match the PO.');S.flash='row';setTimeout(()=>S.flash=null,1700);toast('Version 2 arrived');S.tab='Overview';render()},
-   close:()=>{o.closed=true;log('buyer','Order closed.');log('sys','Confirmation archived with both versions.');toast('Order closed');render()},
-   conn:()=>{const k=el.dataset.k;S.conn[k]=!S.conn[k];log('admin',`${k==='mail'?'Mailbox':'ERP'} ${S.conn[k]?'connected':'disconnected'}.`);render()},
-   auto:()=>{S.autonomy=el.dataset.k;toast('Autonomy updated');render()},
-   sugg:()=>{const q=el.dataset.q;S.chat.push({me:true,t:q},{me:false,t:answer(q)});render()},
-  }
-  if(A[a]){e.preventDefault();A[a]()}
-})
-document.addEventListener('submit',e=>{const f=e.target;if(f.dataset.a==='chatform'){e.preventDefault();const q=f.q.value.trim();if(!q)return;S.chat.push({me:true,t:q},{me:false,t:answer(q)});render()}})
-document.addEventListener('change',e=>{if(e.target.dataset.a==='tone'){S.tone=e.target.value;render()}})
-document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'&&S.user){e.preventDefault();S.drawer=!S.drawer;render()}if(e.key==='Escape'&&(S.dialog||S.drawer)){S.dialog=null;S.drawer=false;render()}})
-render()
-</script></body></html>
+<script src="app.js"></script></body></html>
