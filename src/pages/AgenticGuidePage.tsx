@@ -48,7 +48,7 @@ function Chapter({ id, label, title, body, takeaway, children, raised, big }: { 
         <div className="mt-12 md:mt-16">{children}</div>
         {takeaway && (
           <Rise className="mt-14 md:mt-20 hairline-top pt-6 grid md:grid-cols-12 gap-x-8 gap-y-2">
-            <p className="md:col-span-3 text-label text-ink-3 pt-1">The takeaway</p>
+            <p className="md:col-span-3 text-label text-ink-3 pt-1">The lesson</p>
             <p className="md:col-span-9 font-serif text-ink" style={{ fontSize: 'var(--fs-title)', lineHeight: 1.3 }}>{takeaway}</p>
           </Rise>
         )}
