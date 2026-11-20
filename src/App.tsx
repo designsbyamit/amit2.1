@@ -21,6 +21,7 @@ const Craft = lazy(() => import('./pages/Craft'))
 const HomeV2 = lazy(() => import('./pages/HomeV2'))
 const StoryPage = lazy(() => import('./pages/StoryPage'))
 const AgenticGuidePage = lazy(() => import('./pages/AgenticGuidePage'))
+const TravelStoryPage = lazy(() => import('./pages/TravelStoryPage'))
 const HomeV3 = lazy(() => import('./pages/HomeV3'))
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage'))
 const LeadershipStoriesPage = lazy(() => import('./pages/LeadershipStoriesPage'))
@@ -171,6 +172,7 @@ function AnimatedRoutes() {
         <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />
         <Route path="/craft/sap-agentic/story" element={<PageTransition><AgenticGuidePage /></PageTransition>} />
         <Route path="/craft/sap-agentic/story-lucid" element={<PageTransition><AgenticGuidePage variant="lucid" /></PageTransition>} />
+        <Route path="/craft/airline-app/story" element={<PageTransition><TravelStoryPage /></PageTransition>} />
         <Route path="/craft/:id/story" element={<PageTransition><StoryPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><PlaybackPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
