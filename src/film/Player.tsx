@@ -64,6 +64,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
   return (
     <main id="main" className={embed ? '' : 'min-h-screen'} style={embed ? undefined : { paddingTop: 'var(--header-h)' }}>
       <div className={embed ? '' : 'container-site pt-8 pb-16'}>
+        <div style={embed ? undefined : { maxWidth: 'min(100%, max(36rem, calc((100svh - var(--header-h) - 16rem) * 16 / 9)))', marginInline: 'auto' }}>
         <div className={`flex items-end justify-between gap-6 mb-6 flex-wrap${embed ? ' hidden' : ''}`}>
           <div>
             <p className="text-overline text-ink-3 mb-2">Film · {length}</p>
@@ -90,6 +91,7 @@ export default function Player({ title, chapters, render, backTo, backLabel, sub
             </button></li>
           ))}
         </ol>
+        </div>
       </div>
     </main>
   )
