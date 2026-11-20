@@ -20,6 +20,7 @@ import ContactProvider from './components/contact/ContactProvider'
 const Craft = lazy(() => import('./pages/Craft'))
 const HomeV2 = lazy(() => import('./pages/HomeV2'))
 const StoryPage = lazy(() => import('./pages/StoryPage'))
+const AgenticGuidePage = lazy(() => import('./pages/AgenticGuidePage'))
 const HomeV3 = lazy(() => import('./pages/HomeV3'))
 const LeadershipPage = lazy(() => import('./pages/LeadershipPage'))
 const LeadershipStoriesPage = lazy(() => import('./pages/LeadershipStoriesPage'))
@@ -168,6 +169,7 @@ function AnimatedRoutes() {
         <Route path="/labs/ai-search" element={<SearchPrototype />} />
         <Route path="/craft/stories/:slug" element={<PageTransition><ShortStoryPage /></PageTransition>} />
         <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />
+        <Route path="/craft/sap-agentic/story" element={<PageTransition><AgenticGuidePage /></PageTransition>} />
         <Route path="/craft/:id/story" element={<PageTransition><StoryPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><PlaybackPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
