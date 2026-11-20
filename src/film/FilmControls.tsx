@@ -28,6 +28,7 @@ const CSS = `
 .fp-row{display:flex;align-items:center;gap:clamp(2px,.6vw,8px)}
 .fp-btn{all:unset;box-sizing:border-box;display:grid;place-items:center;width:40px;height:40px;border-radius:999px;color:#fff;cursor:pointer;transition:background .2s,transform .15s}
 .fp-btn svg{width:22px;height:22px}
+.fp-row .fp-btn:last-child{margin-left:auto}
 .fp-btn:hover{background:rgba(255,255,255,.12)}
 .fp-btn:active{transform:scale(.92)}
 .fp-btn:focus-visible{box-shadow:0 0 0 2px #7D98FF}
@@ -185,7 +186,7 @@ export default function FilmControls({ t, duration, playing, started, muted, cha
             <button type="button" className="fp-btn" onClick={onMute} aria-label={muted ? 'Unmute' : 'Mute'} aria-pressed={muted}>{muted ? I.mute : I.vol}</button>
             <span className="fp-time">{fmt(t)} <span>/ {fmt(duration)}</span></span>
             <span className="fp-chap">{now ?? ''}</span>
-            <button type="button" className="fp-btn" onClick={full} aria-label={isFull ? 'Exit full screen' : 'Full screen'} style={now ? undefined : { marginLeft: 'auto' }}>{isFull ? I.exit : I.full}</button>
+            <button type="button" className="fp-btn" onClick={full} aria-label={isFull ? 'Exit full screen' : 'Full screen'}>{isFull ? I.exit : I.full}</button>
           </div>
         </div>
       </div>
