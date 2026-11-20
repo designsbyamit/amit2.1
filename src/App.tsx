@@ -170,6 +170,7 @@ function AnimatedRoutes() {
         <Route path="/craft/stories/:slug" element={<PageTransition><ShortStoryPage /></PageTransition>} />
         <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />
         <Route path="/craft/sap-agentic/story" element={<PageTransition><AgenticGuidePage /></PageTransition>} />
+        <Route path="/craft/sap-agentic/story-lucid" element={<PageTransition><AgenticGuidePage variant="lucid" /></PageTransition>} />
         <Route path="/craft/:id/story" element={<PageTransition><StoryPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><PlaybackPage /></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />

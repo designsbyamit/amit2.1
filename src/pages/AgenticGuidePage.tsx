@@ -1,4 +1,4 @@
-import { Fragment, useState, type ReactNode } from 'react'
+import { Fragment, createContext, useContext, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { heroClass, heroStyle } from '../data/caseTheme'
@@ -11,7 +11,8 @@ import { guide as G, type Who, type Decision } from '../data/agenticGuide'
 import { films } from '../data/films'
 
 const ease = [0.16, 1, 0.3, 1] as const
-const shot = (id: string) => `${import.meta.env.BASE_URL}images/case-studies/sap-agentic/${id}.webp`
+const DirCtx = createContext('sap-agentic')
+const shot = (dir: string, id: string) => `${import.meta.env.BASE_URL}images/case-studies/${dir}/${id}.webp`
 
 const Arrow = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -29,11 +30,14 @@ function Rise({ children, delay = 0, className = '', li, style }: { children: Re
 }
 
 /** A real screen, framed the same way everywhere. */
-const Screen = ({ id, alt }: { id: string; alt: string }) => (
+function Screen({ id, alt }: { id: string; alt: string }) {
+  const dir = useContext(DirCtx)
+  return (
   <div className="rounded-3 overflow-hidden border bg-white" style={{ borderColor: 'var(--line-1)', boxShadow: 'var(--shadow-2)' }}>
-    <img src={shot(id)} alt={alt} loading="lazy" decoding="async" className="w-full h-auto block" />
+    <img src={shot(dir, id)} alt={alt} loading="lazy" decoding="async" className="w-full h-auto block" />
   </div>
-)
+  )
+}
 
 /** One chapter of the story: its name, a claim, the story, its evidence, then the takeaway a reader can keep. */
 function Chapter({ id, label, title, body, takeaway, children, raised, big }: { id: string; label: string; title: string; body: string; takeaway?: string; children: ReactNode; raised?: boolean; big?: boolean }) {
@@ -117,15 +121,18 @@ const WHO: Record<Who, { label: string; dot: string; text: string }> = {
 }
 const SEV: Record<'High' | 'Medium' | 'Low', string> = { High: 'text-danger', Medium: 'text-ink', Low: 'text-ink-3' }
 
-export default function AgenticGuidePage() {
+/** variant 'lucid' swaps every product screen for the Lucid redesign; the story itself is unchanged. */
+export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}) {
+  const dir = variant === 'lucid' ? 'sap-agentic-lucid' : 'sap-agentic'
   const C = G.chapters
-  const imgs = Object.fromEntries(S.journeys.flatMap(j => j.screens).map(sc => [sc.id, sc.img]))
+  const imgs = Object.fromEntries(S.journeys.flatMap(j => j.screens).map(sc => [sc.id, variant === 'lucid' ? shot(dir, sc.id) : sc.img]))
   const film = films['sap-agentic']
   const [watching, setWatching] = useState(false)
   const index = [['problem', C.problem.label], ['judgement', C.judgement.label], ['decisions', C.decisions.label], ['scale', C.scale.label], ['vision', C.vision.label], ['reasoning', C.reasoning.label], ['value', C.value.label], ['see', G.see.title]]
   const singles = C.decisions.list.filter(d => d.shots?.length === 1)
 
   return (
+    <DirCtx.Provider value={dir}>
     <article>
       {/* ── first screen: the story and its promise, and what it covers ── */}
       <header className={heroClass('sap-agentic')} style={{ paddingTop: 'var(--header-h)', ...heroStyle('sap-agentic') }}>
@@ -266,5 +273,6 @@ export default function AgenticGuidePage() {
       </section>
       {watching && film && <VideoModal src={film.to} title={film.title} onClose={() => setWatching(false)} />}
     </article>
+    </DirCtx.Provider>
   )
 }

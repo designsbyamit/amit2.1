@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lucid design system</title>
+<style>@font-face{font-family:'Outfit';src:url(outfit.woff2) format('woff2');font-weight:100 900;font-display:block}
+:root{
+  --canvas:#F6F6F3; --surface:#FFFFFF; --sunk:#EFEFEB; --line:rgba(17,18,22,.07); --line-2:rgba(17,18,22,.12);
+  --ink:#111216; --ink-2:#4A4C55; --ink-3:#8A8C95; --ink-4:#B8B9BF;
+  --accent:#3A3AF4; --accent-soft:#ECECFE;
+  --agent-a:#7C5CFF; --agent-b:#22C7E8; --agent:linear-gradient(135deg,var(--agent-a),var(--agent-b)); --agent-soft:#F2EFFF;
+  --high:#E5484D; --high-soft:#FDECEC; --med:#E8A33D; --med-soft:#FDF4E6; --low:#1EA387; --low-soft:#E7F6F2;
+  --r-sm:8px; --r:12px; --r-lg:18px; --r-xl:24px;
+  --e1:0 1px 2px rgba(17,18,22,.04),0 0 0 1px var(--line);
+  --e2:0 1px 2px rgba(17,18,22,.04),0 8px 24px -8px rgba(17,18,22,.10),0 0 0 1px var(--line);
+  --e3:0 2px 4px rgba(17,18,22,.04),0 24px 48px -16px rgba(17,18,22,.18),0 0 0 1px var(--line);
+  --sans:'Outfit',system-ui,sans-serif; --display:'Outfit',sans-serif; --mono:'JetBrains Mono','DejaVu Sans Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;font-weight:300;-webkit-font-smoothing:antialiased;font-feature-settings:"cv11","ss01","tnum"}
+.page{width:1440px;margin:0 auto;padding:72px 80px 96px}
+.k{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+h1{font:200 72px/1 var(--display);letter-spacing:-.04em}
+h2{font:300 30px/1.15 var(--display);letter-spacing:-.02em}
+.lead{font-size:17px;color:var(--ink-2);max-width:620px;margin-top:18px;line-height:1.55}
+.sec{margin-top:88px}
+.sec-h{display:flex;align-items:baseline;gap:20px;padding-bottom:20px;border-bottom:1px solid var(--line-2);margin-bottom:32px}
+.grid{display:grid;gap:24px}
+.card{background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--e1);padding:28px}
+.cap{font-size:12px;color:var(--ink-3);margin-top:12px}
+/* foundations */
+.sw{border-radius:var(--r);height:88px;box-shadow:inset 0 0 0 1px var(--line)}
+.swl{font:500 12px var(--sans);margin-top:10px}.swv{font:400 11px var(--mono);color:var(--ink-3);margin-top:2px}
+.type-row{display:grid;grid-template-columns:160px 1fr 220px;align-items:baseline;padding:18px 0;border-top:1px solid var(--line)}
+/* components */
+.btn{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:10px;font:500 13px var(--sans);border:0;cursor:pointer;white-space:nowrap}
+.btn-p{background:var(--ink);color:#fff}
+.btn-s{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line-2),0 1px 2px rgba(0,0,0,.04)}
+.btn-g{background:transparent;color:var(--ink-2)}
+.btn-a{background:var(--agent);color:#fff;box-shadow:0 6px 16px -6px rgba(124,92,255,.6)}
+.kbd{font:500 11px var(--mono);color:var(--ink-3);background:var(--sunk);border-radius:5px;padding:2px 6px}
+.seg{display:inline-flex;background:var(--sunk);border-radius:10px;padding:3px;gap:2px}
+.seg span{height:30px;padding:0 12px;display:flex;align-items:center;gap:6px;border-radius:8px;font:500 12.5px var(--sans);color:var(--ink-2)}
+.seg .on{background:var(--surface);color:var(--ink);box-shadow:var(--e1)}
+.chip{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:999px;font:400 11.5px var(--sans)}
+.chip i{width:6px;height:6px;border-radius:99px;display:block}
+.c-high{background:var(--high-soft);color:#B4262B}.c-high i{background:var(--high)}
+.c-med{background:var(--med-soft);color:#97600F}.c-med i{background:var(--med)}
+.c-low{background:var(--low-soft);color:#11705C}.c-low i{background:var(--low)}
+.c-n{background:var(--sunk);color:var(--ink-2)}.c-n i{background:var(--ink-3)}
+.c-agent{background:var(--agent-soft);color:#5B3FE0}
+.spark{width:14px;height:14px;display:inline-block}
+.conf{display:flex;align-items:center;gap:8px;font:500 12px var(--sans);color:var(--ink-2)}
+.conf b{display:block;width:64px;height:4px;border-radius:9px;background:var(--sunk);overflow:hidden}
+.conf b span{display:block;height:100%;background:var(--agent)}
+.field{height:38px;border-radius:10px;background:var(--surface);box-shadow:0 0 0 1px var(--line-2);display:flex;align-items:center;padding:0 12px;gap:10px;color:var(--ink-3)}
+.field.focus{box-shadow:0 0 0 1px var(--accent),0 0 0 4px var(--accent-soft);color:var(--ink)}
+.tabs{display:flex;gap:22px;border-bottom:1px solid var(--line)}
+.tabs span{padding:10px 0;font:500 13px var(--sans);color:var(--ink-3)}
+.tabs .on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--ink)}
+.av{width:28px;height:28px;border-radius:99px;background:#D9DAE0;display:grid;place-items:center;font:400 11px var(--sans);color:var(--ink-2);box-shadow:0 0 0 2px var(--surface)}
+/* patterns */
+.table{width:100%;border-collapse:separate;border-spacing:0}
+.table th{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:0 14px 12px}
+.table td{padding:14px;border-top:1px solid var(--line);font-size:13.5px;vertical-align:middle}
+.table tr.sel td{background:#FAFAFF}
+.table tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.mono{font-family:var(--mono);font-size:12.5px;color:var(--ink-2)}
+.diff{display:flex;align-items:center;gap:8px}
+.old{color:var(--ink-3);text-decoration:line-through;text-decoration-color:var(--ink-4)}
+.agent-block{position:relative;border-radius:var(--r);background:linear-gradient(180deg,#FBFAFF,#FFFFFF);box-shadow:0 0 0 1px rgba(124,92,255,.18);padding:16px 18px 16px 20px}
+.agent-block:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;border-radius:3px;background:var(--agent)}
+.who{display:flex;align-items:center;gap:8px;font:400 12px var(--sans)}
+.src{display:inline-flex;align-items:center;gap:5px;font:500 11.5px var(--sans);color:#5B3FE0;background:var(--agent-soft);border-radius:6px;padding:2px 7px}
+.tl{position:relative;padding-left:26px}
+.tl:before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:1px;background:var(--line-2)}
+.tl-i{position:relative;padding:0 0 22px}
+.tl-i:before{content:"";position:absolute;left:-22px;top:5px;width:9px;height:9px;border-radius:99px;background:var(--surface);box-shadow:0 0 0 1.5px var(--ink-4)}
+.tl-i.ag:before{background:var(--agent);box-shadow:0 0 0 3px var(--agent-soft)}
+.tl-i.pp:before{background:var(--ink);box-shadow:0 0 0 3px var(--sunk)}
+.doc{background:#FDFDFB;border-radius:var(--r);box-shadow:var(--e1);padding:22px;font:400 11px/1.7 var(--mono);color:#6B6D75}
+.hl{background:rgba(124,92,255,.12);box-shadow:0 0 0 1.5px rgba(124,92,255,.55);border-radius:3px;color:var(--ink);padding:0 2px}
+/* screen */
+.screen{border-radius:var(--r-xl);background:var(--canvas);box-shadow:var(--e3);overflow:hidden}
+.shell{display:flex;align-items:center;gap:14px;height:56px;padding:0 20px;background:rgba(255,255,255,.9);border-bottom:1px solid var(--line)}
+.mark{width:22px;height:22px;border-radius:99px;background:#C7CDD4}
+.cmd{margin-left:auto;margin-right:auto;width:420px;height:34px;border-radius:10px;background:var(--sunk);display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--ink-3);font-size:13px}
+.row{display:flex;align-items:center}
+.gap8{gap:8px}.gap12{gap:12px}.gap16{gap:16px}
+.dot{width:6px;height:6px;border-radius:99px;display:inline-block}
+.dec{display:grid;grid-template-columns:138px 226px 84px 1fr 132px;align-items:center;gap:16px;padding:16px 18px;border-top:1px solid var(--line)}
+.dec:first-of-type{border-top:0}
+.dec>span:nth-child(-n+3){white-space:nowrap}
+.dec .chip{justify-self:start}
+.dec>:last-child{justify-self:end}
+.dec-sm .dec{grid-template-columns:1fr 214px 84px 132px;gap:14px}
+.dec-sm .dec>span:nth-child(4){display:none}
+.acc{display:inline-flex;background:var(--sunk);border-radius:9px;padding:3px}
+.acc span{height:28px;padding:0 11px;display:flex;align-items:center;border-radius:7px;font:500 12px var(--sans);color:var(--ink-2)}
+.acc .yes{background:var(--surface);box-shadow:var(--e1);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <p class="k">Design system · v0.1 proposal</p>
+  <h1 style="margin-top:18px">Lucid</h1>
+  <p class="lead">A calm, precise language for agentic enterprise work. Neutral surfaces keep people focused on decisions. One signature, the agent gradient, appears only where the agent has authored something, so it is always clear who did what.</p>
+
+  <!-- PRINCIPLES -->
+  <div class="grid sec" style="grid-template-columns:repeat(4,1fr)">
+    <div class="card"><p class="k">01</p><h2 style="font-size:19px;margin-top:14px">Quiet by default</h2><p style="color:var(--ink-2);margin-top:8px">Neutral canvas, hairlines, soft depth. Colour is spent only on meaning.</p></div>
+    <div class="card"><p class="k">02</p><h2 style="font-size:19px;margin-top:14px">Show who did it</h2><p style="color:var(--ink-2);margin-top:8px">Agent work carries the gradient line and spark. People’s actions stay ink.</p></div>
+    <div class="card"><p class="k">03</p><h2 style="font-size:19px;margin-top:14px">Evidence over scores</h2><p style="color:var(--ink-2);margin-top:8px">Every recommendation shows the change, the reason and its source.</p></div>
+    <div class="card"><p class="k">04</p><h2 style="font-size:19px;margin-top:14px">Dense, never cramped</h2><p style="color:var(--ink-2);margin-top:8px">Tabular figures, 44px rows, generous rhythm between groups.</p></div>
+  </div>
+
+  <!-- COLOUR -->
+  <div class="sec">
+    <div class="sec-h"><h2>Colour</h2><p class="k">Neutrals do the work · colour carries meaning</p></div>
+    <div class="grid" style="grid-template-columns:repeat(8,1fr)">
+      <div><div class="sw" style="background:#111216"></div><p class="swl">Ink</p><p class="swv">#111216</p></div>
+      <div><div class="sw" style="background:#4A4C55"></div><p class="swl">Ink 2</p><p class="swv">#4A4C55</p></div>
+      <div><div class="sw" style="background:#8A8C95"></div><p class="swl">Ink 3</p><p class="swv">#8A8C95</p></div>
+      <div><div class="sw" style="background:#EFEFEB"></div><p class="swl">Sunk</p><p class="swv">#EFEFEB</p></div>
+      <div><div class="sw" style="background:#F6F6F3"></div><p class="swl">Canvas</p><p class="swv">#F6F6F3</p></div>
+      <div><div class="sw" style="background:#FFFFFF"></div><p class="swl">Surface</p><p class="swv">#FFFFFF</p></div>
+      <div><div class="sw" style="background:#3A3AF4"></div><p class="swl">Accent · focus, selection</p><p class="swv">#3A3AF4</p></div>
+      <div><div class="sw" style="background:var(--agent)"></div><p class="swl">Agent · authored by AI</p><p class="swv">#7C5CFF → #22C7E8</p></div>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:24px">
+      <div class="row gap12"><div class="sw" style="background:#E5484D;width:56px;height:56px"></div><div class="sw" style="background:#FDECEC;width:56px;height:56px"></div><div><p class="swl" style="margin:0">High risk</p><p class="swv">#E5484D · tint #FDECEC</p></div></div>
+      <div class="row gap12"><div class="sw" style="background:#E8A33D;width:56px;height:56px"></div><div class="sw" style="background:#FDF4E6;width:56px;height:56px"></div><div><p class="swl" style="margin:0">Medium risk</p><p class="swv">#E8A33D · tint #FDF4E6</p></div></div>
+      <div class="row gap12"><div class="sw" style="background:#1EA387;width:56px;height:56px"></div><div class="sw" style="background:#E7F6F2;width:56px;height:56px"></div><div><p class="swl" style="margin:0">Low risk</p><p class="swv">#1EA387 · tint #E7F6F2</p></div></div>
+    </div>
+  </div>
+
+  <!-- TYPE -->
+  <div class="sec">
+    <div class="sec-h"><h2>Type</h2><p class="k">Outfit for headings and UI · Mono for IDs, labels and figures</p></div>
+    <div class="type-row"><p class="k">Display</p><p style="font:200 44px/1.1 var(--display);letter-spacing:-.035em">Order 1505899</p><p class="mono">44 / 48 · 200 · −3.5%</p></div>
+    <div class="type-row"><p class="k">Title</p><p style="font:300 22px/1.25 var(--display);letter-spacing:-.015em">Five differences from the purchase order</p><p class="mono">22 / 28 · 300 · −1.5%</p></div>
+    <div class="type-row"><p class="k">Body</p><p style="font-size:14px;color:var(--ink-2)">Payment terms moved from net 30 to net 45 days. Finance approval is needed before this can be accepted.</p><p class="mono">14 / 21 · 300</p></div>
+    <div class="type-row"><p class="k">Figures</p><p class="num" style="font:500 15px var(--sans)">€142,800.00 → €164,865.00 <span style="color:var(--high);margin-left:8px">+15.4%</span></p><p class="mono">Tabular figures always</p></div>
+    <div class="type-row"><p class="k">Label</p><p class="k" style="color:var(--ink-2)">Received 8 Apr · 14:04</p><p class="mono">11 · Mono · +8% · caps</p></div>
+  </div>
+
+  <!-- COMPONENTS -->
+  <div class="sec">
+    <div class="sec-h"><h2>Components</h2><p class="k">Shown at real size</p></div>
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div class="card">
+        <p class="k">Buttons</p>
+        <div class="row gap12" style="margin-top:18px;flex-wrap:wrap">
+          <button class="btn btn-p">Send to supplier</button>
+          <button class="btn btn-s">Save draft</button>
+          <button class="btn btn-g">Cancel</button>
+          <button class="btn btn-a"><svg class="spark" viewBox="0 0 16 16" fill="#fff"><path d="M8 0l1.7 5.1L15 7l-5.3 1.9L8 14l-1.7-5.1L1 7l5.3-1.9z"/></svg>Ask the agent</button>
+        </div>
+        <p class="k" style="margin-top:28px">Decision · segmented</p>
+        <div class="row gap16" style="margin-top:14px">
+          <div class="acc"><span class="yes">Accept</span><span>Reject</span><span>Ask supplier</span></div>
+          <div class="seg"><span class="on">Discrepancies <span class="kbd">5</span></span><span>Extraction</span><span>Activity</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="k">Status and risk</p>
+        <div class="row gap8" style="margin-top:18px;flex-wrap:wrap">
+          <span class="chip c-high"><i></i>High</span><span class="chip c-med"><i></i>Medium</span><span class="chip c-low"><i></i>Low</span>
+          <span class="chip c-n"><i></i>In progress</span><span class="chip c-agent"><svg class="spark" style="width:11px;height:11px" viewBox="0 0 16 16" fill="#7C5CFF"><path d="M8 0l1.7 5.1L15 7l-5.3 1.9L8 14l-1.7-5.1L1 7l5.3-1.9z"/></svg>Prepared by agent</span>
+        </div>
+        <p class="k" style="margin-top:28px">Confidence</p>
+        <div class="row gap16" style="margin-top:14px">
+          <div class="conf"><b><span style="width:96%"></span></b>96%</div>
+          <div class="conf"><b><span style="width:71%"></span></b>71%</div>
+          <div class="conf" style="color:var(--high)"><b><span style="width:42%"></span></b>42% · check</div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="k">Inputs</p>
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:18px">
+          <div class="field"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>Search orders</div>
+          <div class="field focus">Net 45 days<span style="margin-left:auto" class="kbd">↵</span></div>
+        </div>
+        <div class="tabs" style="margin-top:22px"><span class="on">To review · 7</span><span>Waiting on others · 3</span><span>Done</span></div>
+      </div>
+      <div class="card">
+        <p class="k">People and the agent</p>
+        <div class="row gap16" style="margin-top:18px">
+          <div class="row"><div class="av">DS</div><div class="av" style="margin-left:-6px">AK</div><div class="av" style="margin-left:-6px">RP</div></div>
+          <div class="row gap8"><span style="width:28px;height:28px;border-radius:99px;background:var(--agent);display:grid;place-items:center"><svg class="spark" style="width:13px;height:13px" viewBox="0 0 16 16" fill="#fff"><path d="M8 0l1.7 5.1L15 7l-5.3 1.9L8 14l-1.7-5.1L1 7l5.3-1.9z"/></svg></span><span style="font-weight:400">Agent</span><span style="color:var(--ink-3)">· reading 3 documents</span></div>
+        </div>
+        <p class="cap">The agent is always a gradient mark, never a face. People are always initials.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATTERNS -->
+  <div class="sec">
+    <div class="sec-h"><h2>Patterns</h2><p class="k">The product’s three core moments</p></div>
+    <div class="grid" style="grid-template-columns:1.35fr 1fr">
+      <div class="card" style="padding:22px 10px 10px">
+        <p class="k" style="padding:0 14px 16px">Worklist · ranked by risk</p>
+        <table class="table">
+          <tr><th>Order</th><th>Supplier</th><th>Value</th><th>Differences</th><th>Risk</th></tr>
+          <tr class="sel"><td class="mono">1505899</td><td>Helios Components AG</td><td class="num">€164,865</td><td>Price, terms, quantity <span style="color:var(--ink-3)">+2</span></td><td><span class="chip c-high"><i></i>High</span></td></tr>
+          <tr><td class="mono">1505456</td><td>Orion Tech Ltd</td><td class="num">€71,800</td><td>Price, delivery <span style="color:var(--ink-3)">+2</span></td><td><span class="chip c-high"><i></i>High</span></td></tr>
+          <tr><td class="mono">1505883</td><td>Stellar Innovations</td><td class="num">€10,750</td><td>Price, payment terms</td><td><span class="chip c-med"><i></i>Medium</span></td></tr>
+          <tr><td class="mono">1505248</td><td>Apollo Devices</td><td class="num">€56,900</td><td>Price, Incoterms</td><td><span class="chip c-med"><i></i>Medium</span></td></tr>
+          <tr><td class="mono">1505795</td><td>Lunar Tech Solutions</td><td class="num">€37,200</td><td>Payment terms</td><td><span class="chip c-low"><i></i>Low</span></td></tr>
+          <tr><td class="mono">1505347</td><td>Aurora Engineering</td><td class="num">€21,300</td><td>Incoterms</td><td><span class="chip c-low"><i></i>Low</span></td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <p class="k">Agent reasoning · always with a source</p>
+        <div class="agent-block" style="margin-top:16px">
+          <p class="who"><svg class="spark" viewBox="0 0 16 16" fill="url(#g)"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#7C5CFF"/><stop offset="1" stop-color="#22C7E8"/></linearGradient></defs><path d="M8 0l1.7 5.1L15 7l-5.3 1.9L8 14l-1.7-5.1L1 7l5.3-1.9z"/></svg>Why this is high</p>
+          <p style="margin-top:8px;color:var(--ink-2)">Payment terms moved from net 30 to net 45 days. That changes cash flow on a €164,865 order and needs finance approval before it can be accepted.</p>
+          <div class="row gap8" style="margin-top:12px"><span class="src">PDF · page 2</span><span class="src">PO · terms</span><span class="conf" style="margin-left:auto"><b><span style="width:94%"></span></b>94%</span></div>
+        </div>
+        <p class="k" style="margin-top:24px">Activity</p>
+        <div class="tl" style="margin-top:14px">
+          <div class="tl-i ag"><p style="font-weight:500">Agent read the confirmation</p><p class="cap" style="margin-top:2px">14 fields · 2 below 80% confidence · 14:04</p></div>
+          <div class="tl-i pp"><p style="font-weight:500">David validated the reading</p><p class="cap" style="margin-top:2px">Corrected the delivery week · 14:22</p></div>
+          <div class="tl-i" style="padding-bottom:0"><p style="font-weight:500;color:var(--ink-3)">Buyer decides 3 differences</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid" style="grid-template-columns:1fr 1.35fr;margin-top:24px">
+      <div class="card">
+        <p class="k">Source beside the data</p>
+        <div class="grid" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+          <div class="doc">AUFTRAGSBESTÄTIGUNG<br>Nr. 1505899<br><br>Zahlungsbedingungen:<br><span class="hl">45 Tage netto</span><br><br>Liefertermin:<br>voraussichtlich KW 13</div>
+          <div>
+            <p class="k">Payment terms</p><p style="font-weight:500;margin-top:6px">Net 45 days</p><div class="conf" style="margin-top:8px"><b><span style="width:94%"></span></b>94%</div>
+            <p class="k" style="margin-top:20px">Delivery</p><p style="font-weight:500;margin-top:6px">Week 13, 2026</p><div class="conf" style="margin-top:8px;color:#97600F"><b><span style="width:68%"></span></b>68% · estimated</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="padding:10px 6px">
+        <p class="k" style="padding:14px 18px 10px">Decide · one difference per row</p><div class="dec-sm">
+        <div class="dec"><span style="font-weight:400">Payment terms</span><span class="diff"><span class="old">Net 30</span>→<b style="font-weight:500">Net 45</b></span><span class="chip c-high" style="justify-self:start"><i></i>High</span><span style="color:var(--ink-2);font-size:13px">Needs finance approval.</span><div class="acc"><span>Accept</span><span class="yes">Reject</span></div></div>
+        <div class="dec"><span style="font-weight:400">Quantity · 1002</span><span class="diff num"><span class="old">2,500</span>→<b style="font-weight:500">2,000</b></span><span class="chip c-med" style="justify-self:start"><i></i>Medium</span><span style="color:var(--ink-2);font-size:13px">500 short of the order.</span><div class="acc"><span class="yes">Accept</span><span>Reject</span></div></div>
+        <div class="dec"><span style="font-weight:400">Description · 1001</span><span class="diff"><span class="old">Microcontroller</span>→<b style="font-weight:500">Steuermodul</b></span><span class="chip c-low" style="justify-self:start"><i></i>Low</span><span style="color:var(--ink-2);font-size:13px">Same part, German term.</span><div class="acc"><span class="yes">Accept</span><span>Reject</span></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- COMPOSED SCREEN -->
+  <div class="sec">
+    <div class="sec-h"><h2>One screen, composed</h2><p class="k">Buyer · review a confirmation</p></div>
+    <div class="screen">
+      <div class="shell">
+        <span class="mark"></span><span style="font-weight:400">Order confirmations</span>
+        <div class="cmd"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>Search or ask about an order<span class="kbd" style="margin-left:auto">⌘K</span></div>
+        <div class="av">AK</div>
+      </div>
+      <div style="padding:28px 32px 32px">
+        <p class="k">My worklist / 1505899</p>
+        <div class="row" style="margin-top:12px">
+          <div>
+            <div class="row gap12"><p style="font:300 32px/1.1 var(--display);letter-spacing:-.025em">Order 1505899</p><span class="chip c-high"><i></i>High risk</span></div>
+            <p style="color:var(--ink-2);margin-top:8px">Helios Components AG · PO 4994546957 · <span class="num">€164,865.00</span> · received 8 Apr</p>
+          </div>
+          <div class="row gap8" style="margin-left:auto"><button class="btn btn-s">Open PDF</button><button class="btn btn-p">Draft reply</button></div>
+        </div>
+        <div class="grid" style="grid-template-columns:1fr 340px;margin-top:24px;gap:20px">
+          <div class="card" style="padding:6px 6px">
+            <div class="row" style="padding:14px 18px 8px"><div class="seg"><span class="on">Discrepancies <span class="kbd">5</span></span><span>Extraction</span><span>Activity</span></div><span class="cap" style="margin:0 0 0 auto">2 of 5 decided</span></div>
+            <div class="dec"><span style="font-weight:400">Total value</span><span class="diff num"><span class="old">€142,800</span>→<b style="font-weight:500">€164,865</b></span><span class="chip c-high" style="justify-self:start"><i></i>High</span><span style="color:var(--ink-2);font-size:13px">Follows the unit price change on line 1001.</span><div class="acc"><span>Accept</span><span>Reject</span></div></div>
+            <div class="dec"><span style="font-weight:400">Payment terms</span><span class="diff"><span class="old">Net 30</span>→<b style="font-weight:500">Net 45</b></span><span class="chip c-high" style="justify-self:start"><i></i>High</span><span style="color:var(--ink-2);font-size:13px">Needs finance approval.</span><div class="acc"><span>Accept</span><span class="yes">Reject</span></div></div>
+            <div class="dec"><span style="font-weight:400">Additional costs</span><span class="diff num"><span class="old">none</span>→<b style="font-weight:500">€65.00</b></span><span class="chip c-med" style="justify-self:start"><i></i>Medium</span><span style="color:var(--ink-2);font-size:13px">New freight charge, not on the PO.</span><div class="acc"><span>Accept</span><span>Reject</span></div></div>
+            <div class="dec"><span style="font-weight:400">Quantity · 1002</span><span class="diff num"><span class="old">2,500</span>→<b style="font-weight:500">2,000</b></span><span class="chip c-med" style="justify-self:start"><i></i>Medium</span><span style="color:var(--ink-2);font-size:13px">Goods recipient decides.</span><span class="chip c-n" style="justify-self:end"><i></i>With Rajan</span></div>
+            <div class="dec"><span style="font-weight:400">Description · 1001</span><span class="diff"><span class="old">Microcontroller</span>→<b style="font-weight:500">Steuermodul</b></span><span class="chip c-low" style="justify-self:start"><i></i>Low</span><span style="color:var(--ink-2);font-size:13px">Same part, German term.</span><div class="acc"><span class="yes">Accept</span><span>Reject</span></div></div>
+          </div>
+          <div class="grid" style="gap:16px;align-content:start">
+            <div class="agent-block">
+              <p class="who"><svg class="spark" viewBox="0 0 16 16" fill="url(#g)"><path d="M8 0l1.7 5.1L15 7l-5.3 1.9L8 14l-1.7-5.1L1 7l5.3-1.9z"/></svg>Recommendation</p>
+              <p style="margin-top:8px;color:var(--ink-2)">Reject the payment terms and accept the rest. The price change matches the supplier’s notice from March.</p>
+              <div class="row gap8" style="margin-top:12px"><span class="src">PDF · page 2</span><span class="src">Notice · 12 Mar</span></div>
+            </div>
+            <div class="card" style="padding:18px">
+              <p class="k">Order risk</p>
+              <p style="font:300 24px var(--display);margin-top:8px">High</p>
+              <p class="cap" style="margin-top:4px">Set by the most severe difference. Ranked first by value.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
