@@ -31,7 +31,7 @@ export default function VideoModal({ src, title, onClose }: { src: string; title
           </button>
         </div>
         <div className="film-wrap rounded-3 overflow-hidden" style={{ border: '1px solid var(--line-1)', background: 'rgb(var(--black-rgb))' }}>
-          <iframe ref={frameRef} src={`${src}?embed=1`} title={`${title} film`} allow="autoplay; fullscreen" allowFullScreen className="film-frame block w-full" style={{ border: 0 }} />
+          <iframe ref={frameRef} src={`${src}${src.includes('?') ? '&' : '?'}embed=1`} title={`${title} film`} allow="autoplay; fullscreen" allowFullScreen className="film-frame block w-full" style={{ border: 0 }} />
         </div>
       </div>
     </div>

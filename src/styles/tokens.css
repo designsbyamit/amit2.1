@@ -42,6 +42,9 @@ html[data-theme='dark'] {
   --viz-res: 199 155 232;
   --viz-lead: 79 209 188;
   --viz-mgr: 200 245 90;
+  /* Story hero: a cool tinge so a dark page is not flat grey */
+  --tinge-rgb: 44 62 150;
+  --tinge-a: 0.42;
 
   /* Action */
   --signal-rgb: 200 245 90;    /* #C8F55A primary fill, live status */
@@ -91,6 +94,8 @@ html[data-theme='light'] {
   --viz-res: 138 77 181;
   --viz-lead: 12 138 120;
   --viz-mgr: 94 154 0;
+  --tinge-rgb: 120 140 235;
+  --tinge-a: 0.18;
 
   --signal-rgb: 200 245 90;    /* fill only on light */
   --on-signal-rgb: 15 16 19;

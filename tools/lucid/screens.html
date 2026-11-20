@@ -1,229 +1,222 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="lucid.css"><style>
-/* object page header */
-.oh{position:absolute;left:0;right:0;top:0;height:140px;background:var(--surface);box-shadow:0 1px 0 var(--line)}
-.crumb{position:absolute;left:48px;top:14px;font:400 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-.crumb a{color:var(--ink-2)}
-.otitle{position:absolute;left:46px;top:30px;display:flex;align-items:center;gap:14px}
-.otitle h1{font:200 34px/1.1 var(--sans);letter-spacing:-.03em}
-.otitle .dd{width:14px;height:14px;color:var(--ink-3);margin-left:-4px}
-.ometa{position:absolute;left:48px;top:76px;display:flex;align-items:center;gap:0;color:var(--ink-2);font-size:13.5px}
-.ometa span{padding:0 12px;border-left:1px solid var(--line-2)}.ometa span:first-child{padding-left:0;border:0}
-.ometa .num{color:var(--ink);font-size:12.5px}
-.oact{position:absolute;right:48px;top:44px;display:flex;gap:8px}
-.tabs{position:absolute;left:48px;bottom:0;display:flex;gap:30px;height:30px}
-.tabs span{font:400 13.5px var(--sans);color:var(--ink-3);position:relative;display:flex;align-items:flex-start;padding-top:4px}
-.tabs span.on{color:var(--ink)}.tabs span.on:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--ink)}
-.conf{display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px 0 10px;border-radius:99px;background:var(--agent-tint);font:400 12.5px var(--sans);color:#4B35C4}
-.conf b{display:block;width:44px;height:4px;border-radius:4px;background:rgba(124,92,255,.18);overflow:hidden}.conf b i{display:block;height:100%;background:var(--agent)}
-.conf .num{font-size:12px;color:#4B35C4}
+/* page heads */
+.ph{position:absolute;left:0;right:0;top:0;background:var(--surface);box-shadow:0 1px 0 var(--line)}
+.h1{font:200 30px/1.1 var(--sans);letter-spacing:-.03em}
+.crumb{position:absolute;left:32px;top:18px;font:400 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.otitle{position:absolute;left:31px;top:38px;display:flex;align-items:center;gap:12px}
+.ometa{position:absolute;left:32px;top:80px;display:flex;align-items:center;color:var(--ink-2);font-size:13.5px}
+.ometa>span{padding:0 12px;border-left:1px solid var(--line-2);display:flex;align-items:center;gap:8px}.ometa>span:first-child{padding-left:0;border:0}
+.oact{position:absolute;right:32px;top:40px;display:flex;gap:8px}
+.tabs{position:absolute;left:32px;bottom:0;display:flex;gap:26px;height:30px}
+.tabs span{font:400 13.5px var(--sans);color:var(--ink-3);position:relative}
+.tabs span.on{color:var(--ink)}.tabs span.on:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ink)}
+.conf{display:inline-flex;align-items:center;gap:8px;height:24px;padding:0 9px;border-radius:var(--r1);background:var(--agent-tint);font:400 12px var(--sans);color:var(--agent-ink)}
+.conf b{display:block;width:40px;height:3px;border-radius:3px;background:rgba(124,92,255,.18);overflow:hidden}.conf b i{display:block;height:100%;background:var(--agent)}
+/* worklist */
+.views{display:flex;gap:2px;padding:3px;border-radius:var(--r2);background:var(--sunk)}
+.views span{height:26px;padding:0 10px;border-radius:var(--r1);display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-2)}
+.views span.on{background:var(--surface);color:var(--ink);box-shadow:0 0 0 1px var(--line)}
+.views em{font-style:normal;font:400 11px var(--mono);color:var(--ink-3)}
+.stat{display:flex;flex-direction:column;gap:6px;padding:0 0 0 20px;border-left:1px solid var(--line)}
+.stat .v{font:200 26px/1 var(--sans);letter-spacing:-.03em}.stat .v small{font-size:14px;color:var(--ink-3)}
 /* extraction */
-.xl{position:absolute;left:0;top:140px;width:968px;bottom:0;overflow:hidden}
-.xbar{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 48px 0 48px;border-bottom:1px solid var(--line);font:400 15px var(--sans)}
-.xr{position:absolute;left:968px;right:0;top:140px;bottom:0;background:var(--sunk);overflow:hidden;box-shadow:inset 1px 0 0 var(--line)}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;column-gap:32px;padding:6px 20px 0}
-.fl{height:72px}.fl .lab{font:400 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-top:16px}
-.fl .val{margin-top:8px;font-size:14.5px}
-.fe{height:78px}.fe .lab{font:400 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-top:12px;margin-bottom:8px}
-.dot{display:inline-block;width:6px;height:6px;border-radius:99px;margin-right:6px;vertical-align:1px}
-/* pdf */
-.pdf{position:absolute;left:24px;right:24px;background:#fff;border-radius:6px;box-shadow:var(--e2);padding:26px 26px;font:6.5px/1.5 Arial,sans-serif;color:#555;overflow:hidden}
+.xl{position:absolute;left:0;top:132px;width:912px;bottom:0}
+.xr{position:absolute;left:912px;right:0;top:132px;bottom:0;background:var(--sunk);box-shadow:inset 1px 0 0 var(--line);overflow:hidden}
+.fg{display:grid;grid-template-columns:repeat(3,1fr)}
+.fg>div{height:66px;padding:12px 16px;box-shadow:inset -1px -1px 0 var(--line)}
+.fg .v{margin-top:8px;font-size:14px}
+.pdf{position:absolute;left:28px;right:28px;background:#fff;border-radius:2px;box-shadow:0 0 0 1px var(--line),0 8px 24px -12px rgba(17,18,22,.18);padding:24px;font:6.5px/1.5 Arial,sans-serif;color:#555;overflow:hidden}
 .pdf .bar{background:#2a2b2f;color:#fff;font:700 9px Arial;padding:6px 8px;display:flex;justify-content:space-between}
-.pdf table td,.pdf table th{height:auto;padding:3px 4px;font:6px Arial;color:#555;border-bottom:1px solid #ddd;text-transform:none;letter-spacing:0;white-space:normal}
+.pdf table td,.pdf table th{height:auto;padding:3px 4px;font:6px Arial;color:#555;border-bottom:1px solid #ddd;text-transform:none;letter-spacing:0;white-space:normal;background:none}
 .pdf table th{background:#2a2b2f;color:#fff;font-weight:700}
 .pdf .h{font:700 7px Arial;color:#333;margin:10px 0 4px}
 .pdf .ln{height:5px;background:#e3e3e3;border-radius:2px;margin:4px 0}
+.hl{box-shadow:0 0 0 1.5px #7C5CFF;background:rgba(124,92,255,.08);border-radius:2px}
 /* discrepancies */
-.dv{position:absolute;left:0;right:0;top:140px;bottom:0;padding:0 48px;overflow:hidden}
-.ins{position:absolute;left:48px;right:48px;top:24px;height:192px;background:var(--surface);border-radius:var(--r3);box-shadow:var(--e2);overflow:hidden}
-.ins .hd{display:flex;align-items:center;gap:10px;padding:18px 24px 0 26px;font:400 15px var(--sans)}
-.ins .sub{padding:10px 26px 0;color:var(--ink-2);font-size:14px}
-.ins .na{position:absolute;left:24px;right:24px;top:96px;border-radius:var(--r2);background:var(--canvas);box-shadow:inset 0 0 0 1px var(--line);padding:16px 18px}
-.ins .na .t{font:400 14px var(--sans)}.ins .na .d{color:var(--ink-2);margin-top:4px;font-size:13.5px}
-.tcard{position:absolute;left:48px;right:48px;background:var(--surface);border-radius:var(--r3);box-shadow:var(--e1);overflow:hidden}
-.tcard .card-h{height:42px}
-.tcard td{font-size:13.5px}
-.tcard td.mid{height:48px}
-.foot{position:absolute;left:48px;right:48px;bottom:16px;height:48px;border-radius:14px;background:rgba(255,255,255,.92);box-shadow:var(--e2);display:flex;justify-content:flex-end;align-items:center;padding:0 8px;gap:6px;z-index:6}
-/* worklist */
-.wh{position:absolute;left:0;right:0;top:0;height:147px;background:var(--surface);box-shadow:0 1px 0 var(--line)}
-.wh h1{position:absolute;left:46px;top:20px;font:200 34px/1.1 var(--sans);letter-spacing:-.03em}
-.flt{position:absolute;top:79px;display:flex;flex-direction:column;gap:6px}
-.flt .lab{position:absolute;top:-20px;font:400 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
-.wt{position:absolute;left:48px;right:48px;background:var(--surface);border-radius:var(--r3);box-shadow:var(--e1);overflow:hidden}
-.wt td{font-size:13.5px}
-.kpi{position:absolute;top:164px;width:240px;height:84px;background:var(--surface);border-radius:var(--r3);box-shadow:var(--e1);padding:16px 20px}
-.kpi .v{font:200 32px/1 var(--sans);letter-spacing:-.03em;margin-top:12px}.kpi .v small{font-size:15px;color:var(--ink-3);margin-left:2px}
-.grp td{background:#FAFAF8}
+.main{position:absolute;left:32px;width:1036px;top:156px}
+.rail{position:absolute;left:1088px;right:32px;top:156px;display:flex;flex-direction:column;gap:12px}
+.rec{padding:18px 20px}
+.rec .say{font:500 16px/1.35 var(--sans);letter-spacing:-.01em;margin-top:12px}
+.rec .why{color:var(--ink-2);margin-top:8px;font-size:13.5px}
+.rec .next{margin:16px -20px -18px;padding:14px 20px 16px;box-shadow:0 -1px 0 var(--line)}
+.rec .next .t{font:400 14px var(--sans);margin-top:8px}
+.rec .next .d{color:var(--ink-2);font-size:13px;margin-top:2px}
+.who{display:flex;align-items:center;gap:10px;height:40px;box-shadow:0 1px 0 var(--line)}.who:last-child{box-shadow:none}
+.who .n{flex:1}.who .c{font:400 11px var(--mono);color:var(--ink-3)}
+.bar2{width:56px;height:3px;border-radius:3px;background:var(--sunk);overflow:hidden}.bar2 i{display:block;height:100%;background:var(--ink)}
+.chg{display:flex;flex-direction:column;gap:1px}.chg .o{color:var(--ink-3);font-size:12.5px}.chg .o s{color:var(--ink-4)}
 /* activity */
-.tl{position:absolute;left:48px;right:48px;top:68px;height:600px;background:var(--surface);border-radius:var(--r3);box-shadow:var(--e1);padding:20px 28px}
-.tli{position:relative;padding-left:34px;height:74px}
-.tli:before{content:'';position:absolute;left:9px;top:22px;bottom:-4px;width:1px;background:var(--line-2)}
+.tli{position:relative;padding-left:40px;height:72px}
+.tli:before{content:'';position:absolute;left:11px;top:26px;bottom:-2px;width:1px;background:var(--line-2)}
 .tli:last-child:before{display:none}
-.tli .m{position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:99px;display:grid;place-items:center;font:500 8.5px var(--sans);color:var(--ink-2);background:var(--sunk)}
-.tli .m.ag{background:var(--agent);color:#fff}
-.tli .m.sys{background:#fff;box-shadow:inset 0 0 0 1px var(--line-2)}
-.tli .ts{font:400 11px var(--mono);color:var(--ink-3);letter-spacing:-.01em}
-.tli .tx{margin-top:3px;font-size:14px}.tli .by{margin-top:1px;font-size:13px;color:var(--ink-3)}
-.tli .tx a{color:var(--accent);font-weight:400;margin-left:4px}
+.tli .av{position:absolute;left:0;top:2px}
+.tli .ts{font:400 11px var(--mono);color:var(--ink-3)}
+.tli .tx{margin-top:3px}.tli .tx a{color:var(--accent);font-weight:400;margin-left:6px}
+.tli .by{font-size:12.5px;color:var(--ink-3);margin-top:1px}
+.ag-t{background:var(--agent);-webkit-background-clip:text;color:transparent;font-weight:400}
 </style></head><body><script>
 const S=`<svg class="spark" viewBox="0 0 16 16"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C5CFF"/><stop offset="1" stop-color="#22C7E8"/></linearGradient></defs><path fill="url(#g)" d="M8 0l1.7 5.1L15 7l-5.3 1.9L8 14l-1.7-5.1L1 7l5.3-1.9z"/></svg>`
 const CHEV=`<svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4.5l3 3 3-3"/></svg>`
-const ICO={bell:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 14V9a5 5 0 0110 0v5l1.5 1.5h-13zM8.5 17.5h3"/></svg>`,help:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10" cy="10" r="7.5"/><path d="M8 8a2 2 0 113 1.7c-.7.4-1 .8-1 1.6M10 14v.2"/></svg>`,send:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 2L7 9M14 2l-4.5 12-2.5-5-5-2.5z"/></svg>`,cal:`<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#8A8C95" stroke-width="1.3"><rect x="2.5" y="3.5" width="11" height="10" rx="2"/><path d="M2.5 6.5h11M5.5 2v3M10.5 2v3"/></svg>`,search:`<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#8A8C95" stroke-width="1.4"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>`,check:`<svg viewBox="0 0 10 10" width="9" height="9" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 5.2l2 2 4-4.4"/></svg>`}
+const ICO={bell:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 14V9a5 5 0 0110 0v5l1.5 1.5h-13zM8.5 17.5h3"/></svg>`,help:`<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10" cy="10" r="7.5"/><path d="M8 8a2 2 0 113 1.7c-.7.4-1 .8-1 1.6M10 14v.2"/></svg>`,send:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M14 2L7 9M14 2l-4.5 12-2.5-5-5-2.5z"/></svg>`,cal:`<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="#8A8C95" stroke-width="1.3"><rect x="2.5" y="3.5" width="11" height="10" rx="2"/><path d="M2.5 6.5h11M5.5 2v3M10.5 2v3"/></svg>`,search:`<svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#8A8C95" stroke-width="1.4"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>`,check:`<svg viewBox="0 0 10 10" width="9" height="9" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 5.2l2 2 4-4.4"/></svg>`,filter:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 4h11M4.5 8h7M6.5 12h3"/></svg>`,cols:`<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="#4A4C55" stroke-width="1.3"><rect x="2.5" y="3" width="11" height="10" rx="1.5"/><path d="M6.2 3v10M9.8 3v10"/></svg>`}
 const P={ops:['DP',''],buyer:['AS','p2'],gr:['RN','p3'],admin:['EH','p4']}
-const topbar=(who)=>`<div class="top"><span class="menu"><i></i><i></i><i></i></span><span class="logo"></span><span class="prod">Order confirmations <span>· assistant</span></span><span class="sp"></span><div class="ask">${S}Ask about an order or a supplier<kbd>⌘K</kbd></div><span class="sp"></span><span class="ic">${ICO.bell}</span><span class="ic">${ICO.help}</span><span class="av ${P[who][1]}">${P[who][0]}</span></div>`
+const topbar=(who)=>`<div class="top"><span class="logo"></span><span class="prod">Order confirmations</span><span class="sp"></span><div class="ask">${S}Ask the agent about any order<kbd>⌘K</kbd></div><span class="ic">${ICO.bell}</span><span class="ic">${ICO.help}</span><span class="av ${P[who][1]}">${P[who][0]}</span></div>`
 const chip=(r)=>`<span class="chip ${{High:'c-high',Medium:'c-med',Low:'c-low'}[r]}"><i></i>${r}</span>`
 const seg=(v)=>`<span class="seg"><span class="${v==='Accept'?'on':''}">Accept</span><span class="${v==='Reject'?'on rej':''}">Reject</span></span>`
-const res=(v,dim)=>v==='In progress'?`<span class="res prog"><i></i>In progress</span>`:v==='Accepted'?`<span class="res acc ${dim?'dim':''}"><i></i>Accepted</span>`:v==='Rejected'?`<span class="res rej ${dim?'dim':''}"><i></i>Rejected</span>`:v?seg(v):''
-const toast=(t,x,y)=>`<div class="toast" style="left:${x}px;top:${y}px"><span class="ok">${ICO.check}</span>${t}</div>`
+const res=(v)=>v==='In progress'?`<span class="res prog"><i></i>Open</span>`:v==='Accepted'?`<span class="res acc"><i></i>Accepted</span>`:v==='Rejected'?`<span class="res rej"><i></i>Rejected</span>`:v?seg(v):''
+const toast=(t,ring)=>`<div class="toast" style="left:720px;top:770px" ${ring?'data-ring="a"':''}><span class="ok">${ICO.check}</span>${t}</div>`
+const R=(k)=>`data-ring="${k}"`
 
-/* ---------- object page header ---------- */
-function oh({id='1505899',conf=true,validated=false,tabs,active,act='',risk='High'}){
-  return `<div class="oh"><div class="crumb"><a>My worklist</a> &nbsp;/&nbsp; ${id.split('/')[0]}</div>
-  <div class="otitle"><h1>Order confirmation ${id}</h1><svg class="dd" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 4.5l3 3 3-3"/></svg>
-  ${validated?`<span class="chip c-acc"><i></i>Validated</span>`:''}${conf?`<span class="conf">${S}Confidence<b><i style="width:87%"></i></b><span class="num">87%</span></span>`:''}</div>
-  <div class="ometa"><span>PO <span class="num" style="padding:0;border:0">4994546957</span></span><span>Helios Components AG</span><span>Order value <span class="num" style="padding:0;border:0">€164,865</span></span><span style="display:flex;align-items:center;gap:8px">Risk ${chip(risk)}</span></div>
+/* ---------- object header ---------- */
+function oh({id='1505899',conf=true,validated=false,tabs,active,act='',ringTitle=false,ringTab=null,ringConf=false}){
+  return `<div class="ph" style="height:132px"><div class="crumb">My worklist &nbsp;/&nbsp; ${id.split('/')[0]}</div>
+  <div class="otitle" ${ringTitle?R('a'):''}><span class="h1">Order confirmation ${id}</span>${chip('High')}
+  ${validated?`<span class="chip c-acc">Validated</span>`:''}${conf?`<span class="conf" ${ringConf?R('a'):''}>${S}Read with 87% confidence<b><i style="width:87%"></i></b></span>`:''}</div>
+  <div class="ometa" ${ringTitle?R('a'):''}><span>PO&nbsp;<span class="id" style="color:var(--ink)">4994546957</span></span><span>Helios Components AG</span><span>€164,865</span><span>Received 08.04.26</span></div>
   <div class="oact">${act}</div>
-  <div class="tabs">${tabs.map(t=>`<span class="${t===active?'on':''}">${t}</span>`).join('')}</div></div>`}
+  <div class="tabs">${tabs.map(t=>`<span class="${t===active?'on':''}" ${t===ringTab?R('a'):''}>${t}</span>`).join('')}</div></div>`}
 
 /* ---------- pdf ---------- */
-function pdf(){
+function pdf(hl){
   const rows=[['20','SKU-4410-A','PCB Verbinder 40-polig / vergoldet','5.000','St.','1,20','19%','6.000,00'],['30','SKU-3392-D','Widerstandsnetzwerk 4,7 kOhm +/-1%','8.500','St.','0,09','19%','765,00']]
   const lines=(n,w=[90,80,95,70,85])=>Array.from({length:n},(_,i)=>`<div class="ln" style="width:${w[i%w.length]}%"></div>`).join('')
-  return `<div class="pdf" style="top:28px;height:600px">
+  return `<div class="pdf" style="top:24px;height:560px">
+  <div class="bar"><span>HELIOS COMPONENTS AG</span><span style="font-weight:400;font-size:6px">Precision Electronic Components · Munich</span></div>
+  <div style="display:flex;justify-content:space-between;margin-top:10px"><div style="width:40%">${lines(3,[70,50,60])}</div><div style="text-align:right;font:700 9px Arial;color:#333">AUFTRAGSBESTÄTIGUNG<br><span style="font-weight:400;font-size:6.5px">Nr. 1505899 · Bestellung 4994546957</span></div></div>
+  <div style="margin:8px 0;display:flex;gap:16px"><span>Zahlungsbedingungen: <span class="${hl?'hl':''}" style="color:#333">45 Tage netto</span></span><span>Lieferung: voraussichtlich KW 13</span></div>
   <table><tr><th>Pos</th><th>Artikel-Nr.</th><th>Bezeichnung / Description</th><th>Menge</th><th>ME</th><th>Preis (EUR)</th><th>MwSt.</th><th>Gesamtpreis</th></tr>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table>
   <div style="margin:12px 0 0 auto;width:46%"><div style="display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:3px 0"><span>Nettobetrag / Net</span><span>EUR 146.925,00</span></div><div style="display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:3px 0"><span>MwSt. 19% / VAT 19%</span><span>EUR 27.915,75</span></div><div style="display:flex;justify-content:space-between;background:#eee;padding:4px 3px;font-weight:700;color:#333"><span>Rechnungsbetrag / Invoice Total</span><span>EUR 174.840,75</span></div></div>
-  <div style="margin-top:14px;border:1px solid #ddd;padding:6px;display:flex;gap:8px"><span style="width:50px">Hinweis / Note:</span><div style="flex:1"><b style="color:#333">Pos. 30 Teillieferung / Partial Shipment:</b> Aufgrund temporärer Lieferengpässe liefern wir zunächst 6.500 Stück. Die verbleibenden 1.500 Stück werden voraussichtlich in Kalenderwoche 16 nachgeliefert.${lines(2)}</div></div>
-  <div class="h">3. QUALITÄT UND KONFORMITÄT / QUALITY &amp; COMPLIANCE</div>${['Zertifizierung','IATF 16949','RoHS / REACH','Konformitätserklärung','Qualitätszertifikat'].map(t=>`<div style="display:flex;gap:10px;margin:3px 0"><span style="width:90px">${t}</span><div style="flex:1">${lines(1,[80])}${lines(1,[55])}</div></div>`).join('')}
-  <div class="h">4. BESONDERE BEDINGUNGEN / SPECIAL CONDITIONS</div>${['Preisbasis','Verpackung','Mindestbestellmenge','Gewährleistung','Gerichtsstand'].map(t=>`<div style="display:flex;gap:10px;margin:3px 0"><span style="width:90px">${t}</span><div style="flex:1">${lines(1,[92])}${lines(1,[64])}</div></div>`).join('')}
-  <div style="margin-top:22px">Wir freuen uns auf die weitere Zusammenarbeit und stehen für Rückfragen gerne zur Verfügung.</div></div>
-  <div class="pdf" style="top:650px;height:200px;padding-top:24px"><div class="bar"><span>HELIOS COMPONENTS AG</span><span style="font-weight:400;font-size:6px">Precision Electronic Components · Munich</span></div><div style="text-align:right;font:700 9px Arial;color:#333;margin-top:12px">AUFTRAGSBESTÄTIGUNG</div>${lines(3)}</div>`}
+  <div style="margin-top:14px;border:1px solid #ddd;padding:6px;display:flex;gap:8px"><span style="width:50px">Hinweis / Note:</span><div style="flex:1"><b style="color:#333">Pos. 30 Teillieferung / Partial Shipment:</b> Aufgrund temporärer Lieferengpässe liefern wir zunächst 6.500 Stück.${lines(2)}</div></div>
+  <div class="h">3. QUALITÄT UND KONFORMITÄT / QUALITY &amp; COMPLIANCE</div>${['Zertifizierung','IATF 16949','RoHS / REACH','Konformität'].map(t=>`<div style="display:flex;gap:10px;margin:3px 0"><span style="width:90px">${t}</span><div style="flex:1">${lines(1,[80])}${lines(1,[55])}</div></div>`).join('')}
+  <div class="h">4. BESONDERE BEDINGUNGEN / SPECIAL CONDITIONS</div>${['Preisbasis','Verpackung','Gewährleistung','Gerichtsstand'].map(t=>`<div style="display:flex;gap:10px;margin:3px 0"><span style="width:90px">${t}</span><div style="flex:1">${lines(1,[92])}${lines(1,[64])}</div></div>`).join('')}</div>
+  <div class="pdf" style="top:600px;height:200px"><div class="bar"><span>HELIOS COMPONENTS AG</span><span style="font-weight:400;font-size:6px">Seite 2</span></div>${lines(4)}</div>
+  <div style="position:absolute;right:36px;top:32px"><span class="chip c-n" style="background:#fff;box-shadow:var(--hair)">Page 1 of 2</span></div>`}
 
-/* ---------- extraction page ---------- */
-function extraction({mode='read',tab='Original extraction v1.0',tabs,validated=false,act,dialog='',toastTxt='',editing=false}){
-  const F=[['Supplier','294730'],['Payment terms',editing?'GL15: Net 45 days':'GI15: Net 45 days after invoice date'],['Supplier name','Helios Components AG'],['Sum of OC items','6'],['Purchaser','FR0L'],['OC total net value','EUR  164,865'],['Created on','Jan 5, 2026'],['Additional costs','65.00'],['Incoterms','EXW'],['','']]
-  let grid
-  if(mode==='read') grid=F.map(([l,v])=>`<div class="fl">${l?`<div class="lab">${l}</div><div class="val">${l==='OC total net value'?'<span class="num" style="font-size:13.5px">EUR 164,865</span>':v}</div>`:''}</div>`).join('')
-  else grid=F.map(([l,v])=>`<div class="fe">${l?`<div class="lab">${l}</div>${l==='OC total net value'?`<div style="display:flex;gap:8px"><div class="field" style="width:200px">EUR${CHEV}</div><div class="field" style="flex:1"><span class="num">164,865</span></div></div>`:`<div class="field ${editing&&l==='Payment terms'?'focus':''}">${v}${l==='Created on'?`<span style="margin-left:auto">${ICO.cal}</span>`:''}</div>`}`:''}</div>`).join('')
-  const LI=[['SKU-8821-B','Steuerungsmodul Rev.B','2,400','EA','EUR','25.03','Jun 4, 2026'],['SKU-4410-A','PCBC 40-pin','2,000','EA','EUR','22.65','Jun 4, 2026'],['SKU-4411-B','PCBC 40-pin -2','1,800','EA','EUR','22.39','Jul 14, 2026'],['SKU-4412-C','Widerstandsnetzwerk 4.7kΩ','1,500','EA','EUR','12.80','Jul 14, 2026']]
-  const li=mode==='read'?LI.map(r=>`<tr><td class="id">${r[0]}</td><td>${r[1]}</td><td class="r num">${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td class="r num">${r[5]}</td><td>${r[6]}</td></tr>`).join('')
-    :LI.map(r=>`<tr><td style="height:34px"><div class="field" style="height:28px;width:118px"><span class="num">${r[0]}</span></div></td><td><div class="field" style="height:28px;width:200px">${r[1]}</div></td><td class="r"><div class="field" style="height:28px;width:70px;justify-content:flex-end"><span class="num">${r[2]}</span></div></td><td><div class="field" style="height:28px;width:62px">${r[3]}${CHEV}</div></td><td><div class="field" style="height:28px;width:76px">${r[4]}${CHEV}</div></td><td class="r"><div class="field" style="height:28px;width:70px;justify-content:flex-end"><span class="num">${r[5]}</span></div></td><td><div class="field" style="height:28px;width:118px">${r[6].slice(0,8)}…<span style="margin-left:auto">${ICO.cal}</span></div></td></tr>`).join('')
-  const editBtn=mode==='read'?`<span class="btn btn-s btn-sm" ${validated?'style="color:var(--ink-4)"':''}>Edit</span>`:''
-  return oh({tabs:tabs||[tab],active:tab,validated,act})+
-  `<div class="xl"><div class="xbar">Extracted data${editBtn}</div>
-   <div class="card" style="position:absolute;left:48px;right:24px;top:62px;height:${mode==='read'?435:465}px"><div class="card-h"><h3>Header</h3><span class="k">${S}</span></div><div style="border-top:1px solid var(--line)"></div><div class="fgrid">${grid}</div></div>
-   <div class="card" style="position:absolute;left:48px;right:24px;top:${mode==='read'?512:542}px;height:300px;overflow:hidden"><div class="card-h"><h3>Line items</h3></div><table><tr><th>Material</th><th>Description</th><th class="r">Quantity</th><th>UoM</th><th>Currency</th><th class="r">Unit price</th><th>Delivery date</th></tr>${li}</table></div>
-   ${editing?`<div class="foot" style="left:48px;right:24px;bottom:auto;top:700px"><span class="btn btn-p btn-sm">Save</span><span class="btn btn-g btn-sm">Cancel</span></div>`:''}
-  </div><div class="xr">${pdf()}</div>${dialog}${toastTxt}`}
+/* ---------- extraction ---------- */
+function extraction({mode='read',tab='Extraction v1.0',tabs,validated=false,act,dialog='',toastTxt='',editing=false,conf=true,ringConf=false,ringTab=null,ringBody=false,ringFields=false,ringCell=false}){
+  const F=[['Supplier','294730'],['Supplier name','Helios Components AG'],['Purchaser','FR0L'],['Payment terms',editing?'GL15: Net 45 days':'GI15: Net 45 days after invoice date'],['Created on','Jan 5, 2026'],['Incoterms','EXW'],['OC total net value','EUR 164,865'],['Sum of OC items','6'],['Additional costs','65.00']]
+  const fv=(l,v)=>mode==='read'?`<div class="v">${v}</div>`:`<div class="cell ${editing&&l==='Payment terms'?'focus':''}" style="margin-top:6px" ${ringCell&&l==='Payment terms'?R('a'):''}>${v}${l==='Created on'?`<span style="margin-left:auto">${ICO.cal}</span>`:''}</div>`
+  const LI=[['SKU-8821-B','Steuerungsmodul Rev.B','2,400','EA','25.03','Jun 4, 2026'],['SKU-4410-A','PCBC 40-pin','2,000','EA','22.65','Jun 4, 2026'],['SKU-4411-B','PCBC 40-pin -2','1,800','EA','22.39','Jul 14, 2026'],['SKU-4412-C','Widerstandsnetzwerk 4.7kΩ','1,500','EA','12.80','Jul 14, 2026'],['SKU-3392-D','Resistor network 4.7kΩ','8,500','EA','0.09','Jul 14, 2026']]
+  const c=(v,r)=>mode==='read'?v:`<div class="cell ${r?'r':''}">${v}</div>`
+  const li=LI.map(r=>`<tr><td class="id">${c(r[0])}</td><td>${c(r[1])}</td><td class="r num">${c(r[2],1)}</td><td>${c(r[3])}</td><td class="r num">${c(r[4],1)}</td><td>${c(r[5])}</td></tr>`).join('')
+  return oh({tabs:tabs||[tab,'Activity'],active:tab,validated,act,conf,ringTab,ringConf})+
+  `<div class="xl" ${ringBody?R('b'):''}>
+   <div style="position:absolute;left:32px;right:24px;top:20px;display:flex;justify-content:space-between;align-items:center"><span class="k">What the agent read</span>${mode==='read'?`<span class="btn btn-s btn-sm" ${validated?'style="color:var(--ink-4)"':''}>Edit</span>`:`<span class="chip c-acc">Editing</span>`}</div>
+   <div class="panel" style="position:absolute;left:32px;right:24px;top:60px;overflow:hidden" ${ringFields?R('a'):''}><div class="fg">${F.map(([l,v])=>`<div><div class="k">${l}</div>${fv(l,v)}</div>`).join('')}</div></div>
+   <div class="panel" style="position:absolute;left:32px;right:24px;top:274px;overflow:hidden"><div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 16px"><span style="font:400 14.5px var(--sans)">Line items</span><span class="k">6 lines</span></div><table><tr><th>Material</th><th>Description</th><th class="r">Quantity</th><th>UoM</th><th class="r">Unit price</th><th>Delivery</th></tr>${li}</table></div>
+   ${mode!=='read'?`<div class="panel" style="position:absolute;left:32px;right:24px;top:640px;height:48px;display:flex;align-items:center;padding:0 8px 0 16px;gap:8px"><span class="muted" style="flex:1;font-size:13px">Changes are logged for audit.</span><span class="btn btn-g btn-sm">Cancel</span><span class="btn btn-p btn-sm">Save</span></div>`:''}
+  </div><div class="xr" ${ringBody?R('b'):''}>${pdf(editing)}</div>${dialog}${toastTxt}`}
 
-/* ---------- discrepancies page ---------- */
-const H=[['Total invoice value','€142,800','€164,865','+€22,065 (15.4%)','High','Price change times quantity. Approving overpays by €22,065.'],['Payment terms','Net 30 days','Net 45 days','+15 days','High','Read from German “45 Tage netto”. Finance must approve longer terms.'],['Additional costs','–','€65.00','new','Medium','Freight charge found on the confirmation, not on the PO.']]
-const L=[['1001','SKU-8821-B','Unit price','€15.83','€25.03','+€22,065','High','Price change times quantity. Approving overpays by €22,065.'],['','','Description','Microcontroller Module Rev.B','Steuerungsmodul Rev.B','German term','Low','Same part in German. No functional difference.'],['1002','SKU-4410-A','Quantity','2,500','2,000','−500 units','Medium','Only 2,000 confirmed. Stock may cover it; the goods recipient decides.'],['1004','SKU-4412-C','Delivery date','Jun 4, 2026','Jul 14, 2026','+40 days','High','Six weeks later than requested.']]
-function disc({id='1505899',hRes,lRes,lRows=[0,1,2,3],hRows=[0,1,2],next,sub='Multiple differences, order value above €142,800',share=false,act='',foot=true,toastTxt='',dialog='',tab='Discrepancies',edit=false}){
-  const insH=share?236:192
-  const hTop=insH+48, hH=42+34+32*hRows.length
-  const lTop=hTop+hH+16
-  const ht=hRows.map((i,k)=>{const r=H[i];return `<tr><td style="width:150px">${r[0]}</td><td style="width:106px">${r[1]}</td><td style="width:106px">${r[2]}</td><td class="num" style="width:136px;color:var(--ink)">${r[3]}</td><td style="width:84px">${chip(r[4])}</td><td><div class="ai">${S}${r[5]}</div></td><td style="width:150px">${res(hRes[k],hRes[k]==='In progress')}</td></tr>`}).join('')
-  const lt=lRows.map((i,k)=>{const r=L[i];return `<tr><td class="mid id" style="width:70px">${r[0]}</td><td class="id" style="width:104px">${r[1]}</td><td style="width:110px">${r[2]}</td><td class="wrap" style="width:116px">${r[3]}</td><td class="wrap" style="width:116px">${r[4]}</td><td class="num" style="width:100px">${r[5]}</td><td style="width:80px">${chip(r[6])}</td><td class="wrap"><div class="ai">${S}${r[7]}</div></td><td style="width:150px">${res(lRes[k],lRes[k]==='In progress'||lRes[k]==='dim-a'||lRes[k]==='dim-r')}</td></tr>`}).join('')
-  return oh({id,conf:false,tabs:['Discrepancies','Extraction','Activity'],active:tab,act})+
-  `<div class="dv">
-   <div class="ins" style="height:${insH}px"><span class="agent-bar"></span><div class="hd">${S}Recommendation <span class="chip c-agent" style="margin-left:4px">Agent</span></div><div class="sub">${sub}</div>
-   <div class="na" style="${share?'height:122px':''}"><div class="t">${next[0]}</div><div class="d">${next[1]}</div>${share?`<span class="btn btn-agent btn-sm" style="margin-top:12px">${ICO.send}Draft the reply</span>`:''}</div></div>
-   <div class="tcard" style="top:${hTop}px"><div class="card-h"><h3>Order differences</h3>${edit?'<span class="btn btn-s btn-sm">Edit</span>':''}</div><table><tr><th>Field</th><th>PO</th><th>Confirmation</th><th>Change</th><th>Severity</th><th>Agent's reasoning</th><th>Decision</th></tr>${ht}</table></div>
-   <div class="tcard" style="top:${lTop}px"><div class="card-h"><h3>Line item differences</h3>${edit?'<span class="btn btn-s btn-sm">Edit</span>':''}</div><table><tr><th>Line</th><th>Material</th><th>Field</th><th>PO</th><th>Confirmation</th><th>Change</th><th>Severity</th><th>Agent's reasoning</th><th>Decision</th></tr>${lt}</table></div>
-  </div>${foot?`<div class="foot"><span class="btn btn-p btn-sm">Save decisions</span><span class="btn btn-g btn-sm">Cancel</span></div>`:''}${dialog}${toastTxt}`}
+/* ---------- discrepancies ---------- */
+const H=[['Total invoice value','€142,800','€164,865','+€22,065 · 15.4%','High','Unit price change times quantity. Approving overpays by €22,065.','AS'],['Payment terms','Net 30','Net 45','+15 days','High','Read from “45 Tage netto”. Longer terms need finance approval.','AS'],['Additional costs','none','€65.00','New cost','Medium','A freight charge that is not on the PO.','AS']]
+const L=[['1001 · Unit price','€15.83','€25.03','+58%','High','Same change as the total. Approving overpays by €22,065.','AS'],['1001 · Description','Microcontroller Module Rev.B','Steuerungsmodul Rev.B','German term','Low','The same part, named in German.','AS'],['1002 · Quantity','2,500','2,000','−500 units','Medium','Only 2,000 confirmed. Stock may cover it.','RN'],['1004 · Delivery date','Jun 4','Jul 14','+40 days','High','Six weeks later than requested.','RN']]
+const OWN={AS:'p2',RN:'p3'}
+function disc({id='1505899',hRes,lRes,hRows=[0,1,2],lRows=[0,1,2,3],rec,act='',footer=null,toastTxt='',dialog='',ringTable=false,ringMine=null,ringNext=false,ringTitle=false,people,mods={}}){
+  const row=(r,v,ring,dim)=>`<tr ${ring?R('a'):''} ${dim?'class="dim"':''}><td style="width:146px;height:52px">${r[0]}</td><td style="width:206px"><div class="chg"><span class="o"><s>${r[1]}</s> → <span style="color:${dim?'inherit':'var(--ink)'}">${r[2]}</span></span><span class="num" style="font-size:12.5px;color:var(--ink-2)">${r[3]}</span></div></td><td style="width:92px">${chip(r[4])}</td><td class="wrap"><div class="ai">${S}<span>${r[5]}</span></div></td><td style="width:52px"><span class="av sm ${OWN[r[6]]}">${r[6]}</span></td><td style="width:150px">${res(v)}</td></tr>`
+  let Hr=hRows.map(i=>[...H[i]]),Lr=lRows.map(i=>[...L[i]])
+  if(mods.terms){Hr=Hr.map(r=>r[0]==='Payment terms'?['Payment terms','Net 30','Net 35','+5 days','Medium','Read from “35 Tage netto”. Closer to the PO than version 1.','AS']:r)}
+  const body=`<tr class="grp"><td colspan="6">Order</td></tr>`+Hr.map((r,k)=>row(r,hRes[k],ringMine&&ringMine.includes('h'+k),ringMine&&!ringMine.includes('h'+k))).join('')+`<tr class="grp"><td colspan="6">Line items</td></tr>`+Lr.map((r,k)=>row(r,lRes[k],ringMine&&ringMine.includes('l'+k),ringMine&&!ringMine.includes('l'+k))).join('')
+  const decided=[...hRes,...lRes].filter(v=>['Accepted','Rejected','Accept','Reject'].includes(v)).length, total=hRes.length+lRes.length
+  return oh({id,conf:false,tabs:['Differences','Extraction','Activity'],active:'Differences',act,ringTitle})+
+  `<div class="main"><div class="panel" style="overflow:hidden" ${ringTable?R('a'):''}><div style="height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px"><span style="font:400 15px var(--sans)">Differences from the purchase order</span><div class="views"><span class="on">All <em>${total}</em></span><span>Mine <em>${people.mine}</em></span></div></div>
+   <table><tr><th>Field</th><th>PO → Confirmation</th><th>Severity</th><th>Agent's reasoning</th><th>Owner</th><th>Decision</th></tr>${body}</table></div>
+   ${footer!==false?`<div class="panel" style="margin-top:12px;height:52px;display:flex;align-items:center;padding:0 10px 0 16px;gap:10px"><span class="muted" style="flex:1;font-size:13px">${footer||`${decided} of ${total} decided`}</span><span class="btn btn-g btn-sm">Cancel</span><span class="btn btn-p btn-sm">Save decisions</span></div>`:''}
+  </div>
+  <div class="rail"><div class="panel rec"><span class="k" style="display:flex;gap:7px;align-items:center">${S}Agent recommendation</span><div class="say">${rec.say}</div><div class="why">${rec.why}</div>
+   <div class="next" ${ringNext?R('a'):''}><span class="k">Next</span><div class="t">${rec.next[0]}</div><div class="d">${rec.next[1]}</div>${rec.btn||''}</div></div>
+   <div class="panel" style="padding:14px 16px"><span class="k">Who decides</span><div style="margin-top:8px">${people.rows.map(p=>`<div class="who"><span class="av sm ${p[0]==='AS'?'p2':'p3'}">${p[0]}</span><span class="n">${p[1]}</span><span class="c">${p[2]}</span><span class="bar2"><i style="width:${p[3]}%"></i></span></div>`).join('')}</div></div>
+   <div class="panel" style="padding:14px 16px"><span class="k">Order risk</span><div style="display:flex;align-items:center;gap:10px;margin-top:10px">${chip('High')}<span class="muted" style="font-size:13px">Set by the most severe difference</span></div></div>
+  </div>${dialog}${toastTxt}`}
 
 /* ---------- worklists ---------- */
 const BW=[['4994546957','1505899','Helios Components AG','142,800','08.04.26 14:04','7 differences','High','In progress','Review'],['4994546960','1505456','Orion Tech Ltd.','71,800','08.04.26 10:15','4 differences','High','In progress','Review'],['4994546960','1505982','Cascadia Polymers','25,450','07.04.26 11:18','3 differences','High','In progress','Review'],['4994546961','1505365','Nebula Systems','39,600','06.04.26 12:11','Price +8.4%, delay +7 days','High','In progress','Review'],['4994546962','1505974','Quantum Electronics','26,300','31.03.26 11:10','Price +6.1%, delay +3 days','High','In progress','Review'],['4994546963','1505683','Stellar Innovations','10,750','26.03.26 16:21','Price +2.3%, payment terms','Medium','In progress','Review'],['4994546964','1505246','Apollo Devices','56,900','23.03.26 15:10','Price +1.1%, incoterms','Medium','In progress','Review'],['4994546965','1505867','Cosmos Circuitry','70,500','05.04.26 13:11','Price +1.4%','Medium','In progress','Review'],['4994546966','1505795','Lunar Tech Solutions','37,200','02.04.26 11:10','Price +0.5%','Low','In progress','Review'],['4994546967','1505680','Solaris Works','14,600','11.03.26 10:16','Payment terms','Low','Resolved','Submit'],['4994546968','1505347','Aurora Engineering','21,300','12.03.26 18:24','Incoterms','Low','Resolved','Submit']]
 const st=(s)=>s==='Resolved'?`<span class="res acc"><i></i>Resolved</span>`:s==='New'?`<span class="res" style="color:var(--accent)"><i style="background:var(--accent)"></i>New</span>`:s==='Processed'?`<span class="res dim"><i style="background:var(--ink-4)"></i>Processed</span>`:`<span class="res"><i style="background:var(--med)"></i>${s}</span>`
-const fbar=(risk)=>`<div class="flt" style="left:48px;width:${risk?392:594}px"><div class="field">${ICO.search}<span class="muted">Search</span></div></div>
- ${risk?`<div class="flt" style="left:449px;width:394px"><span class="lab">Risk</span><div class="field">All${CHEV}</div></div>`:''}
- <div class="flt" style="left:${risk?851:650}px;width:${risk?394:595}px"><span class="lab">Status</span><div class="field">All${CHEV}</div></div>
- <div class="flt" style="left:1253px"><span class="btn btn-dis" style="height:36px">Go</span></div><div class="flt" style="left:1306px;top:88px"><span class="link" style="font-size:13.5px">Filters</span></div>`
+const tools=`<div style="display:flex;gap:8px;align-items:center"><div class="field" style="width:240px;height:32px">${ICO.search}<span class="muted" style="font-size:13px">Search orders, suppliers</span></div><span class="btn btn-s btn-sm" style="height:32px">${ICO.filter}Filter</span><span class="ic" style="box-shadow:inset 0 0 0 1px var(--line-2);width:32px;height:32px">${ICO.cols}</span></div>`
+function whead(views,right=''){return `<div style="position:absolute;left:32px;right:32px;top:26px;display:flex;justify-content:space-between;align-items:flex-start"><span class="h1">My worklist</span>${right}</div>
+ <div style="position:absolute;left:32px;right:32px;top:84px;display:flex;justify-content:space-between;align-items:center"><div class="views">${views.map((v,i)=>`<span class="${i?'':'on'}">${v[0]} <em>${v[1]}</em></span>`).join('')}</div>${tools}</div>`}
 function worklist({kind,group=null}){
   if(kind==='ops'){
-    const R=[['4994546957','1505899','Helios Components AG','142,800','08.04.26 14:04','New','Validate'],['4994546960','1505900','Orion Tech Ltd.','2,800','08.04.26 10:15','New','Validate'],['4994546960','1505900','Cascadia Polymers','5,450','07.04.26 11:18','In progress','View'],['4994546961','1505901','Nebula Systems','9,600','06.04.26 12:11','In progress','View'],['4994546962','1505902','Quantum Electronics','6,300','31.03.26 11:10','In progress','View'],['4994546963','1505903','Stellar Innovations','10,750','26.03.26 16:21','In progress','View'],['4994546964','1505904','Apollo Devices','8,900','23.03.26 15:10','In progress','View'],['4994546965','1505905','Cosmos Circuitry','12,500','05.04.26 13:11','In progress','View'],['4994546966','1505906','Lunar Tech Solutions','7,200','02.04.26 11:10','In progress','View'],['4994546967','1505907','Solaris Works','14,600','11.03.26 10:16','Processed','Archive']]
-    return `<div class="wh"><h1>My worklist</h1>${fbar(false)}</div>
-    <div class="kpi" style="left:48px;top:164px"><div class="k">Pending validation</div><div class="v">2</div></div>
-    <div class="kpi" style="left:308px;top:164px"><div class="k" style="display:flex;gap:6px;align-items:center">${S}Avg. agent confidence</div><div class="v">91<small>%</small></div></div>
-    <div class="wt" style="top:264px"><div class="card-h" style="height:44px"><h3>Order confirmations <span class="muted">· 10</span></h3></div><table><tr><th>PO</th><th>Document</th><th>Supplier</th><th>Currency</th><th class="r">Order value</th><th>Received</th><th>Status</th><th>Action</th></tr>
-    ${R.map(r=>`<tr><td class="id" style="width:128px">${r[0]}</td><td class="id" style="width:135px">${r[1]}</td><td style="width:200px">${r[2]}</td><td style="width:110px">EUR</td><td class="r num" style="width:170px">${r[3]}</td><td class="num" style="width:190px;padding-left:24px">${r[4]}</td><td style="width:180px">${st(r[5])}</td><td><span class="link">${r[6]}</span></td></tr>`).join('')}</table></div>`}
-  let rows=BW.map(r=>[...r])
-  if(group){rows=rows.slice(1);rows.unshift(...group.subs);}
-  const tr=(r,isSub)=>`<tr><td class="id" style="width:128px">${isSub?'':r[0]}</td><td class="id" style="width:135px">${r[1]}</td><td style="width:180px">${r[2]}</td><td style="width:70px">EUR</td><td class="r num" style="width:92px">${r[3]}</td><td class="num" style="width:150px;padding-left:20px">${r[4]}</td><td style="width:224px">${r[5]}</td><td style="width:84px">${chip(r[6])}</td><td style="width:110px">${st(r[7])}</td><td><span class="link">${r[8]}</span></td></tr>`
+    const RR=[['4994546957','1505899','Helios Components AG','142,800','08.04.26 14:04','New','Validate','87%'],['4994546960','1505900','Orion Tech Ltd.','2,800','08.04.26 10:15','New','Validate','95%'],['4994546960','1505900','Cascadia Polymers','5,450','07.04.26 11:18','In progress','View','92%'],['4994546961','1505901','Nebula Systems','9,600','06.04.26 12:11','In progress','View','90%'],['4994546962','1505902','Quantum Electronics','6,300','31.03.26 11:10','In progress','View','94%'],['4994546963','1505903','Stellar Innovations','10,750','26.03.26 16:21','In progress','View','89%'],['4994546964','1505904','Apollo Devices','8,900','23.03.26 15:10','In progress','View','93%'],['4994546965','1505905','Cosmos Circuitry','12,500','05.04.26 13:11','In progress','View','91%'],['4994546966','1505906','Lunar Tech Solutions','7,200','02.04.26 11:10','In progress','View','88%'],['4994546967','1505907','Solaris Works','14,600','11.03.26 10:16','Processed','Archive','96%']]
+    const cf=(p)=>{const n=parseInt(p);return `<span style="display:inline-flex;align-items:center;gap:8px"><span class="bar2" style="width:44px"><i style="width:${n}%;background:${n<90?'var(--med)':'var(--ink)'}"></i></span><span class="num" style="font-size:13px">${p}</span></span>`}
+    return `<div style="position:absolute;inset:0">${whead([['All',10],['To validate',2],['In progress',7],['Processed',1]],`<div style="display:flex;gap:24px" ${R('a')}><div class="stat"><span class="k">To validate</span><span class="v">2</span></div><div class="stat"><span class="k" style="display:flex;gap:6px;align-items:center">${S}Avg. confidence</span><span class="v">91<small>%</small></span></div></div>`)}
+    <div class="panel" style="position:absolute;left:32px;right:32px;top:132px;overflow:hidden"><table><tr><th>PO</th><th>Document</th><th>Supplier</th><th class="r">Value (EUR)</th><th>Received</th><th>Agent confidence</th><th>Status</th><th></th></tr>
+    ${RR.map(r=>`<tr><td class="id" style="width:130px">${r[0]}</td><td class="id" style="width:120px">${r[1]}</td><td style="width:210px">${r[2]}</td><td class="r num" style="width:120px">${r[3]}</td><td class="num" style="width:160px;padding-left:28px">${r[4]}</td><td style="width:200px">${cf(r[7])}</td><td style="width:160px">${st(r[5])}</td><td class="r"><span class="link">${r[6]}</span></td></tr>`).join('')}</table></div></div>`}
+  let rows=BW.map(r=>[...r]); if(group) rows=rows.slice(1)
+  const tr=(r,sub,ring)=>`<tr ${ring?R('a'):''}><td class="id" style="width:124px">${sub?'':r[0]}</td><td class="id" style="width:110px">${sub?'<span style="color:var(--ink-4)">└</span> ':''}${r[1]}</td><td style="width:190px">${r[2]}</td><td class="r num" style="width:96px">${r[3]}</td><td class="num" style="width:150px;padding-left:24px">${r[4]}</td><td style="width:236px">${r[5]}</td><td style="width:96px">${chip(r[6])}</td><td style="width:130px">${st(r[7])}</td><td class="r"><span class="link">${r[8]}</span></td></tr>`
   let body
-  if(group){body=`<tr class="grp"><td colspan="10" style="height:44px"><span style="display:inline-flex;align-items:center;gap:10px"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#4A4C55" stroke-width="1.5"><path d="M3 4.5l3 3 3-3"/></svg><span class="id">4994546957</span><span class="chip c-n">2 versions</span></span></td></tr>`+group.subs.map(r=>tr(r,true)).join('')+rows.slice(group.subs.length).map(r=>tr(r)).join('')}
+  if(group) body=`<tr ${R('a')}><td colspan="9" style="height:40px"><span style="display:inline-flex;align-items:center;gap:10px"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#4A4C55" stroke-width="1.5"><path d="M3 4.5l3 3 3-3"/></svg><span class="id" style="color:var(--ink)">4994546957</span><span>Helios Components AG</span><span class="chip c-n">2 versions</span></span></td></tr>`+group.map(r=>tr(r,true,true)).join('')+rows.map(r=>tr(r)).join('')
   else body=rows.map(r=>tr(r)).join('')
-  return `<div class="wh"><h1>My worklist</h1>${fbar(true)}</div>
-  <div class="wt" style="top:164px"><div class="card-h" style="height:44px"><h3>Order confirmations ${group?'':'<span class="muted">· 11</span>'}</h3><span class="muted" style="font-size:12.5px;display:flex;gap:6px;align-items:center">${S}Ranked by risk</span></div><table><tr><th>PO</th><th>Document</th><th>Supplier</th><th>Currency</th><th class="r">Value</th><th>Received</th><th>Differences</th><th>Risk</th><th>Status</th><th>Action</th></tr>${body}</table></div>`}
+  return `<div style="position:absolute;inset:0">${whead([['All',11],['High',5],['Medium',3],['Low',3]],`<span class="muted" style="font-size:13px;display:flex;gap:7px;align-items:center;margin-top:10px">${S}Read, compared and ranked by risk</span>`)}
+  <div class="panel" style="position:absolute;left:32px;right:32px;top:132px;overflow:hidden" ${group?'':R('a')}><table><tr><th>PO</th><th>Document</th><th>Supplier</th><th class="r">Value (EUR)</th><th>Received</th><th>Differences</th><th>Risk</th><th>Status</th><th></th></tr>${body}</table></div></div>`}
 
 /* ---------- screens ---------- */
-const dlg=(x,y,w,h,title,body,btns)=>`<div class="scrim"></div><div class="dialog" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px"><div class="dh">${title}</div><div class="db">${body}</div><div class="df">${btns}</div></div>`
-const EXT_ACT_OFF=`<span class="btn btn-dis btn-sm" style="height:34px">Submit</span>`
+const dlg=(y,h,title,body,btns)=>`<div class="scrim"></div><div class="dialog" ${R('a')} style="left:500px;top:${y}px;width:440px;height:${h}px"><div class="dh">${title}</div><div class="db">${body}</div><div class="df">${btns}</div></div>`
+const SUBMIT_OFF=`<span class="btn btn-dis">Submit</span>`
+const AS0=['AS','Adrian Smith · buyer','5','0'],AS1=['AS','Adrian Smith · buyer','5','100'],RN0=['RN','Rajan Nair · goods recipient','2','0'],RN1=['RN','Rajan Nair · goods recipient','2','100']
+const REC={say:'Reject the price and the longer payment terms. Accept the freight charge and the description.',why:'The unit price rose 58% on line 1001, which drives the €22,065 increase. Net 45 needs finance approval.'}
 const SC={
  'admin-setup':()=>admin(false),'admin-connected':()=>admin(true),
  'signin-ops':()=>signin(),
  'ops-worklist':()=>topbar('ops')+`<div class="page">${worklist({kind:'ops'})}</div>`,
- 'ops-read':()=>topbar('ops')+`<div class="page">${extraction({act:EXT_ACT_OFF})}</div>`,
- 'ops-edit':()=>topbar('ops')+`<div class="page">${extraction({mode:'edit',act:EXT_ACT_OFF})}</div>`,
- 'ops-editing':()=>topbar('ops')+`<div class="page">${extraction({mode:'edit',editing:true,act:EXT_ACT_OFF})}</div>`,
- 'ops-confirm':()=>topbar('ops')+`<div class="page">${extraction({mode:'edit',editing:true,act:EXT_ACT_OFF,dialog:dlg(481,290,478,214,'Corrections saved','Every change is logged for audit and shown in Activity.<br><br>Confirm validation once all corrections are done.',`<span class="btn btn-s btn-sm">Save draft</span><span class="btn btn-p btn-sm">Confirm validation</span><span class="btn btn-g btn-sm">Cancel</span>`)})}</div>`,
- 'ops-saved':()=>topbar('ops')+`<div class="page">${extraction({act:`<span class="btn btn-p">Submit</span>`,toastTxt:toast('Corrections saved',640,735)})}</div>`,
- 'ops-validate':()=>topbar('ops')+`<div class="page">${extraction({tab:'Saved extraction v1.1',act:EXT_ACT_OFF,dialog:dlg(481,350,478,214,'Mark validation complete','All corrections are saved and logged for audit in Activity.<br><br>Once confirmed, the agent compares the confirmation with the purchase order.',`<span class="btn btn-p btn-sm">${ICO.check}Confirm validation</span><span class="btn btn-g btn-sm">Cancel</span>`)})}</div>`,
- 'ops-validated':()=>topbar('ops')+`<div class="page">${extraction({tab:'Saved extraction v1.1',validated:true,act:'',toastTxt:toast('Validation complete',632,735)})}</div>`,
+ 'ops-read':()=>topbar('ops')+`<div class="page">${extraction({act:SUBMIT_OFF,ringBody:true,ringConf:true})}</div>`,
+ 'ops-edit':()=>topbar('ops')+`<div class="page">${extraction({mode:'edit',act:SUBMIT_OFF,ringFields:true})}</div>`,
+ 'ops-editing':()=>topbar('ops')+`<div class="page">${extraction({mode:'edit',editing:true,act:SUBMIT_OFF,ringCell:true})}</div>`,
+ 'ops-confirm':()=>topbar('ops')+`<div class="page">${extraction({mode:'edit',editing:true,act:SUBMIT_OFF,dialog:dlg(250,196,'Corrections saved','Every change is logged for audit and shown in Activity. Confirm validation once all corrections are done.',`<span class="btn btn-g btn-sm">Cancel</span><span class="btn btn-s btn-sm">Save draft</span><span class="btn btn-p btn-sm">Confirm validation</span>`)})}</div>`,
+ 'ops-saved':()=>topbar('ops')+`<div class="page">${extraction({act:`<span class="btn btn-p">Submit</span>`,toastTxt:toast('Corrections saved',1)})}</div>`,
+ 'ops-validate':()=>topbar('ops')+`<div class="page">${extraction({tab:'Extraction v1.1',act:SUBMIT_OFF,dialog:dlg(280,196,'Mark validation complete','All corrections are saved and logged. Once confirmed, the agent compares this confirmation with the purchase order.',`<span class="btn btn-g btn-sm">Cancel</span><span class="btn btn-p btn-sm">${ICO.check}Confirm validation</span>`)})}</div>`,
+ 'ops-validated':()=>topbar('ops')+`<div class="page">${extraction({tab:'Extraction v1.1',validated:true,act:'',toastTxt:toast('Validation complete. The agent is comparing it with the PO.',1)})}</div>`,
  'buyer-worklist':()=>topbar('buyer')+`<div class="page">${worklist({kind:'buyer'})}</div>`,
- 'buyer-review':()=>topbar('buyer')+`<div class="page">${disc({next:['Next: decide each difference','Accept or reject each one. The agent has ranked them by severity.'],hRes:['In progress','Reject','Accept'],lRes:['Reject','Reject','In progress','In progress']})}</div>`,
- 'buyer-extraction':()=>topbar('buyer')+`<div class="page">${extraction({tabs:['Discrepancies','Extraction','Activity'],tab:'Extraction',act:''}).replace('<span class="conf">','<span class="conf" style="display:none">')}</div>`,
- 'buyer-decided':()=>topbar('buyer')+`<div class="page">${disc({next:['Next: confirm your decisions','Every difference you own has an answer.'],hRes:['In progress','Reject','Accept'],lRes:['Reject','Accept','In progress','In progress']})}</div>`,
- 'buyer-saved':()=>topbar('buyer')+`<div class="page">${disc({share:true,edit:true,next:['Next: share the differences with the supplier','The reply goes once every decision is in.'],hRes:['In progress','Rejected','Accepted'],lRes:['Rejected','Accepted','In progress','In progress'],foot:false,toastTxt:toast('Decisions saved',630,792)})}</div>`,
- 'gr-worklist':()=>topbar('gr')+`<div class="page">${worklist({kind:'gr',group:{subs:[['4994546957','1505899/2','Helios Components AG','71,800','12.04.26 11:05','5 differences','Medium','In progress','Review'],['4994546957','1505899/1','Helios Components AG','142,800','08.04.26 14:04','7 differences','High','In progress','Review']]}})}</div>`,
- 'gr-review':()=>topbar('gr')+`<div class="page">${disc({id:'1505899/2',lRows:[2,3],next:['Next: decide quantity and delivery','Only the differences the goods recipient owns.'],hRes:['In progress','Accepted','Accepted'],lRes:['Reject','Reject']})}</div>`,
- 'gr-decided':()=>topbar('gr')+`<div class="page">${disc({id:'1505899/2',lRows:[2,3],next:['Next: decide quantity and delivery','Only the differences the goods recipient owns.'],hRes:['In progress','Accepted','Accepted'],lRes:['Accept','Reject']})}</div>`,
- 'gr-confirm':()=>topbar('gr')+`<div class="page">${disc({id:'1505899/2',lRows:[2,3],edit:true,foot:false,act:`<span class="btn btn-p">Submit</span>`,next:['Next: submit your decisions','Submitting sends them on for processing.'],hRes:['In progress','Accepted','Accepted'],lRes:['Accepted','Rejected']})}</div>`,
- 'gr-submit':()=>topbar('gr')+`<div class="page">${disc({id:'1505899/2',lRows:[2,3],edit:true,foot:false,act:`<span class="btn btn-p">Submit</span>`,next:['Next: submit your decisions','Submitting sends them on for processing.'],hRes:['In progress','Accepted','Accepted'],lRes:['Accepted','Rejected'],dialog:dlg(481,290,478,236,'Submit decisions','Every difference has an answer. Submit for further processing?<div class="field" style="margin-top:14px;height:42px;color:var(--ink-4)">Add a comment (optional)</div>',`<span class="btn btn-p btn-sm">Submit</span><span class="btn btn-g btn-sm">Cancel</span>`)})}</div>`,
- 'buyer-share':()=>topbar('buyer')+`<div class="page">${disc({share:true,edit:true,foot:false,next:['Next: share with the supplier','Every decision is in. The agent has a reply ready to review.'],hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted','dim-a','dim-r']})}</div>`.replace(/<span class="res (acc|rej) dim">/g,'<span class="res $1 dim">'),
- 'buyer-sent':()=>topbar('buyer')+`<div class="page">${disc({foot:false,act:`<span class="btn btn-p">Close</span>`,sub:'Sent to the supplier: multiple differences, order value above €142,800',next:['All set for now','The agent will pick up the supplier’s revised confirmation when it arrives.'],hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted','dim-a','dim-r'],toastTxt:toast('Email sent to the supplier',624,748)})}</div>`,
- 'buyer-versions':()=>topbar('buyer')+`<div class="page">${worklist({kind:'buyer',group:{subs:[['4994546957','1505899/2','Helios Components AG','71,800','12.04.26 11:05','2 differences','Medium','In progress','Review'],['4994546957','1505899/1','Helios Components AG','142,800','08.04.26 14:04','6 differences','High','In progress','Review']]}})}</div>`,
- 'gr-worklist-2':()=>topbar('gr')+`<div class="page">${worklist({kind:'gr',group:{subs:[['4994546957','1505899/2','Helios Components AG','71,800','12.04.26 11:05','2 differences','Medium','In progress','Review'],['4994546957','1505899/1','Helios Components AG','142,800','08.04.26 14:04','6 differences','High','Resolved','View']]}})}</div>`,
- 'buyer-revised':()=>topbar('buyer')+`<div class="page">${disc({id:'1505899/2',hRows:[1,2],next:['Next: decide the revised differences','Version 2 from the supplier. Two differences remain.'],hRes:['Accept','Accept'],lRes:['Reject','Accept','',''],sub:'Revised confirmation: fewer differences than version 1'}).replace('Net 45 days','Net 35 days').replace('+15 days','+5 days').replace('+5 days</td><td style="width:84px"><span class="chip c-high"><i></i>High','+5 days</td><td style="width:84px"><span class="chip c-med"><i></i>Medium')}</div>`,
+ 'buyer-review':()=>topbar('buyer')+`<div class="page">${disc({ringTable:true,people:{mine:5,rows:[AS0,RN0]},rec:{...REC,next:['Decide each difference','Yours are marked AS. Quantity and delivery go to Rajan.']},hRes:['In progress','Reject','Accept'],lRes:['Reject','In progress','In progress','In progress']})}</div>`,
+ 'buyer-extraction':()=>topbar('buyer')+`<div class="page">${extraction({tabs:['Differences','Extraction','Activity'],tab:'Extraction',act:'',conf:false,ringTab:'Extraction',ringBody:true})}</div>`,
+ 'buyer-decided':()=>topbar('buyer')+`<div class="page">${disc({ringTable:true,people:{mine:5,rows:[AS1,RN0]},rec:{...REC,next:['Save your decisions','All five of yours have an answer.']},hRes:['Reject','Reject','Accept'],lRes:['Reject','Accept','In progress','In progress'],footer:'5 of 5 of yours decided'})}</div>`,
+ 'buyer-saved':()=>topbar('buyer')+`<div class="page">${disc({people:{mine:5,rows:[AS1,RN0]},rec:{...REC,next:['Waiting for Rajan','The reply to the supplier is drafted once every difference has an answer.']},hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted','In progress','In progress'],footer:false,toastTxt:toast('Decisions saved',1)})}</div>`,
+ 'gr-worklist':()=>topbar('gr')+`<div class="page">${worklist({kind:'gr',group:[['4994546957','1505899/2','Helios Components AG','71,800','12.04.26 11:05','5 differences','Medium','In progress','Review'],['4994546957','1505899/1','Helios Components AG','142,800','08.04.26 14:04','7 differences','High','In progress','Review']]})}</div>`,
+ 'gr-review':()=>topbar('gr')+`<div class="page">${gr(['Reject','Reject'],{rn:RN0})}</div>`,
+ 'gr-decided':()=>topbar('gr')+`<div class="page">${gr(['Accept','Reject'],{rn:RN1})}</div>`,
+ 'gr-confirm':()=>topbar('gr')+`<div class="page">${gr(['Accepted','Rejected'],{rn:RN1,act:`<span class="btn btn-p" ${R('a')}>Submit</span>`,ring:false,footer:false,next:['Submit your decisions','Both have an answer. Submitting sends them on.']})}</div>`,
+ 'gr-submit':()=>topbar('gr')+`<div class="page">${gr(['Accepted','Rejected'],{rn:RN1,act:`<span class="btn btn-p">Submit</span>`,ring:false,footer:false,next:['Submit your decisions','Both have an answer. Submitting sends them on.'],dialog:dlg(260,220,'Submit decisions','Every difference has an answer. Submit them for processing?<div class="field" style="margin-top:12px;height:40px;color:var(--ink-4)">Add a comment (optional)</div>',`<span class="btn btn-g btn-sm">Cancel</span><span class="btn btn-p btn-sm">Submit</span>`)})}</div>`,
+ 'buyer-share':()=>topbar('buyer')+`<div class="page">${disc({ringNext:true,people:{mine:5,rows:[AS1,RN1]},rec:{...REC,next:['Share with the supplier','Every decision is in. The reply is drafted with the list of differences attached.'],btn:`<span class="btn btn-agent btn-sm" style="margin-top:12px">${ICO.send}Review the reply</span>`},hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted','Accepted','Rejected'],footer:false})}</div>`,
+ 'buyer-sent':()=>topbar('buyer')+`<div class="page">${disc({ringNext:true,act:`<span class="btn btn-s">Close order</span>`,people:{mine:5,rows:[AS1,RN1]},rec:{say:'Sent to the supplier.',why:'Three differences rejected, four accepted. The reply and the list are in Activity.',next:['All set for now','The agent will pick up the revised confirmation when it arrives.']},hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted','Accepted','Rejected'],footer:false,toastTxt:toast('Email sent to the supplier')})}</div>`,
+ 'buyer-versions':()=>topbar('buyer')+`<div class="page">${worklist({kind:'buyer',group:[['4994546957','1505899/2','Helios Components AG','71,800','12.04.26 11:05','2 differences','Medium','In progress','Review'],['4994546957','1505899/1','Helios Components AG','142,800','08.04.26 14:04','6 differences','High','In progress','Review']]})}</div>`,
+ 'gr-worklist-2':()=>topbar('gr')+`<div class="page">${worklist({kind:'gr',group:[['4994546957','1505899/2','Helios Components AG','71,800','12.04.26 11:05','2 differences','Medium','In progress','Review'],['4994546957','1505899/1','Helios Components AG','142,800','08.04.26 14:04','6 differences','High','Resolved','View']]})}</div>`,
+ 'buyer-revised':()=>topbar('buyer')+`<div class="page">${disc({id:'1505899/2',hRows:[1,2],mods:{terms:1},ringTitle:true,people:{mine:4,rows:[['AS','Adrian Smith · buyer','4','0'],RN0]},rec:{say:'Accept net 35 and the freight charge. The price is still the problem.',why:'Version 2 moves payment terms from net 45 to net 35. Line 1001 still carries the 58% price rise.',next:['Decide the revised differences','Version 2 from the supplier, compared with the PO.']},hRes:['Accept','Accept'],lRes:['Reject','Accept','In progress','In progress']})}</div>`,
  'buyer-activity':()=>topbar('buyer')+`<div class="page">${activity()}</div>`,
+ 'buyer-email':()=>email(),
 }
-SC['buyer-share']=()=>topbar('buyer')+`<div class="page">${disc({share:true,edit:true,foot:false,next:['Next: share with the supplier','Every decision is in. The agent has a reply ready to review.'],hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted','Accepted','Rejected']})}</div>`
-SC['buyer-sent']=()=>topbar('buyer')+`<div class="page">${disc({foot:false,act:`<span class="btn btn-p">Close</span>`,sub:'Sent to the supplier: multiple differences, order value above €142,800',next:['All set for now','The agent will pick up the supplier’s revised confirmation when it arrives.'],hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted','Accepted','Rejected'],toastTxt:toast('Email sent to the supplier',614,748)})}</div>`
-
+function gr(lRes,o){
+  return disc({id:'1505899/2',ringMine:o.ring===false?null:['l2','l3'],people:{mine:2,rows:[AS1,o.rn]},rec:{say:'Two differences are yours: quantity and delivery date.',why:'The buyer has decided the commercial ones. These depend on what the store needs.',next:o.next||['Decide quantity and delivery','Accept or reject each against the store’s stock.']},hRes:['Rejected','Rejected','Accepted'],lRes:['Rejected','Accepted',...lRes],act:o.act||'',footer:o.footer,dialog:o.dialog||''})}
 function admin(on){
-  const row=(n)=>`<tr><td style="width:200px">${n}</td><td style="width:170px">${on?'Emma Hudson':'–'}</td><td class="num" style="width:180px">${on?'02/26/2024, 7:52 AM':'–'}</td><td>${on?`<span class="res acc"><i></i>Connected</span>`:`<span class="res prog"><i></i>Not connected</span>`}</td><td class="r"><span class="btn ${on?'btn-s':'btn-p'} btn-sm">${on?'Disconnect':'Connect'}</span></td></tr>`
-  return topbar('admin')+`<div class="page"><div style="position:absolute;left:0;right:0;top:0;height:96px;background:var(--surface);box-shadow:0 1px 0 var(--line)"><h1 style="position:absolute;left:48px;top:14px;font:200 32px/1.1 var(--sans);letter-spacing:-.03em">Administration</h1><div class="tabs" style="height:30px"><span class="on">System configuration</span></div></div>
-  <div class="card" style="position:absolute;left:58px;width:798px;top:136px;height:178px;overflow:hidden"><div class="card-h"><h3>Connections</h3><span class="k">Data in · data out</span></div><table><tr><th>Connection</th><th>Last modified by</th><th>Last modified on</th><th>Status</th><th></th></tr>${row('Microsoft Office 365')}${row('ERP system (sandbox)')}</table></div>
-  <div class="card" style="position:absolute;left:58px;width:798px;top:336px;height:112px"><div class="card-h"><h3>Users and roles</h3></div><div style="display:flex;align-items:center;justify-content:space-between;padding:4px 20px;color:var(--ink-2)">Add, remove or edit permissions in the identity service.<span class="btn btn-s btn-sm">Open identity service</span></div></div></div>`}
-function signin(){return `<div style="position:absolute;inset:0;background:radial-gradient(1200px 600px at 50% 0%,#EFEDFF 0%,var(--canvas) 60%)"></div>
- <div class="card" style="position:absolute;left:512px;top:232px;width:416px;height:434px;border-radius:24px;box-shadow:var(--e2);padding:40px 44px">
-  <div style="width:76px;height:28px;border-radius:6px;background:#1F3A5F;margin:0 auto"></div>
-  <div style="text-align:center;font:200 26px var(--sans);letter-spacing:-.025em;margin-top:22px">Sign in</div>
+  const row=(n)=>`<tr><td style="width:220px">${n}</td><td style="width:170px">${on?'Emma Hudson':'–'}</td><td class="num" style="width:190px">${on?'02/26/2024, 7:52 AM':'–'}</td><td>${on?`<span class="res acc"><i></i>Connected</span>`:`<span class="res prog"><i></i>Not connected</span>`}</td><td class="r"><span class="btn ${on?'btn-s':'btn-p'} btn-sm">${on?'Disconnect':'Connect'}</span></td></tr>`
+  return topbar('admin')+`<div class="page"><div class="ph" style="height:104px"><span class="h1" style="position:absolute;left:32px;top:24px">Administration</span><div class="tabs"><span class="on">System configuration</span><span>Users and roles</span></div></div>
+  <div class="panel" style="position:absolute;left:32px;width:840px;top:128px;overflow:hidden" ${R('a')}><div style="height:48px;display:flex;align-items:center;padding:0 16px;font:400 15px var(--sans)">Connections</div><table><tr><th>Connection</th><th>Last modified by</th><th>Last modified on</th><th>Status</th><th></th></tr>${row('Microsoft Office 365')}${row('ERP system (sandbox)')}</table></div>
+  <div class="panel" style="position:absolute;left:32px;width:840px;top:300px;padding:16px;display:flex;align-items:center;justify-content:space-between"><div><div style="font:400 15px var(--sans)">Users and roles</div><div class="muted" style="font-size:13px;margin-top:2px">Add, remove or edit permissions in the identity service.</div></div><span class="btn btn-s btn-sm">Open identity service</span></div></div>`}
+function signin(){return `<div class="panel" style="position:absolute;left:520px;top:220px;width:400px;height:420px;padding:40px" ${R('a')}>
+  <div style="width:64px;height:24px;border-radius:3px;background:#1F3A5F"></div>
+  <div class="h1" style="margin-top:26px">Sign in</div>
   <div class="k" style="margin-top:26px;margin-bottom:8px">Email</div><div class="field">procurement.david@company.com</div>
   <div class="k" style="margin-top:16px;margin-bottom:8px">Password</div><div class="field" style="letter-spacing:.2em">•••••••••</div>
   <div style="margin-top:10px"><span class="link" style="font-size:13px">Forgot password?</span></div>
-  <span class="btn btn-p" style="width:100%;margin-top:22px;height:40px">Continue</span>
- </div>
- <div style="position:absolute;left:0;right:0;top:842px;display:flex;justify-content:center;gap:22px;color:var(--ink-3);font-size:12.5px">${['Privacy','Legal disclosure','Terms of use','Cookie statement'].map(t=>`<span>${t}</span>`).join('')}</div>`}
+  <span class="btn btn-p" style="width:100%;margin-top:24px;height:38px">Continue</span></div>
+ <div style="position:absolute;left:0;right:0;top:850px;display:flex;justify-content:center;gap:22px;color:var(--ink-3);font-size:12.5px">${['Privacy','Legal disclosure','Terms of use','Cookie statement'].map(t=>`<span>${t}</span>`).join('')}</div>`}
 function activity(){
- const E=[['Mar 31, 2026 · 17:30','Confirmation archived and closed.','System','sys','·'],['Mar 27, 2026 · 20:30','Amendment request submitted for the differences.','Adrian Smith','','AS'],['Mar 26, 2026 · 17:30','Goods recipient decisions submitted.','Rajan Nair','','RN'],['Mar 23, 2026 · 16:30','Buyer decisions submitted.','Adrian Smith','','AS'],['Mar 22, 2026 · 14:27','Recommended rejecting 3 differences.','Agent','ag','✦'],['Mar 20, 2026 · 08:30','Differences ranked and sent for review.','Agent','ag','✦'],['Mar 20, 2026 · 07:30','Extraction corrected: delivery date <s style="color:var(--ink-3)">Mar 28, 2026</s> → Mar 25, 2026.','David Paul','','DP'],['Mar 19, 2026 · 00:47','Confirmation 1505899 received by email.','Agent','ag','✦']]
- return oh({conf:false,tabs:['Discrepancies','Extraction','Activity'],active:'Activity'})+`<div class="tl" style="top:160px;height:640px">${E.map(e=>`<div class="tli"><span class="m ${e[3]}">${e[4]}</span><div class="ts">${e[0]}</div><div class="tx">${e[1]}<a>Details</a></div><div class="by">${e[3]==='ag'?'<span style="background:var(--agent);-webkit-background-clip:text;color:transparent;font-weight:400">Agent</span>':'by '+e[2]}</div></div>`).join('')}</div>`}
+ const E=[['Mar 31, 2026 · 17:30','Confirmation archived and closed.','System','sys'],['Mar 27, 2026 · 20:30','Amendment request sent for the differences.','Adrian Smith','AS'],['Mar 26, 2026 · 17:30','Goods recipient decisions submitted.','Rajan Nair','RN'],['Mar 23, 2026 · 16:30','Buyer decisions submitted.','Adrian Smith','AS'],['Mar 22, 2026 · 14:27','Recommended rejecting 3 differences.','Agent','ag'],['Mar 20, 2026 · 08:30','Differences ranked and routed to their owners.','Agent','ag'],['Mar 20, 2026 · 07:30','Extraction corrected: delivery date <s style="color:var(--ink-3)">Mar 28</s> → Mar 25, 2026.','David Paul','DP'],['Mar 19, 2026 · 00:47','Confirmation 1505899 received by email and read.','Agent','ag']]
+ const av=(e)=>e[3]==='ag'?`<span class="av sm ag" style="width:24px;height:24px">✦</span>`:e[3]==='sys'?`<span class="av sm" style="width:24px;height:24px;background:#fff;box-shadow:inset 0 0 0 1px var(--line-2)"></span>`:`<span class="av sm ${{AS:'p2',RN:'p3',DP:''}[e[3]]}" style="width:24px;height:24px">${e[3]}</span>`
+ return oh({conf:false,tabs:['Differences','Extraction','Activity'],active:'Activity'})+`<div class="main"><div class="panel" style="padding:20px 24px 4px" ${R('a')}>${E.map(e=>`<div class="tli">${av(e)}<div class="ts">${e[0]}</div><div class="tx">${e[1]}<a>Details</a></div><div class="by">${e[3]==='ag'?'<span class="ag-t">Agent</span>':e[3]==='sys'?'System':e[2]}</div></div>`).join('')}</div></div>
+ <div class="rail"><div class="panel" style="padding:14px 16px"><span class="k">On the record</span><div style="margin-top:8px">${[['Agent','3 actions','ag'],['Adrian Smith','2 actions','p2'],['Rajan Nair','1 action','p3'],['David Paul','1 action','']].map(p=>`<div class="who"><span class="av sm ${p[2]}">${p[2]==='ag'?'✦':p[0].split(' ').map(x=>x[0]).join('')}</span><span class="n">${p[0]}</span><span class="c">${p[1]}</span></div>`).join('')}</div></div></div>`}
 function email(){return `<div style="position:absolute;inset:0;background:var(--canvas)"></div>
- <div class="dialog" style="left:80px;top:59px;width:478px;height:903px;border-radius:20px">
-  <div style="display:flex;justify-content:space-between;align-items:center;padding:22px 24px 0"><span style="font:300 22px var(--sans);letter-spacing:-.02em">Email supplier</span><span style="color:var(--ink-3);font-size:18px">×</span></div>
-  <div style="padding:0 24px">
-   <div class="k" style="margin:20px 0 8px">From</div><div class="field" style="background:var(--sunk);box-shadow:none">Adrian Smith</div>
-   <div class="k" style="margin:16px 0 8px">To</div><div class="field"><span class="chip c-n">Michael Purdy ×</span><span class="chip c-n">Helios Components SCM ×</span>${CHEV}</div>
-   <div class="k" style="margin:16px 0 8px">Subject</div><div class="field">Re: Order confirmation for PO 4994546957</div>
-   <div class="k" style="margin:16px 0 8px;display:flex;gap:6px;align-items:center">Tone</div><div class="field">Professional${CHEV}</div>
-   <div style="margin-top:16px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--line-2);padding:16px 18px;height:458px;position:relative;font-size:13.5px;line-height:1.5;color:var(--ink)">
-    <span class="chip c-agent" style="position:absolute;right:12px;top:12px">${S}Drafted by the agent</span>
+ <div class="dialog" style="left:80px;top:59px;width:478px;height:903px">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 22px 0"><span style="font:400 18px var(--sans);letter-spacing:-.01em">Email supplier</span><span style="color:var(--ink-3);font-size:18px">×</span></div>
+  <div style="padding:0 22px">
+   <div class="k" style="margin:18px 0 7px">From</div><div class="field" style="background:var(--sunk);box-shadow:none">Adrian Smith</div>
+   <div class="k" style="margin:14px 0 7px">To</div><div class="field"><span class="chip c-n">Michael Purdy ×</span><span class="chip c-n">Helios Components SCM ×</span>${CHEV}</div>
+   <div class="k" style="margin:14px 0 7px">Subject</div><div class="field">Re: Order confirmation for PO 4994546957</div>
+   <div class="k" style="margin:14px 0 7px">Tone</div><div class="field">Professional${CHEV}</div>
+   <div style="margin-top:14px;border-radius:var(--r2);box-shadow:inset 0 0 0 1px var(--line-2);padding:16px 18px;height:486px;position:relative;font-size:13.5px;line-height:1.5;color:var(--ink)">
+    <span class="chip c-agent" style="position:absolute;right:10px;top:10px">${S}Drafted by the agent</span>
     Dear Michael,<br><br>Thank you for the order confirmation for PO 4994546957.<br><br>We have reviewed it and found a few differences that need your attention. The full list is attached.<br><br>We accept the description clarification. We ask you to:<br>• revert the <b>unit price</b> for <b>line 1001</b> to the agreed value<br>• keep the original payment terms (<b>net 30 days</b>)<br>• clarify the <b>additional cost of €65.00</b><br><br>Please share an updated confirmation at your earliest convenience.<br><br>Best regards,<br>Adrian Smith
-    <div style="position:absolute;left:18px;bottom:16px;display:flex;align-items:center;gap:10px;padding:8px 12px 8px 8px;border-radius:12px;background:var(--canvas);box-shadow:inset 0 0 0 1px var(--line)"><span style="width:28px;height:34px;border-radius:5px;background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);display:grid;place-items:center;font:500 7px var(--mono);color:var(--high-ink)">PDF</span><span style="font-size:13px">Differences.pdf</span></div>
+    <div style="position:absolute;left:18px;bottom:16px;display:flex;align-items:center;gap:10px;padding:7px 12px 7px 7px;border-radius:var(--r2);box-shadow:inset 0 0 0 1px var(--line)"><span style="width:26px;height:32px;border-radius:3px;background:var(--sunk);display:grid;place-items:center;font:500 7px var(--mono);color:var(--high-ink)">PDF</span><span style="font-size:13px">Differences.pdf</span></div>
    </div>
   </div>
-  <div class="df" style="border-top:1px solid var(--line)"><span class="btn btn-g btn-sm">Attach</span><span class="btn btn-p btn-sm">Send</span><span class="btn btn-g btn-sm">Cancel</span></div>
+  <div class="df"><span class="btn btn-g btn-sm" style="margin-right:auto">Attach</span><span class="btn btn-g btn-sm">Cancel</span><span class="btn btn-p btn-sm">Send</span></div>
  </div>`}
-SC['buyer-email']=email
 const id=location.hash.slice(1); document.body.innerHTML=(SC[id]||(()=>'missing '+id))(); document.title=id
 </script></body></html>

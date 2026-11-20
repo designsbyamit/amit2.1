@@ -532,6 +532,13 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 /* Project page headers: each project's mesh gradient (see data/caseTheme.ts). The mesh is deepened where the title sits, so text stays on a solid, dark ground. */
 html[data-theme='dark'] .case-hero { background-image: var(--mesh); background-size: cover; background-position: center; }
 
+/* Story hero: the page's own ground with a faint cool tinge in two corners. */
+.story-hero {
+  background:
+    radial-gradient(60% 90% at 92% -20%, rgb(var(--tinge-rgb) / var(--tinge-a)), transparent 70%),
+    radial-gradient(45% 70% at -10% 120%, rgb(var(--tinge-rgb) / calc(var(--tinge-a) * 0.5)), transparent 70%);
+}
+
 /* Home v2: the ambient field behind the opening scene and the scroll cue. */
 .h2-ambient {
   background:

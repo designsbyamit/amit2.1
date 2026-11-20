@@ -20,7 +20,7 @@ export default function AsIsFlowV2({ steps }: { steps: Step[] }) {
         ))}
       </ol>
       <div className="mt-s120">
-        <div className="h-2 rounded-full overflow-hidden" style={{ background: 'rgb(var(--ink-rgb) / 0.08)' }}>
+        <div className="h-0.5 rounded-full overflow-hidden" style={{ background: 'rgb(var(--ink-rgb) / 0.08)' }}>
           <motion.div className="h-full rounded-full" style={{ background: 'var(--signal)', transformOrigin: 'left' }} initial={reduce ? false : { scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 2.4, ease }} />
         </div>
         <div className="flex justify-between mt-s20 text-label text-ink-3"><span>Confirmation arrives</span><span className="text-ink">Weeks later</span></div>

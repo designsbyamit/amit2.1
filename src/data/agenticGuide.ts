@@ -16,11 +16,13 @@ export interface Decision {
   /** A real screen that shows the decision, or a set of them. */
   shots?: { id: string; label?: string }[]
   caption?: string
+  /** The same screen as each role sees it, when the decision only makes sense across roles. */
+  personas?: { label: string; shot: string; q: string; d: string }[]
 }
 
 export const guide = {
   label: 'Agentic order confirmations · Procurement',
-  headline: 'Six hand\u2011offs became three decisions',
+  headline: 'An agent that does the work, and leaves people the judgement',
   line: 'How an agent made supplier order confirmation radically more efficient, and what that teaches about defining agents for any business problem. Most agents are built because they can be. This one had to earn every step it took over.',
 
   chapters: {
@@ -44,6 +46,18 @@ export const guide = {
       body: 'Work is anything a careful person does the same way every time. Judgement is anything someone has to answer for. Reading, matching and chasing took the hours. A handful of decisions carried all the accountability. That one line decided what the agent could ever be.',
       work: ['Reading every document, in any layout or language', 'Extracting each field and matching it to the order', 'Finding every difference', 'Routing each difference to its owner', 'Drafting the reply to the supplier', 'Keeping the record'],
       judgement: ['Is net 45 days acceptable from this supplier?', 'Do 500 fewer units still cover the store?', 'Is a later delivery worth a cheaper price?', 'What goes back to the supplier, and when?'],
+      pattern: {
+        title: 'The pattern, for any business problem',
+        line: 'Ask two questions of every task: is it done the same way every time, and does someone answer for the outcome? The answers place it.',
+        cols: ['Same way every time', 'Needs interpretation'],
+        rows: ['Nobody answers for it', 'Someone answers for it'],
+        cells: [
+          { t: 'Fixed logic', d: 'Rules are cheaper, faster and auditable.', e: 'Here: matching to the PO, routing to owners.' },
+          { t: 'The agent', d: 'Where rules break at scale.', e: 'Here: reading any layout, weighing a difference, explaining it, drafting the reply.' },
+          { t: 'A person approves', d: 'The system prepares; a person signs it off.', e: 'Here: confirming the reading, sending the reply.' },
+          { t: 'A person decides', d: 'With the agent’s evidence beside them.', e: 'Here: accepting or rejecting each difference.' },
+        ],
+      },
       takeaway: 'If someone has to answer for it, it stays with a person. Everything else is a candidate for the agent.',
     },
     decisions: {
@@ -70,15 +84,17 @@ export const guide = {
           options: ['One shared view', 'One anatomy, tuned per role'],
           pick: 1,
           why: 'Operations, the buyer and the goods recipient look at the same order for different reasons. One anatomy keeps it familiar for all three. Shared columns stay put; only the columns a role decides on change.',
-          shots: [{ id: 'ops-worklist', label: 'Operations' }, { id: 'buyer-worklist', label: 'Buyer' }, { id: 'gr-worklist', label: 'Goods recipient' }],
         },
         {
           q: 'How is risk shown?',
           options: ['One score to trust', 'Each difference, with its reason'],
           pick: 1,
-          why: 'A score asks people to trust the agent. Evidence lets them check it. Both values, the change, the severity and a plain reason let a buyer decide in seconds and defend the decision later.',
-          shots: [{ id: 'buyer-review' }],
-          caption: 'Each difference from the purchase order with its severity and reasoning, ready to accept or reject.',
+          why: 'A score asks people to trust the agent. Evidence lets them check it. And risk means something different to each role, so the same order is shown three ways.',
+          personas: [
+            { label: 'Operations', shot: 'ops-read', q: 'How sure is the reading?', d: 'Here risk starts as uncertainty. What the agent read sits beside the supplier’s PDF with its confidence, so the least certain fields are checked first.' },
+            { label: 'Buyer', shot: 'buyer-review', q: 'What does each difference cost?', d: 'Every difference with both values, the change, its severity and the agent’s reason. The commercial ones are the buyer’s to decide, with the recommendation beside them.' },
+            { label: 'Goods recipient', shot: 'gr-review', q: 'Can the store live with it?', d: 'The same order, but only quantity and delivery are his to decide. Everything the buyer settled stays visible, quieter, for context.' },
+          ],
         },
         {
           q: 'Where does the source document sit?',

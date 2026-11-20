@@ -1,7 +1,6 @@
-import { Fragment, createContext, useContext, useState, type ReactNode } from 'react'
+import { Fragment, createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { heroClass, heroStyle } from '../data/caseTheme'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import AsIsFlowV2 from '../components/agentic/v2/AsIsFlowV2'
 import FlowPlayerV2 from '../components/agentic/v2/FlowPlayerV2'
@@ -9,6 +8,7 @@ import VideoModal from '../components/ui/VideoModal'
 import { sapAgenticV2 as S } from '../data/sapAgenticV2'
 import { guide as G, type Who, type Decision } from '../data/agenticGuide'
 import { films } from '../data/films'
+import { lucidRings } from '../data/agenticLucidRings'
 
 const ease = [0.16, 1, 0.3, 1] as const
 const DirCtx = createContext('sap-agentic')
@@ -114,12 +114,124 @@ function DecisionBlock({ d, flip }: { d: Decision; flip: boolean }) {
   )
 }
 
+
+/** The same order, seen by each role. Tabs switch the screen and what that role is asking. */
+function PersonaBlock({ d }: { d: Decision }) {
+  const [i, setI] = useState(0)
+  const p = d.personas![i]
+  return (
+    <Rise className="hairline-top py-10 md:py-14">
+      <div className="max-w-3xl">
+        <p className="font-serif text-ink" style={{ fontSize: 'var(--fs-title)', lineHeight: 1.25 }}>{d.q}</p>
+        <div className="mt-5"><Options d={d} inline /></div>
+        <p className="text-body text-ink-2 mt-5 max-w-xl">{d.why}</p>
+      </div>
+      <div role="tablist" aria-label="Seen by" className="flex flex-wrap gap-2 mt-10">
+        {d.personas!.map((x, k) => (
+          <button key={x.label} type="button" role="tab" aria-selected={k === i} onClick={() => setI(k)}
+            className={`text-label px-4 py-2 rounded-full border transition-colors ${k === i ? 'text-ink border-[color:var(--line-2)] bg-surface-2' : 'text-ink-3 border-transparent hover:text-ink'}`}>{x.label}</button>
+        ))}
+      </div>
+      <div role="tabpanel" className="grid lg:grid-cols-12 gap-x-12 gap-y-6 mt-6 items-start">
+        <div className="lg:col-span-4 lg:pt-4">
+          <p className="text-label text-signal-ink">{p.label} asks</p>
+          <p className="font-serif text-ink mt-3" style={{ fontSize: 'var(--fs-title)', lineHeight: 1.25 }}>{p.q}</p>
+          <p className="text-body text-ink-2 mt-3">{p.d}</p>
+        </div>
+        <figure className="lg:col-span-8"><Screen id={p.shot} alt={`${p.label}: ${p.q}`} /></figure>
+      </div>
+    </Rise>
+  )
+}
+
+/** Two questions place any task: is it repeatable, and does someone answer for it. */
+function Pattern({ p }: { p: { title: string; line: string; cols: string[]; rows: string[]; cells: { t: string; d: string; e: string }[] } }) {
+  return (
+    <Rise className="mt-16 md:mt-20">
+      <p className="text-label text-signal-ink">{p.title}</p>
+      <p className="text-body-lg text-ink-2 mt-4 max-w-2xl">{p.line}</p>
+      <div className="grid grid-cols-2 gap-px mt-10 rounded-3 overflow-hidden" style={{ background: 'var(--line-1)' }}>
+        {p.cols.map(c => <p key={c} className="bg-surface-1 px-5 py-3 text-label text-ink-3">{c}</p>)}
+        {p.cells.map((c, k) => (
+          <div key={c.t} className="bg-surface-1 p-5 md:p-7">
+            <p className="text-label text-ink-3">{p.rows[Math.floor(k / 2)]}</p>
+            <p className="font-serif text-ink mt-3" style={{ fontSize: 'var(--fs-title)' }}>{c.t}</p>
+            <p className="text-body text-ink-2 mt-2">{c.d}</p>
+            <p className="text-body-sm text-ink-3 mt-3">{c.e}</p>
+          </div>
+        ))}
+      </div>
+    </Rise>
+  )
+}
+
+/** The reasoning chain as three lanes, read left to right: who acts at each step, and where it hands over. */
+function Lanes({ flow }: { flow: { who: Who; t: string }[] }) {
+  const lanes: Who[] = ['model', 'logic', 'person']
+  const pts = flow.map((s, i) => [((i + 0.5) / flow.length) * 900, (lanes.indexOf(s.who) + 0.5) * 100])
+  return (
+    <Rise className="overflow-x-auto">
+      <div className="grid grid-cols-10" style={{ minWidth: 'var(--viz-min)' }}>
+        {lanes.map((l, r) => (
+          <p key={l} className={`col-start-1 flex items-center gap-2 text-label ${WHO[l].text} h-24 hairline-top`} style={{ gridRow: r + 1 }}>
+            <span className={`block w-2 h-2 rounded-full ${WHO[l].dot}`} aria-hidden="true" />{WHO[l].label}
+          </p>
+        ))}
+        <div className="col-start-2 col-span-9 relative" style={{ gridRow: '1 / span 3' }}>
+          <svg className="absolute inset-0 w-full h-full text-ink-3" viewBox="0 0 900 300" preserveAspectRatio="none" aria-hidden="true">
+            {lanes.map((_, r) => <line key={r} x1="0" x2="900" y1={r * 100} y2={r * 100} stroke="currentColor" strokeOpacity="0.25" vectorEffect="non-scaling-stroke" />)}
+            <polyline points={pts.map(p => p.join(',')).join(' ')} fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+          </svg>
+          <ol className="absolute inset-0">
+            {flow.map((s, i) => (
+              <li key={s.t} className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1" style={{ left: `${(pts[i][0] / 900) * 100}%`, top: `${(pts[i][1] / 300) * 100}%` }}>
+                <span className={`grid place-items-center w-8 h-8 rounded-full text-label ${s.who === 'model' ? 'bg-signal' : s.who === 'person' ? 'bg-ink' : 'bg-surface-2 text-ink border'}`} style={s.who === 'logic' ? { borderColor: 'var(--line-2)' } : { color: s.who === 'model' ? 'var(--on-signal)' : 'rgb(var(--bg-rgb))' }}>{String(i + 1).padStart(2, '0')}</span>
+                <span className="text-body-sm text-ink bg-surface-1 px-1">{s.t}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </Rise>
+  )
+}
+
+/** Where the reader is, kept at the side once the opening has scrolled away. Hover a mark for its name. */
+function StoryRail({ items }: { items: string[][] }) {
+  const [active, setActive] = useState('')
+  const [shown, setShown] = useState(false)
+  useEffect(() => {
+    const els = items.map(([id]) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) setActive(e.target.id) }), { rootMargin: '-45% 0px -50% 0px' })
+    els.forEach(el => io.observe(el))
+    const onScroll = () => setShown(window.scrollY > window.innerHeight * 0.6)
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true })
+    return () => { io.disconnect(); window.removeEventListener('scroll', onScroll) }
+  }, [items])
+  return (
+    <nav aria-label="In this story" className={`hidden xl:block fixed right-6 top-1/2 -translate-y-1/2 transition-opacity ${shown ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} style={{ zIndex: 'var(--z-header, 40)' as unknown as number }}>
+      <ol className="flex flex-col items-end gap-1">
+        {items.map(([id, name]) => (
+          <li key={id}>
+            <a href={`#${id}`} className="group flex items-center justify-end gap-3 py-1.5" aria-current={active === id ? 'true' : undefined}>
+              <span className={`text-label whitespace-nowrap px-2 py-1 rounded-1 bg-surface-1 transition-opacity ${active === id ? 'opacity-0 group-hover:opacity-100 text-ink' : 'opacity-0 group-hover:opacity-100 text-ink-3'}`}>{name}</span>
+              <span className={`block h-px transition-all ${active === id ? 'w-8 bg-signal' : 'w-4 bg-ink-3 group-hover:w-6'}`} />
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
 const WHO: Record<Who, { label: string; dot: string; text: string }> = {
   model: { label: 'Model judgement', dot: 'bg-signal', text: 'text-signal-ink' },
   logic: { label: 'Fixed logic', dot: 'bg-ink-3', text: 'text-ink-3' },
   person: { label: 'A person decides', dot: 'bg-ink', text: 'text-ink' },
 }
 const SEV: Record<'High' | 'Medium' | 'Low', string> = { High: 'text-danger', Medium: 'text-ink', Low: 'text-ink-3' }
+
+const INDEX = [['problem', G.chapters.problem.label], ['judgement', G.chapters.judgement.label], ['decisions', G.chapters.decisions.label], ['scale', G.chapters.scale.label], ['vision', G.chapters.vision.label], ['reasoning', G.chapters.reasoning.label], ['value', G.chapters.value.label], ['see', G.see.title]]
 
 /** variant 'lucid' swaps every product screen for the Lucid redesign; the story itself is unchanged. */
 export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}) {
@@ -128,33 +240,21 @@ export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}
   const imgs = Object.fromEntries(S.journeys.flatMap(j => j.screens).map(sc => [sc.id, variant === 'lucid' ? shot(dir, sc.id) : sc.img]))
   const film = films['sap-agentic']
   const [watching, setWatching] = useState(false)
-  const index = [['problem', C.problem.label], ['judgement', C.judgement.label], ['decisions', C.decisions.label], ['scale', C.scale.label], ['vision', C.vision.label], ['reasoning', C.reasoning.label], ['value', C.value.label], ['see', G.see.title]]
   const singles = C.decisions.list.filter(d => d.shots?.length === 1)
 
   return (
     <DirCtx.Provider value={dir}>
     <article>
       {/* ── first screen: the story and its promise, and what it covers ── */}
-      <header className={heroClass('sap-agentic')} style={{ paddingTop: 'var(--header-h)', ...heroStyle('sap-agentic') }}>
+      <header className="story-hero" style={{ paddingTop: 'var(--header-h)' }}>
         <div className="container-site pt-10 md:pt-14 pb-14 md:pb-20">
           <div className="mb-8"><Breadcrumb items={[{ label: 'Works', to: '/craft' }, { label: 'Agentic Order Confirmations' }]} /></div>
           <p className="text-label text-ink-3">{G.label}</p>
           <h1 className="font-serif text-ink mt-5 max-w-5xl" style={{ fontSize: 'var(--fs-d-2xl)', lineHeight: 1.02, letterSpacing: 'var(--track-title)', textWrap: 'balance' }}>{G.headline}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-2xl">{G.line}</p>
-          <nav aria-label="In this story" className="mt-12 md:mt-16 max-w-3xl">
-            <p className="text-label text-ink-3">In this story</p>
-            <ol className="mt-3 grid sm:grid-cols-2 gap-x-10">
-              {index.map(([id, name], i) => (
-                <li key={id} className="hairline-top">
-                  <a href={`#${id}`} className="flex items-baseline gap-4 py-3 text-body text-ink-2 hover:text-ink transition-colors">
-                    <span className="text-label text-ink-3 tabular-nums">{String(i + 1).padStart(2, '0')}</span>{name}
-                  </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
         </div>
       </header>
+      <StoryRail items={INDEX} />
 
       <Chapter id="problem" {...C.problem}>
         <AsIsFlowV2 steps={C.problem.steps} />
@@ -171,10 +271,11 @@ export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}
             <ul className="mt-4">{C.judgement.judgement.map(x => <li key={x} className="hairline-top py-4 font-serif text-ink" style={{ fontSize: 'var(--fs-title)', lineHeight: 1.3 }}>{x}</li>)}</ul>
           </Rise>
         </div>
+        <Pattern p={C.judgement.pattern} />
       </Chapter>
 
       <Chapter id="decisions" {...C.decisions}>
-        <div>{C.decisions.list.map(d => <DecisionBlock key={d.q} d={d} flip={singles.indexOf(d) % 2 === 1} />)}</div>
+        <div>{C.decisions.list.map(d => d.personas ? <PersonaBlock key={d.q} d={d} /> : <DecisionBlock key={d.q} d={d} flip={singles.indexOf(d) % 2 === 1} />)}</div>
       </Chapter>
 
       <Chapter id="scale" {...C.scale} raised>
@@ -207,13 +308,12 @@ export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}
       </Chapter>
 
       <Chapter id="reasoning" {...C.reasoning} raised big>
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6" aria-hidden="true">
-          {(Object.keys(WHO) as Who[]).map(k => <span key={k} className="flex items-center gap-2 text-label text-ink-3"><span className={`block w-2 h-2 rounded-full ${WHO[k].dot}`} />{WHO[k].label}</span>)}
-        </div>
+        <Lanes flow={C.reasoning.flow} />
+        <p className="text-label text-ink-3 mt-12 mb-4">Each step</p>
         <ol className="grid md:grid-cols-3 gap-4">
           {C.reasoning.flow.map((s, i) => (
             <Rise li key={s.t} delay={(i % 3) * 0.06} className="card h-full">
-              <p className={`flex items-center gap-2 text-label ${WHO[s.who].text}`}><span className={`block w-2 h-2 rounded-full ${WHO[s.who].dot}`} aria-hidden="true" />{WHO[s.who].label}</p>
+              <p className={`flex items-center gap-2 text-label ${WHO[s.who].text}`}><span className="tabular-nums text-ink-3">{String(i + 1).padStart(2, '0')}</span><span className={`block w-2 h-2 rounded-full ${WHO[s.who].dot}`} aria-hidden="true" />{WHO[s.who].label}</p>
               <p className="font-serif text-ink mt-3" style={{ fontSize: 'var(--fs-title)' }}>{s.t}</p>
               <p className="text-body text-ink-2 mt-2">{s.d}</p>
             </Rise>
@@ -264,14 +364,14 @@ export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}
             <h2 id="see-h" className="font-serif text-ink font-light" style={{ fontSize: 'var(--fs-d-l)', lineHeight: 1.06 }}>{G.see.title}</h2>
             <p className="text-body-lg text-ink-2 mt-4 max-w-2xl">{G.see.line}</p>
           </Rise>
-          <div className="mt-10"><FlowPlayerV2 imgs={imgs} title="Order 1505899" intro="" /></div>
+          <div className="mt-10"><FlowPlayerV2 imgs={imgs} title="Order 1505899" intro="" rings={variant === 'lucid' ? lucidRings : undefined} /></div>
           <div className="mt-14 flex flex-wrap gap-3">
             {film && <button type="button" onClick={() => setWatching(true)} className="btn btn-secondary">Watch the film</button>}
             <Link to="/craft/sap-agentic/details" className="btn btn-primary">Read the full case <Arrow /></Link>
           </div>
         </div>
       </section>
-      {watching && film && <VideoModal src={film.to} title={film.title} onClose={() => setWatching(false)} />}
+      {watching && film && <VideoModal src={variant === 'lucid' ? `${film.to}?ui=lucid` : film.to} title={film.title} onClose={() => setWatching(false)} />}
     </article>
     </DirCtx.Provider>
   )

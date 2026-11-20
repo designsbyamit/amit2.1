@@ -42,7 +42,7 @@ const DUR = 4200
 const ease = [0.16, 1, 0.3, 1] as const
 const counts = CHAPTERS.map((_, c) => STEPS.filter(s => s.ch === c).length)
 
-export default function FlowPlayerV2({ imgs, title, intro }: { imgs: Record<string, string>; title: string; intro: string }) {
+export default function FlowPlayerV2({ imgs, title, intro, rings }: { imgs: Record<string, string>; title: string; intro: string; rings?: Record<string, Rect[]> }) {
   const reduce = useReducedMotion()
   const [i, setI] = useState(0)
   const [playing, setPlaying] = useState(!reduce)
@@ -146,7 +146,7 @@ export default function FlowPlayerV2({ imgs, title, intro }: { imgs: Record<stri
                 </motion.div>
               )}
             </AnimatePresence>
-            {step.rings?.map((r, n) => (
+            {(step.rings && rings?.[step.shot] ? rings[step.shot] : step.rings)?.map((r, n) => (
               <motion.div key={`ring-${i}-${n}`} className="absolute rounded-md pointer-events-none" style={{ left: `${r[0] * 100}%`, top: `${r[1] * 100}%`, width: `${r[2] * 100}%`, height: `${r[3] * 100}%`, border: 'var(--space-2) solid var(--signal-edge)' }}
                 initial={reduce ? false : { opacity: 0, scale: 1.03 }} animate={reduce ? { opacity: 1 } : { opacity: 1, scale: 1, boxShadow: ['0 0 0 0px rgb(var(--signal-rgb) / 0.0)', '0 0 0 7px rgb(var(--signal-rgb) / 0.5)', '0 0 0 3px rgb(var(--signal-rgb) / 0.3)'] }} transition={{ delay: 0.55 + n * 0.15, duration: 0.9, ease }} />
             ))}
