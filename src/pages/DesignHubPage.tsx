@@ -1,4 +1,5 @@
 import Breadcrumb from '../components/ds/Breadcrumb'
+import SkinnedVideo from '../film/SkinnedVideo'
 import { Section, Head, Numbered, Defs } from '../components/case/Chapter'
 
 const B = import.meta.env.BASE_URL
@@ -50,9 +51,7 @@ export default function DesignHubPage() {
       <Section id="film" raised>
         <Head n={3} title="Impulse India 2025." intro="The film from the annual event." />
         <div className="rounded-3 overflow-hidden border max-w-5xl" style={{ borderColor: 'var(--line-2)' }}>
-          <video controls preload="none" playsInline poster={`${B}images/design-hub/film-poster.webp`} className="w-full block bg-black" aria-label="Impulse India 2025 film">
-            <source src={`${B}video/impulse-25-india.mp4`} type="video/mp4" />
-          </video>
+          <SkinnedVideo src={`${B}video/impulse-25-india.mp4`} poster={`${B}images/design-hub/film-poster.webp`} label="Impulse India 2025 film" />
         </div>
       </Section>
     </div>

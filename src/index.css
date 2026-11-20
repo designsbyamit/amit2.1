@@ -528,11 +528,7 @@ html[data-theme='light'] .hero-portrait.is-mono img { filter: grayscale(1) contr
 
 /* The film in its dialog: picture plus a control bar. Below 768px of frame width the bar wraps to two rows, so the frame is the 16:9 picture plus room for the bar. */
 .film-wrap { container-type: inline-size; }
-.film-frame { aspect-ratio: 16 / 10.1; }
-@container (max-width: 767px) {
-  .film-frame { aspect-ratio: auto; height: calc(100cqw * 9 / 16 + var(--space-120)); }
-}
-
+.film-frame { aspect-ratio: 16 / 9; }
 /* Project page headers: each project's mesh gradient (see data/caseTheme.ts). The mesh is deepened where the title sits, so text stays on a solid, dark ground. */
 html[data-theme='dark'] .case-hero { background-image: var(--mesh); background-size: cover; background-position: center; }
 
