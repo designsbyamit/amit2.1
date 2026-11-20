@@ -121,7 +121,13 @@ export default function FlowPlayerV2({ imgs, title, intro }: { imgs: Record<stri
           </div>
           <div className="flex items-center gap-3 mt-6">
             <button type="button" className="btn btn-secondary btn-sm" onClick={() => go(i - 1)} aria-label="Previous step">&larr;</button>
-            <button type="button" className="btn btn-primary btn-sm min-w-lane" onClick={toggle}>{ended ? 'Replay' : playing ? 'Pause' : 'Play'}</button>
+            <button type="button" className="btn btn-secondary btn-sm" onClick={toggle} aria-label={ended ? 'Replay' : playing ? 'Pause' : 'Play'}>
+              {ended
+                ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5" /></svg>
+                : playing
+                  ? <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4.5" width="4" height="15" rx="1" /><rect x="14" y="4.5" width="4" height="15" rx="1" /></svg>
+                  : <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" /></svg>}
+            </button>
             <button type="button" className="btn btn-secondary btn-sm" onClick={() => go(i + 1)} aria-label="Next step">&rarr;</button>
           </div>
         </div>
