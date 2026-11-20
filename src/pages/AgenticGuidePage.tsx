@@ -364,7 +364,7 @@ export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}
             <h2 id="see-h" className="font-serif text-ink font-light" style={{ fontSize: 'var(--fs-d-l)', lineHeight: 1.06 }}>{G.see.title}</h2>
             <p className="text-body-lg text-ink-2 mt-4 max-w-2xl">{G.see.line}</p>
           </Rise>
-          <div className="mt-10"><FlowPlayerV2 imgs={imgs} title="Order 1505899" intro="" rings={variant === 'lucid' ? lucidRings : undefined} /></div>
+          <div className="mt-10"><FlowPlayerV2 imgs={imgs} title="Order 1505899" intro="" rings={variant === 'lucid' ? lucidRings : undefined} from="ops-worklist" /></div>
           <div className="mt-14 flex flex-wrap gap-3">
             <a href={`${import.meta.env.BASE_URL}prototypes/order-confirmations/`} target="_blank" rel="noopener" className="btn btn-secondary">Try the prototype</a>
             {film && <button type="button" onClick={() => setWatching(true)} className="btn btn-secondary">Watch the film</button>}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 type Who = 'Agent' | 'Administrator' | 'Operations' | 'Buyer' | 'Goods recipient'
@@ -8,7 +8,7 @@ interface Step { ch: number; shot: string; who: Who; title: string; text: string
 const CHAPTERS = ['Set-up', 'Validate', 'Decide', 'Reply', 'Revise']
 
 /** One order, start to finish, over the real screens. Every frame shows the whole screen; nothing zooms or crops. */
-const STEPS: Step[] = [
+const ALL_STEPS: Step[] = [
   { ch: 0, shot: 'admin-setup', who: 'Administrator', title: 'Connect the mailbox and the ERP', text: 'An administrator opens Administration. Neither the Microsoft Office 365 mailbox nor the ERP system is connected yet.', rings: [[0.037, 0.18, 0.575, 0.207]] },
   { ch: 0, shot: 'admin-connected', who: 'Administrator', title: 'Both connected', text: 'Confirmations now arrive from the mailbox, and the purchase orders come from the ERP.', rings: [[0.037, 0.18, 0.575, 0.207]] },
   { ch: 1, shot: 'signin-ops', who: 'Operations', title: 'Each role signs in to the same assistant', text: 'David, in procurement operations, signs in. The buyer and the goods recipient use the same sign-in.', rings: [[0.365, 0.25, 0.31, 0.504]] },
@@ -40,9 +40,11 @@ const STEPS: Step[] = [
 ]
 const DUR = 4200
 const ease = [0.16, 1, 0.3, 1] as const
-const counts = CHAPTERS.map((_, c) => STEPS.filter(s => s.ch === c).length)
 
-export default function FlowPlayerV2({ imgs, title, intro, rings }: { imgs: Record<string, string>; title: string; intro: string; rings?: Record<string, Rect[]> }) {
+/** from: the shot to start at; earlier steps, and chapters left empty, are dropped. */
+export default function FlowPlayerV2({ imgs, title, intro, rings, from }: { imgs: Record<string, string>; title: string; intro: string; rings?: Record<string, Rect[]>; from?: string }) {
+  const STEPS = useMemo(() => (from ? ALL_STEPS.slice(Math.max(0, ALL_STEPS.findIndex(s => s.shot === from))) : ALL_STEPS), [from])
+  const counts = useMemo(() => CHAPTERS.map((_, c) => STEPS.filter(s => s.ch === c).length), [STEPS])
   const reduce = useReducedMotion()
   const [i, setI] = useState(0)
   const [playing, setPlaying] = useState(!reduce)
@@ -63,7 +65,7 @@ export default function FlowPlayerV2({ imgs, title, intro, rings }: { imgs: Reco
       const f = c < ch ? 1 : c > ch ? 0 : Math.min(1, (before + p) / counts[c])
       el.style.transform = `scaleX(${f})`
     })
-  }, [])
+  }, [STEPS, counts])
 
   useEffect(() => {
     const el = root.current; if (!el) return
@@ -93,7 +95,7 @@ export default function FlowPlayerV2({ imgs, title, intro, rings }: { imgs: Reco
     }
     raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [i, run, paint])
+  }, [i, run, paint, STEPS])
 
   const go = (n: number) => { elapsed.current = 0; setEnded(false); setI((n + STEPS.length) % STEPS.length) }
   const toggle = () => {
@@ -159,7 +161,7 @@ export default function FlowPlayerV2({ imgs, title, intro, rings }: { imgs: Reco
             )}
           </div>
           <div className="flex gap-2 mt-5" role="tablist" aria-label="Chapters">
-            {CHAPTERS.map((c, n) => (
+            {CHAPTERS.map((c, n) => counts[n] > 0 && (
               <button key={c} type="button" role="tab" aria-selected={n === step.ch} onClick={() => jumpChapter(n)} className="text-left min-w-0" style={{ flex: counts[n] }}>
                 <span className="block h-1 rounded-full overflow-hidden" style={{ background: 'rgb(var(--ink-rgb) / 0.12)' }}>
                   <span ref={el => { fills.current[n] = el }} className="block h-full rounded-full origin-left" style={{ background: 'rgb(var(--ink-rgb))', transform: 'scaleX(0)' }} />
