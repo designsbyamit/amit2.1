@@ -366,6 +366,7 @@ export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}
           </Rise>
           <div className="mt-10"><FlowPlayerV2 imgs={imgs} title="Order 1505899" intro="" rings={variant === 'lucid' ? lucidRings : undefined} /></div>
           <div className="mt-14 flex flex-wrap gap-3">
+            <a href={`${import.meta.env.BASE_URL}prototypes/order-confirmations/`} target="_blank" rel="noopener" className="btn btn-secondary">Try the prototype</a>
             {film && <button type="button" onClick={() => setWatching(true)} className="btn btn-secondary">Watch the film</button>}
             <Link to="/craft/sap-agentic/details" className="btn btn-primary">Read the full case <Arrow /></Link>
           </div>
