@@ -10,7 +10,7 @@ const chapters: Chapter[] = [
 export default function SearchFilmPage() {
   return (
     <Player
-      audioSrc="/audio/search-film-monsoon-cut.mp3"
+      audioSrc="/audio/search-film-product-marketing.mp3"
       duration={SEARCH_FILM_DURATION}
       length="1 min 42 s"
       title="AI-Powered Search"
