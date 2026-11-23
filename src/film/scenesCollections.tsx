@@ -14,7 +14,7 @@ export function CHook({ t }: { t: number }) {
 }
 
 export function CProblem({ t }: { t: number }) {
-  const rows: [string, string][] = [['NorthStar', 'Company Code 1000'], ['NorthStar', 'Company Code 2000'], ['NorthStar', 'Company Code 3000'], ['NorthStar', 'Company Code 4000']]
+  const rows: [string, string][] = [['Customer A', 'Company Code 1000'], ['Customer A', 'Company Code 2000'], ['Customer A', 'Company Code 3000'], ['Customer A', 'Company Code 4000']]
   return <Scene t={t} s={5} e={14}>
     <Over style={{ left: 140, top: 110 }}>The problem</Over>
     <Words t={t} a={5.3} text="Long lists, one row per company code." size={84} weight={600} style={{ left: 140, top: 170, width: 1500 }} />
@@ -45,7 +45,7 @@ export function CWork({ t }: { t: number }) {
   const draft = t > 36.5
   const cx = t < 30.5 ? lerp(1500, 1120, easeOut(seg(t, 28.6, 30.4))) : t < 40.6 ? 1120 : lerp(1120, 1560, easeOut(seg(t, 40, 41.4)))
   const cy = t < 30.5 ? lerp(800, 355, easeOut(seg(t, 28.6, 30.4))) : t < 40.6 ? 355 : lerp(355, 852, easeOut(seg(t, 40, 41.4)))
-  const list: [string, string, string, string][] = [['NorthStar', '1000 · 2000 · 3000', 'High', 'Send a reminder'], ['Customer B', '1000', 'Medium', 'Wait for the cooldown'], ['Customer C', '1000 · 4000', 'Medium', 'Review the dispute']]
+  const list: [string, string, string, string][] = [['Customer A', '1000 · 2000 · 3000', 'High', 'Send a reminder'], ['Customer B', '1000', 'Medium', 'Wait for the cooldown'], ['Customer C', '1000 · 4000', 'Medium', 'Review the dispute']]
   return <Scene t={t} s={26} e={46}>
     <Over style={{ left: 140, top: 56 }}>The product · illustrative data</Over>
     <In t={t} a={26.4} y={30} style={{ left: 140, top: 120, width: 1640, height: 860 }}>
@@ -60,7 +60,7 @@ export function CWork({ t }: { t: number }) {
           <In t={t} a={29} y={10} style={{ left: 36, top: 520, width: 1500 }}><div style={{ fontSize: 30, color: C.mute }}>One row per customer. Company codes listed inline. Priority is marked as AI output and can be explained.</div></In>
         </div>}
         {open && <div style={{ padding: '30px 36px', position: 'relative', height: 770 }}>
-          <In t={t} a={33.1} y={14} style={{ left: 36, top: 30, width: 760 }}><div style={{ fontFamily: mono, fontSize: 22, color: C.dim }}>SUMMARY</div><div style={{ fontSize: 36, color: C.ink, marginTop: 12, lineHeight: 1.3 }}>NorthStar has open items in three company codes. One reminder was sent before. No open dispute.</div></In>
+          <In t={t} a={33.1} y={14} style={{ left: 36, top: 30, width: 760 }}><div style={{ fontFamily: mono, fontSize: 22, color: C.dim }}>SUMMARY</div><div style={{ fontSize: 36, color: C.ink, marginTop: 12, lineHeight: 1.3 }}>Customer A has open items in three company codes. One reminder was sent before. No open dispute.</div></In>
           <In t={t} a={34.6} y={14} style={{ left: 36, top: 290, width: 760 }}>
             <div style={{ padding: '26px 30px', borderRadius: 22, border: `1px solid ${C.lime}`, background: C.panel2 }}>
               <div style={{ fontFamily: mono, fontSize: 22, color: C.lime }}>NEXT BEST ACTION</div>

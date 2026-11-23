@@ -19,7 +19,7 @@ const DIFFS2=()=>[
  {id:'price2',g:'Line items',f:'Line 1001 · Unit price',po:'€15.83',oc:'€25.03',d:'+58%',sev:'High',why:'Unchanged from version 1, where it was rejected. Escalation suggested.',own:'buyer',sug:'reject'}]
 const OTHERS=[['4994546960','1505456','Orion Tech Ltd.','71,800','08.04.26','4 differences','High','In review'],['4994546960','1505982','Cascadia Polymers','25,450','07.04.26','3 differences','High','In review'],['4994546961','1505365','Nebula Systems','39,600','06.04.26','Price +8.4%, 7 days late','High','In review'],['4994546962','1505974','Quantum Electronics','26,300','31.03.26','Price +6.1%, 3 days late','High','In review'],['4994546963','1505683','Stellar Innovations','10,750','26.03.26','Price +2.3%, payment terms','Medium','In review'],['4994546964','1505246','Apollo Devices','56,900','23.03.26','Price +1.1%, incoterms','Medium','In review'],['4994546965','1505867','Cosmos Circuitry','70,500','05.04.26','Price +1.4%','Medium','In review'],['4994546966','1505795','Lunar Tech Solutions','37,200','02.04.26','Price +0.5%','Low','In review'],['4994546967','1505680','Solaris Works','14,600','11.03.26','Payment terms','Low','Resolved']]
 const OPS_OTHERS=[['4994546960','1505900','Orion Tech Ltd.','2,800','08.04.26 10:15',95,'New'],['4994546960','1505901','Cascadia Polymers','5,450','07.04.26 11:18',92,'Validated'],['4994546961','1505902','Nebula Systems','9,600','06.04.26 12:11',90,'Validated'],['4994546962','1505903','Quantum Electronics','6,300','31.03.26 11:10',94,'Validated'],['4994546963','1505904','Stellar Innovations','10,750','26.03.26 16:21',89,'Validated'],['4994546967','1505907','Solaris Works','14,600','11.03.26 10:16',96,'Processed']]
-const fresh=()=>({user:null,view:'login',tab:null,picked:'ops',conn:{mail:true,erp:true},autonomy:'guided',prefs:{sugg:true,email:true},
+const fresh=()=>({user:null,view:'login',tab:null,picked:'ops',conn:{mail:true,erp:true},autonomy:'guided',prefs:{sugg:true,email:true,lang:'English',tz:'Europe/Berlin'},dd:null,
  o:{ver:1,stage:'read',lines:LINES.map(l=>[...l]),ledited:{},fields:Object.fromEntries(FIELDS.map(f=>[f[0],f[2]])),edited:{},editing:false,diffs:DIFFS1(),saved:{buyer:false,gr:false},sent:false,closed:false},
  events:[{d:'8 Apr 2026',t:'14:04',who:'agent',x:'Confirmation 1505899 received by email and read: 10 header fields and 4 lines, 87% average confidence.'},{d:'8 Apr 2026',t:'14:03',who:'sys',x:'Email from Helios Components AG with 2 attachments.'}],
  chat:[],menu:false,bell:false,help:false,filt:false,dialog:null,toast:null,coach:true,flash:null,view2:'All',q:'',fStatus:{'In review':true,'Resolved':true},tone:'Professional'})
@@ -33,22 +33,24 @@ const allDone=(r)=>O().diffs.filter(d=>d.own===r).every(decided)
 const chip=(s)=>`<span class="chip ${{High:'c-high',Medium:'c-med',Low:'c-low'}[s]}"><i></i>${s}</span>`
 const avatar=(r,cls='')=>`<span class="av ${PEOPLE[r].c} ${cls}">${PEOPLE[r].i}</span>`
 const cdot=(c)=>`<span class="cdot" title="Agent confidence"><i style="background:${c<70?'var(--high)':c<90?'var(--med)':'var(--low)'}"></i>${c}%</span>`
-const node=(w,sm)=>w==='agent'?`<span class="av ${sm?'sm':''} ag">✦</span>`:w==='sys'?`<span class="av ${sm?'sm':''}" style="background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--ink-3)">${sm?'·':'Sys'}</span>`:avatar(w,sm?'sm':'')
+const node=(w,sm)=>w==='agent'?`<span class="av ${sm?'sm':''} ag">✦</span>`:w==='sys'?`<span class="av ${sm?'sm':''}" style="background:#fff;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--ink-3)">${I.cog}</span>`:avatar(w,sm?'sm':'')
 const stageInfo=()=>{const o=O();if(o.closed)return['Closed','ok'];if(o.ver===2&&!o.sent)return['Version 2 to review','new'];if(o.sent)return['Reply sent','ok'];if(o.stage==='read')return['To validate','new'];if(!o.saved.buyer||!o.saved.gr)return['In review','wip'];return['Ready to reply','wip']}
 
 /* ---------- shell ---------- */
+const bellMenu=()=>`<div class="menu" style="width:380px;max-height:440px;overflow:auto"><div class="mh"><span class="t-sub">Notifications</span><span class="t-small">${Math.min(7,S.events.length)} latest</span></div>${S.events.slice(0,7).map(e=>`<div class="note">${node(e.who,true)}<div><div style="font-size:13.5px">${e.x}</div><div class="t-small">${e.d}, ${e.t}</div></div></div>`).join('')}</div>`
+const helpMenu=()=>`<div class="menu" style="width:300px" role="menu"><div class="mh"><span class="t-sub">Help</span></div><button data-a="coach" role="menuitem">${I.help}${S.coach?'Hide':'Show'} the guide</button><div class="t-small" style="padding:8px 10px 10px;line-height:1.5">Three gates keep people in charge: operations validates the reading, each owner decides their differences, and the buyer sends the reply.</div></div>`
+/** One dropdown for every choice. id names it, act is what a pick does. */
+const sel=(id,val,opts,act,cls='')=>`<div class="sel ${cls}"><button type="button" data-a="dd" data-id="${id}" aria-haspopup="listbox" aria-expanded="${S.dd===id}">${(opts.find(o=>(o.v??o)===val)||{}).l??val}${I.chev}</button>${S.dd===id?`<div class="opts" role="listbox">${opts.map(o=>{const v=o.v??o,l=o.l??o;return `<button type="button" role="option" aria-selected="${v===val}" data-a="${act}" data-v="${v}"><span>${l}${o.s?`<small>${o.s}</small>`:''}</span>${v===val?I.check:''}</button>`}).join('')}</div>`:''}</div>`
 function shell(inner){
   const u=PEOPLE[role()]
   return `<div class="top"><button class="brand" data-a="home" aria-label="${APP} home">${MARK(28)}<span class="co">${CO}</span><span class="sep"></span><span class="app">${APP}</span></button><span class="sp"></span>
-  <button class="ic" data-a="bell" aria-label="Notifications">${I.bell}${S.events.length>2?'<span class="dot"></span>':''}</button>
-  <button class="ic" data-a="help" aria-label="Help">${I.help}</button>
-  <button class="me" data-a="menu" aria-label="Your profile">${avatar(role())}<span class="n">${u.n}</span>${I.chev}</button>
-  ${S.menu?`<div class="menu"><div style="padding:10px 10px 8px;display:flex;gap:10px;align-items:center">${avatar(role())}<div><div class="b">${u.n}</div><div class="t-small">${u.r}</div></div></div><hr>
+  <span class="anc"><button class="ic" data-a="bell" aria-label="Notifications" aria-haspopup="true" aria-expanded="${S.bell}">${I.bell}${S.events.length>2?'<span class="dot"></span>':''}</button>${S.bell?bellMenu():''}</span>
+  <span class="anc"><button class="ic" data-a="help" aria-label="Help" aria-haspopup="true" aria-expanded="${S.help}">${I.help}</button>${S.help?helpMenu():''}</span>
+  <span class="anc"><button class="me" data-a="menu" aria-label="Your profile" aria-haspopup="true" aria-expanded="${S.menu}">${avatar(role())}<span class="n">${u.n}</span>${I.chev}</button>
+  ${S.menu?`<div class="menu" role="menu"><div style="padding:10px 10px 8px;display:flex;gap:10px;align-items:center">${avatar(role())}<div><div class="b">${u.n}</div><div class="t-small">${u.r}</div></div></div><hr>
    <button data-a="settings">${I.cog}Settings</button><hr><div class="t-lab" style="padding:4px 10px">Switch user (prototype)</div>
    ${['ops','buyer','gr','admin'].filter(r=>r!==role()).map(r=>`<button data-a="switch" data-r="${r}">${avatar(r,'sm')}<span>${PEOPLE[r].n}<span class="t-small"> · ${PEOPLE[r].r}</span></span></button>`).join('')}
-   <hr><button data-a="reset">${I.reset}Reset the prototype</button><button data-a="signout">${I.out}Sign out</button></div>`:''}
-  ${S.bell?`<div class="menu" style="width:380px;right:170px;max-height:440px;overflow:auto"><div class="t-sub" style="padding:8px 10px">Notifications</div>${S.events.slice(0,7).map(e=>`<div style="display:flex;gap:10px;padding:10px;border-top:1px solid var(--line)">${node(e.who,true)}<div><div style="font-size:13.5px">${e.x}</div><div class="t-small">${e.d}, ${e.t}</div></div></div>`).join('')}</div>`:''}
-  ${S.help?`<div class="menu" style="width:300px;right:130px"><div class="t-sub" style="padding:8px 10px">Help</div><button data-a="coach">${I.help}${S.coach?'Hide':'Show'} the guide</button><div class="t-small" style="padding:8px 10px;line-height:1.5">Three gates keep people in charge: operations validates the reading, each owner decides their differences, and the buyer sends the reply.</div></div>`:''}
+   <hr><button data-a="reset">${I.reset}Reset the prototype</button><button data-a="signout">${I.out}Sign out</button></div>`:''}</span>
   </div>${inner}${dialog()}${S.toast?`<div class="toast"><span style="width:18px;height:18px;border-radius:99px;background:var(--low);display:grid;place-items:center">${I.check}</span>${S.toast}</div>`:''}${coach()}`}
 
 /* ---------- login ---------- */
@@ -72,8 +74,8 @@ function login(){
 function toolbar(views){
   const filtered=!Object.values(S.fStatus).every(Boolean)
   return `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;position:relative"><div class="tabsv" role="tablist">${views.map(x=>`<button role="tab" aria-selected="${S.view2===x[0]}" class="${S.view2===x[0]?'on':''}" data-a="view2" data-v="${x[0]}">${x[0]} <em>${x[1]}</em></button>`).join('')}</div>
-  <div style="display:flex;gap:8px;align-items:center"><label class="input" style="width:290px">${I.search}<input data-a="q" value="${S.q}" placeholder="Search supplier, PO or document" style="border:0;outline:0;flex:1;background:none"></label><button class="btn btn-s" data-a="filt" aria-expanded="${S.filt}">${I.filter}Filter${filtered?' · 1':''}</button></div>
-  ${S.filt?`<div class="pop" style="right:0;top:46px"><div class="t-sub" style="margin-bottom:6px">Status</div>${Object.keys(S.fStatus).map(k=>`<label class="check"><input type="checkbox" data-a="fst" data-k="${k}" ${S.fStatus[k]?'checked':''}>${k}</label>`).join('')}</div>`:''}</div>`}
+  <div style="display:flex;gap:8px;align-items:center"><label class="input" style="width:290px">${I.search}<input data-a="q" value="${S.q}" placeholder="Search supplier, PO or document" style="border:0;outline:0;flex:1;background:none"></label><button class="btn btn-s" data-a="filt" aria-haspopup="true" aria-expanded="${S.filt}">${I.filter}Filter${filtered?` <span class="fcount">${Object.values(S.fStatus).filter(v=>!v).length}</span>`:''}</button></div>
+  ${S.filt?`<div class="pop" style="right:0;top:46px"><div class="t-sub" style="margin-bottom:6px">Status</div>${Object.keys(S.fStatus).map(k=>`<label class="check"><input type="checkbox" data-a="fst" data-k="${k}" ${S.fStatus[k]?'checked':''}>${k}</label>`).join('')}<div class="pf"><button class="link" data-a="fclear" ${filtered?'':'disabled style="color:var(--ink-4);text-decoration:none"'}>Clear</button><button class="btn btn-p btn-sm" data-a="filt">Done</button></div></div>`:''}</div>`}
 const empty=(n)=>`<tr><td colspan="${n}" style="padding:44px;text-align:center"><div class="t-sub">No confirmations match</div><div class="t-small" style="margin-top:4px">Clear the search or the filter to see them all.</div><button class="btn btn-s btn-sm" style="margin-top:12px" data-a="clearf">Clear</button></td></tr>`
 function worklist(){
   const r=role(),o=O(),[st,sc]=stageInfo()
@@ -261,10 +263,10 @@ function dialog(){const d=S.dialog,o=O();if(!d)return ''
    <div class="df"><button class="btn btn-g" data-a="close-d">Go back</button><button class="btn btn-p" data-a="confirmsave">${over.length?'Yes, confirm':r==='gr'?'Submit':'Save'}</button></div></div></div>`}
  if(d==='settings')return `<div class="scrim"><div class="dialog" role="dialog" aria-modal="true"><div class="dh">Settings</div><div class="db" style="color:var(--ink)">
    ${[['sugg','Show the agent’s suggestion on each difference'],['email','Email me when a confirmation needs my decision']].map(x=>`<button style="display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;padding:14px 0;border-top:1px solid var(--line);text-align:left" role="switch" aria-checked="${S.prefs[x[0]]}" data-a="pref" data-k="${x[0]}">${x[1]}<span class="switch ${S.prefs[x[0]]?'on':''}"></span></button>`).join('')}
-   <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--line)">Language<span class="muted">English</span></div><div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--line)">Time zone<span class="muted">Europe/Berlin</span></div></div><div class="df"><button class="btn btn-p" data-a="close-d">Done</button></div></div></div>`
+   <div class="srow">Language${sel('lang',S.prefs.lang,['English','Deutsch'],'setlang','inline')}</div><div class="srow">Time zone${sel('tz',S.prefs.tz,[{v:'Europe/Berlin',l:'Europe/Berlin',s:'CET, UTC+1'},{v:'Europe/London',l:'Europe/London',s:'GMT, UTC+0'},{v:'Asia/Kolkata',l:'Asia/Kolkata',s:'IST, UTC+5:30'}],'settz','inline')}</div></div><div class="df"><button class="btn btn-p" data-a="close-d">Done</button></div></div></div>`
  if(d==='reply')return `<div class="scrim"><div class="dialog" role="dialog" aria-modal="true" style="width:660px"><div class="dh" style="display:flex;justify-content:space-between;align-items:center">Email the supplier <button class="ic" data-a="close-d" aria-label="Close">${I.x}</button></div><div class="db" style="color:var(--ink)">
   <div style="display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:center;margin-top:6px"><span class="t-lab">To</span><div class="input"><span class="chip c-n">Michael Purdy</span><span class="chip c-n">Helios Components SCM</span></div>
-  <span class="t-lab">Subject</span><input class="input" value="Re: Order confirmation for PO 4994546957"><span class="t-lab">Tone</span><select class="input" data-a="tone">${['Professional','Friendly'].map(t=>`<option ${S.tone===t?'selected':''}>${t}</option>`).join('')}</select></div>
+  <span class="t-lab">Subject</span><input class="input" value="Re: Order confirmation for PO 4994546957"><span class="t-lab">Tone</span>${sel('tone',S.tone,[{v:'Professional',l:'Professional',s:'Formal and to the point'},{v:'Friendly',l:'Friendly',s:'Warmer, same facts'}],'settone')}</div>
   <div class="t-lab" style="display:flex;gap:6px;align-items:center;margin:16px 0 6px">${SP}Drafted by the agent from the decisions. Edit as you like.</div><textarea class="input" rows="13">${emailText()}</textarea>
   <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><span class="chip c-high">PDF</span><span>Differences, version ${o.ver}.pdf</span></div></div>
   <div class="df"><button class="btn btn-g" data-a="close-d">Cancel</button><button class="btn btn-p" data-a="send">${I.send}Send</button></div></div></div>`
@@ -308,11 +310,17 @@ function render(){
 function go(view){S.view=view;S.menu=S.bell=S.help=S.filt=false;render();window.scrollTo(0,0)}
 document.addEventListener('click',e=>{
   const el=e.target.closest('[data-a]')
-  if(!el){if(e.target.closest('.pop'))return;if(S.menu||S.bell||S.help||S.filt){S.menu=S.bell=S.help=S.filt=false;render()}return}
+  if(!el){if(e.target.closest('.pop'))return;if(S.menu||S.bell||S.help||S.filt||S.dd){S.menu=S.bell=S.help=S.filt=false;S.dd=null;render()}return}
+  if(S.dd&&!['dd','settone','setlang','settz'].includes(el.dataset.a)){S.dd=null}
   const a=el.dataset.a,o=O()
   if(['chatform','tone','q','fst'].includes(a))return
   const A={
    pick:()=>{S.picked=el.dataset.r;render()},
+   dd:()=>{S.dd=S.dd===el.dataset.id?null:el.dataset.id;render()},
+   settone:()=>{S.tone=el.dataset.v;S.dd=null;render()},
+   setlang:()=>{S.prefs.lang=el.dataset.v;S.dd=null;render()},
+   settz:()=>{S.prefs.tz=el.dataset.v;S.dd=null;render()},
+   fclear:()=>{Object.keys(S.fStatus).forEach(k=>S.fStatus[k]=true);render()},
    login:()=>{S.user=S.picked;S.tab=null;S.view2='All';go('worklist')},
    home:()=>go('worklist'),
    open:()=>{S.tab=null;go('order')},
@@ -354,5 +362,5 @@ document.addEventListener('click',e=>{
 document.addEventListener('submit',e=>{const f=e.target;if(f.dataset.a==='chatform'){e.preventDefault();const q=f.q.value.trim();if(!q)return;S.chat.push({me:true,t:q},{me:false,t:answer(q)});render()}})
 document.addEventListener('change',e=>{const t=e.target;if(t.dataset.a==='tone'){S.tone=t.value;render()}if(t.dataset.a==='fst'){S.fStatus[t.dataset.k]=t.checked;render()}})
 document.addEventListener('input',e=>{const t=e.target;if(t.dataset.a==='q'){S.q=t.value;render()}if(t.dataset.f){t.classList.toggle('changed',t.value!==O().fields[t.dataset.f])}if(t.dataset.l){const [r,c]=t.dataset.l.split(':').map(Number);t.classList.toggle('changed',t.value!==O().lines[r][c])}})
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(S.dialog||S.menu||S.bell||S.help||S.filt)){S.dialog=null;S.menu=S.bell=S.help=S.filt=false;render()}})
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&S.dd){S.dd=null;render();return}if(e.key==='Escape'&&(S.dialog||S.menu||S.bell||S.help||S.filt)){S.dialog=null;S.menu=S.bell=S.help=S.filt=false;render()}})
 render()

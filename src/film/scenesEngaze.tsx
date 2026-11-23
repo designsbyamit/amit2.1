@@ -97,17 +97,17 @@ export function EPrototype({ t }: { t: number }) {
 
 export function EOutcome({ t }: { t: number }) {
   const bar = (v: number, a: number) => easeOut(seg(t, a, a + 1.4)) * v
-  const roles = ['Employee', 'New joiner', 'Manager', 'Recruiter', 'HR partner', 'Leader']
+  const roles = ['Employee', 'Manager', 'Recruiter', 'HR', 'Leadership']
   return <Scene t={t} s={47} e={58}>
     <Bg />
     <Over style={{ position: 'absolute', left: 140, top: 110 }}>The outcome</Over>
     <In t={t} a={47.6} style={{ left: 140, top: 190 }}><div style={{ fontSize: 260, fontWeight: 600, letterSpacing: '-0.05em', color: V.ink, lineHeight: 1 }}>{Math.round(countTo(t, 47.8, 49.4, 0, 90))}<span style={{ color: V.violet }}>%</span></div></In>
-    <In t={t} a={48.2} style={{ left: 140, top: 480 }}><div style={{ fontSize: 44, color: V.mute, width: 760, lineHeight: 1.3 }}>CSAT in the employee-experience module.</div></In>
+    <In t={t} a={48.2} style={{ left: 140, top: 480 }}><div style={{ fontSize: 44, color: V.mute, width: 760, lineHeight: 1.3 }}>CSAT in usability testing of the employee-experience module.</div></In>
     <In t={t} a={48.4} style={{ left: 1040, top: 220, width: 740 }}>
-      {[['Engaze', 90, grad], ['Typical enterprise HR bot', 60, V.dim]].map(([n, v, c], i) => <div key={n as string} style={{ marginBottom: 40 }}><div style={{ fontSize: 30, color: V.ink, marginBottom: 12 }}>{n}</div><div style={{ height: 52, width: `${bar(Number(v), 48.6 + i * 0.4) * 0.82}%`, borderRadius: 14, background: c as string }} /></div>)}
+      <div style={{ fontSize: 30, color: V.ink, marginBottom: 12 }}>Employee-experience module</div><div style={{ height: 52, width: `${bar(90, 48.6) * 0.82}%`, borderRadius: 14, background: grad }} />
     </In>
     <In t={t} a={51} y={20} style={{ left: 140, top: 700, width: 1640 }}>
-      <div style={{ fontSize: 56, fontWeight: 600, letterSpacing: '-0.03em', color: V.ink }}>One module. <span style={{ color: V.violet }}>Six roles</span> in the full suite.</div></In>
+      <div style={{ fontSize: 56, fontWeight: 600, letterSpacing: '-0.03em', color: V.ink }}>One module. <span style={{ color: V.violet }}>Five roles</span> in the full suite.</div></In>
     <div style={{ position: 'absolute', left: 140, top: 810, display: 'flex', gap: 14 }}>
       {roles.map((r, i) => { const p = easeOut(seg(t, 52 + i * 0.3, 52.6 + i * 0.3)); return <span key={r} style={{ opacity: p, transform: `translateY(${(1 - p) * 14}px)`, padding: '14px 26px', borderRadius: 30, background: i === 0 ? grad : V.p3, border: i === 0 ? 'none' : `1px solid ${V.line}`, fontSize: 28, color: V.ink }}>{r}</span> })}
     </div>

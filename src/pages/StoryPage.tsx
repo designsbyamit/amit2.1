@@ -7,6 +7,7 @@ import { Spectrum } from '../components/story/Spectrum'
 import { caseStudies } from '../data/work'
 import { storyById, type Beat, type StoryVisual } from '../data/stories'
 import { films } from '../data/films'
+import { prototypeUrl } from '../data/prototypes'
 
 const Embed = lazy(() => import('../components/playback/Embeds'))
 const Diagram = lazy(() => import('../components/story/StoryVisuals'))
@@ -118,6 +119,7 @@ export default function StoryPage() {
           </div>
           <div className="col-span-4 md:col-span-12 flex flex-wrap items-center gap-3 pt-4">
             {film && <button type="button" onClick={() => setWatching(true)} className="btn btn-secondary">Watch the film</button>}
+            {prototypeUrl(cs.id) && <a href={prototypeUrl(cs.id)!} target="_blank" rel="noopener" className="btn btn-secondary">Try the prototype</a>}
             <Link to={`/craft/${cs.id}/details`} className="btn btn-primary">Read the full case <Arrow /></Link>
           </div>
         </div>

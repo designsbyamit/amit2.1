@@ -61,7 +61,6 @@ const AgenticFilmV2Page = lazy(() => import('./film/archive/AgenticFilmV2Page'))
 const AgenticFilmV3Page = lazy(() => import('./film/archive/AgenticFilmV3Page'))
 const AirlineStoryPage = lazy(() => import('./pages/AirlineStoryPage'))
 const ScmPrototype = lazy(() => import('./labs/scm/ScmPrototype'))
-const EngazePrototype = lazy(() => import('./labs/engaze/EngazePrototype'))
 const SearchPrototype = lazy(() => import('./labs/search/SearchPrototype'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const EngazeStoryPage = lazy(() => import('./pages/EngazeStoryPage'))
@@ -136,6 +135,10 @@ function ShortVersion() {
   if (id === 'engaze') return <StoryPage />
   return <PlaybackPage />
 }
+function ToStatic({ to }: { to: string }) {
+  useEffect(() => { window.location.replace(`${import.meta.env.BASE_URL}${to}`) }, [to])
+  return null
+}
 function StoryRedirect() {
   const { id } = useParams<{ id: string }>()
   return <Navigate to={`/craft/${id}`} replace />
@@ -190,7 +193,7 @@ function AnimatedRoutes() {
         <Route path="/craft/sap-agentic/film-v2" element={<PageTransition><AgenticFilmV2Page /></PageTransition>} />
         <Route path="/craft/sap-agentic/film-v3" element={<PageTransition><AgenticFilmV3Page /></PageTransition>} />
         <Route path="/labs/order-confirmation" element={<ScmPrototype />} />
-        <Route path="/labs/engaze" element={<EngazePrototype />} />
+        <Route path="/labs/engaze" element={<ToStatic to="prototypes/engaze/" />} />
         <Route path="/labs/ai-search" element={<Locked id="sap-search"><SearchPrototype /></Locked>} />
         <Route path="/craft/stories/:slug" element={<PageTransition><ShortStoryPage /></PageTransition>} />
         <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />

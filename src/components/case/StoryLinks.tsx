@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { films } from '../../data/films'
+import { prototypeUrl } from '../../data/prototypes'
 import VideoModal from '../ui/VideoModal'
 import { caseStudies } from '../../data/work'
 import NextUp from './NextUp'
@@ -20,6 +21,7 @@ export function BackToShort({ id }: { id: string }) {
           Read the short story
         </Link>
         {film && <button type="button" onClick={() => setWatching(true)} className="pointer-events-auto inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-label text-ink-2 hover:text-white transition-colors bg-bg" style={{ borderColor: 'var(--line-2)' }}>Watch the film</button>}
+        {prototypeUrl(id) && <a href={prototypeUrl(id)!} target="_blank" rel="noopener" className="pointer-events-auto inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-label text-ink-2 hover:text-white transition-colors bg-bg" style={{ borderColor: 'var(--line-2)' }}>Try the prototype</a>}
         {watching && film && <VideoModal src={film.to} title={film.title} onClose={() => setWatching(false)} />}
       </div>
     </div>
