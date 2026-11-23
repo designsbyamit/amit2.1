@@ -372,7 +372,7 @@ export default function AgenticGuidePage({ variant }: { variant?: 'lucid' } = {}
           </div>
         </div>
       </section>
-      {watching && film && <VideoModal src={variant === 'lucid' ? `${film.to}?ui=lucid` : film.to} title={film.title} onClose={() => setWatching(false)} />}
+      {watching && film && <VideoModal src={film.to} title={film.title} onClose={() => setWatching(false)} />}
     </article>
     </DirCtx.Provider>
   )

@@ -91,8 +91,8 @@ export const travel = {
       title: 'Less effort for customers. A digital channel operating at scale.',
       figures: [
         ['9 → 2', 'Steps to check in', 'The check-in journey, reduced from nine steps to two.'],
-        ['4 min', 'To book a flight', 'Booking a flight takes about four minutes in the redesigned experience.'],
-        ['100 million', 'Total digital bookings', 'The total digital booking volume reached 100 million.'],
+        ['4 min', 'To book a flight', 'For returning customers, booking a flight takes about four minutes in the redesigned experience.'],
+        ['$100M', 'Digital booking revenue', 'Digital bookings grew into a $100 million revenue stream.'],
       ] as [string, string, string][],
       note: 'The first two describe the redesigned journeys. The third describes the scale of the digital channel, which many factors beyond design contributed to.',
     },

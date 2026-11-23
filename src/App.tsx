@@ -170,8 +170,8 @@ function AnimatedRoutes() {
         <Route path="/labs/ai-search" element={<SearchPrototype />} />
         <Route path="/craft/stories/:slug" element={<PageTransition><ShortStoryPage /></PageTransition>} />
         <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />
-        <Route path="/craft/sap-agentic/story" element={<PageTransition><AgenticGuidePage /></PageTransition>} />
-        <Route path="/craft/sap-agentic/story-lucid" element={<PageTransition><AgenticGuidePage variant="lucid" /></PageTransition>} />
+        <Route path="/craft/sap-agentic/story" element={<PageTransition><AgenticGuidePage variant="lucid" /></PageTransition>} />
+        <Route path="/craft/sap-agentic/story-lucid" element={<Navigate to="/craft/sap-agentic/story" replace />} />
         <Route path="/craft/airline-app/story" element={<PageTransition><TravelStoryPage /></PageTransition>} />
         <Route path="/craft/:id/story" element={<PageTransition><StoryPage /></PageTransition>} />
         <Route path="/craft/:id" element={<PageTransition><PlaybackPage /></PageTransition>} />

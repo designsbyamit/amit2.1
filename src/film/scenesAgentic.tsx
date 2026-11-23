@@ -12,9 +12,8 @@ export const FILM = { hook: [0, at(4)], setup: [at(4), at(8)], people: [at(8), a
 
 const B = import.meta.env.BASE_URL
 const dir = `${B}images/case-studies/sap-agentic/`
-/** ?ui=lucid plays the film over the Lucid prototype screens. */
-const lucid = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('ui') === 'lucid'
-const shotDir = lucid ? `${B}images/case-studies/sap-agentic-lucid/` : dir
+/** The film plays over the screens captured from the prototype. */
+const shotDir = `${B}images/case-studies/sap-agentic-lucid/`
 export const SHOTS = ['buyer-worklist', 'buyer-review', 'buyer-share', 'buyer-email']
 export const shotUrl = (id: string) => `${shotDir}${id}.webp`
 /** Swap these files to change the persona portraits. */

@@ -1,6 +1,5 @@
 import Distinct from '../components/case/Distinct'
 import { useState } from 'react'
-import Button from '../components/ds/Button'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import SectionHeader from '../components/ds/SectionHeader'
 import { caseStudies } from '../data/work'
@@ -37,9 +36,6 @@ export default function EngazeStoryPage() {
           <p className="text-overline text-ink-3 mt-10">{cs.category}</p>
           <h1 className="text-display-xl text-white mt-5 max-w-5xl lg:max-w-[62%]">{cs.title}</h1>
           <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{cs.tagline}</p>
-          <div className="flex flex-wrap gap-3 mt-8">
-            <Button to="/craft/engaze/film" arrow className="!whitespace-normal text-left max-w-full">Watch the employee-experience teaser · 1 min 6 s</Button>
-          </div>
           <div className="flex flex-wrap gap-2 mt-8"><span className="tag">{E.kicker}</span>{(cs.tags ?? []).map(t => <span key={t} className="tag">{t}</span>)}</div>
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 pt-8 hairline-top max-w-4xl">
             {[['Role', cs.role], ['Timeline', cs.timeline], ['Domain', cs.domain], ['EX module CSAT', '90%']].map(([k, v]) => (
@@ -104,7 +100,7 @@ export default function EngazeStoryPage() {
       </Section>
 
       <Section id="employee-experience">
-        <SectionHeader label="07 · Deep dive" title={E.ex.title} intro={E.ex.intro} action={<Button to="/craft/engaze/film" arrow className="!whitespace-normal text-left max-w-full">{E.ex.teaserLabel}</Button>} />
+        <SectionHeader label="07 · Deep dive" title={E.ex.title} intro={E.ex.intro} />
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {E.ex.stats.map(([v, k]) => <div key={k} className="card"><dd className="text-display-l text-white">{v}</dd><dt className="text-body-sm text-ink-3 mt-2">{k}</dt></div>)}
         </dl>
