@@ -4,6 +4,10 @@
 // Gated detail pages are left out of the sitemap and the prerendered pages (src/seo/site.ts).
 
 export const gatedCases: string[] = ['sap-search', 'sap-agentic', 'sap-collections', 'sap-signin', 'sap-compositional']
+/** Locked completely: the short version, stories, film and prototype also sit behind the code. Listed last on the Works page. */
+export const lockedCases: string[] = ['sap-search', 'sap-signin', 'sap-collections']
+/** Hidden from the site for now: off every list, and its pages redirect to Works. */
+export const hiddenCases: string[] = ['data-ai']
 
 export const SALT = 'amit-nda-v1'
 export const ACCESS_HASHES: Record<string, string> = {

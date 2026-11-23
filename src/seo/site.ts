@@ -3,12 +3,11 @@ declare const __SITE_URL__: string
 // The runtime hook (useRouteSeo) and the build-time page generator (tools/seo/build.ts) both read this.
 import { playbacks } from '../data/playbacks'
 import { shortStories } from '../data/shortStories'
-import { gatedCases } from '../data/nda'
+import { gatedCases, lockedCases, hiddenCases } from '../data/nda'
 import { caseStudies } from '../data/work'
 import { publishedStories, storySlug } from '../data/leadership'
 import { library } from '../data/library'
 import { films } from '../data/films'
-import { stories as caseStories } from '../data/stories'
 
 export const SITE = {
   /** Production is www; the staging branch (neo) is a beta that points at itself and is kept out of search. */
@@ -77,12 +76,12 @@ const extras: RouteMeta[] = [
   { path: '/labs/order-confirmation', title: T('Prototype: Agentic Order Confirmations'), description: 'A working prototype.', noindex: true },
   { path: '/labs/engaze', title: T('Prototype: Engaze'), description: 'A working prototype.', noindex: true },
   { path: '/labs/ai-search', title: T('Prototype: AI-Powered Search'), description: 'A working prototype.', noindex: true },
-  ...caseStories.map(s => ({ path: `/craft/${s.id}/story`, title: T(s.headline), description: s.line, type: 'article' as const, noindex: true })),
 ]
 
-const projects: RouteMeta[] = playbacks.flatMap(p => {
+const projects: RouteMeta[] = playbacks.filter(p => !hiddenCases.includes(p.id)).flatMap(p => {
   const cs = caseStudies.find(c => c.id === p.id)
-  const out: RouteMeta[] = [{ path: `/craft/${p.id}`, title: T(p.headline), description: p.dek, image: `/og/${p.id}.jpg`, type: 'article' }]
+  const locked = lockedCases.includes(p.id)
+  const out: RouteMeta[] = [locked ? { path: `/craft/${p.id}`, title: T(`${cs?.shortTitle ?? p.headline}: access code`), description: 'This case study is shared by access code.', noindex: true } : { path: `/craft/${p.id}`, title: T(p.headline), description: p.dek, image: `/og/${p.id}.jpg`, type: 'article' }]
   if (cs && !gatedCases.includes(p.id)) out.push({ path: `/craft/${p.id}/details`, title: T(`${cs.shortTitle}: the detailed case study`), description: cs.tagline, image: `/og/${p.id}.jpg`, type: 'article' })
   if (cs && gatedCases.includes(p.id)) out.push({ path: `/craft/${p.id}/details`, title: T(`${cs.shortTitle}: access code`), description: 'The detailed case study is shared by access code.', noindex: true })
   return out

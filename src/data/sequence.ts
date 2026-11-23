@@ -1,6 +1,7 @@
 // Where each page sends you next. One place for every "next" link on the site, so the label, title, eyebrow and
 // button read the same everywhere, and every title is the item's own title (never a shortened one).
 import { caseStudies } from './work'
+import { lockedCases, hiddenCases } from './nda'
 import { shortStories } from './shortStories'
 import { publishedStories, storySlug } from './leadership'
 import { cases } from './cases'
@@ -12,10 +13,13 @@ const after = <T,>(list: T[], i: number) => list[(i + 1) % list.length]
 
 /** Next project, from a case study. */
 export function nextCase(id: string): NextLink | null {
-  const i = caseStudies.findIndex(c => c.id === id)
+  // Only the open cases chain together; the ones shared by access code are reached from the Works page.
+  const open = caseStudies.filter(c => !lockedCases.includes(c.id) && !hiddenCases.includes(c.id))
+  const list = open.some(c => c.id === id) ? open : caseStudies
+  const i = list.findIndex(c => c.id === id)
   if (i < 0) return null
-  const n = after(caseStudies, i)
-  return { label: 'Next case study', to: `/craft/${n.id}`, title: n.title, eyebrow: n.category.split(' · ').slice(0, 3).join(' · '), cta: 'View teaser', alt: { to: `/craft/${n.id}/details`, cta: 'Take a deep dive' } }
+  const n = after(list, i)
+  return { label: 'Next case study', to: `/craft/${n.id}`, title: n.title, eyebrow: n.category.split(' · ').slice(0, 3).join(' · '), cta: 'Read the short story', alt: { to: `/craft/${n.id}/details`, cta: 'Take a deep dive' } }
 }
 
 export function nextShortStory(slug: string): NextLink | null {

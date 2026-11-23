@@ -212,7 +212,7 @@ const allCaseStudies: CaseStudy[] = [
     },
     challenge: 'Human capital suites are built for administrators and sold as separate modules. Design an AI-powered suite that improves the experience of every role, set against the best of the category.',
     approach: 'Start from five principles instead of flows, prove them in the employee-experience module, then extend one companion, one trust model and one people graph across recruiting, onboarding, management, HR operations and workforce planning.',
-    outcome: 'Employee-experience module: 90% CSAT, and the most praised HR AI product at the client. Wider suite: designed and prototyped as a design vision.',
+    outcome: 'Employee-experience module: 90% CSAT in usability testing, and the most praised HR AI product at the client. Wider suite: designed and prototyped as a design vision.',
     image: `${B}images/case-studies/engaze-hero.jpg`,
     stats: [
       { label: 'CSAT Score', value: '90%' },
@@ -244,7 +244,7 @@ const allCaseStudies: CaseStudy[] = [
       },
       {
         label: 'Design Philosophy',
-        heading: 'Conversational AI Design Philosophy - 3-Layered Strategy',
+        heading: 'Conversational AI Design Philosophy: a 3-layered strategy',
         body: 'The 3-layered design strategy governed every decision: Natural Conversational Experiences at the interaction layer, Content Strategy Thumb-rules at the language layer, and Conversational Interface Design Guidelines at the UI layer. Bot capabilities were defined as: Deep Organisation Knowledge, Emotional Intelligence (sentiment analysis), Creative Responder, and Natural Conversation Flow.',
         image: `${B}images/case-studies/engaze-04.png`,
       },
@@ -257,7 +257,7 @@ const allCaseStudies: CaseStudy[] = [
       {
         label: 'Dialog Flows',
         heading: 'Crafting dialog flows',
-        body: 'Dialog flows were built around the five principles - Trust, Guidance, Discoverability, Cognitive Simplicity, and Continuity. Each principle answered a specific failure mode from the previous generation of HR bots. Flows were tested against real employee scenarios, not hypothetical ones.',
+        body: 'Dialog flows were built around the five principles: Trust, Guidance, Discoverability, Cognitive Simplicity, and Continuity. Each principle answered a specific failure mode from the previous generation of HR bots. Flows were tested against real employee scenarios, not hypothetical ones.',
         image: `${B}images/case-studies/engaze-06.png`,
       },
       {
@@ -277,7 +277,7 @@ const allCaseStudies: CaseStudy[] = [
       'Rapid prototyping approach enabled faster iteration: prototypes were the primary argument, not supporting material.',
       'Led design direction enabling team growth in conversational design across the engagement.',
       'Close collaboration with development and data science teams is imperative for Gen-AI work.',
-      'Designs received strong validation during usability testing - 90% CSAT confirmed principles over flows.',
+      'Designs received strong validation during usability testing: 90% CSAT confirmed principles over flows.',
     ],
     testimonial: {
       quote: 'Greatly impressed by the quality of designs, the attention to detail and delightful experience. Happy to see that the standards are set quite high and it proudly stands beside any other leading studios\' work globally.',
@@ -335,7 +335,7 @@ const allCaseStudies: CaseStudy[] = [
           { title: 'Navigational challenges', description: 'Entry points buried within a large enterprise platform. Engineers needed to know where to look before they could begin work.' },
           { title: 'Access restrictions & approvals', description: 'Routine modifications required multi-team approval chains that had accumulated over years with no current operational reason.' },
           { title: 'Cognitive load & jargon', description: 'Dense technical language on every screen added reading overhead to already complex operational tasks.' },
-          { title: 'Complex processes', description: 'Tasks that should be self-serve required cross-team coordination - $5M in overhead that better design could eliminate.' },
+          { title: 'Complex processes', description: 'Tasks that should be self-serve required cross-team coordination: $5M in overhead that better design could eliminate.' },
         ],
       },
       {
@@ -504,15 +504,15 @@ const allCaseStudies: CaseStudy[] = [
 ]
 /** Display order across the site (Craft menu, Craft page, prev/next). */
 const ORDER: [string, NonNullable<CaseStudy['tone']>][] = [
-  ['sap-search', 'plum'],
-  ['sap-signin', 'teal'],
-  ['sap-collections', 'teal'],
   ['sap-agentic', 'cobalt'],
   ['sap-compositional', 'cobalt'],
   ['engaze', 'plum'],
   ['airline-app', 'cobalt'],
-  ['data-ai', 'teal'],
   ['dnetworx', 'plum'],
+  // Under NDA, shared by access code only (lockedCases in nda.ts). Data and AI is hidden for now (hiddenCases).
+  ['sap-search', 'plum'],
+  ['sap-signin', 'teal'],
+  ['sap-collections', 'teal'],
 ]
 
 export const caseStudies: CaseStudy[] = ORDER.map(([id, tone], i) => {

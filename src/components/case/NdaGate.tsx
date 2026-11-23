@@ -4,7 +4,7 @@ import { checkCode, isUnlocked, unlock } from '../../data/nda'
 import { useContact } from '../contact/ContactProvider'
 
 /** Asks for an access code before showing a detailed case study that is under NDA. */
-export default function NdaGate({ id, title, children }: { id: string; title: string; children: ReactNode }) {
+export default function NdaGate({ id, title, children, whole = false }: { id: string; title: string; children: ReactNode; whole?: boolean }) {
   const [open, setOpen] = useState(isUnlocked(id))
   const [code, setCode] = useState('')
   const [error, setError] = useState('')
@@ -23,7 +23,7 @@ export default function NdaGate({ id, title, children }: { id: string; title: st
       <div className="container-site py-20 md:py-28 max-w-xl">
         <p className="text-overline text-ink-3 mb-5">Under NDA</p>
         <h1 className="text-ink font-serif" style={{ fontSize: 'var(--fs-page-title)', lineHeight: 1.1, letterSpacing: 'var(--track-title)' }}>{title}</h1>
-        <p className="text-body-lg text-ink-2 mt-5">The detailed case study is shared by access code. Enter the code you were given to read it.</p>
+        <p className="text-body-lg text-ink-2 mt-5">{whole ? 'This case study is shared by access code. Enter the code you were given to open it.' : 'The detailed case study is shared by access code. Enter the code you were given to read it.'}</p>
         <form onSubmit={submit} className="mt-8 flex flex-col gap-3" noValidate>
           <label htmlFor="nda-code" className="field-label">Access code</label>
           <input id="nda-code" className="field" type="text" inputMode="text" autoComplete="off" autoCapitalize="characters" spellCheck={false} value={code} onChange={e => { setCode(e.target.value); setError('') }} aria-invalid={!!error} aria-describedby={error ? 'nda-err' : undefined} autoFocus />
@@ -33,7 +33,7 @@ export default function NdaGate({ id, title, children }: { id: string; title: st
             <button type="button" className="btn btn-ghost" onClick={() => openContact({ topic: 'other', subject: `Access code request - ${title}`, message: `Hello, could I have the access code for the detailed "${title}" case study?` })}>Ask for the code</button>
           </div>
         </form>
-        <p className="mt-10"><Link to={`/craft/${id}`} className="link text-body-sm">← Read the short version</Link></p>
+        <p className="mt-10"><Link to={whole ? '/craft' : `/craft/${id}`} className="link text-body-sm">{whole ? '← All works' : '← Read the short version'}</Link></p>
       </div>
     </section>
   )

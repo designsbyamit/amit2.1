@@ -63,7 +63,7 @@ export default function StoryPage() {
   const st = id ? storyById(id) : undefined
   const [watching, setWatching] = useState(false)
   const reduce = useReducedMotion()
-  if (!cs || !st) return <Navigate to={id ? `/craft/${id}` : '/craft'} replace />
+  if (!cs || !st) return <Navigate to="/craft" replace />
 
   const film = films[cs.id]
   const n = st.beats.length

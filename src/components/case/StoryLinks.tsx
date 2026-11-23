@@ -15,11 +15,11 @@ export function BackToShort({ id }: { id: string }) {
   return (
     <div className="absolute inset-x-0 z-20 pointer-events-none" style={{ top: 'calc(var(--header-h) + 6px)' }}>
       <div className="container-site flex flex-wrap items-center gap-2">
-        <Link to={`/craft/${id}`} className="pointer-events-auto inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-label text-ink-2 hover:text-white transition-colors bg-bg" style={{ borderColor: 'var(--line-2)' }} aria-label={`Back to the teaser: ${cs.shortTitle}`}>
+        <Link to={`/craft/${id}`} className="pointer-events-auto inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-label text-ink-2 hover:text-white transition-colors bg-bg" style={{ borderColor: 'var(--line-2)' }} aria-label={`Back to the short story: ${cs.shortTitle}`}>
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          View teaser
+          Read the short story
         </Link>
-        {film && <button type="button" onClick={() => setWatching(true)} className="pointer-events-auto inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-label text-ink-2 hover:text-white transition-colors bg-bg" style={{ borderColor: 'var(--line-2)' }}>Watch the video</button>}
+        {film && <button type="button" onClick={() => setWatching(true)} className="pointer-events-auto inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-label text-ink-2 hover:text-white transition-colors bg-bg" style={{ borderColor: 'var(--line-2)' }}>Watch the film</button>}
         {watching && film && <VideoModal src={film.to} title={film.title} onClose={() => setWatching(false)} />}
       </div>
     </div>

@@ -76,7 +76,7 @@ export const engaze = {
   },
   language: { image: I('hcm-system'), alt: 'Engaze design language: colour, type, components, principles' },
   outcomes: {
-    measured: [['90% CSAT', 'in the employee-experience module'], ['#1 HR AI', 'most praised HR AI product at the client'], ['Executive recognition', '"Stands beside any other leading studios\' work globally."']] as [string, string][],
+    measured: [['90% CSAT', 'in usability testing of the employee-experience module'], ['#1 HR AI', 'most praised HR AI product at the client'], ['Executive recognition', '"Stands beside any other leading studios\' work globally."']] as [string, string][],
     vision: ['One design language across six roles and every stage of the lifecycle', 'Role homes designed and prototyped for recruiter, manager, HR partner and leader', 'A trust model (sources, approvals, fairness, audit) specified once and reused'] as string[],
   },
 }

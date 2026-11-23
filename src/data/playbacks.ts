@@ -92,7 +92,7 @@ export const playbacks: Playback[] = [
       challenge: 'HCM suites are built for administrators and sold as separate modules. Five roles, from a new joiner to a chief people officer, each start their day in a different place. The brief was to improve the experience of every role.',
       users: 'Five roles: employee, manager, recruiter, HR and leadership. The module that shipped was designed around three archetypes, Navin the new joiner, Esha the experienced employee and Manoj the manager, whose needs shaped what the companion had to do.',
       solution: 'Five principles instead of flows, proven in the employee-experience module, then extended across the suite as one companion, one trust model and one people graph.',
-      impact: 'The employee-experience module shipped at 90% CSAT and was the most praised HR AI product at the client.',
+      impact: 'The employee-experience module scored 90% CSAT in usability testing and became the most praised HR AI product at the client.',
     },
     order: ['challenge', 'users', 'decision', 'solution', 'impact'],
     visuals: {
@@ -100,7 +100,7 @@ export const playbacks: Playback[] = [
       users: [{ src: S('engaze-archetypes'), alt: 'Three archetypes: Navin the new joiner, Esha the experienced employee and Manoj the manager', ratio: '2000 / 1410', caption: 'The three archetypes, with their needs and primary tasks.' }],
       solution: [{ src: S('engaze-portal'), alt: 'The companion beside the employee’s workplace portal, on a tablet', ratio: '2000 / 1505', caption: 'The module that shipped: the companion sits beside the portal people already use, one tap away.' }],
     },
-    metric: { value: '90%', label: 'CSAT in the employee-experience module' },
+    metric: { value: '90%', label: 'CSAT in usability testing, employee-experience module' },
     decision: { heading: 'Why we stopped designing flows and started designing principles', body: 'In conversational AI, dialog flows only cover the happy path. The generative layer handles everything else. We recognised early that writing more flows was the wrong answer: instead, we defined five principles (trust, guidance, discoverability, cognitive simplicity, continuity) that taught the system how to behave in any situation. Those five principles outlasted every screen we designed.' },
     featured: true,
   },

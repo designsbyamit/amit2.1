@@ -19,7 +19,7 @@ export function WindowFrame({ children, className = '' }: { children: React.Reac
 
 /** A project told like a news story: a large cover, an impact-led headline, a short dek and a few tags.
  *  `tile` is the carousel card (image above, text below); `row` is the stacked Works layout (image beside the text). */
-export default function ProjectCard({ cs, pb, variant = 'tile', headingLevel = 'h3', showNumber = true }: { cs: CaseStudy; pb: Playback; variant?: 'tile' | 'row'; headingLevel?: 'h2' | 'h3'; showNumber?: boolean }) {
+export default function ProjectCard({ cs, pb, variant = 'tile', headingLevel = 'h3', showNumber = true, locked = false }: { cs: CaseStudy; pb: Playback; variant?: 'tile' | 'row'; headingLevel?: 'h2' | 'h3'; showNumber?: boolean; locked?: boolean }) {
   const H = headingLevel
   const row = variant === 'row'
   return (
@@ -35,7 +35,7 @@ export default function ProjectCard({ cs, pb, variant = 'tile', headingLevel = '
         <p className="text-label text-ink-2">{showNumber && <><span className="text-signal-ink">{cs.number}</span> / </>}<CaseTags category={cs.category} /></p>
         <H className={`text-heading text-ink group-hover:underline decoration-1 underline-offset-[0.18em] ${row ? '' : 'max-w-measure-s'}`}>{pb.headline}</H>
         <p className="text-body text-ink-2 max-w-measure-l">{pb.dek}</p>
-        <span className="inline-flex items-center gap-2 text-label text-ink mt-1" aria-hidden="true">View project<Arrow /></span>
+        <span className="inline-flex items-center gap-2 text-label text-ink mt-1" aria-hidden="true">{locked ? <><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5" /><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" /></svg>Access code required</> : <>View project<Arrow /></>}</span>
       </div>
     </Link>
   )

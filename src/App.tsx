@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, useLocation, useNavigate, useParams, Navigate } from 'react-router-dom'
-import { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect, type ReactNode } from 'react'
 import LogoLoader from './components/ui/LogoLoader'
 import useRouteSeo from './seo/useRouteSeo'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/layout/Nav'
 import NdaGate from './components/case/NdaGate'
-import { gatedCases } from './data/nda'
+import { gatedCases, lockedCases, hiddenCases } from './data/nda'
 import { caseStudies } from './data/work'
 import Footer from './components/layout/Footer'
 import LicenseNote from './components/ui/LicenseNote'
@@ -122,8 +122,32 @@ function CaseDetail() {
   )
   // Case studies under NDA ask for an access code first.
   const cs = caseStudies.find(c => c.id === id)
-  if (id && gatedCases.includes(id) && cs) return <NdaGate id={id} title={cs.title}>{body}</NdaGate>
+  if (id && hiddenCases.includes(id)) return <Navigate to="/craft" replace />
+  if (id && gatedCases.includes(id) && cs) return <NdaGate id={id} title={cs.title} whole={lockedCases.includes(id)}>{body}</NdaGate>
   return body
+}
+
+/** Case studies under NDA in full: every page of the case asks for the code first. Hidden cases go back to Works. */
+/** One short version per case, always at /craft/<id>: the one-highlight story where the case has one, otherwise the playback. */
+function ShortVersion() {
+  const { id } = useParams<{ id: string }>()
+  if (id === 'sap-agentic') return <AgenticGuidePage variant="lucid" />
+  if (id === 'airline-app') return <TravelStoryPage />
+  if (id === 'engaze') return <StoryPage />
+  return <PlaybackPage />
+}
+function StoryRedirect() {
+  const { id } = useParams<{ id: string }>()
+  return <Navigate to={`/craft/${id}`} replace />
+}
+
+function Locked({ id: fixed, children }: { id?: string; children: ReactNode }) {
+  const { id: param } = useParams<{ id: string }>()
+  const id = fixed ?? param ?? ''
+  if (hiddenCases.includes(id)) return <Navigate to="/craft" replace />
+  const cs = caseStudies.find(c => c.id === id)
+  if (lockedCases.includes(id) && cs) return <NdaGate id={id} title={cs.title} whole>{children}</NdaGate>
+  return <>{children}</>
 }
 
 /** The page frame. A film opened in the case-study modal (?embed=1) has no site header, footer or progress line. */
@@ -156,10 +180,10 @@ function AnimatedRoutes() {
         <Route path="/home-v3" element={<HomeV3 />} />
         <Route path="/craft" element={<PageTransition><Craft /></PageTransition>} />
         <Route path="/craft/engaze/film" element={<PageTransition><EngazeFilmPage /></PageTransition>} />
-        <Route path="/craft/sap-collections/film" element={<PageTransition><CollectionsFilmPage /></PageTransition>} />
-        <Route path="/craft/sap-signin/film" element={<PageTransition><SignInFilmPage /></PageTransition>} />
+        <Route path="/craft/sap-collections/film" element={<PageTransition><Locked id="sap-collections"><CollectionsFilmPage /></Locked></PageTransition>} />
+        <Route path="/craft/sap-signin/film" element={<PageTransition><Locked id="sap-signin"><SignInFilmPage /></Locked></PageTransition>} />
         <Route path="/craft/sap-compositional/film" element={<PageTransition><CompositionalFilmPage /></PageTransition>} />
-        <Route path="/craft/sap-search/film" element={<PageTransition><SearchFilmPage /></PageTransition>} />
+        <Route path="/craft/sap-search/film" element={<PageTransition><Locked id="sap-search"><SearchFilmPage /></Locked></PageTransition>} />
         <Route path="/craft/sap-agentic/story-v2" element={<Navigate to="/craft/sap-agentic/details" replace />} />
         <Route path="/craft/sap-agentic/film" element={<PageTransition><AgenticFilmPage /></PageTransition>} />
         <Route path="/craft/sap-agentic/film-v1" element={<PageTransition><AgenticFilmV1Page /></PageTransition>} />
@@ -167,14 +191,12 @@ function AnimatedRoutes() {
         <Route path="/craft/sap-agentic/film-v3" element={<PageTransition><AgenticFilmV3Page /></PageTransition>} />
         <Route path="/labs/order-confirmation" element={<ScmPrototype />} />
         <Route path="/labs/engaze" element={<EngazePrototype />} />
-        <Route path="/labs/ai-search" element={<SearchPrototype />} />
+        <Route path="/labs/ai-search" element={<Locked id="sap-search"><SearchPrototype /></Locked>} />
         <Route path="/craft/stories/:slug" element={<PageTransition><ShortStoryPage /></PageTransition>} />
         <Route path="/craft/:id/details" element={<PageTransition><CaseDetail /></PageTransition>} />
-        <Route path="/craft/sap-agentic/story" element={<PageTransition><AgenticGuidePage variant="lucid" /></PageTransition>} />
-        <Route path="/craft/sap-agentic/story-lucid" element={<Navigate to="/craft/sap-agentic/story" replace />} />
-        <Route path="/craft/airline-app/story" element={<PageTransition><TravelStoryPage /></PageTransition>} />
-        <Route path="/craft/:id/story" element={<PageTransition><StoryPage /></PageTransition>} />
-        <Route path="/craft/:id" element={<PageTransition><PlaybackPage /></PageTransition>} />
+        <Route path="/craft/:id/story" element={<StoryRedirect />} />
+        <Route path="/craft/:id/story-lucid" element={<StoryRedirect />} />
+        <Route path="/craft/:id" element={<PageTransition><Locked><ShortVersion /></Locked></PageTransition>} />
         <Route path="/leadership" element={<PageTransition><LeadershipPage /></PageTransition>} />
         <Route path="/leadership/cases/:slug" element={<PageTransition><LeadershipCasePage /></PageTransition>} />
         <Route path="/learn" element={<PageTransition><LearnPage /></PageTransition>} />

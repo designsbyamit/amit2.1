@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { useInView, useReducedMotion } from 'framer-motion'
 import './v2.css'
+import { agenticShot } from '../../../data/sapAgenticV2'
 
 export interface Frame { img: string; label: string }
 
-const shot = (id: string) => `${import.meta.env.BASE_URL}images/case-studies/sap-agentic/${id}.webp`
+const shot = agenticShot
 const HOLD = 3200
 
 /** The real screens of one pattern, looping in a small frame. Dots let people pick a frame; reduced motion shows the first. */

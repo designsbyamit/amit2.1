@@ -21,7 +21,7 @@ const steady = [
 const habits = [
   { t: 'Stay close to the work.', d: 'On AI Search I built the prototype myself, with UI5 Web Components and six journeys, so the team could test a direction instead of debating a picture.', to: '/craft/sap-search', link: 'AI Search' },
   { t: 'Design what can ship.', d: 'Collections is a Fiori application. Every decision was made inside its fixed patterns, and the ideas that were hard to build were reshaped until they could be. Phases 1 and 2 are live.', to: '/craft/sap-collections', link: 'Collections' },
-  { t: 'Write principles, not more screens.', d: 'On Engaze we stopped adding dialog flows and wrote five principles that taught the assistant how to behave. The module shipped at 90% CSAT.', to: '/craft/engaze', link: 'Engaze' },
+  { t: 'Write principles, not more screens.', d: 'On Engaze we stopped adding dialog flows and wrote five principles that taught the assistant how to behave. The module scored 90% CSAT in usability testing.', to: '/craft/engaze', link: 'Engaze' },
   { t: 'Make the decision visible.', d: 'In agentic work the hard question is where a person decides. On order confirmations I designed the human-in-the-loop model with the agent: three gates where only a person can accept or reject, and every difference shown with its reasoning.', to: '/craft/sap-agentic', link: 'Agentic order confirmations' },
 ]
 

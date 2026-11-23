@@ -3,7 +3,6 @@ import { heroClass, heroStyle } from '../data/caseTheme'
 import { motion } from 'framer-motion'
 import Breadcrumb from '../components/ds/Breadcrumb'
 import CaseThumb from '../components/ds/CaseThumb'
-import Button from '../components/ds/Button'
 import { caseStudies } from '../data/work'
 import { sapAgenticV2 as S } from '../data/sapAgenticV2'
 import { story as T, type Chapter } from '../data/sapAgenticV2Story'
@@ -13,13 +12,15 @@ import ContractV2 from '../components/agentic/v2/ContractV2'
 import SwimlaneV2 from '../components/agentic/v2/SwimlaneV2'
 import FlowDiagramV2 from '../components/agentic/v2/FlowDiagramV2'
 import FlowPlayerV2 from '../components/agentic/v2/FlowPlayerV2'
+import { agenticShot } from '../data/sapAgenticV2'
+import { lucidRings } from '../data/agenticLucidRings'
 import RiskLogic from '../components/agentic/v2/RiskLogic'
 import PatternLoop from '../components/agentic/v2/Patterns'
 import RiskVisual from '../components/agentic/RiskVisual'
 import AutonomyLadder from '../components/agentic/AutonomyLadder'
 
 const cs = caseStudies.find(c => c.id === 'sap-agentic')!
-const shot = (id: string) => `${import.meta.env.BASE_URL}images/case-studies/sap-agentic/${id}.webp`
+const shot = agenticShot
 
 function Section({ id, children, tone = 'base' }: { id?: string; children: React.ReactNode; tone?: 'base' | 'raised' }) {
   return (
@@ -59,7 +60,6 @@ export default function SAPAgenticStoryV2Page() {
               <p className="text-label text-ink-3 ">{cs.category}</p>
               <h1 className="text-display-l text-white mt-5">{cs.title}</h1>
               <p className="text-body-lg text-ink-2 mt-6 max-w-measure-xl">{T.hero.strap}</p>
-              <div className="mt-8"><Button to="/craft/sap-agentic/film" arrow>Watch the 2-minute film</Button></div>
             </div>
             <figure className="lg:col-span-7 m-0">
               <div className="rounded-2xl overflow-hidden" style={{ boxShadow: 'var(--shadow-3)' }}><CaseThumb id={cs.id} live flush /></div>
@@ -138,7 +138,7 @@ export default function SAPAgenticStoryV2Page() {
         <Head c={C.flow} />
         <FlowDiagramV2 />
         <div className="mt-20">
-          <FlowPlayerV2 imgs={imgs} title="Order 1505899" intro="Real screens from the prototype, played in order." />
+          <FlowPlayerV2 imgs={imgs} title="Order 1505899" intro="Real screens from the prototype, played in order." rings={lucidRings} />
         </div>
       </Section>
 

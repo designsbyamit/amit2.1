@@ -8,6 +8,9 @@ export interface AJourney { id: string; label: string; title: string; summary: s
 
 const B = import.meta.env.BASE_URL
 const dir = `${B}images/case-studies/sap-agentic/`
+/** Screens recaptured from the current prototype (Tervana, Supplier Order Assistant). These replace the older exports everywhere the case shows them. */
+export const LUCID_SHOTS = new Set(["admin-connected", "admin-setup", "buyer-activity", "buyer-decided", "buyer-email", "buyer-extraction", "buyer-review", "buyer-revised", "buyer-saved", "buyer-sent", "buyer-share", "buyer-versions", "buyer-worklist", "gr-confirm", "gr-decided", "gr-review", "gr-submit", "gr-worklist", "gr-worklist-2", "ops-confirm", "ops-edit", "ops-editing", "ops-read", "ops-saved", "ops-validate", "ops-validated", "ops-worklist", "signin-ops"])
+export const agenticShot = (id: string) => LUCID_SHOTS.has(id) ? `${B}images/case-studies/sap-agentic-lucid/${id}.webp` : `${dir}${id}.webp`
 
 export const sapAgenticV2 = {
   title: 'Reimagining order confirmation for an agentic supply chain',
@@ -257,7 +260,7 @@ export const sapAgenticV2 = {
     { n: '01', title: 'Extract first, then let a person confirm', body: 'The agent reads the email and the PDF and shows what it found next to the original, with a confidence score. The operations manager corrects anything, saves a draft and marks the validation complete. Nothing moves on until a person has said so.', shot: 'ops-read' },
     { n: '02', title: 'Show every difference, and why', body: 'Each discrepancy shows the PO value, the confirmed value, the delta, a severity and a plain-language AI reasoning. For example: “Translated from German ‘45 Tage netto’. Finance approval needed for extension.”', shot: 'buyer-review' },
     { n: '03', title: 'Route each decision to the right role', body: 'The discrepancy view is generated and routed. Buyers weigh cost and logistics impact; goods recipients validate quantities and delivery dates against what the business actually needs. Both just accept or reject.', shot: 'gr-review' },
-    { n: '04', title: 'Always say what happens next', body: 'An Insights and Recommendations panel on every page names the next action: review, confirm, share with the supplier, or “all set for now”. The buyer’s email to the supplier is drafted by the agent, with the discrepancy list attached.', shot: 'buyer-email' },
+    { n: '04', title: 'Always say what happens next', body: 'An agent recommendation beside the work names the next action: review, confirm, share with the supplier, or “all set for now”. The buyer’s email to the supplier is drafted by the agent, with the discrepancy list attached.', shot: 'buyer-email' },
     { n: '05', title: 'Log everything', body: 'Corrections, AI recommendations, decisions and emails land in one Activity timeline, labelled by who acted: AI Agent, the operations manager, the buyer, the goods recipient or the system.', shot: 'buyer-activity' },
   ],
 
@@ -326,5 +329,5 @@ export const sapAgenticV2 = {
         { id: 'gr-confirm', name: 'Confirm the decisions, Submit' },
         { id: 'gr-submit', name: 'Submit for further processing, with a comment' },
       ] },
-  ].map(j => ({ ...j, screens: j.screens.map(s => ({ ...s, img: `${dir}${s.id}.webp` })) })) as AJourney[],
+  ].map(j => ({ ...j, screens: j.screens.map(s => ({ ...s, img: agenticShot(s.id) })) })) as AJourney[],
 }

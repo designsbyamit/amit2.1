@@ -6,7 +6,7 @@ import Latest from './Latest'
 
 /** Latest Works: the selected projects, one clean frame each, stacked. No sideways scrolling. */
 export default function FeaturedWork() {
-  const order = ['sap-agentic', 'sap-search', 'engaze']
+  const order = ['sap-agentic', 'sap-compositional', 'engaze']
   const items = playbacks
     .filter(p => p.featured)
     .sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id))
