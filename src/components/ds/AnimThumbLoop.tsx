@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { STAGE } from '../../film/loops/kit'
 import { LoopSignIn, LoopCollections, LoopSearch, LoopCds, SIGNIN_LOOP, COLLECTIONS_LOOP, SEARCH_LOOP, CDS_LOOP } from '../../film/loops/sap'
-import { LoopEngaze, ENGAZE_LOOP } from '../../film/loops/engaze'
+import { ShotLoop, shotDuration } from '../../film/loops/shots'
 import { LoopAirline, AIRLINE_LOOP } from '../../film/loops/airline'
 import { LoopData, DATA_LOOP } from '../../film/loops/data'
 import { LoopDnm, DNM_LOOP } from '../../film/loops/dnm'
@@ -12,7 +12,8 @@ const LOOPS: Record<string, { duration: number; render: (t: number) => ReactNode
   collections: { duration: COLLECTIONS_LOOP, render: t => <LoopCollections t={t} /> },
   search: { duration: SEARCH_LOOP, render: t => <LoopSearch t={t} /> },
   cds: { duration: CDS_LOOP, render: t => <LoopCds t={t} /> },
-  engaze: { duration: ENGAZE_LOOP, render: t => <LoopEngaze t={t} /> },
+  engaze: { duration: shotDuration('engaze'), render: t => <ShotLoop id="engaze" t={t} /> },
+  agentic: { duration: shotDuration('agentic'), render: t => <ShotLoop id="agentic" t={t} /> },
   travel: { duration: AIRLINE_LOOP, render: t => <LoopAirline t={t} /> },
   data: { duration: DATA_LOOP, render: t => <LoopData t={t} /> },
   options: { duration: DNM_LOOP, render: t => <LoopDnm t={t} /> },
