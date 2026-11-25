@@ -3,6 +3,7 @@
 <!-- Hand-composed static covers for the five newer cases. Each cover shows the story's main output, with its own palette.
      Render: node tools/covers/crafted.mjs  (ONLY=<id> for one) -->
 <style>
+@font-face{font-family:'Outfit';src:url('../../public/prototypes/order-confirmations/outfit.woff2');font-weight:100 900}
 @font-face{font-family:'Geist';src:url('../../node_modules/@fontsource-variable/geist/files/geist-latin-wght-normal.woff2');font-weight:100 900}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#222;display:grid;gap:40px;padding:40px;width:1680px;font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -54,24 +55,35 @@ svg{display:block}
 
 /* ---------- Collections: jade ---------- */
 #sap-collections{background:url('../../public/images/mesh/sap-collections-cover.webp') center/cover}
-#sap-collections .wl{position:absolute;left:70px;top:150px;width:900px;height:700px;border-radius:26px;background:#F7FAF9;box-shadow:0 60px 100px rgba(0,0,0,.55);transform:perspective(1800px) rotateY(16deg) rotateX(4deg);transform-origin:0 50%;padding:34px 36px;overflow:hidden}
-#sap-collections .wl h3{font:600 28px/1 Geist;color:#0A2850}
-#sap-collections .wl .sub{font:400 18px/1 Geist;color:#5B7470;margin-top:10px}
-#sap-collections .wl .hd,#sap-collections .wl .r{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;align-items:center;gap:14px}
-#sap-collections .wl .hd{margin-top:30px;padding:0 6px 14px;border-bottom:1.5px solid #DCE6E3;font:600 15px/1 Geist;color:#6B827E;letter-spacing:.06em;text-transform:uppercase}
-#sap-collections .wl .r{padding:20px 6px;border-bottom:1.5px solid #E7EEEC;font:500 20px/1 Geist;color:#13302B}
-#sap-collections .wl .r small{display:block;font:400 15px/1 Geist;color:#6B827E;margin-top:7px}
-#sap-collections .pr{display:inline-flex;align-items:center;gap:8px;font:600 16px/1 Geist;border-radius:8px;padding:8px 11px}
-#sap-collections .nba{position:absolute;left:880px;top:270px;width:620px;height:470px;border-radius:28px;background:#0A2850;border:2px solid #7CC8F2;box-shadow:0 0 0 9px rgba(124,200,242,.14),0 0 80px rgba(124,200,242,.4),0 50px 90px rgba(2,16,40,.55);padding:38px 40px}
-#sap-collections .nba .ov{font:600 16px/1 Geist;color:#9AD6F7;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-#sap-collections .nba h3{font:500 34px/1.2 Geist;color:#F2F9FF;margin-top:22px;letter-spacing:-.01em}
-#sap-collections .nba ul{list-style:none;margin-top:26px;display:grid;gap:14px}
-#sap-collections .nba li{display:flex;gap:14px;font:400 20px/1.35 Geist;color:#BFD8EC}
-#sap-collections .nba li i{width:8px;height:8px;border-radius:50%;background:#7CC8F2;margin-top:10px;flex:none}
-#sap-collections .nba .btns{display:flex;gap:14px;margin-top:36px}
-#sap-collections .nba .btns span{height:56px;border-radius:14px;padding:0 28px;display:grid;place-items:center;font:600 20px/1 Geist}
-#sap-collections .who{position:absolute;left:1180px;top:770px;display:flex;align-items:center;gap:14px;background:#F2F9FF;color:#0A2850;border-radius:999px;padding:14px 24px 14px 14px;font:600 19px/1 Geist;box-shadow:0 20px 40px rgba(0,0,0,.45)}
-#sap-collections .who i{width:36px;height:36px;border-radius:50%;background:#0A2850;display:grid;place-items:center}
+#sap-collections .wl{position:absolute;left:70px;top:150px;width:900px;height:700px;border-radius:26px;background:#fff;box-shadow:0 60px 100px rgba(0,0,0,.5);transform:perspective(1800px) rotateY(16deg) rotateX(4deg);transform-origin:0 50%;overflow:hidden;font-family:Outfit;color:#0F1115}
+#sap-collections .wl .bar{height:64px;display:flex;align-items:center;gap:12px;padding:0 30px;box-shadow:0 1px 0 #E3E3DF;font:600 19px/1 Outfit}
+#sap-collections .wl .bar .m{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#6B4CF0,#3D2AB8);display:grid;place-items:center;color:#fff;font:700 18px/1 Outfit;position:relative}
+#sap-collections .wl .bar .m:after{content:'';position:absolute;right:5px;bottom:5px;width:6px;height:6px;border-radius:50%;background:#9EF0DA}
+#sap-collections .wl .bar .sep{width:1.5px;height:22px;background:#CDCDC7;margin:0 4px}
+#sap-collections .wl .bar .n{font-weight:500;color:#383B44}
+#sap-collections .wl .in{padding:28px 36px 0;background:#F6F6F4;height:100%}
+#sap-collections .wl h3{font:600 30px/1.1 Outfit;letter-spacing:-.02em}
+#sap-collections .wl .sub{font:400 18px/1 Outfit;color:#666A74;margin-top:10px}
+#sap-collections .wl .tb{margin-top:24px;background:#fff;border-radius:16px;box-shadow:0 1px 2px rgba(15,17,21,.05),0 0 0 1px rgba(15,17,21,.06);padding:0 10px}
+#sap-collections .wl .hd,#sap-collections .wl .r{display:grid;grid-template-columns:1.6fr 1fr 1fr .9fr;align-items:center;gap:14px}
+#sap-collections .wl .hd{padding:16px 12px 14px;border-bottom:1px solid #E3E3DF;font:500 15px/1 Outfit;color:#666A74}
+#sap-collections .wl .r{padding:17px 12px;border-bottom:1px solid #EEEEEA;font:500 19px/1 Outfit;color:#0F1115;font-variant-numeric:tabular-nums}
+#sap-collections .wl .r:last-child{border-bottom:0}
+#sap-collections .wl .r small{display:block;font:400 15px/1 Outfit;color:#666A74;margin-top:7px}
+#sap-collections .wl .r .ns{color:#383B44;font-weight:400}
+#sap-collections .pr{display:inline-flex;align-items:center;gap:8px;font:500 15px/1 Outfit;border-radius:99px;padding:7px 12px}
+#sap-collections .pr i{width:8px;height:8px;border-radius:50%;background:currentColor}
+#sap-collections .nba{position:absolute;left:880px;top:270px;width:620px;height:470px;border-radius:24px;background:#fff;box-shadow:0 0 0 2px #5B3FE0,0 0 0 10px rgba(91,63,224,.22),0 50px 90px rgba(2,16,40,.5);padding:36px 40px;font-family:Outfit;color:#0F1115}
+#sap-collections .nba .ov{font:500 17px/1 Outfit;color:#4326C4;display:flex;align-items:center;gap:12px}
+#sap-collections .nba .ov b{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#7C5CFF,#22C7E8);display:grid;place-items:center}
+#sap-collections .nba h3{font:600 32px/1.22 Outfit;margin-top:22px;letter-spacing:-.02em}
+#sap-collections .nba ul{list-style:none;margin-top:22px;display:grid;gap:12px}
+#sap-collections .nba li{display:flex;gap:14px;font:400 20px/1.35 Outfit;color:#383B44}
+#sap-collections .nba li i{width:7px;height:7px;border-radius:50%;background:#5B3FE0;margin-top:11px;flex:none}
+#sap-collections .nba .btns{display:flex;gap:12px;margin-top:32px}
+#sap-collections .nba .btns span{height:54px;border-radius:12px;padding:0 28px;display:grid;place-items:center;font:500 20px/1 Outfit}
+#sap-collections .who{position:absolute;left:1180px;top:770px;display:flex;align-items:center;gap:14px;background:#fff;color:#0F1115;border-radius:999px;padding:12px 24px 12px 12px;font:500 19px/1 Outfit;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+#sap-collections .who i{width:38px;height:38px;border-radius:50%;background:#E1DCFB;color:#3B2A8F;display:grid;place-items:center;font:600 14px/1 Outfit;font-style:normal}
 
 /* ---------- Sign-in: cobalt ---------- */
 #sap-signin{background:url('../../public/images/mesh/sap-signin-cover.webp') center/cover}
@@ -135,8 +147,8 @@ svg{display:block}
   <div class="card dec">
     <svg width="46" height="46" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11.5" fill="#2E3680"/><circle cx="12" cy="9.5" r="3.4" fill="none" stroke="#DADDFF" stroke-width="1.8"/><path d="M5.8 18.5c1.3-2.6 3.5-3.9 6.2-3.9s4.9 1.3 6.2 3.9" fill="none" stroke="#DADDFF" stroke-width="1.8" stroke-linecap="round"/></svg>
     <b>Your decision</b>
-    <div class="btn" style="background:#3DBA68;color:#082814;margin-top:26px">Approve</div>
-    <div class="btn" style="border:1.5px solid #8C93FF;color:#E4E6FF">Request changes</div>
+    <div class="btn" style="background:#5B3FE0;color:#fff;margin-top:26px;box-shadow:0 1px 2px rgba(67,38,196,.4)">Accept</div>
+    <div class="btn" style="border:1.5px solid #8C93FF;color:#E4E6FF">Reject</div>
   </div>
 </div>
 
@@ -159,26 +171,26 @@ svg{display:block}
 <!-- 3 · Collections: the worklist behind, the agent's recommendation in front, a person approves -->
 <div class="c" id="sap-collections">
   <div class="dots"></div>
-  <div class="wl">
+  <div class="wl"><div class="bar"><span class="m">T</span>Tervana<span class="sep"></span><span class="n">Collections Assistant</span></div><div class="in">
     <h3>My collection worklist</h3><div class="sub">48 customers · 12 need action today</div>
-    <div class="hd"><span>Customer</span><span>Overdue</span><span>Priority</span><span>Next step</span></div>
-    <div class="r"><span>Northwind Traders<small>3 company codes</small></span><span>€ 182,400</span><span><span class="pr" style="background:#FDE3DE;color:#A3271A">✦ Very high</span></span><span>Reminder</span></div>
-    <div class="r"><span>Blue Harbor Foods<small>2 company codes</small></span><span>€ 96,150</span><span><span class="pr" style="background:#FFEBD2;color:#8A4A06">✦ High</span></span><span>Call</span></div>
-    <div class="r"><span>Kestrel Logistics<small>1 company code</small></span><span>€ 64,900</span><span><span class="pr" style="background:#FFEBD2;color:#8A4A06">✦ High</span></span><span>Dispute</span></div>
-    <div class="r"><span>Alder and Finch<small>4 company codes</small></span><span>€ 41,280</span><span><span class="pr" style="background:#E3F1EE;color:#1F5C51">✦ Medium</span></span><span>Wait</span></div>
-    <div class="r"><span>Copperline Retail<small>2 company codes</small></span><span>€ 27,640</span><span><span class="pr" style="background:#E3F1EE;color:#1F5C51">✦ Medium</span></span><span>Reminder</span></div>
-  </div>
+    <div class="tb"><div class="hd"><span>Customer</span><span>Overdue</span><span>Priority</span><span>Next step</span></div>
+    <div class="r"><span>Northwind Traders<small>3 company codes</small></span><span>€182,400</span><span><span class="pr" style="background:#FCE9E9;color:#A61E24"><i style="background:#D93D42"></i>Very high</span></span><span class="ns">Reminder</span></div>
+    <div class="r"><span>Blue Harbor Foods<small>2 company codes</small></span><span>€96,150</span><span><span class="pr" style="background:#FCF1E0;color:#8A5507"><i style="background:#D98E1F"></i>High</span></span><span class="ns">Call</span></div>
+    <div class="r"><span>Kestrel Logistics<small>1 company code</small></span><span>€64,900</span><span><span class="pr" style="background:#FCF1E0;color:#8A5507"><i style="background:#D98E1F"></i>High</span></span><span class="ns">Dispute</span></div>
+    <div class="r"><span>Alder and Finch<small>4 company codes</small></span><span>€41,280</span><span><span class="pr" style="background:#F0F0ED;color:#383B44"><i style="background:#A0A3AB"></i>Medium</span></span><span class="ns">Wait</span></div>
+    <div class="r"><span>Copperline Retail<small>2 company codes</small></span><span>€27,640</span><span><span class="pr" style="background:#F0F0ED;color:#383B44"><i style="background:#A0A3AB"></i>Medium</span></span><span class="ns">Reminder</span></div></div>
+  </div></div>
   <div class="nba">
-    <div class="ov"><svg width="22" height="22" viewBox="0 0 24 24" fill="#9AD6F7"><path d="M12 3l1.9 5.2 5.1 1.8-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.8z"/></svg>Next best action</div>
+    <div class="ov"><b><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12 3l1.9 5.2 5.1 1.8-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.8z"/></svg></b>Agent recommendation</div>
     <h3>Send Northwind a reminder with the two open credit notes</h3>
     <ul>
       <li><i></i>Three invoices are 45 days past due</li>
       <li><i></i>Two credit notes can offset part of the balance</li>
       <li><i></i>No contact in the last 14 days</li>
     </ul>
-    <div class="btns"><span style="background:#7CC8F2;color:#06213F">Approve and draft</span><span style="border:1.5px solid #7CC8F2;color:#E4F4FF">Edit</span></div>
+    <div class="btns"><span style="background:#5B3FE0;color:#fff">Accept and draft</span><span style="box-shadow:inset 0 0 0 1.5px #CDCDC7;color:#0F1115">Edit</span></div>
   </div>
-  <div class="who"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2F9FF" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="9" r="3.6"/><path d="M5.5 19c1.4-2.8 3.7-4.2 6.5-4.2s5.1 1.4 6.5 4.2"/></svg></i>A person decides</div>
+  <div class="who"><i>MR</i>A person decides</div>
 </div>
 
 <!-- 4 · Sign-in: many apps around, one sign-in card, its three steps -->

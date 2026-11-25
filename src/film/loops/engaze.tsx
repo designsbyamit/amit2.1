@@ -12,7 +12,7 @@ const Check = ({ x, y, on }: { x: number; y: number; on: number }) =>
 
 export function LoopEngaze({ t }: { t: number }) {
   const MX = 268, MW = 900, CXc = MX + MW / 2
-  const Q1 = 'I’m down with a fever. Can I take today off?', Q2 = 'Set an out-of-office for today'
+  const Q1 = 'I need a sick leave for today.', Q2 = 'Set an out-of-office for today'
   const welcome = 1 - fade(t, 1.7, 2.0)
   const conv = fade(t, 1.9, 2.2)
   const scroll = 250 * fin(t, 9.2, 0.8)
@@ -34,12 +34,12 @@ export function LoopEngaze({ t }: { t: number }) {
   return <Stage look={L} t={t} cam={cam} cur={cur} clicks={clicks} caps={caps} accent={accent}>
     <Box x={0} y={0} w={W} h={H} s={{ background: K.bg, color: K.ink }} />
     {/* sidebar */}
-    <Txt x={26} y={22} w={180} h={34} size={24} weight={600}>engaze</Txt>
+    <Box x={24} y={22} w={230} h={34} s={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 17 }}><span style={{ width: 30, height: 30, borderRadius: 8, background: 'linear-gradient(135deg,#6B4CF0,#3D2AB8)', color: '#fff', fontWeight: 700, fontSize: 18, ...center }}>T</span><b style={{ fontWeight: 600 }}>Tervana</b><span style={{ width: 1, height: 18, background: K.ln }} /><span style={{ color: K.mu, fontWeight: 500 }}>Engaze</span></Box>
     <Box x={18} y={78} w={228} h={46} s={{ background: '#fff', border: ln(), borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10, padding: '0 14px', fontSize: 17, fontWeight: 500 }}><Ico n="plus" s={18} c={K.ink} />New conversation</Box>
     <Txt x={28} y={146} w={200} h={22} size={14} color={K.faint} weight={500}>Today</Txt>
     <Box x={18} y={172} w={228} h={42} s={{ background: K.vS, borderRadius: 10, padding: '0 14px', fontSize: 16, lineHeight: '42px', color: K.v, fontWeight: 500, ...one }}>{t >= 2.0 ? 'Sick leave today' : 'New conversation'}</Box>
     <Txt x={28} y={238} w={200} h={22} size={14} color={K.faint} weight={500}>Earlier</Txt>
-    {['Cab reimbursement, Pune', 'My Gen AI training plan', 'Update my address'].map((q, i) => <Txt key={q} x={32} y={268 + i * 40} w={210} h={26} size={16} color={K.mu}>{q}</Txt>)}
+    {['Cab reimbursement, Pune', 'My learning plan', 'Update my address'].map((q, i) => <Txt key={q} x={32} y={268 + i * 40} w={210} h={26} size={16} color={K.mu}>{q}</Txt>)}
     <Box x={18} y={680} w={228} h={58} s={{ background: '#fff', border: ln(), borderRadius: 14, display: 'flex', alignItems: 'center', gap: 12, padding: '0 12px' }}>
       <span style={{ width: 34, height: 34, borderRadius: 17, background: '#F0735A', color: '#fff', fontSize: 15, fontWeight: 600, ...center }}>E</span>
       <span style={{ lineHeight: '20px' }}><span style={{ display: 'block', fontSize: 15, fontWeight: 600 }}>Esha Sharma</span><span style={{ fontSize: 13, color: K.mu }}>Senior Dev Lead</span></span></Box>
@@ -76,26 +76,26 @@ export function LoopEngaze({ t }: { t: number }) {
               <div style={{ fontSize: 15, color: K.mu, marginTop: 6, lineHeight: '22px', ...one }}>{b}</div>
               <div style={{ fontSize: 15, color: K.v, fontWeight: 500, marginTop: 14, display: 'flex', alignItems: 'center', gap: 6 }}>{c}<Ico n="arrowR" s={16} c={K.v} /></div>
             </Box>)}
-          {[Q1, 'Old or new tax regime: which is better for me?', 'Claim my Pune flight', 'Can I carry forward unused leave?'].map((q, i) => { const hot = i === 0 && t >= 1.2
+          {[Q1, 'My leave balance', 'Show my CTC breakup', 'Write a feedback for Arjun'].map((q, i) => { const hot = i === 0 && t >= 1.2
             return <Box key={q} x={MX + 60 + (i % 2) * 398} y={540 + Math.floor(i / 2) * 56} w={382} h={46} s={{ background: hot ? K.vS : '#fff', border: ln(hot ? K.v : K.ln), borderRadius: 12, display: 'flex', alignItems: 'center', gap: 10, padding: '0 14px', fontSize: 15.5, transform: clk(t, [1.4]) && i === 0 ? 'scale(.98)' : 'none' }}><span style={{ width: 7, height: 7, borderRadius: 4, background: K.v, flex: 'none' }} /><span style={one}>{q}</span></Box> })}
         </Box>
 
         {/* conversation */}
         <Box x={0} y={0} w={W} h={H} s={{ opacity: conv, visibility: conv > 0 ? 'visible' : 'hidden' }}>
           <Box x={0} y={yo - 120} w={W} h={1400}>
-            <Box x={MX + MW - 60 - 470} y={56} w={470} h={48} s={{ background: K.ink, color: '#fff', borderRadius: 24, fontSize: 16.5, fontWeight: 500, ...center, opacity: fin(t, 2.0, 0.35) }}>{Q1}</Box>
+            <Box x={MX + MW - 60 - 470} y={56} w={470} h={48} s={{ background: K.v, color: '#fff', borderRadius: '24px 24px 6px 24px', fontSize: 16.5, fontWeight: 500, ...center, opacity: fin(t, 2.0, 0.35) }}>{Q1}</Box>
             <Orb x={MX + 76} y={142} r={18} />
-            {['Checked your leave balance', 'Read the leave policy, section 3.2', 'Found who to tell: Manoj and the Platform team'].map((q, i) => { const o = fin(t, 2.5 + i * 0.6, 0.3)
-              return <div key={q}><Check x={MX + 108} y={130 + i * 28} on={o} /><Txt x={MX + 136} y={128 + i * 28} w={600} h={24} size={15.5} color={K.mu} s={{ opacity: o }}>{q}</Txt></div> })}
+            {['Sick leave, for today', '5 of 12 days left', 'What the policy allows', 'Manoj and the Platform team'].map((q, i) => { const o = fin(t, 2.5 + i * 0.45, 0.3)
+              return <div key={q}><Check x={MX + 108} y={130 + i * 24} on={o} /><Txt x={MX + 136} y={128 + i * 24} w={600} h={24} size={15.5} color={K.mu} s={{ opacity: o }}>{q}</Txt></div> })}
             <Box x={MX + 108} y={230} w={720} h={56} s={{ fontSize: 18, lineHeight: '28px', opacity: fin(t, 4.4, 0.4) }}>Sorry you’re unwell, Esha. Rest up. I’ve got sick leave ready for today. Have a look before I apply it.</Box>
             {!applied && <Box x={MX + 108} y={302} w={720} h={262} s={{ background: '#fff', border: ln(), borderRadius: 18, boxShadow: '0 1px 2px rgba(23,18,43,.04), 0 12px 28px -16px rgba(23,18,43,.22)', opacity: fin(t, 4.8, 0.45), transform: `translateY(${(1 - fin(t, 4.8, 0.45)) * 12}px)` }}>
               <Box x={18} y={18} w={96} h={28} s={{ borderRadius: 14, background: K.vS, color: K.v, fontSize: 14, fontWeight: 600, ...center }}>Sick leave</Box>
               <Box x={540} y={18} w={160} h={28} s={{ borderRadius: 14, border: ln(), color: K.v, fontSize: 14, fontWeight: 500, ...center }}>Leave policy §3.2</Box>
-              {[['When', 'Today, 18 Oct'], ['Length', '1 day'], ['Balance after', '4 of 12 days']].map(([l, v], i) => <div key={l}><Txt x={18 + i * 180} y={64} w={170} h={20} size={14} color={K.faint}>{l}</Txt><Txt x={18 + i * 180} y={86} w={170} h={26} size={18} weight={600}>{v}</Txt></div>)}
+              {[['When', 'Today'], ['Length', '1 day'], ['Balance after', '4 of 12 days']].map(([l, v], i) => <div key={l}><Txt x={18 + i * 180} y={64} w={170} h={20} size={14} color={K.faint}>{l}</Txt><Txt x={18 + i * 180} y={86} w={170} h={26} size={18} weight={600}>{v}</Txt></div>)}
               <Box x={18} y={128} w={680} h={26} s={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 15, color: K.mu }}>I’ll tell <span style={{ width: 22, height: 22, borderRadius: 11, background: '#3B82F6', color: '#fff', fontSize: 11, fontWeight: 600, ...center }}>M</span><b style={{ color: K.ink, fontWeight: 600 }}>Manoj Kumar</b>, your manager, and the <b style={{ color: K.ink, fontWeight: 600 }}>Platform team</b></Box>
               <Box x={18} y={164} w={682} h={34} s={{ borderRadius: 10, background: K.okS, color: K.ok, fontSize: 15, fontWeight: 500, display: 'flex', alignItems: 'center', gap: 8, padding: '0 12px' }}><Ico n="shield" s={16} c={K.ok} />Within policy. One day doesn’t need a medical certificate.</Box>
-              <Box x={18} y={210} w={150} h={40} s={{ borderRadius: 10, background: applying ? '#5A3AE0' : K.v, color: '#fff', fontSize: 16, fontWeight: 500, ...center, transform: clk(t, [7.6]) ? 'scale(.97)' : 'none' }}>{applying ? 'Applying…' : 'Apply leave'}</Box>
-              <Box x={178} y={210} w={150} h={40} s={{ borderRadius: 10, border: ln(), fontSize: 16, fontWeight: 500, ...center }}>Change dates</Box>
+              <Box x={18} y={210} w={180} h={40} s={{ borderRadius: 10, background: applying ? '#5A3AE0' : K.v, color: '#fff', fontSize: 16, fontWeight: 500, ...center, transform: clk(t, [7.6]) ? 'scale(.97)' : 'none' }}>{applying ? 'Applying…' : 'Apply sick leave'}</Box>
+              <Box x={208} y={210} w={110} h={40} s={{ borderRadius: 10, border: ln(), fontSize: 16, fontWeight: 500, ...center }}>Change</Box>
             </Box>}
             {applied && <Box x={MX + 108} y={302} w={720} h={84} s={{ background: '#F3FBF6', border: ln(K.okL), borderRadius: 18, opacity: fin(t, 8.4, 0.4), display: 'flex', alignItems: 'center', gap: 16, padding: '0 20px' }}>
               <span style={{ width: 40, height: 40, borderRadius: 20, background: '#1B8F57', ...center, flex: 'none' }}><Ico n="check" s={22} c="#fff" w={2.4} /></span>
@@ -103,7 +103,7 @@ export function LoopEngaze({ t }: { t: number }) {
               <span style={{ display: 'flex', alignItems: 'center', gap: 6, color: K.v, fontSize: 15, fontWeight: 500, flex: 'none' }}><Ico n="undo" s={16} c={K.v} />Undo · {Math.max(0, 30 - Math.floor((t - 8.4) * 1)) }s</span>
             </Box>}
 
-            {sent2 && <Box x={MX + MW - 60 - 300} y={440} w={300} h={48} s={{ background: K.ink, color: '#fff', borderRadius: 24, fontSize: 16.5, fontWeight: 500, ...center, opacity: fin(t, 11.0, 0.3) }}>{Q2}</Box>}
+            {sent2 && <Box x={MX + MW - 60 - 300} y={440} w={300} h={48} s={{ background: K.v, color: '#fff', borderRadius: '24px 24px 6px 24px', fontSize: 16.5, fontWeight: 500, ...center, opacity: fin(t, 11.0, 0.3) }}>{Q2}</Box>}
             {sent2 && <><Orb x={MX + 76} y={524} r={18} />
               {['Looked at your calendar for today', 'Matched the tone of your last out-of-office'].map((q, i) => { const o = fin(t, 11.4 + i * 0.5, 0.3)
                 return <div key={q}><Check x={MX + 108} y={512 + i * 28} on={o} /><Txt x={MX + 136} y={510 + i * 28} w={600} h={24} size={15.5} color={K.mu} s={{ opacity: o }}>{q}</Txt></div> })}
@@ -120,7 +120,7 @@ export function LoopEngaze({ t }: { t: number }) {
         {/* composer */}
         <Box x={MX + 60} y={660} w={MW - 120} h={56} s={{ background: '#fff', border: ln(t >= 9.5 && t < 11.0 ? K.v : K.ln), borderRadius: 28, display: 'flex', alignItems: 'center', gap: 12, padding: '0 8px 0 12px', boxShadow: '0 8px 24px -16px rgba(23,18,43,.25)' }}>
           <span style={{ width: 30, height: 30, borderRadius: 15, background: 'radial-gradient(circle at 35% 30%, #fff 0%, #A9BCFF 38%, #B26BFF 74%, #FF8FB8 100%)', flex: 'none' }} />
-          <span style={{ flex: 1, fontSize: 17, color: typed2 && !sent2 ? K.ink : K.faint, ...one }}>{typed2 && !sent2 ? <>{typed2}{caret(t) && <span style={{ display: 'inline-block', width: 1.5, height: 20, background: K.v, verticalAlign: 'middle', marginLeft: 1 }} />}</> : 'Ask about leave, pay, tax, claims or policies'}</span>
+          <span style={{ flex: 1, fontSize: 17, color: typed2 && !sent2 ? K.ink : K.faint, ...one }}>{typed2 && !sent2 ? <>{typed2}{caret(t) && <span style={{ display: 'inline-block', width: 1.5, height: 20, background: K.v, verticalAlign: 'middle', marginLeft: 1 }} />}</> : 'Ask about leave, pay, tax or policies'}</span>
           <span style={{ width: 40, height: 40, borderRadius: 20, background: typed2 && !sent2 ? K.v : '#DDDAE8', ...center, flex: 'none', transform: clk(t, [11.0]) ? 'scale(.92)' : 'none' }}><Ico n="arrowUp" s={20} c="#fff" w={2} /></span>
         </Box>
         <Txt x={MX} y={722} w={MW} h={20} size={13} color={K.faint} s={{ textAlign: 'center' }}>Only you can see this conversation. Engaze confirms before it acts for you.</Txt>
