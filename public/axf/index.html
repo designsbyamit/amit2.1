@@ -565,6 +565,61 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 @keyframes pgScan{0%,100%{transform:translateX(0)}30%{transform:translateX(-52px)}60%{transform:translateX(48px)}}
 @media (prefers-reduced-motion:reduce){.pg .pg-l{stroke-dashoffset:0;opacity:1}.pg .pg-f,.pg .pg-g,.pg .pg-d{opacity:1;transform:none}.pg .pg-p,.pg .pg-t{display:none}.pg.go *{animation:none!important}}
 
+/* ============ plan + deliverables ============ */
+.plan{background:var(--c-surface)}
+.plan-q{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-5);margin-top:var(--sp-7)}
+.plan-qi{display:grid;gap:var(--sp-2);align-content:start}
+.plan-l{list-style:none;padding:0;margin:var(--sp-8) 0 0}
+.plan-l li{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:var(--sp-4);align-items:start;padding:var(--sp-4) 0;border-top:1px solid var(--c-line)}
+.plan-n{width:30px;height:30px;border-radius:50%;background:var(--c-sunken);display:grid;place-items:center;font:500 .8125rem var(--ff-mono)}
+.plan-h{display:flex;gap:var(--sp-3);align-items:center;flex-wrap:wrap}
+.plan-b p{margin-top:4px}
+.plan-x{color:var(--c-ink);background:var(--c-sunken);border-radius:var(--r-2);padding:8px 12px;margin-top:8px!important}
+.plan-a{display:flex;gap:var(--sp-2);flex-wrap:wrap;justify-content:flex-end}
+.sit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-5);padding:var(--sp-5);background:var(--c-surface);border-radius:var(--r-3)}
+.sit.one{grid-template-columns:minmax(0,1fr)}
+.dls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-3);margin-top:var(--sp-4)}
+.dl{display:flex;gap:var(--sp-3);align-items:flex-start;padding:var(--sp-4);border-radius:var(--r-3);background:var(--c-surface);text-decoration:none;transition:background var(--t-fast) var(--ease)}
+.dl:hover{background:var(--c-raise)}
+.dl-i{flex:none;font:500 .6875rem var(--ff-mono);letter-spacing:.06em;padding:6px 8px;border-radius:var(--r-1);background:var(--c-signal);color:var(--c-on-signal)}
+.dl b{display:block;font-weight:500;font-size:var(--fs-2)}
+.dl small{display:block;font-size:var(--fs-1);color:var(--c-ink-3);margin-top:2px}
+.dlist{list-style:none;padding:0;margin:var(--sp-4) 0 0;display:grid;gap:var(--sp-2)}
+.dcard2{display:grid;grid-template-columns:40px minmax(0,1fr) auto 70px;gap:var(--sp-4);align-items:center;padding:var(--sp-4);border-radius:var(--r-3);background:var(--c-surface);text-decoration:none;transition:background var(--t-fast) var(--ease)}
+.dcard2:hover{background:var(--c-raise)}
+.dcard2 b{display:block;font-weight:500}
+.dcard2 small{display:block;color:var(--c-ink-3);font-size:var(--fs-1)}
+.dcard2.off{opacity:.6}
+.dv{margin-top:var(--sp-8)}
+.dv-s{margin-top:var(--sp-8)}
+.dv-s:first-child{margin-top:0}
+.dv-s>h3{margin-bottom:var(--sp-4)}
+.dv-q{font-family:var(--ff-serif);font-weight:300;font-size:var(--fs-5);line-height:1.3;max-width:52ch}
+.dv-i{margin-top:var(--sp-3);font-size:var(--fs-2);color:var(--c-ink-2)}
+.kp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp-3);margin-top:var(--sp-6)}
+.kp div{background:var(--c-surface);border-radius:var(--r-3);padding:var(--sp-4)}
+.kp b{display:block;font-family:var(--ff-serif);font-weight:300;font-size:clamp(28px,3.4vw,40px);letter-spacing:-.03em;line-height:1}
+.kp span{display:block;font-size:var(--fs-1);color:var(--c-ink-3);margin-top:8px}
+.hb{display:grid;gap:var(--sp-2)}
+.hb-r{display:grid;grid-template-columns:minmax(0,13em) minmax(0,1fr) 6em;gap:var(--sp-3);align-items:center;font-size:var(--fs-2)}
+.hb-t{height:10px;border-radius:5px;background:var(--c-sunken);overflow:hidden}
+.hb-t i{display:block;height:100%;background:var(--c-ink-3);border-radius:5px}
+.hb-v{text-align:right;font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.src{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:var(--r-1);font:500 .6875rem var(--ff-mono);letter-spacing:.04em;text-transform:uppercase;background:var(--c-sunken);color:var(--c-ink-2);white-space:nowrap}
+.src-real,.src-public{background:var(--c-signal);color:var(--c-on-signal)}
+.src-synthetic{background:#33203F;color:#ECEDEF}
+.src-proposal{color:var(--c-proposal)}
+@media(max-width:1000px){.dls{grid-template-columns:minmax(0,1fr)}.kp{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.plan-q,.sit{grid-template-columns:minmax(0,1fr)}.plan-l li{grid-template-columns:32px minmax(0,1fr)}.plan-a{grid-column:2;justify-content:flex-start}.dcard2{grid-template-columns:32px minmax(0,1fr) auto}.dcard2 .badge{display:none}.hb-r{grid-template-columns:minmax(0,1fr) 5em}.hb-t{grid-column:1/-1;order:3}}
+.prt-p{margin-top:56px;padding-top:32px;border-top:1px solid var(--c-line);break-before:page}
+.prt-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:20px}
+.prt-f{display:grid;gap:4px;margin-top:12px}
+.prt-f b{font-size:var(--fs-2);font-weight:600}
+.prt-f small{font-size:var(--fs-1);color:var(--c-ink-3)}
+.prt-f i{display:block;height:44px;border-radius:var(--r-2);background:var(--c-sunken)}
+@media(max-width:760px){.prt-g{grid-template-columns:minmax(0,1fr)}}
+@media print{.top,.foot{display:none}.prt-p{break-before:page}}
+
 .view{animation:in var(--t-base) var(--ease)}
 @keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.view{animation:none}*,*::before,*::after{transition:none!important}}
@@ -578,7 +633,7 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
  <div class="wrap">
   <a class="logo" href="#home" aria-label="Agentic Experience Handbook home"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="5.2" r="3.4" fill="#7D98FF"/><circle cx="21.6" cy="18.4" r="3.4" fill="#C79BE8"/><circle cx="6.4" cy="18.4" r="3.4" fill="#C8F55A"/></svg>AXF <small>Handbook</small></a>
   <nav class="nav" id="nav" aria-label="Main">
-   <a href="#handbook">Handbook</a><a href="#home">Framework</a><a href="#examples">Examples</a><a href="#kit">Toolkit</a><a href="#guardrails">Guardrails</a>
+   <a href="#home">Start</a><a href="#handbook">Handbook</a><a href="#examples">Examples</a><a href="#kit">Toolkit</a><a href="#guardrails">Guardrails</a>
   </nav>
   <div class="depth-ctl"><span class="xs">Depth</span><div class="seg" role="group" aria-label="Depth" id="depth-seg"></div><button type="button" class="theme-btn" id="theme-btn" aria-label="Switch light or dark theme"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.6 1.6M14.4 14.4L16 16M4 16l1.6-1.6M14.4 5.6L16 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>
  </div>
@@ -589,6 +644,8 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 <script src="data.js"></script>
 <script src="handbook.js"></script>
 <script src="solutions.js"></script>
+<script src="ar.js"></script>
+<script src="packs.js"></script>
 <script>
 {
 const D=window.AXF,{PH,MOVES:M,G,GRP,ROUTER,PAT,GLOSS,SKILLS,CASES,LEVELS,LENSES,PERIMETER,BRIEFS,TAGS,RESEARCH,AGENTIC}=D;
@@ -675,9 +732,10 @@ function home(){
   <div><span class="over">The Agentic Experience Handbook</span>
   <h1 style="margin-top:var(--sp-4)">Build agents people love and trust.</h1>
   <p class="lede" style="margin-top:var(--sp-5)">${D.OBJECTIVE}</p>
-  <div class="cluster"><a class="btn btn--primary" href="#m-${next.id}">${M.some(started)?'Continue: '+next.name:'Start chapter 1'} ${I.arrow}</a><a class="btn" href="#examples">See three worked examples</a></div></div>
+  <div class="cluster"><a class="btn btn--primary" href="#plan">Plan my use case ${I.arrow}</a><a class="btn" href="#examples">See three real examples</a></div></div>
   ${lensFig()}
  </div></section>
+ ${planSection()}
  <section class="band-s" style="padding-top:0"><div class="wrap">
   <div class="between" style="margin-bottom:var(--sp-5)"><h2>Choose how deep to go</h2><p class="small muted">Switch any time from the top bar.</p></div>
   <div class="depthpick">${LEVELS.map(l=>`<button type="button" class="dopt" data-setdepth="${l.id}" aria-pressed="${l.id===depth}"><span class="between"><b>${l.name}</b><span class="badge badge--soft">${l.time}</span></span><p>${l.d}</p></button>`).join('')}</div>
@@ -704,6 +762,27 @@ function home(){
   <div class="rails" style="margin-top:var(--sp-6)">${G.map(g=>`<div class="rail"><span class="over">${g.grp}</span><h4>${g.name}</h4><p>${g.rule}</p></div>`).join('')}</div>
  </div></section>`;
 }
+
+
+/* ---------- plan my use case ---------- */
+const PLANQ=[['users','Can you talk to the people who will use it?',[['yes','Yes'],['no','No, not directly']]],['build','What are you building?',[['new','Something new'],['enhance','An add-on to an existing system']]],['data','What data do you have?',[['own','Shared by the customer'],['public','Public data only'],['none','None yet']]]];
+const PLANX={
+ untangle:a=>a.build==='enhance'?'Add one line per existing system to the givens: what it does today must keep working.':'',
+ people:a=>[a.users==='no'?'No interviews: research the data, then interview synthetic users grounded in it. Confirm with one domain expert or proxy if you can.':'Interview three people, and run the data analysis in parallel.',a.data==='public'?'Use the public datasets as stand-ins and list the exact data to request from the customer.':a.data==='none'?'Simulate from published figures in the brief, and request data on day one.':'Analyse the shared files first: they are your best evidence.'].join(' '),
+ finish:a=>a.data==='none'?'Baselines come from the brief until real data arrives; mark them as such.':'Compute every baseline from the data, not from opinion.',
+ rightsize:a=>a.build==='enhance'?'Add a system map: what each existing system does today and exactly where the agent plugs in. Extend, never replace.':'',
+ golden:a=>a.build==='enhance'?'Design inside the screens people already use before adding any new surface.':'',
+ ground:a=>a.build==='enhance'?'Tools wrap the existing system\'s APIs with the user\'s own permissions.':'',
+ slice:a=>a.build==='enhance'?'Your riskiest integration is the existing system\'s API: put it in the slice.':'',
+ evals:a=>a.users==='no'?'Expected answers come from domain rules and the data; ask an expert to review 20 of them.':''
+};
+function planSection(){const a=LS.get('plan',{users:'no',build:'enhance',data:'public'});const P=D.PACK.steps;
+ return `<section class="band plan" id="plan"><div class="wrap">
+  <div class="between"><div><span class="over">Start here</span><h2 style="margin-top:var(--sp-3)">Your plan in three answers</h2><p class="lede" style="margin-top:var(--sp-3)">Answer for your use case. The plan below lists exactly what to produce, in order, and adapts to your constraints.</p></div></div>
+  <div class="plan-q">${PLANQ.map(q=>`<div class="plan-qi"><span class="small">${q[1]}</span><span class="seg" role="group" aria-label="${q[1]}">${q[2].map(o=>`<button type="button" data-plan="${q[0]}" data-v="${o[0]}" aria-pressed="${a[q[0]]===o[0]}">${o[1]}</button>`).join('')}</span></div>`).join('')}</div>
+  <ol class="plan-l">${P.map((st,i)=>{const m=byId(st[1]),x=(PLANX[st[1]]||(()=>''))(a);return `<li><span class="plan-n">${i+1}</span><div class="plan-b"><div class="plan-h"><b>${st[2]}</b><span class="badge badge--soft">${PH[m.ph].name}</span></div><p class="small muted">${m.must[0]}</p>${x?`<p class="small plan-x">${x}</p>`:''}</div><div class="plan-a"><a class="btn btn--sm" href="#m-${m.id}">Do it</a><a class="btn btn--sm btn--ghost" href="#d-urban-${st[0]}">Real example</a></div></li>`}).join('')}</ol>
+ </div></section>`}
+function bindPlan(){const box=document.getElementById('plan');if(!box)return;box.addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(!b)return;const a=LS.get('plan',{users:'no',build:'enhance',data:'public'});a[b.dataset.plan]=b.dataset.v;LS.set('plan',a);const y=window.scrollY;box.outerHTML=planSection();bindPlan();window.scrollTo(0,y)})}
 
 /* ---------- handbook cover ---------- */
 function workMD(){const name=(work._project||'Untitled agent').trim();return `# Agent card: ${name}\n\n`+PHS.map(p=>`## ${PH[p].name}\n\n`+M.filter(m=>m.ph===p).map(m=>`### ${idx(m.id)+1}. ${m.name}\n`+(m.fields.map(f=>(W(m.id)[f.k]||'').trim()?`**${f.label}:** ${W(m.id)[f.k].trim()}`:'').filter(Boolean).join('\n')||'(not started)')).join('\n\n')).join('\n\n')}
@@ -890,8 +969,8 @@ function casePage(id,tab){const c=CASES[id];
   <div class="crumb"><a href="#examples">Examples</a><span>/</span><span>${c.short}</span></div>
   <div class="grid" style="margin-top:var(--sp-5)"><div><span class="over">${c.sector}</span><h1 style="margin-top:var(--sp-3)">${c.title}</h1><p class="lede" style="margin-top:var(--sp-4)">${c.dek}</p></div><div class="stats">${c.stats.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div></div>
   <p class="small muted" style="margin-top:var(--sp-6);max-width:68ch">${c.source.replace('proposal','<span class="prop">proposal</span>')}</p>
-  <nav class="tabs" style="margin-top:var(--sp-6)" aria-label="Case views"><a href="#case-${id}" ${tab==='j'?'aria-current="page"':''}>Chapter by chapter</a><a href="#solution-${id}" ${tab==='s'?'aria-current="page"':''}>What the solution looks like</a></nav>
- </div></section><section class="band" style="padding-top:var(--sp-8)"><div class="wrap">${tab==='j'?journey(id):solution(id)}</div></section>`}
+  <nav class="tabs" style="margin-top:var(--sp-6)" aria-label="Case views"><a href="#case-${id}" ${tab==='d'?'aria-current="page"':''}>Deliverables</a><a href="#solution-${id}" ${tab==='s'?'aria-current="page"':''}>Prototype</a><a href="#sheets-${id}" ${tab==='j'?'aria-current="page"':''}>Worksheets</a></nav>
+ </div></section><section class="band" style="padding-top:var(--sp-8)"><div class="wrap">${tab==='j'?journey(id):tab==='d'?deliverables(id):solution(id)}</div></section>`}
 function journey(id){const c=CASES[id];
  return `<div class="between" style="align-items:center"><p class="small muted" style="max-width:56ch">${depth===1?'Each chapter shows its gist. Open one to see the filled-in worksheet.':'Every chapter, filled in.'}</p><button type="button" class="btn btn--sm" id="copy-case">${I.copy} Copy as Markdown</button></div>${fb('casefall')}
  ${PHS.map(p=>{const [bg,ink]=PHC[p];return `<div class="phase-h" style="--tc:${PHC[p][3]}"><i class="tdot" style="align-self:center"></i><h2>${PH[p].name}</h2><span class="muted small">${PH[p].q}</span></div>${M.filter(m=>m.ph===p).map(m=>{const ls=c.e[m.id]||[];return `<details class="jrow" style="--pc:${bg};--pci:${ink}" ${depth>1?'open':''}><summary><span class="n">${idx(m.id)+1}</span><span><h4>${m.name}</h4><span class="g">${esc(clean(ls[0]||''))}</span></span>${PM}</summary><ul class="list">${ls.map(lineHTML).join('')}</ul></details>`}).join('')}`}).join('')}`}
@@ -920,11 +999,43 @@ function bindProto(){const p=document.getElementById('proto');if(!p)return;const
 function solDecs(id){return {collections:[['One row per customer','Matches how collectors plan their day. Company Codes listed inline; the per-code breakdown moves to Customer 360.'],['Recommendation before the draft','People approve the intent before any text exists. One extra step on routine follow ups, and the step where trust is built.'],['AI columns are marked','Priority and predicted arrear days carry the AI marker, so people know which values are model output.'],['Cooldown replaces the action','Contacting a customer again inside the window was a top complaint. Overriding means opening the customer.']],urban:[['Severity and confidence apart','A confident low-severity defect and an unsure critical one need different routes. Critical always reaches a person.'],['Evidence travels with the work','The work request carries the image, location, skills and SLA, so crews and finance see the same proof.'],['No evidence, no closure','The agent never closes a work order or triggers an invoice without evidence that meets the agreed policy.'],['Privacy at the edge','Faces and plates are removed at the camera, before any data leaves it.']],rca:[['A gate at every D-step','Human approval is mandatory at each step. The agent drafts; the engineer decides.'],['Evidence beside every claim','Proposed root causes link to the past cases and records they came from, and competing hypotheses stay visible.'],['AI versus human, on record','The audit trail stores what the AI generated and what people changed at each step.'],['Standardise before automating','Plants on 4D move to the digitised 8D process before the AI layer is added.']]}[id]}
 function bindCase(id){const b=document.getElementById('copy-case');if(b)b.addEventListener('click',()=>copyText(caseMD(id),'casefall'))}
 
+
+/* ---------- deliverables ---------- */
+function packOf(id){return D.PACK[id]||null}
+function dContent(id,key){const pk=packOf(id),S=D.SOL[id],H=D.PACK.helpers,c=CASES[id];
+ if(pk&&pk.d[key])return pk.d[key]();
+ const fromLines=mid=>`<ul class="list">${(c.e[mid]||[]).map(lineHTML).join('')}</ul>`;
+ const map={autonomy:()=>H.t(['Action','Level','Control'],S.autonomy),golden:()=>`<p><a class="btn btn--primary" href="#solution-${id}">Open the prototype</a></p>`+H.t(['Beat','Person sees','Agent does'],S.steps.map((s,i)=>[`${i+1}. ${s.t}`,s.sees,s.agent])),failure:()=>H.t(['Failure','Response'],S.fails.map(f=>[f.t,f.d])),spec:()=>H.t(['Part','Specification'],S.spec)};
+ if(map[key])return map[key]();
+ return null}
+function dReady(id,key){return dContent(id,key)!==null}
+function deliverables(id){const pk=packOf(id),P=D.PACK.steps;
+ return `${pk?`<div class="sit">${[['People',pk.situation.users],['System',pk.situation.system],['Data',pk.situation.data]].map(x=>`<div><span class="over">${x[0]}</span><p class="small" style="margin-top:6px">${x[1]}</p></div>`).join('')}</div>
+  <h3 style="margin-top:var(--sp-8)">Data used</h3><div class="dls">${pk.data.map(x=>`<a class="dl" href="${x.file}" download><span class="dl-i" aria-hidden="true">CSV</span><span><b>${x.name}</b><small>${x.rows}</small><small>${x.kind==='synthetic'?'Synthetic, grounded':'Public data'} · ${x.src}</small></span></a>`).join('')}</div>`:`<div class="sit one"><p class="small">The data analysis for this example runs on the datasets being downloaded. Deliverables marked ready are built from the brief.</p></div>`}
+ <h3 style="margin-top:var(--sp-8)">The twelve deliverables</h3>
+ <ol class="dlist">${P.map((st,i)=>{const ok=dReady(id,st[0]),m=byId(st[1]);return `<li><a class="dcard2 ${ok?'':'off'}" href="#d-${id}-${st[0]}"><span class="plan-n">${i+1}</span><span><b>${st[2]}</b><small>${st[3]}</small></span><span class="badge badge--soft">${PH[m.ph].name}</span><span class="xs ${ok?'':'muted'}">${ok?'Open':'Needs data'}</span></a></li>`}).join('')}</ol>`}
+function dPage(id,key){const c=CASES[id],P=D.PACK.steps,i=P.findIndex(s=>s[0]===key),st=P[i],m=byId(st[1]),prev=P[i-1],next=P[i+1],body=dContent(id,key);
+ return `<section class="band"><div class="wrap" style="max-width:1000px">
+  <div class="crumb"><a href="#examples">Examples</a><span>/</span><a href="#case-${id}">${c.short}</a><span>/</span><span>Deliverable ${i+1} of 12</span></div>
+  <div class="between" style="margin-top:var(--sp-5);align-items:end"><div><span class="over">${PH[m.ph].name} · ${m.name}</span><h1 style="margin-top:var(--sp-3)">${st[2]}</h1><p class="lede" style="margin-top:var(--sp-3)">${st[3]}. ${c.title}.</p></div><a class="btn btn--sm" href="#m-${m.id}">Template and method</a></div>
+  <div class="dv">${body||`<div class="callout"><h4>Needs the data</h4><p class="small" style="margin-top:6px">This deliverable is built from the datasets you are downloading. It appears here as soon as they are analysed.</p></div>`}</div>
+  <nav class="pn" aria-label="Deliverables">${prev?`<a class="card card--link" href="#d-${id}-${prev[0]}"><small>Previous</small>${prev[2]}</a>`:`<a class="card card--link" href="#case-${id}"><small>Back to</small>All deliverables</a>`}${next?`<a class="card card--link nx" href="#d-${id}-${next[0]}"><small>Next</small>${next[2]}</a>`:`<a class="card card--link nx" href="#case-${id}"><small>Back to</small>All deliverables</a>`}</nav>
+ </div></section>`}
+
+
+/* ---------- printable template pack ---------- */
+function printPage(){return `<section class="band prt"><div class="wrap" style="max-width:900px"><span class="over">Template pack</span><h1 style="margin-top:12px">The twelve templates, blank and filled</h1><p class="lede" style="margin-top:12px">Each page has the template as it appears on the FigJam board, then the same template filled in for the Collections example.</p>
+ ${M.map((m,i)=>`<article class="prt-p"><span class="over">${PH[m.ph].name} · Chapter ${i+1} of 12</span><h2 style="margin-top:8px">${m.name}</h2><p class="lede" style="margin-top:6px">${m.q}</p>
+  <h4 style="margin-top:20px">Must do</h4><ol class="small" style="padding-left:18px;margin-top:6px">${m.must.map(x=>`<li>${x}</li>`).join('')}</ol>
+  <div class="prt-g"><div><h4>Template</h4>${m.fields.map(f=>`<div class="prt-f"><b>${f.label}</b>${f.hint?`<small>${f.hint}</small>`:''}<i></i></div>`).join('')}</div>
+  <div><h4>Filled: Collections</h4><ul class="list small">${(CASES.collections.e[m.id]||[]).map(lineHTML).join('')}</ul></div></div></article>`).join('')}
+ </div></section>`}
+
 /* ---------- toolkit ---------- */
 const KT=[['tools','Decision tools'],['templates','Worksheets'],['skills','AI skills'],['patterns','Patterns'],['words','Shared words'],['system','Design system']];
 function kitPage(t){return `<section class="band" style="padding-bottom:0"><div class="wrap"><span class="over">Toolkit</span><h1 style="margin-top:var(--sp-3)">Everything you need to make it loved and trusted</h1><nav class="tabs" style="margin-top:var(--sp-7)" aria-label="Toolkit sections">${KT.map(k=>`<a href="#kit-${k[0]}" ${k[0]===t?'aria-current="page"':''}>${k[1]}</a>`).join('')}</nav></div></section><section class="band" style="padding-top:var(--sp-8)"><div class="wrap">${({tools:kitTools,templates:kitTemplates,skills:kitSkills,patterns:kitPatterns,words:kitWords,system:kitSystem})[t]()}</div></section>`}
 function kitTools(){return `<div class="stack">${toolHTML('reframe')}${toolHTML('research')}${toolHTML('bar')}</div><div class="g2" style="margin-top:var(--sp-5);align-items:start"><div class="stack">${toolHTML('agentcheck')}${toolHTML('fails')}</div><div class="stack">${toolHTML('autonomy')}${toolHTML('router')}${toolHTML('mix')}</div></div>`}
-function kitTemplates(){return `<div class="card figjam"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="2" y="2" width="40" height="40" rx="11" fill="#f26a3d"/><rect x="11" y="11" width="10" height="10" rx="2.5" fill="#fff"/><rect x="23" y="11" width="10" height="10" rx="2.5" fill="#fff" opacity=".7"/><rect x="11" y="23" width="10" height="10" rx="2.5" fill="#fff" opacity=".7"/><rect x="23" y="23" width="10" height="10" rx="2.5" fill="#fff"/></svg><div><h3>FigJam board for team workshops</h3><p class="small muted" style="margin-top:var(--sp-1)">One section per chapter, prompt stickies and blank stickies. Duplicate it into your drafts.</p></div>${FIGJAM?`<a class="btn btn--primary" href="${esc(FIGJAM)}">Open in FigJam ${I.arrow}</a>`:''}</div>
+function kitTemplates(){return `<div class="card figjam"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="2" y="2" width="40" height="40" rx="11" fill="#f26a3d"/><rect x="11" y="11" width="10" height="10" rx="2.5" fill="#fff"/><rect x="23" y="11" width="10" height="10" rx="2.5" fill="#fff" opacity=".7"/><rect x="11" y="23" width="10" height="10" rx="2.5" fill="#fff" opacity=".7"/><rect x="23" y="23" width="10" height="10" rx="2.5" fill="#fff"/></svg><div><h3>FigJam board for team workshops</h3><p class="small muted" style="margin-top:var(--sp-1)">One section per chapter, prompt stickies and blank stickies. Duplicate it into your drafts.</p></div><div class="cluster">${FIGJAM?`<a class="btn btn--primary" href="${esc(FIGJAM)}">Open in FigJam ${I.arrow}</a>`:''}<a class="btn" href="AXF-template-pack.pdf" download>PDF: blank and filled</a><a class="btn btn--ghost" href="#print">View online</a></div></div>
  <div class="g2" style="margin-top:var(--sp-5)">${M.map(m=>`<details class="card tcard"><summary><span><span class="badge badge--${m.ph}">${PH[m.ph].name}</span><h3 style="margin-top:var(--sp-2)">${idx(m.id)+1}. ${m.name}</h3><p class="small muted" style="margin-top:2px">${m.q}</p></span>${PM}</summary><div class="b"><ul class="list small">${m.fields.map(f=>`<li><b>${f.label}</b>${f.hint?`<br><span class="muted">${f.hint}</span>`:''}</li>`).join('')}</ul><div class="cluster" style="margin-top:var(--sp-4)"><a class="btn btn--primary btn--sm" href="#m-${m.id}">Fill it in</a><button type="button" class="btn btn--sm" data-copytpl="${m.id}">${I.copy} Copy blank</button></div></div></details>`).join('')}</div>${fb('kitfall')}`}
 function kitSkills(){return `<p class="lede" style="margin-top:0">Skills are instruction files an AI agent loads when the task matches. Save each as <span class="mono">SKILL.md</span> in a folder with the skill's name, for example <span class="mono">.claude/skills/agent-framer/SKILL.md</span> for Claude Code, or paste it into any assistant as instructions.</p><div class="g2" style="margin-top:var(--sp-6)">${SKILLS.map(s=>`<details class="card tcard"><summary><span><span class="badge badge--soft">${s.moves.replace('moves','chapters').replace('move','chapter')}</span><h3 class="mono" style="margin-top:var(--sp-2)">${s.name}</h3><p class="small muted" style="margin-top:2px">${s.desc}</p></span>${PM}</summary><div class="b"><pre class="code">${esc(`---\nname: ${s.name}\ndescription: ${s.desc}\n---\n\n${s.body}`)}</pre><div class="cluster" style="margin-top:var(--sp-3)"><button type="button" class="btn btn--sm" data-skill="${s.id}">${I.copy} Copy SKILL.md</button></div></div></details>`).join('')}</div>${fb('kitfall')}`}
 function patSVG(d){const box=(x,y,w,h,f)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${f||'var(--c-surface)'}" stroke="var(--c-line)"/>`,ln=(x,y,w,o)=>`<rect x="${x}" y="${y}" width="${w}" height="6" rx="3" fill="currentColor" opacity="${o||.22}"/>`;
@@ -975,11 +1086,14 @@ function render(anim){
  else if(h==='handbook'||h==='card'){html=cover();bind=bindCover;nk='handbook'}
  else if(PH[h])html=phasePage(h);
  else if(h==='examples'){html=examplesPage();nk='examples'}
- else if(h.startsWith('case-')&&CASES[h.slice(5)]){const id=h.slice(5);html=casePage(id,'j');bind=()=>bindCase(id);nk='examples'}
+ else if(h.startsWith('case-')&&CASES[h.slice(5)]){const id=h.slice(5);html=casePage(id,'d');nk='examples'}
+ else if(h.startsWith('sheets-')&&CASES[h.slice(7)]){const id=h.slice(7);html=casePage(id,'j');bind=()=>bindCase(id);nk='examples'}
+ else if(/^d-(collections|urban|rca)-/.test(h)){const pr=h.split('-');const id=pr[1],key=pr.slice(2).join('-');if(D.PACK.steps.some(s=>s[0]===key)){html=dPage(id,key);nk='examples'}else html=home()}
  else if(h.startsWith('solution-')&&CASES[h.slice(9)]){html=casePage(h.slice(9),'s');bind=bindProto;nk='examples'}
  else if(h==='kit'||h.startsWith('kit-')){const t=KT.some(k=>'kit-'+k[0]===h)?h.slice(4):'tools';html=kitPage(t);bind=bindKit;nk='kit'}
+ else if(h==='print'){html=printPage();nk='kit'}
  else if(h==='guardrails'){html=guardPage();bind=bindGuard;nk='guardrails'}
- else html=home();
+ else{html=home();bind=bindPlan}
  const y=window.scrollY;
  app.innerHTML=`<div class="${anim===false?'':'view'}">${html}</div>`;
  document.querySelectorAll('#nav a').forEach(a=>a.getAttribute('href')==='#'+nk?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));

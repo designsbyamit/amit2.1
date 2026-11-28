@@ -1,0 +1,31 @@
+customer,codes,overdue_eur,late_invoices,invoices,open_disputes,max_days_late
+Kilner Ceramics,1010,96363,5,7,2,17
+Garnet Builders,"1010, 1020",96276,5,12,4,13
+Brightmill Paper,"2010, 3010",95511,6,12,3,17
+Bramble Cafes,"1010, 3020",95422,5,9,1,24
+Vantor Energy,"1020, 3020",94333,3,13,1,18
+Fenwick Tools,"2010, 3020",68412,5,9,4,18
+Yarrow Health,"1020, 2010, 3020",62508,4,10,1,18
+Wexley Hotels,"2010, 3020",62096,3,9,1,19
+Quillon Media,"2010, 3020",61184,3,11,3,12
+Alder Freight,"1020, 2010",57277,3,7,3,18
+Ulmer Plastics,"1020, 3010, 3020",55748,3,11,4,7
+Hollis Dairy,"1010, 2010, 3010",53005,4,8,1,14
+Zenith Packaging,"2010, 3010",51142,2,8,3,10
+Sorrel Farms,"1010, 3010",46379,3,9,3,18
+Rivet & Co,"3010, 3020",45674,3,6,2,22
+Corvo Logistics,1020,44818,2,9,3,12
+Ostara Textiles,1010,39037,2,7,3,23
+Cinder Steel,"1020, 2010",37946,2,9,1,13
+Elmstead Clinics,"1010, 3020",37663,2,7,3,5
+Fallow Chemicals,"1010, 3020",37584,3,8,1,21
+Dorrit Books,1020,37258,2,9,2,8
+Norvik Pharma,"2010, 3010",28369,2,6,3,13
+Lumen Optics,"1010, 1020, 2010",27186,3,8,3,16
+Juniper Telecom,"1010, 3020",26603,2,13,4,16
+Halden Foods,3010,18130,2,6,2,16
+Kestrel Marine,3010,11785,1,11,4,23
+Tamsin Labs,"1010, 3010",9886,1,10,1,2
+Arlo Retail,2010,0,0,10,2,0
+Ivory Print,"1010, 2010, 3020",0,0,11,0,0
+Pellow Glass,"2010, 3010",0,0,7,0,0
