@@ -336,6 +336,20 @@ p,ul,ol{margin:0}
 .rf-q{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--sp-2);margin-top:var(--sp-4)}
 .rf-q div{padding:var(--sp-3);border-radius:var(--r-2);background:var(--c-sunken);font-size:var(--fs-1);border-top:3px solid var(--tc)}
 .rf-q b{display:block;font-size:var(--fs-2);font-weight:var(--fw-semi)}
+/* research studio */
+.rs-modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp-2);margin-top:var(--sp-5)}
+.rs-modes button{font:inherit;color:inherit;text-align:start;display:grid;gap:2px;padding:var(--sp-3) var(--sp-4);border-radius:var(--r-2);border:1px solid var(--c-line);background:var(--c-surface);cursor:pointer;transition:border-color var(--t-fast) var(--ease)}
+.rs-modes button:hover{border-color:var(--c-line-strong)}
+.rs-modes button[aria-selected=true]{border-color:var(--c-ink);box-shadow:inset 0 0 0 1px var(--c-ink)}
+.rs-modes b{font-size:var(--fs-2);font-weight:var(--fw-semi)}
+.rs-modes small{font-size:12px;color:var(--c-ink-3)}
+.rs-n{width:22px;height:22px;border-radius:50%;background:var(--c-sunken);display:grid;place-items:center;font-size:12px;font-weight:var(--fw-semi);margin-bottom:4px}
+.rs-body{margin-top:var(--sp-5)}
+.ai-call{--tint:color-mix(in srgb,var(--c-ai) 7%,var(--c-surface));--accent:var(--c-ai)}
+.agentic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp-5)}
+.agentic div{border-top:2px solid var(--c-ink);padding-top:var(--sp-4)}
+.agentic p{font-size:var(--fs-2);color:var(--c-ink-2);margin-top:var(--sp-2)}
+.agentic .n{font-family:var(--ff-mono);font-size:var(--fs-1);color:var(--c-ink-3)}
 /* experience bar */
 .bar-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-4);margin-top:var(--sp-5)}
 .lens{padding:var(--sp-5);border-radius:var(--r-3);border:1px solid var(--c-line);background:var(--c-surface)}
@@ -432,8 +446,8 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 @keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.view{animation:none}*,*::before,*::after{transition:none!important}}
 @media(max-width:1100px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:1000px){.ch{grid-template-columns:minmax(0,1fr)}.crail{display:none}.crail-sel{display:block;margin-bottom:var(--sp-6)}.hero .wrap,.xhead .grid,.mgrid{grid-template-columns:minmax(0,1fr)}.lensfig{justify-self:start;max-width:440px}.g3{grid-template-columns:minmax(0,1fr)}.mgrid>div+div{border-inline-start:0;border-top:1px solid var(--c-line)}.rf-q{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.lensfig .q span{display:none}.lensfig .core{inset:30%;font-size:12px}.lensfig .core small{display:none}.top .wrap{gap:var(--sp-2)}.nav{order:3;width:100%;margin:0;overflow-x:auto}.nav a{flex:none}.depth-ctl{margin-inline-start:auto}.depth-ctl .xs{display:none}.route{grid-template-columns:minmax(0,1fr)}.line,.line:first-child,.line:last-child{padding-inline:var(--gutter)}.line>p{min-height:0}.router,.g2,.depthpick,.tips,.bar-grid,.rf-out,.decs,.fails,.pn{grid-template-columns:minmax(0,1fr)}.pn .nx{text-align:start}.arch{grid-template-columns:repeat(2,minmax(0,1fr))}.ladder{grid-template-columns:minmax(0,1fr)}.rf-line{grid-template-columns:minmax(0,1fr)}.dsteps{grid-template-columns:repeat(4,minmax(0,1fr))}.figjam{grid-template-columns:minmax(0,1fr)}.jrow .list{padding-inline-start:0}.g4{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1000px){.rs-modes,.agentic{grid-template-columns:repeat(2,minmax(0,1fr))}.ch{grid-template-columns:minmax(0,1fr)}.crail{display:none}.crail-sel{display:block;margin-bottom:var(--sp-6)}.hero .wrap,.xhead .grid,.mgrid{grid-template-columns:minmax(0,1fr)}.lensfig{justify-self:start;max-width:440px}.g3{grid-template-columns:minmax(0,1fr)}.mgrid>div+div{border-inline-start:0;border-top:1px solid var(--c-line)}.rf-q{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.rs-modes,.agentic{grid-template-columns:minmax(0,1fr)}.lensfig .q span{display:none}.lensfig .core{inset:30%;font-size:12px}.lensfig .core small{display:none}.top .wrap{gap:var(--sp-2)}.nav{order:3;width:100%;margin:0;overflow-x:auto}.nav a{flex:none}.depth-ctl{margin-inline-start:auto}.depth-ctl .xs{display:none}.route{grid-template-columns:minmax(0,1fr)}.line,.line:first-child,.line:last-child{padding-inline:var(--gutter)}.line>p{min-height:0}.router,.g2,.depthpick,.tips,.bar-grid,.rf-out,.decs,.fails,.pn{grid-template-columns:minmax(0,1fr)}.pn .nx{text-align:start}.arch{grid-template-columns:repeat(2,minmax(0,1fr))}.ladder{grid-template-columns:minmax(0,1fr)}.rf-line{grid-template-columns:minmax(0,1fr)}.dsteps{grid-template-columns:repeat(4,minmax(0,1fr))}.figjam{grid-template-columns:minmax(0,1fr)}.jrow .list{padding-inline-start:0}.g4{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -453,7 +467,7 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 <script src="handbook.js"></script>
 <script>
 {
-const D=window.AXF,{PH,MOVES:M,G,GRP,ROUTER,PAT,GLOSS,SKILLS,CASES,LEVELS,LENSES,PERIMETER,BRIEFS,TAGS}=D;
+const D=window.AXF,{PH,MOVES:M,G,GRP,ROUTER,PAT,GLOSS,SKILLS,CASES,LEVELS,LENSES,PERIMETER,BRIEFS,TAGS,RESEARCH,AGENTIC}=D;
 const FIGJAM=window.AXF_FIGJAM||'';
 const PHS=['frame','shape','realise'],CIDS=['collections','urban','rca'];
 const PHC={frame:['var(--c-frame)','var(--c-frame-ink)','var(--c-frame-tint)'],shape:['var(--c-shape)','var(--c-shape-ink)','var(--c-shape-tint)'],realise:['var(--c-realise)','var(--c-realise-ink)','var(--c-realise-tint)']};
@@ -515,7 +529,11 @@ function home(){
   <div class="depthpick">${LEVELS.map(l=>`<button type="button" class="dopt" data-setdepth="${l.id}" aria-pressed="${l.id===depth}"><span class="between"><b>${l.name}</b><span class="badge badge--soft">${l.time}</span></span><p>${l.d}</p></button>`).join('')}</div>
  </div></section>
  ${route()}
- <section class="band"><div class="wrap g2" style="align-items:start">
+ <section class="band"><div class="wrap">
+  <div class="between"><div><span class="over">Agentic, not waterfall</span><h2 style="margin-top:var(--sp-3)">Design the way you will build: with AI, in loops</h2></div><a class="btn" href="#m-people">See how research works</a></div>
+  <div class="agentic" style="margin-top:var(--sp-7)">${AGENTIC.map((a,i)=>`<div><h4>${a[0]}</h4><p>${a[1]}</p></div>`).join('')}</div>
+ </div></section>
+ <section class="band" style="padding-top:0"><div class="wrap g2" style="align-items:start">
   <div><h2>Already building? Jump in.</h2><p class="lede" style="margin-top:var(--sp-3)">Every chapter stands on its own. Pick the situation closest to yours.</p></div>
   <div class="router">${ROUTER.map(r=>{const m=byId(r[1]);return `<a class="card card--link" href="#m-${m.id}"><span>${esc(r[0])}<small>Chapter ${idx(m.id)+1}: ${m.name}</small></span><span class="badge badge--${m.ph}">${PH[m.ph].name}</span></a>`}).join('')}</div>
  </div></section>
@@ -525,7 +543,7 @@ function home(){
  </div></section>
  <section class="band"><div class="wrap">
   <div class="between"><h2>Tools to build love and trust in</h2><a class="btn" href="#kit">Open the toolkit</a></div>
-  <div class="g4" style="margin-top:var(--sp-7)">${[['tools','7','Decision tools','Reframe studio, experience bar, autonomy and more'],['templates','12','Worksheets','One per chapter, plus a FigJam board for teams'],['skills','4','AI skills','SKILL.md files for Claude and other agents'],['system','1','Design system','Tokens and components this handbook is built on']].map(k=>`<a class="card card--link kit" href="#kit-${k[0]}"><b>${k[1]}</b><h4>${k[2]}</h4><p>${k[3]}</p></a>`).join('')}</div>
+  <div class="g4" style="margin-top:var(--sp-7)">${[['tools','8','Decision tools','Reframe and research studios, experience bar, autonomy and more'],['templates','12','Worksheets','One per chapter, plus a FigJam board for teams'],['skills','4','AI skills','SKILL.md files for Claude and other agents'],['system','1','Design system','Tokens and components this handbook is built on']].map(k=>`<a class="card card--link kit" href="#kit-${k[0]}"><b>${k[1]}</b><h4>${k[2]}</h4><p>${k[3]}</p></a>`).join('')}</div>
  </div></section>
  <section class="band" style="padding-top:0"><div class="wrap">
   <div class="between"><h2>Twelve guardrails that earn trust</h2><a class="btn" href="#guardrails">Use as a checklist</a></div>
@@ -566,6 +584,7 @@ const segRow=(attr,key,label,opts,val)=>`<div class="qrow"><span>${label}</span>
 
 function toolHTML(t){
  if(t==='reframe')return reframeHTML();
+ if(t==='research')return researchHTML();
  if(t==='bar')return barHTML();
  if(t==='agentcheck'){const a=LS.get('ac',{multi:'y',path:'y',messy:'y',undo:'n',rule:'n'});const qs=[['multi','Does this step need several actions across tools or systems?'],['path','Does the next action depend on what it finds?'],['messy','Is the input messy: emails, documents, images?'],['undo','Can a person check or undo the result before harm?'],['rule','Would a fixed rule or a form cover most cases?']];
   return `<div class="card tool" id="tool-ac"><div class="in"><h3>Agent check</h3><p class="sub">Answer for one step. It opens with an example answered.</p><div style="margin-top:var(--sp-3)">${qs.map(q=>segRow('q',q[0],q[1],[['y','Yes'],['n','No']],a[q[0]])).join('')}</div>${depth>1?`<div class="arch">${[['Rule','Fixed logic. Test it.'],['Prediction','Classify, rank, forecast.'],['Generation','Draft, summarise, extract.'],['Agent','Plans and uses tools.']].map(x=>`<div><strong>${x[0]}</strong>${x[1]}</div>`).join('')}</div>`:''}</div><div class="result" id="ac-out" aria-live="polite"></div></div>`}
@@ -610,6 +629,19 @@ function bindReframe(m){
  document.getElementById('rf-add').addEventListener('submit',e=>{e.preventDefault();const inp=document.getElementById('rf-new');const v=inp.value.trim();if(!v)return;const st=rfState();if(Array.isArray(st.own))st.own={};(st.own[st.brief]=st.own[st.brief]||[]).push([v,'s']);LS.set('rf',st);inp.value='';paint();inp.focus()});
  paint();
 }
+/* research studio */
+function researchHTML(){const sel=LS.get('rs','mine');const r=RESEARCH.find(x=>x.id===sel)||RESEARCH[0];
+ return `<div class="card tool" id="tool-rs"><div class="in">
+  <div class="between" style="align-items:center"><div><h3>Research studio</h3><p class="sub">No waiting for interviews. Start from real data, go further with synthetic research, confirm what matters with people.</p></div></div>
+  <div class="rs-modes" role="tablist" aria-label="Research modes">${RESEARCH.map((x,i)=>`<button type="button" role="tab" data-rs="${x.id}" aria-selected="${x.id===r.id}"><span class="rs-n">${i+1}</span><b>${x.name}</b><small>${x.conf}</small></button>`).join('')}</div>
+  <div class="rs-body" role="tabpanel"><p>${r.what}</p><ol class="num" style="margin-top:var(--sp-3)">${r.how.map(h=>`<li><span class="small">${esc(h)}</span></li>`).join('')}</ol>
+   <div class="callout" style="margin-top:var(--sp-4);--accent:var(--c-proposal)"><h4>Guardrail</h4><p class="small" style="margin-top:4px">${esc(r.guard)}</p></div>
+   <div class="field" style="margin-top:var(--sp-4)"><label for="rs-prompt">Prompt to start with</label><textarea class="area mono" id="rs-prompt" rows="4" readonly>${esc(r.prompt)}</textarea></div>
+   <div class="ws-bar" style="margin-top:var(--sp-3)"><button type="button" class="btn" id="rs-copy">${I.copy} Copy prompt</button><span class="small muted">Confidence this mode gives: <b>${r.conf}</b></span></div></div>
+ </div></div>`}
+function bindResearch(){const box=document.getElementById('tool-rs');if(!box)return;
+ box.addEventListener('click',e=>{const b=e.target.closest('[data-rs]');if(b){LS.set('rs',b.dataset.rs);box.outerHTML=researchHTML();bindResearch();const nb=document.querySelector(`[data-rs="${b.dataset.rs}"]`);if(nb)nb.focus();return}
+  if(e.target.closest('#rs-copy'))copyText(document.getElementById('rs-prompt').value,'rs-prompt')})}
 /* experience bar */
 function barHTML(){
  const s=LS.get('bar',{}),per=LS.get('per',{});
@@ -632,7 +664,7 @@ function bindTools(m){
  wire('tool-ac','ac',{multi:'y',path:'y',messy:'y',undo:'n',rule:'n'},'q',false,st=>{const r=acEval(st);document.getElementById('ac-out').innerHTML=`<b>${r[0]}</b><p>${r[1]}</p><ul>${r[2].map(x=>`<li>${x}</li>`).join('')}</ul>`});
  wire('tool-au','au',{impact:1,undo:1,ev:0},'k',true,st=>{const lv=auEval(st),L=LEVL[lv];document.getElementById('au-out').innerHTML=`<b>Level ${L[0]}: ${L[1]}</b><p>${L[2]}</p><div class="ladder">${LEVL.map((x,i)=>`<div class="${i===lv?'on':''}">${x[0]} ${x[1]}</div>`).join('')}</div><ul>${L[3].map(x=>`<li>${x}</li>`).join('')}</ul>`});
  wire('tool-rt','rt',{sev:2,conf:2},'r',true,st=>{const r=rtEval(st),sv=['Low','Medium','High','Critical'];document.getElementById('rt-out').innerHTML=`<b>${ROUTES[r][0]}</b><p>${ROUTES[r][1]}</p><div class="matrix" aria-hidden="true"><div class="h"></div>${['Low conf.','Medium','High conf.'].map(x=>`<div class="h">${x}</div>`).join('')}${sv.map((s,si)=>`<div class="h">${s}</div>${[0,1,2].map(ci=>`<div class="${si===st.sev&&ci===st.conf?'on':''}">${ROUTES[rtEval({sev:si,conf:ci})][0]}</div>`).join('')}`).join('')}</div>`});
- if(m)bindReframe(m);bindBar();
+ if(m)bindReframe(m);bindBar();bindResearch();
 }
 
 /* ---------- chapter ---------- */
@@ -644,7 +676,7 @@ const disc=(title,open,body,id)=>`<details class="disc" ${open?'open':''} ${id?`
 function chapter(m){
  const i=idx(m.id),p=PH[m.ph],[bg,ink,tint]=PHC[m.ph],prev=M[i-1],next=M[i+1],c=checks[m.id]||{},w=W(m.id);
  const sk=SKILLS.find(s=>s.id===m.skill);
- const essTool=['reframe','autonomy','bar'].includes(m.tool);
+ const essTool=['reframe','research','autonomy','bar'].includes(m.tool);
  return `<section class="chead" style="--hbg:${bg};--hink:${ink}"><div class="wrap">
   <div class="crumb"><a href="#handbook">Handbook</a><span>/</span><a href="#${m.ph}">${p.name}</a><span>/</span><span>Chapter ${i+1} of 12</span></div>
   <h1>${m.name}</h1><p class="q">${m.q}</p>
@@ -654,7 +686,7 @@ function chapter(m){
   <aside class="crail" aria-label="Chapters">${PHS.map(ph=>`<div><h4>${PH[ph].name}</h4>${M.filter(x=>x.ph===ph).map(x=>`<a href="#m-${x.id}" ${x.id===m.id?'aria-current="step"':''}>${ring(x)}<span>${idx(x.id)+1}. ${x.name}</span></a>`).join('')}</div>`).join('')}</aside>
   <div class="cmain">
    <div class="crail-sel field"><label for="ch-sel">Chapter</label><select class="input" id="ch-sel">${M.map((x,j)=>`<option value="${x.id}" ${x.id===m.id?'selected':''}>${j+1}. ${x.name} (${prog(x)}%)</option>`).join('')}</select></div>
-   <div class="sec"><p class="why">${m.why}</p></div>
+   <div class="sec"><p class="why">${m.why}</p>${m.ai?`<div class="callout ai-call" style="margin-top:var(--sp-5)"><span class="ai">Do it with AI</span><p class="small" style="margin-top:var(--sp-2)">${m.ai}</p></div>`:''}</div>
    <div class="sec" style="--accent:${bg};--accent-ink:${ink}"><div class="sec-h"><h2>Must do</h2><span class="small muted">Non-negotiable</span></div>
     <ul class="checks">${m.must.map((t,k)=>`<li><label class="check"><input type="checkbox" data-ck="m${k}" ${c['m'+k]?'checked':''}><span>${t}</span></label></li>`).join('')}</ul></div>
    ${m.tool&&(essTool||depth>1)?`<div class="sec"><div class="sec-h"><h2>Work it out</h2><span class="small muted">Decision tool</span></div>${toolHTML(m.tool)}${m.id==='evals'&&depth>1?`<div style="margin-top:var(--sp-4)">${toolHTML('mix')}</div>`:''}</div>`:''}
@@ -729,7 +761,7 @@ function bindCase(id){const b=document.getElementById('copy-case');if(b)b.addEve
 /* ---------- toolkit ---------- */
 const KT=[['tools','Decision tools'],['templates','Worksheets'],['skills','AI skills'],['patterns','Patterns'],['words','Shared words'],['system','Design system']];
 function kitPage(t){return `<section class="band" style="padding-bottom:0"><div class="wrap"><span class="over">Toolkit</span><h1 style="margin-top:var(--sp-3)">Everything you need to make it loved and trusted</h1><nav class="tabs" style="margin-top:var(--sp-7)" aria-label="Toolkit sections">${KT.map(k=>`<a href="#kit-${k[0]}" ${k[0]===t?'aria-current="page"':''}>${k[1]}</a>`).join('')}</nav></div></section><section class="band" style="padding-top:var(--sp-8)"><div class="wrap">${({tools:kitTools,templates:kitTemplates,skills:kitSkills,patterns:kitPatterns,words:kitWords,system:kitSystem})[t]()}</div></section>`}
-function kitTools(){return `<div class="stack">${toolHTML('reframe')}${toolHTML('bar')}</div><div class="g2" style="margin-top:var(--sp-5);align-items:start"><div class="stack">${toolHTML('agentcheck')}${toolHTML('fails')}</div><div class="stack">${toolHTML('autonomy')}${toolHTML('router')}${toolHTML('mix')}</div></div>`}
+function kitTools(){return `<div class="stack">${toolHTML('reframe')}${toolHTML('research')}${toolHTML('bar')}</div><div class="g2" style="margin-top:var(--sp-5);align-items:start"><div class="stack">${toolHTML('agentcheck')}${toolHTML('fails')}</div><div class="stack">${toolHTML('autonomy')}${toolHTML('router')}${toolHTML('mix')}</div></div>`}
 function kitTemplates(){return `<div class="card figjam"><svg viewBox="0 0 44 44" aria-hidden="true"><rect x="2" y="2" width="40" height="40" rx="11" fill="#f26a3d"/><rect x="11" y="11" width="10" height="10" rx="2.5" fill="#fff"/><rect x="23" y="11" width="10" height="10" rx="2.5" fill="#fff" opacity=".7"/><rect x="11" y="23" width="10" height="10" rx="2.5" fill="#fff" opacity=".7"/><rect x="23" y="23" width="10" height="10" rx="2.5" fill="#fff"/></svg><div><h3>FigJam board for team workshops</h3><p class="small muted" style="margin-top:var(--sp-1)">One section per chapter, prompt stickies and blank stickies. Duplicate it into your drafts.</p></div>${FIGJAM?`<a class="btn btn--primary" href="${esc(FIGJAM)}">Open in FigJam ${I.arrow}</a>`:''}</div>
  <div class="g2" style="margin-top:var(--sp-5)">${M.map(m=>`<details class="card tcard"><summary><span><span class="badge badge--${m.ph}">${PH[m.ph].name}</span><h3 style="margin-top:var(--sp-2)">${idx(m.id)+1}. ${m.name}</h3><p class="small muted" style="margin-top:2px">${m.q}</p></span>${PM}</summary><div class="b"><ul class="list small">${m.fields.map(f=>`<li><b>${f.label}</b>${f.hint?`<br><span class="muted">${f.hint}</span>`:''}</li>`).join('')}</ul><div class="cluster" style="margin-top:var(--sp-4)"><a class="btn btn--primary btn--sm" href="#m-${m.id}">Fill it in</a><button type="button" class="btn btn--sm" data-copytpl="${m.id}">${I.copy} Copy blank</button></div></div></details>`).join('')}</div>${fb('kitfall')}`}
 function kitSkills(){return `<p class="lede" style="margin-top:0">Skills are instruction files an AI agent loads when the task matches. Save each as <span class="mono">SKILL.md</span> in a folder with the skill's name, for example <span class="mono">.claude/skills/agent-framer/SKILL.md</span> for Claude Code, or paste it into any assistant as instructions.</p><div class="g2" style="margin-top:var(--sp-6)">${SKILLS.map(s=>`<details class="card tcard"><summary><span><span class="badge badge--soft">${s.moves.replace('moves','chapters').replace('move','chapter')}</span><h3 class="mono" style="margin-top:var(--sp-2)">${s.name}</h3><p class="small muted" style="margin-top:2px">${s.desc}</p></span>${PM}</summary><div class="b"><pre class="code">${esc(`---\nname: ${s.name}\ndescription: ${s.desc}\n---\n\n${s.body}`)}</pre><div class="cluster" style="margin-top:var(--sp-3)"><button type="button" class="btn btn--sm" data-skill="${s.id}">${I.copy} Copy SKILL.md</button></div></div></details>`).join('')}</div>${fb('kitfall')}`}

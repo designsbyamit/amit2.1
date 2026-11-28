@@ -113,3 +113,74 @@ A.CASES.collections.e.untangle.push("~ Reframe: How might we help collection spe
 A.CASES.urban.e.untangle.push("~ Reframe: How might we help maintenance coordinators act on the riskiest tree defects first, with evidence crews and finance can trust, so that maintenance becomes proactive and avoidable travel and verification visits fall. Within: privacy-safe images only, coverage limited to fleet routes, the existing camera, asset and field service systems, no manual triage, and a person reviewing AI-flagged defects where required.","~ Parked for Shape: auto-created work orders, before and after comparison, severity scoring. Good ideas, not the problem.");
 A.CASES.rca.e.untangle.push("~ Reframe: How might we help quality engineers reach a sound root cause and corrective action faster and more consistently across four plants, so that problems do not repeat. Within: a person approves every D-step, the 8D process is digitised and standardised first, six months of history, supplier reports in any format, and data shared under NDA.","~ Parked for Shape: vector search, generated fishbone and 5-Why, PDF mapping.");
 })();
+
+/* AI-native layer: research without waiting, AI in every chapter */
+(function(){
+const A=window.AXF,M=A.MOVES,by=id=>M.find(m=>m.id===id);
+A.AGENTIC=[
+ ["Loops, not a waterfall","Frame, Shape and Realise overlap. A thin slice can exist on day two, and research keeps running through the build."],
+ ["Real data first","Start from the evidence that already exists: tickets, emails, logs, records, transcripts. AI reads it in hours, not weeks."],
+ ["Synthetic where people are out of reach","Synthetic users and simulated data, grounded in real data, let you ask questions and stress-test before anyone is available."],
+ ["People confirm what matters","Real people confirm the findings that change the design. Synthetic research raises questions; it never settles consequential ones alone."]
+];
+A.PH.frame.sub="Understand the people, the work and the outcome before choosing an answer. With AI on the evidence you already have, this takes hours or days, not weeks, and keeps running while you build.";
+A.PH.shape.sub="Design the experience and the agent together, in your design tools with AI: generate options from your design system, prototype in code early, and decide what the agent may do alone.";
+A.PH.realise.sub="Build one thin slice, prove it with real and synthetic evidence, attack it before others do, then release small and learn from real use.";
+const p=by('people');
+Object.assign(p,{name:"Understand the people",time:"Hours, not weeks",tool:"research",
+ why:"Agents act for someone and affect others. You rarely get easy access to them, so start from the real evidence their work leaves behind, use synthetic research to go further, and confirm what matters with real people.",
+ must:["Start from real data: have AI analyse the evidence that already exists (tickets, emails, logs, records, transcripts) to map who does what and where it breaks.","Where people are out of reach, research synthetic users built from that real data and stress-test with simulated cases. Label every synthetic finding.","Confirm the findings that change the design with real people as soon as you can: three short sessions, a shadowing hour or an async walkthrough."],
+ steps:["List the evidence that already exists and who owns it. Anonymise it before any AI sees it.","Ask AI to extract roles, steps, wait times, rework, failure points and quotes, each with counts and sources. Spot-check a tenth by hand.","Map today in five to eight steps and mark where judgment is needed and who else the agent's actions reach.","Build two or three synthetic users from the real material, including a sceptic. Interview them about the last time it happened and walk them through early ideas.","Generate simulated cases from the real distributions to find edge cases, volumes and messy inputs the data rarely shows.","Rate every finding: synthetic only, grounded in real data, or confirmed by people. Plan the smallest real check for the ones that change the design."],
+ done:["Findings come from real evidence, with sources","Every synthetic finding is labelled as synthetic","The design-changing findings have a plan to be confirmed by people"],
+ flags:["Synthetic users invented from imagination, not from real data","A synthetic finding treated as proof for a consequential decision","Personal data pasted into an AI tool without anonymising or approval","Everyone agreeable: synthetic users tend to please; ask for the sceptic"],
+ deep:["What does the data not show? Silent workarounds, emotions and politics rarely appear in logs.","Which population is missing from the data you have, such as new joiners or another region?","Does the synthetic user ever say \"I don't know\"? If not, it is guessing.","Which one finding, if wrong, would most change the design? Confirm that one first."],
+ build:"Treat research like a pipeline: anonymise, extract with AI, sample-check, version the prompts. A coding agent can turn a CSV of tickets into a step map in an afternoon.",
+ design:"Ground every synthetic persona in real artefacts and quote them. Use AI clustering on a whiteboard to synthesise, then read the raw quotes behind each cluster yourself.",
+ ask:"From the evidence below, map the roles, today's steps, where time is lost and where judgment is needed, with counts and sources. Then propose two synthetic users grounded only in this evidence, and the three findings most worth confirming with real people."});
+p.fields=[["evidence","Real evidence analysed, and what it showed","Tickets, emails, logs, records, transcripts. Sources and counts."],["primary","Primary user: goal and pain",""],["affected","Everyone else the agent's actions reach","Approvers, customers, crews, auditors."],["steps","Today's steps, five to eight","One per line, with where judgment is needed."],["synthetic","Synthetic research: users and simulations","What you asked, what you learned. Mark it synthetic."],["confirm","Confirmed by people, and still to confirm",""]].map(f=>({k:f[0],label:f[1],hint:f[2]}));
+const AI={
+ untangle:"Paste the brief, notes and decks into an AI assistant and ask it to sort every line into struggle, outcome, given, idea and assumption. Then challenge its sort, and use the AI prompt to stress-test your reframe.",
+ people:"Point AI at the real evidence to map roles, steps and breakdowns in hours. Build synthetic users from that data to interview, generate simulated edge cases, and cluster findings with AI on a whiteboard.",
+ finish:"Ask AI to propose outcome, quality and trust metrics and how to baseline each from data you already have. A coding agent can run the baseline query today.",
+ rightsize:"Ask AI to classify each step as rule, prediction, generation or agent with a reason, then make it argue against its own choices.",
+ autonomy:"Have AI rate impact and reversibility for every action and draft the controls per level. Review the irreversible ones together, by hand.",
+ golden:"Generate flows and screen options with the AI in your design tool (for example Figma Make or similar), constrained by your design system. Turn the strongest into a coded prototype with a coding agent, and walk synthetic users through it.",
+ failure:"Mine real tickets or traces with AI for likely failures, draft the failure copy in your tone, and simulate each failure with synthetic inputs.",
+ ground:"Let a coding agent draft tool schemas, scopes and limits from your APIs. Review every write scope and data boundary yourself.",
+ slice:"Build the slice with a coding agent against real systems or realistic stubs. Version prompts, tools and models from the first run.",
+ evals:"Generate eval cases from real data with AI, have domain experts label them, and use an AI judge calibrated against those human labels. Run synthetic users through the prototype before the real sessions.",
+ redteam:"Use an AI red-teamer to generate attacks at scale, including instructions hidden in documents and images. Retest automatically after every fix.",
+ ship:"Have AI summarise weekly traces, cluster failures and flag drift. People review the sample and make the decision."};
+M.forEach(m=>m.ai=AI[m.id]);
+const R=by('rightsize');R.must=R.must;
+A.RESEARCH=[
+ {id:"mine",name:"Mine the real evidence",conf:"Grounded in real data",
+  what:"The work already leaves traces: tickets, emails, chat, logs, process events, records, call transcripts, past decks. AI reads them in hours.",
+  how:["Anonymise, and get approval for the data you use.","Ask AI for roles, steps, waits, rework, failures and quotes, with counts and sources.","Spot-check a tenth by hand; drop anything you cannot trace."],
+  guard:"The data shows what happened, not why. Pair it with synthetic or real conversations.",
+  prompt:"Here is anonymised evidence from [source]. Extract the roles involved, the steps of the work, where time is lost, where errors or rework happen, and where judgment is needed. For every finding give how often it appears and two quoted examples with their source. Then say what this data cannot tell us."},
+ {id:"synthetic",name:"Interview synthetic users",conf:"Synthetic, grounded in real data",
+  what:"A persona agent built only from real material (role descriptions, real quotes, records). Interview it, or walk it through a prototype, when real people are out of reach.",
+  how:["Ground it in real artefacts and tell it to say \"I don't know\" when the material is silent.","Make two or three, including a sceptic, and ask about the last time it happened.","Record answers as hypotheses, not facts."],
+  guard:"Synthetic users mirror the data you give them and tend to agree. Use them to sharpen questions, never as proof.",
+  prompt:"You are a [role] at a [type of organisation]. Base every answer only on the material below. When the material does not cover a question, say \"I don't know\" instead of guessing. Be candid and critical, not agreeable. Material: [paste]. I will interview you about the last time you [did the task]."},
+ {id:"simulate",name:"Stress-test with simulation",conf:"Synthetic, extrapolated from real patterns",
+  what:"Generate realistic cases from real distributions to find what the data rarely shows: peak volumes, rare combinations, messy inputs, other languages.",
+  how:["Summarise the real distributions first: volumes, types, rates.","Generate cases with a share of edge and messy inputs, each marked synthetic.","Run your flow, prototype or agent against them and note where it breaks."],
+  guard:"Keep the link to the real pattern each case extrapolates; never report simulated numbers as measured.",
+  prompt:"From these real distributions [paste summary], generate 30 realistic but synthetic cases for [scenario], with 20% edge cases and 10% messy inputs. Mark each case as synthetic and name the real pattern it extrapolates."},
+ {id:"confirm",name:"Confirm with real people",conf:"Confirmed by people",
+  what:"The smallest real check that changes your confidence: three short sessions, a shadowing hour, an async video walkthrough, or a review with a domain expert.",
+  how:["Pick the findings that would most change the design.","Ask about real recent events, and show the thing, not a description.","Update each finding's confidence level."],
+  guard:"Anything consequential (autonomy, approvals, safety) is confirmed by people before launch.",
+  prompt:"Here are our findings, each marked synthetic or grounded in real data: [paste]. Write the smallest real-user check that would confirm or reject the three findings that most change the design: who to ask, five questions, and what answer would change our mind."}
+];
+A.CASES.urban.e.people.push("~ Real data first: run AI over citizen report history, work-order records and crew notes to see where triage, travel and verification lose time.","~ Synthetic research: coordinator and crew personas built from those records and the brief, interviewed before any field visit. Findings stay labelled synthetic until a coordinator confirms them.");
+A.CASES.rca.e.people.push("~ Real data first: run AI over six months of 8D records and supplier PDFs to see which D-steps stall and which root causes repeat.","~ Synthetic research: a quality engineer persona grounded in closed 8Ds tests the step-by-step approval flow before sessions with engineers in one plant.");
+A.CASES.collections.e.people.push("Confirmed with real people: every role was researched across the four rounds, from stakeholder alignment to playback.");
+const sk=A.SKILLS.find(s=>s.id==='agent-framer');
+sk.body=sk.body.replace("3. List the primary user and everyone affected downstream. Ask for today's workflow in 5 to 8 steps.","3. Research from real data first: ask for existing evidence (tickets, emails, logs, records, transcripts), anonymised, and extract roles, steps, waits and failures with counts and sources. Where people are out of reach, propose synthetic users grounded only in that evidence and simulated edge cases, labelled synthetic. List the findings that must be confirmed with real people.");
+sk.body=sk.body.replace("- If a rule or a form solves it, say so plainly.","- If a rule or a form solves it, say so plainly.\n- Never treat a synthetic finding as proof for a consequential decision.");
+A.GLOSS.push(["Synthetic user","A persona agent built only from real material, used to ask questions and test ideas when real people are out of reach. Its answers are hypotheses."],["Simulated data","Realistic cases generated from real distributions to stress-test edge cases and volume. Never reported as measured."]);
+A.ROUTER.splice(1,0,["I can't get access to real users","people"]);A.ROUTER.splice(7,1);
+})();
