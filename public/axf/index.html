@@ -236,8 +236,8 @@ p,ul,ol{margin:0}
 .router a{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-4);padding:var(--sp-4) var(--sp-5);min-height:72px}
 .router small{display:block;color:var(--c-ink-3);font-size:var(--fs-1);margin-top:2px}
 .case{overflow:hidden;display:flex;flex-direction:column}
-.case .art{height:160px;position:relative}
-.case .art svg{position:absolute;inset:0;width:100%;height:100%}
+.case .art{height:180px;position:relative}
+
 .case .in{padding:var(--sp-5) var(--sp-6) var(--sp-6);display:grid;gap:var(--sp-2)}
 .case h3{font-size:var(--fs-4)}
 .kit{display:grid;gap:var(--sp-2);align-content:start;padding:var(--sp-5);min-height:150px}
@@ -542,6 +542,29 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 @media(max-width:1000px){.proto{grid-template-columns:minmax(0,1fr)}.p-note{position:static}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.fgrid{grid-template-columns:minmax(0,1fr)}.sc-two{grid-template-columns:minmax(0,1fr)}.sc-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.sc-steps{grid-template-columns:repeat(4,minmax(0,1fr))}.p-screen{min-height:0}.sc-pop{position:static;width:auto;margin:0 16px 16px}.sc-modal{position:static;transform:none;width:auto;margin:16px}.spec{grid-template-columns:minmax(0,1fr)}}
 
+/* ============ pictograms (portfolio StoryPictogram language) ============ */
+.case .art{background:var(--c-sunken);display:grid;place-items:center;padding:var(--sp-4)}
+.case .art .pg{position:static;width:100%;max-width:320px;height:auto}
+.pg .pg-l,.pg .pg-f{fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.pg .pg-l{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.pg .pg-f,.pg .pg-g,.pg .pg-d{opacity:0}
+.pg .pg-d{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.pg .pg-p{fill:none;stroke-width:1.2;opacity:0;transform-box:fill-box;transform-origin:center}
+.pg .pg-t{opacity:0}
+.pg.go .pg-l{animation:pgDraw .9s ease-out forwards;animation-delay:var(--dl)}
+.pg.go .pg-f,.pg.go .pg-g{animation:pgFade .6s ease-out forwards;animation-delay:var(--dl)}
+.pg.go .pg-d{animation:pgPop .5s cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:var(--dl)}
+.pg.go .pg-p{animation:pgPulse 2.4s ease-out infinite;animation-delay:calc(var(--dl) + 1s)}
+.pg.go .pg-t{animation:pgTrav 2.7s ease-in-out infinite;animation-delay:calc(var(--dl) + 1s)}
+.pg.go .pg-scan{animation:pgScan 7s ease-in-out 2s infinite}
+@keyframes pgDraw{0%{opacity:1;stroke-dashoffset:1}100%{opacity:1;stroke-dashoffset:0}}
+@keyframes pgFade{to{opacity:1}}
+@keyframes pgPop{to{opacity:1;transform:scale(1)}}
+@keyframes pgPulse{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes pgTrav{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}74%{opacity:1;transform:translate(var(--dx),var(--dy))}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+@keyframes pgScan{0%,100%{transform:translateX(0)}30%{transform:translateX(-52px)}60%{transform:translateX(48px)}}
+@media (prefers-reduced-motion:reduce){.pg .pg-l{stroke-dashoffset:0;opacity:1}.pg .pg-f,.pg .pg-g,.pg .pg-d{opacity:1;transform:none}.pg .pg-p,.pg .pg-t{display:none}.pg.go *{animation:none!important}}
+
 .view{animation:in var(--t-base) var(--ease)}
 @keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.view{animation:none}*,*::before,*::after{transition:none!important}}
@@ -602,11 +625,41 @@ dseg.addEventListener('click',e=>{const b=e.target.closest('[data-depth]');if(b)
 function setDepth(n){if(n===depth)return;depth=n;LS.set('depth',n);paintDepth();render(false);toast(n===1?'Essentials: the non-negotiables':'Deep: everything that matters')}
 
 /* ---------- pictures ---------- */
-function caseArt(id){
- if(id==='collections')return `<svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="160" fill="#1B2350"/>${[0,1,2,3].map(i=>`<rect x="34" y="${26+i*28}" width="232" height="21" rx="5" fill="#fff" opacity="${i===1?1:.16}"/><rect x="46" y="${33+i*28}" width="${72-i*8}" height="7" rx="3.5" fill="${i===1?'#1B2350':'#fff'}" opacity="${i===1?1:.55}"/><rect x="198" y="${33+i*28}" width="54" height="7" rx="3.5" fill="${i===1?'#C8F55A':'#fff'}" opacity="${i===1?1:.45}"/>`).join('')}</svg>`;
- if(id==='urban')return `<svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="160" fill="#0F3B3A"/><rect y="124" width="300" height="36" fill="#071f1e"/>${[40,110,180,250].map((x,i)=>`<rect x="${x-3}" y="82" width="6" height="42" fill="#0b2b20"/><circle cx="${x}" cy="70" r="${23+i%2*4}" fill="#0b6b4a"/><circle cx="${x-8}" cy="63" r="12" fill="#1f8a6a"/>`).join('')}<rect x="146" y="38" width="68" height="56" rx="5" fill="none" stroke="#C8F55A" stroke-width="3"/><rect x="146" y="24" width="46" height="13" rx="3" fill="#C8F55A"/></svg>`;
- return `<svg viewBox="0 0 300 160" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="160" fill="#33203F"/><path d="M36 80H248" stroke="#ECEDEF" stroke-width="4"/><path d="M252 80l-12-8v16z" fill="#ECEDEF"/>${[72,122,172,222].map((x,i)=>`<path d="M${x} 80L${x-26} ${i%2?116:44}" stroke="#ECEDEF" stroke-width="3"/><circle cx="${x-26}" cy="${i%2?116:44}" r="6.5" fill="#C8F55A"/>`).join('')}<rect x="256" y="62" width="34" height="36" rx="7" fill="#C8F55A"/></svg>`;
-}
+/* Fine-line pictograms, same language as the portfolio's StoryPictogram: draw in when visible, then a slow, quiet loop */
+const PI='rgb(var(--ink-rgb) / 0.82)',PD='rgb(var(--ink-rgb) / 0.32)',PS='var(--c-signal-ink)';
+const pLn=(d,dl=0,c=PI,dash)=>dash?`<path class="pg-f" d="${d}" stroke="${c}" stroke-dasharray="${dash}" style="--dl:${dl}s"/>`:`<path class="pg-l" pathLength="1" d="${d}" stroke="${c}" style="--dl:${dl}s"/>`;
+const pRing=(cx,cy,r,dl=0,c=PI,dash)=>dash?`<circle class="pg-f" cx="${cx}" cy="${cy}" r="${r}" stroke="${c}" stroke-dasharray="${dash}" style="--dl:${dl}s"/>`:`<circle class="pg-l" pathLength="1" cx="${cx}" cy="${cy}" r="${r}" stroke="${c}" style="--dl:${dl}s"/>`;
+const pDot=(cx,cy,r=4,dl=0,c=PI)=>`<circle class="pg-d" cx="${cx}" cy="${cy}" r="${r}" fill="${c}" style="--dl:${dl}s"/>`;
+const pPulse=(cx,cy,r=6,dl=0)=>`<circle class="pg-p" cx="${cx}" cy="${cy}" r="${r}" stroke="${PS}" style="--dl:${dl}s"/>`;
+const pTrav=(f,t,dl=0)=>`<circle class="pg-t" cx="${f[0]}" cy="${f[1]}" r="2.5" fill="${PS}" style="--dl:${dl}s;--dx:${t[0]-f[0]}px;--dy:${t[1]-f[1]}px"/>`;
+const pPerson=(x,y,c=PI,dl=0)=>`<g class="pg-g" style="--dl:${dl}s"><circle cx="${x}" cy="${y-9}" r="4.5" fill="none" stroke="${c}" stroke-width="1.4"/><path d="M${x-8} ${y+9}C${x-8} ${y} ${x+8} ${y} ${x+8} ${y+9}" fill="none" stroke="${c}" stroke-width="1.4" stroke-linecap="round"/></g>`;
+const PICTO={
+ /* A long list, one customer lifted out with its reason; the agent prepares, a person decides. */
+ collections:()=>[
+  pLn('M30 30H118',0,PD),pLn('M30 48H118',.1),pLn('M30 66H118',.2,PD),pLn('M30 84H118',.3,PD),pLn('M30 102H118',.4,PD),
+  pDot(38,48,3.5,.8,PS),
+  pLn('M126 48H158',.9,PD,'2 5'),
+  pLn('M166 30H218V74H166Z',1),pLn('M176 44H208',1.3,PD),pLn('M176 56H198',1.4,PD),
+  pTrav([118,48],[164,48],.6),
+  pLn('M192 76V88',1.6,PD),pPerson(192,102,PS,1.8),pPulse(192,93,6,2.2)
+ ].join(''),
+ /* A street seen from the fleet: a scanning frame moves along the trees and finds the one that needs care. */
+ urban:()=>[
+  pLn('M16 104H224',0),pLn('M16 112H224',.2,PD,'4 6'),
+  ...[[44,26],[94,24],[146,22],[196,26]].map(([x,r],i)=>pLn(`M${x} 104V${76}`,.3+i*.12)+pRing(x,76-r+4,r-6,.4+i*.12)),
+  `<g class="pg-scan">${pLn('M126 34h-8v8M166 34h8v8M126 86h-8v-8M166 86h8v-8',1.2,PS)}</g>`,
+  pDot(146,48,4.5,1.8,PS),pPulse(146,48,5,1.8)
+ ].join(''),
+ /* A fishbone draws in, evidence travels to the root cause, and every step waits for a person. */
+ rca:()=>[
+  pLn('M24 58H176',0),pLn('M168 50L176 58L168 66',.5),
+  ...[[60,1],[100,1],[140,1],[80,0],[120,0]].map(([x,u],i)=>pLn(`M${x+18} 58L${x} ${u?24:92}`,.4+i*.12,PD)),
+  pRing(198,58,14,.9),pDot(198,58,5,1.6,PS),pPulse(198,58,5,1.6),
+  pTrav([24,58],[176,58],.4),
+  ...[0,1,2,3,4,5,6,7].map(i=>pRing(44+i*20,112,4,1+i*.08,i<4?PS:PD))
+ ].join('')
+};
+function caseArt(id){return `<svg class="pg" viewBox="0 0 240 124" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${PICTO[id]()}</svg>`}
 const caseCard=id=>{const c=CASES[id];return `<a class="card card--link case" href="#case-${id}"><div class="art">${caseArt(id)}</div><div class="in"><span class="over">${c.sector}</span><h3>${c.title}</h3><p class="small muted">${c.pattern}</p></div></a>`};
 
 /* ---------- home ---------- */
@@ -912,6 +965,9 @@ function bindGuard(){const t=LS.get('ticks',{});const upd=()=>{const n=G.filter(
  app.querySelectorAll('[data-g]').forEach(c=>c.addEventListener('change',()=>{t[c.dataset.g]=c.checked;LS.set('ticks',t);upd()}));
  document.getElementById('g-reset').addEventListener('click',()=>{Object.keys(t).forEach(k=>delete t[k]);LS.set('ticks',t);app.querySelectorAll('[data-g]').forEach(c=>c.checked=false);upd()})}
 
+/* ---------- pictogram start ---------- */
+const pio='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('go');pio.unobserve(en.target)}}),{threshold:.35}):null;
+function startPicto(){app.querySelectorAll('.pg').forEach(g=>pio?pio.observe(g):g.classList.add('go'))}
 /* ---------- router ---------- */
 function render(anim){
  const h=(location.hash||'#home').slice(1);let html,bind=null,nk='home';
@@ -929,6 +985,7 @@ function render(anim){
  document.querySelectorAll('#nav a').forEach(a=>a.getAttribute('href')==='#'+nk?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
  app.querySelectorAll('[data-setdepth]').forEach(b=>b.addEventListener('click',()=>setDepth(+b.dataset.setdepth)));
  if(bind)bind();
+ startPicto();
  if(anim===false)window.scrollTo(0,y);
 }
 window.addEventListener('hashchange',()=>{render();window.scrollTo(0,0)});
