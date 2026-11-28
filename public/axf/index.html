@@ -620,6 +620,38 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 @media(max-width:760px){.prt-g{grid-template-columns:minmax(0,1fr)}}
 @media print{.top,.foot{display:none}.prt-p{break-before:page}}
 
+/* ============ design deliverables ============ */
+.pcs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-4);margin-top:var(--sp-5)}
+.pc{background:var(--c-surface);border-radius:var(--r-3);padding:var(--sp-5)}
+.pc-h{display:flex;gap:var(--sp-3);align-items:center}
+.pc-h>div{flex:1}
+.pc-av{width:44px;height:44px;border-radius:50%;background:#33203F;color:#ECEDEF;display:grid;place-items:center;font:500 .875rem var(--ff-mono);flex:none}
+.pc-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-4);margin-top:var(--sp-4)}
+.pc-g ul,.pc-s ul{padding-left:16px;margin-top:6px;font-size:var(--fs-2);display:grid;gap:4px}
+.pc-d{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px var(--sp-4);margin:var(--sp-4) 0 0;font-size:var(--fs-2)}
+.pc-d dt{color:var(--c-ink-3)}
+.pc-d dd{margin:0}
+.pc-s{margin-top:var(--sp-4);padding-top:var(--sp-3);border-top:1px solid var(--c-line)}
+.pc-s ul{color:var(--c-ink-3);font-size:var(--fs-1)}
+.ia,.ia ul{list-style:none;margin:0;padding:0}
+.ia ul{padding-left:28px;border-left:1px solid var(--c-line-strong);margin-left:14px}
+.ia li{padding:6px 0}
+.ia-n{display:inline-block;padding:8px 14px;border-radius:var(--r-2);background:var(--c-surface);font-size:var(--fs-2)}
+.ia-n.d0{background:var(--c-signal);color:var(--c-on-signal);font-weight:600}
+.ia-n.d1{background:var(--c-raise);font-weight:500}
+.fl{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.fl-n{padding:10px 14px;border-radius:var(--r-2);background:var(--c-surface);font-size:var(--fs-2);max-width:180px}
+.fl-n.p{background:var(--c-signal);color:var(--c-on-signal);font-weight:500}
+.fl-n.d{background:transparent;box-shadow:inset 0 0 0 1px var(--c-control);border-radius:20px}
+.fl-a{width:18px;height:1px;background:var(--c-ink-3);position:relative}
+.fl-a::after{content:"";position:absolute;right:0;top:-3px;border-left:5px solid var(--c-ink-3);border-top:3.5px solid transparent;border-bottom:3.5px solid transparent}
+.kscr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp-4)}
+.ks{display:grid;gap:8px;text-decoration:none}
+.ks-s{height:240px;overflow:hidden;border-radius:var(--r-3);position:relative;box-shadow:var(--e-2)}
+.ks-in{transform:scale(.62);transform-origin:top left;width:161%;position:absolute;inset:0}
+.ks:hover .ks-s{box-shadow:var(--e-3)}
+@media(max-width:760px){.pcs,.pc-g,.kscr{grid-template-columns:minmax(0,1fr)}}
+
 .view{animation:in var(--t-base) var(--ease)}
 @keyframes in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.view{animation:none}*,*::before,*::after{transition:none!important}}
@@ -646,6 +678,7 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 <script src="solutions.js"></script>
 <script src="ar.js"></script>
 <script src="packs.js"></script>
+<script src="design.js"></script>
 <script>
 {
 const D=window.AXF,{PH,MOVES:M,G,GRP,ROUTER,PAT,GLOSS,SKILLS,CASES,LEVELS,LENSES,PERIMETER,BRIEFS,TAGS,RESEARCH,AGENTIC}=D;
@@ -1003,6 +1036,7 @@ function bindCase(id){const b=document.getElementById('copy-case');if(b)b.addEve
 /* ---------- deliverables ---------- */
 function packOf(id){return D.PACK[id]||null}
 function dContent(id,key){const pk=packOf(id),S=D.SOL[id],H=D.PACK.helpers,c=CASES[id];
+ if(D.DESIGN[key])return D.DESIGN[key](id);
  if(pk&&pk.d[key])return pk.d[key]();
  const fromLines=mid=>`<ul class="list">${(c.e[mid]||[]).map(lineHTML).join('')}</ul>`;
  const map={autonomy:()=>H.t(['Action','Level','Control'],S.autonomy),golden:()=>`<p><a class="btn btn--primary" href="#solution-${id}">Open the prototype</a></p>`+H.t(['Beat','Person sees','Agent does'],S.steps.map((s,i)=>[`${i+1}. ${s.t}`,s.sees,s.agent])),failure:()=>H.t(['Failure','Response'],S.fails.map(f=>[f.t,f.d])),spec:()=>H.t(['Part','Specification'],S.spec)};
@@ -1012,11 +1046,11 @@ function dReady(id,key){return dContent(id,key)!==null}
 function deliverables(id){const pk=packOf(id),P=D.PACK.steps;
  return `${pk?`<div class="sit">${[['People',pk.situation.users],['System',pk.situation.system],['Data',pk.situation.data]].map(x=>`<div><span class="over">${x[0]}</span><p class="small" style="margin-top:6px">${x[1]}</p></div>`).join('')}</div>
   <h3 style="margin-top:var(--sp-8)">Data used</h3><div class="dls">${pk.data.map(x=>`<a class="dl" href="${x.file}" download><span class="dl-i" aria-hidden="true">CSV</span><span><b>${x.name}</b><small>${x.rows}</small><small>${x.kind==='synthetic'?'Synthetic, grounded':'Public data'} · ${x.src}</small></span></a>`).join('')}</div>`:`<div class="sit one"><p class="small">The data analysis for this example runs on the datasets being downloaded. Deliverables marked ready are built from the brief.</p></div>`}
- <h3 style="margin-top:var(--sp-8)">The twelve deliverables</h3>
+ <h3 style="margin-top:var(--sp-8)">The ${D.PACK.steps.length} deliverables</h3>
  <ol class="dlist">${P.map((st,i)=>{const ok=dReady(id,st[0]),m=byId(st[1]);return `<li><a class="dcard2 ${ok?'':'off'}" href="#d-${id}-${st[0]}"><span class="plan-n">${i+1}</span><span><b>${st[2]}</b><small>${st[3]}</small></span><span class="badge badge--soft">${PH[m.ph].name}</span><span class="xs ${ok?'':'muted'}">${ok?'Open':'Needs data'}</span></a></li>`}).join('')}</ol>`}
 function dPage(id,key){const c=CASES[id],P=D.PACK.steps,i=P.findIndex(s=>s[0]===key),st=P[i],m=byId(st[1]),prev=P[i-1],next=P[i+1],body=dContent(id,key);
  return `<section class="band"><div class="wrap" style="max-width:1000px">
-  <div class="crumb"><a href="#examples">Examples</a><span>/</span><a href="#case-${id}">${c.short}</a><span>/</span><span>Deliverable ${i+1} of 12</span></div>
+  <div class="crumb"><a href="#examples">Examples</a><span>/</span><a href="#case-${id}">${c.short}</a><span>/</span><span>Deliverable ${i+1} of ${P.length}</span></div>
   <div class="between" style="margin-top:var(--sp-5);align-items:end"><div><span class="over">${PH[m.ph].name} · ${m.name}</span><h1 style="margin-top:var(--sp-3)">${st[2]}</h1><p class="lede" style="margin-top:var(--sp-3)">${st[3]}. ${c.title}.</p></div><a class="btn btn--sm" href="#m-${m.id}">Template and method</a></div>
   <div class="dv">${body||`<div class="callout"><h4>Needs the data</h4><p class="small" style="margin-top:6px">This deliverable is built from the datasets you are downloading. It appears here as soon as they are analysed.</p></div>`}</div>
   <nav class="pn" aria-label="Deliverables">${prev?`<a class="card card--link" href="#d-${id}-${prev[0]}"><small>Previous</small>${prev[2]}</a>`:`<a class="card card--link" href="#case-${id}"><small>Back to</small>All deliverables</a>`}${next?`<a class="card card--link nx" href="#d-${id}-${next[0]}"><small>Next</small>${next[2]}</a>`:`<a class="card card--link nx" href="#case-${id}"><small>Back to</small>All deliverables</a>`}</nav>
