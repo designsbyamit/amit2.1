@@ -1,0 +1,65 @@
+defect_id,tree_id,district,risk_zone,vehicle,seen_at,defect_type,severity_ai,confidence_ai,watch_list_tree,faces_plates_removed,routed_to
+D5100,T102225,West,High footfall,Truck 03,2026-11-26 07:16,Canopy over road or footpath,High,0.87,Yes,Yes,Approval needed
+D5101,T101418,Central,School frontage,Truck 14,2026-11-25 05:17,Deadwood in canopy,Routine,0.65,No,Yes,Human review
+D5102,T101960,West,Arterial road,Truck 70,2026-11-24 09:29,Storm damage,Routine,0.7,Yes,Yes,Created and reported
+D5103,T100388,West,High footfall,Truck 27,2026-11-27 09:22,Canopy over road or footpath,Routine,0.74,No,Yes,Created and reported
+D5104,T102364,Central,Residential,Truck 50,2026-11-23 05:38,Deadwood in canopy,Routine,0.67,No,Yes,Human review
+D5105,T100486,South,Residential,Truck 22,2026-11-27 06:25,Leaning tree,Routine,0.63,No,Yes,Human review
+D5106,T102362,North,Residential,Truck 25,2026-11-26 08:36,Deadwood in canopy,Routine,0.52,No,Yes,Human review
+D5107,T100214,Central,High footfall,Truck 17,2026-11-23 06:34,Hanging or broken branch,Routine,0.61,No,Yes,Human review
+D5108,T102002,West,Residential,Truck 22,2026-11-25 07:26,Hanging or broken branch,Routine,0.9,No,Yes,Created and reported
+D5109,T100658,West,Arterial road,Truck 46,2026-11-23 09:09,Hanging or broken branch,Routine,0.85,No,Yes,Created and reported
+D5110,T100560,West,Residential,Truck 64,2026-11-25 07:54,Deadwood in canopy,High,0.9,Yes,Yes,Approval needed
+D5111,T102318,West,Residential,Truck 39,2026-11-24 07:03,Dieback,High,0.78,No,Yes,Approval needed
+D5112,T101624,South,Residential,Truck 60,2026-11-23 06:16,Hanging or broken branch,Routine,0.77,No,Yes,Created and reported
+D5113,T101288,South,Residential,Truck 23,2026-11-24 07:44,Storm damage,High,0.6,Yes,Yes,Human review
+D5114,T100566,North,Residential,Truck 57,2026-11-26 05:28,Leaning tree,Routine,0.86,No,Yes,Created and reported
+D5115,T101663,Central,Arterial road,Truck 13,2026-11-24 08:26,Canopy over road or footpath,Routine,0.64,Yes,Yes,Human review
+D5116,T101491,East,High footfall,Truck 35,2026-11-24 08:45,Dieback,High,0.51,No,Yes,Human review
+D5117,T100593,South,Residential,Truck 29,2026-11-24 09:03,Storm damage,Routine,0.9,Yes,Yes,Created and reported
+D5118,T102079,West,Residential,Truck 37,2026-11-26 08:12,Canopy over road or footpath,High,0.75,No,Yes,Approval needed
+D5119,T102271,East,School frontage,Truck 32,2026-11-27 07:20,Hanging or broken branch,Critical,0.85,Yes,Yes,To a person now
+D5120,T100382,Central,High footfall,Truck 51,2026-11-25 09:05,Storm damage,Critical,0.73,No,Yes,To a person now
+D5121,T101193,East,Residential,Truck 21,2026-11-27 08:37,Dieback,High,0.8,Yes,Yes,Approval needed
+D5122,T100595,South,Residential,Truck 57,2026-11-26 09:15,Hanging or broken branch,Routine,0.76,Yes,Yes,Created and reported
+D5123,T101971,South,High footfall,Truck 28,2026-11-24 09:48,Canopy over road or footpath,High,0.82,Yes,Yes,Approval needed
+D5124,T100175,West,Residential,Truck 44,2026-11-27 08:41,Hanging or broken branch,Routine,0.69,No,Yes,Human review
+D5125,T101968,East,High footfall,Truck 40,2026-11-26 05:15,Dieback,Routine,0.74,No,Yes,Created and reported
+D5126,T101788,West,High footfall,Truck 68,2026-11-25 05:21,Canopy over road or footpath,Routine,0.49,Yes,Yes,Human review
+D5127,T101786,North,Residential,Truck 09,2026-11-27 07:06,Leaning tree,Routine,0.71,Yes,Yes,Created and reported
+D5128,T102201,Central,Residential,Truck 06,2026-11-24 06:28,Deadwood in canopy,Routine,0.76,No,Yes,Created and reported
+D5129,T100670,North,School frontage,Truck 21,2026-11-24 06:20,Hanging or broken branch,Critical,0.83,No,Yes,To a person now
+D5130,T101136,Central,Residential,Truck 17,2026-11-24 08:25,Deadwood in canopy,Routine,0.8,Yes,Yes,Created and reported
+D5131,T101196,East,High footfall,Truck 10,2026-11-24 08:09,Hanging or broken branch,High,0.79,No,Yes,Approval needed
+D5132,T102269,South,Residential,Truck 25,2026-11-27 06:10,Hanging or broken branch,Routine,0.55,Yes,Yes,Human review
+D5133,T101625,Central,Residential,Truck 59,2026-11-26 09:51,Hanging or broken branch,High,0.84,No,Yes,Approval needed
+D5134,T100155,East,High footfall,Truck 04,2026-11-23 08:32,Storm damage,Routine,0.66,Yes,Yes,Human review
+D5135,T101288,South,Residential,Truck 40,2026-11-24 09:26,Deadwood in canopy,High,0.73,Yes,Yes,Approval needed
+D5136,T101564,East,Residential,Truck 24,2026-11-26 08:36,Dieback,Routine,0.71,No,Yes,Created and reported
+D5137,T100641,South,Residential,Truck 53,2026-11-27 09:45,Hanging or broken branch,Routine,0.74,No,Yes,Created and reported
+D5138,T100171,Central,Residential,Truck 33,2026-11-26 08:25,Leaning tree,High,0.52,Yes,Yes,Human review
+D5139,T101663,Central,Arterial road,Truck 22,2026-11-27 09:24,Hanging or broken branch,Routine,0.96,Yes,Yes,Created and reported
+D5140,T102286,South,Arterial road,Truck 33,2026-11-23 06:43,Canopy over road or footpath,Routine,0.85,No,Yes,Created and reported
+D5141,T101583,East,School frontage,Truck 70,2026-11-24 06:55,Hanging or broken branch,Critical,0.83,No,Yes,To a person now
+D5142,T101130,South,Residential,Truck 18,2026-11-24 08:31,Canopy over road or footpath,Routine,0.79,Yes,Yes,Created and reported
+D5143,T101085,Central,Arterial road,Truck 04,2026-11-23 08:13,Canopy over road or footpath,High,0.93,No,Yes,Approval needed
+D5144,T101701,South,Residential,Truck 51,2026-11-24 05:18,Hanging or broken branch,High,0.87,Yes,Yes,Approval needed
+D5145,T100782,North,High footfall,Truck 24,2026-11-23 05:11,Hanging or broken branch,Critical,0.9,No,Yes,To a person now
+D5146,T100083,West,Residential,Truck 02,2026-11-23 05:44,Dieback,Routine,0.87,No,Yes,Created and reported
+D5147,T102297,East,Residential,Truck 23,2026-11-25 07:33,Canopy over road or footpath,Routine,0.52,Yes,Yes,Human review
+D5148,T100944,Central,Residential,Truck 64,2026-11-25 08:39,Leaning tree,Routine,0.91,Yes,Yes,Created and reported
+D5149,T101971,South,High footfall,Truck 69,2026-11-24 05:54,Storm damage,Critical,0.53,Yes,Yes,To a person now
+D5150,T100151,North,Residential,Truck 26,2026-11-25 09:41,Canopy over road or footpath,Routine,0.78,Yes,Yes,Created and reported
+D5151,T100931,West,School frontage,Truck 34,2026-11-23 09:14,Hanging or broken branch,High,0.96,Yes,Yes,Approval needed
+D5152,T101552,West,Residential,Truck 12,2026-11-24 05:06,Hanging or broken branch,Routine,0.89,Yes,Yes,Created and reported
+D5153,T101522,Central,Residential,Truck 11,2026-11-26 08:32,Leaning tree,High,0.71,No,Yes,Approval needed
+D5154,T101924,East,Arterial road,Truck 01,2026-11-24 07:06,Storm damage,Routine,0.73,Yes,Yes,Created and reported
+D5155,T102124,Central,Residential,Truck 06,2026-11-27 09:19,Deadwood in canopy,High,0.71,Yes,Yes,Approval needed
+D5156,T101540,West,Arterial road,Truck 10,2026-11-23 07:01,Hanging or broken branch,High,0.89,Yes,Yes,Approval needed
+D5157,T101403,North,Residential,Truck 08,2026-11-24 08:32,Hanging or broken branch,Routine,0.66,No,Yes,Human review
+D5158,T101953,North,Residential,Truck 38,2026-11-23 07:59,Canopy over road or footpath,High,0.97,Yes,Yes,Approval needed
+D5159,T101412,East,Residential,Truck 24,2026-11-27 05:07,Deadwood in canopy,High,0.76,No,Yes,Approval needed
+D5160,T101037,South,Residential,Truck 55,2026-11-24 08:34,Hanging or broken branch,High,0.87,No,Yes,Approval needed
+D5161,T100151,North,Residential,Truck 35,2026-11-26 05:46,Deadwood in canopy,Routine,0.75,Yes,Yes,Created and reported
+D5162,T100155,East,High footfall,Truck 66,2026-11-27 08:12,Canopy over road or footpath,Routine,0.49,Yes,Yes,Human review
+D5163,T100390,Central,Residential,Truck 32,2026-11-27 09:07,Hanging or broken branch,High,0.78,No,Yes,Approval needed

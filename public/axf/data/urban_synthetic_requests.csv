@@ -1,0 +1,901 @@
+request_id,created,channel,type,tree_id,district,risk_zone,tree_location_recorded,storm_day,status,completed,days_to_complete
+R24212,2024-01-01,Citizen report,Fallen branch or debris,T101331,South,Residential,Yes,No,Completed,2024-01-05,4
+R24127,2024-01-03,Citizen report,Trim or prune,T100474,East,High footfall,No,No,Completed,2024-05-14,132
+R24403,2024-01-03,Citizen report,Fallen branch or debris,T100265,North,Residential,Yes,No,Completed,2024-01-04,1
+R24298,2024-01-04,Citizen report,Fallen branch or debris,T101851,South,Residential,Yes,No,Completed,2024-01-04,0
+R24692,2024-01-04,Citizen report,Trim or prune,T100481,South,School frontage,Yes,No,Duplicate,,
+R24139,2024-01-05,Citizen report,Fallen branch or debris,T100103,South,Residential,Yes,No,Completed,2024-01-10,5
+R24185,2024-01-07,Citizen report,Trim or prune,T100611,South,Residential,Yes,No,Completed,2024-01-07,0
+R24491,2024-01-07,Citizen report,Fallen branch or debris,T100200,Central,High footfall,Yes,No,Completed,2024-01-08,1
+R24889,2024-01-07,Citizen report,Trim or prune,T100058,Central,School frontage,No,No,Completed,2024-09-11,248
+R24561,2024-01-08,Citizen report,Fallen branch or debris,T100642,South,School frontage,Yes,No,Completed,2024-01-10,2
+R24572,2024-01-08,Citizen report,Fallen branch or debris,T100133,South,Residential,Yes,No,Completed,2024-01-15,7
+R24290,2024-01-09,Citizen report,Fallen branch or debris,T101126,East,Residential,No,No,Duplicate,,
+R24031,2024-01-10,Citizen report,Trim or prune,T100018,West,Residential,No,Yes,Completed,2024-02-21,42
+R24053,2024-01-10,Citizen report,Fallen branch or debris,T100125,West,Residential,Yes,No,Completed,2024-01-13,3
+R24101,2024-01-10,Citizen report,Trim or prune,T100858,West,Residential,Yes,Yes,Completed,2024-06-14,156
+R24108,2024-01-10,Citizen report,Trim or prune,T101155,Central,Arterial road,No,Yes,Duplicate,,
+R24129,2024-01-10,Citizen report,Trim or prune,T102061,West,Residential,Yes,Yes,Duplicate,,
+R24142,2024-01-10,Citizen report,Fallen branch or debris,T100213,East,Residential,Yes,Yes,Completed,2024-01-11,1
+R24156,2024-01-10,Citizen report,Trim or prune,T100097,South,Residential,Yes,Yes,Duplicate,,
+R24188,2024-01-10,Citizen report,Trim or prune,T101340,West,High footfall,No,Yes,Completed,2024-10-21,285
+R24206,2024-01-10,Citizen report,Fallen branch or debris,T100337,East,Residential,Yes,Yes,Duplicate,,
+R24267,2024-01-10,Citizen report,Trim or prune,T101106,Central,Residential,Yes,Yes,Completed,2024-01-10,0
+R24314,2024-01-10,Citizen report,Trim or prune,T100686,West,Residential,Yes,Yes,Completed,2024-10-04,268
+R24330,2024-01-10,Citizen report,Trim or prune,T100845,East,Residential,Yes,Yes,Completed,2024-01-10,0
+R24358,2024-01-10,Citizen report,Trim or prune,T101962,North,Residential,Yes,Yes,Completed,2024-01-26,16
+R24379,2024-01-10,Citizen report,Trim or prune,T100484,East,Residential,No,Yes,Completed,2024-01-10,0
+R24411,2024-01-10,Citizen report,Trim or prune,T101675,Central,Residential,Yes,Yes,Completed,2024-02-12,33
+R24413,2024-01-10,Citizen report,Trim or prune,T102169,Central,Residential,Yes,Yes,Duplicate,,
+R24425,2024-01-10,Citizen report,Fallen branch or debris,T101403,North,Residential,Yes,Yes,Completed,2024-01-10,0
+R24554,2024-01-10,Citizen report,Fallen branch or debris,T100640,North,Residential,Yes,Yes,Duplicate,,
+R24589,2024-01-10,Citizen report,Trim or prune,T102040,South,Arterial road,Yes,No,Completed,2024-06-08,150
+R24609,2024-01-10,Citizen report,Trim or prune,T100324,South,School frontage,No,Yes,Duplicate,,
+R24620,2024-01-10,Citizen report,Trim or prune,T101351,East,Residential,Yes,Yes,Completed,2024-06-28,170
+R24679,2024-01-10,Citizen report,Fallen branch or debris,T101508,Central,Arterial road,Yes,Yes,Completed,2024-01-17,7
+R24690,2024-01-10,Citizen report,Trim or prune,T102379,Central,Residential,Yes,Yes,Completed,2024-10-30,294
+R24740,2024-01-10,Citizen report,Trim or prune,T102063,Central,Residential,Yes,Yes,Completed,2024-03-22,72
+R24808,2024-01-10,Citizen report,Trim or prune,T101977,South,High footfall,No,Yes,Completed,2024-02-29,50
+R24854,2024-01-10,Citizen report,Trim or prune,T100109,West,High footfall,No,Yes,Completed,2024-05-20,131
+R24006,2024-01-11,Citizen report,Fallen branch or debris,T101693,South,Residential,Yes,Yes,Completed,2024-01-13,2
+R24064,2024-01-11,Citizen report,Trim or prune,T102305,North,School frontage,Yes,Yes,Completed,2024-01-11,0
+R24082,2024-01-11,Citizen report,Fallen branch or debris,T100538,North,Residential,No,Yes,Duplicate,,
+R24128,2024-01-11,Citizen report,Trim or prune,T100005,North,Residential,Yes,Yes,Completed,2024-05-06,116
+R24195,2024-01-11,Citizen report,Trim or prune,T101251,West,High footfall,No,Yes,Completed,2024-11-28,322
+R24312,2024-01-11,Citizen report,Fallen branch or debris,T102181,South,Residential,No,Yes,Completed,2024-01-11,0
+R24465,2024-01-11,Citizen report,Trim or prune,T101718,North,Arterial road,No,Yes,Completed,2024-01-11,0
+R24490,2024-01-11,Citizen report,Trim or prune,T102242,Central,Residential,No,Yes,Duplicate,,
+R24627,2024-01-11,Citizen report,Trim or prune,T100375,South,Residential,No,Yes,Duplicate,,
+R24643,2024-01-11,Citizen report,Trim or prune,T101790,East,High footfall,Yes,No,Completed,2024-09-22,255
+R24655,2024-01-11,Citizen report,Fallen branch or debris,T102341,South,Arterial road,No,Yes,Completed,2024-01-15,4
+R24784,2024-01-11,Citizen report,Trim or prune,T101479,South,Residential,No,Yes,Completed,2024-01-11,0
+R24850,2024-01-11,Citizen report,Trim or prune,T101460,North,Residential,Yes,Yes,Duplicate,,
+R24872,2024-01-11,Citizen report,Trim or prune,T101796,West,Residential,Yes,Yes,Duplicate,,
+R24891,2024-01-11,Citizen report,Trim or prune,T101903,North,Residential,Yes,Yes,Completed,2024-07-17,188
+R24106,2024-01-12,Citizen report,Trim or prune,T101211,West,Residential,Yes,Yes,Completed,2024-06-20,160
+R24172,2024-01-12,Citizen report,Trim or prune,T101367,South,Arterial road,Yes,Yes,Completed,2024-03-26,74
+R24285,2024-01-12,Citizen report,Trim or prune,T101456,East,High footfall,Yes,Yes,Completed,2024-01-12,0
+R24366,2024-01-12,Citizen report,Trim or prune,T101303,East,Residential,No,Yes,Completed,2024-10-30,292
+R24617,2024-01-12,Citizen report,Trim or prune,T101924,East,Arterial road,Yes,Yes,Completed,2024-02-02,21
+R24629,2024-01-12,Citizen report,Trim or prune,T100913,Central,Residential,Yes,Yes,Completed,2024-03-24,72
+R24661,2024-01-12,Citizen report,Trim or prune,T100085,Central,Arterial road,Yes,Yes,Duplicate,,
+R24725,2024-01-12,Citizen report,Trim or prune,T100772,North,Residential,Yes,Yes,Duplicate,,
+R24730,2024-01-12,Citizen report,Fallen branch or debris,T101394,West,High footfall,No,Yes,Completed,2024-01-23,11
+R24747,2024-01-12,Citizen report,Fallen branch or debris,T100104,North,Residential,Yes,Yes,Completed,2024-01-15,3
+R24782,2024-01-12,Citizen report,Trim or prune,T101825,East,High footfall,No,No,Duplicate,,
+R24817,2024-01-12,Citizen report,Trim or prune,T100447,West,Residential,No,Yes,Duplicate,,
+R24877,2024-01-12,Citizen report,Fallen branch or debris,T101394,West,High footfall,Yes,Yes,Completed,2024-01-13,1
+R24433,2024-01-13,Citizen report,Trim or prune,T100337,East,Residential,Yes,No,Completed,2024-01-13,0
+R24748,2024-01-13,Citizen report,Trim or prune,T101471,Central,Arterial road,Yes,No,Duplicate,,
+R24388,2024-01-20,Citizen report,Trim or prune,T100285,East,School frontage,No,No,Completed,2024-07-04,166
+R24544,2024-01-20,Citizen report,Trim or prune,T100962,East,Residential,No,No,Completed,2024-08-22,215
+R24344,2024-01-23,Citizen report,Trim or prune,T101787,East,Residential,Yes,No,Duplicate,,
+R24371,2024-01-25,Citizen report,Fallen branch or debris,T100468,North,Arterial road,Yes,No,Completed,2024-01-26,1
+R24550,2024-01-25,Citizen report,Fallen branch or debris,T100901,Central,High footfall,Yes,No,Completed,2024-01-27,2
+R24229,2024-01-27,Citizen report,Fallen branch or debris,T100384,East,Residential,Yes,No,Duplicate,,
+R24255,2024-01-27,Citizen report,Fallen branch or debris,T102123,East,Arterial road,Yes,No,Completed,2024-01-27,0
+R24471,2024-01-27,Citizen report,Fallen branch or debris,T100411,Central,Residential,Yes,No,Completed,2024-02-03,7
+R24778,2024-01-27,Citizen report,Fallen branch or debris,T102381,Central,Residential,No,No,Completed,2024-01-28,1
+R24382,2024-01-28,Citizen report,Fallen branch or debris,T101046,Central,Residential,Yes,No,Completed,2024-02-04,7
+R24571,2024-01-28,Citizen report,Fallen branch or debris,T101289,South,Residential,Yes,No,Completed,2024-01-30,2
+R24880,2024-01-29,Citizen report,Fallen branch or debris,T101776,Central,Arterial road,No,No,Completed,2024-02-03,5
+R24095,2024-01-30,Citizen report,Fallen branch or debris,T100914,South,Residential,Yes,No,Completed,2024-01-31,1
+R24574,2024-01-30,Citizen report,Trim or prune,T102149,West,Residential,Yes,No,Completed,2024-02-07,8
+R24815,2024-01-30,Citizen report,Fallen branch or debris,T101561,North,Arterial road,Yes,No,Completed,2024-02-02,3
+R24472,2024-02-01,Citizen report,Trim or prune,T102124,Central,Residential,No,No,Completed,2024-11-19,292
+R24851,2024-02-01,Citizen report,Trim or prune,T100796,West,Residential,No,No,Completed,2024-03-29,57
+R24329,2024-02-02,Citizen report,Trim or prune,T101792,North,Residential,Yes,No,Duplicate,,
+R24449,2024-02-02,Citizen report,Trim or prune,T101507,West,High footfall,No,No,Completed,2024-02-02,0
+R24800,2024-02-02,Citizen report,Fallen branch or debris,T102203,Central,Residential,Yes,No,Completed,2024-02-05,3
+R24373,2024-02-03,Citizen report,Fallen branch or debris,T100595,South,Residential,Yes,No,Completed,2024-02-04,1
+R24603,2024-02-03,Citizen report,Fallen branch or debris,T102164,North,Residential,Yes,No,Completed,2024-02-04,1
+R24235,2024-02-04,Citizen report,Trim or prune,T101196,East,High footfall,No,No,Completed,2024-04-22,78
+R24389,2024-02-04,Citizen report,Trim or prune,T101114,East,Residential,Yes,No,Completed,2024-10-07,246
+R24495,2024-02-05,Citizen report,Fallen branch or debris,T101361,South,High footfall,Yes,No,Completed,2024-02-22,17
+R24320,2024-02-07,Citizen report,Trim or prune,T101855,South,Residential,Yes,No,Completed,2024-03-25,47
+R24683,2024-02-07,Citizen report,Trim or prune,T101559,Central,Residential,Yes,No,Duplicate,,
+R24087,2024-02-08,Citizen report,Trim or prune,T102069,West,Residential,Yes,No,Duplicate,,
+R24439,2024-02-08,Citizen report,Trim or prune,T102277,East,Residential,Yes,No,Completed,2025-01-12,339
+R24213,2024-02-09,Citizen report,Trim or prune,T102173,West,Residential,Yes,No,Duplicate,,
+R24423,2024-02-10,Citizen report,Fallen branch or debris,T100135,West,Residential,Yes,No,Completed,2024-02-14,4
+R24760,2024-02-10,Citizen report,Trim or prune,T102113,North,Arterial road,No,No,Completed,2024-02-10,0
+R24633,2024-02-13,Citizen report,Trim or prune,T102337,West,Residential,Yes,No,Duplicate,,
+R24222,2024-02-14,Citizen report,Trim or prune,T101268,East,High footfall,No,No,Completed,2024-10-11,240
+R24686,2024-02-14,Citizen report,Trim or prune,T102046,East,Arterial road,Yes,No,Completed,2025-04-16,427
+R24469,2024-02-15,Citizen report,Trim or prune,T100287,South,Residential,No,No,Completed,2024-02-23,8
+R24662,2024-02-15,Citizen report,Fallen branch or debris,T100391,East,Residential,Yes,No,Completed,2024-02-19,4
+R24209,2024-02-16,Citizen report,Fallen branch or debris,T101345,North,High footfall,Yes,No,Completed,2024-02-17,1
+R24716,2024-02-21,Citizen report,Fallen branch or debris,T100576,East,Residential,Yes,No,Completed,2024-02-22,1
+R24220,2024-02-22,Citizen report,Trim or prune,T102356,West,Residential,Yes,No,Completed,2024-02-22,0
+R24173,2024-02-23,Citizen report,Trim or prune,T101972,East,Residential,Yes,No,Completed,2024-02-23,0
+R24870,2024-02-23,Citizen report,Trim or prune,T101843,South,School frontage,No,No,Duplicate,,
+R24597,2024-02-25,Citizen report,Trim or prune,T101401,North,Residential,Yes,No,Completed,2024-06-18,114
+R24146,2024-02-26,Citizen report,Trim or prune,T100959,South,Residential,Yes,No,Completed,2024-07-31,156
+R24623,2024-02-27,Citizen report,Trim or prune,T101131,South,Residential,Yes,No,Completed,2024-09-24,210
+R24669,2024-02-28,Citizen report,Trim or prune,T100991,Central,Residential,No,No,Completed,2024-02-28,0
+R24858,2024-02-28,Citizen report,Trim or prune,T100685,West,Residential,Yes,No,Completed,2025-01-19,326
+R24421,2024-02-29,Citizen report,Trim or prune,T101626,Central,High footfall,Yes,No,Completed,2024-02-29,0
+R24455,2024-02-29,Citizen report,Trim or prune,T101144,West,High footfall,Yes,No,Completed,2024-02-29,0
+R24834,2024-03-02,Citizen report,Trim or prune,T101782,West,Arterial road,Yes,No,Completed,2024-10-20,232
+R24076,2024-03-03,Citizen report,Fallen branch or debris,T101225,South,School frontage,Yes,Yes,Completed,2024-03-04,1
+R24125,2024-03-03,Citizen report,Trim or prune,T100185,South,Residential,No,Yes,Completed,2024-09-01,182
+R24204,2024-03-03,Citizen report,Trim or prune,T100812,West,Residential,Yes,Yes,Duplicate,,
+R24306,2024-03-03,Citizen report,Fallen branch or debris,T100256,West,Residential,Yes,Yes,Completed,2024-03-04,1
+R24375,2024-03-03,Citizen report,Trim or prune,T101088,West,Residential,No,Yes,Duplicate,,
+R24414,2024-03-03,Citizen report,Trim or prune,T100086,East,High footfall,Yes,No,Completed,2024-12-23,295
+R24482,2024-03-03,Citizen report,Trim or prune,T101044,East,School frontage,Yes,Yes,Completed,2024-11-24,266
+R24533,2024-03-03,Citizen report,Fallen branch or debris,T100184,North,Arterial road,Yes,Yes,Completed,2024-03-20,17
+R24552,2024-03-03,Citizen report,Fallen branch or debris,T101488,North,Residential,Yes,Yes,Completed,2024-03-05,2
+R24663,2024-03-03,Citizen report,Trim or prune,T101500,North,Residential,Yes,Yes,Completed,2024-03-03,0
+R24705,2024-03-03,Citizen report,Fallen branch or debris,T101556,West,School frontage,No,Yes,Completed,2024-03-07,4
+R24720,2024-03-03,Citizen report,Trim or prune,T102372,East,Residential,No,Yes,Completed,2024-03-03,0
+R24029,2024-03-04,Citizen report,Fallen branch or debris,T101483,North,School frontage,Yes,Yes,Completed,2024-03-05,1
+R24057,2024-03-04,Citizen report,Trim or prune,T101360,North,Arterial road,Yes,Yes,Duplicate,,
+R24120,2024-03-04,Citizen report,Fallen branch or debris,T101000,West,Arterial road,Yes,Yes,Completed,2024-03-08,4
+R24145,2024-03-04,Citizen report,Fallen branch or debris,T101532,West,Arterial road,Yes,Yes,Completed,2024-03-08,4
+R24166,2024-03-04,Citizen report,Trim or prune,T100977,Central,Arterial road,No,Yes,Completed,2024-03-04,0
+R24178,2024-03-04,Citizen report,Trim or prune,T101849,North,Arterial road,Yes,Yes,Completed,2024-04-03,30
+R24186,2024-03-04,Citizen report,Trim or prune,T100564,East,Residential,Yes,Yes,Completed,2024-03-04,0
+R24244,2024-03-04,Citizen report,Trim or prune,T101999,North,High footfall,No,No,Completed,2024-03-04,0
+R24467,2024-03-04,Citizen report,Trim or prune,T100335,East,Residential,No,Yes,Duplicate,,
+R24631,2024-03-04,Citizen report,Trim or prune,T102260,North,Residential,No,Yes,Completed,2024-03-04,0
+R24733,2024-03-04,Citizen report,Fallen branch or debris,T100001,Central,Arterial road,Yes,Yes,Completed,2024-03-06,2
+R24756,2024-03-04,Citizen report,Trim or prune,T100748,West,High footfall,Yes,Yes,Completed,2024-07-27,145
+R24776,2024-03-04,Citizen report,Fallen branch or debris,T102039,East,Residential,Yes,Yes,Completed,2024-03-08,4
+R24793,2024-03-04,Citizen report,Fallen branch or debris,T101276,South,Residential,Yes,Yes,Completed,2024-03-05,1
+R24876,2024-03-04,Citizen report,Fallen branch or debris,T102072,Central,Residential,Yes,Yes,Completed,2024-03-05,1
+R24040,2024-03-05,Citizen report,Trim or prune,T101885,West,Arterial road,Yes,Yes,Completed,2024-03-27,22
+R24100,2024-03-05,Citizen report,Trim or prune,T101647,North,High footfall,Yes,Yes,Duplicate,,
+R24154,2024-03-05,Citizen report,Trim or prune,T100972,East,Residential,Yes,Yes,Completed,2024-06-11,98
+R24228,2024-03-05,Citizen report,Trim or prune,T100862,East,Residential,Yes,Yes,Completed,2024-03-05,0
+R24351,2024-03-05,Citizen report,Trim or prune,T100617,West,Residential,No,Yes,Completed,2024-07-30,147
+R24354,2024-03-05,Citizen report,Trim or prune,T101476,Central,School frontage,No,Yes,Completed,2024-06-16,103
+R24393,2024-03-05,Citizen report,Fallen branch or debris,T100031,East,Arterial road,Yes,Yes,Completed,2024-03-08,3
+R24458,2024-03-05,Citizen report,Trim or prune,T101358,South,Residential,Yes,Yes,Duplicate,,
+R24475,2024-03-05,Citizen report,Trim or prune,T101530,East,Residential,Yes,Yes,Duplicate,,
+R24676,2024-03-05,Citizen report,Trim or prune,T100100,West,Residential,Yes,Yes,Completed,2024-03-05,0
+R24744,2024-03-05,Citizen report,Trim or prune,T101651,West,High footfall,No,Yes,Completed,2024-04-11,37
+R24836,2024-03-05,Citizen report,Fallen branch or debris,T100426,West,High footfall,Yes,Yes,Completed,2024-03-05,0
+R24869,2024-03-05,Citizen report,Fallen branch or debris,T100619,Central,Residential,Yes,Yes,Completed,2024-03-09,4
+R24691,2024-03-07,Citizen report,Fallen branch or debris,T101568,North,Residential,Yes,No,Completed,2024-03-09,2
+R24736,2024-03-09,Citizen report,Trim or prune,T100575,Central,Residential,Yes,No,Completed,2024-08-30,174
+R24177,2024-03-10,Citizen report,Trim or prune,T102339,North,Residential,No,No,Completed,2024-03-10,0
+R24580,2024-03-12,Citizen report,Fallen branch or debris,T100219,Central,Residential,Yes,No,Duplicate,,
+R24262,2024-03-13,Citizen report,Fallen branch or debris,T100600,West,School frontage,No,No,Completed,2024-03-20,7
+R24722,2024-03-13,Citizen report,Trim or prune,T100005,North,Residential,Yes,No,Completed,2025-02-12,336
+R24141,2024-03-16,Citizen report,Trim or prune,T102161,West,Residential,Yes,No,Completed,2024-08-22,159
+R24685,2024-03-16,Citizen report,Trim or prune,T101550,Central,Residential,No,No,Duplicate,,
+R24339,2024-03-17,Citizen report,Fallen branch or debris,T101413,Central,Residential,No,No,Completed,2024-03-29,12
+R24731,2024-03-19,Citizen report,Fallen branch or debris,T101023,East,High footfall,Yes,No,Completed,2024-03-20,1
+R24440,2024-03-23,Citizen report,Fallen branch or debris,T102121,East,Residential,No,No,Duplicate,,
+R24762,2024-03-23,Citizen report,Fallen branch or debris,T100330,South,High footfall,Yes,No,Completed,2024-04-02,10
+R24524,2024-03-25,Citizen report,Fallen branch or debris,T101969,North,Residential,No,No,Completed,2024-03-29,4
+R24671,2024-03-26,Citizen report,Trim or prune,T100011,Central,Arterial road,Yes,No,Duplicate,,
+R24695,2024-03-27,Citizen report,Trim or prune,T102145,North,Residential,Yes,No,Completed,2024-03-27,0
+R24791,2024-03-27,Citizen report,Trim or prune,T102053,Central,Residential,Yes,No,Completed,2024-11-23,241
+R24260,2024-03-29,Citizen report,Trim or prune,T101302,North,Arterial road,Yes,No,Completed,2024-10-19,204
+R24868,2024-03-29,Citizen report,Trim or prune,T101108,East,Residential,Yes,No,Completed,2025-05-30,427
+R24090,2024-03-31,Citizen report,Fallen branch or debris,T101937,South,Residential,Yes,No,Completed,2024-04-05,5
+R24210,2024-03-31,Citizen report,Trim or prune,T101315,East,Residential,Yes,No,Duplicate,,
+R24019,2024-04-02,Citizen report,Fallen branch or debris,T101323,North,High footfall,Yes,No,Completed,2024-04-03,1
+R24395,2024-04-03,Citizen report,Fallen branch or debris,T100481,South,School frontage,No,No,Completed,2024-04-13,10
+R24148,2024-04-04,Citizen report,Fallen branch or debris,T101242,North,Residential,Yes,No,Duplicate,,
+R24384,2024-04-04,Citizen report,Fallen branch or debris,T100945,North,High footfall,Yes,No,Completed,2024-04-05,1
+R24362,2024-04-05,Citizen report,Trim or prune,T100802,East,Residential,Yes,No,Completed,2024-06-30,86
+R24136,2024-04-06,Citizen report,Trim or prune,T102186,East,Residential,Yes,No,Completed,2024-04-06,0
+R24545,2024-04-07,Citizen report,Trim or prune,T101541,East,High footfall,Yes,No,Completed,2024-04-07,0
+R24861,2024-04-09,Citizen report,Trim or prune,T100020,West,Arterial road,Yes,No,Duplicate,,
+R24088,2024-04-10,Citizen report,Fallen branch or debris,T101710,North,Residential,Yes,No,Completed,2024-04-14,4
+R24677,2024-04-10,Citizen report,Trim or prune,T102229,East,Residential,Yes,No,Completed,2024-04-10,0
+R24737,2024-04-11,Citizen report,Trim or prune,T102260,North,Residential,No,No,Completed,2024-12-03,236
+R24113,2024-04-14,Citizen report,Trim or prune,T100159,West,Arterial road,Yes,No,Duplicate,,
+R24588,2024-04-14,Citizen report,Fallen branch or debris,T102133,West,Residential,Yes,No,Completed,2024-04-17,3
+R24043,2024-04-15,Citizen report,Fallen branch or debris,T101843,South,School frontage,Yes,No,Completed,2024-04-15,0
+R24396,2024-04-15,Citizen report,Trim or prune,T101822,South,Residential,Yes,No,Completed,2024-04-15,0
+R24294,2024-04-16,Citizen report,Trim or prune,T100714,Central,Residential,Yes,No,Completed,2024-06-24,69
+R24863,2024-04-16,Citizen report,Trim or prune,T100729,North,High footfall,Yes,No,Duplicate,,
+R24696,2024-04-17,Citizen report,Trim or prune,T102074,West,Residential,Yes,No,Completed,2024-12-13,240
+R24132,2024-04-19,Citizen report,Trim or prune,T102151,East,Residential,No,No,Completed,2025-03-11,326
+R24080,2024-04-22,Citizen report,Trim or prune,T100280,East,Residential,No,No,Completed,2024-07-19,88
+R24581,2024-04-22,Citizen report,Trim or prune,T101786,North,Residential,Yes,No,Completed,2024-04-28,6
+R24463,2024-04-24,Citizen report,Trim or prune,T100951,South,Arterial road,Yes,No,Duplicate,,
+R24434,2024-04-26,Citizen report,Fallen branch or debris,T101522,Central,Residential,Yes,No,Completed,2024-04-29,3
+R24857,2024-04-27,Citizen report,Fallen branch or debris,T102113,North,Arterial road,No,No,Completed,2024-04-30,3
+R24170,2024-04-28,Citizen report,Fallen branch or debris,T101017,East,Arterial road,Yes,No,Completed,2024-05-01,3
+R24333,2024-04-29,Citizen report,Trim or prune,T100310,North,School frontage,No,No,Completed,2024-04-29,0
+R24805,2024-04-30,Citizen report,Trim or prune,T101925,Central,Residential,No,No,Completed,2024-04-30,0
+R24573,2024-05-03,Citizen report,Fallen branch or debris,T101523,North,Residential,Yes,No,Completed,2024-05-13,10
+R24709,2024-05-06,Citizen report,Fallen branch or debris,T101133,South,High footfall,Yes,No,Completed,2024-05-07,1
+R24587,2024-05-10,Citizen report,Fallen branch or debris,T100490,North,Residential,Yes,No,Completed,2024-05-11,1
+R24569,2024-05-12,Citizen report,Trim or prune,T101309,West,Residential,Yes,No,Completed,2024-05-12,0
+R24208,2024-05-14,Citizen report,Fallen branch or debris,T100276,North,Residential,Yes,No,Completed,2024-05-17,3
+R24753,2024-05-17,Citizen report,Fallen branch or debris,T102208,East,Residential,Yes,No,Completed,2024-05-18,1
+R24107,2024-05-18,Citizen report,Trim or prune,T100855,West,Residential,No,No,Duplicate,,
+R24487,2024-05-18,Citizen report,Fallen branch or debris,T102080,North,Residential,No,No,Completed,2024-06-04,17
+R24646,2024-05-20,Citizen report,Trim or prune,T100558,South,High footfall,No,No,Duplicate,,
+R24654,2024-05-20,Citizen report,Trim or prune,T101195,Central,High footfall,Yes,No,Completed,2024-05-20,0
+R24479,2024-05-23,Citizen report,Trim or prune,T101730,East,Residential,No,No,Duplicate,,
+R24794,2024-05-23,Citizen report,Trim or prune,T101357,North,Residential,No,No,Completed,2025-04-22,334
+R24771,2024-05-25,Citizen report,Trim or prune,T100265,North,Residential,Yes,No,Completed,2024-07-11,47
+R24896,2024-05-25,Citizen report,Trim or prune,T102027,North,Residential,Yes,No,Completed,2024-08-01,68
+R24254,2024-05-28,Citizen report,Fallen branch or debris,T101822,South,Residential,Yes,No,Completed,2024-05-29,1
+R24755,2024-05-28,Citizen report,Trim or prune,T100299,North,School frontage,No,No,Completed,2024-05-28,0
+R24645,2024-05-29,Citizen report,Trim or prune,T102127,South,Arterial road,Yes,No,Completed,2025-01-29,245
+R24864,2024-05-29,Citizen report,Trim or prune,T100161,East,High footfall,Yes,No,Completed,2024-06-13,15
+R24104,2024-06-06,Citizen report,Trim or prune,T101520,Central,School frontage,Yes,No,Duplicate,,
+R24111,2024-06-09,Citizen report,Trim or prune,T100408,East,School frontage,No,No,Duplicate,,
+R24409,2024-06-09,Citizen report,Trim or prune,T100992,East,Residential,Yes,No,Completed,2024-11-21,165
+R24628,2024-06-11,Citizen report,Fallen branch or debris,T101350,Central,School frontage,Yes,No,Completed,2024-06-28,17
+R24251,2024-06-12,Citizen report,Trim or prune,T101381,West,School frontage,No,No,Completed,2025-01-03,205
+R24546,2024-06-19,Citizen report,Fallen branch or debris,T101480,South,Residential,Yes,No,Completed,2024-06-21,2
+R24062,2024-06-21,Citizen report,Trim or prune,T101445,South,Residential,Yes,No,Completed,2024-06-21,0
+R24248,2024-06-25,Citizen report,Fallen branch or debris,T100274,West,High footfall,Yes,No,Completed,2024-06-30,5
+R24246,2024-07-07,Citizen report,Fallen branch or debris,T101737,East,Arterial road,Yes,No,Completed,2024-07-07,0
+R24811,2024-07-15,Citizen report,Trim or prune,T100496,East,Residential,Yes,No,Completed,2024-10-21,98
+R24486,2024-07-19,Citizen report,Fallen branch or debris,T100942,North,High footfall,Yes,No,Completed,2024-07-19,0
+R24264,2024-07-25,Citizen report,Trim or prune,T101370,West,Residential,Yes,No,Completed,2025-03-08,226
+R24363,2024-07-29,Citizen report,Trim or prune,T100224,South,Residential,No,No,Completed,2024-10-19,82
+R24289,2024-08-02,Citizen report,Trim or prune,T102362,North,Residential,Yes,No,Completed,2024-12-01,121
+R24852,2024-08-21,Citizen report,Fallen branch or debris,T100858,West,Residential,Yes,No,Completed,2024-08-25,4
+R24541,2024-08-25,Citizen report,Trim or prune,T101647,North,High footfall,Yes,No,Duplicate,,
+R24397,2024-09-02,Citizen report,Trim or prune,T101383,South,Arterial road,Yes,No,Completed,2025-01-20,140
+R24777,2024-09-03,Citizen report,Fallen branch or debris,T100430,Central,Residential,Yes,No,Completed,2024-09-03,0
+R24135,2024-09-04,Citizen report,Trim or prune,T101424,Central,Residential,No,No,Completed,2024-09-04,0
+R24829,2024-09-08,Citizen report,Trim or prune,T101938,West,Residential,No,No,Completed,2025-11-06,424
+R24899,2024-09-08,Citizen report,Trim or prune,T101250,South,Residential,No,No,Completed,2025-01-07,121
+R24035,2024-09-15,Citizen report,Fallen branch or debris,T101661,North,High footfall,Yes,No,Completed,2024-09-28,13
+R24750,2024-09-16,Citizen report,Trim or prune,T101282,North,Residential,Yes,No,Completed,2024-09-16,0
+R24169,2024-09-20,Citizen report,Trim or prune,T102325,West,Residential,Yes,No,Completed,2024-09-20,0
+R24404,2024-09-20,Citizen report,Trim or prune,T100488,West,Residential,Yes,No,Completed,2024-10-11,21
+R24048,2024-09-21,Citizen report,Fallen branch or debris,T101778,Central,Arterial road,Yes,No,Completed,2024-09-21,0
+R24266,2024-09-25,Citizen report,Fallen branch or debris,T100504,Central,Residential,Yes,No,Completed,2024-09-26,1
+R24480,2024-09-28,Citizen report,Trim or prune,T100552,South,Residential,No,No,Duplicate,,
+R24819,2024-09-28,Citizen report,Trim or prune,T100723,North,Residential,Yes,No,Completed,2025-02-08,133
+R24377,2024-10-02,Citizen report,Trim or prune,T102102,East,Residential,No,No,Duplicate,,
+R24075,2024-10-06,Citizen report,Trim or prune,T101092,Central,Residential,Yes,No,Completed,2025-06-26,263
+R24370,2024-10-07,Citizen report,Trim or prune,T100582,Central,Residential,No,No,Completed,2025-01-11,96
+R24221,2024-10-10,Citizen report,Trim or prune,T101926,South,Residential,Yes,No,Completed,2024-12-12,63
+R24855,2024-10-12,Citizen report,Trim or prune,T100112,Central,Arterial road,Yes,No,Completed,2025-01-28,108
+R24018,2024-10-13,Citizen report,Trim or prune,T100009,North,Residential,Yes,Yes,Completed,2025-02-26,136
+R24025,2024-10-13,Citizen report,Fallen branch or debris,T100112,Central,Arterial road,No,Yes,Duplicate,,
+R24055,2024-10-13,Citizen report,Trim or prune,T100566,North,Residential,Yes,Yes,Completed,2024-12-24,72
+R24175,2024-10-13,Citizen report,Trim or prune,T101625,Central,Residential,No,Yes,Completed,2025-03-18,156
+R24201,2024-10-13,Citizen report,Trim or prune,T101525,Central,Residential,Yes,Yes,Completed,2025-03-11,149
+R24234,2024-10-13,Citizen report,Trim or prune,T101075,North,Arterial road,Yes,Yes,Completed,2025-04-19,188
+R24236,2024-10-13,Citizen report,Fallen branch or debris,T101849,North,Arterial road,Yes,Yes,Duplicate,,
+R24367,2024-10-13,Citizen report,Trim or prune,T100198,North,Residential,No,Yes,Completed,2025-04-29,198
+R24420,2024-10-13,Citizen report,Trim or prune,T100165,South,Residential,Yes,Yes,Duplicate,,
+R24511,2024-10-13,Citizen report,Trim or prune,T100941,South,Residential,No,Yes,Completed,2025-03-15,153
+R24531,2024-10-13,Citizen report,Trim or prune,T101950,East,Residential,No,Yes,Completed,2025-02-03,113
+R24537,2024-10-13,Citizen report,Fallen branch or debris,T100015,North,Residential,Yes,Yes,Completed,2024-10-15,2
+R24558,2024-10-13,Citizen report,Fallen branch or debris,T102392,North,High footfall,Yes,Yes,Completed,2024-10-14,1
+R24621,2024-10-13,Citizen report,Trim or prune,T100085,Central,Arterial road,Yes,Yes,Completed,2025-04-03,172
+R24665,2024-10-13,Citizen report,Trim or prune,T100451,West,High footfall,Yes,Yes,Completed,2024-10-13,0
+R24704,2024-10-13,Citizen report,Fallen branch or debris,T101923,West,High footfall,Yes,Yes,Completed,2024-10-15,2
+R24816,2024-10-13,Citizen report,Trim or prune,T100860,East,Residential,No,Yes,Duplicate,,
+R24041,2024-10-14,Citizen report,Trim or prune,T101979,North,High footfall,No,Yes,Duplicate,,
+R24054,2024-10-14,Citizen report,Trim or prune,T101957,South,Residential,Yes,Yes,Completed,2025-04-17,185
+R24121,2024-10-14,Citizen report,Fallen branch or debris,T100450,North,School frontage,Yes,Yes,Completed,2024-10-14,0
+R24277,2024-10-14,Citizen report,Fallen branch or debris,T101848,North,Residential,Yes,Yes,Completed,2024-10-22,8
+R24296,2024-10-14,Citizen report,Trim or prune,T101111,Central,High footfall,Yes,Yes,Completed,2025-09-03,324
+R24303,2024-10-14,Citizen report,Trim or prune,T100418,East,Residential,No,Yes,Completed,2024-12-09,56
+R24321,2024-10-14,Citizen report,Trim or prune,T102392,North,High footfall,Yes,Yes,Completed,2025-06-28,257
+R24345,2024-10-14,Citizen report,Fallen branch or debris,T102259,East,Residential,Yes,Yes,Completed,2024-10-16,2
+R24410,2024-10-14,Citizen report,Trim or prune,T100126,North,Residential,No,Yes,Completed,2025-03-06,143
+R24506,2024-10-14,Citizen report,Fallen branch or debris,T102036,South,Arterial road,Yes,Yes,Completed,2024-10-14,0
+R24576,2024-10-14,Citizen report,Trim or prune,T100120,West,Residential,Yes,Yes,Completed,2024-11-14,31
+R24615,2024-10-14,Citizen report,Fallen branch or debris,T102034,West,School frontage,No,Yes,Completed,2024-10-23,9
+R24668,2024-10-14,Citizen report,Trim or prune,T101026,South,Residential,Yes,Yes,Completed,2024-10-20,6
+R24775,2024-10-14,Citizen report,Fallen branch or debris,T100569,West,Residential,Yes,Yes,Completed,2024-10-16,2
+R24810,2024-10-14,Citizen report,Trim or prune,T102348,Central,Residential,Yes,Yes,Completed,2025-01-29,107
+R24032,2024-10-15,Citizen report,Trim or prune,T100324,South,School frontage,No,Yes,Completed,2025-05-05,202
+R24060,2024-10-15,Citizen report,Trim or prune,T101117,North,High footfall,Yes,Yes,Completed,2024-12-15,61
+R24092,2024-10-15,Citizen report,Fallen branch or debris,T102196,West,Residential,Yes,Yes,Duplicate,,
+R24118,2024-10-15,Citizen report,Fallen branch or debris,T101322,North,School frontage,Yes,No,Completed,2024-10-18,3
+R24155,2024-10-15,Citizen report,Fallen branch or debris,T102388,East,High footfall,No,Yes,Completed,2024-10-24,9
+R24193,2024-10-15,Citizen report,Trim or prune,T102352,West,Residential,No,Yes,Duplicate,,
+R24232,2024-10-15,Citizen report,Fallen branch or debris,T100177,West,Residential,Yes,Yes,Completed,2024-10-16,1
+R24304,2024-10-15,Citizen report,Trim or prune,T100216,West,Residential,Yes,Yes,Completed,2025-06-25,253
+R24399,2024-10-15,Citizen report,Trim or prune,T101004,South,Residential,Yes,Yes,Duplicate,,
+R24427,2024-10-15,Citizen report,Trim or prune,T100944,Central,Residential,Yes,Yes,Completed,2025-05-05,202
+R24437,2024-10-15,Citizen report,Trim or prune,T101782,West,Arterial road,Yes,Yes,Completed,2024-10-15,0
+R24553,2024-10-15,Citizen report,Fallen branch or debris,T102153,South,Residential,Yes,Yes,Completed,2024-10-15,0
+R24607,2024-10-15,Citizen report,Trim or prune,T100565,Central,High footfall,No,Yes,Completed,2025-10-02,352
+R24634,2024-10-15,Citizen report,Trim or prune,T102225,West,High footfall,Yes,Yes,Completed,2024-10-15,0
+R24637,2024-10-15,Citizen report,Fallen branch or debris,T102099,West,School frontage,Yes,Yes,Completed,2024-10-15,0
+R24714,2024-10-15,Citizen report,Trim or prune,T101878,East,Residential,Yes,Yes,Completed,2025-02-19,127
+R24751,2024-10-15,Citizen report,Trim or prune,T101835,North,Residential,Yes,Yes,Completed,2024-10-15,0
+R24897,2024-10-15,Citizen report,Fallen branch or debris,T101481,West,School frontage,Yes,Yes,Completed,2024-10-19,4
+R24305,2024-10-18,Citizen report,Trim or prune,T102199,East,Residential,Yes,No,Completed,2024-10-18,0
+R24015,2024-10-21,Citizen report,Trim or prune,T100133,South,Residential,Yes,No,Completed,2025-01-26,97
+R24105,2024-10-24,Citizen report,Fallen branch or debris,T100567,West,High footfall,Yes,No,Duplicate,,
+R24505,2024-10-29,Citizen report,Trim or prune,T101550,Central,Residential,Yes,No,Duplicate,,
+R24529,2024-11-05,Citizen report,Fallen branch or debris,T100187,Central,Arterial road,Yes,No,Completed,2024-11-17,12
+R24610,2024-11-06,Citizen report,Fallen branch or debris,T101733,Central,Residential,No,No,Completed,2024-11-11,5
+R24780,2024-11-07,Citizen report,Trim or prune,T100182,East,Residential,No,No,Completed,2024-11-07,0
+R24203,2024-11-09,Citizen report,Fallen branch or debris,T101110,East,Residential,Yes,No,Completed,2024-11-10,1
+R24638,2024-11-10,Citizen report,Trim or prune,T101139,Central,School frontage,Yes,No,Duplicate,,
+R24311,2024-11-13,Citizen report,Trim or prune,T101116,South,Arterial road,Yes,No,Completed,2024-11-13,0
+R24430,2024-11-15,Citizen report,Trim or prune,T100217,West,High footfall,Yes,No,Duplicate,,
+R24746,2024-11-16,Citizen report,Fallen branch or debris,T101118,East,Residential,Yes,No,Completed,2024-11-22,6
+R24286,2024-11-20,Citizen report,Trim or prune,T100748,West,High footfall,No,No,Completed,2025-03-19,119
+R24034,2024-11-23,Citizen report,Trim or prune,T100563,North,Arterial road,No,No,Duplicate,,
+R24656,2024-11-23,Citizen report,Trim or prune,T100916,South,Residential,Yes,No,Duplicate,,
+R24288,2024-11-25,Citizen report,Trim or prune,T102188,Central,High footfall,No,No,Completed,2024-11-25,0
+R24719,2024-11-28,Citizen report,Fallen branch or debris,T100019,West,Residential,Yes,No,Completed,2024-11-28,0
+R24026,2024-11-29,Citizen report,Trim or prune,T101968,East,High footfall,No,No,Completed,2025-06-30,213
+R24601,2024-11-30,Citizen report,Trim or prune,T101463,North,High footfall,No,No,Completed,2024-12-29,29
+R24153,2024-12-01,Citizen report,Trim or prune,T101212,North,Residential,No,No,Duplicate,,
+R24058,2024-12-02,Citizen report,Trim or prune,T100269,North,Residential,Yes,No,Completed,2024-12-02,0
+R24605,2024-12-03,Citizen report,Trim or prune,T101988,North,School frontage,Yes,No,Completed,2025-05-25,173
+R24822,2024-12-03,Citizen report,Trim or prune,T100349,Central,Arterial road,Yes,No,Completed,2025-07-15,224
+R24211,2024-12-05,Citizen report,Trim or prune,T102245,Central,Residential,Yes,No,Completed,2025-04-17,133
+R24323,2024-12-05,Citizen report,Fallen branch or debris,T100171,Central,Residential,Yes,No,Completed,2024-12-10,5
+R24380,2024-12-06,Citizen report,Trim or prune,T100681,West,Residential,Yes,No,Completed,2024-12-23,17
+R24276,2024-12-07,Citizen report,Trim or prune,T101101,South,Residential,No,No,Completed,2024-12-07,0
+R24069,2024-12-08,Citizen report,Fallen branch or debris,T100750,South,Residential,Yes,No,Completed,2024-12-08,0
+R24143,2024-12-08,Citizen report,Fallen branch or debris,T100352,Central,High footfall,Yes,No,Completed,2024-12-11,3
+R24675,2024-12-08,Citizen report,Trim or prune,T101085,Central,Arterial road,No,No,Completed,2025-06-16,190
+R24687,2024-12-08,Citizen report,Fallen branch or debris,T101453,East,Residential,Yes,No,Completed,2024-12-12,4
+R24369,2024-12-09,Citizen report,Trim or prune,T102261,North,Residential,Yes,No,Duplicate,,
+R24390,2024-12-09,Citizen report,Trim or prune,T102336,North,Residential,No,No,Duplicate,,
+R24624,2024-12-10,Citizen report,Trim or prune,T101186,South,Residential,Yes,No,Completed,2024-12-10,0
+R24798,2024-12-10,Citizen report,Trim or prune,T101418,Central,School frontage,No,No,Completed,2025-05-16,157
+R24839,2024-12-10,Citizen report,Trim or prune,T101083,East,Residential,Yes,No,Completed,2025-02-27,79
+R24284,2024-12-11,Citizen report,Trim or prune,T102111,Central,High footfall,No,No,Duplicate,,
+R24002,2024-12-14,Citizen report,Trim or prune,T101848,North,Residential,No,No,Duplicate,,
+R24021,2024-12-14,Citizen report,Trim or prune,T101176,North,Residential,Yes,No,Duplicate,,
+R24036,2024-12-15,Citizen report,Trim or prune,T101631,West,Residential,Yes,No,Completed,2025-08-19,247
+R24727,2024-12-15,Citizen report,Fallen branch or debris,T100728,South,High footfall,Yes,No,Completed,2024-12-29,14
+R24258,2024-12-16,Citizen report,Trim or prune,T101086,West,Residential,Yes,No,Completed,2025-09-20,278
+R24769,2024-12-16,Citizen report,Trim or prune,T100106,Central,Residential,Yes,No,Completed,2025-05-01,136
+R24894,2024-12-16,Citizen report,Trim or prune,T101445,South,Residential,No,No,Duplicate,,
+R24223,2024-12-17,Citizen report,Trim or prune,T101745,East,Residential,Yes,No,Completed,2025-05-21,155
+R24326,2024-12-17,Citizen report,Fallen branch or debris,T101637,East,School frontage,Yes,No,Duplicate,,
+R24847,2024-12-18,Citizen report,Fallen branch or debris,T100545,West,Residential,No,No,Duplicate,,
+R24448,2024-12-22,Citizen report,Trim or prune,T101183,West,Residential,No,No,Completed,2025-01-31,40
+R24843,2024-12-24,Citizen report,Trim or prune,T102262,Central,Residential,Yes,No,Duplicate,,
+R24134,2024-12-25,Citizen report,Trim or prune,T100687,Central,Residential,Yes,No,Duplicate,,
+R24042,2024-12-27,Citizen report,Trim or prune,T102303,South,Residential,Yes,No,Completed,2024-12-27,0
+R24392,2024-12-28,Citizen report,Fallen branch or debris,T101949,South,Residential,Yes,No,Completed,2025-01-01,4
+R24768,2024-12-28,Citizen report,Trim or prune,T101437,Central,Residential,Yes,No,Completed,2025-09-29,275
+R24766,2025-01-02,Citizen report,Trim or prune,T100298,Central,Residential,No,No,Duplicate,,
+R24005,2025-01-03,Citizen report,Trim or prune,T100210,West,Residential,Yes,No,Completed,2025-02-10,38
+R24325,2025-01-03,Citizen report,Trim or prune,T102285,North,Residential,Yes,No,Completed,2025-06-05,153
+R24237,2025-01-04,Citizen report,Trim or prune,T100301,South,High footfall,Yes,No,Completed,2025-12-07,337
+R24181,2025-01-05,Citizen report,Fallen branch or debris,T100125,West,Residential,Yes,No,Completed,2025-01-06,1
+R24342,2025-01-06,Citizen report,Fallen branch or debris,T102100,Central,Arterial road,Yes,No,Completed,2025-01-07,1
+R24481,2025-01-06,Citizen report,Fallen branch or debris,T100299,North,School frontage,Yes,No,Completed,2025-01-07,1
+R24672,2025-01-08,Citizen report,Fallen branch or debris,T100829,East,Residential,Yes,No,Completed,2025-01-11,3
+R24074,2025-01-09,Citizen report,Trim or prune,T100540,Central,Residential,Yes,No,Completed,2025-08-09,212
+R24478,2025-01-09,Citizen report,Fallen branch or debris,T102287,West,Residential,No,No,Completed,2025-01-11,2
+R24548,2025-01-09,Citizen report,Trim or prune,T101751,West,Residential,Yes,No,Completed,2025-01-09,0
+R24269,2025-01-10,Citizen report,Trim or prune,T101639,Central,Arterial road,No,No,Completed,2025-06-14,155
+R24386,2025-01-11,Citizen report,Trim or prune,T100405,Central,High footfall,Yes,No,Completed,2025-11-06,299
+R24688,2025-01-12,Citizen report,Fallen branch or debris,T102037,North,High footfall,Yes,No,Completed,2025-01-14,2
+R24699,2025-01-12,Citizen report,Fallen branch or debris,T101450,North,Residential,Yes,No,Completed,2025-01-14,2
+R24706,2025-01-13,Citizen report,Trim or prune,T100364,Central,Residential,No,No,Duplicate,,
+R24422,2025-01-15,Citizen report,Trim or prune,T101047,East,Residential,Yes,No,Completed,2025-01-15,0
+R24340,2025-01-18,Citizen report,Trim or prune,T100757,Central,Residential,No,No,Completed,2025-04-13,85
+R24473,2025-01-18,Citizen report,Trim or prune,T101907,West,Residential,Yes,No,Completed,2026-01-17,364
+R24214,2025-01-19,Citizen report,Trim or prune,T100687,Central,Residential,No,No,Completed,2025-01-19,0
+R24501,2025-01-19,Citizen report,Fallen branch or debris,T101922,North,School frontage,No,No,Completed,2025-01-20,1
+R24644,2025-01-19,Citizen report,Fallen branch or debris,T100045,West,High footfall,Yes,No,Completed,2025-01-20,1
+R24281,2025-01-20,Citizen report,Trim or prune,T101553,Central,Residential,No,No,Duplicate,,
+R24385,2025-01-20,Citizen report,Fallen branch or debris,T100613,North,Residential,Yes,No,Completed,2025-01-21,1
+R24450,2025-01-20,Citizen report,Fallen branch or debris,T100599,West,Arterial road,Yes,No,Completed,2025-01-22,2
+R24017,2025-01-21,Citizen report,Fallen branch or debris,T100112,Central,Arterial road,Yes,No,Completed,2025-02-08,18
+R24250,2025-01-21,Citizen report,Fallen branch or debris,T100973,Central,Residential,No,No,Completed,2025-01-22,1
+R24316,2025-01-22,Citizen report,Fallen branch or debris,T102218,West,Residential,No,No,Completed,2025-01-25,3
+R24520,2025-01-23,Citizen report,Trim or prune,T101073,Central,School frontage,No,No,Completed,2025-07-10,168
+R24832,2025-01-23,Citizen report,Trim or prune,T102303,South,Residential,No,No,Duplicate,,
+R24883,2025-01-25,Citizen report,Trim or prune,T102293,South,Residential,Yes,No,Completed,2025-04-24,89
+R24249,2025-01-26,Citizen report,Trim or prune,T101267,East,Residential,No,No,Duplicate,,
+R24046,2025-01-29,Citizen report,Fallen branch or debris,T100453,West,Arterial road,Yes,No,Completed,2025-02-08,10
+R24085,2025-01-29,Citizen report,Trim or prune,T100224,South,Residential,Yes,No,Completed,2025-03-19,49
+R24341,2025-01-29,Citizen report,Trim or prune,T100837,East,Residential,No,No,Completed,2025-03-05,35
+R24650,2025-01-29,Citizen report,Fallen branch or debris,T101523,North,Residential,Yes,No,Duplicate,,
+R24893,2025-01-29,Citizen report,Trim or prune,T101641,South,Residential,No,No,Completed,2025-04-23,84
+R24435,2025-01-30,Citizen report,Fallen branch or debris,T100067,Central,Arterial road,Yes,No,Completed,2025-02-06,7
+R24004,2025-01-31,Citizen report,Trim or prune,T100479,Central,School frontage,No,No,Completed,2025-07-06,156
+R24110,2025-01-31,Citizen report,Fallen branch or debris,T101792,North,Residential,Yes,No,Completed,2025-02-06,6
+R24391,2025-01-31,Citizen report,Trim or prune,T101455,East,Residential,Yes,No,Completed,2025-01-31,0
+R24559,2025-01-31,Citizen report,Trim or prune,T100710,Central,Residential,Yes,No,Completed,2025-01-31,0
+R24567,2025-01-31,Citizen report,Trim or prune,T101436,South,Residential,Yes,No,Completed,2025-06-21,141
+R24001,2025-02-01,Citizen report,Fallen branch or debris,T101935,North,Residential,Yes,Yes,Completed,2025-02-02,1
+R24030,2025-02-01,Citizen report,Trim or prune,T101230,East,Residential,No,Yes,Completed,2025-02-01,0
+R24059,2025-02-01,Citizen report,Trim or prune,T100269,North,Residential,Yes,Yes,Completed,2025-06-08,127
+R24066,2025-02-01,Citizen report,Fallen branch or debris,T100215,North,Residential,Yes,Yes,Completed,2025-02-05,4
+R24109,2025-02-01,Citizen report,Trim or prune,T101281,South,Residential,No,Yes,Completed,2025-05-29,117
+R24112,2025-02-01,Citizen report,Trim or prune,T101655,South,Residential,Yes,Yes,Duplicate,,
+R24200,2025-02-01,Citizen report,Fallen branch or debris,T102347,East,Arterial road,Yes,Yes,Completed,2025-02-03,2
+R24327,2025-02-01,Citizen report,Fallen branch or debris,T101083,East,Residential,Yes,Yes,Completed,2025-02-02,1
+R24431,2025-02-01,Citizen report,Fallen branch or debris,T100837,East,Residential,Yes,Yes,Completed,2025-02-02,1
+R24461,2025-02-01,Citizen report,Fallen branch or debris,T100646,West,Arterial road,Yes,Yes,Completed,2025-02-06,5
+R24502,2025-02-01,Citizen report,Trim or prune,T101586,Central,Residential,No,No,Completed,2025-02-01,0
+R24592,2025-02-01,Citizen report,Trim or prune,T101807,South,Residential,Yes,Yes,Completed,2025-02-01,0
+R24754,2025-02-01,Citizen report,Fallen branch or debris,T101196,East,High footfall,Yes,Yes,Completed,2025-02-05,4
+R24818,2025-02-01,Citizen report,Trim or prune,T100419,South,Residential,Yes,Yes,Completed,2025-02-25,24
+R24856,2025-02-01,Citizen report,Trim or prune,T102335,West,Residential,Yes,Yes,Duplicate,,
+R24875,2025-02-01,Citizen report,Fallen branch or debris,T100756,Central,Arterial road,Yes,Yes,Duplicate,,
+R24008,2025-02-02,Citizen report,Trim or prune,T101867,South,Residential,Yes,Yes,Completed,2025-02-02,0
+R24016,2025-02-02,Citizen report,Trim or prune,T100990,East,School frontage,Yes,Yes,Completed,2025-02-02,0
+R24094,2025-02-02,Citizen report,Trim or prune,T101832,East,Arterial road,Yes,Yes,Completed,2025-02-02,0
+R24117,2025-02-02,Citizen report,Trim or prune,T100137,North,School frontage,Yes,Yes,Duplicate,,
+R24190,2025-02-02,Citizen report,Trim or prune,T100708,West,Residential,No,Yes,Duplicate,,
+R24227,2025-02-02,Citizen report,Trim or prune,T101549,Central,High footfall,Yes,Yes,Completed,2025-06-25,143
+R24308,2025-02-02,Citizen report,Trim or prune,T102091,East,High footfall,Yes,Yes,Completed,2025-03-30,56
+R24348,2025-02-02,Citizen report,Trim or prune,T100466,West,High footfall,No,Yes,Completed,2025-05-31,118
+R24350,2025-02-02,Citizen report,Trim or prune,T102239,South,High footfall,Yes,Yes,Completed,2025-02-02,0
+R24428,2025-02-02,Citizen report,Trim or prune,T102128,East,Residential,No,Yes,Completed,2025-03-01,27
+R24438,2025-02-02,Citizen report,Trim or prune,T101755,South,High footfall,Yes,Yes,Completed,2025-02-08,6
+R24503,2025-02-02,Citizen report,Trim or prune,T102212,South,High footfall,No,Yes,Completed,2025-02-08,6
+R24568,2025-02-02,Citizen report,Fallen branch or debris,T101812,West,Arterial road,Yes,Yes,Completed,2025-02-02,0
+R24577,2025-02-02,Citizen report,Trim or prune,T101851,South,Residential,No,Yes,Completed,2025-04-19,76
+R24583,2025-02-02,Citizen report,Trim or prune,T100088,West,Residential,No,Yes,Completed,2025-07-07,155
+R24653,2025-02-02,Citizen report,Trim or prune,T100439,South,Residential,No,Yes,Completed,2025-02-02,0
+R24723,2025-02-02,Citizen report,Trim or prune,T100465,Central,Residential,No,Yes,Completed,2025-12-16,317
+R24735,2025-02-02,Citizen report,Trim or prune,T101375,West,Residential,Yes,Yes,Completed,2025-07-20,168
+R24783,2025-02-02,Citizen report,Trim or prune,T101275,South,High footfall,No,Yes,Completed,2025-02-02,0
+R24825,2025-02-02,Citizen report,Trim or prune,T100798,South,Residential,No,Yes,Completed,2025-08-17,196
+R24831,2025-02-02,Citizen report,Trim or prune,T101873,South,Residential,Yes,Yes,Completed,2025-02-02,0
+R24044,2025-02-03,Citizen report,Fallen branch or debris,T101321,South,Residential,Yes,Yes,Completed,2025-02-05,2
+R24077,2025-02-03,Citizen report,Fallen branch or debris,T101524,East,Residential,Yes,Yes,Completed,2025-02-06,3
+R24078,2025-02-03,Citizen report,Trim or prune,T102117,West,Arterial road,Yes,Yes,Completed,2025-02-03,0
+R24086,2025-02-03,Citizen report,Trim or prune,T101824,Central,Residential,No,Yes,Completed,2025-03-09,34
+R24089,2025-02-03,Citizen report,Trim or prune,T101600,North,Arterial road,Yes,Yes,Completed,2025-02-03,0
+R24149,2025-02-03,Citizen report,Trim or prune,T101120,North,Residential,No,No,Duplicate,,
+R24230,2025-02-03,Citizen report,Trim or prune,T101588,Central,Residential,No,Yes,Completed,2025-07-14,161
+R24252,2025-02-03,Citizen report,Trim or prune,T102290,East,Residential,No,Yes,Completed,2025-09-07,216
+R24337,2025-02-03,Citizen report,Trim or prune,T101506,East,Residential,Yes,Yes,Completed,2025-02-03,0
+R24429,2025-02-03,Citizen report,Trim or prune,T102374,East,Residential,Yes,Yes,Completed,2025-07-13,160
+R24477,2025-02-03,Citizen report,Trim or prune,T101274,South,Residential,Yes,Yes,Duplicate,,
+R24507,2025-02-03,Citizen report,Trim or prune,T101393,North,Residential,Yes,No,Duplicate,,
+R24522,2025-02-03,Citizen report,Trim or prune,T101935,North,Residential,No,Yes,Completed,2025-06-19,136
+R24532,2025-02-03,Citizen report,Trim or prune,T101045,South,Residential,No,Yes,Duplicate,,
+R24595,2025-02-03,Citizen report,Trim or prune,T101850,South,Residential,Yes,No,Completed,2025-08-30,208
+R24632,2025-02-03,Citizen report,Trim or prune,T101662,Central,Arterial road,Yes,Yes,Completed,2025-02-22,19
+R24658,2025-02-03,Citizen report,Fallen branch or debris,T100195,North,Residential,No,Yes,Duplicate,,
+R24767,2025-02-03,Citizen report,Trim or prune,T101363,North,Residential,Yes,Yes,Duplicate,,
+R24820,2025-02-03,Citizen report,Fallen branch or debris,T101000,West,Arterial road,Yes,Yes,Completed,2025-02-04,1
+R24830,2025-02-03,Citizen report,Trim or prune,T101780,East,High footfall,Yes,No,Completed,2025-08-09,187
+R24846,2025-02-03,Citizen report,Trim or prune,T100860,East,Residential,No,Yes,Completed,2025-09-12,221
+R24848,2025-02-03,Citizen report,Fallen branch or debris,T101806,West,School frontage,Yes,Yes,Completed,2025-02-04,1
+R24081,2025-02-05,Citizen report,Fallen branch or debris,T102032,West,Residential,Yes,No,Completed,2025-02-12,7
+R24547,2025-02-07,Citizen report,Trim or prune,T100427,East,Arterial road,Yes,No,Completed,2025-07-04,147
+R24578,2025-02-07,Citizen report,Trim or prune,T101749,South,School frontage,No,No,Completed,2025-04-03,55
+R24280,2025-02-08,Citizen report,Fallen branch or debris,T100941,South,Residential,Yes,No,Completed,2025-02-12,4
+R24535,2025-02-09,Citizen report,Fallen branch or debris,T101278,South,Residential,Yes,No,Completed,2025-02-13,4
+R24164,2025-02-11,Citizen report,Fallen branch or debris,T100873,East,Arterial road,No,No,Duplicate,,
+R24068,2025-02-13,Citizen report,Fallen branch or debris,T101252,Central,School frontage,Yes,No,Completed,2025-02-14,1
+R24245,2025-02-13,Citizen report,Fallen branch or debris,T100728,South,High footfall,Yes,No,Completed,2025-02-21,8
+R24764,2025-02-13,Citizen report,Fallen branch or debris,T102259,East,Residential,Yes,No,Completed,2025-02-16,3
+R24598,2025-02-15,Citizen report,Fallen branch or debris,T100154,West,Residential,Yes,No,Completed,2025-02-15,0
+R24892,2025-02-15,Citizen report,Trim or prune,T100944,Central,Residential,Yes,No,Completed,2025-02-15,0
+R24443,2025-02-16,Citizen report,Trim or prune,T101658,Central,High footfall,Yes,No,Completed,2025-10-14,240
+R24460,2025-02-16,Citizen report,Trim or prune,T101081,East,Residential,No,No,Completed,2025-02-16,0
+R24033,2025-02-17,Citizen report,Trim or prune,T102003,East,Arterial road,Yes,Yes,Completed,2025-05-13,85
+R24133,2025-02-17,Citizen report,Fallen branch or debris,T100761,South,Residential,No,Yes,Duplicate,,
+R24270,2025-02-17,Citizen report,Trim or prune,T100224,South,Residential,Yes,Yes,Completed,2025-08-20,184
+R24278,2025-02-17,Citizen report,Trim or prune,T101056,South,Arterial road,No,Yes,Completed,2025-02-17,0
+R24343,2025-02-17,Citizen report,Fallen branch or debris,T100690,Central,School frontage,Yes,Yes,Completed,2025-02-18,1
+R24398,2025-02-17,Citizen report,Trim or prune,T102319,North,Residential,Yes,Yes,Open,,
+R24497,2025-02-17,Citizen report,Trim or prune,T100166,West,Arterial road,Yes,Yes,Completed,2025-12-01,287
+R24543,2025-02-17,Citizen report,Trim or prune,T101773,South,Residential,Yes,Yes,Duplicate,,
+R24636,2025-02-17,Citizen report,Trim or prune,T101854,Central,Residential,No,Yes,Completed,2025-02-17,0
+R24728,2025-02-17,Citizen report,Trim or prune,T100694,Central,Residential,No,Yes,Completed,2025-12-02,288
+R24739,2025-02-17,Citizen report,Trim or prune,T100475,South,Residential,Yes,Yes,Completed,2026-02-21,369
+R24828,2025-02-17,Citizen report,Fallen branch or debris,T101847,East,High footfall,Yes,Yes,Completed,2025-02-21,4
+R24859,2025-02-17,Citizen report,Trim or prune,T100274,West,High footfall,No,Yes,Completed,2026-03-27,403
+R24865,2025-02-17,Citizen report,Trim or prune,T101211,West,Residential,Yes,Yes,Completed,2026-03-12,388
+R24881,2025-02-17,Citizen report,Trim or prune,T102042,East,Residential,No,Yes,Completed,2025-05-30,102
+R24898,2025-02-17,Citizen report,Trim or prune,T100950,West,Residential,Yes,Yes,Duplicate,,
+R24020,2025-02-18,Citizen report,Trim or prune,T100198,North,Residential,Yes,Yes,Completed,2025-09-08,202
+R24038,2025-02-18,Citizen report,Trim or prune,T101745,East,Residential,No,Yes,Completed,2025-07-28,160
+R24241,2025-02-18,Citizen report,Trim or prune,T101444,Central,Residential,Yes,Yes,Completed,2025-08-03,166
+R24317,2025-02-18,Citizen report,Trim or prune,T101978,South,Residential,Yes,Yes,Completed,2026-01-27,343
+R24419,2025-02-18,Citizen report,Trim or prune,T102088,South,High footfall,No,Yes,Completed,2025-06-25,127
+R24500,2025-02-18,Citizen report,Trim or prune,T100799,South,Residential,Yes,Yes,Duplicate,,
+R24510,2025-02-18,Citizen report,Trim or prune,T100359,West,Residential,No,Yes,Completed,2025-02-27,9
+R24517,2025-02-18,Citizen report,Fallen branch or debris,T102023,East,Arterial road,Yes,Yes,Completed,2025-02-26,8
+R24525,2025-02-18,Citizen report,Trim or prune,T100498,South,Residential,Yes,Yes,Completed,2025-06-14,116
+R24590,2025-02-18,Citizen report,Trim or prune,T102004,East,Arterial road,No,No,Completed,2026-02-08,355
+R24622,2025-02-18,Citizen report,Trim or prune,T101476,Central,School frontage,Yes,Yes,Completed,2025-08-18,181
+R24729,2025-02-18,Citizen report,Trim or prune,T101821,North,High footfall,Yes,Yes,Completed,2025-02-18,0
+R24801,2025-02-18,Citizen report,Fallen branch or debris,T100037,East,School frontage,Yes,Yes,Completed,2025-03-05,15
+R24812,2025-02-18,Citizen report,Trim or prune,T101003,East,Residential,No,Yes,Completed,2025-08-01,164
+R24056,2025-02-19,Citizen report,Trim or prune,T100217,West,High footfall,No,Yes,Completed,2025-10-21,244
+R24079,2025-02-19,Citizen report,Fallen branch or debris,T101430,West,Residential,Yes,Yes,Completed,2025-02-20,1
+R24137,2025-02-19,Citizen report,Trim or prune,T101182,South,Arterial road,No,Yes,Completed,2026-01-17,332
+R24161,2025-02-19,Citizen report,Trim or prune,T100893,East,Residential,Yes,Yes,Duplicate,,
+R24182,2025-02-19,Citizen report,Trim or prune,T100598,South,Residential,Yes,Yes,Completed,2025-09-13,206
+R24196,2025-02-19,Citizen report,Trim or prune,T100077,West,School frontage,Yes,Yes,Completed,2025-02-19,0
+R24302,2025-02-19,Citizen report,Trim or prune,T101906,West,High footfall,Yes,Yes,Duplicate,,
+R24352,2025-02-19,Citizen report,Trim or prune,T100916,South,Residential,Yes,Yes,Duplicate,,
+R24374,2025-02-19,Citizen report,Trim or prune,T102125,North,Residential,Yes,Yes,Completed,2025-05-26,96
+R24400,2025-02-19,Citizen report,Fallen branch or debris,T102190,South,Residential,No,No,Completed,2025-02-19,0
+R24516,2025-02-19,Citizen report,Fallen branch or debris,T101420,West,Residential,No,Yes,Completed,2025-02-20,1
+R24570,2025-02-19,Citizen report,Trim or prune,T100694,Central,Residential,Yes,Yes,Completed,2025-06-18,119
+R24616,2025-02-19,Citizen report,Trim or prune,T100888,Central,Residential,No,Yes,Completed,2025-08-12,174
+R24660,2025-02-19,Citizen report,Trim or prune,T100333,East,Arterial road,No,Yes,Completed,2025-08-22,184
+R24732,2025-02-19,Citizen report,Trim or prune,T101602,East,Residential,Yes,Yes,Completed,2025-02-19,0
+R24734,2025-02-19,Citizen report,Fallen branch or debris,T100170,Central,Residential,Yes,Yes,Completed,2025-02-27,8
+R24738,2025-02-19,Citizen report,Fallen branch or debris,T100243,South,Residential,Yes,Yes,Completed,2025-02-25,6
+R24879,2025-02-19,Citizen report,Trim or prune,T101100,Central,Residential,Yes,No,Duplicate,,
+R24387,2025-02-20,Citizen report,Trim or prune,T101847,East,High footfall,Yes,No,Completed,2025-02-20,0
+R24718,2025-02-20,Citizen report,Trim or prune,T101050,West,Residential,Yes,No,Completed,2025-08-10,171
+R24426,2025-02-21,Citizen report,Trim or prune,T100859,South,Residential,Yes,No,Duplicate,,
+R24011,2025-02-23,Citizen report,Trim or prune,T101670,North,Residential,Yes,No,Completed,2025-11-08,258
+R24124,2025-02-23,Citizen report,Fallen branch or debris,T100585,Central,Residential,Yes,No,Completed,2025-02-26,3
+R24023,2025-02-24,Citizen report,Trim or prune,T100026,South,High footfall,No,No,Completed,2025-02-24,0
+R24536,2025-02-24,Citizen report,Trim or prune,T102033,East,High footfall,Yes,No,Completed,2025-03-24,28
+R24565,2025-02-24,Citizen report,Trim or prune,T101420,West,Residential,No,No,Completed,2025-02-24,0
+R24657,2025-02-24,Citizen report,Fallen branch or debris,T100760,West,Residential,Yes,No,Completed,2025-02-25,1
+R24666,2025-02-25,Citizen report,Trim or prune,T101816,West,Arterial road,No,No,Completed,2025-02-25,0
+R24198,2025-02-26,Citizen report,Trim or prune,T101667,East,High footfall,Yes,No,Duplicate,,
+R24612,2025-02-26,Citizen report,Trim or prune,T101361,South,High footfall,No,No,Completed,2025-06-01,95
+R24530,2025-02-27,Citizen report,Fallen branch or debris,T102223,East,School frontage,Yes,No,Completed,2025-02-28,1
+R24447,2025-02-28,Citizen report,Trim or prune,T101809,East,Residential,No,No,Completed,2025-02-28,0
+R24307,2025-03-02,Citizen report,Trim or prune,T100761,South,Residential,No,No,Completed,2025-04-08,37
+R24673,2025-03-04,Citizen report,Trim or prune,T100947,West,Residential,Yes,No,Completed,2025-11-27,268
+R24256,2025-03-05,Citizen report,Trim or prune,T102363,North,High footfall,Yes,No,Completed,2025-03-05,0
+R24845,2025-03-06,Citizen report,Trim or prune,T101460,North,Residential,No,No,Completed,2025-06-12,98
+R24071,2025-03-09,Citizen report,Trim or prune,T100852,East,High footfall,No,No,Completed,2025-03-09,0
+R24024,2025-03-10,Citizen report,Trim or prune,T100122,East,Residential,Yes,No,Completed,2025-03-10,0
+R24157,2025-03-10,Citizen report,Trim or prune,T100455,Central,Residential,Yes,No,Duplicate,,
+R24563,2025-03-10,Citizen report,Trim or prune,T101694,Central,High footfall,Yes,No,Completed,2025-04-22,43
+R24179,2025-03-11,Citizen report,Trim or prune,T101867,South,Residential,Yes,No,Completed,2025-10-25,228
+R24689,2025-03-11,Citizen report,Trim or prune,T101920,West,Arterial road,Yes,No,Completed,2025-03-11,0
+R24452,2025-03-12,Citizen report,Trim or prune,T102068,South,Residential,Yes,No,Duplicate,,
+R24752,2025-03-12,Citizen report,Trim or prune,T102192,West,Residential,No,No,Completed,2025-09-22,194
+R24359,2025-03-16,Citizen report,Fallen branch or debris,T100093,North,Residential,Yes,No,Completed,2025-03-20,4
+R24639,2025-03-20,Citizen report,Fallen branch or debris,T100795,East,Residential,Yes,No,Completed,2025-03-21,1
+R24416,2025-03-21,Citizen report,Trim or prune,T101118,East,Residential,Yes,No,Completed,2025-06-20,91
+R24063,2025-03-22,Citizen report,Fallen branch or debris,T101904,East,Residential,No,Yes,Duplicate,,
+R24073,2025-03-22,Citizen report,Trim or prune,T100225,West,Residential,No,Yes,Completed,2025-03-22,0
+R24126,2025-03-22,Citizen report,Trim or prune,T102303,South,Residential,No,Yes,Completed,2025-03-22,0
+R24199,2025-03-22,Citizen report,Trim or prune,T101211,West,Residential,Yes,Yes,Completed,2026-01-02,286
+R24231,2025-03-22,Citizen report,Fallen branch or debris,T100967,North,Residential,Yes,Yes,Completed,2025-03-24,2
+R24273,2025-03-22,Citizen report,Trim or prune,T101483,North,School frontage,No,Yes,Duplicate,,
+R24279,2025-03-22,Citizen report,Trim or prune,T100865,East,High footfall,No,Yes,Completed,2025-03-22,0
+R24527,2025-03-22,Citizen report,Trim or prune,T101961,West,Residential,Yes,Yes,Completed,2025-07-06,106
+R24584,2025-03-22,Citizen report,Trim or prune,T101937,South,Residential,No,Yes,Completed,2025-08-13,144
+R24626,2025-03-22,Citizen report,Trim or prune,T101698,West,Residential,Yes,Yes,Completed,2025-10-26,218
+R24708,2025-03-22,Citizen report,Trim or prune,T101955,Central,School frontage,No,Yes,Completed,2025-03-25,3
+R24743,2025-03-22,Citizen report,Trim or prune,T100211,West,Residential,Yes,No,Completed,2025-10-26,218
+R24790,2025-03-22,Citizen report,Trim or prune,T102075,North,Arterial road,No,Yes,Completed,2025-05-21,60
+R24849,2025-03-22,Citizen report,Trim or prune,T102331,West,Residential,No,Yes,Completed,2025-03-22,0
+R24895,2025-03-22,Citizen report,Fallen branch or debris,T101313,East,Residential,Yes,Yes,Completed,2025-04-02,11
+R24007,2025-03-23,Citizen report,Fallen branch or debris,T101256,South,Residential,Yes,Yes,Completed,2025-03-25,2
+R24022,2025-03-23,Citizen report,Fallen branch or debris,T102131,South,Residential,No,Yes,Completed,2025-03-25,2
+R24067,2025-03-23,Citizen report,Fallen branch or debris,T100250,Central,School frontage,Yes,Yes,Completed,2025-03-28,5
+R24338,2025-03-23,Citizen report,Trim or prune,T100339,Central,High footfall,No,Yes,Completed,2025-03-28,5
+R24355,2025-03-23,Citizen report,Trim or prune,T100631,East,High footfall,Yes,Yes,Completed,2026-01-02,285
+R24401,2025-03-23,Citizen report,Trim or prune,T100852,East,High footfall,Yes,Yes,Completed,2025-09-03,164
+R24412,2025-03-23,Citizen report,Trim or prune,T100832,West,High footfall,Yes,Yes,Duplicate,,
+R24468,2025-03-23,Citizen report,Fallen branch or debris,T102353,North,High footfall,Yes,Yes,Completed,2025-03-27,4
+R24614,2025-03-23,Citizen report,Trim or prune,T100549,Central,Residential,Yes,Yes,Completed,2026-03-12,354
+R24619,2025-03-23,Citizen report,Trim or prune,T100432,North,Residential,No,Yes,Completed,2025-08-04,134
+R24648,2025-03-23,Citizen report,Trim or prune,T101001,West,Residential,Yes,Yes,Completed,2025-05-03,41
+R24667,2025-03-23,Citizen report,Trim or prune,T101645,West,Residential,Yes,Yes,Completed,2025-09-08,169
+R24726,2025-03-23,Citizen report,Trim or prune,T100660,West,Residential,No,Yes,Completed,2025-03-23,0
+R24785,2025-03-23,Citizen report,Trim or prune,T101197,South,Residential,Yes,Yes,Completed,2025-07-18,117
+R24833,2025-03-23,Citizen report,Trim or prune,T101041,North,Residential,Yes,Yes,Completed,2025-05-18,56
+R24885,2025-03-23,Citizen report,Fallen branch or debris,T101044,East,School frontage,Yes,No,Completed,2025-03-28,5
+R24383,2025-03-24,Citizen report,Trim or prune,T101289,South,Residential,No,Yes,Completed,2025-04-29,36
+R24446,2025-03-24,Citizen report,Trim or prune,T101561,North,Arterial road,Yes,Yes,Completed,2025-04-29,36
+R24456,2025-03-24,Citizen report,Trim or prune,T102030,North,Residential,No,Yes,Completed,2025-03-24,0
+R24509,2025-03-24,Citizen report,Trim or prune,T100231,Central,High footfall,No,Yes,Completed,2025-03-25,1
+R24593,2025-03-24,Citizen report,Trim or prune,T101438,North,High footfall,No,Yes,Completed,2025-08-13,142
+R24707,2025-03-24,Citizen report,Trim or prune,T102273,East,Residential,Yes,Yes,Completed,2025-03-24,0
+R24745,2025-03-24,Citizen report,Trim or prune,T100510,Central,Residential,Yes,Yes,Completed,2026-01-10,292
+R24813,2025-03-24,Citizen report,Fallen branch or debris,T102089,East,High footfall,Yes,Yes,Duplicate,,
+R24012,2025-03-25,Citizen report,Fallen branch or debris,T101813,West,Residential,Yes,No,Completed,2025-03-31,6
+R24835,2025-03-26,Citizen report,Trim or prune,T100911,Central,High footfall,No,No,Completed,2025-03-26,0
+R24681,2025-03-27,Citizen report,Fallen branch or debris,T100043,West,Residential,Yes,No,Completed,2025-03-29,2
+R24259,2025-03-28,Citizen report,Trim or prune,T101026,South,Residential,No,No,Completed,2025-10-11,197
+R24866,2025-03-28,Citizen report,Trim or prune,T101546,South,High footfall,Yes,No,Completed,2025-07-20,114
+R24013,2025-03-30,Citizen report,Trim or prune,T102332,North,High footfall,Yes,No,Completed,2025-04-05,6
+R24873,2025-04-02,Citizen report,Trim or prune,T101593,West,Residential,Yes,No,Completed,2025-04-02,0
+R24795,2025-04-03,Citizen report,Fallen branch or debris,T100783,West,Arterial road,No,No,Completed,2025-04-06,3
+R24680,2025-04-04,Citizen report,Trim or prune,T100489,East,Residential,Yes,No,Completed,2025-04-04,0
+R24098,2025-04-05,Citizen report,Trim or prune,T101552,West,Residential,Yes,No,Completed,2025-04-05,0
+R24131,2025-04-05,Citizen report,Trim or prune,T100911,Central,High footfall,Yes,No,Completed,2025-07-07,93
+R24334,2025-04-05,Citizen report,Trim or prune,T100809,East,Residential,No,No,Completed,2025-04-05,0
+R24717,2025-04-06,Citizen report,Trim or prune,T101558,Central,Residential,Yes,No,Completed,2025-06-29,84
+R24787,2025-04-09,Citizen report,Fallen branch or debris,T100314,West,Residential,Yes,No,Completed,2025-04-11,2
+R24853,2025-04-09,Citizen report,Fallen branch or debris,T101127,South,High footfall,Yes,No,Completed,2025-04-17,8
+R24000,2025-04-10,Citizen report,Trim or prune,T100919,West,Residential,Yes,No,Completed,2025-04-10,0
+R24591,2025-04-10,Citizen report,Trim or prune,T101750,East,Residential,Yes,No,Completed,2025-11-01,205
+R24202,2025-04-11,Citizen report,Trim or prune,T101328,North,Residential,No,No,Completed,2025-04-11,0
+R24664,2025-04-11,Citizen report,Trim or prune,T100573,North,Residential,Yes,No,Completed,2025-04-11,0
+R24147,2025-04-12,Citizen report,Trim or prune,T101575,North,Residential,Yes,No,Completed,2025-05-29,47
+R24099,2025-04-13,Citizen report,Trim or prune,T100413,East,Residential,Yes,Yes,Completed,2026-01-04,266
+R24115,2025-04-13,Citizen report,Trim or prune,T100049,West,Residential,No,Yes,Completed,2025-10-20,190
+R24174,2025-04-13,Citizen report,Fallen branch or debris,T100064,Central,Residential,Yes,Yes,Completed,2025-04-14,1
+R24224,2025-04-13,Citizen report,Fallen branch or debris,T101452,West,Arterial road,Yes,Yes,Completed,2025-04-14,1
+R24242,2025-04-13,Citizen report,Trim or prune,T102378,North,Residential,No,Yes,Completed,2025-07-02,80
+R24282,2025-04-13,Citizen report,Fallen branch or debris,T102033,East,High footfall,Yes,No,Completed,2025-04-14,1
+R24319,2025-04-13,Citizen report,Trim or prune,T101508,Central,Arterial road,No,Yes,Duplicate,,
+R24347,2025-04-13,Citizen report,Fallen branch or debris,T100969,West,Arterial road,Yes,Yes,Duplicate,,
+R24492,2025-04-13,Citizen report,Fallen branch or debris,T102280,South,Residential,No,Yes,Completed,2025-04-15,2
+R24494,2025-04-13,Citizen report,Trim or prune,T101148,South,Residential,Yes,Yes,Completed,2025-11-08,209
+R24508,2025-04-13,Citizen report,Fallen branch or debris,T102140,North,High footfall,Yes,Yes,Completed,2025-04-15,2
+R24575,2025-04-13,Citizen report,Trim or prune,T101125,West,Residential,No,Yes,Duplicate,,
+R24652,2025-04-13,Citizen report,Fallen branch or debris,T101046,Central,Residential,Yes,Yes,Completed,2025-04-14,1
+R24678,2025-04-13,Citizen report,Fallen branch or debris,T101495,West,School frontage,Yes,Yes,Completed,2025-04-19,6
+R24781,2025-04-13,Citizen report,Trim or prune,T100186,Central,Residential,Yes,Yes,Completed,2025-06-16,64
+R24084,2025-04-14,Citizen report,Trim or prune,T100538,North,Residential,No,No,Duplicate,,
+R24097,2025-04-14,Citizen report,Trim or prune,T101686,North,Residential,Yes,Yes,Completed,2025-04-14,0
+R24162,2025-04-14,Citizen report,Fallen branch or debris,T101909,South,School frontage,Yes,Yes,Completed,2025-04-15,1
+R24165,2025-04-14,Citizen report,Fallen branch or debris,T100914,South,Residential,Yes,Yes,Completed,2025-04-19,5
+R24184,2025-04-14,Citizen report,Trim or prune,T100703,Central,High footfall,Yes,Yes,Completed,2025-04-14,0
+R24187,2025-04-14,Citizen report,Fallen branch or debris,T101760,South,Residential,Yes,Yes,Duplicate,,
+R24194,2025-04-14,Citizen report,Fallen branch or debris,T101702,Central,Residential,Yes,Yes,Completed,2025-04-14,0
+R24324,2025-04-14,Citizen report,Fallen branch or debris,T100913,Central,Residential,Yes,No,Completed,2025-04-14,0
+R24364,2025-04-14,Citizen report,Trim or prune,T101414,South,High footfall,Yes,Yes,Completed,2025-04-14,0
+R24442,2025-04-14,Citizen report,Trim or prune,T100122,East,Residential,Yes,Yes,Completed,2025-11-10,210
+R24599,2025-04-14,Citizen report,Fallen branch or debris,T100676,West,Arterial road,Yes,Yes,Completed,2025-04-17,3
+R24618,2025-04-14,Citizen report,Trim or prune,T101164,West,Arterial road,Yes,Yes,Open,,
+R24796,2025-04-14,Citizen report,Trim or prune,T101681,East,Residential,Yes,Yes,Duplicate,,
+R24842,2025-04-14,Citizen report,Fallen branch or debris,T101133,South,High footfall,No,Yes,Completed,2025-04-17,3
+R24257,2025-04-15,Citizen report,Trim or prune,T101108,East,Residential,Yes,Yes,Completed,2025-07-23,99
+R24335,2025-04-15,Citizen report,Fallen branch or debris,T101305,North,Residential,Yes,Yes,Completed,2025-04-18,3
+R24361,2025-04-15,Citizen report,Trim or prune,T101881,Central,School frontage,No,Yes,Duplicate,,
+R24381,2025-04-15,Citizen report,Fallen branch or debris,T101436,South,Residential,Yes,Yes,Completed,2025-04-25,10
+R24466,2025-04-15,Citizen report,Trim or prune,T101648,North,Residential,Yes,Yes,Completed,2025-04-18,3
+R24488,2025-04-15,Citizen report,Fallen branch or debris,T101165,South,Residential,Yes,Yes,Completed,2025-04-25,10
+R24499,2025-04-15,Citizen report,Trim or prune,T102185,Central,Arterial road,Yes,Yes,Duplicate,,
+R24528,2025-04-15,Citizen report,Fallen branch or debris,T102378,North,Residential,No,Yes,Completed,2025-04-17,2
+R24540,2025-04-15,Citizen report,Fallen branch or debris,T101226,East,School frontage,No,Yes,Completed,2025-04-16,1
+R24602,2025-04-15,Citizen report,Trim or prune,T102177,West,Residential,No,Yes,Duplicate,,
+R24649,2025-04-15,Citizen report,Fallen branch or debris,T101333,East,Residential,Yes,Yes,Completed,2025-04-16,1
+R24651,2025-04-15,Citizen report,Fallen branch or debris,T100274,West,High footfall,Yes,Yes,Completed,2025-04-18,3
+R24807,2025-04-15,Citizen report,Trim or prune,T101898,Central,Residential,Yes,Yes,Completed,2025-07-17,93
+R24862,2025-04-15,Citizen report,Trim or prune,T101792,North,Residential,No,Yes,Completed,2025-06-19,65
+R24557,2025-04-17,Citizen report,Trim or prune,T101860,Central,Residential,Yes,No,Completed,2025-04-17,0
+R24841,2025-04-17,Citizen report,Fallen branch or debris,T100790,North,Residential,No,No,Completed,2025-04-18,1
+R24049,2025-04-18,Citizen report,Fallen branch or debris,T101403,North,Residential,Yes,No,Completed,2025-04-23,5
+R24150,2025-04-18,Citizen report,Trim or prune,T102290,East,Residential,No,No,Duplicate,,
+R24070,2025-04-20,Citizen report,Fallen branch or debris,T100403,Central,High footfall,Yes,Yes,Completed,2025-05-06,16
+R24263,2025-04-20,Citizen report,Trim or prune,T100109,West,High footfall,Yes,Yes,Completed,2025-12-19,243
+R24272,2025-04-20,Citizen report,Fallen branch or debris,T102337,West,Residential,Yes,Yes,Completed,2025-04-25,5
+R24295,2025-04-20,Citizen report,Trim or prune,T100738,East,Residential,No,Yes,Completed,2025-06-12,53
+R24322,2025-04-20,Citizen report,Trim or prune,T100518,East,Residential,Yes,Yes,Completed,2025-04-20,0
+R24365,2025-04-20,Citizen report,Fallen branch or debris,T100560,West,Residential,Yes,Yes,Duplicate,,
+R24534,2025-04-20,Citizen report,Trim or prune,T101316,Central,Residential,Yes,Yes,Completed,2025-08-14,116
+R24556,2025-04-20,Citizen report,Fallen branch or debris,T102337,West,Residential,No,Yes,Completed,2025-04-27,7
+R24585,2025-04-20,Citizen report,Trim or prune,T100751,West,Residential,Yes,Yes,Completed,2025-10-01,164
+R24604,2025-04-20,Citizen report,Trim or prune,T101419,Central,Residential,Yes,Yes,Completed,2025-12-14,238
+R24659,2025-04-20,Citizen report,Trim or prune,T102070,Central,Arterial road,No,Yes,Duplicate,,
+R24693,2025-04-20,Citizen report,Fallen branch or debris,T100014,West,High footfall,Yes,Yes,Duplicate,,
+R24710,2025-04-20,Citizen report,Trim or prune,T100806,North,High footfall,Yes,Yes,Completed,2025-04-20,0
+R24804,2025-04-20,Citizen report,Trim or prune,T101775,East,Residential,Yes,Yes,Completed,2025-10-30,193
+R24176,2025-04-21,Citizen report,Trim or prune,T100027,North,Residential,Yes,Yes,Completed,2025-12-25,248
+R24275,2025-04-21,Citizen report,Fallen branch or debris,T100048,West,Residential,Yes,Yes,Completed,2025-04-25,4
+R24336,2025-04-21,Citizen report,Trim or prune,T102381,Central,Residential,Yes,Yes,Completed,2025-09-13,145
+R24360,2025-04-21,Citizen report,Fallen branch or debris,T101944,East,High footfall,Yes,Yes,Completed,2025-04-28,7
+R24376,2025-04-21,Citizen report,Trim or prune,T101363,North,Residential,No,Yes,Completed,2025-04-21,0
+R24405,2025-04-21,Citizen report,Fallen branch or debris,T102386,North,High footfall,Yes,Yes,Completed,2025-04-23,2
+R24417,2025-04-21,Citizen report,Trim or prune,T100720,South,Residential,Yes,Yes,Completed,2025-04-21,0
+R24418,2025-04-21,Citizen report,Trim or prune,T101617,North,Arterial road,No,Yes,Completed,2025-09-06,138
+R24424,2025-04-21,Citizen report,Trim or prune,T101404,South,School frontage,No,Yes,Completed,2025-04-21,0
+R24498,2025-04-21,Citizen report,Trim or prune,T100065,South,School frontage,No,Yes,Duplicate,,
+R24526,2025-04-21,Citizen report,Fallen branch or debris,T101564,East,Residential,Yes,Yes,Completed,2025-04-24,3
+R24549,2025-04-21,Citizen report,Fallen branch or debris,T100854,Central,Arterial road,Yes,Yes,Completed,2025-04-22,1
+R24579,2025-04-21,Citizen report,Fallen branch or debris,T100559,Central,Arterial road,No,Yes,Duplicate,,
+R24697,2025-04-21,Citizen report,Trim or prune,T101643,Central,Residential,Yes,Yes,Duplicate,,
+R24712,2025-04-21,Citizen report,Trim or prune,T101000,West,Arterial road,Yes,Yes,Completed,2025-10-12,174
+R24802,2025-04-21,Citizen report,Trim or prune,T100711,North,Residential,Yes,Yes,Completed,2025-09-01,133
+R24809,2025-04-21,Citizen report,Trim or prune,T100932,East,Residential,Yes,Yes,Completed,2026-03-25,338
+R24814,2025-04-21,Citizen report,Trim or prune,T100088,West,Residential,No,Yes,Duplicate,,
+R24045,2025-04-22,Citizen report,Fallen branch or debris,T100675,West,Residential,Yes,No,Completed,2025-05-04,12
+R24047,2025-04-22,Citizen report,Fallen branch or debris,T100973,Central,Residential,Yes,Yes,Completed,2025-04-22,0
+R24052,2025-04-22,Citizen report,Trim or prune,T100076,West,High footfall,No,Yes,Open,,
+R24183,2025-04-22,Citizen report,Fallen branch or debris,T100701,West,High footfall,Yes,Yes,Completed,2025-04-26,4
+R24239,2025-04-22,Citizen report,Fallen branch or debris,T100058,Central,School frontage,Yes,Yes,Completed,2025-04-23,1
+R24291,2025-04-22,Citizen report,Trim or prune,T101714,South,Residential,No,Yes,Completed,2025-04-22,0
+R24315,2025-04-22,Citizen report,Fallen branch or debris,T101787,East,Residential,No,Yes,Completed,2025-04-23,1
+R24346,2025-04-22,Citizen report,Fallen branch or debris,T100250,Central,School frontage,No,Yes,Completed,2025-04-23,1
+R24484,2025-04-22,Citizen report,Fallen branch or debris,T101517,Central,Arterial road,No,Yes,Duplicate,,
+R24518,2025-04-22,Citizen report,Trim or prune,T100829,East,Residential,No,Yes,Completed,2025-10-24,185
+R24566,2025-04-22,Citizen report,Trim or prune,T100822,Central,Residential,Yes,Yes,Completed,2025-09-13,144
+R24608,2025-04-22,Citizen report,Trim or prune,T101406,North,High footfall,Yes,Yes,Completed,2025-04-22,0
+R24635,2025-04-22,Citizen report,Trim or prune,T100865,East,High footfall,Yes,Yes,Duplicate,,
+R24711,2025-04-22,Citizen report,Trim or prune,T100562,South,Residential,Yes,Yes,Open,,
+R24774,2025-04-22,Citizen report,Fallen branch or debris,T101447,North,Residential,Yes,Yes,Completed,2025-04-23,1
+R24789,2025-04-22,Citizen report,Fallen branch or debris,T102183,West,Residential,No,Yes,Completed,2025-04-23,1
+R24840,2025-04-22,Citizen report,Fallen branch or debris,T101451,North,Residential,Yes,Yes,Completed,2025-04-23,1
+R24844,2025-04-22,Citizen report,Fallen branch or debris,T102178,South,Residential,Yes,Yes,Completed,2025-05-10,18
+R24886,2025-04-22,Citizen report,Trim or prune,T102045,West,Residential,Yes,Yes,Completed,2025-04-22,0
+R24138,2025-04-23,Citizen report,Trim or prune,T102299,North,High footfall,Yes,No,Completed,2025-08-16,115
+R24582,2025-04-25,Citizen report,Trim or prune,T102120,North,Residential,Yes,No,Duplicate,,
+R24297,2025-04-26,Citizen report,Trim or prune,T102062,South,Arterial road,No,No,Completed,2025-04-26,0
+R24682,2025-04-26,Citizen report,Trim or prune,T100694,Central,Residential,Yes,No,Completed,2025-10-07,164
+R24027,2025-04-28,Citizen report,Trim or prune,T102362,North,Residential,Yes,No,Completed,2025-07-03,66
+R24701,2025-04-29,Citizen report,Trim or prune,T100433,Central,Residential,No,No,Completed,2025-09-08,132
+R24640,2025-04-30,Citizen report,Trim or prune,T102122,South,High footfall,Yes,No,Completed,2025-07-02,63
+R24594,2025-05-05,Citizen report,Fallen branch or debris,T101192,North,High footfall,Yes,No,Duplicate,,
+R24103,2025-05-07,Citizen report,Trim or prune,T100407,South,Residential,Yes,No,Open,,
+R24586,2025-05-07,Citizen report,Trim or prune,T101368,West,Residential,Yes,No,Completed,2025-09-10,126
+R24890,2025-05-09,Citizen report,Trim or prune,T101438,North,High footfall,No,No,Completed,2025-10-18,162
+R24803,2025-05-10,Citizen report,Trim or prune,T101144,West,High footfall,No,No,Completed,2025-10-31,174
+R24860,2025-05-11,Citizen report,Trim or prune,T101817,East,Residential,Yes,No,Completed,2025-05-11,0
+R24606,2025-05-12,Citizen report,Fallen branch or debris,T101534,North,Residential,Yes,No,Completed,2025-05-18,6
+R24065,2025-05-15,Citizen report,Trim or prune,T101276,South,Residential,No,No,Completed,2025-07-02,48
+R24372,2025-05-15,Citizen report,Trim or prune,T100963,Central,High footfall,Yes,No,Completed,2026-03-10,299
+R24368,2025-05-17,Citizen report,Trim or prune,T101663,Central,Arterial road,Yes,No,Completed,2025-10-17,153
+R24216,2025-05-22,Citizen report,Trim or prune,T100930,West,School frontage,No,No,Completed,2025-07-20,59
+R24874,2025-05-23,Citizen report,Fallen branch or debris,T100571,East,Residential,Yes,No,Completed,2025-05-26,3
+R24562,2025-05-26,Citizen report,Fallen branch or debris,T100392,East,High footfall,Yes,No,Completed,2025-05-27,1
+R24159,2025-06-08,Citizen report,Trim or prune,T100004,East,High footfall,Yes,No,Completed,2025-10-02,116
+R24432,2025-06-10,Citizen report,Trim or prune,T100507,East,Residential,Yes,No,Completed,2025-12-15,188
+R24514,2025-06-13,Citizen report,Fallen branch or debris,T102317,West,High footfall,Yes,No,Duplicate,,
+R24171,2025-06-16,Citizen report,Trim or prune,T101745,East,Residential,No,No,Completed,2025-08-31,76
+R24519,2025-06-23,Citizen report,Trim or prune,T100103,South,Residential,No,No,Completed,2025-06-23,0
+R24694,2025-06-24,Citizen report,Fallen branch or debris,T102046,East,Arterial road,Yes,No,Completed,2025-06-27,3
+R24485,2025-07-09,Citizen report,Trim or prune,T101767,Central,Residential,No,No,Duplicate,,
+R24512,2025-07-11,Citizen report,Fallen branch or debris,T100348,North,School frontage,Yes,No,Completed,2025-07-12,1
+R24197,2025-07-19,Citizen report,Trim or prune,T101177,East,Arterial road,No,No,Completed,2026-02-21,217
+R24542,2025-07-29,Citizen report,Fallen branch or debris,T100842,West,School frontage,Yes,No,Completed,2025-08-02,4
+R24051,2025-08-08,Citizen report,Fallen branch or debris,T100176,West,Arterial road,Yes,No,Completed,2025-08-16,8
+R24474,2025-08-15,Citizen report,Trim or prune,T100371,North,Residential,Yes,No,Completed,2025-08-15,0
+R24741,2025-08-17,Citizen report,Fallen branch or debris,T101625,Central,Residential,Yes,No,Completed,2025-08-17,0
+R24310,2025-08-21,Citizen report,Fallen branch or debris,T100701,West,High footfall,Yes,No,Completed,2025-08-26,5
+R24217,2025-08-31,Citizen report,Fallen branch or debris,T101009,West,Residential,Yes,No,Duplicate,,
+R24140,2025-09-01,Citizen report,Trim or prune,T101968,East,High footfall,No,No,Duplicate,,
+R24010,2025-09-03,Citizen report,Trim or prune,T101777,East,Residential,Yes,No,Completed,2026-01-24,143
+R24130,2025-09-06,Citizen report,Trim or prune,T101596,Central,School frontage,No,No,Duplicate,,
+R24168,2025-09-08,Citizen report,Trim or prune,T101406,North,High footfall,Yes,No,Completed,2026-03-01,174
+R24770,2025-09-11,Citizen report,Trim or prune,T101756,East,High footfall,No,No,Completed,2025-12-10,90
+R24247,2025-09-12,Citizen report,Trim or prune,T100095,South,Residential,Yes,No,Open,,
+R24878,2025-09-12,Citizen report,Fallen branch or debris,T101366,West,High footfall,Yes,No,Completed,2025-09-15,3
+R24551,2025-09-13,Citizen report,Fallen branch or debris,T101770,South,School frontage,Yes,No,Completed,2025-09-17,4
+R24702,2025-09-13,Citizen report,Trim or prune,T100462,Central,High footfall,Yes,No,Open,,
+R24292,2025-09-16,Citizen report,Trim or prune,T101359,Central,Arterial road,Yes,No,Duplicate,,
+R24821,2025-09-17,Citizen report,Trim or prune,T101738,North,Residential,Yes,No,Completed,2025-09-17,0
+R24123,2025-09-22,Citizen report,Fallen branch or debris,T101860,Central,Residential,Yes,No,Completed,2025-09-25,3
+R24721,2025-09-29,Citizen report,Fallen branch or debris,T100597,North,Residential,Yes,No,Completed,2025-09-30,1
+R24596,2025-10-02,Citizen report,Trim or prune,T101753,South,Residential,Yes,No,Completed,2025-10-03,1
+R24274,2025-10-03,Citizen report,Trim or prune,T101939,North,High footfall,No,No,Completed,2025-10-03,0
+R24759,2025-10-03,Citizen report,Trim or prune,T101561,North,Arterial road,Yes,No,Open,,
+R24749,2025-10-06,Citizen report,Trim or prune,T101031,Central,Residential,Yes,No,Completed,2025-10-06,0
+R24240,2025-10-09,Citizen report,Fallen branch or debris,T100612,North,Residential,Yes,No,Completed,2025-10-20,11
+R24318,2025-10-10,Citizen report,Trim or prune,T101665,East,High footfall,Yes,No,Open,,
+R24724,2025-10-11,Citizen report,Trim or prune,T102165,West,Residential,Yes,No,Duplicate,,
+R24265,2025-10-13,Citizen report,Fallen branch or debris,T101251,West,High footfall,Yes,No,Completed,2025-10-14,1
+R24192,2025-10-17,Citizen report,Fallen branch or debris,T101112,South,High footfall,Yes,No,Completed,2025-10-18,1
+R24462,2025-10-17,Citizen report,Trim or prune,T101597,Central,Arterial road,Yes,No,Completed,2025-10-17,0
+R24096,2025-10-18,Citizen report,Fallen branch or debris,T101816,West,Arterial road,Yes,No,Completed,2025-10-30,12
+R24560,2025-10-23,Citizen report,Trim or prune,T101487,North,Residential,Yes,No,Completed,2025-11-16,24
+R24483,2025-10-27,Citizen report,Fallen branch or debris,T100742,North,Residential,Yes,No,Duplicate,,
+R24219,2025-10-29,Citizen report,Trim or prune,T100596,North,Residential,Yes,No,Open,,
+R24611,2025-11-01,Citizen report,Trim or prune,T101386,Central,Arterial road,No,No,Completed,2025-11-01,0
+R24763,2025-11-02,Citizen report,Trim or prune,T100233,Central,Residential,Yes,No,Completed,2025-11-02,0
+R24083,2025-11-03,Citizen report,Fallen branch or debris,T100304,North,Residential,Yes,No,Completed,2025-11-04,1
+R24788,2025-11-03,Citizen report,Trim or prune,T100260,North,Residential,Yes,No,Open,,
+R24824,2025-11-03,Citizen report,Trim or prune,T102186,East,Residential,No,No,Duplicate,,
+R24091,2025-11-07,Citizen report,Fallen branch or debris,T100187,Central,Arterial road,Yes,No,Completed,2025-11-09,2
+R24476,2025-11-07,Citizen report,Fallen branch or debris,T100911,Central,High footfall,No,No,Completed,2025-11-09,2
+R24713,2025-11-07,Citizen report,Trim or prune,T101295,South,Residential,Yes,No,Open,,
+R24882,2025-11-07,Citizen report,Fallen branch or debris,T100208,South,Residential,Yes,No,Completed,2025-11-17,10
+R24238,2025-11-09,Citizen report,Trim or prune,T100655,Central,Residential,Yes,No,Completed,2025-11-09,0
+R24144,2025-11-10,Citizen report,Trim or prune,T100955,North,Residential,Yes,No,Completed,2026-01-20,71
+R24625,2025-11-10,Citizen report,Trim or prune,T100503,South,Residential,Yes,No,Open,,
+R24641,2025-11-10,Citizen report,Trim or prune,T100691,East,Residential,Yes,No,Completed,2026-03-21,131
+R24454,2025-11-11,Citizen report,Trim or prune,T101811,Central,Arterial road,Yes,No,Completed,2026-03-01,110
+R24827,2025-11-12,Citizen report,Trim or prune,T101294,South,Arterial road,Yes,No,Open,,
+R24167,2025-11-13,Citizen report,Trim or prune,T100998,West,Residential,Yes,No,Completed,2025-11-13,0
+R24093,2025-11-14,Citizen report,Trim or prune,T101999,North,High footfall,Yes,Yes,Open,,
+R24158,2025-11-14,Citizen report,Trim or prune,T102301,North,Residential,Yes,Yes,Duplicate,,
+R24191,2025-11-14,Citizen report,Trim or prune,T100985,West,Residential,No,Yes,Duplicate,,
+R24261,2025-11-14,Citizen report,Trim or prune,T100627,West,Residential,Yes,Yes,Completed,2025-11-14,0
+R24283,2025-11-14,Citizen report,Trim or prune,T101221,West,Arterial road,Yes,Yes,Completed,2025-11-14,0
+R24493,2025-11-14,Citizen report,Fallen branch or debris,T102046,East,Arterial road,Yes,Yes,Completed,2025-11-14,0
+R24513,2025-11-14,Citizen report,Fallen branch or debris,T100395,Central,Residential,Yes,Yes,Completed,2025-11-15,1
+R24538,2025-11-14,Citizen report,Fallen branch or debris,T100492,Central,Residential,Yes,Yes,Duplicate,,
+R24613,2025-11-14,Citizen report,Trim or prune,T100861,South,School frontage,Yes,Yes,Completed,2026-03-03,109
+R24703,2025-11-14,Citizen report,Trim or prune,T101364,East,Residential,Yes,Yes,Open,,
+R24758,2025-11-14,Citizen report,Trim or prune,T100899,East,Residential,Yes,Yes,Open,,
+R24765,2025-11-14,Citizen report,Trim or prune,T101698,West,Residential,Yes,Yes,Open,,
+R24823,2025-11-14,Citizen report,Trim or prune,T101297,Central,Residential,No,Yes,Open,,
+R24826,2025-11-14,Citizen report,Fallen branch or debris,T101365,Central,School frontage,Yes,Yes,Completed,2025-11-14,0
+R24871,2025-11-14,Citizen report,Trim or prune,T100448,East,Residential,Yes,Yes,Open,,
+R24888,2025-11-14,Citizen report,Trim or prune,T100558,South,High footfall,Yes,Yes,Duplicate,,
+R24039,2025-11-15,Citizen report,Trim or prune,T100551,West,Residential,Yes,Yes,Completed,2025-11-15,0
+R24072,2025-11-15,Citizen report,Fallen branch or debris,T101948,North,Residential,Yes,Yes,Completed,2025-11-18,3
+R24180,2025-11-15,Citizen report,Trim or prune,T101765,South,Residential,No,Yes,Completed,2025-11-29,14
+R24189,2025-11-15,Citizen report,Trim or prune,T102102,East,Residential,Yes,Yes,Completed,2025-11-15,0
+R24253,2025-11-15,Citizen report,Fallen branch or debris,T101859,North,Arterial road,Yes,Yes,Completed,2025-11-21,6
+R24293,2025-11-15,Citizen report,Fallen branch or debris,T101927,West,Residential,No,Yes,Completed,2025-11-18,3
+R24331,2025-11-15,Citizen report,Fallen branch or debris,T100118,South,Residential,Yes,Yes,Duplicate,,
+R24444,2025-11-15,Citizen report,Trim or prune,T101929,North,High footfall,Yes,Yes,Completed,2025-12-12,27
+R24445,2025-11-15,Citizen report,Fallen branch or debris,T100364,Central,Residential,Yes,Yes,Completed,2025-11-17,2
+R24453,2025-11-15,Citizen report,Trim or prune,T100136,Central,Residential,No,Yes,Open,,
+R24470,2025-11-15,Citizen report,Trim or prune,T100907,South,Residential,Yes,Yes,Completed,2026-02-04,81
+R24521,2025-11-15,Citizen report,Fallen branch or debris,T102236,East,School frontage,No,Yes,Duplicate,,
+R24564,2025-11-15,Citizen report,Trim or prune,T102254,North,Residential,No,Yes,Open,,
+R24779,2025-11-15,Citizen report,Trim or prune,T100076,West,High footfall,No,Yes,Completed,2026-03-17,122
+R24014,2025-11-16,Citizen report,Fallen branch or debris,T100976,North,Residential,Yes,Yes,Completed,2025-11-18,2
+R24114,2025-11-16,Citizen report,Fallen branch or debris,T100178,South,Residential,Yes,Yes,Completed,2025-11-17,1
+R24116,2025-11-16,Citizen report,Trim or prune,T100736,North,School frontage,Yes,Yes,Completed,2026-03-04,108
+R24119,2025-11-16,Citizen report,Fallen branch or debris,T101063,South,Residential,Yes,Yes,Completed,2025-11-17,1
+R24122,2025-11-16,Citizen report,Fallen branch or debris,T100498,South,Residential,No,No,Duplicate,,
+R24151,2025-11-16,Citizen report,Trim or prune,T100558,South,High footfall,No,Yes,Duplicate,,
+R24152,2025-11-16,Citizen report,Trim or prune,T101077,Central,Residential,No,Yes,Completed,2025-11-16,0
+R24163,2025-11-16,Citizen report,Trim or prune,T100567,West,High footfall,No,Yes,Duplicate,,
+R24215,2025-11-16,Citizen report,Fallen branch or debris,T101772,North,Arterial road,Yes,Yes,Completed,2025-11-29,13
+R24271,2025-11-16,Citizen report,Trim or prune,T101813,West,Residential,No,No,Completed,2025-11-16,0
+R24300,2025-11-16,Citizen report,Trim or prune,T100111,North,High footfall,No,No,Duplicate,,
+R24309,2025-11-16,Citizen report,Trim or prune,T100327,South,Arterial road,No,Yes,Completed,2025-11-16,0
+R24313,2025-11-16,Citizen report,Fallen branch or debris,T100902,North,Residential,No,Yes,Completed,2025-11-18,2
+R24328,2025-11-16,Citizen report,Fallen branch or debris,T100288,South,Residential,Yes,Yes,Completed,2025-11-17,1
+R24332,2025-11-16,Citizen report,Trim or prune,T102229,East,Residential,Yes,Yes,Duplicate,,
+R24357,2025-11-16,Citizen report,Fallen branch or debris,T100046,East,Residential,Yes,Yes,Duplicate,,
+R24402,2025-11-16,Citizen report,Trim or prune,T101934,East,Residential,Yes,Yes,Duplicate,,
+R24407,2025-11-16,Citizen report,Trim or prune,T100756,Central,Arterial road,Yes,No,Completed,2026-02-04,80
+R24408,2025-11-16,Citizen report,Trim or prune,T102029,North,Residential,No,Yes,Completed,2026-03-28,132
+R24459,2025-11-16,Citizen report,Fallen branch or debris,T101240,Central,Residential,Yes,Yes,Completed,2025-11-24,8
+R24464,2025-11-16,Citizen report,Trim or prune,T100963,Central,High footfall,Yes,Yes,Duplicate,,
+R24761,2025-11-16,Citizen report,Fallen branch or debris,T101870,East,Residential,Yes,Yes,Completed,2025-11-19,3
+R24773,2025-11-16,Citizen report,Trim or prune,T102113,North,Arterial road,Yes,Yes,Completed,2025-11-28,12
+R24797,2025-11-16,Citizen report,Fallen branch or debris,T100305,West,School frontage,Yes,Yes,Completed,2025-11-18,2
+R24406,2025-11-17,Citizen report,Fallen branch or debris,T101236,Central,Residential,Yes,No,Completed,2025-11-23,6
+R24700,2025-11-17,Citizen report,Fallen branch or debris,T101882,Central,Residential,Yes,No,Completed,2025-11-21,4
+R24226,2025-11-19,Citizen report,Trim or prune,T101287,Central,Residential,Yes,No,Open,,
+R24243,2025-11-19,Citizen report,Trim or prune,T102041,North,Arterial road,Yes,No,Completed,2025-11-19,0
+R24441,2025-11-21,Citizen report,Trim or prune,T102088,South,High footfall,Yes,No,Completed,2026-02-26,97
+R24837,2025-11-21,Citizen report,Trim or prune,T101522,Central,Residential,No,No,Completed,2026-03-29,128
+R24504,2025-11-22,Citizen report,Fallen branch or debris,T101638,West,Residential,Yes,No,Completed,2025-11-23,1
+R24218,2025-11-24,Citizen report,Fallen branch or debris,T101613,North,High footfall,Yes,No,Completed,2025-11-24,0
+R24799,2025-11-24,Citizen report,Trim or prune,T100147,Central,Residential,Yes,No,Completed,2025-11-24,0
+R24772,2025-11-25,Citizen report,Fallen branch or debris,T101994,North,High footfall,No,No,Completed,2025-11-26,1
+R24515,2025-11-26,Citizen report,Trim or prune,T102321,North,Residential,Yes,No,Open,,
+R24630,2025-11-26,Citizen report,Trim or prune,T101721,North,School frontage,No,No,Duplicate,,
+R24600,2025-11-30,Citizen report,Trim or prune,T100120,West,Residential,No,No,Completed,2025-11-30,0
+R24496,2025-12-01,Citizen report,Trim or prune,T101631,West,Residential,No,No,Open,,
+R24009,2025-12-02,Citizen report,Fallen branch or debris,T100101,South,Residential,Yes,No,Completed,2025-12-02,0
+R24670,2025-12-02,Citizen report,Fallen branch or debris,T101459,West,High footfall,Yes,No,Completed,2025-12-14,12
+R24349,2025-12-03,Citizen report,Trim or prune,T100281,West,Residential,Yes,No,Open,,
+R24684,2025-12-03,Citizen report,Trim or prune,T102305,North,School frontage,Yes,No,Open,,
+R24698,2025-12-03,Citizen report,Trim or prune,T101482,North,Residential,No,No,Completed,2025-12-03,0
+R24792,2025-12-03,Citizen report,Trim or prune,T101149,South,Residential,Yes,No,Completed,2025-12-03,0
+R24838,2025-12-03,Citizen report,Fallen branch or debris,T101095,South,Residential,Yes,No,Completed,2025-12-03,0
+R24037,2025-12-06,Citizen report,Trim or prune,T100826,East,High footfall,Yes,No,Open,,
+R24786,2025-12-10,Citizen report,Trim or prune,T101242,North,Residential,No,No,Open,,
+R24806,2025-12-10,Citizen report,Trim or prune,T100643,East,School frontage,Yes,No,Open,,
+R24061,2025-12-11,Citizen report,Trim or prune,T101323,North,High footfall,No,No,Open,,
+R24715,2025-12-13,Citizen report,Trim or prune,T100845,East,Residential,No,No,Completed,2025-12-13,0
+R24394,2025-12-14,Citizen report,Trim or prune,T101888,South,Residential,No,No,Completed,2025-12-14,0
+R24436,2025-12-14,Citizen report,Trim or prune,T100590,East,Arterial road,Yes,No,Completed,2026-01-01,18
+R24867,2025-12-14,Citizen report,Trim or prune,T101718,North,Arterial road,No,No,Open,,
+R24299,2025-12-16,Citizen report,Trim or prune,T101858,North,High footfall,No,No,Open,,
+R24028,2025-12-17,Citizen report,Trim or prune,T102127,South,Arterial road,No,No,Open,,
+R24003,2025-12-18,Citizen report,Fallen branch or debris,T102184,West,Residential,Yes,No,Completed,2025-12-18,0
+R24287,2025-12-18,Citizen report,Trim or prune,T100477,North,Residential,No,No,Open,,
+R24301,2025-12-19,Citizen report,Trim or prune,T101475,North,High footfall,Yes,No,Completed,2025-12-19,0
+R24268,2025-12-20,Citizen report,Fallen branch or debris,T102278,North,Arterial road,Yes,No,Duplicate,,
+R24378,2025-12-20,Citizen report,Fallen branch or debris,T100461,West,Residential,Yes,No,Duplicate,,
+R24102,2025-12-21,Citizen report,Trim or prune,T101755,South,High footfall,Yes,No,Completed,2025-12-25,4
+R24225,2025-12-21,Citizen report,Trim or prune,T101396,North,Residential,Yes,No,Open,,
+R24489,2025-12-21,Citizen report,Fallen branch or debris,T100431,North,School frontage,Yes,No,Duplicate,,
+R24555,2025-12-21,Citizen report,Trim or prune,T101612,North,Arterial road,Yes,No,Open,,
+R24642,2025-12-21,Citizen report,Fallen branch or debris,T100889,East,Residential,Yes,No,Duplicate,,
+R24205,2025-12-22,Citizen report,Trim or prune,T101329,Central,Residential,No,No,Completed,2025-12-24,2
+R24451,2025-12-22,Citizen report,Trim or prune,T101599,East,Arterial road,No,No,Duplicate,,
+R24207,2025-12-24,Citizen report,Fallen branch or debris,T102185,Central,Arterial road,Yes,No,Completed,2025-12-30,6
+R24415,2025-12-24,Citizen report,Fallen branch or debris,T101780,East,High footfall,Yes,No,Completed,2025-12-30,6
+R24647,2025-12-24,Citizen report,Fallen branch or debris,T101990,East,High footfall,Yes,No,Completed,2025-12-28,4
+R24674,2025-12-24,Citizen report,Trim or prune,T101215,South,School frontage,No,No,Duplicate,,
+R24884,2025-12-25,Citizen report,Fallen branch or debris,T100324,South,School frontage,Yes,No,Completed,2026-01-05,11
+R24160,2025-12-26,Citizen report,Fallen branch or debris,T101537,West,Arterial road,No,No,Completed,2025-12-31,5
+R24539,2025-12-26,Citizen report,Trim or prune,T102062,South,Arterial road,Yes,No,Completed,2025-12-26,0
+R24887,2025-12-26,Citizen report,Trim or prune,T101026,South,Residential,Yes,No,Completed,2025-12-26,0
+R24523,2025-12-27,Citizen report,Trim or prune,T100776,Central,Residential,Yes,No,Duplicate,,
+R24757,2025-12-27,Citizen report,Trim or prune,T100849,East,Residential,Yes,No,Completed,2026-02-25,60
+R24233,2025-12-28,Citizen report,Trim or prune,T101878,East,Residential,Yes,No,Duplicate,,
+R24742,2025-12-28,Citizen report,Fallen branch or debris,T100023,Central,Residential,No,No,Completed,2026-01-03,6
+R24050,2025-12-29,Citizen report,Trim or prune,T101951,South,Residential,Yes,No,Open,,
+R24353,2025-12-29,Citizen report,Trim or prune,T100207,East,Residential,No,No,Open,,
+R24356,2025-12-29,Citizen report,Trim or prune,T100847,South,High footfall,Yes,No,Open,,
+R24457,2025-12-29,Citizen report,Fallen branch or debris,T101433,South,Residential,No,No,Completed,2025-12-30,1

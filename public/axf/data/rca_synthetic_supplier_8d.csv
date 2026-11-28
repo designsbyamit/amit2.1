@@ -1,0 +1,41 @@
+submission_id,supplier,received,format,language,fields_missing,complete
+S8D-300,Supplier 09,2026-07-26,Scanned PDF,English,D4 root cause evidence; D5 verification of action,No
+S8D-301,Supplier 06,2026-06-14,Text PDF,English,D4 root cause evidence,No
+S8D-302,Supplier 03,2026-07-01,Scanned PDF,English,D4 root cause evidence,No
+S8D-303,Supplier 13,2026-08-19,Text PDF,English,D5 verification of action,No
+S8D-304,Supplier 02,2026-08-01,Email body,English,D4 root cause evidence,No
+S8D-305,Supplier 08,2026-04-14,Email body,English,D5 verification of action,No
+S8D-306,Supplier 13,2026-05-09,Email body,English,D5 verification of action; D7 prevention,No
+S8D-307,Supplier 08,2026-08-02,Text PDF,English,None,Yes
+S8D-308,Supplier 12,2026-08-13,Text PDF,English,None,Yes
+S8D-309,Supplier 08,2026-05-03,Text PDF,English,D2 problem description; D5 verification of action,No
+S8D-310,Supplier 17,2026-08-05,Text PDF,English,D3 containment,No
+S8D-311,Supplier 06,2026-04-27,Text PDF,English,D2 problem description,No
+S8D-312,Supplier 03,2026-07-30,Text PDF,English,D5 verification of action; D7 prevention,No
+S8D-313,Supplier 17,2026-09-24,Email body,English,D3 containment; D4 root cause evidence; D5 verification of action,No
+S8D-314,Supplier 09,2026-09-01,Email body,English,D5 verification of action; D7 prevention,No
+S8D-315,Supplier 16,2026-06-07,Text PDF,English,D2 problem description,No
+S8D-316,Supplier 05,2026-07-01,Text PDF,English,D3 containment,No
+S8D-317,Supplier 08,2026-07-03,Text PDF,English,D5 verification of action; D7 prevention,No
+S8D-318,Supplier 14,2026-07-17,Text PDF,English,None,Yes
+S8D-319,Supplier 17,2026-04-18,Email body,English,None,Yes
+S8D-320,Supplier 09,2026-05-11,Text PDF,English,D5 verification of action,No
+S8D-321,Supplier 12,2026-06-01,Email body,English,D4 root cause evidence; D5 verification of action,No
+S8D-322,Supplier 07,2026-05-17,Text PDF,English,D4 root cause evidence,No
+S8D-323,Supplier 16,2026-06-17,Scanned PDF,English,D5 verification of action; D7 prevention,No
+S8D-324,Supplier 09,2026-08-29,Text PDF,English and Hindi,None,Yes
+S8D-325,Supplier 13,2026-06-26,Text PDF,English,D4 root cause evidence,No
+S8D-326,Supplier 09,2026-04-06,Email body,English,D5 verification of action; D7 prevention,No
+S8D-327,Supplier 17,2026-04-06,Text PDF,English,None,Yes
+S8D-328,Supplier 07,2026-04-09,Text PDF,English,None,Yes
+S8D-329,Supplier 15,2026-04-18,Spreadsheet,English,D3 containment,No
+S8D-330,Supplier 14,2026-06-03,Scanned PDF,English,D7 prevention,No
+S8D-331,Supplier 14,2026-07-25,Text PDF,English and Hindi,D2 problem description,No
+S8D-332,Supplier 18,2026-05-07,Text PDF,English,D5 verification of action,No
+S8D-333,Supplier 17,2026-07-03,Scanned PDF,English and Hindi,None,Yes
+S8D-334,Supplier 17,2026-06-14,Text PDF,English,D4 root cause evidence; D7 prevention,No
+S8D-335,Supplier 08,2026-04-16,Spreadsheet,English,None,Yes
+S8D-336,Supplier 16,2026-04-06,Text PDF,English,D4 root cause evidence,No
+S8D-337,Supplier 09,2026-06-18,Text PDF,English,None,Yes
+S8D-338,Supplier 04,2026-04-14,Text PDF,English,D3 containment; D7 prevention,No
+S8D-339,Supplier 17,2026-05-12,Text PDF,English,None,Yes

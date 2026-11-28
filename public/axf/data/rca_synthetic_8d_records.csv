@@ -1,0 +1,141 @@
+issue_id,plant,method,opened,source,component_system,problem,supplier,current_step,root_cause_category,corrective_action,days_to_root_cause,days_open,effectiveness,repeat_of
+Q-2699,Plant A,8D,2026-04-01,Warranty claim,Other,Seat latch does not lock,,Closed,Assembly or fastening,Repair or adjust,20,,Not tracked,
+Q-2717,Plant D,4D,2026-04-02,In-line defect,Brakes,Spongy rear brake lever,Supplier 04,Closed,Design or routing,Replace part,26,,Checked,
+Q-2694,Plant C,8D,2026-04-07,Warranty claim,Suspension,Rear shock bush noise,,Closed,Software or calibration,Replace part,22,,Not tracked,
+Q-2601,Plant C,8D,2026-04-08,Warranty claim,Fuel system,Fuel seepage at hose joint,,Closed,Assembly or fastening,Replace part,12,,Not tracked,
+Q-2605,Plant A,8D,2026-04-08,Audit finding,Brakes,Front caliper bolt below torque,Supplier 17,Closed,Material or durability,Replace part,31,,Not tracked,
+Q-2685,Plant A,8D,2026-04-08,Supplier part rejection,Power train,Gear shift lever loosens,Supplier 13,Closed,Assembly or fastening,Replace part,30,,Not tracked,
+Q-2698,Plant C,8D,2026-04-08,Warranty claim,Fuel system,Fuel pump stops intermittently,,Closed,Assembly or fastening,Repair or adjust,20,,Not tracked,
+Q-2696,Plant C,8D,2026-04-09,Supplier part rejection,Fuel system,Tank cap does not seal,Supplier 13,Closed,Material or durability,Replace part,29,,Not tracked,
+Q-2621,Plant D,4D,2026-04-10,Supplier part rejection,Engine and cooling,Coolant weep at hose clamp,Supplier 01,Closed,Assembly or fastening,Repair or adjust,34,,Checked,
+Q-2602,Plant D,4D,2026-04-11,Warranty claim,Other,Seat latch does not lock,,Closed,Assembly or fastening,Replace part,28,,Not tracked,
+Q-2665,Plant B,8D,2026-04-12,Audit finding,Lighting,Tail lamp water ingress,,Closed,Software or calibration,Repair or adjust,9,,Not tracked,
+Q-2617,Plant B,8D,2026-04-13,Supplier part rejection,Other,Seat latch does not lock,Supplier 07,Closed,Design or routing,Repair or adjust,16,,Not tracked,
+Q-2690,Plant C,8D,2026-04-16,Warranty claim,Electrical,Starter relay fails,,Closed,Assembly or fastening,Repair or adjust,31,,Not tracked,
+Q-2719,Plant B,8D,2026-04-16,Supplier part rejection,Lighting,Indicator stops in rain,Supplier 15,D5,Software or calibration,Software update,26,198,,
+Q-2626,Plant B,8D,2026-04-18,In-line defect,Fuel system,Fuel seepage at hose joint,,Closed,Design or routing,Replace part,22,,Not tracked,
+Q-2663,Plant C,8D,2026-04-18,In-line defect,Power train,Clutch cable frays early,Supplier 10,Closed,Design or routing,Replace part,28,,Not tracked,
+Q-2660,Plant C,8D,2026-04-22,In-line defect,Steering,Steering bearing notchy,,Closed,Material or durability,Replace part,10,,Not tracked,
+Q-2634,Plant C,8D,2026-04-23,Supplier part rejection,Wheels,Rim run-out out of tolerance,Supplier 13,Closed,Design or routing,Replace part,16,,Not tracked,
+Q-2711,Plant B,8D,2026-04-23,In-line defect,Electrical,Starter relay fails,,D5,Material or durability,Replace part,28,191,,
+Q-2609,Plant A,8D,2026-04-24,Supplier part rejection,Brakes,Spongy rear brake lever,Supplier 14,Closed,Material or durability,Replace part,27,,Checked,
+Q-2631,Plant A,8D,2026-04-26,Supplier part rejection,Power train,Clutch cable frays early,Supplier 01,Closed,Material or durability,Replace part,40,,Checked,
+Q-2670,Plant A,8D,2026-04-29,Supplier part rejection,Electrical,Harness chafes at steering head,Supplier 14,Closed,Design or routing,Replace part,32,,Checked,
+Q-2725,Plant A,8D,2026-04-29,In-line defect,Lighting,Indicator stops in rain,,Closed,Design or routing,Repair or adjust,20,,Not tracked,
+Q-2677,Plant D,4D,2026-05-01,In-line defect,Brakes,Spongy rear brake lever,,Closed,Design or routing,Repair or adjust,6,,Checked,
+Q-2692,Plant A,8D,2026-05-01,In-line defect,Other,Mirror stem loosens,Supplier 03,Closed,Design or routing,Replace part,23,,Not tracked,
+Q-2682,Plant D,4D,2026-05-03,Supplier part rejection,Brakes,Spongy rear brake lever,Supplier 05,Closed,Assembly or fastening,Replace part,13,,Not tracked,Q-2677
+Q-2635,Plant C,8D,2026-05-04,Warranty claim,Other,Seat latch does not lock,,Closed,Design or routing,Replace part,38,,Not tracked,
+Q-2606,Plant D,4D,2026-05-05,In-line defect,Brakes,Brake hose chafes on bracket,,Closed,Assembly or fastening,Replace part,31,,Not tracked,
+Q-2622,Plant A,8D,2026-05-06,In-line defect,Other,Seat latch does not lock,,Closed,Assembly or fastening,Replace part,6,,Not tracked,
+Q-2693,Plant C,8D,2026-05-06,Supplier part rejection,Electrical,Starter relay fails,Supplier 11,Closed,Software or calibration,Repair or adjust,30,,Checked,Q-2690
+Q-2713,Plant A,8D,2026-05-06,In-line defect,Suspension,Rear shock bush noise,,Closed,Material or durability,Replace part,32,,Not tracked,
+Q-2710,Plant D,4D,2026-05-07,Warranty claim,Power train,Gear shift lever loosens,,Closed,Software or calibration,Replace part,40,,Not tracked,
+Q-2738,Plant B,8D,2026-05-09,In-line defect,Other,Mirror stem loosens,,Closed,Assembly or fastening,Repair or adjust,6,,Not tracked,
+Q-2636,Plant C,8D,2026-05-11,In-line defect,Electrical,Harness chafes at steering head,,Closed,Material or durability,Replace part,35,,Not tracked,
+Q-2658,Plant B,8D,2026-05-11,Warranty claim,Electrical,Headlamp flickers at idle,,Closed,Manufacturing process,Repair or adjust,38,,Not tracked,
+Q-2644,Plant D,4D,2026-05-12,In-line defect,Electrical,Headlamp flickers at idle,Supplier 12,Closed,Design or routing,Repair or adjust,16,,Checked,
+Q-2676,Plant D,4D,2026-05-12,In-line defect,Other,Seat latch does not lock,,Closed,Assembly or fastening,Replace part,17,,Checked,
+Q-2680,Plant C,8D,2026-05-13,Supplier part rejection,Electrical,Starter relay fails,Supplier 01,Closed,Material or durability,Repair or adjust,6,,Not tracked,
+Q-2714,Plant A,8D,2026-05-13,In-line defect,Other,Mirror stem loosens,,Closed,Material or durability,Repair or adjust,10,,Not tracked,Q-2692
+Q-2614,Plant C,8D,2026-05-15,Warranty claim,Lighting,Tail lamp water ingress,,D6,Design or routing,Replace part,38,169,,
+Q-2668,Plant C,8D,2026-05-16,In-line defect,Electrical,Headlamp flickers at idle,,Closed,Design or routing,Replace part,38,,Not tracked,
+Q-2733,Plant C,8D,2026-05-17,Supplier part rejection,Power train,Chain adjuster slips,Supplier 16,D2,,,,167,,
+Q-2720,Plant A,8D,2026-05-18,Warranty claim,Electrical,Harness chafes at steering head,,Closed,Manufacturing process,Replace part,6,,Not tracked,
+Q-2603,Plant D,4D,2026-05-19,In-line defect,Power train,Gear shift lever loosens,,Closed,Assembly or fastening,Repair or adjust,17,,Not tracked,
+Q-2679,Plant A,8D,2026-05-20,In-line defect,Electrical,Harness chafes at steering head,,Closed,Assembly or fastening,Replace part,19,,Not tracked,Q-2720
+Q-2649,Plant B,8D,2026-05-21,Warranty claim,Frame and structure,Crack near footrest bracket weld,,Closed,Design or routing,Replace part,9,,Not tracked,
+Q-2652,Plant C,8D,2026-05-22,Warranty claim,Steering,Steering bearing notchy,,Closed,Material or durability,Replace part,9,,Checked,Q-2660
+Q-2684,Plant B,8D,2026-05-22,Warranty claim,Frame and structure,Crack near footrest bracket weld,,D6,Manufacturing process,Repair or adjust,12,162,,
+Q-2697,Plant D,4D,2026-05-24,In-line defect,Power train,Gear shift lever loosens,Supplier 04,Closed,Material or durability,Repair or adjust,18,,Not tracked,Q-2603
+Q-2615,Plant C,8D,2026-05-25,In-line defect,Electrical,Headlamp flickers at idle,,Closed,Material or durability,Replace part,37,,Not tracked,
+Q-2709,Plant B,8D,2026-05-30,Supplier part rejection,Wheels,Rim run-out out of tolerance,Supplier 04,Closed,Material or durability,Replace part,23,,Checked,
+Q-2737,Plant B,8D,2026-06-01,Supplier part rejection,Electrical,Headlamp flickers at idle,Supplier 08,Closed,Manufacturing process,Replace part,20,,Not tracked,
+Q-2618,Plant A,8D,2026-06-04,In-line defect,Suspension,Rear shock bush noise,,Closed,Design or routing,Repair or adjust,36,,Not tracked,
+Q-2703,Plant D,4D,2026-06-06,In-line defect,Power train,Clutch cable frays early,Supplier 11,Closed,Design or routing,Replace part,22,,Not tracked,
+Q-2645,Plant A,8D,2026-06-07,In-line defect,Electrical,Starter relay fails,Supplier 05,Closed,Assembly or fastening,Replace part,37,,Not tracked,
+Q-2659,Plant B,8D,2026-06-07,In-line defect,Electrical,Starter relay fails,,Closed,Manufacturing process,Replace part,11,,Not tracked,
+Q-2721,Plant A,8D,2026-06-08,Warranty claim,Engine and cooling,Oil leak at crankcase gasket,,Closed,Design or routing,Repair or adjust,30,,Not tracked,
+Q-2600,Plant A,8D,2026-06-10,In-line defect,Other,Seat latch does not lock,,Closed,Design or routing,Replace part,31,,Not tracked,Q-2622
+Q-2734,Plant B,8D,2026-06-11,In-line defect,Frame and structure,Crack near footrest bracket weld,Supplier 07,Closed,Manufacturing process,Repair or adjust,17,,Not tracked,Q-2684
+Q-2735,Plant B,8D,2026-06-11,Warranty claim,Brakes,Spongy rear brake lever,,Closed,Manufacturing process,Software update,20,,Checked,
+Q-2648,Plant B,8D,2026-06-14,Supplier part rejection,Fuel system,Fuel seepage at hose joint,Supplier 14,Closed,Material or durability,Replace part,32,,Not tracked,Q-2626
+Q-2661,Plant C,8D,2026-06-15,In-line defect,Wheels,Spoke tension low on delivery,Supplier 01,D4,Assembly or fastening,,26,138,,
+Q-2662,Plant C,8D,2026-06-17,In-line defect,Fuel system,Fuel pump stops intermittently,,Closed,Software or calibration,Repair or adjust,39,,Not tracked,Q-2698
+Q-2611,Plant A,8D,2026-06-18,Supplier part rejection,Suspension,Rear shock bush noise,Supplier 15,Closed,Manufacturing process,Repair or adjust,11,,Checked,Q-2618
+Q-2651,Plant C,8D,2026-06-19,Warranty claim,Lighting,Tail lamp water ingress,,Closed,Design or routing,Replace part,9,,Checked,
+Q-2654,Plant C,8D,2026-06-19,Audit finding,Frame and structure,Crack near footrest bracket weld,,D5,Design or routing,Repair or adjust,7,134,,
+Q-2672,Plant A,8D,2026-06-20,Supplier part rejection,Electrical,Harness chafes at steering head,Supplier 11,Closed,Design or routing,Repair or adjust,10,,Checked,Q-2679
+Q-2706,Plant D,4D,2026-06-20,Warranty claim,Wheels,Rim run-out out of tolerance,,Closed,Design or routing,Replace part,8,,Not tracked,
+Q-2708,Plant A,8D,2026-06-21,Warranty claim,Power train,Clutch cable frays early,,Closed,Design or routing,Repair or adjust,20,,Not tracked,
+Q-2628,Plant C,8D,2026-06-22,Supplier part rejection,Brakes,Brake hose chafes on bracket,Supplier 16,Closed,Material or durability,Replace part,35,,Not tracked,
+Q-2730,Plant A,8D,2026-06-26,In-line defect,Electrical,Headlamp flickers at idle,,Closed,Manufacturing process,Repair or adjust,14,,Not tracked,
+Q-2632,Plant B,8D,2026-06-27,Audit finding,Engine and cooling,Engine stalls when hot,,D4,Material or durability,,14,126,,
+Q-2702,Plant A,8D,2026-06-28,Warranty claim,Engine and cooling,Engine stalls when hot,,Closed,Manufacturing process,Replace part,24,,Not tracked,
+Q-2723,Plant B,8D,2026-06-30,Supplier part rejection,Power train,Chain adjuster slips,Supplier 11,Closed,Design or routing,Repair or adjust,39,,Not tracked,
+Q-2673,Plant B,8D,2026-07-05,In-line defect,Brakes,Spongy rear brake lever,Supplier 05,D5,Assembly or fastening,Replace part,31,118,,
+Q-2613,Plant B,8D,2026-07-06,Supplier part rejection,Wheels,Rim run-out out of tolerance,Supplier 04,Closed,Assembly or fastening,Replace part,16,,Not tracked,Q-2709
+Q-2707,Plant A,8D,2026-07-08,Supplier part rejection,Wheels,Spoke tension low on delivery,Supplier 03,Closed,Design or routing,Repair or adjust,6,,Checked,
+Q-2608,Plant B,8D,2026-07-09,Supplier part rejection,Wheels,Spoke tension low on delivery,Supplier 09,Closed,Assembly or fastening,Replace part,33,,Checked,
+Q-2732,Plant A,8D,2026-07-09,Supplier part rejection,Frame and structure,Pillion grab rail loosens,Supplier 15,Closed,Material or durability,Repair or adjust,30,,Not tracked,
+Q-2695,Plant C,8D,2026-07-14,Supplier part rejection,Power train,Clutch cable frays early,Supplier 14,Closed,Assembly or fastening,Repair or adjust,40,,Not tracked,
+Q-2637,Plant A,8D,2026-07-16,Supplier part rejection,Steering,Steering bearing notchy,Supplier 11,D3,,,,107,,
+Q-2656,Plant D,4D,2026-07-17,In-line defect,Electrical,Starter relay fails,,D3,,,,106,,
+Q-2671,Plant C,8D,2026-07-17,Warranty claim,Other,Mirror stem loosens,,D2,,,,106,,
+Q-2633,Plant D,4D,2026-07-18,Audit finding,Frame and structure,Side stand pivot wears,,Closed,Manufacturing process,Replace part,35,,Not tracked,
+Q-2655,Plant D,4D,2026-07-18,Warranty claim,Brakes,Brake hose chafes on bracket,,Closed,Design or routing,Replace part,13,,Not tracked,Q-2606
+Q-2678,Plant A,8D,2026-07-18,Warranty claim,Engine and cooling,Oil leak at crankcase gasket,,Closed,Software or calibration,Repair or adjust,39,,Not tracked,
+Q-2718,Plant D,4D,2026-07-22,In-line defect,Power train,Gear shift lever loosens,,Closed,Design or routing,Replace part,14,,Not tracked,Q-2697
+Q-2701,Plant B,8D,2026-07-23,In-line defect,Other,Mirror stem loosens,,Closed,Manufacturing process,Replace part,30,,Not tracked,
+Q-2616,Plant C,8D,2026-07-28,In-line defect,Brakes,Front caliper bolt below torque,Supplier 09,Closed,Assembly or fastening,Replace part,10,,Not tracked,
+Q-2681,Plant A,8D,2026-07-30,Supplier part rejection,Brakes,Front caliper bolt below torque,Supplier 15,Closed,Assembly or fastening,Replace part,39,,Checked,Q-2605
+Q-2715,Plant A,8D,2026-07-30,Warranty claim,Frame and structure,Side stand pivot wears,Supplier 07,Closed,Material or durability,Replace part,18,,Checked,
+Q-2650,Plant A,8D,2026-08-03,Audit finding,Engine and cooling,Oil leak at crankcase gasket,,Closed,Material or durability,Replace part,35,,Not tracked,
+Q-2728,Plant D,4D,2026-08-03,In-line defect,Electrical,Harness chafes at steering head,,Closed,Software or calibration,Repair or adjust,25,,Not tracked,
+Q-2629,Plant D,4D,2026-08-04,Supplier part rejection,Brakes,Brake hose chafes on bracket,Supplier 16,Closed,Material or durability,Replace part,27,,Not tracked,
+Q-2669,Plant B,8D,2026-08-04,Supplier part rejection,Lighting,Indicator stops in rain,Supplier 14,Closed,Material or durability,Repair or adjust,28,,Not tracked,Q-2719
+Q-2704,Plant D,4D,2026-08-05,Warranty claim,Other,Seat latch does not lock,,D1,,,,87,,
+Q-2726,Plant D,4D,2026-08-05,Supplier part rejection,Electrical,Headlamp flickers at idle,Supplier 12,D3,,,,87,,
+Q-2604,Plant D,4D,2026-08-07,In-line defect,Lighting,Indicator stops in rain,,Closed,Software or calibration,Replace part,18,,Checked,
+Q-2691,Plant C,8D,2026-08-07,Warranty claim,Steering,Handlebar clamp loosens,,Closed,Manufacturing process,Replace part,38,,Checked,
+Q-2739,Plant C,8D,2026-08-07,Warranty claim,Electrical,Harness chafes at steering head,,Closed,Design or routing,Replace part,18,,Checked,Q-2636
+Q-2627,Plant D,4D,2026-08-15,Supplier part rejection,Brakes,Brake hose chafes on bracket,Supplier 12,D1,,,,77,,
+Q-2630,Plant D,4D,2026-08-15,Warranty claim,Frame and structure,Side stand pivot wears,,D1,,,,77,,
+Q-2705,Plant C,8D,2026-08-15,Warranty claim,Power train,Chain adjuster slips,,Closed,Manufacturing process,Replace part,12,,Checked,Q-2733
+Q-2727,Plant D,4D,2026-08-15,Supplier part rejection,Lighting,Indicator stops in rain,Supplier 08,Closed,Material or durability,Repair or adjust,10,,Not tracked,
+Q-2653,Plant C,8D,2026-08-16,Supplier part rejection,Brakes,Spongy rear brake lever,Supplier 03,Closed,Manufacturing process,Replace part,21,,Checked,
+Q-2729,Plant B,8D,2026-08-17,Supplier part rejection,Frame and structure,Side stand pivot wears,Supplier 11,Closed,Assembly or fastening,Replace part,29,,Checked,
+Q-2607,Plant B,8D,2026-08-20,Warranty claim,Engine and cooling,Coolant weep at hose clamp,,Closed,Design or routing,Replace part,15,,Not tracked,
+Q-2624,Plant B,8D,2026-08-20,In-line defect,Fuel system,Tank cap does not seal,Supplier 15,Closed,Assembly or fastening,Repair or adjust,24,,Checked,
+Q-2639,Plant B,8D,2026-08-20,In-line defect,Brakes,Front caliper bolt below torque,Supplier 16,D4,Design or routing,,9,72,,
+Q-2610,Plant D,4D,2026-08-21,Supplier part rejection,Brakes,Front caliper bolt below torque,Supplier 12,Closed,Manufacturing process,Replace part,24,,Not tracked,
+Q-2638,Plant B,8D,2026-08-22,Supplier part rejection,Power train,Chain adjuster slips,Supplier 11,D7,Material or durability,Repair or adjust,15,70,,Q-2723
+Q-2642,Plant C,8D,2026-08-22,In-line defect,Fuel system,Fuel pump stops intermittently,,Closed,Assembly or fastening,Replace part,11,,Not tracked,
+Q-2612,Plant C,8D,2026-08-24,In-line defect,Other,Mirror stem loosens,,Closed,Material or durability,Replace part,11,,Not tracked,
+Q-2674,Plant B,8D,2026-08-24,Warranty claim,Frame and structure,Pillion grab rail loosens,,Closed,Material or durability,Replace part,30,,Not tracked,
+Q-2724,Plant D,4D,2026-08-25,Audit finding,Frame and structure,Side stand pivot wears,Supplier 17,D3,,,,67,,Q-2630
+Q-2700,Plant A,8D,2026-08-26,Supplier part rejection,Brakes,Front caliper bolt below torque,Supplier 08,D4,Manufacturing process,,33,66,,Q-2681
+Q-2712,Plant A,8D,2026-08-26,In-line defect,Engine and cooling,Engine stalls when hot,,Closed,Manufacturing process,Replace part,34,,Not tracked,
+Q-2722,Plant A,8D,2026-08-26,Warranty claim,Brakes,Front caliper bolt below torque,Supplier 10,D4,Software or calibration,,29,66,,Q-2700
+Q-2657,Plant C,8D,2026-08-27,Warranty claim,Frame and structure,Side stand pivot wears,,Closed,Assembly or fastening,Replace part,9,,Not tracked,
+Q-2736,Plant D,4D,2026-08-27,In-line defect,Brakes,Brake hose chafes on bracket,Supplier 18,Closed,Material or durability,Replace part,27,,Not tracked,
+Q-2689,Plant C,8D,2026-08-28,Supplier part rejection,Electrical,Headlamp flickers at idle,Supplier 08,D1,,,,64,,Q-2615
+Q-2640,Plant B,8D,2026-08-29,Supplier part rejection,Wheels,Rim run-out out of tolerance,Supplier 09,D2,,,,63,,Q-2613
+Q-2646,Plant B,8D,2026-09-02,Audit finding,Frame and structure,Pillion grab rail loosens,,D2,,,,59,,Q-2674
+Q-2647,Plant A,8D,2026-09-04,Supplier part rejection,Brakes,Spongy rear brake lever,Supplier 08,Closed,Assembly or fastening,Repair or adjust,30,,Checked,
+Q-2664,Plant D,4D,2026-09-05,Supplier part rejection,Other,Mirror stem loosens,Supplier 14,D1,,,,56,,
+Q-2623,Plant D,4D,2026-09-06,Audit finding,Brakes,Brake hose chafes on bracket,,D3,,,,55,,
+Q-2641,Plant C,8D,2026-09-07,In-line defect,Other,Mirror stem loosens,,Closed,Design or routing,Repair or adjust,9,,Checked,
+Q-2620,Plant A,8D,2026-09-08,Supplier part rejection,Electrical,Headlamp flickers at idle,Supplier 05,Closed,Manufacturing process,Repair or adjust,12,,Not tracked,Q-2730
+Q-2675,Plant D,4D,2026-09-08,Supplier part rejection,Engine and cooling,Coolant weep at hose clamp,Supplier 07,D2,,,,53,,
+Q-2619,Plant B,8D,2026-09-10,Supplier part rejection,Electrical,Headlamp flickers at idle,Supplier 13,Closed,Design or routing,Replace part,33,,Not tracked,Q-2737
+Q-2625,Plant D,4D,2026-09-10,Warranty claim,Lighting,Indicator stops in rain,,D2,,,,51,,
+Q-2666,Plant D,4D,2026-09-10,Supplier part rejection,Power train,Chain adjuster slips,Supplier 14,D2,,,,51,,
+Q-2686,Plant C,8D,2026-09-14,Warranty claim,Power train,Gear shift lever loosens,Supplier 07,Closed,Design or routing,Repair or adjust,38,,Not tracked,
+Q-2667,Plant B,8D,2026-09-17,In-line defect,Fuel system,Fuel pump stops intermittently,,Closed,Material or durability,Replace part,14,,Not tracked,
+Q-2687,Plant D,4D,2026-09-18,Supplier part rejection,Engine and cooling,Coolant weep at hose clamp,Supplier 01,D2,,,,43,,
+Q-2716,Plant B,8D,2026-09-18,Supplier part rejection,Brakes,Front caliper bolt below torque,Supplier 06,Closed,Material or durability,Repair or adjust,34,,Not tracked,
+Q-2731,Plant B,8D,2026-09-21,Audit finding,Steering,Steering bearing notchy,,D2,,,,40,,
+Q-2683,Plant B,8D,2026-09-23,Warranty claim,Wheels,Rim run-out out of tolerance,,D7,Manufacturing process,Repair or adjust,27,38,,
+Q-2688,Plant D,4D,2026-09-24,In-line defect,Electrical,Starter relay fails,Supplier 15,Closed,Material or durability,Replace part,22,,Not tracked,Q-2656
+Q-2643,Plant C,8D,2026-09-25,In-line defect,Power train,Chain adjuster slips,,D1,,,,36,,Q-2705

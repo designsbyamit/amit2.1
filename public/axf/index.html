@@ -677,7 +677,7 @@ pre.code{white-space:pre-wrap;font:var(--fw-reg) 13px/1.6 var(--ff-mono);backgro
 <script src="handbook.js"></script>
 <script src="solutions.js"></script>
 <script src="ar.js"></script>
-<script src="packs.js"></script>
+<script src="packs.js"></script><script src="packs2.js"></script>
 <script src="design.js"></script>
 <script>
 {
@@ -1045,14 +1045,14 @@ function dContent(id,key){const pk=packOf(id),S=D.SOL[id],H=D.PACK.helpers,c=CAS
 function dReady(id,key){return dContent(id,key)!==null}
 function deliverables(id){const pk=packOf(id),P=D.PACK.steps;
  return `${pk?`<div class="sit">${[['People',pk.situation.users],['System',pk.situation.system],['Data',pk.situation.data]].map(x=>`<div><span class="over">${x[0]}</span><p class="small" style="margin-top:6px">${x[1]}</p></div>`).join('')}</div>
-  <h3 style="margin-top:var(--sp-8)">Data used</h3><div class="dls">${pk.data.map(x=>`<a class="dl" href="${x.file}" download><span class="dl-i" aria-hidden="true">CSV</span><span><b>${x.name}</b><small>${x.rows}</small><small>${x.kind==='synthetic'?'Synthetic, grounded':'Public data'} · ${x.src}</small></span></a>`).join('')}</div>`:`<div class="sit one"><p class="small">The data analysis for this example runs on the datasets being downloaded. Deliverables marked ready are built from the brief.</p></div>`}
+  <h3 style="margin-top:var(--sp-8)">Data used</h3><div class="dls">${pk.data.map(x=>`<a class="dl" href="${x.file}" download><span class="dl-i" aria-hidden="true">CSV</span><span><b>${x.name}</b><small>${x.rows}</small><small>${x.kind==='synthetic'?'Synthetic, grounded':'Public data'} · ${x.src}</small></span></a>`).join('')}</div>`:`<div class="sit one"><p class="small">Deliverables marked ready are built from the brief; the rest need data.</p></div>`}
  <h3 style="margin-top:var(--sp-8)">The ${D.PACK.steps.length} deliverables</h3>
  <ol class="dlist">${P.map((st,i)=>{const ok=dReady(id,st[0]),m=byId(st[1]);return `<li><a class="dcard2 ${ok?'':'off'}" href="#d-${id}-${st[0]}"><span class="plan-n">${i+1}</span><span><b>${st[2]}</b><small>${st[3]}</small></span><span class="badge badge--soft">${PH[m.ph].name}</span><span class="xs ${ok?'':'muted'}">${ok?'Open':'Needs data'}</span></a></li>`}).join('')}</ol>`}
 function dPage(id,key){const c=CASES[id],P=D.PACK.steps,i=P.findIndex(s=>s[0]===key),st=P[i],m=byId(st[1]),prev=P[i-1],next=P[i+1],body=dContent(id,key);
  return `<section class="band"><div class="wrap" style="max-width:1000px">
   <div class="crumb"><a href="#examples">Examples</a><span>/</span><a href="#case-${id}">${c.short}</a><span>/</span><span>Deliverable ${i+1} of ${P.length}</span></div>
   <div class="between" style="margin-top:var(--sp-5);align-items:end"><div><span class="over">${PH[m.ph].name} · ${m.name}</span><h1 style="margin-top:var(--sp-3)">${st[2]}</h1><p class="lede" style="margin-top:var(--sp-3)">${st[3]}. ${c.title}.</p></div><a class="btn btn--sm" href="#m-${m.id}">Template and method</a></div>
-  <div class="dv">${body||`<div class="callout"><h4>Needs the data</h4><p class="small" style="margin-top:6px">This deliverable is built from the datasets you are downloading. It appears here as soon as they are analysed.</p></div>`}</div>
+  <div class="dv">${body||`<div class="callout"><h4>Needs the data</h4><p class="small" style="margin-top:6px">This deliverable needs data that is not available yet.</p></div>`}</div>
   <nav class="pn" aria-label="Deliverables">${prev?`<a class="card card--link" href="#d-${id}-${prev[0]}"><small>Previous</small>${prev[2]}</a>`:`<a class="card card--link" href="#case-${id}"><small>Back to</small>All deliverables</a>`}${next?`<a class="card card--link nx" href="#d-${id}-${next[0]}"><small>Next</small>${next[2]}</a>`:`<a class="card card--link nx" href="#case-${id}"><small>Back to</small>All deliverables</a>`}</nav>
  </div></section>`}
 
